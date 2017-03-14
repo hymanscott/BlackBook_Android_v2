@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:background="@color/main_bg">
+    <com.aptmobility.lynx.CustomTextView
+        custom:fontAssetName="RobotoSlabRegular.ttf"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textAllCaps="true"
+        android:id="@+id/reg_alc_baseline_title"
+        android:text="Baseline SexPro Score"
+        android:layout_margin="10dp"
+        android:gravity="center_vertical|center_horizontal" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="left">
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/no_of_days_text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="20sp"
+                    android:textColor="@color/apptheme_color"
+                    android:text="On average, how often did you drink alcohol in the past 3 months? "
+                    android:layout_weight="1"/>
+                <RadioGroup
+                    android:id="@+id/alcoholCalculation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp">
+
+                    <com.aptmobility.lynx.CustomRadioButton
+                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5-7 days a week"
+                        style="@style/Phastt.Radiobutton"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_color"
+                        android:id="@+id/alcCal_5to7days"
+                        android:checked="true" />
+
+                    <com.aptmobility.lynx.CustomRadioButton
+                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1-4 days a week"
+                        android:textSize="18sp"
+                        style="@style/Phastt.Radiobutton"
+                        android:textColor="@color/text_color"
+                        android:id="@+id/alcCal_1to4days" />
+                    <com.aptmobility.lynx.CustomRadioButton
+                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_color"
+                        style="@style/Phastt.Radiobutton"
+                        android:text="Less than once a week"
+                        android:id="@+id/alcCal_lessThanOnce" />
+                    <com.aptmobility.lynx.CustomRadioButton
+                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_color"
+                        android:text="Never"
+                        style="@style/Phastt.Radiobutton"
+                        android:id="@+id/alcCal_never" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp">
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="About how many drinks did you have on a typical day? "
+                    android:textColor="@color/apptheme_color"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"/>
+                <com.aptmobility.lynx.CustomEditText
+                    android:background="@drawable/apptheme_edit_text_holo_light"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:ems="3"
+                    android:layout_weight="0.1"
+                    android:inputType="number"
+                    android:id="@+id/no_of_drinks"
+                    android:textColor="@color/text_color"
+                    android:hint="00"
+                    android:textSize="18sp"
+                    android:maxLength="2"
+                    android:digits="0123456789"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/text_color"
+                    android:text="One drink is defined as, a 12-oz can of beer, a 4-oz glass of wine, a 1-1/2 oz shot of liquor,or a mixed drink made with 1-1/2 ounces of liquor."
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <com.aptmobility.lynx.CustomButtonView
+                    style="@style/Phastt.button"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Done"
+                    android:visibility="gone"
+                    android:background="@drawable/phastt_button"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:id="@+id/enc_alcoholCal_nextbtn"
+                    android:layout_gravity="center"
+                    android:onClick="alcohol_calculation_done"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="20dp" />
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/reg_alcohol_nav_buttons"
+            android:gravity="bottom">
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <com.aptmobility.lynx.CustomButtonView
+                    style="@style/Phastt.button"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Next"
+                    android:id="@+id/alcohol_cal_nextbtn"
+                    android:background="@drawable/phastt_button"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:layout_gravity="right"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="20dp"
+                    android:onClick="onHeavyAlcholNext"
+                    />
+                <com.aptmobility.lynx.CustomButtonView
+                    style="@style/Phastt.button"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/phastt_button"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:text="Revise"
+                    android:id="@+id/alcohol_cal_revisebtn"
+                    android:layout_gravity="left"
+                    android:layout_alignParentLeft="true"
+                    android:layout_margin="20dp"
+                    android:onClick="onHeavyAlcoholPrev"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

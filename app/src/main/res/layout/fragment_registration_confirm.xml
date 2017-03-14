@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:background="@color/main_bg"
+    android:orientation="vertical">
+
+    <com.aptmobility.lynx.CustomTextView
+        custom:fontAssetName="RobotoSlabRegular.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Confirm your Registration Details"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_gravity="center_horizontal|center_vertical"
+        />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="false"
+        android:layout_alignParentBottom="true"
+        >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="5dp">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="match_parent"
+                    >
+
+                    <com.aptmobility.lynx.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="5dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="20dp"
+                        android:textColor="@color/text_color"
+                        android:text="First name:"
+                        android:layout_weight="1"
+                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+
+                    <com.aptmobility.lynx.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/confirm_firstname"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="first_name"
+                        android:textColor="#333"
+                        android:layout_weight="1"
+                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="match_parent">
+
+                    <com.aptmobility.lynx.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="5dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="20dp"
+                        android:text="Last name:"
+                        android:textColor="@color/text_color"
+                        android:layout_weight="1"
+                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+
+                    <com.aptmobility.lynx.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:id="@+id/confirm_lastname"
+                        android:text="last_name"
+                        android:textColor="#333"
+                        android:layout_weight="1"
+                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="match_parent">
+
+                    <com.aptmobility.lynx.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="5dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="20dp"
+                        android:text="E-mail:"
+                        android:layout_weight="1"
+                        android:textColor="@color/text_color"
+                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+
+                    <com.aptmobility.lynx.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:id="@+id/confirm_email"
+                        android:padding="5dp"
+                        android:text="phastt_test@gmail.com"
+                        android:textColor="#333"
+                        android:layout_weight="0.8"
+                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="match_parent">
+
+                    <com.aptmobility.lynx.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="5dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="20dp"
+                        android:text="Password:"
+                        android:textColor="@color/text_color"
+                        android:layout_weight="1"
+                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+
+                    <com.aptmobility.lynx.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/confirm_password"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="******"
+                        android:textColor="#333"
+                        android:layout_weight="1"
+                        android:layout_marginRight="5dp"
+                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="match_parent">
+
+                    <com.aptmobility.lynx.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="5dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="20dp"
+                        android:text="Mobile Number:"
+                        android:textColor="@color/text_color"
+                        android:layout_weight="1"
+                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+
+                    <com.aptmobility.lynx.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/confirm_phone"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="phone"
+                        android:textColor="#333"
+                        android:layout_weight="1"
+                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="match_parent">
+
+                    <com.aptmobility.lynx.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="5dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textSize="20dp"
+                        android:text="Passcode:"
+                        android:textColor="@color/text_color"
+                        android:layout_weight="1"
+                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+
+                    <com.aptmobility.lynx.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="****"
+                        android:textColor="#333"
+                        android:layout_weight="1"
+                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                </TableRow>
+
+
+
+            <TableRow
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.aptmobility.lynx.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="20dp"
+                    android:textColor="@color/text_color"
+                    android:text="Security Question:"
+                    android:layout_weight="1"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                <com.aptmobility.lynx.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/confirm_sec_qn"
+                    android:textColor="#333"
+                    android:padding="5dp"
+                    android:text="sec_qn"
+                    android:layout_weight="1"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="match_parent">
+                <com.aptmobility.lynx.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="20dp"
+                    android:text="Answer:"
+                    android:textColor="@color/text_color"
+                    android:layout_weight="1"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                <com.aptmobility.lynx.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/confirm_sec_ans"
+                    android:textColor="#333"
+                    android:text="answer"
+                    android:padding="5dp"
+                    android:layout_weight="1"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"/>
+            </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="match_parent">
+
+                <com.aptmobility.lynx.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="20dp"
+                    android:text="Date of Birth:"
+                    android:textColor="@color/text_color"
+                    android:layout_weight="1"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                <com.aptmobility.lynx.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/confirm_dob"
+                    android:text="dob"
+                    android:layout_weight="1"
+                    android:textColor="#333"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp">
+                <com.aptmobility.lynx.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="20dp"
+                    android:text="Selected Race/Ethnicity:"
+                    android:textColor="@color/text_color"
+                    android:layout_weight="1"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                <com.aptmobility.lynx.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/confirm_race"
+                    android:textColor="#333"
+                    android:text="race_list"
+                    android:padding="5dp"
+                    android:layout_weight="1"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"/>
+            </TableRow>
+            </TableLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="bottom">
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                    <com.aptmobility.lynx.CustomButtonView
+                        style="@style/Phastt.button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Confirm"
+                        android:id="@+id/reg_confirmbtn"
+                        android:layout_gravity="right"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/phastt_button"
+                        android:textColor="@color/white"
+                        android:textAllCaps="false"
+                        android:layout_margin="20dp"
+                        android:onClick="showRegistration_primary_partner"
+                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                    <com.aptmobility.lynx.CustomButtonView
+                        style="@style/Phastt.button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Revise"
+                        android:id="@+id/reg_confirm_revisebtn"
+                        android:layout_gravity="left"
+                        android:textAllCaps="false"
+                        android:layout_alignParentLeft="true"
+                        android:background="@drawable/phastt_button"
+                        android:textColor="@color/white"
+                        android:layout_margin="20dp"
+                        android:onClick="revise_registration_confirm"
+                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+
+

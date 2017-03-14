@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<familyset>
+
+    <!-- Some Font. Can be referenced with 'someFont' or 'aspergit' -->
+    <family>
+        <nameset>
+            <name>Roboto</name>
+
+        </nameset>
+        <fileset>
+            <file>RobotoSlab-Regular.ttf</file>
+        </fileset>
+    </family>
+
+</familyset>

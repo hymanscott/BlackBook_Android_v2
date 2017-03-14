@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:background="@color/main_bg">
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <com.aptmobility.lynx.CustomTextView
+            custom:fontAssetName="RobotoSlabRegular.ttf"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/regloginIntroLable"
+            android:textColor="@color/text_color"
+            android:id="@+id/textView"
+            android:layout_margin="10dp"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <com.aptmobility.lynx.CustomButtonView
+            style="@style/Phastt.button"
+            custom:fontAssetName="RobotoSlabRegular.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:id="@+id/btnRegister"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/phastt_button"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:onClick="showRegistration"/>
+
+        <com.aptmobility.lynx.CustomTextView
+            custom:fontAssetName="RobotoSlabRegular.ttf"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="New Phone? If you have already registered with SexPro on a pervious phone, you can login here."
+            android:id="@+id/textView2"
+            android:textColor="@color/text_color"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp" />
+
+        <com.aptmobility.lynx.CustomEditText
+            custom:fontAssetName="RobotoSlabRegular.ttf"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/loginEmail"
+            android:background="@drawable/apptheme_edit_text_holo_light"
+            android:layout_margin="10dp"
+            android:textSize="18sp"
+            android:textColor="@color/text_color"
+            android:hint="Email Address" />
+
+        <com.aptmobility.lynx.CustomEditText
+            custom:fontAssetName="RobotoSlabRegular.ttf"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/loginPassword"
+            android:background="@drawable/apptheme_edit_text_holo_light"
+            android:hint="Password"
+            android:textSize="18sp"
+            android:textColor="@color/text_color"
+            android:layout_margin="10dp" />
+
+        <com.aptmobility.lynx.CustomButtonView
+            style="@style/Phastt.button"
+            custom:fontAssetName="RobotoSlabRegular.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:id="@+id/btnLogin"
+            android:textAllCaps="false"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/phastt_button"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:onClick="showLogin"/>
+
+        <com.aptmobility.lynx.CustomButtonView
+            style="@style/Phastt.button"
+            custom:fontAssetName="RobotoSlabRegular.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password"
+            android:id="@+id/btnForgotPassword"
+            android:background="@drawable/phastt_button"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:layout_gravity="center_horizontal"
+            android:onClick="showForgotPassword"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

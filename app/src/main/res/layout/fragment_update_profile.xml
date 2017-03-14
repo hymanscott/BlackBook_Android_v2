@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:background="@color/main_bg">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="false"
+        >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            >
+            <com.aptmobility.lynx.CustomTextView
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:text="Settings"
+                android:layout_width="fill_parent"
+                android:textAllCaps="true"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:layout_margin="10dp"
+                android:gravity="center_horizontal|center_vertical" />
+            <com.aptmobility.lynx.CustomTextView
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Update Profile"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/text_color"
+                android:layout_margin="5dp"
+                android:gravity="center_vertical|center_horizontal" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Name:"
+                    android:textSize="20sp"
+                    android:textColor="#333"
+                    android:layout_margin="10dp"
+                    android:gravity="center_vertical" />
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:id="@+id/profile_name"
+                    android:layout_margin="10dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_color"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <com.aptmobility.lynx.CustomTextView
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:id="@+id/profile_email"
+                android:textSize="18sp"
+                android:textColor="@color/text_color"
+                android:layout_margin="10dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_weight="1"/>
+
+            <com.aptmobility.lynx.CustomTextView
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Password"
+                android:textSize="20sp"
+                android:textColor="#333"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" >
+
+                <com.aptmobility.lynx.CustomEditText
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:id="@+id/updatePass"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:hint="Password"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_color"
+                    android:background="@drawable/apptheme_edit_text_holo_light"
+                    android:inputType="textPassword"
+                    android:maxLength="12"/>
+
+                <com.aptmobility.lynx.CustomEditText
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:id="@+id/updateRepPass"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_color"
+                    android:background="@drawable/apptheme_edit_text_holo_light"
+                    android:hint="Repeat Password"
+                    android:inputType="textPassword"
+                    android:maxLength="12"/>
+
+            </LinearLayout>
+
+            <com.aptmobility.lynx.CustomEditText
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/updatePhone"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:hint="Mobile Phone Number"
+                android:textSize="18sp"
+                android:textColor="@color/text_color"
+                android:layout_margin="5dp"
+                android:background="@drawable/apptheme_edit_text_holo_light"
+                android:inputType="phone"
+                android:maxLength="11"/>
+
+            <com.aptmobility.lynx.CustomTextView
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Passcode"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:textSize="20sp"
+                android:textColor="#333"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:layout_weight="1" />
+
+            <com.aptmobility.lynx.CustomEditText
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/updatePasscode"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@drawable/apptheme_edit_text_holo_light"
+                android:textSize="18sp"
+                android:textColor="@color/text_color"
+                android:hint="4 Digit Passcode"
+                android:inputType="numberPassword"
+                android:maxLength="4"/>
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/updateSecQuestion"
+                style="@style/SpinnerAppTheme"
+                android:prompt="@string/sec_question_prompt"
+                android:theme="@style/AppTheme"
+                android:layout_margin="5dp" />
+
+            <com.aptmobility.lynx.CustomEditText
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:background="@drawable/apptheme_edit_text_holo_light"
+                android:id="@+id/updateSecAnswer"
+                android:hint="Your answer to the Securtiy Question"
+                android:textSize="18sp"
+                android:textColor="@color/text_color"
+                android:inputType="text"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="5dp" />
+
+            <com.aptmobility.lynx.CustomTextView
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Demographics"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                android:textColor="#333"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Date of Birth"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_color"
+                    android:layout_margin="5dp" />
+
+                <com.aptmobility.lynx.CustomEditText
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:background="@drawable/apptheme_edit_text_holo_light"
+                    android:ems="6"
+                    android:id="@+id/updateDOB"
+                    android:layout_margin="5dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_color"
+                    android:hint="MM/DD/YYYY"
+                    android:inputType="date" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:id="@+id/calenderIconUpdateDOB"
+                    android:src="@drawable/calender"
+                    android:layout_margin="5dp"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+            <com.aptmobility.lynx.CustomTextView
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Race/Ethnicity"
+                android:textSize="20sp"
+                android:textColor="#333"
+                android:id="@+id/textView4"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:layout_weight="1" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+                <com.aptmobility.lynx.MultiSelectionSpinner
+                    android:id="@+id/mySpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/apptheme_edit_text_holo_light"
+                    android:layout_margin="5dp"/>
+
+            </LinearLayout>
+
+            <com.aptmobility.lynx.CustomTextView
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="PrEP Status"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                android:textColor="#333"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:layout_weight="1" />
+
+            <com.aptmobility.lynx.CustomTextView
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="I'm taking Pre-exposure Prophylaxis:"
+                android:textSize="20sp"
+                android:textColor="@color/text_color"
+                android:layout_margin="5dp" />
+
+            <RadioGroup
+                android:id="@+id/updatePrep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp">
+
+                <com.aptmobility.lynx.CustomRadioButton
+                    style="@style/Phastt.Radiobutton"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yes"
+                    android:id="@+id/updatePrepYes"
+                    />
+
+                <com.aptmobility.lynx.CustomRadioButton
+                    style="@style/Phastt.Radiobutton"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_color"
+                    android:id="@+id/updatePrepNo"
+                    />
+            </RadioGroup>
+            <com.aptmobility.lynx.CustomButtonView
+                style="@style/Phastt.button"
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                android:id="@+id/updateProfileBtn"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:background="@drawable/phastt_button"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:onClick="updateProfile"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

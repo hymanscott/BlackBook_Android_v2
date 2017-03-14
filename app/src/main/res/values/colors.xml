@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="light_gray">#E5E5E5</color>
+    <color name="gray">#CCC</color>
+    <color name="white">#ffffff</color>
+    <!--<color name="list_row_selected">#78c8e6</color>-->
+    <!--<color name="light_green">#8bca00</color>-->
+    <color name="orange">#f15d25</color>
+    <color name="apptheme_color">#f15d25</color>
+    <color name="yellow">#fbad2f</color>
+    <color name="button_gray">#666666</color>
+    <color name="button_blue">#448BB4</color>
+    <color name="text_color">#727272</color>
+    <color name="main_bg">#f0efee</color>
+    <color name="black">#000</color>
+</resources>
+

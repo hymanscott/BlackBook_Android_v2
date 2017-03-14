@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/toggle_button"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.aptmobility.lynx.CustomTextView
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/testingHistoryTitle"
+                android:textSize="24sp"
+                android:layout_margin="10dp"
+                android:text="STD Test"
+                android:layout_gravity="center_horizontal|center_vertical"/>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_color"
+                    android:text="Tested on:" />
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/testingHistorydate"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_color"
+                    android:layout_weight="1"
+                    android:text="date" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:id="@+id/std_list_parentLayout"
+                android:orientation="vertical">
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_color"
+                    android:layout_weight="1"
+                    android:id="@+id/std_list_title"
+                    android:text="Your positive STD Tests:" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/std_list">
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <com.aptmobility.lynx.CustomButtonView
+                style="@style/Phastt.button"
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:id="@+id/summaryClose"
+                android:background="@drawable/phastt_button"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:text="close"
+                android:layout_gravity="center_horizontal|center_vertical"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:background="@color/main_bg">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="false"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+            <com.aptmobility.lynx.CustomTextView
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="Baseline SexPro Score"
+                android:textAllCaps="true"
+                android:id="@+id/textView8"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical|center_horizontal" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                >
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/apptheme_color"
+                    android:text="In the past three months, have you been diagnosed with any of the following sexually transmitted infections?"
+                    android:layout_margin="10dp"
+                    android:gravity="center_vertical"
+                     />
+            </LinearLayout>
+            <!-- Container for Dyanamic checkbox-->
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:orientation="vertical"
+                android:id="@+id/linearLayout_drugs">
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <com.aptmobility.lynx.CustomButtonView
+                style="@style/Phastt.button"
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:id="@+id/partner_info_nextbtn"
+                android:layout_gravity="right"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/phastt_button"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:layout_margin="20dp"
+                android:onClick="onSTIInfoNext" />
+            <com.aptmobility.lynx.CustomButtonView
+                style="@style/Phastt.button"
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/phastt_button"
+                android:textColor="@color/white"
+                android:text="Revise"
+                android:id="@+id/partner_info_revisebtn"
+                android:layout_gravity="left"
+                android:layout_alignParentLeft="true"
+                android:textAllCaps="false"
+                android:layout_margin="20dp"
+                android:onClick="onSTIInfoPrev"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

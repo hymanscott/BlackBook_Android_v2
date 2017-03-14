@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:background="#FFFFFF" >
+
+    <LinearLayout
+        android:id="@+id/AppUnlockLinearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp" >
+
+        <ImageView
+            android:id="@+id/passcode_logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_launcher"
+            android:layout_margin="10dp">
+        </ImageView>
+
+        <com.aptmobility.lynx.CustomTextView
+            custom:fontAssetName="RobotoSlabRegular.ttf"
+            android:id="@+id/top_message"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            android:text="@string/passcode_enter_passcode"
+            android:textAlignment="center"
+            android:textColor="#FF464646"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/pin_code_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <com.aptmobility.lynx.CustomEditText
+                android:background="@drawable/apptheme_edit_text_holo_light"
+                android:id="@+id/pincode_1"
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                style="@style/PasscodeInputItemStyle" >
+
+                <requestFocus />
+            </com.aptmobility.lynx.CustomEditText>
+
+            <com.aptmobility.lynx.CustomEditText
+                android:background="@drawable/apptheme_edit_text_holo_light"
+                android:id="@+id/pincode_2"
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                style="@style/PasscodeInputItemStyle" >
+            </com.aptmobility.lynx.CustomEditText>
+
+            <com.aptmobility.lynx.CustomEditText
+                android:background="@drawable/apptheme_edit_text_holo_light"
+                android:id="@+id/pincode_3"
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                style="@style/PasscodeInputItemStyle" >
+            </com.aptmobility.lynx.CustomEditText>
+
+            <com.aptmobility.lynx.CustomEditText
+                android:background="@drawable/apptheme_edit_text_holo_light"
+                android:id="@+id/pincode_4"
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                style="@style/PasscodeInputItemStyle" >
+            </com.aptmobility.lynx.CustomEditText>
+        </LinearLayout>
+
+        <TableLayout
+            android:id="@+id/tableLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="30dp"
+            android:shrinkColumns="*"
+            android:stretchColumns="*" >
+
+            <TableRow>
+                <com.aptmobility.lynx.CustomButtonView
+                    android:id="@+id/button1"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="1" />
+                <com.aptmobility.lynx.CustomButtonView
+                    android:id="@+id/button2"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="2" />
+                <com.aptmobility.lynx.CustomButtonView
+                    android:id="@+id/button3"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="3" />
+            </TableRow>
+
+            <TableRow>
+                <com.aptmobility.lynx.CustomButtonView
+                    android:id="@+id/button4"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="4" />
+
+                <com.aptmobility.lynx.CustomButtonView
+                    android:id="@+id/button5"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="5" />
+
+                <com.aptmobility.lynx.CustomButtonView
+                    android:id="@+id/button6"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="6" />
+            </TableRow>
+
+            <TableRow>
+                <com.aptmobility.lynx.CustomButtonView
+                    android:id="@+id/button7"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="7" />
+                <com.aptmobility.lynx.CustomButtonView
+                    android:id="@+id/button8"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="8" />
+                <com.aptmobility.lynx.CustomButtonView
+                    android:id="@+id/button9"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="9" />
+            </TableRow>
+
+            <TableRow>
+                <com.aptmobility.lynx.CustomButtonView
+                    android:id="@+id/button_none"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:text="" />
+                <com.aptmobility.lynx.CustomButtonView
+                    android:id="@+id/button0"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    android:text="0" />
+                <com.aptmobility.lynx.CustomButtonView
+                    android:id="@+id/button_erase"
+                    style="@style/PasscodeKeyboardButtonStyle"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:text="Del" />
+            </TableRow>
+            
+        </TableLayout>
+    </LinearLayout>
+
+</ScrollView>

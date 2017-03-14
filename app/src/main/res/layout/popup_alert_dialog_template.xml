@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--Custom Alert Dialog for Sign out and Testing reminder notification-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_margin="10dp"
+    android:layout_height="wrap_content"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/toggle_button">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <com.aptmobility.lynx.CustomTextView
+            custom:fontAssetName="RobotoSlabRegular.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="@color/text_color"
+            android:text="Alert Dialog Title"
+            android:id="@+id/alertTitle"
+            android:layout_margin="10dp"
+            android:gravity="center_vertical|center_horizontal" />
+        <com.aptmobility.lynx.CustomTextView
+            custom:fontAssetName="RobotoSlabRegular.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/text_color"
+            android:text="Alert Dialog Message"
+            android:id="@+id/alertMessage"
+            android:layout_margin="10dp"
+            android:gravity="center_vertical|center_horizontal" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <com.aptmobility.lynx.CustomButtonView
+            style="@style/Phastt.button"
+            custom:fontAssetName="RobotoSlabRegular.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:layout_gravity="right"
+            android:layout_alignParentRight="true"
+            android:id="@+id/alertPositiveButton"
+            android:background="@drawable/phastt_button"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"/>
+
+        <com.aptmobility.lynx.CustomButtonView
+            style="@style/Phastt.button"
+            custom:fontAssetName="RobotoSlabRegular.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Netural"
+            android:layout_gravity="left"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            android:id="@+id/alertNeturalButton"
+            android:background="@drawable/phastt_button"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+
+        <com.aptmobility.lynx.CustomButtonView
+            style="@style/Phastt.button"
+            custom:fontAssetName="RobotoSlabRegular.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No"
+            android:layout_gravity="left"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/alertNegativeButton"
+            android:background="@drawable/phastt_button"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp" />
+    </RelativeLayout>
+
+</LinearLayout>

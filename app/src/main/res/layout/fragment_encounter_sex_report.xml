@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:background="@drawable/stroke_bg">
+        <com.aptmobility.lynx.CustomTextView
+            custom:fontAssetName="RobotoSlabRegular.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/text_color"
+            android:layout_margin="20dp"
+            android:id="@+id/encounter_report_title"
+            android:text="Did you have any more sex this week?"/>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/sexReportNav"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="50dp">
+
+            <com.aptmobility.lynx.CustomButtonView
+                style="@style/Phastt.button"
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:onClick="onSexReportYes"
+                android:layout_gravity="left"
+                android:background="@drawable/phastt_button"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:layout_marginLeft="35dp"
+                android:layout_alignParentLeft="true" />
+
+            <com.aptmobility.lynx.CustomButtonView
+                style="@style/Phastt.button"
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:onClick="onSexReportNo"
+                android:background="@drawable/phastt_button"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:layout_gravity="right"
+                android:layout_marginRight="35dp"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/drugReportNav"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="50dp">
+
+            <com.aptmobility.lynx.CustomButtonView
+                style="@style/Phastt.button"
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:onClick="onDrugReportYes"
+                android:background="@drawable/phastt_button"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:layout_gravity="left"
+                android:layout_marginLeft="35dp"
+                android:layout_alignParentLeft="true" />
+
+            <com.aptmobility.lynx.CustomButtonView
+                style="@style/Phastt.button"
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:onClick="onDrugReportNo"
+                android:background="@drawable/phastt_button"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:layout_gravity="right"
+                android:layout_marginRight="35dp"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
