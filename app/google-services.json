@@ -1,1 +1,35 @@
-{"project_info":{"project_id":"academic-osprey-101318","project_number":"1028686574592","name":"PHASTT"},"client":[{"client_info":{"mobilesdk_app_id":"1:1028686574592:android:31f7f11050636c4a","client_id":"android:com.aptmobility.phastt","client_type":1,"android_client_info":{"package_name":"com.aptmobility.phastt"}},"oauth_client":[],"api_key":[],"services":{"analytics_service":{"status":1},"cloud_messaging_service":{"status":2,"apns_config":[]},"appinvite_service":{"status":1,"other_platform_oauth_client":[]},"google_signin_service":{"status":1},"ads_service":{"status":1}}}],"client_info":[],"ARTIFACT_VERSION":"1"}
+{
+  "project_info": {
+    "project_number": "30720444261",
+    "project_id": "lynx-d8331"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30720444261:android:1e148e1fcb7b324a",
+        "android_client_info": {
+          "package_name": "com.aptmobility.lynx"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkTasxAlo8s69X9Wn83Lq0ac0iLfdaxOE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
