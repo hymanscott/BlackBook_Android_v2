@@ -105,8 +105,8 @@ public class testing_nearestTestingLocation extends Activity implements Location
                 e.printStackTrace();
             }
 
-            mMap = mapView.getMap();
-            mMap.setMyLocationEnabled(true);
+            /*mMap = mapView.getMap();
+            mMap.setMyLocationEnabled(true);*/
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 setUpMap();

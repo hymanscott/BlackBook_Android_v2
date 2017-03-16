@@ -82,7 +82,8 @@
     </style>
 
     <style name="ActionBar.Transparent.Phastt_tabs" parent="@android:style/Widget.Holo.Light.ActionBar">
-        <item name="android:background">@drawable/ab_transparent_phastt_tabs</item>
+        <!--<item name="android:background">@drawable/ab_transparent_phastt_tabs</item>-->
+        <item name="android:background">@color/apptheme_color</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Phastt_tabs</item>
 
     </style>

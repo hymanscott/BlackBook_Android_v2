@@ -46,7 +46,7 @@ public class TestingLocation extends FragmentActivity {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+            /*mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();*/
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 setUpMap();
@@ -65,4 +65,6 @@ public class TestingLocation extends FragmentActivity {
         final LatLng test_location = new LatLng(12.971599, 77.594563);
         Marker TP = mMap.addMarker(new MarkerOptions().position(test_location).title("Phastt"));
     }
+
+
 }
