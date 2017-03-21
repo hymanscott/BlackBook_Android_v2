@@ -13,7 +13,18 @@
     <color name="text_color">#727272</color>
     <color name="main_bg">#f0efee</color>
     <color name="black">#000</color>-->
-    <color name="orange">#2196f3</color>
+
+    <!-- LYNX colors -->
+        <!-- Main -->
+    <color name="blue_theme">#2196f3 </color>
+    <color name="dark_boxes">#444444 </color>
+    <color name="gray_bar">#d5d5d5 </color>
+    <color name="blue_boxes">#dceefd </color>
+    <color name="darker_line">#aeaeae </color>
+    <color name="lighter_line">#d5d5d5 </color>
+    <color name="green">#3ad45b</color>
+        <!-- Sub -->
+    <color name="orange">#f15d25</color>
     <color name="apptheme_color">#2196f3</color>
     <color name="yellow">#fbad2f</color>
     <color name="button_gray">#666666</color>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_sexpro"
+        android:enabled="true"
+        android:icon="@drawable/ic_audiotrack"
+        android:title="test"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_diary"
+        android:enabled="true"
+        android:icon="@drawable/ic_launcher"
+        android:title="test"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_testing"
+        android:enabled="true"
+        android:icon="@drawable/ic_cast_dark"
+        android:title="test"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_prep"
+        android:enabled="true"
+        android:icon="@drawable/ic_media_play"
+        android:title="test"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_chat"
+        android:enabled="true"
+        android:icon="@drawable/ic_tv_dark"
+        android:title="test"
+        app:showAsAction="ifRoom" />
+</menu>

@@ -1549,8 +1549,9 @@ public class RegLogin extends FragmentActivity {
                         int notifi_id= 0;
                         scheduleNotification(getSexandEncounterNotification(drug_use_notes),drug_use_day,drug_use_hour,drug_use_min,notifi_id);
 
-                        Intent home = new Intent(RegLogin.this, homeScreenActivity.class);
+                        Intent home = new Intent(RegLogin.this, LYNXSexPro.class);
                         startActivity(home);
+                        finish();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

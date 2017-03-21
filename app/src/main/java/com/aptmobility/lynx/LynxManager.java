@@ -1,11 +1,13 @@
 package com.aptmobility.lynx;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.ParseException;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.aptmobility.model.Encounter;
 import com.aptmobility.model.EncounterSexType;
@@ -512,6 +514,35 @@ public class LynxManager {
             cal.add(Calendar.DATE, 1);
         }
         return cal;
+
+    }
+
+    public static void goToIntent(Context ctx, String screen){
+       switch (screen) {
+            case"sexpro":
+                Intent LYNXSexPro = new Intent(ctx,LYNXSexPro.class);
+                ctx.startActivity(LYNXSexPro);
+                break;
+            case"testing":
+                Intent LYNXTesting = new Intent(ctx,LYNXTesting.class);
+                ctx.startActivity(LYNXTesting);
+                break;
+            case "diary":
+                Intent LYNXDiary = new Intent(ctx,LYNXDiary.class);
+                ctx.startActivity(LYNXDiary);
+                break;
+            case "prep":
+                Intent LYNXPrep = new Intent(ctx,LYNXPrep.class);
+                ctx.startActivity(LYNXPrep);
+                break;
+            case "chat":
+                Intent LYNXChat = new Intent(ctx,LYNXChat.class);
+                ctx.startActivity(LYNXChat);
+                break;
+            default:
+                Toast.makeText(ctx,"Invalid Action",Toast.LENGTH_LONG).show();
+                break;
+        }
 
     }
 }

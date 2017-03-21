@@ -123,4 +123,13 @@
     <string name="title_activity_connecting_to_care">ConnectingToCare</string>
 
     <string name="reg_score_summary">This is a relative score and higher numbers mean higher levels of protection. Even with a perfect 20 (strongest protection), you could still become HIV infected. But it means that you are doing a lot to stay protected. Your score is based on the last three months but we know it’s sometimes hard to remember back that far; so, your score will be updated automatically based on your SexPro entries.</string>
+
+    <string-array name="tab_colors">
+        <item>#2196f3</item>
+        <item>#fbad2f</item>
+        <item>#727272</item>
+        <item>#2196f3</item>
+        <item>#fbad2f</item>
+    </string-array>
+
 </resources>

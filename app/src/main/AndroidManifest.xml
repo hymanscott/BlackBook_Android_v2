@@ -5,7 +5,7 @@
 
     <uses-sdk
         android:minSdkVersion="16"
-        android:targetSdkVersion="22" />
+        android:targetSdkVersion="25" />
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission
@@ -55,20 +55,20 @@
             android:name=".PasscodeUnlockActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".PasscodeManagePasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".homeScreenActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".settings"
             android:label="@string/title_activity_settings"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Encounter_EncounterStartActivity"
             android:label="@string/title_activity_encounter__encounter_start"
@@ -81,27 +81,27 @@
         <activity
             android:name=".encounter_new_partner"
             android:label="@string/title_activity_encounter_new_partner"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Myscore_Activity"
             android:label="@string/title_activity_myscore_prep"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Selected_Encounter_Summary"
             android:label="@string/title_activity_encounter__list__summary"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Selected_Partner_Activity"
             android:label="@string/title_activity_selected__partner__summary"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Testing_Instructions"
             android:label="@string/title_activity_testing_instructions"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".RequestHomeTestKit"
             android:label="@string/title_activity_request_home_test_kit"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -113,7 +113,7 @@
         <activity
             android:name=".TestingLocation"
             android:label="@string/title_activity_testing_location"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".testing_nearestTestingLocation"
             android:label="@string/title_activity_testing_nearest_testing_location"
@@ -132,7 +132,7 @@
                 android:value="com.aptmobility.lynx.PasscodeUnlockActivity" />
         </activity>
 
-        <receiver android:name=".AlarmReceiver"></receiver>
+        <receiver android:name=".AlarmReceiver" />
         <receiver android:name=".AlarmRestoreOnBoot">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -142,7 +142,7 @@
         <activity
             android:name=".ConnectingToCare"
             android:label="@string/title_activity_connecting_to_care"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
@@ -183,7 +183,22 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".LYNXHome"></activity>
+        <activity
+            android:name=".LYNXSexPro"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity android:name=".LYNXTesting"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LYNXDiary"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LYNXPrep"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LYNXChat"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

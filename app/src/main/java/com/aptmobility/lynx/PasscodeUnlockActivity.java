@@ -70,7 +70,7 @@ public class PasscodeUnlockActivity extends AbstractPasscodeKeyboardActivity {
             }
             else{
                 //Intent home = new Intent(this, homeScreenActivity.class);
-                Intent home = new Intent(this, LYNXHome.class);
+                Intent home = new Intent(this, LYNXSexPro.class);
                 startActivity(home);
                 finish();
             }
