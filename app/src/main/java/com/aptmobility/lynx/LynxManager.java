@@ -89,11 +89,11 @@ public class LynxManager {
     public static String deviceId="" ; // TelephonyManager ID
 //    static Context context;
 
-    private static String baseURL = "https://sexproapp.com/phastt/";
+    //private static String baseURL = "https://sexproapp.com/phastt/";
     //private static String baseURL  =   "https://52.25.200.235/phastt/";
     //private static String baseURL  =   "http://www.aptmobility.net/phastt/";
     //private static String baseURL  =   "http://dev.chipware.in/sexpro/";
-
+    private static String baseURL  =   "http://lynxstudy.com/lynx/";
     private LynxManager() {
     }
 

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
@@ -42,12 +44,13 @@ public class encounter_new_partner extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getActionBar().setTitle("SexPro " + getVersion() + " a1");
-        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
-        getActionBar().setTitle("");
-        getActionBar().setIcon(R.drawable.actionbaricon);
-        // setContentView(R.layout.fragment_partner_add_new_partner);
-
+        // Custom Action Bar //
+        getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.blue_theme)));
+        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
+        getActionBar().setCustomView(cView);
+        ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
+        viewProfile.setVisibility(View.GONE);
 
 
         rating_field_id.add(1);

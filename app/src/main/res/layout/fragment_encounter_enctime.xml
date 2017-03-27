@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:background="@color/main_bg"
+    android:background="@color/white"
     >
 
 
@@ -19,10 +19,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
-            android:text="Add New Encounter"
+            android:text="New Encounter"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:id="@+id/textView14"
+            android:textColor="@color/blue_theme"
             android:layout_margin="10dp"
             android:textAllCaps="true"/>
 
@@ -31,8 +32,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
+            android:gravity="center"
             android:textColor="@color/text_color"
-            android:text="Enter Date &amp; Time of Encounter"
+            android:text="Enter date and time of new encounter"
             android:layout_margin="10dp"
             android:id="@+id/textView13" />
 
@@ -41,14 +43,22 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"
-            android:layout_marginRight="10dp">
+            android:layout_marginRight="20dp">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:id="@+id/calenderIconEncDate"
+                android:src="@drawable/calender"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"/>
             <com.aptmobility.lynx.CustomEditText
                 android:background="@drawable/apptheme_edit_text_holo_light"
                 custom:fontAssetName="RobotoSlabRegular.ttf"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="date"
                 android:focusable="true"
@@ -58,30 +68,29 @@
                 android:textColor="@color/text_color"
                 android:hint="MM/DD/YYYY"
                 android:textColorHint="@color/text_color"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp" />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:id="@+id/calenderIconEncDate"
-                android:src="@drawable/calender"
-                android:layout_margin="5dp"
-                android:layout_gravity="center"/>
+                android:layout_marginLeft="5dp" />
             </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"
-            android:layout_marginRight="10dp">
+            android:layout_marginRight="20dp">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/enctimeClear"
+                android:scaleType="fitXY"
+                android:src="@drawable/cleartime"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center"/>
             <com.aptmobility.lynx.CustomEditText
                 android:background="@drawable/apptheme_edit_text_holo_light"
                 custom:fontAssetName="RobotoSlabRegular.ttf"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="datetime"
                 android:focusable="true"
@@ -92,25 +101,29 @@
                 android:text="00:00 AM"
                 android:hint="00:00 AM"
                 android:textColorHint="@color/text_color"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/enctimeClear"
-                android:scaleType="fitXY"
-                android:src="@drawable/cleartime"
-                android:layout_marginLeft="5dp"
-                android:layout_gravity="center"/>
-
+                android:layout_marginLeft="5dp" />
         </LinearLayout>
+        <com.aptmobility.lynx.CustomButtonView
+            style="@style/Phastt.button"
+            custom:fontAssetName="RobotoSlabRegular.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:background="@drawable/lynx_button"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="25dp"
+            android:layout_alignParentRight="true"
+            android:onClick="onNextEnctime"/>
     </LinearLayout>
 
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp">
 
@@ -123,7 +136,7 @@
             android:id="@+id/button10"
             android:textAllCaps="false"
             android:layout_gravity="left"
-            android:background="@drawable/phastt_button"
+            android:background="@drawable/lynx_button"
             android:textColor="@color/white"
             android:layout_alignParentLeft="true"
             android:onClick="onCancelEnctime"/>
@@ -135,7 +148,7 @@
             android:layout_height="wrap_content"
             android:text="Next"
             android:id="@+id/button11"
-            android:background="@drawable/phastt_button"
+            android:background="@drawable/lynx_button"
             android:textColor="@color/white"
             android:textAllCaps="false"
             android:layout_gravity="right"

@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
@@ -61,10 +63,13 @@ public class Encounter_EncounterStartActivity extends FragmentActivity {
             }
         }
 
-        //getActionBar().setTitle("SexPro " + getVersion() + " a1");
-        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
-        getActionBar().setTitle("");
-        getActionBar().setIcon(R.drawable.actionbaricon);
+        // Custom Action Bar //
+        getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.blue_theme)));
+        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
+        getActionBar().setCustomView(cView);
+        ImageView viewProfile = (ImageView)cView.findViewById(R.id.viewProfile);
+        viewProfile.setVisibility(View.GONE);
 
     }
 
@@ -237,7 +242,7 @@ public class Encounter_EncounterStartActivity extends FragmentActivity {
         }else if(!LynxManager.timeValidation(enctime.getText().toString())){
             Toast.makeText(this, "Invalid Time", Toast.LENGTH_LONG).show();
         }else{
-            String encounter_datetime = LynxManager.getFormatedDate("MM/dd/yyyy hh:mm a", encdate.getText().toString() + " " + enctime.getText().toString(), "yyyy-MM-dd HH:mm:ss");
+            String encounter_datetime = LynxManager.getFormatedDate("dd/MM/yyyy hh:mm a", encdate.getText().toString() + " " + enctime.getText().toString(), "yyyy-MM-dd HH:mm:ss");
             Log.v("encounter datetime",encounter_datetime);
             LynxManager.activeEncounter.setDatetime(LynxManager.encryptString(encounter_datetime));
             encounter_choosePartner fragEncChoosePartner = new encounter_choosePartner();
@@ -261,6 +266,24 @@ public class Encounter_EncounterStartActivity extends FragmentActivity {
         return true;
     }
 
+    public boolean onChooseEncPartner(){
+        // From encounter choose partner fragment //
+        if (LynxManager.selectedPartnerID > 0) {
+            LynxManager.setActivePartner(db.getPartnerbyID(LynxManager.selectedPartnerID));
+            LynxManager.setActivePartnerContact(db.getPartnerContactbyID(LynxManager.selectedPartnerID));
+            LynxManager.activePartnerRating.clear();
+            LynxManager.activeEncounter.setEncounter_partner_id(LynxManager.selectedPartnerID);
+
+
+            for (PartnerRating partnerRating : db.getPartnerRatingbyPartnerID(LynxManager.selectedPartnerID)) {
+                LynxManager.setActivePartnerRating(partnerRating);
+            }
+
+            encounter_sex_type fragSexType = new encounter_sex_type();
+            pushFragments("Encounter", fragSexType, true);
+        }
+        return true;
+    }
     public boolean onChoosePartnerNext(View view) {
         if (LynxManager.selectedPartnerID > 0) {
             LynxManager.setActivePartner(db.getPartnerbyID(LynxManager.selectedPartnerID));

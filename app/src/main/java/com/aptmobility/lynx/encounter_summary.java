@@ -40,7 +40,7 @@ public class encounter_summary extends Fragment {
 
 
         LayerDrawable stars5 = (LayerDrawable) sexRating.getProgressDrawable();
-        stars5.getDrawable(2).setColorFilter(getResources().getColor(R.color.orange), PorterDuff.Mode.SRC_ATOP);
+        stars5.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);
 
         TextView hivStatus = (TextView) rootview.findViewById(R.id.encSumm_hivStatus);
         hivStatus.setText(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()));

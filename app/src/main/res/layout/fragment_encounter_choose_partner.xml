@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:background="@color/main_bg">
+    xmlns:custom="http://schemas.android.com/apk/res-auto">
 
 
     <LinearLayout
@@ -18,32 +18,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
-            android:text="Add New Encounter"
+            android:text="New Encounter"
             android:layout_alignParentTop="true"
+            android:textColor="@color/blue_theme"
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
             android:textAllCaps="true" />
 
         <com.aptmobility.lynx.CustomTextView
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Who did you have sex with?"
-            android:textColor="@color/apptheme_color"
-            android:textSize="20sp"
             android:layout_margin="10dp"
-            android:id="@+id/textView12" />
+            android:text="Who did you have sex with?"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="20sp"
+            custom:fontAssetName="RobotoSlabRegular.ttf" />
 
         <com.aptmobility.lynx.CustomButtonView
             style="@style/Phastt.button"
             custom:fontAssetName="RobotoSlabRegular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Partner"
+            android:text="Add New Partner"
             android:textAllCaps="false"
             android:id="@+id/addNewPartner"
-            android:background="@drawable/phastt_button"
+            android:background="@drawable/lynx_button"
             android:textColor="@color/white"
             android:onClick="onClickaddNewPartner" />
 
@@ -52,10 +52,6 @@
             android:layout_height="fill_parent"
             android:id="@+id/scrollView"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/stroke_bg"
-            android:layout_marginBottom="60dp"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:fillViewport="false">
@@ -63,8 +59,6 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:id="@+id/partnerTable">
 
 
@@ -77,6 +71,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:visibility="gone"
         android:layout_margin="10dp">
 
         <com.aptmobility.lynx.CustomButtonView
@@ -97,10 +92,10 @@
             custom:fontAssetName="RobotoSlabRegular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAllCaps="false"
+            android:textAllCaps="true"
             android:text="Next"
             android:onClick="onChoosePartnerNext"
-            android:background="@drawable/phastt_button"
+            android:background="@drawable/lynx_button"
             android:textColor="@color/white"
             android:layout_gravity="right"
             android:layout_alignParentRight="true" />

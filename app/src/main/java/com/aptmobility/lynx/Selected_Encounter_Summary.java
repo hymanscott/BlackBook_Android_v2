@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -24,11 +26,15 @@ public class Selected_Encounter_Summary extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getActionBar().setTitle("SexPro " + getVersion() + " a1");
-        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
-        getActionBar().setTitle("");
-        getActionBar().setIcon(R.drawable.actionbaricon);
         setContentView(R.layout.activity_selected_encounter__summary);
+
+        // Custom Action Bar //
+        getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.blue_theme)));
+        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
+        getActionBar().setCustomView(cView);
+        ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
+        viewProfile.setVisibility(View.GONE);
 
         TextView nickname = (TextView) findViewById(R.id.encList_summary_nickName);
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
@@ -41,7 +47,7 @@ public class Selected_Encounter_Summary extends Activity {
 
 
         LayerDrawable stars5 = (LayerDrawable) sexRating.getProgressDrawable();
-        stars5.getDrawable(2).setColorFilter(getResources().getColor(R.color.orange), PorterDuff.Mode.SRC_ATOP);
+        stars5.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);
 
         TextView hivStatus = (TextView) findViewById(R.id.encListSumm_hivStatus);
         hivStatus.setText(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()));

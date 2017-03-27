@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class LYNXSexPro extends Activity implements View.OnClickListener{
@@ -26,7 +28,10 @@ public class LYNXSexPro extends Activity implements View.OnClickListener{
         // Custom Action Bar //
         getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.blue_theme)));
         getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getActionBar().setCustomView(R.layout.actionbar);
+        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
+        //getActionBar().setCustomView(R.layout.actionbar);
+        getActionBar().setCustomView(cView);
+        ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
 
         // Click Listners //
         btn_testing = (LinearLayout)findViewById(R.id.bot_nav_testing);
@@ -38,7 +43,7 @@ public class LYNXSexPro extends Activity implements View.OnClickListener{
         btn_diary.setOnClickListener(this);
         btn_prep.setOnClickListener(this);
         btn_chat.setOnClickListener(this);
-
+        viewProfile.setOnClickListener(this);
         /*btn_testing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,6 +88,24 @@ public class LYNXSexPro extends Activity implements View.OnClickListener{
             current_score_text.setText("Daily PrEP can raise your score to " +  String.valueOf(adjustedScore) +
                     " & add an extra layer of protection.");
         }
+
+        /*// Activity Swipe Listner //
+        LinearLayout sexpro_main_parent = (LinearLayout)findViewById(R.id.sexpro_main_parent);
+        sexpro_main_parent.setOnTouchListener(new OnSwipeTouchListener(LYNXSexPro.this) {
+            public void onSwipeTop() {
+                Toast.makeText(LYNXSexPro.this, "top", Toast.LENGTH_SHORT).show();
+            }
+            public void onSwipeRight() {
+                Toast.makeText(LYNXSexPro.this, "right", Toast.LENGTH_SHORT).show();
+            }
+            public void onSwipeLeft() {
+                Toast.makeText(LYNXSexPro.this, "left", Toast.LENGTH_SHORT).show();
+            }
+            public void onSwipeBottom() {
+                Toast.makeText(LYNXSexPro.this, "bottom", Toast.LENGTH_SHORT).show();
+            }
+
+        });*/
     }
 
     @Override
@@ -108,6 +131,10 @@ public class LYNXSexPro extends Activity implements View.OnClickListener{
                 LynxManager.goToIntent(LYNXSexPro.this,"chat");
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
+                break;
+            case R.id.viewProfile:
+                Intent profile = new Intent(LYNXSexPro.this,LYNXProfile.class);
+                startActivity(profile);
                 break;
             default:
                 break;

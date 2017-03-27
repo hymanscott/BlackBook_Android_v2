@@ -5315,6 +5315,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return prep_information_list;
     }
 
+    public PrepInformation getPrepInformationById(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_PREP_INFORMATION + " WHERE "
+                + KEY_PREP_INFO_ID + " = " + id;
+
+        Log.e(LOG, selectQuery);
+
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        PrepInformation prep = new PrepInformation();
+        prep.setPrep_information_id(c.getInt(c.getColumnIndex(KEY_PREP_INFO_ID)));
+        prep.setPrep_info_answer(c.getString(c.getColumnIndex(KEY_PREP_INFO_ANSWER)));
+        prep.setPrep_info_question(c.getString(c.getColumnIndex(KEY_PREP_INFO_QUESTION)));
+
+
+        return prep;
+    }
+
     // ------------------------ " TESTING INSTRUCTION" table methods ----------------//
 
     /**

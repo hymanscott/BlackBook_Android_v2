@@ -187,18 +187,31 @@
             android:name=".LYNXSexPro"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
-        <activity android:name=".LYNXTesting"
+        <activity
+            android:name=".LYNXTesting"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".LYNXDiary"
+            />
+        <activity
+            android:name=".LYNXDiary"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".LYNXPrep"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LYNXPrep"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".LYNXChat"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LYNXChat"
             android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PrepFactsAnswer"
             android:screenOrientation="portrait"/>
+        <activity android:name=".TestingInstructionAnswer"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TestingCareAnswer"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LYNXProfile"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"></activity>
     </application>
 
 </manifest>

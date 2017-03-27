@@ -2,10 +2,13 @@ package com.aptmobility.lynx;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class LYNXChat extends Activity implements View.OnClickListener{
 
@@ -18,7 +21,10 @@ public class LYNXChat extends Activity implements View.OnClickListener{
         // Custom Action Bar //
         getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.blue_theme)));
         getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getActionBar().setCustomView(R.layout.actionbar);
+        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
+        getActionBar().setCustomView(cView);
+        ImageView viewProfile = (ImageView)cView.findViewById(R.id.viewProfile);
+
         // Click Listners //
         btn_sexpro = (LinearLayout)findViewById(R.id.bot_nav_sexpro);
         btn_testing = (LinearLayout) findViewById(R.id.bot_nav_testing);
@@ -29,6 +35,7 @@ public class LYNXChat extends Activity implements View.OnClickListener{
         btn_testing.setOnClickListener(this);
         btn_prep.setOnClickListener(this);
         btn_diary.setOnClickListener(this);
+        viewProfile.setOnClickListener(this);
     }
 
     @Override
@@ -54,6 +61,10 @@ public class LYNXChat extends Activity implements View.OnClickListener{
                 LynxManager.goToIntent(LYNXChat.this,"diary");
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
+                break;
+            case R.id.viewProfile:
+                Intent profile = new Intent(LYNXChat.this,LYNXProfile.class);
+                startActivity(profile);
                 break;
             default:
                 break;

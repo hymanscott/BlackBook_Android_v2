@@ -3,6 +3,7 @@ package com.aptmobility.lynx;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -15,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -116,9 +118,17 @@ public abstract class AbstractPasscodeKeyboardActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_passcode_keyboard);
-        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
+        /*getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
         getActionBar().setTitle("");
-        getActionBar().setIcon(R.drawable.actionbaricon);
+        getActionBar().setIcon(R.drawable.actionbaricon);*/
+        // Custom Action Bar //
+        getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.blue_theme)));
+        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
+        getActionBar().setCustomView(cView);
+        ImageView viewProfile = (ImageView)cView.findViewById(R.id.viewProfile);
+        viewProfile.setVisibility(View.GONE);
+
 
         topMessage = (TextView) findViewById(R.id.top_message);
 

@@ -18,15 +18,15 @@
             android:layout_height="wrap_content">
             <com.aptmobility.lynx.CustomTextView
                 custom:fontAssetName="RobotoSlabRegular.ttf"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
                 android:textColor="@color/white"
                 android:text="Nick name"
+                android:layout_gravity="center"
                 android:textAllCaps="true"
                 android:layout_margin="10dp"
-                android:padding="5dp"
-                android:background="@color/apptheme_color"
+                android:background="@drawable/lynx_button_dark"
                 android:gravity="center_vertical|center_horizontal"
                 android:id="@+id/selectedPartner_bannername" />
 
@@ -411,10 +411,13 @@
                         android:layout_gravity="center"
                         android:layout_alignParentRight="true"
                         android:text="Edit"
-                        android:background="@drawable/phastt_button"
+                        android:background="@drawable/lynx_button"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
-                        android:layout_margin="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="50dp"
+                        android:layout_marginLeft="10dp"
                         android:onClick="EditSelectedPartner"/>
                     <com.aptmobility.lynx.CustomButtonView
                         style="@style/Phastt.button"
@@ -422,26 +425,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/phastt_button"
+                        android:layout_alignParentLeft="true"
+                        android:background="@drawable/lynx_button"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:text="Delete"
-                        android:layout_margin="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="50dp"
                         android:onClick="delete"/>
-                    <com.aptmobility.lynx.CustomButtonView
-                        style="@style/Phastt.button"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_alignParentLeft="true"
-                        android:background="@drawable/phastt_button"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:text="Back"
-                        android:layout_margin="10dp"
-                        android:onClick="close"/>
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>

@@ -1,11 +1,12 @@
 <resources>
     <!-- Base application theme. -->
     <!---->
+
     <style name="AppTheme" parent="android:Theme.Holo.Light">
         <!-- Customize your theme here. -->
         <item name="android:spinnerDropDownItemStyle">@style/mySpinnerItemStyle</item>
         <item name="android:spinnerItemStyle">@style/SpinnerItemTheme</item>
-        <item name="android:actionBarItemBackground">@drawable/selectable_background_phastt_tabs</item>
+        <!--<item name="android:actionBarItemBackground">@drawable/selectable_background_phastt_tabs</item>
         <item name="android:popupMenuStyle">@style/PopupMenu.Phastt_tabs</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Phastt_tabs</item>
         <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Phastt_tabs</item>
@@ -13,7 +14,7 @@
         <item name="android:actionBarStyle">@style/ActionBar.Solid.Phastt_tabs</item>
         <item name="android:actionModeBackground">@drawable/cab_background_top_phastt_tabs</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_phastt_tabs</item>
-        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Phastt_tabs</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Phastt_tabs</item>-->
         <item name="android:actionBarTabTextStyle">@style/ActionBarTabTextStyle.Phastt_tabs</item>
         <item name="android:buttonStyle">@style/Phastt.button</item>
         <item name="android:radioButtonStyle">@style/Phastt.Radiobutton</item>
@@ -23,6 +24,15 @@
         <item name="android:seekBarStyle">@style/SeekBarAppTheme</item>
         <item name="android:listChoiceIndicatorMultiple">@drawable/apptheme_btn_check_holo_light</item>
         <item name="android:listChoiceIndicatorSingle">@drawable/apptheme_btn_radio_holo_light</item>
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_lynx</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.Lynx</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Lynx</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Lynx</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Lynx</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Transparent.Lynx</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_lynx</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_lynx</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Lynx</item>
     </style>
 
     <style name="CustomRatingBar" parent="@android:style/Widget.RatingBar">
@@ -71,7 +81,6 @@
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_phastt_tabs</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Phastt_tabs</item>
 
-
     </style>
 
     <style name="ActionBar.Solid.Phastt_tabs" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
@@ -101,7 +110,10 @@
     </style>
 
     <style name="ActionBarTabStyle.Phastt_tabs" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
+<!--
         <item name="android:background">@drawable/tab_indicator_ab_phastt_tabs</item>
+-->
+        <item name="android:background">@drawable/apptheme_tab_indicator_holo</item>
     </style>
 
     <style name="DropDownNav.Phastt_tabs" parent="@android:style/Widget.Holo.Light.Spinner">
@@ -167,4 +179,63 @@
         <item name="android:thumb">@drawable/apptheme_scrubber_control_selector_holo_light</item>
     </style>
 
+    <style name="ActionBar.Solid.Lynx" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+        <item name="android:background">@drawable/ab_solid_lynx</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_lynx</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_lynx</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Lynx</item>
+    </style>
+
+    <style name="ActionBar.Transparent.Lynx" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@drawable/ab_transparent_lynx</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Lynx</item>
+    </style>
+
+    <style name="PopupMenu.Lynx" parent="@android:style/Widget.Holo.Light.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_lynx</item>
+    </style>
+
+    <style name="DropDownListView.Lynx" parent="@android:style/Widget.Holo.Light.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_lynx</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Lynx" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_lynx</item>
+    </style>
+
+    <style name="DropDownNav.Lynx" parent="@android:style/Widget.Holo.Light.Spinner">
+        <item name="android:background">@drawable/spinner_background_ab_lynx</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_lynx</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_lynx</item>
+    </style>
+
+    <style name="ProgressBar.Lynx" parent="@android:style/Widget.Holo.Light.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_lynx</item>
+    </style>
+
+    <style name="ActionButton.CloseMode.Lynx" parent="@android:style/Widget.Holo.Light.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_lynx</item>
+    </style>
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Lynx.Widget" parent="@android:style/Theme.Holo"></style>
+    <style name="TabAppTheme">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingLeft">16dip</item>
+        <item name="android:paddingRight">16dip</item>
+        <item name="android:background">@drawable/apptheme_tab_indicator_holo</item>
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:minWidth">80dip</item>
+    </style>
+
+    <style name="TabTextAppTheme">
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <!-- v14 <item name="android:textAllCaps">true</item> -->
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:maxWidth">180dip</item>
+    </style>
 </resources>

@@ -22,6 +22,7 @@
                 android:text="Baseline SexPro Score"
                 android:textAllCaps="true"
                 android:id="@+id/textView8"
+                android:textColor="@color/blue_theme"
                 android:layout_margin="10dp"
                 android:gravity="center_vertical|center_horizontal" />
 
@@ -72,9 +73,9 @@
                 android:id="@+id/partner_info_nextbtn"
                 android:layout_gravity="right"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/phastt_button"
+                android:background="@drawable/lynx_button"
                 android:textColor="@color/white"
-                android:textAllCaps="false"
+                android:textAllCaps="true"
                 android:layout_margin="20dp"
                 android:onClick="onSTIInfoNext" />
             <com.aptmobility.lynx.CustomButtonView
@@ -82,13 +83,13 @@
                 custom:fontAssetName="RobotoSlabRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/phastt_button"
+                android:background="@drawable/lynx_button"
                 android:textColor="@color/white"
                 android:text="Revise"
                 android:id="@+id/partner_info_revisebtn"
                 android:layout_gravity="left"
                 android:layout_alignParentLeft="true"
-                android:textAllCaps="false"
+                android:textAllCaps="true"
                 android:layout_margin="20dp"
                 android:onClick="onSTIInfoPrev"
                 />

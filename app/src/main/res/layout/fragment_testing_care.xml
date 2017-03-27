@@ -1,0 +1,42 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    tools:context="com.aptmobility.lynx.TestingCareFragment">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="false"
+        android:layout_alignParentBottom="true" >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.aptmobility.lynx.CustomTextView
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="If your HIV test was positive"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:paddingLeft="25dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:background="@drawable/border_top_bottom"
+                android:id="@+id/positiveHIVtest"/>
+            <com.aptmobility.lynx.CustomTextView
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="If your HIV test was negative"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:paddingLeft="25dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:background="@drawable/border_bottom"
+                android:id="@+id/negativeHIVtest"/>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

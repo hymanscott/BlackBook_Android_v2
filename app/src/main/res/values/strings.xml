@@ -108,7 +108,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_encounter__encounter_start">Encounter_EncounterStart</string>
-    <string name="AddPartnerTitle">Add New Partner</string>
+    <string name="AddPartnerTitle">New Partner</string>
     <string name="title_activity_encounter_new_partner">Encounter_new_partner</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_myscore_prep">Myscore_Activity</string>

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -43,6 +44,8 @@ public class EditPartner extends Fragment {
         hivPosUnd.setText(Html.fromHtml("HIV Positive & Undetectable"));
         LynxManager.undetectableLayoutHidden = true;//By default
         EditText nick_name = (EditText)rootview.findViewById(R.id.nick_name);
+        ImageView nick_name_icon = (ImageView)rootview.findViewById(R.id.nick_name_icon);
+        nick_name_icon.setVisibility(View.GONE);
         nick_name.setVisibility(View.GONE);
         TextView selectedPartner_bannername = (TextView) rootview.findViewById(R.id.selectedPartner_bannername);
         selectedPartner_bannername.setVisibility(View.VISIBLE);

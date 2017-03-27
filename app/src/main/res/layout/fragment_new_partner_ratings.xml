@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:background="@color/main_bg">
+    android:background="@color/white">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -20,20 +20,22 @@
                 android:textSize="24sp"
                 android:textAllCaps="true"
                 android:text="@string/AddPartnerTitle"
+                android:textColor="@color/blue_theme"
                 android:layout_margin="10dp"
                 android:id="@+id/add_partner_title"
                 android:gravity="center_vertical|center_horizontal" />
             <com.aptmobility.lynx.CustomTextView
                 custom:fontAssetName="RobotoSlabRegular.ttf"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Nick name"
                 android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:textAllCaps="true"
                 android:textSize="18sp"
                 android:textColor="@color/white"
-                android:padding="5dp"
-                android:background="@color/apptheme_color"
+                android:background="@drawable/lynx_button_dark"
                 android:gravity="center_vertical|center_horizontal"
                 android:id="@+id/newPartner_rating_nickname" />
             <com.aptmobility.lynx.CustomTextView
@@ -225,10 +227,10 @@
                         android:layout_height="wrap_content"
                         android:text="Next"
                         android:layout_gravity="right"
-                        android:textAllCaps="false"
-                        android:layout_alignParentRight="true"
+                        android:textAllCaps="true"
+                        android:layout_centerInParent="true"
                         android:layout_margin="20dp"
-                        android:background="@drawable/phastt_button"
+                        android:background="@drawable/lynx_button"
                         android:textColor="@color/white"
                         android:onClick="onPartnerRatingsNext"
                         />
@@ -241,6 +243,7 @@
                         android:textAllCaps="false"
                         android:layout_gravity="left"
                         android:layout_alignParentLeft="true"
+                        android:visibility="gone"
                         android:background="@drawable/phastt_button"
                         android:textColor="@color/white"
                         android:layout_margin="20dp"

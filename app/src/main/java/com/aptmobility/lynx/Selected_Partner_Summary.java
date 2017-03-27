@@ -113,25 +113,25 @@ public class Selected_Partner_Summary extends Fragment{
              }
 
         LayerDrawable stars1 = (LayerDrawable) rating1.getProgressDrawable();
-        stars1.getDrawable(2).setColorFilter(getResources().getColor(R.color.orange), PorterDuff.Mode.SRC_ATOP);
+        stars1.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);
 
         LayerDrawable stars2 = (LayerDrawable) rating2.getProgressDrawable();
-        stars2.getDrawable(2).setColorFilter(getResources().getColor(R.color.orange), PorterDuff.Mode.SRC_ATOP);
+        stars2.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);
 
         LayerDrawable stars3 = (LayerDrawable) rating3.getProgressDrawable();
-        stars3.getDrawable(2).setColorFilter(getResources().getColor(R.color.orange), PorterDuff.Mode.SRC_ATOP);
+        stars3.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);
 
         LayerDrawable stars4 = (LayerDrawable) rating4.getProgressDrawable();
-        stars4.getDrawable(2).setColorFilter(getResources().getColor(R.color.orange), PorterDuff.Mode.SRC_ATOP);
+        stars4.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);
 
         LayerDrawable stars5 = (LayerDrawable) rating5.getProgressDrawable();
-        stars5.getDrawable(2).setColorFilter(getResources().getColor(R.color.orange), PorterDuff.Mode.SRC_ATOP);
+        stars5.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);
 
         LayerDrawable stars6 = (LayerDrawable) rating6.getProgressDrawable();
-        stars6.getDrawable(2).setColorFilter(getResources().getColor(R.color.orange), PorterDuff.Mode.SRC_ATOP);
+        stars6.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);
 
         LayerDrawable stars7 = (LayerDrawable) rating7.getProgressDrawable();
-        stars7.getDrawable(2).setColorFilter(getResources().getColor(R.color.orange), PorterDuff.Mode.SRC_ATOP);
+        stars7.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);
 
         return rootview;
     }

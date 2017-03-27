@@ -32,5 +32,8 @@
     <color name="text_color">#727272</color>
     <color name="main_bg">#f0efee</color>
     <color name="black">#000</color>
+    <color name="colorPrimary">#2196f3</color>
+    <color name="colorPrimaryDark">#3ad45b</color>
+    <color name="colorAccent">#fbad2f</color>
 </resources>
 

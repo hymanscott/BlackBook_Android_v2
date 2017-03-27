@@ -13,6 +13,7 @@
         android:textSize="24sp"
         android:text="Baseline SexPro Score"
         android:textAllCaps="true"
+        android:textColor="@color/blue_theme"
         android:id="@+id/textView8"
         android:layout_margin="10dp"
         android:gravity="center_vertical|center_horizontal" />
@@ -66,8 +67,8 @@
                 android:layout_height="wrap_content"
                 android:text="Close"
                 android:id="@+id/sexpro_score_close"
-                android:textAllCaps="false"
-                android:background="@drawable/phastt_button"
+                android:textAllCaps="true"
+                android:background="@drawable/lynx_button"
                 android:textColor="@color/white"
                 android:layout_gravity="center_horizontal"
                 android:layout_alignParentBottom="true"

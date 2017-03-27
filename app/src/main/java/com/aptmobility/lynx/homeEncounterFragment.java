@@ -101,7 +101,7 @@ public class homeEncounterFragment extends Fragment {
             for (Encounter encounter : allEncounters) {
                 TableRow encounterRow = new TableRow(getActivity());
 
-                encounterRow.setPadding(0, 0, 10, 0);
+                encounterRow.setPadding(0, 30, 10, 30);
                 final TextView partnerName = new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);
                 final TextView encounterDate = new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);
                 TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f);
@@ -117,7 +117,7 @@ public class homeEncounterFragment extends Fragment {
                 partnerName.setTypeface(roboto);
                 partnerName.setLayoutParams(params);
                 partnerName.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
-                String format = "MMM d, yyyy";
+                String format = "MM/dd/yy";
                 String current_format = "yyyy-MM-dd HH:mm:ss";
                 encounterDate.setText(LynxManager.getFormatedDate(current_format, LynxManager.decryptString(encounter.getDatetime()), format));
                 encounterDate.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
@@ -137,17 +137,17 @@ public class homeEncounterFragment extends Fragment {
                 encounter_Rating_Bar.setNumStars(5);
                 encounter_Rating_Bar.setRight(10);
                 LayerDrawable stars = (LayerDrawable) encounter_Rating_Bar.getProgressDrawable();
-                stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.orange), PorterDuff.Mode.SRC_ATOP);
+                stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);
 
                 encounterRow.addView(encounterDate);
                 encounterRow.addView(partnerName);
                 encounterRow.addView(encounter_Rating_Bar);
-
-                if (j % 2 != 0) {
-                    //encounterRow.setBackgroundColor(Color.parseColor("#ffffff"));
-                    encounterRow.setBackgroundColor(getResources().getColor(R.color.light_gray));
-                    //encounterRow.setBackgroundResource(R.drawable.tablerow);
-                }
+                encounterRow.setBackground(getResources().getDrawable(R.drawable.border_bottom));
+                if(j==0)
+                    encounterRow.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
+                /*if (j % 2 != 0) {
+                    //encounterRow.setBackgroundColor(getResources().getColor(R.color.light_gray));
+                }*/
                 encounterRow.setClickable(true);
                 encounterRow.setFocusable(true);
                 encounterRow.setId(encounterId);
@@ -159,10 +159,14 @@ public class homeEncounterFragment extends Fragment {
                             View row = encounterTable.getChildAt(i);
                             if (row == view) {
                                 //row.setBackgroundColor(getResources().getColor(R.color.gray));
-                                row.setBackgroundColor(Color.parseColor("#448BB4"));
+                                row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
                                 //row.setBackgroundResource(R.drawable.table_row_border);
-                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(1)).setTextColor(Color.parseColor("#ffffff"));
-                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#ffffff"));
+                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(1)).setTextColor(getResources().getColor(R.color.blue_theme));
+                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.blue_theme));
+                                RatingBar r = ((RatingBar) ((TableRow)encounterTable.getChildAt(i)).getChildAt(2));
+                                LayerDrawable stars = (LayerDrawable) r.getProgressDrawable();
+                                stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);
+
                                 LynxManager.selectedEncounterID = row.getId();
                                 LynxManager.activePartnerSexType.clear();
 
@@ -185,13 +189,19 @@ public class homeEncounterFragment extends Fragment {
                                 //Change this to your normal background color.
                                 ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(1)).setTextColor(Color.parseColor("#000000"));
                                 ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#000000"));
-                                if (i % 2 != 0) {
+                                RatingBar r = ((RatingBar) ((TableRow)encounterTable.getChildAt(i)).getChildAt(2));
+                                LayerDrawable stars = (LayerDrawable) r.getProgressDrawable();
+                                stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);
+                                 row.setBackground(getResources().getDrawable(R.drawable.border_bottom));
+                                if(i==0)
+                                    row.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
+                                /*if (i % 2 != 0) {
                                     row.setBackgroundColor(getResources().getColor(R.color.light_gray));
                                     //row.setBackgroundColor(Color.parseColor("#ffffff"));
                                     //row.setBackgroundColor(Color.parseColor("#ffffff"));
                                 } else {
                                     row.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                                }
+                                }*/
                             }
                         }
                         //...

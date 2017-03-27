@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.drawable.ColorDrawable;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -36,6 +37,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -179,10 +181,18 @@ public class RegLogin extends FragmentActivity {
                         .commit();
             }
         }
-        //getActionBar().setTitle("SexPro " + getVersion()+ " a1");
+        /*//getActionBar().setTitle("SexPro " + getVersion()+ " a1");
         getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
         getActionBar().setIcon(R.drawable.actionbaricon);
-        getActionBar().setTitle("");
+        getActionBar().setTitle("");*/
+        // Custom Action Bar //
+        getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.blue_theme)));
+        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
+        getActionBar().setCustomView(cView);
+        ImageView viewProfile = (ImageView)cView.findViewById(R.id.viewProfile);
+        viewProfile.setVisibility(View.GONE);
+
 
     }
 
@@ -998,7 +1008,7 @@ public class RegLogin extends FragmentActivity {
         scheduleNotification(getWeeklyNotification(notes),dayOfTheWeek,10,0,1);
         scheduleNotification(getSexandEncounterNotification(notes), dayOfTheWeek,10,0,0);
 
-        Intent home = new Intent(this, homeScreenActivity.class);
+        Intent home = new Intent(this, LYNXSexPro.class);
         startActivity(home);
         finish();
         return true;

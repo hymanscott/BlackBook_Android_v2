@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <com.aptmobility.lynx.CustomTextView
@@ -33,10 +34,10 @@
         android:layout_margin="50dp"
         android:id="@+id/newPartnerLoggedNext"
         android:onClick="newPartnerLoggedNext"
-        android:background="@drawable/phastt_button"
+        android:background="@drawable/lynx_button"
         android:textColor="@color/white"
-        android:textAllCaps="false"
-        android:text="Next"
+        android:textAllCaps="true"
+        android:text="Add encounter with this partner"
         android:layout_gravity="center_horizontal|center_vertical"/>
 
 </LinearLayout>

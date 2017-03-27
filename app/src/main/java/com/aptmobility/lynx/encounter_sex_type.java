@@ -35,7 +35,7 @@ public class encounter_sex_type extends Fragment {
 
         RatingBar rate_The_Sex = (RatingBar) rootview.findViewById(R.id.sexType_RateTheSex);
         LayerDrawable stars = (LayerDrawable) rate_The_Sex.getProgressDrawable();
-        stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.orange), PorterDuff.Mode.SRC_ATOP);
+        stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);
 
         final ToggleButton btn_sexType_kissing = (ToggleButton) rootview.findViewById(R.id.sexType_kissing);
         final ToggleButton btn_sexType_iSucked = (ToggleButton) rootview.findViewById(R.id.sexType_iSucked);
@@ -78,7 +78,7 @@ public class encounter_sex_type extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_kissing);
-                    btn_sexType_kissing.setTextColor(Color.parseColor("#999999"));
+                    btn_sexType_kissing.setTextColor(getResources().getColor(R.color.blue_theme));
                 }
             }
         });
@@ -96,7 +96,7 @@ public class encounter_sex_type extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iSucked);
-                    btn_sexType_iSucked.setTextColor(Color.parseColor("#999999"));
+                    btn_sexType_iSucked.setTextColor(getResources().getColor(R.color.blue_theme));
                 }
             }
         });
@@ -114,7 +114,7 @@ public class encounter_sex_type extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_heSucked);
-                    btn_sexType_heSucked.setTextColor(Color.parseColor("#999999"));
+                    btn_sexType_heSucked.setTextColor(getResources().getColor(R.color.blue_theme));
                 }
             }
         });
@@ -132,7 +132,7 @@ public class encounter_sex_type extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iTopped);
-                    btn_sexType_iTopped.setTextColor(Color.parseColor("#999999"));
+                    btn_sexType_iTopped.setTextColor(getResources().getColor(R.color.blue_theme));
                 }
             }
         });
@@ -150,7 +150,7 @@ public class encounter_sex_type extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iBottomed);
-                    btn_sexType_iBottomed.setTextColor(Color.parseColor("#999999"));
+                    btn_sexType_iBottomed.setTextColor(getResources().getColor(R.color.blue_theme));
                 }
             }
         });
@@ -168,7 +168,7 @@ public class encounter_sex_type extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iJerked);
-                    btn_sexType_iJerked.setTextColor(Color.parseColor("#999999"));
+                    btn_sexType_iJerked.setTextColor(getResources().getColor(R.color.blue_theme));
                 }
             }
         });
@@ -186,7 +186,7 @@ public class encounter_sex_type extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_heJerked);
-                    btn_sexType_heJerked.setTextColor(Color.parseColor("#999999"));
+                    btn_sexType_heJerked.setTextColor(getResources().getColor(R.color.blue_theme));
                 }
             }
         });
@@ -204,7 +204,7 @@ public class encounter_sex_type extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iRimmed);
-                    btn_sexType_iRimmed.setTextColor(Color.parseColor("#999999"));
+                    btn_sexType_iRimmed.setTextColor(getResources().getColor(R.color.blue_theme));
                 }
             }
         });
@@ -221,7 +221,7 @@ public class encounter_sex_type extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_heRimmed);
-                    btn_sexType_heRimmed.setTextColor(Color.parseColor("#999999"));
+                    btn_sexType_heRimmed.setTextColor(getResources().getColor(R.color.blue_theme));
                 }
             }
         });

@@ -6,27 +6,31 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:id="@+id/scrollView2"
+        android:fillViewport="false" >
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/prepTable">
+
+        </TableLayout>
+    </ScrollView>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_alignParentBottom="true"
+        android:visibility="gone"
         android:fillViewport="false"
         >
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="PRE-EXPOSURE PROPHYLAXIS (PrEP)"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
             <LinearLayout
                 android:id="@+id/myscore_prEPLayout"
                 android:layout_width="fill_parent"
+                android:visibility="gone"
                 android:layout_height="fill_parent"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"

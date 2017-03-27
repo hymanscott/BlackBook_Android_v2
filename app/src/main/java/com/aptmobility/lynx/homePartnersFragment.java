@@ -65,7 +65,7 @@ public class homePartnersFragment extends Fragment {
         for (Partners partner : partners) {
             if(partner.getPartner_idle()!=1) {
                 TableRow partnerRow = new TableRow(getActivity());
-                partnerRow.setPadding(0, 0, 10, 0);
+                partnerRow.setPadding(0, 30, 10, 30);
                 TextView partner_Name = new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);
                 RatingBar partner_Rating_Bar = new RatingBar(getActivity(), null, android.R.attr.ratingBarStyleIndicator);
                 TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f);
@@ -89,14 +89,17 @@ public class homePartnersFragment extends Fragment {
 
 
                 LayerDrawable stars = (LayerDrawable) partner_Rating_Bar.getProgressDrawable();
-                stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.orange), PorterDuff.Mode.SRC_ATOP);
+                stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);
 
 
                 partnerRow.addView(partner_Name);
                 partnerRow.addView(partner_Rating_Bar);
-                if (j % 2 == 0) {
+                partnerRow.setBackground(getResources().getDrawable(R.drawable.border_bottom));
+                if(j==0)
+                    partnerRow.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
+                /*if (j % 2 == 0) {
                     partnerRow.setBackgroundColor(getResources().getColor(R.color.light_gray));
-                }
+                }*/
                 partnerRow.setClickable(true);
                 partnerRow.setFocusable(true);
                 partnerRow.setId(partner_id);
@@ -107,8 +110,12 @@ public class homePartnersFragment extends Fragment {
                             View row = partnerTable.getChildAt(i);
                             if (row == view) {
 
-                                row.setBackgroundColor(Color.parseColor("#448BB4"));
-                                ((TextView) ((TableRow) partnerTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#ffffff"));
+                                row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
+                                ((TextView) ((TableRow) partnerTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.blue_theme));
+                                RatingBar r = ((RatingBar) ((TableRow)partnerTable.getChildAt(i)).getChildAt(1));
+                                LayerDrawable stars = (LayerDrawable) r.getProgressDrawable();
+                                stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);
+
                                 Intent selectedPartnerSumm = new Intent(getActivity(), Selected_Partner_Activity.class);
                                 LynxManager.selectedPartnerID = row.getId();
                                 selectedPartnerSumm.putExtra("PartnerID", LynxManager.selectedPartnerID);
@@ -116,11 +123,17 @@ public class homePartnersFragment extends Fragment {
 
                             } else {
                                 ((TextView) ((TableRow) partnerTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#000000"));
-                                if (i % 2 == 0) {
+                                RatingBar r = ((RatingBar) ((TableRow)partnerTable.getChildAt(i)).getChildAt(1));
+                                LayerDrawable stars = (LayerDrawable) r.getProgressDrawable();
+                                stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);
+                                row.setBackground(getResources().getDrawable(R.drawable.border_bottom));
+                                if(i==0)
+                                    row.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
+                                /*if (i % 2 == 0) {
                                     row.setBackgroundColor(getResources().getColor(R.color.light_gray));
                                 } else {
                                     row.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                                }
+                                }*/
                             }
                         }
                     }

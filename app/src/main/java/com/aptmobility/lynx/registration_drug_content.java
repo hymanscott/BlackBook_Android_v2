@@ -3,6 +3,7 @@ package com.aptmobility.lynx;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +59,8 @@ public class registration_drug_content extends Fragment {
 
             //  Log.v("Drug Content Fragment", drugName +" - "+ drug.size() + "  -  "+i );
             final CheckBox ch;
-            ch = new CheckBox(getActivity());
+            //ch = new CheckBox(getActivity());
+            ch = new CheckBox(new ContextThemeWrapper(getActivity(), R.style.Phastt_CheckBox), null, 0);
             ch.setText(drugName);
             ch.setTypeface(roboto);
             ch.setPadding(0,0,0,2);

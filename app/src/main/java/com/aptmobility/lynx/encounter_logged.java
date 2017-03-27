@@ -17,10 +17,10 @@ public class encounter_logged extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootview = inflater.inflate(R.layout.fragment_new_partner_logged, container, false);
-        com.aptmobility.lynx.CustomTextView loggedText= (com.aptmobility.lynx.CustomTextView)rootview.findViewById(R.id.encloggedText);
+        View rootview = inflater.inflate(R.layout.fragment_encounter_logged, container, false);
+        /*com.aptmobility.lynx.CustomTextView loggedText= (com.aptmobility.lynx.CustomTextView)rootview.findViewById(R.id.encloggedText);
         loggedText.setText("Your new encounter was logged.");
-        loggedText.setTextColor(getResources().getColor(R.color.text_color));
+        loggedText.setTextColor(getResources().getColor(R.color.text_color));*/
         return rootview;
     }
 }

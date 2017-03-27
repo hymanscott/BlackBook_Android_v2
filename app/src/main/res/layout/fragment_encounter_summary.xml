@@ -31,16 +31,15 @@
 
         <com.aptmobility.lynx.CustomTextView
             custom:fontAssetName="RobotoSlabRegular.ttf"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            
+            android:textAllCaps="true"
             android:text="Nick name"
             android:layout_margin="10dp"
             android:id="@+id/encounter_summary_nickName"
-            android:padding="5dp"
             android:textSize="20sp"
             android:textColor="@color/white"
-            android:background="@color/apptheme_color"
+            android:background="@drawable/lynx_button_dark"
             android:gravity="center_vertical|center_horizontal" />
         <LinearLayout
             android:layout_width="fill_parent"
@@ -124,38 +123,172 @@
             android:layout_margin="10dp"
             android:text="Type of Sex:"
             />
-        <com.aptmobility.lynx.CustomToggleButton
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textOn="Kissing / making out"
-            android:textOff="Kissing / making out"
-            android:textColor="#999999"
-            android:layout_gravity="center"
-            android:textAlignment="gravity"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="30dp"
-            android:id="@+id/encSumm_kissing"
-            android:padding="10dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:background="@drawable/toggle_button"/>
-        <com.aptmobility.lynx.CustomToggleButton
-            custom:fontAssetName="RobotoSlabRegular.ttf"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textOn="I sucked him"
-            android:textOff="I sucked him"
-            android:textColor="#999999"
-            android:layout_gravity="center"
-            android:textAlignment="gravity"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:id="@+id/encSumm_iSucked"
-            android:padding="10dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:background="@drawable/toggle_button"/>
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
 
+            <com.aptmobility.lynx.CustomToggleButton
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOn="I sucked him"
+                android:textOff="I sucked him"
+                android:textColor="@color/blue_theme"
+                android:layout_gravity="center"
+                android:textAlignment="gravity"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:id="@+id/encSumm_iSucked"
+                android:padding="10dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/toggle_button"/>
+            <com.aptmobility.lynx.CustomToggleButton
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOn="He sucked me"
+                android:textOff="He sucked me"
+                android:textColor="@color/blue_theme"
+                android:layout_gravity="center"
+                android:textAlignment="gravity"
+                android:layout_weight="1"
+                android:id="@+id/encSumm_heSucked"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/toggle_button"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
+
+            <com.aptmobility.lynx.CustomToggleButton
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOn="I topped"
+                android:textOff="I topped"
+                android:textColor="@color/blue_theme"
+                android:layout_gravity="center"
+                android:textAlignment="gravity"
+                android:id="@+id/encSumm_iTopped"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/toggle_button"/>
+            <com.aptmobility.lynx.CustomToggleButton
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOn="I bottomed"
+                android:textOff="I bottomed"
+                android:textColor="@color/blue_theme"
+                android:layout_gravity="center"
+                android:textAlignment="gravity"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:id="@+id/encSumm_iBottomed"
+                android:padding="10dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/toggle_button"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
+            <com.aptmobility.lynx.CustomToggleButton
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOn="I jerked him"
+                android:textOff="I jerked him"
+                android:textColor="@color/blue_theme"
+                android:layout_gravity="center"
+                android:textAlignment="gravity"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:id="@+id/encSumm_iJerked"
+                android:padding="10dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/toggle_button"/>
+            <com.aptmobility.lynx.CustomToggleButton
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOn="He jerked me"
+                android:textOff="He jerked me"
+                android:textColor="@color/blue_theme"
+                android:layout_gravity="center"
+                android:textAlignment="gravity"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:id="@+id/encSumm_heJerked"
+                android:padding="10dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/toggle_button"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp">
+            <com.aptmobility.lynx.CustomToggleButton
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOn="I rimmed him"
+                android:textOff="I rimmed him"
+                android:textColor="@color/blue_theme"
+                android:layout_gravity="center"
+                android:textAlignment="gravity"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:id="@+id/encSumm_iRimmed"
+                android:padding="10dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/toggle_button"/>
+            <com.aptmobility.lynx.CustomToggleButton
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOn="He rimmed me"
+                android:textOff="He rimmed me"
+                android:textColor="@color/blue_theme"
+                android:layout_gravity="center"
+                android:textAlignment="gravity"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:id="@+id/encSumm_heRimmed"
+                android:padding="10dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/toggle_button"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="5dp">
+            <com.aptmobility.lynx.CustomToggleButton
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOn="Kissing / making out"
+                android:textOff="Kissing / making out"
+                android:textColor="@color/blue_theme"
+                android:layout_gravity="center"
+                android:textAlignment="gravity"
+                android:layout_margin="10dp"
+                android:id="@+id/encSumm_kissing"
+                android:padding="10dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/toggle_button"/>
+        </LinearLayout>
         <com.aptmobility.lynx.CustomTextView
             custom:fontAssetName="RobotoSlabRegular.ttf"
             android:layout_width="fill_parent"
@@ -167,38 +300,6 @@
             android:id="@+id/encSumm_iSucked_condomuse"
             android:layout_marginTop="20dp"
             android:text="x"/>
-        <com.aptmobility.lynx.CustomToggleButton
-            custom:fontAssetName="RobotoSlabRegular.ttf"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textOn="He sucked me"
-            android:textOff="He sucked me"
-            android:textColor="#999999"
-            android:layout_gravity="center"
-            android:textAlignment="gravity"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:id="@+id/encSumm_heSucked"
-            android:padding="10dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:background="@drawable/toggle_button"/>
-        <com.aptmobility.lynx.CustomToggleButton
-            custom:fontAssetName="RobotoSlabRegular.ttf"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textOn="I topped"
-            android:textOff="I topped"
-            android:textColor="#999999"
-            android:layout_gravity="center"
-            android:textAlignment="gravity"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="30dp"
-            android:id="@+id/encSumm_iTopped"
-            android:padding="10dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:background="@drawable/toggle_button"/>
 
         <com.aptmobility.lynx.CustomTextView
             custom:fontAssetName="RobotoSlabRegular.ttf"
@@ -211,22 +312,7 @@
             android:visibility="gone"
             android:id="@+id/encSumm_iTopped_condomuse"
             android:text="x"/>
-        <com.aptmobility.lynx.CustomToggleButton
-            custom:fontAssetName="RobotoSlabRegular.ttf"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textOn="I bottomed"
-            android:textOff="I bottomed"
-            android:textColor="#999999"
-            android:layout_gravity="center"
-            android:textAlignment="gravity"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:id="@+id/encSumm_iBottomed"
-            android:padding="10dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:background="@drawable/toggle_button"/>
+
         <com.aptmobility.lynx.CustomTextView
             custom:fontAssetName="RobotoSlabRegular.ttf"
             android:layout_width="fill_parent"
@@ -238,70 +324,7 @@
             android:visibility="gone"
             android:id="@+id/encSumm_iBottomed_condomuse"
             android:text="x"/>
-        <com.aptmobility.lynx.CustomToggleButton
-            custom:fontAssetName="RobotoSlabRegular.ttf"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textOn="I jerked him"
-            android:textOff="I jerked him"
-            android:textColor="#999999"
-            android:layout_gravity="center"
-            android:textAlignment="gravity"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="30dp"
-            android:id="@+id/encSumm_iJerked"
-            android:padding="10dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:background="@drawable/toggle_button"/>
-        <com.aptmobility.lynx.CustomToggleButton
-            custom:fontAssetName="RobotoSlabRegular.ttf"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textOn="He jerked me"
-            android:textOff="He jerked me"
-            android:textColor="#999999"
-            android:layout_gravity="center"
-            android:textAlignment="gravity"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:id="@+id/encSumm_heJerked"
-            android:padding="10dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:background="@drawable/toggle_button"/>
-        <com.aptmobility.lynx.CustomToggleButton
-            custom:fontAssetName="RobotoSlabRegular.ttf"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textOn="I rimmed him"
-            android:textOff="I rimmed him"
-            android:textColor="#999999"
-            android:layout_gravity="center"
-            android:textAlignment="gravity"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="30dp"
-            android:id="@+id/encSumm_iRimmed"
-            android:padding="10dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:background="@drawable/toggle_button"/>
-        <com.aptmobility.lynx.CustomToggleButton
-            custom:fontAssetName="RobotoSlabRegular.ttf"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textOn="He rimmed me"
-            android:textOff="He rimmed me"
-            android:textColor="#999999"
-            android:layout_gravity="center"
-            android:textAlignment="gravity"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:id="@+id/encSumm_heRimmed"
-            android:padding="10dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:background="@drawable/toggle_button"/>
+
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -316,6 +339,7 @@
                 android:text="Revise"
                 android:onClick="onEncSummPrev"
                 android:textAllCaps="false"
+                android:visibility="gone"
                 android:background="@drawable/phastt_button"
                 android:textColor="@color/white"
                 android:layout_gravity="left"
@@ -326,13 +350,13 @@
                 custom:fontAssetName="RobotoSlabRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Confirm"
+                android:text="Save"
                 android:onClick="onEncSummNext"
                 android:layout_gravity="right"
-                android:textAllCaps="false"
-                android:background="@drawable/phastt_button"
+                android:textAllCaps="true"
+                android:background="@drawable/lynx_button"
                 android:textColor="@color/white"
-                android:layout_alignParentRight="true" />
+                android:layout_centerInParent="true" />
         </RelativeLayout>
     </LinearLayout>
     </ScrollView>

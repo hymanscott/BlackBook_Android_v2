@@ -1,0 +1,94 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    tools:context="com.aptmobility.lynx.TestingTestKitFragment">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="false"
+        android:id="@+id/scrollView3">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="fill_parent">
+            <com.aptmobility.lynx.CustomTextView
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="Request a Home Test Kit"
+                android:textAllCaps="true"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical|center_horizontal" />
+            <com.aptmobility.lynx.CustomTextView
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/text_color"
+                android:text="Please confirm tests requested"
+                android:layout_margin="10dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:id="@+id/requestHomeKit_checkboxLayout"
+                android:layout_height="wrap_content">
+                <com.aptmobility.lynx.CustomCheckBox
+                    style="@style/Phastt.CheckBox"
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OraQuick Home HIV Test Kit"
+                    android:id="@+id/oraQuickTestKit"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_color"
+                    android:layout_marginLeft="40dp"
+                    android:checked="true"
+                    android:layout_centerHorizontal="true" />
+                <com.aptmobility.lynx.CustomCheckBox
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Phastt.CheckBox"
+                    android:text="Anal Swab"
+                    android:id="@+id/analSwab"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_color"
+                    android:checked="true"
+                    android:layout_marginLeft="40dp"
+                    android:layout_centerHorizontal="true" />
+                <com.aptmobility.lynx.CustomCheckBox
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Penile Swab"
+                    style="@style/Phastt.CheckBox"
+                    android:checked="true"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_color"
+                    android:id="@+id/penileSwab"
+                    android:layout_marginLeft="40dp"
+                    android:layout_centerHorizontal="true" />
+            </LinearLayout>
+            <com.aptmobility.lynx.CustomButtonView
+                style="@style/Phastt.button"
+                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirm"
+                android:id="@+id/requestHomeKit_confirm"
+                android:background="@drawable/lynx_button"
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:textAllCaps="false"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

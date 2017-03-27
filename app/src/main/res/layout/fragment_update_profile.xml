@@ -355,7 +355,7 @@
                 android:id="@+id/updateProfileBtn"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
-                android:background="@drawable/phastt_button"
+                android:background="@drawable/lynx_button"
                 android:textColor="@color/white"
                 android:textAllCaps="false"
                 android:onClick="updateProfile"/>

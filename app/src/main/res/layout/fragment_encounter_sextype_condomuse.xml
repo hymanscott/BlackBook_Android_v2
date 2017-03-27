@@ -21,22 +21,22 @@
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
                 android:textAllCaps="true"
-                android:text="Add New Encounter"
+                android:text="New Encounter"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_margin="10dp"/>
             <com.aptmobility.lynx.CustomTextView
                 custom:fontAssetName="RobotoSlabRegular.ttf"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Nick name"
                 android:id="@+id/enc_sexType_condomUse_nickName"
                 android:layout_margin="10dp"
-                android:padding="5dp"
                 android:textSize="20sp"
                 android:textColor="@color/white"
-                android:background="@color/apptheme_color"
+                android:textAllCaps="true"
+                android:background="@drawable/lynx_button_dark"
                 android:gravity="center_vertical|center_horizontal" />
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -246,6 +246,7 @@
                     android:background="@drawable/phastt_button"
                     android:textColor="@color/white"
                     android:textAllCaps="false"
+                    android:visibility="gone"
                     android:layout_gravity="left"
                     android:layout_alignParentLeft="true" />
 
@@ -256,11 +257,11 @@
                     android:layout_height="wrap_content"
                     android:text="Next"
                     android:onClick="onEncCondomUseNext"
-                    android:background="@drawable/phastt_button"
+                    android:background="@drawable/lynx_button"
                     android:textColor="@color/white"
-                    android:textAllCaps="false"
+                    android:textAllCaps="true"
                     android:layout_gravity="right"
-                    android:layout_alignParentRight="true" />
+                    android:layout_centerInParent="true" />
             </RelativeLayout>
 
         </LinearLayout>

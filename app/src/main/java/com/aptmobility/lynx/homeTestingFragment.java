@@ -123,44 +123,6 @@ public class homeTestingFragment extends Fragment {
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
                 "RobotoSlabRegular.ttf");
 
-        TableRow tableRow_ReqKit = (TableRow) view.findViewById(R.id.testing_requestTest);
-        tableRow_ReqKit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent testing_request = new Intent(getActivity(), RequestHomeTestKit.class);
-                startActivity(testing_request);
-
-            }
-        });
-        //Onclick listener for Nearest Location
-        TableRow tableRow_nearestLoc = (TableRow) view.findViewById(R.id.testing_nearestLocation);
-        tableRow_nearestLoc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent testingLocation = new Intent(getActivity(), testing_nearestTestingLocation.class);
-                startActivity(testingLocation);
-            }
-        });
-        //Onclick listener for Testing Instructions
-        TableRow tableRow_TestingIns = (TableRow) view.findViewById(R.id.testing_instructions);
-        tableRow_TestingIns.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent testing_Instruction = new Intent(getActivity(), Testing_Instructions.class);
-                startActivity(testing_Instruction);
-            }
-        });
-
-        //Onclick listener for Connecting to care
-        TableRow tableRow_CtoC = (TableRow) view.findViewById(R.id.connectingToCare);
-        tableRow_CtoC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent connecting_to_care = new Intent(getActivity(), ConnectingToCare.class);
-                startActivity(connecting_to_care);
-            }
-        });
-
         Button addNewHIVtest = (Button) view.findViewById(R.id.testing_addNewHIVtest);
         addNewHIVtest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,7 +140,7 @@ public class homeTestingFragment extends Fragment {
         });
 
 
-        // Testing History Table
+        // Testing History Table //
         final TableLayout testing_history_table = (TableLayout) view.findViewById(R.id.testingHistoryTable);
         testing_history_table.removeAllViews();
 
@@ -186,6 +148,7 @@ public class homeTestingFragment extends Fragment {
 
 
         List<TestingHistory> histories = db.getAllTestingHistories();
+        Log.v("TestingHistoryCount", String.valueOf(db.getTestingHistoryCount()));
         /*
         *true = Descending order
         * false = ascending order
@@ -194,67 +157,178 @@ public class homeTestingFragment extends Fragment {
         int j = 0;
         for (TestingHistory history : histories) {
             TestNameMaster name = db.getTestingNamebyID(history.getTesting_id());
+            Log.v("Date & ID",history.getTesting_history_id()+LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MMM d, yyyy"));
 
-            TableRow historyRow = new TableRow(getActivity());
-            TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f);
-            historyRow.setPadding(5, 10 ,5 ,10);
+            if(name.getTestName().equals("HIV Test")){
+                TableRow historyRow = new TableRow(getActivity());
+                TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f);
+                historyRow.setPadding(5, 30 ,5 ,30);
+                historyRow.setBackground(getResources().getDrawable(R.drawable.border_bottom));
+                if(j==0)
+                    historyRow.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
 
-            TextView testDate = new TextView(getActivity()); /*new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);*/
-            TextView testName = new TextView(getActivity());
-            testDate.setGravity(Gravity.START);
-            testDate.setLayoutParams(params);
-            testDate.setTextColor(getResources().getColor(R.color.text_color));
-            testDate.setTextSize(18);
-            testDate.setTypeface(roboto);
-            testDate.setPadding(10, 0, 10, 5);
-            testDate.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MMM d, yyyy"));
+                TextView testDate = new TextView(getActivity()); /*new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);*/
+                TextView testName = new TextView(getActivity());
+                TextView testStatus = new TextView(getActivity());
+                ImageView testImage = new ImageView(getActivity());
 
-            testName.setText(name.getTestName());
-            testName.setGravity(Gravity.END);
-            testName.setTextColor(getResources().getColor(R.color.text_color));
-            testName.setTextSize(18);
-            testName.setLayoutParams(params);
-            testName.setPadding(5, 0, 10, 5);
-            testName.setTypeface(roboto);
+                testDate.setGravity(Gravity.START);
+                testDate.setLayoutParams(params);
+                testDate.setTextColor(getResources().getColor(R.color.text_color));
+                testDate.setTextSize(18);
+                testDate.setTypeface(roboto);
+                testDate.setPadding(10, 0, 10, 5);
+                testDate.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
 
-/*
-            if (j % 2 != 0) {
-                //partnerRow.setBackgroundResource(R.drawable.tablerow);
-                historyRow.setBackgroundColor(getResources().getColor(R.color.light_gray));
-            }
-*/
+                testName.setGravity(Gravity.CENTER_HORIZONTAL);
+                testName.setTextColor(getResources().getColor(R.color.text_color));
+                testName.setTextSize(18);
+                testName.setLayoutParams(params);
+                testName.setPadding(5, 0, 10, 5);
+                testName.setTypeface(roboto);
 
-            historyRow.addView(testDate);
-            historyRow.addView(testName);
-            historyRow.setClickable(true);
-            historyRow.setFocusable(true);
-            historyRow.setId(history.getTesting_history_id());
-            historyRow.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    for (int i = 0; i < testing_history_table.getChildCount(); i++) {
-                        View row = testing_history_table.getChildAt(i);
-                        if (row == v) {
-                            //row.setBackgroundColor(getResources().getColor(R.color.gray));
-                            row.setBackgroundColor(Color.parseColor("#f15d25"));
-                            ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(1)).setTextColor(Color.parseColor("#ffffff"));
-                            ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#ffffff"));
-                            showSummaryPopup(row.getId(), width, height);
-                        } else {
-                            //Change this to your normal background color.
-                            row.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                            ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(1)).setTextColor(Color.parseColor("#000000"));
-                            ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#000000"));
-                            /*if (i % 2 != 0) {
-                                row.setBackgroundColor(getResources().getColor(R.color.light_gray));
+                testStatus.setGravity(Gravity.CENTER_HORIZONTAL);
+                testStatus.setTextColor(getResources().getColor(R.color.text_color));
+                testStatus.setTextSize(18);
+                testStatus.setLayoutParams(params);
+                testStatus.setPadding(5, 0, 10, 5);
+                testStatus.setTypeface(roboto);
+                testName.setText("HIV");
+                testStatus.setText("-");
+
+                testImage.setLayoutParams(params);
+                testImage.setImageResource(R.drawable.testimage);
+                testImage.setScaleType(ImageView.ScaleType.FIT_XY);
+
+                historyRow.removeAllViews();
+                historyRow.addView(testDate);
+                historyRow.addView(testName);
+                historyRow.addView(testStatus);
+                historyRow.addView(testImage);
+                historyRow.setClickable(true);
+                historyRow.setFocusable(true);
+                historyRow.setId(history.getTesting_history_id());
+                historyRow.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        for (int i = 0; i < testing_history_table.getChildCount(); i++) {
+                            View row = testing_history_table.getChildAt(i);
+                            if (row == v) {
+                                //row.setBackgroundColor(getResources().getColor(R.color.gray));
+                                row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
+                                ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(1)).setTextColor(getResources().getColor(R.color.blue_theme));
+                                ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.blue_theme));
+                                ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(2)).setTextColor(getResources().getColor(R.color.blue_theme));
+
+                                showSummaryPopup(row.getId(), width, height);
                             } else {
+                                //Change this to your normal background color.
                                 row.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                            }*/
+                                ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(1)).setTextColor(getResources().getColor(R.color.text_color));
+                                ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color));
+                                ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(2)).setTextColor(getResources().getColor(R.color.text_color));
+                                row.setBackground(getResources().getDrawable(R.drawable.border_bottom));
+                                if(i==0)
+                                    row.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
+                            }
                         }
                     }
+                });
+                testing_history_table.addView(historyRow);
+            }else{
+
+                List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(history.getTesting_history_id());
+                for (TestingHistoryInfo historyInfo : testinghistoryInfoList) {
+                    TableRow historyRow = new TableRow(getActivity());
+                    TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f);
+                    historyRow.setPadding(5, 30 ,5 ,30);
+                    historyRow.setBackground(getResources().getDrawable(R.drawable.border_bottom));
+                    if(j==0)
+                        historyRow.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
+
+                    TextView testDate = new TextView(getActivity()); /*new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);*/
+                    TextView testName = new TextView(getActivity());
+                    TextView testStatus = new TextView(getActivity());
+                    ImageView testImage = new ImageView(getActivity());
+
+                    testDate.setGravity(Gravity.START);
+                    testDate.setLayoutParams(params);
+                    testDate.setTextColor(getResources().getColor(R.color.text_color));
+                    testDate.setTextSize(18);
+                    testDate.setTypeface(roboto);
+                    testDate.setPadding(10, 0, 10, 5);
+                    testDate.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MMM d, yyyy"));
+                    testName.setGravity(Gravity.CENTER_HORIZONTAL);
+                    testName.setTextColor(getResources().getColor(R.color.text_color));
+                    testName.setTextSize(18);
+                    testName.setLayoutParams(params);
+                    testName.setPadding(5, 0, 10, 5);
+                    testName.setTypeface(roboto);
+
+                    testStatus.setGravity(Gravity.CENTER_HORIZONTAL);
+                    testStatus.setTextColor(getResources().getColor(R.color.text_color));
+                    testStatus.setTextSize(18);
+                    testStatus.setLayoutParams(params);
+                    testStatus.setPadding(5, 0, 10, 5);
+                    testStatus.setTypeface(roboto);
+
+                    testImage.setLayoutParams(params);
+                    testImage.setImageResource(R.drawable.testimage);
+                    testImage.setScaleType(ImageView.ScaleType.FIT_XY);
+
+                    STIMaster stiName = db.getSTIbyID(historyInfo.getSti_id());
+                    testName.setText(stiName.getstiName());
+                    Log.v("AddROW",stiName.getstiName());
+                    if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
+                        testStatus.setText("Positive");
+                        Log.v("AddROW","Positive");
+                    }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
+                        testStatus.setText("Negative");
+                        Log.v("AddROW","Negative");
+                    }else {
+                        testStatus.setText("Didn't Test");
+                        Log.v("AddROW","Didn't Test");
+                    }
+                    historyRow.removeAllViews();
+                    historyRow.addView(testDate);
+                    historyRow.addView(testName);
+                    historyRow.addView(testStatus);
+                    historyRow.addView(testImage);
+
+                    historyRow.setClickable(true);
+                    historyRow.setFocusable(true);
+                    historyRow.setId(history.getTesting_history_id());
+                    historyRow.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            for (int i = 0; i < testing_history_table.getChildCount(); i++) {
+                                View row = testing_history_table.getChildAt(i);
+                                if (row == v) {
+                                    row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
+                                    ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(1)).setTextColor(getResources().getColor(R.color.blue_theme));
+                                    ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.blue_theme));
+                                    ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(2)).setTextColor(getResources().getColor(R.color.blue_theme));
+                                    showSummaryPopup(row.getId(), width, height);
+                                } else {
+                                    row.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                                    ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(1)).setTextColor(getResources().getColor(R.color.text_color));
+                                    ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color));
+                                    ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(2)).setTextColor(getResources().getColor(R.color.text_color));
+                                    row.setBackground(getResources().getDrawable(R.drawable.border_bottom));
+                                    if(i==0)
+                                        row.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
+
+                                }
+                            }
+                        }
+                    });
+
+                    testing_history_table.addView(historyRow);
                 }
-            });
-            testing_history_table.addView(historyRow);
+
+            }
+
+            j++;
         }
         if ( Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
@@ -459,6 +533,7 @@ public class homeTestingFragment extends Fragment {
         LinearLayout std_list_parentLayout = (LinearLayout)popupSummView.findViewById(R.id.std_list_parentLayout);
         TextView std_list_title = (TextView) popupSummView.findViewById(R.id.std_list_title);
         Button close_button = (Button)popupSummView.findViewById(R.id.summaryClose);
+        close_button.setBackground(getResources().getDrawable(R.drawable.lynx_button));
         close_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -468,6 +543,7 @@ public class homeTestingFragment extends Fragment {
         TestingHistory testingHistory = db.getTestingHistorybyID(testingHistoryID);
         String test_name = (db.getTestingNamebyID(testingHistory.getTesting_id())).getTestName();
         testingHistoryTitle.setText(test_name);
+        testingHistoryTitle.setTextColor(getResources().getColor(R.color.blue_theme));
         String test_date = LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(testingHistory.getTesting_date()),"dd-MMM-yyyy");
         testingHistorydate.setText(test_date);
         if(test_name.equals("HIV Test")){

@@ -34,9 +34,9 @@
             android:text="Register"
             android:id="@+id/btnRegister"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/phastt_button"
+            android:background="@drawable/lynx_button"
             android:textColor="@color/white"
-            android:textAllCaps="false"
+            android:textAllCaps="true"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
             android:onClick="showRegistration"/>
@@ -86,9 +86,9 @@
             android:layout_height="wrap_content"
             android:text="Login"
             android:id="@+id/btnLogin"
-            android:textAllCaps="false"
+            android:textAllCaps="true"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/phastt_button"
+            android:background="@drawable/lynx_button"
             android:textColor="@color/white"
             android:layout_margin="10dp"
             android:onClick="showLogin"/>
@@ -100,9 +100,9 @@
             android:layout_height="wrap_content"
             android:text="Forgot Password"
             android:id="@+id/btnForgotPassword"
-            android:background="@drawable/phastt_button"
+            android:background="@drawable/lynx_button"
             android:textColor="@color/white"
-            android:textAllCaps="false"
+            android:textAllCaps="true"
             android:layout_gravity="center_horizontal"
             android:onClick="showForgotPassword"/>
 

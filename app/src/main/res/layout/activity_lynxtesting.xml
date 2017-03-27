@@ -17,27 +17,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true">
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="?android:attr/actionBarSize">
 
-            <ScrollView
+            <android.support.v4.view.ViewPager
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/pager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="?android:attr/actionBarSize">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <com.aptmobility.lynx.CustomTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:text="Testing Screen"
-                        android:textSize="24sp"
-                        custom:fontAssetName="RobotoSlabRegular.ttf" />
-                </LinearLayout>
-            </ScrollView>
+                android:layout_marginBottom="0dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,8 @@ public class registration_sti_info extends Fragment {
 
             Log.v("STI Content Fragment", stiName + " - " + stis.size() + "  -  " + i);
             final CheckBox ch;
-            ch = new CheckBox(getActivity());
+            //ch = new CheckBox(getActivity());
+            ch = new CheckBox(new ContextThemeWrapper(getActivity(), R.style.Phastt_CheckBox), null, 0);
             ch.setText(stiName);
             ch.setTypeface(roboto);
             ch.setTextSize(18);

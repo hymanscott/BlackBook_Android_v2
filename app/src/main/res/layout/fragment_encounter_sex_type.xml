@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:background="@color/main_bg">
+    android:background="@color/white">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -21,22 +21,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
-            android:text="Add New Encounter"
+            android:text="New Encounter"
             android:textAllCaps="true"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:textColor="@color/blue_theme"
             android:layout_margin="10dp"/>
         <com.aptmobility.lynx.CustomTextView
             custom:fontAssetName="RobotoSlabRegular.ttf"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nick name"
             android:layout_margin="10dp"
             android:id="@+id/enc_sexType_nickName"
-            android:padding="5dp"
             android:textSize="20sp"
+            android:textAllCaps="true"
             android:textColor="@color/white"
-            android:background="@color/apptheme_color"
+            android:background="@drawable/lynx_button_dark"
             android:gravity="center_vertical|center_horizontal" />
         <com.aptmobility.lynx.CustomTextView
             custom:fontAssetName="RobotoSlabRegular.ttf"
@@ -69,21 +70,6 @@
                 android:text="Type of sex"
                 android:layout_margin="10dp"
                 android:gravity="center_vertical|center_horizontal" />
-            <com.aptmobility.lynx.CustomToggleButton
-                custom:fontAssetName="RobotoSlabRegular.ttf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOn="Kissing / making out"
-                android:textOff="Kissing / making out"
-                android:textColor="#999999"
-                android:layout_gravity="center"
-                android:textAlignment="gravity"
-                android:layout_margin="10dp"
-                android:id="@+id/sexType_kissing"
-                android:padding="10dp"
-                android:gravity="center_vertical|center_horizontal"
-                android:background="@drawable/toggle_button"/>
-
         </LinearLayout>
 
         <LinearLayout
@@ -96,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOn="I sucked him"
-                android:textColor="#999999"
+                android:textColor="@color/blue_theme"
                 android:textOff="I sucked him"
                 android:layout_gravity="center"
                 android:id="@+id/sexType_iSucked"
@@ -112,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:textOn="He sucked me"
                 android:textOff="He sucked me"
-                android:textColor="#999999"
+                android:textColor="@color/blue_theme"
                 android:id="@+id/sexType_heSucked"
                 android:layout_gravity="center"
                 android:textAlignment="gravity"
@@ -133,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:textOn="I topped"
                 android:textOff="I topped"
-                android:textColor="#999999"
+                android:textColor="@color/blue_theme"
                 android:id="@+id/sexType_iTopped"
                 android:layout_gravity="center"
                 android:textAlignment="gravity"
@@ -148,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:textOn="I bottomed"
                 android:textOff="I bottomed"
-                android:textColor="#999999"
+                android:textColor="@color/blue_theme"
                 android:id="@+id/sexType_iBottomed"
                 android:layout_gravity="center"
                 android:textAlignment="gravity"
@@ -169,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:textOn="I jerked him"
                 android:textOff="I jerked him"
-                android:textColor="#999999"
+                android:textColor="@color/blue_theme"
                 android:id="@+id/sexType_iJerked"
                 android:layout_gravity="center"
                 android:textAlignment="gravity"
@@ -184,7 +170,7 @@
                 android:layout_height="wrap_content"
                 android:textOn="He jerked me"
                 android:textOff="He jerked me"
-                android:textColor="#999999"
+                android:textColor="@color/blue_theme"
                 android:id="@+id/sexType_heJerked"
                 android:layout_gravity="center"
                 android:textAlignment="gravity"
@@ -205,7 +191,7 @@
                 android:layout_height="wrap_content"
                 android:textOn="I rimmed him"
                 android:textOff="I rimmed him"
-                android:textColor="#999999"
+                android:textColor="@color/blue_theme"
                 android:id="@+id/sexType_iRimmed"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
@@ -220,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:textOn="He rimmed me"
                 android:textOff="He rimmed me"
-                android:textColor="#999999"
+                android:textColor="@color/blue_theme"
                 android:id="@+id/sexType_heRimmed"
                 android:layout_margin="10dp"
                 android:layout_gravity="center"
@@ -231,6 +217,20 @@
                 android:background="@drawable/toggle_button"/>
 
         </LinearLayout>
+        <com.aptmobility.lynx.CustomToggleButton
+            custom:fontAssetName="RobotoSlabRegular.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="Kissing / making out"
+            android:textOff="Kissing / making out"
+            android:textColor="@color/blue_theme"
+            android:layout_gravity="center"
+            android:textAlignment="gravity"
+            android:layout_margin="10dp"
+            android:id="@+id/sexType_kissing"
+            android:padding="10dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="@drawable/toggle_button"/>
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -246,6 +246,7 @@
                 android:onClick="onSexTypePrev"
                 android:background="@drawable/phastt_button"
                 android:textColor="@color/white"
+                android:visibility="gone"
                 android:textAllCaps="false"
                 android:layout_gravity="left"
                 android:layout_alignParentLeft="true" />
@@ -257,11 +258,11 @@
                 android:layout_height="wrap_content"
                 android:text="Next"
                 android:onClick="onSexTypeNext"
-                android:background="@drawable/phastt_button"
+                android:background="@drawable/lynx_button"
                 android:textColor="@color/white"
-                android:textAllCaps="false"
+                android:textAllCaps="true"
                 android:layout_gravity="right"
-                android:layout_alignParentRight="true" />
+                android:layout_centerInParent="true" />
         </RelativeLayout>
     </LinearLayout>
     </ScrollView>

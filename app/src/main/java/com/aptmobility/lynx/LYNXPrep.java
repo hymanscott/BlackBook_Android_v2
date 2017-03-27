@@ -2,14 +2,27 @@ package com.aptmobility.lynx;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
-public class LYNXPrep extends Activity implements View.OnClickListener {
+public class LYNXPrep extends FragmentActivity implements View.OnClickListener,ActionBar.TabListener {
 
     LinearLayout btn_sexpro,btn_diary,btn_testing,btn_chat;
+    ViewPager viewPager;
+    private TabsPagerAdapter mAdapter;
+    private ActionBar actionBar;
+    private String[] tabs = { "PrEP Facts", "PrEP Map", "PrEP Videos" };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +31,9 @@ public class LYNXPrep extends Activity implements View.OnClickListener {
         // Custom Action Bar //
         getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.blue_theme)));
         getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getActionBar().setCustomView(R.layout.actionbar);
+        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
+        getActionBar().setCustomView(cView);
+        ImageView viewProfile = (ImageView)cView.findViewById(R.id.viewProfile);
 
         // Click Listners //
         btn_sexpro = (LinearLayout)findViewById(R.id.bot_nav_sexpro);
@@ -30,6 +45,44 @@ public class LYNXPrep extends Activity implements View.OnClickListener {
         btn_testing.setOnClickListener(this);
         btn_diary.setOnClickListener(this);
         btn_chat.setOnClickListener(this);
+        viewProfile.setOnClickListener(this);
+        // Tab Layout //
+
+        // Initilization
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        actionBar = getActionBar();
+        mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+
+        viewPager.setAdapter(mAdapter);
+        getActionBar().setHomeButtonEnabled(false);
+        getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        // Adding Tabs
+        for (String tab_name : tabs) {
+            getActionBar().addTab(getActionBar().newTab().setText(tab_name)
+                    .setTabListener(this));
+        }
+
+        /**
+         * on swiping the viewpager make respective tab selected
+         * */
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageSelected(int position) {
+                // on changing the page
+                // make respected tab selected
+                actionBar.setSelectedNavigationItem(position);
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+            }
+        });
     }
 
     @Override
@@ -56,8 +109,54 @@ public class LYNXPrep extends Activity implements View.OnClickListener {
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
+            case R.id.viewProfile:
+                Intent profile = new Intent(LYNXPrep.this,LYNXProfile.class);
+                startActivity(profile);
+                break;
             default:
                 break;
         }
+    }
+    public class TabsPagerAdapter extends FragmentPagerAdapter {
+
+        public TabsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int index) {
+
+            switch (index) {
+                case 0:
+                    return new Myscore_Prep();
+                case 1:
+                    return new LYNXPrepMap();
+                case 2:
+                    return new BlankFragment();
+            }
+
+            return null;
+        }
+
+        @Override
+        public int getCount() {
+            // get item count - equal to number of tabs
+            return 3;
+        }
+
+    }
+    @Override
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+    }
+
+    @Override
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+        // on tab selected
+        // show respected fragment view
+        viewPager.setCurrentItem(tab.getPosition());
+    }
+
+    @Override
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
     }
 }

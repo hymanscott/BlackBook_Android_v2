@@ -2,11 +2,13 @@ package com.aptmobility.lynx;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.aptmobility.helper.DatabaseHelper;
@@ -19,9 +21,14 @@ public class PasscodeChangePasscode extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_change_passcode);
-        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
-        getActionBar().setTitle("");
-        getActionBar().setIcon(R.drawable.actionbaricon);
+        // Custom Action Bar //
+        getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.blue_theme)));
+        getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
+        //getActionBar().setCustomView(R.layout.actionbar);
+        getActionBar().setCustomView(cView);
+        ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
+        viewProfile.setVisibility(View.GONE);
     }
 
     @Override
