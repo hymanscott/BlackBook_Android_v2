@@ -97,7 +97,7 @@ public class MyGcmListenerService extends GcmListenerService {
                         default:
                             test_status = "";
                     }
-                    TestingHistoryInfo historyInfo = new TestingHistoryInfo(testingHistoryid, LynxManager.getActiveUser().getUser_id(), sti_count, test_status, String.valueOf(R.string.statusUpdateNo), true);
+                    TestingHistoryInfo historyInfo = new TestingHistoryInfo(testingHistoryid, LynxManager.getActiveUser().getUser_id(), sti_count, test_status,"", String.valueOf(R.string.statusUpdateNo), true);
                     int historyInfo_id = db.createTestingHistoryInfo(historyInfo);
                 }
             }

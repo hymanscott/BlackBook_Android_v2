@@ -3,11 +3,15 @@ package com.aptmobility.lynx;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -38,6 +42,10 @@ import com.aptmobility.model.TestNameMaster;
 import com.aptmobility.model.TestingHistory;
 import com.aptmobility.model.TestingHistoryInfo;
 
+import java.io.File;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
@@ -127,7 +135,10 @@ public class homeTestingFragment extends Fragment {
         addNewHIVtest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPopup(v, "HIV Test",width, ViewGroup.LayoutParams.WRAP_CONTENT);
+                //showPopup(v, "HIV Test",width, ViewGroup.LayoutParams.WRAP_CONTENT);
+                Intent addtest = new Intent(getActivity(),AddNewTest.class);
+                addtest.putExtra("testname","HIV Test");
+                startActivityForResult(addtest,111);
             }
         });
 
@@ -135,7 +146,10 @@ public class homeTestingFragment extends Fragment {
         addNewSTItest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPopup(v, "STD Test", width, height);
+                //showPopup(v, "STD Test", width, height);
+                Intent addtest = new Intent(getActivity(),AddNewTest.class);
+                addtest.putExtra("testname","STD Test");
+                startActivityForResult(addtest,111);
             }
         });
 
@@ -162,6 +176,7 @@ public class homeTestingFragment extends Fragment {
             if(name.getTestName().equals("HIV Test")){
                 TableRow historyRow = new TableRow(getActivity());
                 TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f);
+                TableRow.LayoutParams imgparams = new TableRow.LayoutParams(50, 50, 1f);
                 historyRow.setPadding(5, 30 ,5 ,30);
                 historyRow.setBackground(getResources().getDrawable(R.drawable.border_bottom));
                 if(j==0)
@@ -171,6 +186,10 @@ public class homeTestingFragment extends Fragment {
                 TextView testName = new TextView(getActivity());
                 TextView testStatus = new TextView(getActivity());
                 ImageView testImage = new ImageView(getActivity());
+
+                testImage.setLayoutParams(imgparams);
+                testImage.setScaleType(ImageView.ScaleType.FIT_XY);
+                testImage.setImageResource(R.drawable.testimage);
 
                 testDate.setGravity(Gravity.START);
                 testDate.setLayoutParams(params);
@@ -195,11 +214,35 @@ public class homeTestingFragment extends Fragment {
                 testStatus.setTypeface(roboto);
                 testName.setText("HIV");
                 testStatus.setText("-");
+                List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(history.getTesting_history_id());
+                for (TestingHistoryInfo historyInfo : testinghistoryInfoList) {
+                    if(historyInfo.getSti_id()==0){
+                        if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
+                            testStatus.setText("Positive");
+                        }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
+                            testStatus.setText("Negative");
+                        }else {
+                            testStatus.setText("Didn't Test");
+                        }
+                        if(!historyInfo.getAttachment().equals("")){
+                            String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
+                            File mediaFile = new File(imgDir+historyInfo.getAttachment());
+                            Log.v("OrgPath",imgDir+historyInfo.getAttachment());
+                            if(mediaFile.exists()){
+                                Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfo.getAttachment());
+                                int h = 50; // height in pixels
+                                int w = 50; // width in pixels
+                                Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
+                                testImage.setImageBitmap(scaled);
+                            }else{
+                                //  ***********set url from server*********** //
+                                testImage.setImageResource(R.drawable.testimage);
+                            }
 
-                testImage.setLayoutParams(params);
-                testImage.setImageResource(R.drawable.testimage);
-                testImage.setScaleType(ImageView.ScaleType.FIT_XY);
+                        }
 
+                    }
+                }
                 historyRow.removeAllViews();
                 historyRow.addView(testDate);
                 historyRow.addView(testName);
@@ -220,7 +263,10 @@ public class homeTestingFragment extends Fragment {
                                 ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.blue_theme));
                                 ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(2)).setTextColor(getResources().getColor(R.color.blue_theme));
 
-                                showSummaryPopup(row.getId(), width, height);
+                                Intent testSumm = new Intent(getActivity(),TestSummary.class);
+                                testSumm.putExtra("testingHistoryID",row.getId());
+                                startActivity(testSumm);
+                                //showSummaryPopup(row.getId(), width, height);
                             } else {
                                 //Change this to your normal background color.
                                 row.setBackgroundColor(getResources().getColor(android.R.color.transparent));
@@ -241,6 +287,7 @@ public class homeTestingFragment extends Fragment {
                 for (TestingHistoryInfo historyInfo : testinghistoryInfoList) {
                     TableRow historyRow = new TableRow(getActivity());
                     TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f);
+                    TableRow.LayoutParams imgparams = new TableRow.LayoutParams(50, 50, 1f);
                     historyRow.setPadding(5, 30 ,5 ,30);
                     historyRow.setBackground(getResources().getDrawable(R.drawable.border_bottom));
                     if(j==0)
@@ -257,7 +304,7 @@ public class homeTestingFragment extends Fragment {
                     testDate.setTextSize(18);
                     testDate.setTypeface(roboto);
                     testDate.setPadding(10, 0, 10, 5);
-                    testDate.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MMM d, yyyy"));
+                    testDate.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
                     testName.setGravity(Gravity.CENTER_HORIZONTAL);
                     testName.setTextColor(getResources().getColor(R.color.text_color));
                     testName.setTextSize(18);
@@ -272,22 +319,36 @@ public class homeTestingFragment extends Fragment {
                     testStatus.setPadding(5, 0, 10, 5);
                     testStatus.setTypeface(roboto);
 
-                    testImage.setLayoutParams(params);
+                    testImage.setLayoutParams(imgparams);
                     testImage.setImageResource(R.drawable.testimage);
                     testImage.setScaleType(ImageView.ScaleType.FIT_XY);
 
                     STIMaster stiName = db.getSTIbyID(historyInfo.getSti_id());
                     testName.setText(stiName.getstiName());
-                    Log.v("AddROW",stiName.getstiName());
                     if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
                         testStatus.setText("Positive");
-                        Log.v("AddROW","Positive");
                     }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
                         testStatus.setText("Negative");
-                        Log.v("AddROW","Negative");
                     }else {
                         testStatus.setText("Didn't Test");
-                        Log.v("AddROW","Didn't Test");
+                    }
+                    if(!historyInfo.getAttachment().equals("")){
+                        String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
+                        File mediaFile = new File(imgDir+historyInfo.getAttachment());
+                        if(mediaFile.exists()){
+                            Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfo.getAttachment());
+                            int h = 50; // height in pixels
+                            int w = 50; // width in pixels
+                            Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
+                            testImage.setImageBitmap(scaled);
+                            Log.v("ImagepathExists",imgDir+historyInfo.getAttachment());
+                        }else{
+                            //  ***********set url from server*********** //
+                            testImage.setImageResource(R.drawable.testimage);
+                            //new DownloadImagesTask(imgDir+historyInfo.getAttachment()).execute(testImage);
+                            Log.v("ImagepathNotExists","NOt exists");
+                        }
+
                     }
                     historyRow.removeAllViews();
                     historyRow.addView(testDate);
@@ -308,7 +369,10 @@ public class homeTestingFragment extends Fragment {
                                     ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(1)).setTextColor(getResources().getColor(R.color.blue_theme));
                                     ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.blue_theme));
                                     ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(2)).setTextColor(getResources().getColor(R.color.blue_theme));
-                                    showSummaryPopup(row.getId(), width, height);
+                                    Intent testSumm = new Intent(getActivity(),TestSummary.class);
+                                    testSumm.putExtra("testingHistoryID",row.getId());
+                                    startActivity(testSumm);
+                                    //showSummaryPopup(row.getId(), width, height);
                                 } else {
                                     row.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                                     ((TextView)((TableRow)testing_history_table.getChildAt(i)).getChildAt(1)).setTextColor(getResources().getColor(R.color.text_color));
@@ -484,7 +548,7 @@ public class homeTestingFragment extends Fragment {
                                 default:
                                     test_status = "";
                             }
-                            TestingHistoryInfo historyInfo = new TestingHistoryInfo(testingHistoryid , LynxManager.getActiveUser().getUser_id(),sti_count,test_status,String.valueOf(R.string.statusUpdateNo),true);
+                            TestingHistoryInfo historyInfo = new TestingHistoryInfo(testingHistoryid , LynxManager.getActiveUser().getUser_id(),sti_count,test_status,"",String.valueOf(R.string.statusUpdateNo),true);
                             int historyInfo_id = db.createTestingHistoryInfo(historyInfo);
                         }
                     }
@@ -598,4 +662,45 @@ public class homeTestingFragment extends Fragment {
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 111) {
+            reloadFragment();
+            LynxManager.isRefreshRequired = true;
+        }
+    }
+    public class DownloadImagesTask extends AsyncTask<ImageView, Void, Bitmap> {
+
+        ImageView imageView = null;
+        String url="";
+        DownloadImagesTask(String url) {
+            this.url = url;
+        }
+
+        @Override
+        protected Bitmap doInBackground(ImageView... imageViews) {
+            this.imageView = imageViews[0];
+            return download_Image(url);
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            imageView.setImageBitmap(result);
+        }
+
+        private Bitmap download_Image(String url) {
+
+            Bitmap bmp =null;
+            try{
+                URL ulrn = new URL(url);
+                HttpURLConnection con = (HttpURLConnection)ulrn.openConnection();
+                InputStream is = con.getInputStream();
+                bmp = BitmapFactory.decodeStream(is);
+                if (null != bmp)
+                    return bmp;
+
+            }catch(Exception e){}
+            return bmp;
+        }
+    }
+
 }

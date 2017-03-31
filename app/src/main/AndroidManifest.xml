@@ -39,6 +39,7 @@
         android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".RegLogin"
@@ -189,8 +190,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".LYNXTesting"
-            android:label="@string/app_name"
-            />
+            android:label="@string/app_name" />
         <activity
             android:name=".LYNXDiary"
             android:label="@string/app_name"
@@ -203,15 +203,21 @@
             android:name=".LYNXChat"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
-        <activity android:name=".PrepFactsAnswer"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".TestingInstructionAnswer"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".TestingCareAnswer"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".LYNXProfile"
+        <activity
+            android:name=".PrepFactsAnswer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TestingInstructionAnswer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TestingCareAnswer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LYNXProfile"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".AddNewTest" />
+        <activity android:name=".TestSummary"></activity>
     </application>
 
 </manifest>

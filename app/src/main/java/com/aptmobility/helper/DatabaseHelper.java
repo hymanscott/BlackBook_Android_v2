@@ -243,6 +243,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_TESTING_HISTORY_INFO_USERID = "user_id";
     private static final String KEY_TESTING_HISTORY_INFO_STIID = "sti_id";
     private static final String KEY_TESTING_HISTORY_INFO_STATUS = "test_status";
+    private static final String KEY_TESTING_HISTORY_INFO_ATTACHMENT = "attachment";
 
     //Home Testing Request column Names
 
@@ -387,7 +388,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_TESTING_HISTORY_INFO = "CREATE TABLE "
             + TABLE_TESTING_HISTORY_INFO + "(" + KEY_TESTING_HISTORY_INFO_ID + " INTEGER PRIMARY KEY," + KEY_TESTING_HISTORY_INFO_USERID + " INTEGER," + KEY_TESTING_HISTORY_INFO_HISTORYID + " INTEGER,"
-            + KEY_TESTING_HISTORY_INFO_STIID + " INTEGER," + KEY_TESTING_HISTORY_INFO_STATUS + " TEXT," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
+            + KEY_TESTING_HISTORY_INFO_STIID + " INTEGER," + KEY_TESTING_HISTORY_INFO_STATUS + " TEXT," + KEY_TESTING_HISTORY_INFO_ATTACHMENT + " TEXT," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
 
     private static final String CREATE_TABLE_HOME_TESTING_REQUEST = "CREATE TABLE "
             + TABLE_HOME_TESTING_REQUEST + "(" + KEY_TESTING_REQUEST_ID + " INTEGER PRIMARY KEY," + KEY_TESTING_REQUEST_USERID + " INTEGER,"
@@ -4668,6 +4669,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_TESTING_HISTORY_INFO_USERID, testingHistoryInfo.getUser_id());
         values.put(KEY_TESTING_HISTORY_INFO_STIID, testingHistoryInfo.getSti_id());
         values.put(KEY_TESTING_HISTORY_INFO_STATUS, testingHistoryInfo.getTest_status());
+        values.put(KEY_TESTING_HISTORY_INFO_ATTACHMENT, testingHistoryInfo.getAttachment());
         values.put(KEY_STATUS_UPDATE, testingHistoryInfo.getStatus_update());
         values.put(KEY_CREATED_AT, getDateTime());
 
@@ -4700,6 +4702,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         testingHistoryInfo.setSti_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_STIID)));
         testingHistoryInfo.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_USERID)));
         testingHistoryInfo.setTest_status(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_STATUS)));
+        testingHistoryInfo.setAttachment(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_ATTACHMENT)));
         testingHistoryInfo.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
         return testingHistoryInfo;
     }
@@ -4726,6 +4729,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 testingHistoryInfo.setSti_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_STIID)));
                 testingHistoryInfo.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_USERID)));
                 testingHistoryInfo.setTest_status(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_STATUS)));
+                testingHistoryInfo.setAttachment(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_ATTACHMENT)));
                 testingHistoryInfo.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
                 // adding to testingHistoryInfo list
@@ -4757,6 +4761,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 testingHistoryInfo.setSti_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_STIID)));
                 testingHistoryInfo.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_USERID)));
                 testingHistoryInfo.setTest_status(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_STATUS)));
+                testingHistoryInfo.setAttachment(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_ATTACHMENT)));
                 testingHistoryInfo.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
                 // adding to testingHistoryInfo list
@@ -4840,6 +4845,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 testingHistoryInfo.setSti_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_STIID)));
                 testingHistoryInfo.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_USERID)));
                 testingHistoryInfo.setTest_status(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_STATUS)));
+                testingHistoryInfo.setAttachment(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_ATTACHMENT)));
                 testingHistoryInfo.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
                 // adding to testingHistoryInfo

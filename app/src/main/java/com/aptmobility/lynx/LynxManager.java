@@ -87,6 +87,7 @@ public class LynxManager {
     public static boolean isRefreshRequired = false;
     public static String hashKey = "PhasttDPHapp";
     public static String deviceId="" ; // TelephonyManager ID
+    private String lastImageName = "";
 //    static Context context;
 
     //private static String baseURL = "https://sexproapp.com/phastt/";
@@ -234,7 +235,13 @@ public class LynxManager {
     public static void setActiveUserSTIDiag(UserSTIDiag activeUserSTIDiag) {
         LynxManager.activeUserSTIDiag.add(activeUserSTIDiag);
     }
+    public void setLastImageName(String lastImageName) {
+        this.lastImageName = lastImageName;
+    }
 
+    public String getLastImageName() {
+        return lastImageName;
+    }
     public static void removeAllUserSTIDiag() {
         LynxManager.activeUserSTIDiag.clear();
     }
@@ -337,7 +344,16 @@ public class LynxManager {
         Date date = new Date();
         return dateFormat.format(date);
     }
-
+    /**
+     * get TimeStamp
+     */
+    public static String getTimeStamp() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy_MM_dd_HH_mm_ss");
+        // dateFormat.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
     /**
      * get datetime
      */

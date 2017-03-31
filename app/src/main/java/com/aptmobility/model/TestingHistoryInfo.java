@@ -14,16 +14,18 @@ public class TestingHistoryInfo {
     int sti_id;
     int user_id;
     String test_status;
+    String attachment;
     String status_update;
     boolean status_encrypt;
     String created_at;
 
     public TestingHistoryInfo(){}
-    public TestingHistoryInfo(int testing_history_id,int user_id, int sti_id, String test_status,String status_update,boolean status_encrypt) {
+    public TestingHistoryInfo(int testing_history_id,int user_id, int sti_id, String test_status,String attachment,String status_update,boolean status_encrypt) {
         this.testing_history_id = testing_history_id;
         this.sti_id = sti_id;
         this.user_id = user_id;
         this.test_status = test_status;
+        this.attachment = attachment;
         this.status_update = status_update;
         this.status_encrypt = status_encrypt;
     }
@@ -66,6 +68,14 @@ public class TestingHistoryInfo {
 
     public void setTest_status(String test_status) {
         this.test_status = test_status;
+    }
+
+    public String getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(String attachment) {
+        this.attachment = attachment;
     }
 
     public String getStatus_update() {
@@ -114,6 +124,7 @@ public class TestingHistoryInfo {
             thi_jsonObj.put("sti_id", sti_id);
             thi_jsonObj.put("user_id", user_id);
             thi_jsonObj.put("test_status", LynxManager.decryptString(test_status));
+            thi_jsonObj.put("attachment", LynxManager.decryptString(attachment));
             thi_jsonObj.put("status_update", status_update );
             thi_jsonObj.put("status_encrypt", status_encrypt);
             thi_jsonObj.put("created_at", created_at);

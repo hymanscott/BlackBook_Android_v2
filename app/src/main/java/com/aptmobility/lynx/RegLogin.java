@@ -1492,7 +1492,7 @@ public class RegLogin extends FragmentActivity {
                             JSONObject testingHistoryInfoObject = testingHistoryInfo_info.getJSONObject(n);
                             TestingHistoryInfo history_info = new TestingHistoryInfo(testingHistoryInfoObject.getInt("testing_history_id"), LynxManager.getActiveUser().getUser_id(),
                                     testingHistoryInfoObject.getInt("sti_id"), LynxManager.encryptString(testingHistoryInfoObject.getString("test_status")),
-                                    String.valueOf(R.string.statusUpdateYes), true);
+                                    "",String.valueOf(R.string.statusUpdateYes), true);
                             int id = db.createTestingHistoryInfo(history_info);
                         }
 
