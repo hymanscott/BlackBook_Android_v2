@@ -1309,6 +1309,7 @@ public class RegLogin extends FragmentActivity {
                             userPrimaryPartner.setPrimarypartner_id(primaryPartnerID);
                             userPrimaryPartner.setCreated_at(db.getPriPartnerCreatedAtbyID(primaryPartnerID));
                             LynxManager.setActiveUserPrimaryPartner(userPrimaryPartner);
+                            Log.v("Login : ","PrimaryPartner Created");
                         }
 
                         // Encounter Sex Info

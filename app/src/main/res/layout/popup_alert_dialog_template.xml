@@ -7,10 +7,14 @@
     android:layout_height="wrap_content"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/toggle_button">
+    android:background="@drawable/stroke_bg">
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:orientation="vertical">
         <com.aptmobility.lynx.CustomTextView
             custom:fontAssetName="RobotoSlabRegular.ttf"
@@ -35,7 +39,11 @@
     </LinearLayout>
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/white">
         <com.aptmobility.lynx.CustomButtonView
             style="@style/Phastt.button"
             custom:fontAssetName="RobotoSlabRegular.ttf"
@@ -45,7 +53,7 @@
             android:layout_gravity="right"
             android:layout_alignParentRight="true"
             android:id="@+id/alertPositiveButton"
-            android:background="@drawable/phastt_button"
+            android:background="@drawable/lynx_button"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:layout_marginRight="10dp"
@@ -62,7 +70,7 @@
             android:visibility="gone"
             android:layout_centerInParent="true"
             android:id="@+id/alertNeturalButton"
-            android:background="@drawable/phastt_button"
+            android:background="@drawable/lynx_button"
             android:textColor="@color/white"
             android:textAllCaps="false"
             android:layout_marginTop="10dp"
@@ -77,7 +85,7 @@
             android:layout_gravity="left"
             android:layout_alignParentLeft="true"
             android:id="@+id/alertNegativeButton"
-            android:background="@drawable/phastt_button"
+            android:background="@drawable/lynx_button"
             android:textColor="@color/white"
             android:textAllCaps="false"
             android:layout_marginLeft="10dp"

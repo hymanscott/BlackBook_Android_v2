@@ -93,8 +93,8 @@ public class LynxManager {
     //private static String baseURL = "https://sexproapp.com/phastt/";
     //private static String baseURL  =   "https://52.25.200.235/phastt/";
     //private static String baseURL  =   "http://www.aptmobility.net/phastt/";
-    //private static String baseURL  =   "http://dev.chipware.in/sexpro/";
-    private static String baseURL  =   "http://lynxstudy.com/lynx/";
+    //private static String baseURL  =   "http://dev.chipware.in/lynx/";
+    private static String baseURL  =   "https://lynxstudy.com/";
     private LynxManager() {
     }
 

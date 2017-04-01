@@ -7,13 +7,11 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:fillViewport="false"
-        >
+        android:fillViewport="false">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            >
+            android:layout_height="fill_parent">
             <com.aptmobility.lynx.CustomTextView
                 custom:fontAssetName="RobotoSlabRegular.ttf"
                 android:text="Update Profile"
@@ -336,6 +334,406 @@
                     android:id="@+id/updatePrepNo"
                     />
             </RadioGroup>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/border_top_bottom"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingTop="10dp"
+                android:id="@+id/LynxRemainerLayout">
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:text="LYNX Reminder"
+                    android:layout_width="fill_parent"
+                    android:textAllCaps="true"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blue_theme"
+                    android:textSize="24sp"
+                    android:layout_margin="10dp"
+                    android:gravity="center_horizontal|center_vertical" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <com.aptmobility.lynx.CustomTextView
+                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Set Day of the Week:"
+                        android:textSize="20sp"
+                        android:textColor="@color/text_color"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical" />
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/SpinnerAppTheme"
+                        android:id="@+id/spinner_druguse_history_day"
+                        android:gravity="center_horizontal"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
+
+                    <com.aptmobility.lynx.CustomTextView
+                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="@color/text_color"
+                        android:text="Set Time of the Day:"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical" />
+                    <TimePicker
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/timePicker_druguse_history"
+                        android:layout_centerVertical="true"
+                        android:numbersSelectorColor="@color/apptheme_color"
+                        android:layout_centerHorizontal="true" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+
+                    <com.aptmobility.lynx.CustomTextView
+                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Set Notification Text:"
+                        android:textSize="20sp"
+                        android:textColor="@color/text_color"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical" />
+                    <com.aptmobility.lynx.CustomEditText
+                        android:background="@drawable/apptheme_edit_text_holo_light"
+                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:ems="10"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_color"
+                        android:id="@+id/sexDruguseHistory_notes"
+                        android:layout_marginRight="20dp"
+                        android:layout_centerHorizontal="true"
+                        android:hint="Do you have anything to report this week?"
+                        android:text="Do you have anything to report this week?"/>
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/border_bottom"
+                android:paddingBottom="10dp"
+                android:id="@+id/LynxTestRemainerLayout">
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    android:text="Testing Reminder"
+                    android:layout_width="fill_parent"
+                    android:textAllCaps="true"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blue_theme"
+                    android:textSize="24sp"
+                    android:layout_margin="10dp"
+                    android:gravity="center_horizontal|center_vertical" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <com.aptmobility.lynx.CustomTextView
+                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Set Day of the Week:"
+                        android:textSize="20sp"
+                        android:textColor="@color/text_color"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical" />
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/spinner_remindertest_day"
+                        style="@style/SpinnerAppTheme"
+                        android:gravity="center_horizontal"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
+
+                    <com.aptmobility.lynx.CustomTextView
+                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Set Time of the Day:"
+                        android:textSize="20sp"
+                        android:textColor="@color/text_color"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical" />
+                    <TimePicker
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/timePicker_notif_remindertest"
+                        android:numbersSelectorColor="@color/apptheme_color"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <com.aptmobility.lynx.CustomTextView
+                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="@color/text_color"
+                        android:text="Set Notification Text:"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:gravity="center_vertical" />
+                    <com.aptmobility.lynx.CustomEditText
+                        android:background="@drawable/apptheme_edit_text_holo_light"
+                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:ems="10"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_color"
+                        android:layout_marginRight="20dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/reminderTest_notes"
+                        android:hint="It's time for your test!"
+                        android:text="It's time for your test!"/>
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:id="@+id/partnerRatingsLayout">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.aptmobility.lynx.CustomTextView
+                        android:id="@+id/customTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Configure Partner Ratings"
+                        android:textAllCaps="true"
+                        android:gravity="center_horizontal"
+                        android:layout_alignParentLeft="true"
+                        android:textColor="@color/blue_theme"
+                        android:textSize="24sp"
+                        custom:fontAssetName="RobotoSlabRegular.ttf" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/notification"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/imgBtn_partner_ratings"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_gravity="center"/>
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <com.aptmobility.lynx.CustomTextView
+                            custom:fontAssetName="RobotoSlabRegular.ttf"
+                            android:text="Ratings Category 1:"
+                            android:textSize="20sp"
+                            android:textColor="@color/text_color"
+                            android:layout_width="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_height="wrap_content"
+
+                            />
+                        <com.aptmobility.lynx.CustomTextView
+                            custom:fontAssetName="RobotoSlabRegular.ttf"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txt_overall_rtg"
+                            android:layout_marginBottom="10dp"
+                            android:textSize="18sp"
+                            android:textColor="@color/text_color"
+                            android:layout_marginLeft="10dp"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Overall"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <com.aptmobility.lynx.CustomTextView
+                            custom:fontAssetName="RobotoSlabRegular.ttf"
+                            android:text="Ratings Category 2:"
+                            android:layout_width="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@color/text_color"
+                            android:layout_height="wrap_content"
+                            />
+                        <com.aptmobility.lynx.CustomEditText
+                            android:background="@drawable/apptheme_edit_text_holo_light"
+                            custom:fontAssetName="RobotoSlabRegular.ttf"
+                            android:layout_width="match_parent"
+                            android:textSize="18sp"
+                            android:textColor="@color/text_color"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/rating_ctg2"
+                            android:hint="Chemistry"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <com.aptmobility.lynx.CustomTextView
+                            custom:fontAssetName="RobotoSlabRegular.ttf"
+                            android:text="Ratings Category 3:"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@color/text_color"
+                            />
+                        <com.aptmobility.lynx.CustomEditText
+                            android:background="@drawable/apptheme_edit_text_holo_light"
+                            custom:fontAssetName="RobotoSlabRegular.ttf"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:textColor="@color/text_color"
+                            android:id="@+id/rating_ctg3"
+                            android:hint="Personality"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <com.aptmobility.lynx.CustomTextView
+                            custom:fontAssetName="RobotoSlabRegular.ttf"
+                            android:text="Ratings Category 4:"
+                            android:layout_width="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@color/text_color"
+                            android:layout_height="wrap_content"
+                            />
+                        <com.aptmobility.lynx.CustomEditText
+                            android:background="@drawable/apptheme_edit_text_holo_light"
+                            custom:fontAssetName="RobotoSlabRegular.ttf"
+                            android:layout_width="match_parent"
+                            android:id="@+id/rating_ctg4"
+                            android:textSize="18sp"
+                            android:textColor="@color/text_color"
+                            android:layout_height="wrap_content"
+                            android:hint="Face"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <com.aptmobility.lynx.CustomTextView
+                            custom:fontAssetName="RobotoSlabRegular.ttf"
+                            android:text="Ratings Category 5:"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@color/text_color"
+                            />
+                        <com.aptmobility.lynx.CustomEditText
+                            android:background="@drawable/apptheme_edit_text_holo_light"
+                            custom:fontAssetName="RobotoSlabRegular.ttf"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:textColor="@color/text_color"
+                            android:id="@+id/rating_ctg5"
+                            android:hint="Body"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <com.aptmobility.lynx.CustomTextView
+                            custom:fontAssetName="RobotoSlabRegular.ttf"
+                            android:text="Ratings Category 6:"
+                            android:layout_width="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@color/text_color"
+                            android:layout_height="wrap_content"
+                            />
+                        <com.aptmobility.lynx.CustomEditText
+                            android:background="@drawable/apptheme_edit_text_holo_light"
+                            custom:fontAssetName="RobotoSlabRegular.ttf"
+                            android:layout_width="match_parent"
+                            android:textSize="18sp"
+                            android:textColor="@color/text_color"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/rating_ctg6"
+                            android:hint="Cock"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <com.aptmobility.lynx.CustomTextView
+                            custom:fontAssetName="RobotoSlabRegular.ttf"
+                            android:text="Ratings Category 7:"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@color/text_color"
+                            />
+                        <com.aptmobility.lynx.CustomEditText
+                            android:background="@drawable/apptheme_edit_text_holo_light"
+                            custom:fontAssetName="RobotoSlabRegular.ttf"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/rating_ctg7"
+                            android:textSize="18sp"
+                            android:textColor="@color/text_color"
+                            android:hint="Butt"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
             <com.aptmobility.lynx.CustomButtonView
                 style="@style/Phastt.button"
                 custom:fontAssetName="RobotoSlabRegular.ttf"
