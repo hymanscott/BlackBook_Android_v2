@@ -26,6 +26,14 @@
  The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but are recommended.
     -->
+    <permission
+        android:name="com.aptmobility.lynx.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature"/>
+    <!-- Auto Location Enable -->
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="true" />
+    <uses-permission android:name="com.example.barcodelibrary.permission.MAPS_RECEIVE"/>
     <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 

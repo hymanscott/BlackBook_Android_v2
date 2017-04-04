@@ -43,6 +43,9 @@ import com.aptmobility.model.TestNameMaster;
 import com.aptmobility.model.TestingHistory;
 import com.aptmobility.model.TestingHistoryInfo;
 
+import net.gotev.uploadservice.MultipartUploadRequest;
+import net.gotev.uploadservice.UploadNotificationConfig;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -54,6 +57,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.UUID;
 
 public class AddNewTest extends Activity implements View.OnClickListener {
     DatabaseHelper db;
@@ -214,33 +218,40 @@ public class AddNewTest extends Activity implements View.OnClickListener {
                     if (title.equals("STD Test")){
                         for(int sti_count =1 ; sti_count<=3;sti_count++){
                             String test_status;
-                            String path="";
+                            String full_path="";
+                            String name="";
                             switch (sti_count){
                                 case 1:
                                     test_status = LynxManager.encryptString(gonorrhea.getText().toString());
-                                    path = gonorrheaImageName.substring(gonorrheaImageName.lastIndexOf("/") + 1);
+                                    name = gonorrheaImageName.substring(gonorrheaImageName.lastIndexOf("/") + 1);
+                                    full_path = gonorrheaImageName;
                                     break;
                                 case 2:
                                     test_status = LynxManager.encryptString(syphilis.getText().toString());
-                                    path = syphilisImageName.substring(syphilisImageName.lastIndexOf("/") + 1);
+                                    name = syphilisImageName.substring(syphilisImageName.lastIndexOf("/") + 1);
+                                    full_path = syphilisImageName;
                                     break;
                                 case 3:
                                     test_status = LynxManager.encryptString(chlamydia.getText().toString());
-                                    path = chlamydiaImageName.substring(chlamydiaImageName.lastIndexOf("/") + 1);
+                                    name = chlamydiaImageName.substring(chlamydiaImageName.lastIndexOf("/") + 1);
+                                    full_path = chlamydiaImageName;
                                     break;
                                 default:
                                     test_status = "";
-                                    path="";
+                                    name="";
+                                    full_path="";
                             }
 
-                            TestingHistoryInfo historyInfo = new TestingHistoryInfo(testingHistoryid , LynxManager.getActiveUser().getUser_id(),sti_count,test_status,path,String.valueOf(R.string.statusUpdateNo),true);
+                            TestingHistoryInfo historyInfo = new TestingHistoryInfo(testingHistoryid , LynxManager.getActiveUser().getUser_id(),sti_count,test_status,LynxManager.encryptString(name),String.valueOf(R.string.statusUpdateNo),true);
                             int historyInfo_id = db.createTestingHistoryInfo(historyInfo);
+                            uploadMultipart(full_path,name); // fullpath,imagename
                         }
                     }else{
                         String path = hivImageName.substring(hivImageName.lastIndexOf("/") + 1);
                         String test_status = LynxManager.encryptString(hivTestStatus.getText().toString());
-                        TestingHistoryInfo historyInfo = new TestingHistoryInfo(testingHistoryid , LynxManager.getActiveUser().getUser_id(),0,test_status,path,String.valueOf(R.string.statusUpdateNo),true);
+                        TestingHistoryInfo historyInfo = new TestingHistoryInfo(testingHistoryid , LynxManager.getActiveUser().getUser_id(),0,test_status,LynxManager.encryptString(path),String.valueOf(R.string.statusUpdateNo),true);
                         int historyInfo_id = db.createTestingHistoryInfo(historyInfo);
+                        uploadMultipart(hivImageName,path); // fullpath,imagename
                     }
                     Toast.makeText(AddNewTest.this, "New "+ title +" Added", Toast.LENGTH_SHORT).show();
                     finish();
@@ -594,5 +605,30 @@ public class AddNewTest extends Activity implements View.OnClickListener {
         cursor.moveToFirst();
         return cursor.getString(column_index);
 
+    }
+
+    /*
+    * This is the method responsible for image upload
+    * We need the full image path and the name for the image in this method
+    * */
+    public void uploadMultipart(String path,String name) {
+        // URL //
+        String url = LynxManager.getBaseURL()+"upload.php";
+        //Uploading code
+        try {
+            String uploadId = UUID.randomUUID().toString();
+
+            //Creating a multi part request
+            new MultipartUploadRequest(this, uploadId, url)
+                    .addFileToUpload(path, "image") //Adding file
+                    .addParameter("name", name) //Adding text parameter to the request
+                    .setMaxRetries(2)
+                    .startUpload(); //Starting the upload
+                // To Enable Notification bar for upload //
+            //.setNotificationConfig(new UploadNotificationConfig())
+
+        } catch (Exception exc) {
+            Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 }

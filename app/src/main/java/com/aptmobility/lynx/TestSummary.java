@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -23,6 +24,9 @@ import com.aptmobility.model.TestingHistory;
 import com.aptmobility.model.TestingHistoryInfo;
 
 import java.io.File;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 public class TestSummary extends Activity {
@@ -53,9 +57,13 @@ public class TestSummary extends Activity {
         TextView syphilisStatus = (TextView) findViewById(R.id.syphilisStatus);
         TextView chlamydiaStatus = (TextView) findViewById(R.id.chlamydiaStatus);
         ImageView hivAttachment = (ImageView)findViewById(R.id.hivAttachment);
+        hivAttachment.setScaleType(ImageView.ScaleType.CENTER_CROP);
         ImageView gonorrheaAttachment = (ImageView)findViewById(R.id.gonorrheaAttachment);
+        gonorrheaAttachment.setScaleType(ImageView.ScaleType.CENTER_CROP);
         ImageView syphilisAttachment = (ImageView)findViewById(R.id.syphilisAttachment);
+        syphilisAttachment.setScaleType(ImageView.ScaleType.CENTER_CROP);
         ImageView chlamydiaAttachment = (ImageView)findViewById(R.id.chlamydiaAttachment);
+        chlamydiaAttachment.setScaleType(ImageView.ScaleType.CENTER_CROP);
         LinearLayout hivLayout = (LinearLayout)findViewById(R.id.hivLayout);
         LinearLayout std_list_parentLayout = (LinearLayout)findViewById(R.id.std_list_parentLayout);
         TextView std_list_title = (TextView) findViewById(R.id.std_list_title);
@@ -77,26 +85,26 @@ public class TestSummary extends Activity {
                 }else{
                     hivTestStatus.setText("Didn't Test");
                 }
-                if(!historyInfo.getAttachment().equals("")){
+                String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
+                if(!historyInfoAttachment.equals("")){
                     final String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
-                    final File mediaFile = new File(imgDir+historyInfo.getAttachment());
-                    Log.v("OrgPath",imgDir+historyInfo.getAttachment());
+                    final File mediaFile = new File(imgDir+historyInfoAttachment);
+                    Log.v("OrgPath",imgDir+historyInfoAttachment);
                     if(mediaFile.exists()){
-                        Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfo.getAttachment());
+                        Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfoAttachment);
                         int h = 200; // height in pixels
                         int w = 200; // width in pixels
                         Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
                         hivAttachment.setImageBitmap(scaled);
                     }else{
                         //  ***********set url from server*********** //
-                        hivAttachment.setImageResource(R.drawable.testimage);
+                        hivAttachment.setImageResource(R.drawable.icon_loading);
+                        new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(hivAttachment);
                     }
                     hivAttachment.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(Intent.ACTION_VIEW);
-                            intent.setDataAndType(Uri.fromFile(mediaFile),"image/*");
-                            startActivity(intent);
+                            showImageIntent(mediaFile);
                         }
                     });
                 }else {
@@ -118,25 +126,25 @@ public class TestSummary extends Activity {
                     }else{
                         gonorrheaStatus.setText("Didn't Test");
                     }
-                    if(!historyInfo.getAttachment().equals("")){
+                    String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
+                    if(!historyInfoAttachment.equals("")){
                         final String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
-                        final File mediaFile = new File(imgDir+historyInfo.getAttachment());
+                        final File mediaFile = new File(imgDir+historyInfoAttachment);
                         if(mediaFile.exists()){
-                            Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfo.getAttachment());
+                            Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfoAttachment);
                             int h = 200; // height in pixels
                             int w = 200; // width in pixels
                             Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
                             gonorrheaAttachment.setImageBitmap(scaled);
                         }else{
                             //  ***********set url from server*********** //
-                            gonorrheaAttachment.setImageResource(R.drawable.testimage);
+                            gonorrheaAttachment.setImageResource(R.drawable.icon_loading);
+                            new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(gonorrheaAttachment);
                         }
                         gonorrheaAttachment.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setDataAndType(Uri.fromFile(mediaFile),"image/*");
-                                startActivity(intent);
+                                showImageIntent(mediaFile);
                             }
                         });
                     }else {
@@ -151,25 +159,24 @@ public class TestSummary extends Activity {
                     }else{
                         syphilisStatus.setText("Didn't Test");
                     }
-                    if(!historyInfo.getAttachment().equals("")){
+                    String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
+                    if(!historyInfoAttachment.equals("")){
                         final String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
-                        final File mediaFile = new File(imgDir+historyInfo.getAttachment());
+                        final File mediaFile = new File(imgDir+historyInfoAttachment);
                         if(mediaFile.exists()){
-                            Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfo.getAttachment());
+                            Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfoAttachment);
                             int h = 200; // height in pixels
                             int w = 200; // width in pixels
                             Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
                             syphilisAttachment.setImageBitmap(scaled);
                         }else{
-                            //  ***********set url from server*********** //
-                            syphilisAttachment.setImageResource(R.drawable.testimage);
+                            syphilisAttachment.setImageResource(R.drawable.icon_loading);
+                            new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(syphilisAttachment);
                         }
                         syphilisAttachment.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setDataAndType(Uri.fromFile(mediaFile),"image/*");
-                                startActivity(intent);
+                                showImageIntent(mediaFile);
                             }
                         });
                     }else {
@@ -183,25 +190,24 @@ public class TestSummary extends Activity {
                     }else{
                         chlamydiaStatus.setText("Didn't Test");
                     }
-                    if(!historyInfo.getAttachment().equals("")){
+                    String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
+                    if(!historyInfoAttachment.equals("")){
                         final String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
-                        final File mediaFile = new File(imgDir+historyInfo.getAttachment());
+                        final File mediaFile = new File(imgDir+historyInfoAttachment);
                         if(mediaFile.exists()){
-                            Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfo.getAttachment());
+                            Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfoAttachment);
                             int h = 200; // height in pixels
                             int w = 200; // width in pixels
                             Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
                             chlamydiaAttachment.setImageBitmap(scaled);
                         }else{
-                            //  ***********set url from server*********** //
-                            chlamydiaAttachment.setImageResource(R.drawable.testimage);
+                            chlamydiaAttachment.setImageResource(R.drawable.icon_loading);
+                            new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(chlamydiaAttachment);
                         }
                         chlamydiaAttachment.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setDataAndType(Uri.fromFile(mediaFile),"image/*");
-                                startActivity(intent);
+                                showImageIntent(mediaFile);
                             }
                         });
                     }else {
@@ -210,5 +216,48 @@ public class TestSummary extends Activity {
                 }
             }
         }
+    }
+    public class DownloadImagesTask extends AsyncTask<ImageView, Void, Bitmap> {
+
+        ImageView imageView = null;
+        String url="";
+        DownloadImagesTask(String url) {
+            this.url = url;
+        }
+
+        @Override
+        protected Bitmap doInBackground(ImageView... imageViews) {
+            this.imageView = imageViews[0];
+            return download_Image(url);
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            if(result!=null)
+                imageView.setImageBitmap(result);
+            else
+                imageView.setImageDrawable(getResources().getDrawable(R.drawable.testimage));
+        }
+
+        private Bitmap download_Image(String url) {
+
+            Bitmap bmp =null;
+            try{
+                URL ulrn = new URL(url);
+                HttpURLConnection con = (HttpURLConnection)ulrn.openConnection();
+                InputStream is = con.getInputStream();
+                bmp = BitmapFactory.decodeStream(is);
+                if (null != bmp)
+                    return bmp;
+
+            }catch(Exception e){}
+            return bmp;
+        }
+    }
+
+    public void showImageIntent(File mediaFile){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.fromFile(mediaFile),"image/*");
+        startActivity(intent);
     }
 }

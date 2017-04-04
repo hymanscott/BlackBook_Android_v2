@@ -95,6 +95,7 @@ public class LynxManager {
     //private static String baseURL  =   "http://www.aptmobility.net/phastt/";
     //private static String baseURL  =   "http://dev.chipware.in/lynx/";
     private static String baseURL  =   "https://lynxstudy.com/";
+    private static String testImageBaseUrl = "https://lynxstudy.com/testimages/";
     private LynxManager() {
     }
 
@@ -104,6 +105,14 @@ public class LynxManager {
 
     public static void setBaseURL(String baseURL) {
         LynxManager.baseURL = baseURL;
+    }
+
+    public static String getTestImageBaseUrl() {
+        return testImageBaseUrl;
+    }
+
+    public static void setTestImageBaseUrl(String testImageBaseUrl) {
+        LynxManager.testImageBaseUrl = testImageBaseUrl;
     }
 
     public static Partners getActivePartner() {

@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,8 +15,6 @@ import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -24,13 +22,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -42,12 +36,14 @@ import com.aptmobility.model.TestNameMaster;
 import com.aptmobility.model.TestingHistory;
 import com.aptmobility.model.TestingHistoryInfo;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.net.URLConnection;
 import java.util.Collections;
 import java.util.List;
 
@@ -188,7 +184,7 @@ public class homeTestingFragment extends Fragment {
                 ImageView testImage = new ImageView(getActivity());
 
                 testImage.setLayoutParams(imgparams);
-                testImage.setScaleType(ImageView.ScaleType.FIT_XY);
+                testImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 testImage.setImageResource(R.drawable.testimage);
 
                 testDate.setGravity(Gravity.START);
@@ -224,12 +220,13 @@ public class homeTestingFragment extends Fragment {
                         }else {
                             testStatus.setText("Didn't Test");
                         }
-                        if(!historyInfo.getAttachment().equals("")){
+                        String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
+                        if(!historyInfoAttachment.equals("")){
                             String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
-                            File mediaFile = new File(imgDir+historyInfo.getAttachment());
-                            Log.v("OrgPath",imgDir+historyInfo.getAttachment());
+                            File mediaFile = new File(imgDir+historyInfoAttachment);
+                            Log.v("OrgPath",imgDir+historyInfoAttachment);
                             if(mediaFile.exists()){
-                                Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfo.getAttachment());
+                                Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfoAttachment);
                                 int h = 50; // height in pixels
                                 int w = 50; // width in pixels
                                 Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
@@ -237,6 +234,8 @@ public class homeTestingFragment extends Fragment {
                             }else{
                                 //  ***********set url from server*********** //
                                 testImage.setImageResource(R.drawable.testimage);
+                                new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(testImage);
+                                new DownloadFileFromURL(testImage).execute(LynxManager.getTestImageBaseUrl()+historyInfoAttachment);
                             }
 
                         }
@@ -321,7 +320,7 @@ public class homeTestingFragment extends Fragment {
 
                     testImage.setLayoutParams(imgparams);
                     testImage.setImageResource(R.drawable.testimage);
-                    testImage.setScaleType(ImageView.ScaleType.FIT_XY);
+                    testImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
                     STIMaster stiName = db.getSTIbyID(historyInfo.getSti_id());
                     testName.setText(stiName.getstiName());
@@ -332,21 +331,22 @@ public class homeTestingFragment extends Fragment {
                     }else {
                         testStatus.setText("Didn't Test");
                     }
-                    if(!historyInfo.getAttachment().equals("")){
+                    String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
+                    if(!historyInfoAttachment.equals("")){
                         String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
-                        File mediaFile = new File(imgDir+historyInfo.getAttachment());
+                        File mediaFile = new File(imgDir+historyInfoAttachment);
                         if(mediaFile.exists()){
-                            Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfo.getAttachment());
+                            Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfoAttachment);
                             int h = 50; // height in pixels
                             int w = 50; // width in pixels
                             Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
                             testImage.setImageBitmap(scaled);
-                            Log.v("ImagepathExists",imgDir+historyInfo.getAttachment());
+                            Log.v("ImagepathExists",imgDir+historyInfoAttachment);
                         }else{
                             //  ***********set url from server*********** //
                             testImage.setImageResource(R.drawable.testimage);
-                            //new DownloadImagesTask(imgDir+historyInfo.getAttachment()).execute(testImage);
-                            Log.v("ImagepathNotExists","NOt exists");
+                            new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(testImage);
+                            new DownloadFileFromURL(testImage).execute(LynxManager.getTestImageBaseUrl()+historyInfoAttachment);
                         }
 
                     }
@@ -388,6 +388,7 @@ public class homeTestingFragment extends Fragment {
                     });
 
                     testing_history_table.addView(historyRow);
+                    j++;
                 }
 
             }
@@ -402,7 +403,7 @@ public class homeTestingFragment extends Fragment {
         return view;
     }
 
-    public void showPopup(View anchorView, final String title, int width,int height) {
+    /*public void showPopup(View anchorView, final String title, int width,int height) {
 
         final View popupView = getLayoutInflater(Bundle.EMPTY).inflate(R.layout.popup_window_add_new_test, null);
 
@@ -548,7 +549,7 @@ public class homeTestingFragment extends Fragment {
                                 default:
                                     test_status = "";
                             }
-                            TestingHistoryInfo historyInfo = new TestingHistoryInfo(testingHistoryid , LynxManager.getActiveUser().getUser_id(),sti_count,test_status,"",String.valueOf(R.string.statusUpdateNo),true);
+                            TestingHistoryInfo historyInfo = new TestingHistoryInfo(testingHistoryid , LynxManager.getActiveUser().getUser_id(),sti_count,test_status,LynxManager.encryptString(""),String.valueOf(R.string.statusUpdateNo),true);
                             int historyInfo_id = db.createTestingHistoryInfo(historyInfo);
                         }
                     }
@@ -567,7 +568,7 @@ public class homeTestingFragment extends Fragment {
 
         popupWindow.showAtLocation(popupView, Gravity.CENTER,0,0);
 
-    }
+    }*/
 
     public void reloadFragment() {
         Log.v("Fragment Reload", "Reloaded");
@@ -580,7 +581,7 @@ public class homeTestingFragment extends Fragment {
 
     }
 
-    public void showSummaryPopup(int testingHistoryID,int width,int height){
+    /*public void showSummaryPopup(int testingHistoryID,int width,int height){
 
         //Type face
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
@@ -640,7 +641,7 @@ public class homeTestingFragment extends Fragment {
 
         popupsummWindow.showAtLocation(popupSummView, Gravity.CENTER, 0, 0);
 
-    }
+    }*/
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
@@ -702,5 +703,84 @@ public class homeTestingFragment extends Fragment {
             return bmp;
         }
     }
+    private class DownloadFileFromURL extends AsyncTask<String, String, String> {
+        String url_string;
+        String imagename ;
+        ImageView imageView;
+        String root = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
+        public DownloadFileFromURL(ImageView imageView) {
+            this.imageView = imageView;
+        }
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        /**
+         * Downloading file in background thread
+         * */
+        @Override
+        protected String doInBackground(String... f_url) {
+            int count;
+            try {
+                URL url = new URL(f_url[0]);
+                URLConnection conection = url.openConnection();
+                conection.connect();
+                // this will be useful so that you can show a tipical 0-100% progress bar
+                int lenghtOfFile = conection.getContentLength();
+
+                // download the file
+                InputStream input = new BufferedInputStream(url.openStream(), 8192);
+                url_string = String.valueOf(url);
+                imagename = url_string.substring(url_string.lastIndexOf("/") + 1);
+                // Output stream
+                OutputStream output = new FileOutputStream(root + "/" + imagename);
+
+                byte data[] = new byte[1024];
+
+                long total = 0;
+
+                while ((count = input.read(data)) != -1) {
+                    total += count;
+                    // publishing the progress....
+                    // After this onProgressUpdate will be called
+                    publishProgress(""+(int)((total*100)/lenghtOfFile));
+
+                    // writing data to file
+                    output.write(data, 0, count);
+                }
+
+                // flushing output
+                output.flush();
+
+                // closing streams
+                output.close();
+                input.close();
+
+            } catch (Exception e) {
+                Log.e("Error: ", e.getMessage());
+            }
+
+            return null;
+        }
+
+        /**
+         * After completing background task
+         * Dismiss the progress dialog
+         * **/
+        @Override
+        protected void onPostExecute(String file_url) {
+            // dismiss the dialog after the file was downloaded
+            // Displaying downloaded image into image view
+            // Reading image path from sdcard
+            String imagePath = root + "/" + imagename;
+            // setting downloaded into image view
+            //ImageView v = (ImageView) findViewById(R.id.setImageView);
+            imageView.setImageDrawable(Drawable.createFromPath(imagePath));
+
+
+        }
+
+    }
 }

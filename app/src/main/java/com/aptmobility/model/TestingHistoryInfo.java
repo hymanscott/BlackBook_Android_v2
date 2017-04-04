@@ -105,12 +105,14 @@ public class TestingHistoryInfo {
     public void decryptTestingHistoryInfo(){
         if (this.status_encrypt) {
             this.test_status = LynxManager.decryptString(test_status);
+            this.attachment = LynxManager.decryptString(attachment);
             this.status_encrypt = false;
         }
     }
     public void encryptTestingHistoryInfo(){
         if (!this.status_encrypt) {
             this.test_status = LynxManager.encryptString(test_status);
+            this.attachment = LynxManager.encryptString(attachment);
             this.status_encrypt = true;
         }
     }
