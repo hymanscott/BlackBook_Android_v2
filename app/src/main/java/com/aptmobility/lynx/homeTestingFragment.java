@@ -1,6 +1,6 @@
 package com.aptmobility.lynx;
 
-import android.app.DialogFragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -169,7 +170,116 @@ public class homeTestingFragment extends Fragment {
             TestNameMaster name = db.getTestingNamebyID(history.getTesting_id());
             Log.v("Date & ID",history.getTesting_history_id()+LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MMM d, yyyy"));
 
-            if(name.getTestName().equals("HIV Test")){
+            if(name.getTestName().equals("HIV Test")) {
+                TableRow tr = new TableRow(getActivity());
+                final View v = LayoutInflater.from(getActivity()).inflate(R.layout.testing_history_row, tr, false);
+                //want to get childs of row for example TextView, get it like this:
+                TextView date = (TextView) v.findViewById(R.id.date);
+                TextView testname = (TextView) v.findViewById(R.id.testname);
+                TextView teststatus = (TextView) v.findViewById(R.id.teststatus);
+                ImageView testimage = (ImageView)v.findViewById(R.id.imageView);
+                date.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
+                testname.setText(name.getTestName());
+                List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(history.getTesting_history_id());
+                for (TestingHistoryInfo historyInfo : testinghistoryInfoList) {
+                    if(historyInfo.getSti_id()==0){
+                        if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
+                            teststatus.setText("Positive");
+                        }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
+                            teststatus.setText("Negative");
+                        }else {
+                            teststatus.setText("Didn't Test");
+                        }
+                        String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
+                        if(!historyInfoAttachment.equals("")){
+                            String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
+                            File mediaFile = new File(imgDir+historyInfoAttachment);
+                            Log.v("OrgPath",imgDir+historyInfoAttachment);
+                            if(mediaFile.exists()){
+                                Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfoAttachment);
+                                int h = 50; // height in pixels
+                                int w = 50; // width in pixels
+                                Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
+                                testimage.setImageBitmap(scaled);
+                            }else{
+                                //  ***********set url from server*********** //
+                                testimage.setImageResource(R.drawable.testimage);
+                                new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(testimage);
+                                new DownloadFileFromURL(testimage).execute(LynxManager.getTestImageBaseUrl()+historyInfoAttachment);
+                            }
+
+                        }
+
+                    }
+                }
+                v.setId(history.getTesting_history_id());
+                v.setClickable(true);
+                v.setFocusable(true);
+                if(j==0)
+                    v.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view1) {
+                        testRowClick(v);
+                    }
+                });
+                testing_history_table.addView(v);
+                j++;
+            }else{
+                List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(history.getTesting_history_id());
+                for (TestingHistoryInfo historyInfo : testinghistoryInfoList) {
+                    TableRow tr = new TableRow(getActivity());
+                    final View v = LayoutInflater.from(getActivity()).inflate(R.layout.testing_history_row, tr, false);
+                    //want to get childs of row for example TextView, get it like this:
+                    TextView date = (TextView) v.findViewById(R.id.date);
+                    TextView testname = (TextView) v.findViewById(R.id.testname);
+                    TextView teststatus = (TextView) v.findViewById(R.id.teststatus);
+                    ImageView testimage = (ImageView)v.findViewById(R.id.imageView);
+                    date.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
+                    STIMaster stiName = db.getSTIbyID(historyInfo.getSti_id());
+                    testname.setText(stiName.getstiName());
+                    if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
+                        teststatus.setText("Positive");
+                    }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
+                        teststatus.setText("Negative");
+                    }else {
+                        teststatus.setText("Didn't Test");
+                    }
+                    String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
+                    if(!historyInfoAttachment.equals("")){
+                        String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
+                        File mediaFile = new File(imgDir+historyInfoAttachment);
+                        if(mediaFile.exists()){
+                            Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfoAttachment);
+                            int h = 50; // height in pixels
+                            int w = 50; // width in pixels
+                            Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
+                            testimage.setImageBitmap(scaled);
+                            Log.v("ImagepathExists",imgDir+historyInfoAttachment);
+                        }else{
+                            //  ***********set url from server*********** //
+                            testimage.setImageResource(R.drawable.testimage);
+                            new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(testimage);
+                            new DownloadFileFromURL(testimage).execute(LynxManager.getTestImageBaseUrl()+historyInfoAttachment);
+                        }
+
+                    }
+                    v.setId(history.getTesting_history_id());
+                    v.setClickable(true);
+                    v.setFocusable(true);
+                    if(j==0)
+                        v.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
+                    v.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view1) {
+                            testRowClick(v);
+                        }
+                    });
+                    testing_history_table.addView(v);
+                    j++;
+                }
+            }
+            /*if(name.getTestName().equals("HIV Test")){
                 TableRow historyRow = new TableRow(getActivity());
                 TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f);
                 TableRow.LayoutParams imgparams = new TableRow.LayoutParams(50, 50, 1f);
@@ -178,7 +288,7 @@ public class homeTestingFragment extends Fragment {
                 if(j==0)
                     historyRow.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
 
-                TextView testDate = new TextView(getActivity()); /*new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);*/
+                TextView testDate = new TextView(getActivity()); *//*new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);*//*
                 TextView testName = new TextView(getActivity());
                 TextView testStatus = new TextView(getActivity());
                 ImageView testImage = new ImageView(getActivity());
@@ -292,7 +402,7 @@ public class homeTestingFragment extends Fragment {
                     if(j==0)
                         historyRow.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
 
-                    TextView testDate = new TextView(getActivity()); /*new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);*/
+                    TextView testDate = new TextView(getActivity()); *//*new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);*//*
                     TextView testName = new TextView(getActivity());
                     TextView testStatus = new TextView(getActivity());
                     ImageView testImage = new ImageView(getActivity());
@@ -391,7 +501,7 @@ public class homeTestingFragment extends Fragment {
                     j++;
                 }
 
-            }
+            }*/
 
             j++;
         }
@@ -402,174 +512,14 @@ public class homeTestingFragment extends Fragment {
         }
         return view;
     }
-
-    /*public void showPopup(View anchorView, final String title, int width,int height) {
-
-        final View popupView = getLayoutInflater(Bundle.EMPTY).inflate(R.layout.popup_window_add_new_test, null);
-
-        final PopupWindow popupWindow = new PopupWindow(popupView,
-                width, height);
-//ViewGroup.LayoutParams.WRAP_CONTENT
-        TextView newTest_title = (TextView) popupView.findViewById(R.id.addNewTestTitle);
-        newTest_title.setText("New " + title);
-        TextView titleText = (TextView) popupView.findViewById(R.id.titleText);
-        //titleText.setText("When was your most recent " + title + "?");
-        titleText.setText("When was your most recent HIV test?");
-        LinearLayout std_layout = (LinearLayout)popupView.findViewById(R.id.std_layout);
-        if(title.equals("STD Test")){ std_layout.setVisibility(View.VISIBLE); titleText.setText("When was your most recent STD test?");}
-
-        final EditText newTestDate = (EditText) popupView.findViewById(R.id.addNewTestDate);
-        newTestDate.addTextChangedListener(new TextWatcher() {
-            private String current = "";
-            private String mmddyyyy = "MMDDYYYY";
-            private Calendar cal = Calendar.getInstance();
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!s.toString().equals(current)) {
-                    String clean = s.toString().replaceAll("[^\\d.]", "");
-                    String cleanC = current.replaceAll("[^\\d.]", "");
-
-                    int cl = clean.length();
-                    int sel = cl;
-                    for (int i = 2; i <= cl && i < 6; i += 2) {
-                        sel++;
-                    }
-                    //Fix for pressing delete next to a forward slash
-                    if (clean.equals(cleanC)) sel--;
-
-                    if (clean.length() < 8) {
-                        clean = clean + mmddyyyy.substring(clean.length());
-                    } else {
-                        //This part makes sure that when we finish entering numbers
-                        //the date is correct, fixing it otherwise
-                        int mon = Integer.parseInt(clean.substring(0, 2));
-                        int day = Integer.parseInt(clean.substring(2, 4));
-                        int year = Integer.parseInt(clean.substring(4, 8));
-
-                        if (mon > 12) mon = 12;
-                        cal.set(Calendar.MONTH, mon - 1);
-                        year = (year < 1800) ? 1800 : (year > 2100) ? 2100 : year;
-                        cal.set(Calendar.YEAR, year);
-                        // ^ first set year for the line below to work correctly
-                        //with leap years - otherwise, date e.g. 29/02/2012
-                        //would be automatically corrected to 28/02/2012
-
-                        day = (day > cal.getActualMaximum(Calendar.DATE)) ? cal.getActualMaximum(Calendar.DATE) : day;
-                        clean = String.format("%02d%02d%02d", mon, day, year);
-                    }
-
-                    clean = String.format("%s/%s/%s", clean.substring(0, 2),
-                            clean.substring(2, 4),
-                            clean.substring(4, 8));
-
-                    sel = sel < 0 ? 0 : sel;
-                    current = clean;
-                    newTestDate.setText(current);
-                    newTestDate.setSelection(sel < current.length() ? sel : current.length());
-
-
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        ImageView calenderIconNewTestDate = (ImageView)popupView.findViewById(R.id.calenderIconNewTestDate);
-        calenderIconNewTestDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment datePickerFragment = new DatePickerFragment() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        //   Log.d(TAG, "onDateSet");
-                        Calendar c = Calendar.getInstance();
-                        c.set(year, month, day);
-                        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-                        newTestDate.setText(df.format(c.getTime()));
-
-                    }
-                };
-                datePickerFragment.show(getActivity().getFragmentManager(), "datePicker");
-            }
-        });
-
-        TestNameMaster testNameMaster = db.getTestingNamebyName(title);
-        final int testing_id = testNameMaster.getTesting_id();
-
-        Button add_new_test_cancel = (Button) popupView.findViewById(R.id.addNewTestCancel);
-        add_new_test_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-            }
-        });
-
-        Button add_new_test_ok = (Button) popupView.findViewById(R.id.addNewTestOk);
-        add_new_test_ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                boolean invalid_date = LynxManager.dateValidation(newTestDate.getText().toString());
-                if (newTestDate.getText().toString().isEmpty()) {
-                    Toast.makeText(getActivity(), "Please Select Date", Toast.LENGTH_SHORT).show();
-                } else if(invalid_date){
-                    Toast.makeText(getActivity(),"Invalid Date",Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    String date = LynxManager.getFormatedDate("MM/dd/yyyy",newTestDate.getText().toString(),"yyyy-MM-dd");
-                    TestingHistory history = new TestingHistory(testing_id, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(date), String.valueOf(R.string.statusUpdateNo), true);
-                    int testingHistoryid = db.createTestingHistory(history);
-                    RadioButton chlamydia = (RadioButton)popupView.findViewById(((RadioGroup) popupView.findViewById(R.id.chlamydia)).getCheckedRadioButtonId());
-                    RadioButton gonorrhea = (RadioButton)popupView.findViewById(((RadioGroup)popupView.findViewById(R.id.gonorrhea)).getCheckedRadioButtonId());
-                    RadioButton syphilis = (RadioButton)popupView.findViewById(((RadioGroup)popupView.findViewById(R.id.syphilis)).getCheckedRadioButtonId());
-                    // Adding testing history info
-                    if (title.equals("STD Test")){
-                        for(int sti_count =1 ; sti_count<=3;sti_count++){
-                            String test_status;
-                            switch (sti_count){
-                                case 1:
-                                    test_status = LynxManager.encryptString(gonorrhea.getText().toString());
-                                    break;
-                                case 2:
-                                    test_status = LynxManager.encryptString(syphilis.getText().toString());
-                                    break;
-                                case 3:
-                                    test_status = LynxManager.encryptString(chlamydia.getText().toString());
-                                    break;
-                                default:
-                                    test_status = "";
-                            }
-                            TestingHistoryInfo historyInfo = new TestingHistoryInfo(testingHistoryid , LynxManager.getActiveUser().getUser_id(),sti_count,test_status,LynxManager.encryptString(""),String.valueOf(R.string.statusUpdateNo),true);
-                            int historyInfo_id = db.createTestingHistoryInfo(historyInfo);
-                        }
-                    }
-                    Toast.makeText(getActivity(), "New "+ title +" Added", Toast.LENGTH_SHORT).show();
-                    popupWindow.dismiss();
-                    reloadFragment();
-                }
-            }
-        });
-
-        // If the PopupWindow should be focusable
-        popupWindow.setFocusable(true);
-
-        // If you need the PopupWindow to dismiss when when touched outside
-        popupWindow.setBackgroundDrawable(new ColorDrawable());
-
-        popupWindow.showAtLocation(popupView, Gravity.CENTER,0,0);
-
-    }*/
-
+    public void testRowClick(View v){
+        ((TextView) v.findViewById(R.id.date)).setTextColor(getResources().getColor(R.color.blue_theme));
+        ((TextView) v.findViewById(R.id.testname)).setTextColor(getResources().getColor(R.color.blue_theme));
+        ((TextView) v.findViewById(R.id.teststatus)).setTextColor(getResources().getColor(R.color.blue_theme));
+        Intent testSumm = new Intent(getActivity(),TestSummary.class);
+        testSumm.putExtra("testingHistoryID",v.getId());
+        startActivityForResult(testSumm, 001);
+    }
     public void reloadFragment() {
         Log.v("Fragment Reload", "Reloaded");
 
@@ -580,68 +530,6 @@ public class homeTestingFragment extends Fragment {
                 .commit();
 
     }
-
-    /*public void showSummaryPopup(int testingHistoryID,int width,int height){
-
-        //Type face
-        Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "RobotoSlabRegular.ttf");
-
-        final View popupSummView = getLayoutInflater(Bundle.EMPTY).inflate(R.layout.popup_testing_history_summary, null);
-
-        final PopupWindow popupsummWindow = new PopupWindow(popupSummView,
-                width,width);
-
-        TextView testingHistoryTitle = (TextView) popupSummView.findViewById(R.id.testingHistoryTitle);
-        TextView testingHistorydate = (TextView) popupSummView.findViewById(R.id.testingHistorydate);
-        LinearLayout std_list = (LinearLayout)popupSummView.findViewById(R.id.std_list);
-        LinearLayout std_list_parentLayout = (LinearLayout)popupSummView.findViewById(R.id.std_list_parentLayout);
-        TextView std_list_title = (TextView) popupSummView.findViewById(R.id.std_list_title);
-        Button close_button = (Button)popupSummView.findViewById(R.id.summaryClose);
-        close_button.setBackground(getResources().getDrawable(R.drawable.lynx_button));
-        close_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupsummWindow.dismiss();
-            }
-        });
-        TestingHistory testingHistory = db.getTestingHistorybyID(testingHistoryID);
-        String test_name = (db.getTestingNamebyID(testingHistory.getTesting_id())).getTestName();
-        testingHistoryTitle.setText(test_name);
-        testingHistoryTitle.setTextColor(getResources().getColor(R.color.blue_theme));
-        String test_date = LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(testingHistory.getTesting_date()),"dd-MMM-yyyy");
-        testingHistorydate.setText(test_date);
-        if(test_name.equals("HIV Test")){
-            std_list_parentLayout.setVisibility(View.GONE);
-        }else {
-            List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(testingHistoryID);
-            int positive_STD_count =0;
-            for (TestingHistoryInfo historyInfo : testinghistoryInfoList) {
-                if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
-                    TextView stdTextview = new TextView(getActivity());
-                    stdTextview.setTypeface(roboto);
-                    stdTextview.setTextColor(getResources().getColor(R.color.text_color));
-                    stdTextview.setTextAppearance(getActivity(), android.R.style.TextAppearance_Medium);
-                    STIMaster stiName = db.getSTIbyID(historyInfo.getSti_id());
-                    stdTextview.setText(stiName.getstiName());
-                    std_list.addView(stdTextview);
-                    positive_STD_count +=1;
-                }
-            }
-            if(positive_STD_count==0){
-                std_list_title.setText("You didn't had any positive STD");
-            }
-
-        }
-        // If the PopupWindow should be focusable
-        popupsummWindow.setFocusable(true);
-
-        // If you need the PopupWindow to dismiss when when touched outside
-        popupsummWindow.setBackgroundDrawable(new ColorDrawable());
-
-        popupsummWindow.showAtLocation(popupSummView, Gravity.CENTER, 0, 0);
-
-    }*/
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
@@ -664,7 +552,7 @@ public class homeTestingFragment extends Fragment {
         }
     }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 111) {
+        if (requestCode == 111 || requestCode == 001) {
             reloadFragment();
             LynxManager.isRefreshRequired = true;
         }
@@ -685,7 +573,11 @@ public class homeTestingFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Bitmap result) {
-            imageView.setImageBitmap(result);
+            int h = 50; // height in pixels
+            int w = 50; // width in pixels
+            Bitmap scaled = Bitmap.createScaledBitmap(result, w, h, true);
+            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            imageView.setImageBitmap(scaled);
         }
 
         private Bitmap download_Image(String url) {
@@ -703,11 +595,13 @@ public class homeTestingFragment extends Fragment {
             return bmp;
         }
     }
+
     private class DownloadFileFromURL extends AsyncTask<String, String, String> {
         String url_string;
         String imagename ;
         ImageView imageView;
         String root = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
+        ProgressDialog pDialog;
         public DownloadFileFromURL(ImageView imageView) {
             this.imageView = imageView;
         }
@@ -715,6 +609,10 @@ public class homeTestingFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            pDialog = new ProgressDialog(getActivity());
+            pDialog.setMessage("Fetching images....");
+            pDialog.setCancelable(false);
+            pDialog.show();
         }
 
         /**
@@ -778,7 +676,8 @@ public class homeTestingFragment extends Fragment {
             // setting downloaded into image view
             //ImageView v = (ImageView) findViewById(R.id.setImageView);
             imageView.setImageDrawable(Drawable.createFromPath(imagePath));
-
+            if (pDialog.isShowing())
+                pDialog.dismiss();
 
         }
 

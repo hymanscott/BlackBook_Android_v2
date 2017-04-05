@@ -7,6 +7,7 @@ import android.app.DialogFragment;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
@@ -20,6 +21,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -223,8 +225,6 @@ public class LYNXProfile extends Activity {
                     current = clean;
                     dob.setText(current);
                     dob.setSelection(sel < current.length() ? sel : current.length());
-
-
                 }
             }
 
@@ -272,7 +272,17 @@ public class LYNXProfile extends Activity {
         ArrayAdapter<String> adapterSecQues = new ArrayAdapter<String>(LYNXProfile.this,
                 R.layout.spinner_row, R.id.txtView, days_of_week);
         spinner_notif_day.setAdapter(adapterSecQues);
-        TimePicker tp = (TimePicker)findViewById(R.id.timePicker_druguse_history);
+        // Timepicker popup //
+        final TextView timepicker = (TextView)findViewById(R.id.lynxRemainderTime);
+        timepicker.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                calenderPopup(timepicker);
+            }
+        });
+
         TestingReminder testingReminder = db.getTestingReminderByFlag(0);
         com.aptmobility.lynx.CustomEditText notes = (com.aptmobility.lynx.CustomEditText) findViewById(R.id.sexDruguseHistory_notes);
         if(testingReminder != null) {
@@ -280,28 +290,7 @@ public class LYNXProfile extends Activity {
             String day = LynxManager.decryptString(testingReminder.getNotification_day());
             spinner_notif_day.setSelection(((ArrayAdapter<String>) spinner_notif_day.getAdapter()).getPosition(day));
             String time = LynxManager.decryptString(testingReminder.getNotification_time());
-            Log.v("timeDBvalue", time);
-            int hour = 0;
-            int min = 0;
-            if(time.length()!=8) {
-                String[] a = time.split(":");
-                hour = Integer.parseInt(a[0]);
-                min = Integer.parseInt(a[1]);
-            }else {
-                String[] a = time.split(" ");
-                String[] b = a[0].split(":");
-                if(a[1].equals("AM")){
-                    hour = Integer.parseInt(b[0])==12?0:Integer.parseInt(b[0]);
-                }else{
-                    hour = Integer.parseInt(b[0])==12?12:Integer.parseInt(b[0])+12;
-                }
-                min = Integer.parseInt(b[1]);
-            }
-            Log.v("finalTime",hour + "........" + min);
-            tp.setCurrentHour(hour);
-            tp.setCurrentMinute(min);
-
-
+            timepicker.setText(time);
         }
     }
     public void setTestingHistory(){
@@ -312,7 +301,16 @@ public class LYNXProfile extends Activity {
         ArrayAdapter<String> adapterSecQues = new ArrayAdapter<String>(LYNXProfile.this,
                 R.layout.spinner_row, R.id.txtView, testday_of_week);
         spinner_notif_testday.setAdapter(adapterSecQues);
-        TimePicker tp = (TimePicker)findViewById(R.id.timePicker_notif_remindertest);
+        // Timepicker popup //
+        final TextView timepicker = (TextView)findViewById(R.id.lynxTestingTime);
+        timepicker.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                calenderPopup(timepicker);
+            }
+        });
         TestingReminder testingReminder = db.getTestingReminderByFlag(1);
         com.aptmobility.lynx.CustomEditText notes = (com.aptmobility.lynx.CustomEditText) findViewById(R.id.reminderTest_notes);
         if(testingReminder != null) {
@@ -320,27 +318,42 @@ public class LYNXProfile extends Activity {
             String day = LynxManager.decryptString(testingReminder.getNotification_day());
             spinner_notif_testday.setSelection(((ArrayAdapter<String>) spinner_notif_testday.getAdapter()).getPosition(day));
             String time = LynxManager.decryptString(testingReminder.getNotification_time());
-            Log.v("timeDBvalue", time);
-            int hour = 0;
-            int min = 0;
-            if(time.length()!=8) {
-                String[] a = time.split(":");
-                hour = Integer.parseInt(a[0]);
-                min = Integer.parseInt(a[1]);
-            }else{
-                String[] a = time.split(" ");
-                String[] b = a[0].split(":");
-                if(a[1].equals("AM")){
-                    hour = Integer.parseInt(b[0])==12?0:Integer.parseInt(b[0]);
-                }else{
-                    hour = Integer.parseInt(b[0])==12?12:Integer.parseInt(b[0])+12;
-                }
-                min = Integer.parseInt(b[1]);
-            }
-            Log.v("finalTime", hour + "........" + min);
-            tp.setCurrentHour(hour);
-            tp.setCurrentMinute(min);
+            timepicker.setText(time);
         }
+    }
+    public void calenderPopup(final TextView timepicker){
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(LYNXProfile.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+
+                int hour = selectedHour;
+                int min = selectedMinute;
+                String time = "";
+                String am_pm = "";
+                if (hour < 12 ) {
+                    if (hour == 0) hour = 12;
+                    am_pm = "AM";
+                }
+                else {
+                    if (hour != 12)
+                        hour-=12;
+                    am_pm = "PM";
+                }
+                String h = hour+"", m = min+"";
+                if(h.length() == 1) h = "0"+h;
+                if(m.length() == 1) m = "0"+m;
+                time = h+":"+m+" "+am_pm;
+
+                timepicker.setText( time);
+                //timepicker.setText( selectedHour + ":" + selectedMinute);
+            }
+        }, hour, minute, false);//Yes 24 hour time
+        mTimePicker.setTitle("Select Time");
+        mTimePicker.show();
     }
     public void setPartnerRatings(){
         final ImageView btn = (ImageView) findViewById(R.id.imgBtn_partner_ratings);
@@ -534,86 +547,37 @@ public class LYNXProfile extends Activity {
             // Reminer Test Save //
             Spinner dayofweek = (Spinner) findViewById(R.id.spinner_remindertest_day);
             String day_of_week = dayofweek.getSelectedItem().toString();
-
-            TimePicker reminderTestTime = ((TimePicker) findViewById(R.id.timePicker_notif_remindertest));
-
-            int hour = reminderTestTime.getCurrentHour();
-            int min = reminderTestTime.getCurrentMinute();
-            // String time = String.valueOf(hour)+ ":" + String.valueOf(min);
-            String time = "";
-            String am_pm = "";
-            if (hour < 12 ) {
-                if (hour == 0) hour = 12;
-                am_pm = "AM";
-            }
-            else {
-                if (hour != 12)
-                    hour-=12;
-                am_pm = "PM";
-            }
-            String h = hour+"", m = min+"";
-            if(h.length() == 1) h = "0"+h;
-            if(m.length() == 1) m = "0"+m;
-            time = h+":"+m+" "+am_pm;
-
+            TextView lynxRemainderTime = (TextView)findViewById(R.id.lynxTestingTime);
             com.aptmobility.lynx.CustomEditText notes = (com.aptmobility.lynx.CustomEditText) findViewById(R.id.reminderTest_notes);
             String reminderTest_notes = notes.getText().toString();
             TestingReminder testingReminder = new TestingReminder(LynxManager.getActiveUser().getUser_id(),1, LynxManager.encryptString(day_of_week),
-                    LynxManager.encryptString(String.valueOf(time)), LynxManager.encryptString(reminderTest_notes), String.valueOf(R.string.statusUpdateNo), true);
+                    LynxManager.encryptString(lynxRemainderTime.getText().toString()), LynxManager.encryptString(reminderTest_notes), String.valueOf(R.string.statusUpdateNo), true);
             TestingReminder testing_Reminder = db.getTestingReminderByFlag(1);
             if(testing_Reminder != null){
                 db.updateTestingReminderByFlagandID(testingReminder);
-                //Toast.makeText(this, "Testing Reminder Notification Updated", Toast.LENGTH_SHORT).show();
             }
             else {
                 db.createTestingReminder(testingReminder);
-                //Toast.makeText(this, "New Testing Reminder Notification Added", Toast.LENGTH_SHORT).show();
             }
 
             // LYNX Reminder Save //
             dayofweek = (Spinner) findViewById(R.id.spinner_druguse_history_day);
             day_of_week = dayofweek.getSelectedItem().toString();
-
-            TimePicker notifTime = ((TimePicker) findViewById(R.id.timePicker_druguse_history));
-
-            hour = notifTime.getCurrentHour();
-            min = notifTime.getCurrentMinute();
-
-            //String time = String.valueOf(hour)+ ":" + String.valueOf(min);
-            time = "";
-            am_pm = "";
-            if (hour < 12 ) {
-                if (hour == 0) hour = 12;
-                am_pm = "AM";
-            }
-            else {
-                if (hour != 12)
-                    hour-=12;
-                am_pm = "PM";
-            }
-            h = hour+"";
-            m = min+"";
-            if(h.length() == 1) h = "0"+h;
-            if(m.length() == 1) m = "0"+m;
-            time = h+":"+m+" "+am_pm;
+            TextView lynxTestingTime = (TextView)findViewById(R.id.lynxRemainderTime);
             com.aptmobility.lynx.CustomEditText notes1 = (com.aptmobility.lynx.CustomEditText) findViewById(R.id.sexDruguseHistory_notes);
             String druguseHistory_notes = notes1.getText().toString();
             TestingReminder testingReminder1 = new TestingReminder(LynxManager.getActiveUser().getUser_id(),0, LynxManager.encryptString(day_of_week),
-                    LynxManager.encryptString(String.valueOf(time)), LynxManager.encryptString(druguseHistory_notes), String.valueOf(R.string.statusUpdateNo), true);
+                    LynxManager.encryptString(lynxTestingTime.getText().toString()), LynxManager.encryptString(druguseHistory_notes), String.valueOf(R.string.statusUpdateNo), true);
             TestingReminder testing_Reminder1 = db.getTestingReminderByFlag(0);
-            if(testing_Reminder != null){
-                db.updateTestingReminderByFlagandID(testingReminder);
-                //Toast.makeText(this, "Sex and Drug Use History Notification Updated", Toast.LENGTH_SHORT).show();
+            if(testing_Reminder1 != null){
+                db.updateTestingReminderByFlagandID(testingReminder1);
             }
             else {
-                db.createTestingReminder(testingReminder);
-                //Toast.makeText(this, "New Sex and Drug Use History Notification Added", Toast.LENGTH_SHORT).show();
+                db.createTestingReminder(testingReminder1);
             }
             callNotification();
 
             Toast.makeText(this, "User Profile Updated", Toast.LENGTH_SHORT).show();
-
-
         }
 
         return true;

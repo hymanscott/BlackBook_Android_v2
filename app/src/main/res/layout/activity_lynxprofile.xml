@@ -52,17 +52,18 @@
                     android:textColor="@color/text_color"
                     android:layout_weight="1"/>
             </LinearLayout>
+
             <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                android:id="@+id/profile_email"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Email"
-                android:id="@+id/profile_email"
-                android:textSize="18sp"
-                android:textColor="@color/text_color"
                 android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="Email"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_weight="1"/>
+                android:textColor="@color/text_color"
+                android:textSize="18sp"
+                custom:fontAssetName="RobotoSlabRegular.ttf" />
 
             <com.aptmobility.lynx.CustomTextView
                 custom:fontAssetName="RobotoSlabRegular.ttf"
@@ -357,12 +358,11 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <com.aptmobility.lynx.CustomTextView
                         custom:fontAssetName="RobotoSlabRegular.ttf"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Set Day of the Week:"
                         android:textSize="20sp"
@@ -373,40 +373,45 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/SpinnerAppTheme"
+                        android:layout_marginLeft="5dp"
                         android:id="@+id/spinner_druguse_history_day"
-                        android:gravity="center_horizontal"
+                        android:gravity="center_vertical"
                         />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <com.aptmobility.lynx.CustomTextView
                         custom:fontAssetName="RobotoSlabRegular.ttf"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
                         android:textColor="@color/text_color"
                         android:text="Set Time of the Day:"
                         android:layout_marginLeft="10dp"
                         android:gravity="center_vertical" />
-                    <TimePicker
-                        android:layout_width="wrap_content"
+                    <com.aptmobility.lynx.CustomTextView
+                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/timePicker_druguse_history"
-                        android:layout_centerVertical="true"
-                        android:numbersSelectorColor="@color/apptheme_color"
-                        android:layout_centerHorizontal="true" />
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:background="@drawable/apptheme_edit_text_holo_light"
+                        android:ems="6"
+                        android:clickable="true"
+                        android:text="10:00 AM"
+                        android:id="@+id/lynxRemainderTime"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_color"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginBottom="20dp"
                     android:orientation="vertical">
 
@@ -427,10 +432,12 @@
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"
                         android:ems="10"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
                         android:textSize="18sp"
+                        android:layout_gravity="center_horizontal"
                         android:textColor="@color/text_color"
                         android:id="@+id/sexDruguseHistory_notes"
-                        android:layout_marginRight="20dp"
                         android:layout_centerHorizontal="true"
                         android:hint="Do you have anything to report this week?"
                         android:text="Do you have anything to report this week?"/>
@@ -442,7 +449,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/border_bottom"
-                android:paddingBottom="10dp"
+                android:paddingBottom="20dp"
                 android:id="@+id/LynxTestRemainerLayout">
                 <com.aptmobility.lynx.CustomTextView
                     custom:fontAssetName="RobotoSlabRegular.ttf"
@@ -458,12 +465,11 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <com.aptmobility.lynx.CustomTextView
                         custom:fontAssetName="RobotoSlabRegular.ttf"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Set Day of the Week:"
@@ -483,13 +489,12 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <com.aptmobility.lynx.CustomTextView
                         custom:fontAssetName="RobotoSlabRegular.ttf"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Set Time of the Day:"
@@ -497,19 +502,26 @@
                         android:textColor="@color/text_color"
                         android:layout_marginLeft="10dp"
                         android:gravity="center_vertical" />
-                    <TimePicker
-                        android:layout_width="wrap_content"
+
+                    <com.aptmobility.lynx.CustomTextView
+                        android:id="@+id/lynxTestingTime"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/timePicker_notif_remindertest"
-                        android:numbersSelectorColor="@color/apptheme_color"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true" />
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/apptheme_edit_text_holo_light"
+                        android:clickable="true"
+                        android:ems="6"
+                        android:text="10:00 AM"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/text_color"
+                        android:textSize="18sp"
+                        custom:fontAssetName="RobotoSlabRegular.ttf" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="10dp"
                     android:orientation="vertical">
 
                     <com.aptmobility.lynx.CustomTextView
@@ -531,7 +543,8 @@
                         android:ems="10"
                         android:textSize="18sp"
                         android:textColor="@color/text_color"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
                         android:id="@+id/reminderTest_notes"
@@ -545,6 +558,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
+                android:paddingTop="10dp"
                 android:id="@+id/partnerRatingsLayout">
                 <RelativeLayout
                     android:layout_width="match_parent"
