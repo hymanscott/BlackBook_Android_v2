@@ -135,11 +135,14 @@ public class LYNXTestingLocation extends Fragment implements GoogleApiClient.Con
         super.onPause();
         mMapView.onPause();
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         mMapView.onDestroy();
+        if (googleApiClient != null && googleApiClient.isConnected()) {
+            googleApiClient.stopAutoManage(getActivity());
+            googleApiClient.disconnect();
+        }
     }
 
     @Override
@@ -339,13 +342,17 @@ public class LYNXTestingLocation extends Fragment implements GoogleApiClient.Con
         }
     }
     private synchronized void setUpGClient() {
+        if (googleApiClient != null && googleApiClient.isConnected()) {
+            googleApiClient.stopAutoManage(getActivity());
+            googleApiClient.disconnect();
+        }
         googleApiClient = new GoogleApiClient.Builder(getActivity())
                 .enableAutoManage(getActivity(), 0, this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
-        googleApiClient.connect();
+        //googleApiClient.connect();
     }
     public void getTestingLocations(Location currentlocation) {
         Locations_DistanceArray.clear();

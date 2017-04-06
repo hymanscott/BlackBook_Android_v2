@@ -1,5 +1,6 @@
 package com.aptmobility.lynx;
 
+import android.*;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -8,11 +9,14 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -59,6 +63,7 @@ public class LYNXSexPro extends Activity implements View.OnClickListener{
 
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
     DatabaseHelper db;
+    private static final int READ_WRITE_PERMISSION = 100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,6 +148,11 @@ public class LYNXSexPro extends Activity implements View.OnClickListener{
             }
         }, 0, 1, TimeUnit.MINUTES);
         db = new DatabaseHelper(this);
+        if ( Build.VERSION.SDK_INT >= 23 &&
+                ContextCompat.checkSelfPermission(LYNXSexPro.this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(LYNXSexPro.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(LYNXSexPro.this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, READ_WRITE_PERMISSION);
+        }
     }
 
     @Override
