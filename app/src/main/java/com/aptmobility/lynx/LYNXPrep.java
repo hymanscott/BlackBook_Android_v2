@@ -138,7 +138,7 @@ public class LYNXPrep extends FragmentActivity implements View.OnClickListener,A
                 case 1:
                     return new LYNXPrepMap();
                 case 2:
-                    return new BlankFragment();
+                    return new LYNXPrepVideos();
             }
 
             return null;
