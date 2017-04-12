@@ -4,11 +4,11 @@
     <!-- Some Font. Can be referenced with 'someFont' or 'aspergit' -->
     <family>
         <nameset>
-            <name>Roboto</name>
+            <name>OpenSans</name>
 
         </nameset>
         <fileset>
-            <file>RobotoSlab-Regular.ttf</file>
+            <file>OpenSans-Regular.ttf</file>
         </fileset>
     </family>
 

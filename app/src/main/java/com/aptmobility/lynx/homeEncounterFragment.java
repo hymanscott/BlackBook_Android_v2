@@ -187,8 +187,8 @@ public class homeEncounterFragment extends Fragment {
                                 startActivity(selectedEncounterSumm);
                             } else {
                                 //Change this to your normal background color.
-                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(1)).setTextColor(Color.parseColor("#000000"));
-                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#000000"));
+                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(1)).setTextColor(Color.parseColor("#444444"));
+                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#444444"));
                                 RatingBar r = ((RatingBar) ((TableRow)encounterTable.getChildAt(i)).getChildAt(2));
                                 LayerDrawable stars = (LayerDrawable) r.getProgressDrawable();
                                 stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);

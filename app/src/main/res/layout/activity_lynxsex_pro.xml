@@ -31,25 +31,40 @@
                     android:orientation="vertical">
 
                     <com.aptmobility.lynx.CustomTextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_margin="10dp"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
                         android:text="Update Your Score:"
                         android:textColor="@color/green"
                         android:textSize="20sp"
                         android:visibility="gone"
+                        android:background="@drawable/border_bottom"
                         custom:fontAssetName="OpenSansRegular.ttf" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/blue_theme"
+                        android:layout_marginTop="30dp"
                         android:orientation="horizontal">
-
-                        <com.aptmobility.lynx.CustomTextView
+                        <com.aptmobility.lynx.CustomButtonView
+                            style="@style/Phastt.button"
+                            custom:fontAssetName="OpenSansRegular.ttf"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textProgress_id1_toplabel"
+                            android:background="@drawable/lynx_button"
+                            android:textColor="@color/white"
+                            android:layout_marginLeft="25dp"
+                            android:clickable="false"
+                            android:layout_marginRight="25dp"
+                            android:layout_gravity="center_horizontal"
+                            android:textAllCaps="true"
+                            android:textStyle="normal"
+                            android:text="Your Sex pro Score is 10"/>
+                        <!--<com.aptmobility.lynx.CustomTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
@@ -70,21 +85,19 @@
                             android:text="10"
                             android:textColor="@color/white"
                             android:textSize="24sp"
-                            custom:fontAssetName="OpenSansRegular.ttf" />
+                            custom:fontAssetName="OpenSansRegular.ttf" />-->
                     </LinearLayout>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
-                        android:layout_marginTop="10dp"
                         android:gravity="center"
+                        android:layout_marginTop="30dp"
                         android:orientation="vertical">
 
                         <FrameLayout
                             android:id="@+id/myscore_framelayout"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginTop="10dp"
                             android:background="@drawable/sexprodial"
                             android:gravity="center">
 
@@ -101,7 +114,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/current_score_text"
-                        android:layout_margin="20dp"
+                        android:layout_marginBottom="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="50dp"
                         android:textSize="20sp"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center_horizontal"

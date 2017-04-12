@@ -96,7 +96,7 @@ public class Myscore_Prep extends Fragment {
                             startActivityForResult(selectedPartnerSumm, 100);
 
                         } else {
-                            ((TextView) ((TableRow) prepTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#000000"));
+                            ((TextView) ((TableRow) prepTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#444444"));
                             row.setBackground(getResources().getDrawable(R.drawable.border_bottom));
                             if(i==0)
                                 row.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));

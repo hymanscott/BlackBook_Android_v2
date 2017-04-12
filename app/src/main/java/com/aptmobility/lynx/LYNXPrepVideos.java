@@ -44,7 +44,7 @@ public class LYNXPrepVideos extends Fragment {
         LynxManager.PrepVideos.add("https://www.youtube.com/embed/dRmxyh1TTkE");
         //TYpe face
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/RobotoSlab-Regular.ttf"); //use this.getAssets if you are calling from an Activity
+                "fonts/OpenSans-Regular.ttf"); //use this.getAssets if you are calling from an Activity
 
         // Inflate the layout for this fragment
         final View rootview = inflater.inflate(R.layout.fragment_prepvideos, container, false);

@@ -124,7 +124,7 @@ public class homePartnersFragment extends Fragment {
                                 startActivityForResult(selectedPartnerSumm, 100);
 
                             } else {
-                                ((TextView) ((TableRow) partnerTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#000000"));
+                                ((TextView) ((TableRow) partnerTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#444444"));
                                 RatingBar r = ((RatingBar) ((TableRow)partnerTable.getChildAt(i)).getChildAt(1));
                                 LayerDrawable stars = (LayerDrawable) r.getProgressDrawable();
                                 stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.blue_theme), PorterDuff.Mode.SRC_ATOP);

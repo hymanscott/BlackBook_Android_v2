@@ -111,7 +111,7 @@ public class LYNXSexPro extends Activity implements View.OnClickListener{
         dial_layout.setLayoutParams(params);
 
         final ImageView dial_imgview = (ImageView)findViewById(R.id.imageView);
-        TextView current_score_tv = (TextView) findViewById(R.id.textProgress_id1_toplabel);
+        Button current_score_tv = (Button) findViewById(R.id.textProgress_id1_toplabel);
         TextView current_score_text = (TextView) findViewById(R.id.current_score_text);
         calculateSexProScore getscore = new calculateSexProScore(LYNXSexPro.this);
         int adjustedScore = Math.round((float) getscore.getAdjustedScore());
@@ -120,13 +120,13 @@ public class LYNXSexPro extends Activity implements View.OnClickListener{
         Log.v("unAdjScore", String.valueOf(unAdjustedScore));
         Log.v("Is_prep?", LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()));
         if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
-            current_score_tv.setText(String.valueOf(adjustedScore));
+            current_score_tv.setText("YOUR SEX PRO SCORE IS "+String.valueOf(adjustedScore));
             float angle = (int) ((adjustedScore-1) * 13.6);
             dial_imgview.setRotation(angle);
             current_score_text.setText("Daily PrEP raised your score from " +  String.valueOf(unAdjustedScore) +
                     " & added an extra layer of protection.");
         }else{
-            current_score_tv.setText(String.valueOf(unAdjustedScore));
+            current_score_tv.setText("YOUR SEX PRO SCORE IS "+String.valueOf(unAdjustedScore));
             float angle = (int) ((unAdjustedScore-1) * 13.6);
             dial_imgview.setRotation(angle);
             current_score_text.setText("Daily PrEP can raise your score to " +  String.valueOf(adjustedScore) +
