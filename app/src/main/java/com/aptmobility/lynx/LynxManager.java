@@ -52,6 +52,7 @@ public class LynxManager {
     public static List<String> selectedDrugs = new ArrayList<String>();
     public static List<String> selectedSTIs = new ArrayList<String>();
     public static List<String> selectedTestKits = new ArrayList<String>();
+    public static List<String> PrepVideos = new ArrayList<String>();
     public static Encounter activeEncounter = new Encounter();
     public static Partners activePartner = new Partners();
     public static PartnerContact activePartnerContact = new PartnerContact();

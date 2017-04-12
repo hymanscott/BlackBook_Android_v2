@@ -35,5 +35,7 @@
     <color name="colorPrimary">#2196f3</color>
     <color name="colorPrimaryDark">#3ad45b</color>
     <color name="colorAccent">#fbad2f</color>
+
+    <color name="starBG">#D5D5D5</color>
 </resources>
 
