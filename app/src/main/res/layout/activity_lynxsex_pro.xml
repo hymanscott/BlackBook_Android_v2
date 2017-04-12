@@ -39,7 +39,7 @@
                         android:textColor="@color/green"
                         android:textSize="20sp"
                         android:visibility="gone"
-                        custom:fontAssetName="RobotoSlabRegular.ttf" />
+                        custom:fontAssetName="OpenSansRegular.ttf" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
                             android:textColor="@color/white"
                             android:background="@drawable/lynx_ripple_effect"
                             android:textSize="24sp"
-                            custom:fontAssetName="RobotoSlabRegular.ttf" />
+                            custom:fontAssetName="OpenSansRegular.ttf" />
 
                         <com.aptmobility.lynx.CustomTextView
                             android:id="@+id/textProgress_id1_toplabel"
@@ -70,7 +70,7 @@
                             android:text="10"
                             android:textColor="@color/white"
                             android:textSize="24sp"
-                            custom:fontAssetName="RobotoSlabRegular.ttf" />
+                            custom:fontAssetName="OpenSansRegular.ttf" />
                     </LinearLayout>
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -97,7 +97,7 @@
                         </FrameLayout>
                     </RelativeLayout>
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/current_score_text"
@@ -136,7 +136,8 @@
                     android:id="@+id/bot_nav_sexpro_iv"
                     android:src="@drawable/icon_sexpro_white" />
 
-                <TextView
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/bot_nav_sexpro_tv"
@@ -159,7 +160,8 @@
                     android:id="@+id/bot_nav_diary_iv"
                     android:src="@drawable/icon_diary" />
 
-                <TextView
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/bot_nav_diary_tv"
@@ -182,7 +184,8 @@
                     android:id="@+id/bot_nav_testing_iv"
                     android:src="@drawable/icon_testing" />
 
-                <TextView
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/bot_nav_testing_tv"
@@ -205,7 +208,8 @@
                     android:id="@+id/bot_nav_prep_iv"
                     android:src="@drawable/icon_prep" />
 
-                <TextView
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/bot_nav_prep_tv"
@@ -228,7 +232,8 @@
                     android:id="@+id/bot_nav_chat_iv"
                     android:src="@drawable/icon_chat" />
 
-                <TextView
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/bot_nav_chat_tv"

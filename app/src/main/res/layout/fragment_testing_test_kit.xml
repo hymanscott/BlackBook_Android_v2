@@ -18,7 +18,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_height="fill_parent">
             <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
@@ -27,7 +27,7 @@
                 android:layout_margin="10dp"
                 android:gravity="center_vertical|center_horizontal" />
             <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content">
                 <com.aptmobility.lynx.CustomCheckBox
                     style="@style/Phastt.CheckBox"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="OraQuick Home HIV Test Kit"
@@ -52,7 +52,7 @@
                     android:checked="true"
                     android:layout_centerHorizontal="true" />
                 <com.aptmobility.lynx.CustomCheckBox
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/Phastt.CheckBox"
@@ -64,7 +64,7 @@
                     android:layout_marginLeft="40dp"
                     android:layout_centerHorizontal="true" />
                 <com.aptmobility.lynx.CustomCheckBox
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Penile Swab"
@@ -78,7 +78,7 @@
             </LinearLayout>
             <com.aptmobility.lynx.CustomButtonView
                 style="@style/Phastt.button"
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Confirm"

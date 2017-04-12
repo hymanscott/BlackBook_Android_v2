@@ -36,7 +36,7 @@ public class partner_NewPartner_ratings extends Fragment {
 
         //Type face
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/RobotoSlab-Regular.ttf");
+                "fonts/OpenSans-Regular.ttf");
 
         TextView newPartner_rating_nickname = (TextView) rootview.findViewById(R.id.newPartner_rating_nickname);
         newPartner_rating_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));

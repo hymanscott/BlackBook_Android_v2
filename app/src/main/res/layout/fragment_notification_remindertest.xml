@@ -15,7 +15,7 @@
             android:layout_height="fill_parent"
             >
             <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:text="Settings"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
                 android:textAllCaps="true"
                 android:gravity="center_horizontal|center_vertical" />
             <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -41,7 +41,7 @@
                 android:orientation="vertical">
 
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -66,7 +66,7 @@
                 android:orientation="vertical">
 
                <com.aptmobility.lynx.CustomTextView
-                   custom:fontAssetName="RobotoSlabRegular.ttf"
+                   custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -91,7 +91,7 @@
                 android:orientation="vertical">
 
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
@@ -102,7 +102,7 @@
                     android:gravity="center_vertical" />
                 <com.aptmobility.lynx.CustomEditText
                     android:background="@drawable/apptheme_edit_text_holo_light"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
@@ -119,7 +119,7 @@
             </LinearLayout>
             <com.aptmobility.lynx.CustomButtonView
                 style="@style/Phastt.button"
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Save"

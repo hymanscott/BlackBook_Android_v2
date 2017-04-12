@@ -48,8 +48,10 @@ public class homePartnersFragment extends Fragment {
         View rootview = inflater.inflate(R.layout.fragment_home_partners_screen, container, false);
 
         //Type face
+        /*Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
+                "RobotoSlabRegular.ttf");*/
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "RobotoSlabRegular.ttf");
+                "fonts/OpenSans-Regular.ttf");
 
         partnerTable = (TableLayout) rootview.findViewById(R.id.homepartnerTable);
         partnerTable.removeAllViews();

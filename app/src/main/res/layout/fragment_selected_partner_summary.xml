@@ -17,7 +17,7 @@
             android:orientation="vertical"
             android:layout_height="wrap_content">
             <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
@@ -36,7 +36,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -44,7 +44,7 @@
                     android:textColor="@color/text_color"
                     android:text="HIV Status :"/>
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -60,7 +60,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -68,7 +68,7 @@
                     android:textColor="@color/text_color"
                     android:text="Email :"/>
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -84,7 +84,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -92,7 +92,7 @@
                     android:textColor="@color/text_color"
                     android:text="Mobile :"/>
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -108,7 +108,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -120,7 +120,7 @@
                     android:orientation="vertical"
                     android:layout_height="wrap_content">
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -137,7 +137,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -145,7 +145,7 @@
                     android:textColor="@color/text_color"
                     android:text="Met at :"/>
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -161,7 +161,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -169,7 +169,7 @@
                     android:textColor="@color/text_color"
                     android:text="Social Media :"/>
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -185,7 +185,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -193,7 +193,7 @@
                     android:textColor="@color/text_color"
                     android:text="Partner Type :"/>
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -209,7 +209,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -217,7 +217,7 @@
                     android:textColor="@color/text_color"
                     android:text="Partner Notes :"/>
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -233,7 +233,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -256,7 +256,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -280,7 +280,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -304,7 +304,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -328,7 +328,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -352,7 +352,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -377,7 +377,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_height="wrap_content">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -405,7 +405,7 @@
                     android:layout_height="wrap_content">
                     <com.aptmobility.lynx.CustomButtonView
                         style="@style/Phastt.button"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -421,7 +421,7 @@
                         android:onClick="EditSelectedPartner"/>
                     <com.aptmobility.lynx.CustomButtonView
                         style="@style/Phastt.button"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

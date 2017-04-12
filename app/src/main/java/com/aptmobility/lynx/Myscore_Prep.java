@@ -42,7 +42,7 @@ public class Myscore_Prep extends Fragment {
 
         //TYpe face
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/RobotoSlab-Regular.ttf"); //use this.getAssets if you are calling from an Activity
+                "fonts/OpenSans-Regular.ttf");//use this.getAssets if you are calling from an Activity
 
         // Inflate the layout for this fragment
         final View rootview = inflater.inflate(R.layout.fragment_myscore_prep, container, false);

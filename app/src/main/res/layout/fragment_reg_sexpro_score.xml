@@ -7,7 +7,7 @@
     android:background="@color/main_bg">
 
     <com.aptmobility.lynx.CustomTextView
-        custom:fontAssetName="RobotoSlabRegular.ttf"
+        custom:fontAssetName="OpenSansRegular.ttf"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp"
@@ -34,7 +34,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
@@ -42,7 +42,7 @@
                     android:text="Your Sex Pro Score is:"
                     android:layout_margin="10dp" />
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
@@ -52,7 +52,7 @@
                     android:layout_margin="10dp" />
             </LinearLayout>
             <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -62,7 +62,7 @@
                 android:layout_margin="15dp"  />
             <com.aptmobility.lynx.CustomButtonView
                 style="@style/Phastt.button"
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Close"

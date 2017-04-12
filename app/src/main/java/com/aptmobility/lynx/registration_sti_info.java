@@ -40,7 +40,7 @@ public class registration_sti_info extends Fragment {
 
         //Type face
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/RobotoSlab-Regular.ttf");
+                "fonts/OpenSans-Regular.ttf");
 
         newdb = new DatabaseHelper(getActivity());
         LinearLayout drugs_container = (LinearLayout) rootview.findViewById(R.id.linearLayout_drugs);

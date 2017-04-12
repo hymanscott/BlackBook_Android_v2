@@ -6,7 +6,7 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:background="@color/main_bg">
     <com.aptmobility.lynx.CustomTextView
-        custom:fontAssetName="RobotoSlabRegular.ttf"
+        custom:fontAssetName="OpenSansRegular.ttf"
         android:text="Settings"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
                 android:layout_margin="10dp"
                 android:layout_gravity="center">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:text="Configure Partner Ratings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:text="Ratings Category 1:"
                         android:textSize="20sp"
                         android:textColor="@color/text_color"
@@ -69,7 +69,7 @@
                         
                          />
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/txt_overall_rtg"
@@ -85,7 +85,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:text="Ratings Category 2:"
                         android:layout_width="wrap_content"
                         android:textSize="20sp"
@@ -94,7 +94,7 @@
                          />
                     <com.aptmobility.lynx.CustomEditText
                         android:background="@drawable/apptheme_edit_text_holo_light"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="match_parent"
                         android:textSize="18sp"
                         android:textColor="@color/text_color"
@@ -106,7 +106,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:text="Ratings Category 3:"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -115,7 +115,7 @@
                          />
                     <com.aptmobility.lynx.CustomEditText
                         android:background="@drawable/apptheme_edit_text_holo_light"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -127,7 +127,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:text="Ratings Category 4:"
                         android:layout_width="wrap_content"
                         android:textSize="20sp"
@@ -136,7 +136,7 @@
                          />
                     <com.aptmobility.lynx.CustomEditText
                         android:background="@drawable/apptheme_edit_text_holo_light"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="match_parent"
                         android:id="@+id/rating_ctg4"
                         android:textSize="18sp"
@@ -148,7 +148,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:text="Ratings Category 5:"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -157,7 +157,7 @@
                          />
                     <com.aptmobility.lynx.CustomEditText
                         android:background="@drawable/apptheme_edit_text_holo_light"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -169,7 +169,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:text="Ratings Category 6:"
                         android:layout_width="wrap_content"
                         android:textSize="20sp"
@@ -178,7 +178,7 @@
                          />
                     <com.aptmobility.lynx.CustomEditText
                         android:background="@drawable/apptheme_edit_text_holo_light"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="match_parent"
                         android:textSize="18sp"
                         android:textColor="@color/text_color"
@@ -190,7 +190,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:text="Ratings Category 7:"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -199,7 +199,7 @@
                          />
                     <com.aptmobility.lynx.CustomEditText
                         android:background="@drawable/apptheme_edit_text_holo_light"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/rating_ctg7"
@@ -210,7 +210,7 @@
 
                 <com.aptmobility.lynx.CustomButtonView
                     style="@style/Phastt.button"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Save"

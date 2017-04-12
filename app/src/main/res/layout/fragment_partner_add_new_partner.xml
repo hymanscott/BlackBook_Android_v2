@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="@color/white">
     <com.aptmobility.lynx.CustomTextView
-        custom:fontAssetName="RobotoSlabRegular.ttf"
+        custom:fontAssetName="OpenSansRegular.ttf"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp"
@@ -26,11 +26,11 @@
         android:text="Who is your new partner?"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="20sp"
-        custom:fontAssetName="RobotoSlabRegular.ttf" />
+        custom:fontAssetName="OpenSansRegular.ttf" />
 
     <!-- Title for EDIT PARTNER -->
     <com.aptmobility.lynx.CustomTextView
-        custom:fontAssetName="RobotoSlabRegular.ttf"
+        custom:fontAssetName="OpenSansRegular.ttf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nick name"
@@ -71,7 +71,7 @@
                     android:layout_gravity="center"/>
                 <com.aptmobility.lynx.CustomEditText
                     android:background="@drawable/apptheme_edit_text_holo_light"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/nick_name"
@@ -93,7 +93,7 @@
                 android:orientation="vertical">
 
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -115,7 +115,7 @@
 
                     <com.aptmobility.lynx.CustomRadioButton
                         style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="HIV Negative"
@@ -125,7 +125,7 @@
                         />
 
                     <com.aptmobility.lynx.CustomRadioButton
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         style="@style/Phastt.Radiobutton"
                         android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
                         android:textSize="18sp"
                         android:id="@+id/radio_hiv_prep" />
                     <com.aptmobility.lynx.CustomRadioButton
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/Phastt.Radiobutton"
@@ -144,7 +144,7 @@
                         android:checked="true"
                         android:id="@+id/radio_hiv_idk" />
                     <com.aptmobility.lynx.CustomRadioButton
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/Phastt.Radiobutton"
@@ -153,7 +153,7 @@
                         android:textSize="18sp"
                         android:id="@+id/radio_hiv_pos" />
                     <com.aptmobility.lynx.CustomRadioButton
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         style="@style/Phastt.Radiobutton"
                         android:textColor="@color/text_color"
@@ -174,7 +174,7 @@
                 android:orientation="vertical">
 
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -193,7 +193,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="5dp">
                     <com.aptmobility.lynx.CustomRadioButton
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Yes"
@@ -202,7 +202,7 @@
                         style="@style/Phastt.Radiobutton"
                         android:id="@+id/radio_undetectable_yes" />
                     <com.aptmobility.lynx.CustomRadioButton
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="No"
@@ -211,7 +211,7 @@
                         style="@style/Phastt.Radiobutton"
                         android:id="@+id/radio_undetectable_no" />
                     <com.aptmobility.lynx.CustomRadioButton
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text_color"
@@ -231,7 +231,7 @@
                 android:orientation="vertical">
 
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -252,7 +252,7 @@
                     android:layout_marginBottom="5dp">
 
                     <com.aptmobility.lynx.CustomRadioButton
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Yes"
@@ -264,7 +264,7 @@
                         />
 
                     <com.aptmobility.lynx.CustomRadioButton
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         style="@style/Phastt.Radiobutton"
@@ -287,7 +287,7 @@
                     android:layout_marginBottom="20dp">
                     <com.aptmobility.lynx.CustomButtonView
                         style="@style/Phastt.button"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Next"
@@ -303,7 +303,7 @@
                         />
                     <com.aptmobility.lynx.CustomButtonView
                         style="@style/Phastt.button"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Revise"

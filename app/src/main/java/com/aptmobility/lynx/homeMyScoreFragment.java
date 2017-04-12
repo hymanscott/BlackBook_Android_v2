@@ -52,7 +52,7 @@ public class homeMyScoreFragment extends Fragment {
 
         //Type face
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "RobotoSlabRegular.ttf");
+                "fonts/OpenSans-Regular.ttf");
 
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         int width = (int) ((metrics.widthPixels / metrics.density) * 1.3);

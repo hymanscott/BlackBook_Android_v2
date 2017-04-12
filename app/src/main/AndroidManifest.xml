@@ -198,6 +198,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".LYNXTesting"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" />
         <activity
             android:name=".LYNXDiary"
@@ -224,8 +225,10 @@
             android:name=".LYNXProfile"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".AddNewTest" />
-        <activity android:name=".TestSummary"></activity>
+        <activity android:name=".AddNewTest"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TestSummary"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

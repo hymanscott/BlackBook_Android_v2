@@ -34,7 +34,7 @@ public class EditPartner_Summary extends Fragment {
 
         //Type face
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/RobotoSlab-Regular.ttf");
+                "fonts/OpenSans-Regular.ttf");
 
         TextView add_partner_title = (TextView) rootview.findViewById(R.id.add_partner_title);
         add_partner_title.setVisibility(View.GONE);

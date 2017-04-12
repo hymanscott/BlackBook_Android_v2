@@ -46,7 +46,7 @@ public class encounter_drug_content extends Fragment {
 
                 //Type face
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/RobotoSlab-Regular.ttf");
+                "fonts/OpenSans-Regular.ttf");
 
         newdb = new DatabaseHelper(rootview.getContext());
         LinearLayout drugs_container = (LinearLayout) rootview.findViewById(R.id.linearLayout_drugs);

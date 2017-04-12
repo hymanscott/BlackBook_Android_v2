@@ -35,7 +35,7 @@ public class TestingCareFragment extends Fragment {
 
         //Type face
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/RobotoSlab-Regular.ttf");
+                "fonts/OpenSans-Regular.ttf");
 
         com.aptmobility.lynx.CustomTextView positiveHIVtest = (com.aptmobility.lynx.CustomTextView)view.findViewById(R.id.positiveHIVtest);
         positiveHIVtest.setOnClickListener(new View.OnClickListener() {

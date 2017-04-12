@@ -41,7 +41,7 @@
             android:background="@color/apptheme_color"
             android:orientation="horizontal">
             <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -50,7 +50,7 @@
                 android:textColor="@color/white"
                 android:text="Your SexPro Score:"/>
             <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -93,7 +93,7 @@
                 android:gravity="center">
 
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/current_score_text"
@@ -112,10 +112,10 @@
                     android:background="@drawable/phastt_button"
                     android:textColor="@color/white"
                     android:textAllCaps="false"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                    custom:fontAssetName="OpenSansRegular.ttf"/>
             </LinearLayout>
             <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -131,7 +131,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp">
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
@@ -141,7 +141,7 @@
                         android:text="You bottomed without a condom with this many HIV positive or unknown status people."
                         android:layout_weight="1" />
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -157,7 +157,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp">
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
@@ -167,7 +167,7 @@
                         android:text="You topped without a condom with  this many HIV positive or unknown  status people."
                         android:layout_weight="1" />
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -183,7 +183,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp">
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
@@ -193,7 +193,7 @@
                         android:text="Number of HIV negative people."
                         android:layout_weight="1" />
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -209,7 +209,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp">
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
@@ -219,7 +219,7 @@
                         android:text="You used poppers:"
                         android:layout_weight="1" />
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -235,7 +235,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp">
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
@@ -245,7 +245,7 @@
                         android:text="You used meth/speed:"
                         android:layout_weight="1" />
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -261,7 +261,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp">
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
@@ -271,7 +271,7 @@
                         android:text="You used cocaine/crack:"
                         android:layout_weight="1" />
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -287,7 +287,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp">
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
@@ -297,7 +297,7 @@
                         android:text="You’ve been drinking heavily:"
                         android:layout_weight="1" />
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -313,7 +313,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp">
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
@@ -323,7 +323,7 @@
                         android:text="You’ve had an STD:"
                         android:layout_weight="1" />
                     <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -343,7 +343,7 @@
                 android:id="@+id/raiseSexProScoreBy"
                 android:layout_margin="10dp">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"

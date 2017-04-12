@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:text="Connecting To Care"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
                 android:layout_marginRight="5dp"
                 android:orientation="vertical">
                 <com.aptmobility.lynx.CustomButtonView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/positiveHIVtest"/>
@@ -47,7 +47,7 @@
                 android:layout_marginBottom="10dp"
                 android:orientation="vertical">
                 <com.aptmobility.lynx.CustomButtonView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/negativeHIVtest"/>

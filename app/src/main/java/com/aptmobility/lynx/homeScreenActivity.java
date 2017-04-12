@@ -157,7 +157,7 @@ public class homeScreenActivity extends FragmentActivity implements ActionBar.Ta
             // this tab is selected.
             //Type face
             Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                    "fonts/RobotoSlab-Regular.ttf");
+                    "fonts/OpenSans-Regular.ttf");
             TextView t = new TextView(this);
             t.setTextColor(Color.WHITE);
             TableRow.LayoutParams paramsExample = new TableRow.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT,1.0f);

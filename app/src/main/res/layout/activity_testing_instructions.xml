@@ -17,7 +17,7 @@
                 android:id="@+id/testing_instruction_ParentLayout"
                 android:orientation="vertical">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:text="Testing Instructions"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"

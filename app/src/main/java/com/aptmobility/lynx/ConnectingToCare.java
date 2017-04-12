@@ -29,7 +29,7 @@ public class ConnectingToCare extends Activity {
 
         //Type face
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/RobotoSlab-Regular.ttf");
+                "fonts/OpenSans-Regular.ttf");
 
         final Button positiveHIV = (Button)findViewById(R.id.positiveHIVtest);
         final LinearLayout positiveHIVlayout = (LinearLayout)findViewById(R.id.positiveHIVlayout);

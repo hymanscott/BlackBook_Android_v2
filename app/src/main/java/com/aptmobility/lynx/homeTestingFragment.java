@@ -126,7 +126,7 @@ public class homeTestingFragment extends Fragment {
 
         //Type face
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "RobotoSlabRegular.ttf");
+                "fonts/OpenSans-Regular.ttf");
 
         Button addNewHIVtest = (Button) view.findViewById(R.id.testing_addNewHIVtest);
         addNewHIVtest.setOnClickListener(new View.OnClickListener() {

@@ -38,7 +38,7 @@ public class TestSummary extends Activity {
         setContentView(R.layout.activity_test_summary);
         // Type face //
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "RobotoSlabRegular.ttf");
+                "fonts/OpenSans-Regular.ttf");
 // Custom Action Bar //
 
         getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));

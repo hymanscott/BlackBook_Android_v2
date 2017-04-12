@@ -17,7 +17,7 @@
         android:gravity="center_horizontal">
 
         <com.aptmobility.lynx.CustomTextView
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
@@ -28,7 +28,7 @@
             android:textColor="@color/blue_theme"
             android:layout_margin="10dp"/>
         <com.aptmobility.lynx.CustomTextView
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nick name"
@@ -40,7 +40,7 @@
             android:background="@drawable/lynx_button_dark"
             android:gravity="center_vertical|center_horizontal" />
         <com.aptmobility.lynx.CustomTextView
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textSize="24sp"
@@ -62,7 +62,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content">
             <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
@@ -78,7 +78,7 @@
             android:layout_margin="5dp">
 
             <com.aptmobility.lynx.CustomToggleButton
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOn="I sucked him"
@@ -93,7 +93,7 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:background="@drawable/toggle_button"/>
             <com.aptmobility.lynx.CustomToggleButton
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOn="He sucked me"
@@ -114,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp">
             <com.aptmobility.lynx.CustomToggleButton
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOn="I topped"
@@ -129,7 +129,7 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:background="@drawable/toggle_button"/>
             <com.aptmobility.lynx.CustomToggleButton
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOn="I bottomed"
@@ -150,7 +150,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp">
             <com.aptmobility.lynx.CustomToggleButton
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOn="I jerked him"
@@ -165,7 +165,7 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:background="@drawable/toggle_button"/>
             <com.aptmobility.lynx.CustomToggleButton
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOn="He jerked me"
@@ -186,7 +186,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp">
             <com.aptmobility.lynx.CustomToggleButton
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOn="I rimmed him"
@@ -201,7 +201,7 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:background="@drawable/toggle_button"/>
             <com.aptmobility.lynx.CustomToggleButton
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOn="He rimmed me"
@@ -218,7 +218,7 @@
 
         </LinearLayout>
         <com.aptmobility.lynx.CustomToggleButton
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textOn="Kissing / making out"
@@ -239,7 +239,7 @@
 
             <com.aptmobility.lynx.CustomButtonView
                 style="@style/Phastt.button"
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Revise"
@@ -253,7 +253,7 @@
 
             <com.aptmobility.lynx.CustomButtonView
                 style="@style/Phastt.button"
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Next"

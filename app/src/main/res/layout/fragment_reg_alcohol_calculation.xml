@@ -6,7 +6,7 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:background="@color/main_bg">
     <com.aptmobility.lynx.CustomTextView
-        custom:fontAssetName="RobotoSlabRegular.ttf"
+        custom:fontAssetName="OpenSansRegular.ttf"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp"
@@ -33,7 +33,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_gravity="left">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/no_of_days_text"
@@ -52,7 +52,7 @@
                     android:layout_marginBottom="5dp">
 
                     <com.aptmobility.lynx.CustomRadioButton
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5-7 days a week"
@@ -63,7 +63,7 @@
                         android:checked="true" />
 
                     <com.aptmobility.lynx.CustomRadioButton
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1-4 days a week"
@@ -72,7 +72,7 @@
                         android:textColor="@color/text_color"
                         android:id="@+id/alcCal_1to4days" />
                     <com.aptmobility.lynx.CustomRadioButton
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -81,7 +81,7 @@
                         android:text="Less than once a week"
                         android:id="@+id/alcCal_lessThanOnce" />
                     <com.aptmobility.lynx.CustomRadioButton
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -100,7 +100,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -110,7 +110,7 @@
                     android:layout_weight="1"/>
                 <com.aptmobility.lynx.CustomEditText
                     android:background="@drawable/apptheme_edit_text_holo_light"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -133,7 +133,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp">
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -144,7 +144,7 @@
 
                 <com.aptmobility.lynx.CustomButtonView
                     style="@style/Phastt.button"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Done"
@@ -171,7 +171,7 @@
                 android:layout_height="wrap_content">
                 <com.aptmobility.lynx.CustomButtonView
                     style="@style/Phastt.button"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Next"
@@ -186,7 +186,7 @@
                     />
                 <com.aptmobility.lynx.CustomButtonView
                     style="@style/Phastt.button"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/lynx_button"

@@ -42,7 +42,7 @@ public class encounter_choosePartner extends Fragment {
         View rootview = inflater.inflate(R.layout.fragment_encounter_choose_partner, container, false);
         //Type face
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "RobotoSlabRegular.ttf");
+                "fonts/OpenSans-Regular.ttf");
 
         final TableLayout partnerTable = (TableLayout) rootview.findViewById(R.id.partnerTable);
         partnerTable.removeAllViews();

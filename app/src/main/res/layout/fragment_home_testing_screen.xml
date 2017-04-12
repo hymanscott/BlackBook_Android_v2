@@ -20,7 +20,7 @@
                 android:layout_marginBottom="15dp">
                 <com.aptmobility.lynx.CustomButtonView
                     style="@style/Phastt.button"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -28,19 +28,21 @@
                     android:id="@+id/testing_addNewHIVtest"
                     android:background="@drawable/lynx_button"
                     android:textColor="@color/white"
-                    android:textAllCaps="false"
+                    android:textAllCaps="true"
+                    android:textSize="14sp"
                     android:text="Add New HIV Test"/>
                 <com.aptmobility.lynx.CustomButtonView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     style="@style/Phastt.button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textSize="14sp"
                     android:layout_marginLeft="5dp"
                     android:id="@+id/testing_addNewSTItest"
                     android:background="@drawable/lynx_button"
                     android:textColor="@color/white"
-                    android:textAllCaps="false"
+                    android:textAllCaps="true"
                     android:text="Add New STD Test" />
             </LinearLayout>
         </LinearLayout>

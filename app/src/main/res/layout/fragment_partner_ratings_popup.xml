@@ -24,7 +24,7 @@
         android:layout_height="match_parent">
 
         <com.aptmobility.lynx.CustomTextView
-        custom:fontAssetName="RobotoSlabRegular.ttf"
+        custom:fontAssetName="OpenSansRegular.ttf"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
@@ -34,7 +34,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="You can rate your partners using seven rating categories. The first category will always be 'Overall', but you can configure the labels for ratings categories 2 through 7 with any text (up to 15 characters)" />
     <com.aptmobility.lynx.CustomTextView
-        custom:fontAssetName="RobotoSlabRegular.ttf"
+        custom:fontAssetName="OpenSansRegular.ttf"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
@@ -47,7 +47,7 @@
 
     <com.aptmobility.lynx.CustomButtonView
         style="@style/Phastt.button"
-        custom:fontAssetName="RobotoSlabRegular.ttf"
+        custom:fontAssetName="OpenSansRegular.ttf"
         android:id="@+id/close"
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"

@@ -7,7 +7,7 @@
     android:background="@color/main_bg">
 
     <com.aptmobility.lynx.CustomTextView
-        custom:fontAssetName="RobotoSlabRegular.ttf"
+        custom:fontAssetName="OpenSansRegular.ttf"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp"
@@ -38,7 +38,7 @@
                 <com.aptmobility.lynx.CustomEditText
                     android:textColor="@color/text_color"
                     android:background="@drawable/apptheme_edit_text_holo_light"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
@@ -52,7 +52,7 @@
                 <com.aptmobility.lynx.CustomEditText
                     android:textColor="@color/text_color"
                     android:background="@drawable/apptheme_edit_text_holo_light"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
@@ -68,7 +68,7 @@
 
                 android:textColor="@color/text_color"
                 android:background="@drawable/apptheme_edit_text_holo_light"
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -93,7 +93,7 @@
                 <com.aptmobility.lynx.CustomEditText
                     android:textColor="@color/text_color"
                     android:background="@drawable/apptheme_edit_text_holo_light"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -108,7 +108,7 @@
                 <com.aptmobility.lynx.CustomEditText
                     android:textColor="@color/text_color"
                     android:background="@drawable/apptheme_edit_text_holo_light"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -125,7 +125,7 @@
             <com.aptmobility.lynx.CustomEditText
                 android:textColor="@color/text_color"
                 android:background="@drawable/apptheme_edit_text_holo_light"
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -141,7 +141,7 @@
             <com.aptmobility.lynx.CustomEditText
                 android:textColor="@color/text_color"
                 android:background="@drawable/apptheme_edit_text_holo_light"
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -164,7 +164,7 @@
 
             <com.aptmobility.lynx.CustomEditText
                 android:background="@drawable/apptheme_edit_text_holo_light"
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -186,7 +186,7 @@
                 android:id="@+id/linearLayout3" >
 
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
@@ -200,7 +200,7 @@
 
                 <com.aptmobility.lynx.CustomEditText
                     android:background="@drawable/apptheme_edit_text_holo_light"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:focusable="true"
@@ -223,7 +223,7 @@
 
             </LinearLayout>
             <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
@@ -256,7 +256,7 @@
 
             <com.aptmobility.lynx.CustomButtonView
                 style="@style/Phastt.button"
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Next"

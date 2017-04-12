@@ -52,7 +52,8 @@
                     android:id="@+id/bot_nav_sexpro_iv"
                     android:src="@drawable/icon_sexpro" />
 
-                <TextView
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/bot_nav_sexpro_tv"
@@ -74,7 +75,8 @@
                     android:id="@+id/bot_nav_diary_iv"
                     android:src="@drawable/icon_diary" />
 
-                <TextView
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/bot_nav_diary_tv"
@@ -97,7 +99,8 @@
                     android:id="@+id/bot_nav_testing_iv"
                     android:src="@drawable/icon_testing" />
 
-                <TextView
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/bot_nav_testing_tv"
@@ -111,8 +114,8 @@
                 android:gravity="center"
                 android:id="@+id/bot_nav_prep"
                 android:paddingBottom="5dp"
-                android:background="@color/blue_theme"
                 android:paddingTop="5dp"
+                android:background="@color/blue_theme"
                 android:orientation="vertical">
 
                 <ImageView
@@ -121,7 +124,8 @@
                     android:id="@+id/bot_nav_prep_iv"
                     android:src="@drawable/icon_prep_white" />
 
-                <TextView
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/bot_nav_prep_tv"
@@ -145,7 +149,8 @@
                     android:id="@+id/bot_nav_chat_iv"
                     android:src="@drawable/icon_chat" />
 
-                <TextView
+                <com.aptmobility.lynx.CustomTextView
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/bot_nav_chat_tv"

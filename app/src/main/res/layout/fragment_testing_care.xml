@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="If your HIV test was positive"
@@ -27,7 +27,7 @@
                 android:background="@drawable/border_top_bottom"
                 android:id="@+id/positiveHIVtest"/>
             <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="If your HIV test was negative"

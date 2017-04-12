@@ -16,7 +16,7 @@
         android:focusableInTouchMode="true">
 
         <com.aptmobility.lynx.CustomTextView
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -28,7 +28,7 @@
 
         <com.aptmobility.lynx.CustomButtonView
             style="@style/Phastt.button"
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Register"
@@ -42,7 +42,7 @@
             android:onClick="showRegistration"/>
 
         <com.aptmobility.lynx.CustomTextView
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -54,7 +54,7 @@
             android:layout_margin="10dp" />
 
         <com.aptmobility.lynx.CustomEditText
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -67,7 +67,7 @@
             android:hint="Email Address" />
 
         <com.aptmobility.lynx.CustomEditText
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -81,7 +81,7 @@
 
         <com.aptmobility.lynx.CustomButtonView
             style="@style/Phastt.button"
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
@@ -95,7 +95,7 @@
 
         <com.aptmobility.lynx.CustomButtonView
             style="@style/Phastt.button"
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Forgot Password"

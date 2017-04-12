@@ -51,7 +51,7 @@ public class Testing_Instructions extends Activity {
 
         //TYpe face
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/RobotoSlab-Regular.ttf");
+                "fonts/OpenSans-Regular.ttf");
         db = new DatabaseHelper(this);
         final LinearLayout testing_instruction = (LinearLayout)findViewById(R.id.testingInstructionLayout);
         testing_instruction.removeAllViews();

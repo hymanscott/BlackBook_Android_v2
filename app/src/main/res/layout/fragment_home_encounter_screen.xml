@@ -13,7 +13,7 @@
 
         <com.aptmobility.lynx.CustomButtonView
             style="@style/Phastt.button"
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add New Encounter"

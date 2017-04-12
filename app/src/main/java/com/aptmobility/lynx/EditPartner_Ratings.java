@@ -36,7 +36,7 @@ public class EditPartner_Ratings extends Fragment {
         final View rootview = inflater.inflate(R.layout.fragment_new_partner_ratings, container, false);
         //Type face
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/RobotoSlab-Regular.ttf");
+                "fonts/OpenSans-Regular.ttf");
         TextView add_partner_title = (TextView) rootview.findViewById(R.id.add_partner_title);
         add_partner_title.setVisibility(View.GONE);
 

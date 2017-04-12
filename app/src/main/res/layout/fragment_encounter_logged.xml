@@ -6,7 +6,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <com.aptmobility.lynx.CustomTextView
-        custom:fontAssetName="RobotoSlabRegular.ttf"
+        custom:fontAssetName="OpenSansRegular.ttf"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp"
@@ -15,7 +15,7 @@
         android:layout_marginBottom="10dp"
         android:gravity="center_vertical|center_horizontal" />
     <com.aptmobility.lynx.CustomTextView
-        custom:fontAssetName="RobotoSlabRegular.ttf"
+        custom:fontAssetName="OpenSansRegular.ttf"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/encloggedText"
@@ -28,7 +28,7 @@
 
     <com.aptmobility.lynx.CustomButtonView
         style="@style/Phastt.button"
-        custom:fontAssetName="RobotoSlabRegular.ttf"
+        custom:fontAssetName="OpenSansRegular.ttf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="50dp"

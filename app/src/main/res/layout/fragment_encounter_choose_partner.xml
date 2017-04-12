@@ -14,7 +14,7 @@
         android:gravity="center_horizontal">
 
         <com.aptmobility.lynx.CustomTextView
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
@@ -33,11 +33,11 @@
             android:text="Who did you have sex with?"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="20sp"
-            custom:fontAssetName="RobotoSlabRegular.ttf" />
+            custom:fontAssetName="OpenSansRegular.ttf" />
 
         <com.aptmobility.lynx.CustomButtonView
             style="@style/Phastt.button"
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add New Partner"
@@ -76,7 +76,7 @@
 
         <com.aptmobility.lynx.CustomButtonView
             style="@style/Phastt.button"
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Revise"
@@ -89,7 +89,7 @@
 
         <com.aptmobility.lynx.CustomButtonView
             style="@style/Phastt.button"
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAllCaps="true"

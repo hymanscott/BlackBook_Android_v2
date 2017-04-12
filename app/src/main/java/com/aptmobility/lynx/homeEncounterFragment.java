@@ -56,7 +56,7 @@ public class homeEncounterFragment extends Fragment {
 
         //Type face
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "RobotoSlabRegular.ttf");
+                "fonts/OpenSans-Regular.ttf");
         Log.v("priPartId", String.valueOf(LynxManager.getActiveUserPrimaryPartner().getPrimarypartner_id()));
         Button addNewEncounter = (Button) view.findViewById(R.id.addNewEncounter);
 

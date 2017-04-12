@@ -39,7 +39,7 @@ public class Selected_Partner_Summary extends Fragment{
         final View rootview = inflater.inflate(R.layout.fragment_selected_partner_summary, container, false);
         //Type face
         Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/RobotoSlab-Regular.ttf");
+                "fonts/OpenSans-Regular.ttf");
 
         // Display Summary
         TextView new_partner_Summ_nickname = (TextView) rootview.findViewById(R.id.selectedPartner_bannername);

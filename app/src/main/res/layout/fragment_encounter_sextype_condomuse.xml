@@ -16,7 +16,7 @@
             android:gravity="center_horizontal">
 
             <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
@@ -26,7 +26,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_margin="10dp"/>
             <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="RobotoSlabRegular.ttf"
+                custom:fontAssetName="OpenSansRegular.ttf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -47,7 +47,7 @@
                 android:layout_margin="10dp">
 
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content">
                     <com.aptmobility.lynx.CustomRadioButton
                         style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -71,7 +71,7 @@
                         android:text="Condom used"/>
                     <com.aptmobility.lynx.CustomRadioButton
                         style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -80,7 +80,7 @@
                         android:text="Condom used part of the time"/>
                     <com.aptmobility.lynx.CustomRadioButton
                         style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/whenIsucked_CondomNotUsed"
@@ -100,7 +100,7 @@
                 android:layout_margin="10dp">
 
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -115,7 +115,7 @@
                     android:layout_height="wrap_content">
                     <com.aptmobility.lynx.CustomRadioButton
                         style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -124,7 +124,7 @@
                         android:text="Condom used"/>
                     <com.aptmobility.lynx.CustomRadioButton
                         style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/whenItopped_CondomPartTime"
@@ -133,7 +133,7 @@
                         android:text="Condom used part of the time"/>
                     <com.aptmobility.lynx.CustomRadioButton
                         style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/whenItopped_CondomNotUsed"
@@ -152,7 +152,7 @@
                 android:layout_margin="10dp">
 
                 <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -167,7 +167,7 @@
                     android:layout_height="wrap_content">
                     <com.aptmobility.lynx.CustomRadioButton
                         style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -176,7 +176,7 @@
                         android:text="Condom used"/>
                     <com.aptmobility.lynx.CustomRadioButton
                         style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/whenIbottomed_CondomPartTime"
@@ -185,7 +185,7 @@
                         android:text="Condom used part of the time"/>
                     <com.aptmobility.lynx.CustomRadioButton
                         style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -195,7 +195,7 @@
                         android:text="Condom not used"/>
                 </RadioGroup>
                 <!--<com.aptmobility.phastt.CustomTextView
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -208,14 +208,14 @@
                     android:layout_marginLeft="60dp"
                     android:layout_height="wrap_content">
                     <com.aptmobility.phastt.CustomRadioButton                     style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/whenIbottomed_cameInMeYes"
                         android:text="Yes"/>
                     <com.aptmobility.phastt.CustomRadioButton
                          style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/whenIbottomed_cameInMeNo"
@@ -223,7 +223,7 @@
                         android:text="No"/>
                     <com.aptmobility.phastt.CustomRadioButton
                        style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/whenIbottomed_cameInMeDontknow"
@@ -238,7 +238,7 @@
 
                 <com.aptmobility.lynx.CustomButtonView
                     style="@style/Phastt.button"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Revise"
@@ -252,7 +252,7 @@
 
                 <com.aptmobility.lynx.CustomButtonView
                     style="@style/Phastt.button"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"
+                    custom:fontAssetName="OpenSansRegular.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Next"

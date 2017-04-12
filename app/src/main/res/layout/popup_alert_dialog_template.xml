@@ -17,7 +17,7 @@
         android:layout_marginRight="5dp"
         android:orientation="vertical">
         <com.aptmobility.lynx.CustomTextView
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="24sp"
@@ -27,7 +27,7 @@
             android:layout_margin="10dp"
             android:gravity="center_vertical|center_horizontal" />
         <com.aptmobility.lynx.CustomTextView
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -46,7 +46,7 @@
         android:background="@color/white">
         <com.aptmobility.lynx.CustomButtonView
             style="@style/Phastt.button"
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Yes"
@@ -62,7 +62,7 @@
 
         <com.aptmobility.lynx.CustomButtonView
             style="@style/Phastt.button"
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Netural"
@@ -78,7 +78,7 @@
 
         <com.aptmobility.lynx.CustomButtonView
             style="@style/Phastt.button"
-            custom:fontAssetName="RobotoSlabRegular.ttf"
+            custom:fontAssetName="OpenSansRegular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="No"

@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <com.aptmobility.lynx.CustomTextView
-        custom:fontAssetName="RobotoSlabRegular.ttf"
+        custom:fontAssetName="OpenSansRegular.ttf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -50,7 +50,7 @@
                         android:textColor="@color/text_color"
                         android:text="First name:"
                         android:layout_weight="1"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                        custom:fontAssetName="OpenSansRegular.ttf"/>
 
                     <com.aptmobility.lynx.CustomTextView
                         android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
                         android:text="first_name"
                         android:textColor="#333"
                         android:layout_weight="1"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                        custom:fontAssetName="OpenSansRegular.ttf"/>
 
                 </TableRow>
 
@@ -79,7 +79,7 @@
                         android:text="Last name:"
                         android:textColor="@color/text_color"
                         android:layout_weight="1"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                        custom:fontAssetName="OpenSansRegular.ttf"/>
 
                     <com.aptmobility.lynx.CustomTextView
                         android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
                         android:text="last_name"
                         android:textColor="#333"
                         android:layout_weight="1"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                        custom:fontAssetName="OpenSansRegular.ttf"/>
                 </TableRow>
 
                 <TableRow
@@ -107,7 +107,7 @@
                         android:text="E-mail:"
                         android:layout_weight="1"
                         android:textColor="@color/text_color"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                        custom:fontAssetName="OpenSansRegular.ttf"/>
 
                     <com.aptmobility.lynx.CustomTextView
                         android:layout_width="wrap_content"
@@ -118,7 +118,7 @@
                         android:text="phastt_test@gmail.com"
                         android:textColor="#333"
                         android:layout_weight="0.8"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                        custom:fontAssetName="OpenSansRegular.ttf"/>
 
                 </TableRow>
 
@@ -137,7 +137,7 @@
                         android:text="Password:"
                         android:textColor="@color/text_color"
                         android:layout_weight="1"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                        custom:fontAssetName="OpenSansRegular.ttf"/>
 
                     <com.aptmobility.lynx.CustomTextView
                         android:layout_width="wrap_content"
@@ -148,7 +148,7 @@
                         android:textColor="#333"
                         android:layout_weight="1"
                         android:layout_marginRight="5dp"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                        custom:fontAssetName="OpenSansRegular.ttf"/>
 
                 </TableRow>
 
@@ -167,7 +167,7 @@
                         android:text="Mobile Number:"
                         android:textColor="@color/text_color"
                         android:layout_weight="1"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                        custom:fontAssetName="OpenSansRegular.ttf"/>
 
                     <com.aptmobility.lynx.CustomTextView
                         android:layout_width="wrap_content"
@@ -177,7 +177,7 @@
                         android:text="phone"
                         android:textColor="#333"
                         android:layout_weight="1"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                        custom:fontAssetName="OpenSansRegular.ttf"/>
                 </TableRow>
                 <TableRow
                     android:layout_width="match_parent"
@@ -194,7 +194,7 @@
                         android:text="Passcode:"
                         android:textColor="@color/text_color"
                         android:layout_weight="1"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                        custom:fontAssetName="OpenSansRegular.ttf"/>
 
                     <com.aptmobility.lynx.CustomTextView
                         android:layout_width="wrap_content"
@@ -203,7 +203,7 @@
                         android:text="****"
                         android:textColor="#333"
                         android:layout_weight="1"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                        custom:fontAssetName="OpenSansRegular.ttf"/>
                 </TableRow>
 
 
@@ -222,7 +222,7 @@
                     android:textColor="@color/text_color"
                     android:text="Security Question:"
                     android:layout_weight="1"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                    custom:fontAssetName="OpenSansRegular.ttf"/>
                 <com.aptmobility.lynx.CustomTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -232,7 +232,7 @@
                     android:padding="5dp"
                     android:text="sec_qn"
                     android:layout_weight="1"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                    custom:fontAssetName="OpenSansRegular.ttf"/>
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
@@ -248,7 +248,7 @@
                     android:text="Answer:"
                     android:textColor="@color/text_color"
                     android:layout_weight="1"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                    custom:fontAssetName="OpenSansRegular.ttf"/>
                 <com.aptmobility.lynx.CustomTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -258,7 +258,7 @@
                     android:text="answer"
                     android:padding="5dp"
                     android:layout_weight="1"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                    custom:fontAssetName="OpenSansRegular.ttf"/>
             </TableRow>
                 <TableRow
                     android:layout_width="match_parent"
@@ -275,7 +275,7 @@
                     android:text="Date of Birth:"
                     android:textColor="@color/text_color"
                     android:layout_weight="1"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                    custom:fontAssetName="OpenSansRegular.ttf"/>
                 <com.aptmobility.lynx.CustomTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -284,7 +284,7 @@
                     android:text="dob"
                     android:layout_weight="1"
                     android:textColor="#333"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                    custom:fontAssetName="OpenSansRegular.ttf"/>
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
@@ -300,7 +300,7 @@
                     android:text="Selected Race/Ethnicity:"
                     android:textColor="@color/text_color"
                     android:layout_weight="1"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                    custom:fontAssetName="OpenSansRegular.ttf"/>
                 <com.aptmobility.lynx.CustomTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -310,7 +310,7 @@
                     android:text="race_list"
                     android:padding="5dp"
                     android:layout_weight="1"
-                    custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                    custom:fontAssetName="OpenSansRegular.ttf"/>
             </TableRow>
             </TableLayout>
             <LinearLayout
@@ -334,7 +334,7 @@
                         android:textAllCaps="true"
                         android:layout_margin="20dp"
                         android:onClick="showRegistration_primary_partner"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"/>
+                        custom:fontAssetName="OpenSansRegular.ttf"/>
                     <com.aptmobility.lynx.CustomButtonView
                         style="@style/Phastt.button"
                         android:layout_width="wrap_content"
@@ -348,7 +348,7 @@
                         android:textColor="@color/white"
                         android:layout_margin="20dp"
                         android:onClick="revise_registration_confirm"
-                        custom:fontAssetName="RobotoSlabRegular.ttf"
+                        custom:fontAssetName="OpenSansRegular.ttf"
                         />
                 </RelativeLayout>
             </LinearLayout>

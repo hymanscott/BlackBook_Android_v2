@@ -36,7 +36,7 @@
                         android:text="Chat Screen"
                         android:textColor="@color/text_color"
                         android:textSize="24sp"
-                        custom:fontAssetName="RobotoSlabRegular.ttf" />
+                        custom:fontAssetName="OpenSansRegular.ttf" />
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
