@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
     <ScrollView
         android:layout_width="fill_parent"
@@ -13,55 +12,51 @@
             android:layout_width="fill_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
-            <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
-                android:textAllCaps="true"
                 android:text="@string/AddPartnerTitle"
-                android:textColor="@color/blue_theme"
-                android:layout_margin="10dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="20dp"
                 android:id="@+id/add_partner_title"
                 android:gravity="center_vertical|center_horizontal" />
-            <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Nick name"
-                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_gravity="center"
-                android:textAllCaps="true"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textColor="@color/white"
                 android:background="@drawable/lynx_button_dark"
                 android:gravity="center_vertical|center_horizontal"
                 android:id="@+id/newPartner_rating_nickname" />
-            <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Rate your partner"
                 android:textSize="20sp"
                 android:textColor="@color/text_color"
-                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/rateTitle"
                 android:gravity="center_vertical|center_horizontal" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_weight="0.8"
                     android:text="Overall"
                     android:textSize="20sp"
-                    android:textColor="@color/apptheme_color"
+                    android:textColor="@color/colorAccent"
                     android:id="@+id/newPartner_rate1"
                     android:layout_margin="10dp"
                     android:layout_gravity="center_horizontal|center_vertical"/>
@@ -80,15 +75,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Chemistry"
                     android:id="@+id/newPartner_rate2"
                     android:textSize="20sp"
-                    android:textColor="@color/apptheme_color"
+                    android:textColor="@color/colorAccent"
                     android:layout_margin="10dp" />
                 <RatingBar
                     android:layout_width="wrap_content"
@@ -103,14 +97,13 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Personality"
                     android:textSize="20sp"
-                    android:textColor="@color/apptheme_color"
+                    android:textColor="@color/colorAccent"
                     android:id="@+id/newPartner_rate3"
                     android:layout_margin="10dp" />
                 <RatingBar
@@ -126,14 +119,13 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Face"
                     android:textSize="20sp"
-                    android:textColor="@color/apptheme_color"
+                    android:textColor="@color/colorAccent"
                     android:id="@+id/newPartner_rate4"
                     android:layout_margin="10dp" />
                 <RatingBar
@@ -149,14 +141,13 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Body"
                     android:textSize="20sp"
-                    android:textColor="@color/apptheme_color"
+                    android:textColor="@color/colorAccent"
                     android:id="@+id/newPartner_rate5"
                     android:layout_margin="10dp" />
                 <RatingBar
@@ -172,14 +163,13 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Cock"
                     android:textSize="20sp"
-                    android:textColor="@color/apptheme_color"
+                    android:textColor="@color/colorAccent"
                     android:id="@+id/newPartner_rate6"
                     android:layout_margin="10dp" />
                 <RatingBar
@@ -195,14 +185,13 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Butt"
                     android:textSize="20sp"
-                    android:textColor="@color/apptheme_color"
+                    android:textColor="@color/colorAccent"
                     android:id="@+id/newPartner_rate7"
                     android:layout_margin="10dp" />
                 <RatingBar
@@ -224,32 +213,30 @@
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="bottom"
                     android:gravity="bottom">
-                    <com.aptmobility.lynx.CustomButtonView
-                        style="@style/Phastt.button"
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Next"
                         android:layout_gravity="right"
-                        android:textAllCaps="true"
+                        android:textStyle="bold"
                         android:layout_centerInParent="true"
                         android:layout_margin="20dp"
+                        android:id="@+id/next"
                         android:background="@drawable/lynx_button"
                         android:textColor="@color/white"
                         android:onClick="onPartnerRatingsNext"
                         />
-                    <com.aptmobility.lynx.CustomButtonView
-                        style="@style/Phastt.button"
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Revise"
-                        android:textAllCaps="false"
+                        android:textStyle="bold"
                         android:layout_gravity="left"
                         android:layout_alignParentLeft="true"
                         android:visibility="gone"
-                        android:background="@drawable/phastt_button"
+                        android:background="@drawable/lynx_button"
                         android:textColor="@color/white"
+                        android:id="@+id/revise"
                         android:layout_margin="20dp"
                         android:onClick="onPartnerRatingsPrev"
                         />

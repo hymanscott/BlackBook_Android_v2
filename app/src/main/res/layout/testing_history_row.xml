@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:background="@drawable/border_bottom"
@@ -18,7 +17,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:layout_gravity="center_vertical">
-        <com.aptmobility.lynx.CustomTextView
+        <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,9 +27,8 @@
             android:gravity="start"
             android:textSize="16sp"
             android:layout_gravity="center_vertical"
-            android:layout_alignParentLeft="true"
-            custom:fontAssetName="OpenSansRegular.ttf" />
-        <com.aptmobility.lynx.CustomTextView
+            android:layout_alignParentLeft="true" />
+        <TextView
             android:id="@+id/testname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,9 +39,8 @@
             android:textSize="16sp"
             android:gravity="start"
             android:layout_gravity="center_vertical"
-            android:layout_alignParentLeft="true"
-            custom:fontAssetName="OpenSansRegular.ttf" />
-        <com.aptmobility.lynx.CustomTextView
+            android:layout_alignParentLeft="true" />
+        <TextView
             android:id="@+id/teststatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,8 +51,7 @@
             android:textSize="16sp"
             android:layout_gravity="center_vertical"
             android:gravity="start"
-            android:layout_alignParentLeft="true"
-            custom:fontAssetName="OpenSansRegular.ttf" />
+            android:layout_alignParentLeft="true"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"

@@ -3,18 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:background="@color/main_bg">
-    <com.aptmobility.lynx.CustomTextView
-        custom:fontAssetName="OpenSansRegular.ttf"
+    android:background="@color/white">
+    <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp"
-        android:text="Baseline SexPro Score Summary"
+        android:text="BASELINE SEX PRO SCORE SUMMARY"
         android:id="@+id/textView8"
-        android:textColor="@color/blue_theme"
+        android:textColor="@color/colorAccent"
         android:layout_margin="10dp"
-        android:textAllCaps="true"
         android:gravity="center_vertical|center_horizontal" />
     <ScrollView
         android:layout_width="fill_parent"
@@ -33,19 +30,19 @@
                     android:layout_width="match_parent"
                     android:layout_marginBottom="5dp"
                     android:layout_height="match_parent">
-                    <com.aptmobility.lynx.CustomTextView
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
                         android:text="PrEP Status:"
                         android:textColor="@color/text_color"
-                        custom:fontAssetName="OpenSansRegular.ttf"
                         android:layout_marginTop="10dp"
+                        android:id="@+id/prepStatus"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:gravity="right"
                         android:layout_marginRight="5dp" />
-                    <com.aptmobility.lynx.CustomTextView
+                    <TextView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -55,29 +52,27 @@
                         android:text="No"
                         android:layout_weight="0.3"
                         android:textSize="18sp"
-                        android:textColor="#333"
-                        custom:fontAssetName="OpenSansRegular.ttf"/>
+                        android:textColor="#333"/>
 
                 </TableRow>
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
                         android:text="Your male partners in the last three months:"
                         android:textColor="@color/text_color"
                         android:layout_marginTop="20dp"
+                        android:id="@+id/malePartners"
                         android:layout_weight="1"
                         android:gravity="center_vertical"/>
                 </TableRow>
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Number who were HIV Negative :"
@@ -85,11 +80,11 @@
                         android:textSize="18sp"
                         android:layout_marginTop="10dp"
                         android:gravity="right"
+                        android:id="@+id/hivNeg"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1" />
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="x"
@@ -104,8 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -114,10 +108,10 @@
                         android:textSize="18sp"
                         android:layout_marginTop="10dp"
                         android:layout_marginLeft="10dp"
+                        android:id="@+id/hivPos"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"    />
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="x"
@@ -131,8 +125,7 @@
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -140,11 +133,11 @@
                         android:textColor="@color/text_color"
                         android:textSize="18sp"
                         android:layout_marginTop="10dp"
+                        android:id="@+id/hivUnknown"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"     />
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -159,8 +152,7 @@
                     android:layout_width="match_parent"
                     android:layout_marginTop="10dp"
                     android:layout_height="match_parent">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -169,10 +161,10 @@
                         android:textColor="@color/text_color"
                         android:layout_marginRight="5dp"
                         android:gravity="right"
+                        android:id="@+id/topTimes"
                         android:textSize="20sp"
                         android:text="Number of TIMES you were a top with HIV positive or unknown status partners in the last three months? " />
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.3"
@@ -188,21 +180,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="gone">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text_color"
                         android:layout_weight="1"
                         android:layout_marginLeft="10dp"
-                         />
+                        />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -211,11 +201,11 @@
                         android:layout_weight="1"
                         android:gravity="right"
                         android:textSize="20sp"
+                        android:id="@+id/condomUse"
                         android:textColor="@color/text_color"
                         android:text="Your average condom use :"
                         />
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:id="@+id/regSumm_asTopPercent"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
@@ -224,16 +214,14 @@
                         android:layout_marginLeft="10dp"
                         android:textSize="18sp"
                         android:textColor="#333"
-                        android:text="x%"
-                        />
+                        android:text="x%" />
                 </TableRow>
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_marginTop="10dp"
                     android:layout_height="match_parent">
 
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -243,9 +231,9 @@
                         android:gravity="right"
                         android:layout_marginRight="5dp"
                         android:textSize="20sp"
+                        android:id="@+id/bottomtimes"
                         android:text="Number of TIMES you were a bottom with HIV positive or unknown status partners in the last three months? " />
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.3"
@@ -261,21 +249,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="gone">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColor="@color/text_color"
                         android:layout_marginLeft="10dp"
-                         />
+                        />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -284,11 +270,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
                         android:gravity="right"
+                        android:id="@+id/condomUseBot"
                         android:textSize="20sp"
                         android:text="Your average condom use :"
                         />
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:id="@+id/regSumm_asBottomPercent"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
@@ -304,8 +290,7 @@
                     android:layout_width="match_parent"
                     android:layout_marginTop="5dp"
                     android:layout_height="match_parent">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -319,8 +304,7 @@
                         android:layout_marginBottom="10dp"
                         android:id="@+id/regSumm_havePriPartner" />
 
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Yes (or) No"
@@ -337,8 +321,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
                     android:id="@+id/regSumm_partner_nickName">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -346,11 +329,11 @@
                         android:textColor="@color/text_color"
                         android:layout_weight="1"
                         android:layout_marginLeft="10dp"
+                        android:id="@+id/nick_name"
                         android:textSize="20sp"
                         android:layout_marginRight="5dp" />
 
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="nick name"
@@ -366,8 +349,7 @@
                     android:layout_marginTop="5dp"
                     android:id="@+id/regSumm_partner_gender">
 
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -377,10 +359,10 @@
                         android:layout_marginRight="5dp"
                         android:text="Gender:"
                         android:textSize="20sp"
+                        android:id="@+id/gender"
                         android:layout_weight="1" />
 
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -396,8 +378,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
                     android:id="@+id/regSumm_partner_hivStatus">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -405,12 +386,12 @@
                         android:layout_weight="1"
                         android:textColor="@color/text_color"
                         android:textSize="20sp"
+                        android:id="@+id/hivStatus"
                         android:layout_marginTop="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp" />
 
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="hiv status"
@@ -426,8 +407,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
                     android:id="@+id/regSumm_partner_haveOtherPartner">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -438,9 +418,9 @@
                         android:padding="5dp"
                         android:textSize="20sp"
                         android:gravity="right"
+                        android:id="@+id/otherPartner"
                         android:text="Primary partner has other partners:" />
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="yes (or) no"
@@ -456,8 +436,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp"
                     android:id="@+id/regSumm_partner_addToPartnerlist">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -467,10 +446,10 @@
                         android:layout_marginRight="5dp"
                         android:gravity="right"
                         android:textSize="20sp"
+                        android:id="@+id/sexproList"
                         android:text="Add primary partner to Sex Pro:" />
 
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.3"
@@ -486,8 +465,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
                     android:id="@+id/regSumm_drug_container_title">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -497,6 +475,7 @@
                         android:layout_marginRight="5dp"
                         android:gravity="right"
                         android:textSize="20sp"
+                        android:id="@+id/drugTitle"
                         android:text="In the last three months, you used:" />
 
                     <LinearLayout
@@ -513,8 +492,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="gone">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -532,8 +510,7 @@
                     android:layout_marginTop="10dp"
                     android:id="@+id/regSumm_noofdays_alcoholUse"
                     android:visibility="gone">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -543,9 +520,9 @@
                         android:layout_weight="1"
                         android:gravity="right"
                         android:textSize="20sp"
+                        android:id="@+id/alcholtitle"
                         android:text="In the last three months,number of days per week you typically drank alcohol:" />
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.3"
@@ -562,8 +539,7 @@
                     android:visibility="gone"
                     android:layout_marginTop="5dp"
                     android:id="@+id/regSumm_noofDrinks">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -572,10 +548,10 @@
                         android:textColor="@color/text_color"
                         android:textSize="20sp"
                         android:gravity="right"
+                        android:id="@+id/drinksCount"
                         android:text="Number of drinks you had on a typical day:"
                         android:layout_weight="1" />
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="x"
@@ -592,8 +568,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
                     android:id="@+id/regSumm_diag_container_title">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -602,6 +577,7 @@
                         android:textSize="20sp"
                         android:textColor="@color/text_color"
                         android:gravity="right"
+                        android:id="@+id/diagTitle"
                         android:text="In the last three months, you were diagnosed with:" />
                     <LinearLayout
                         android:layout_width="150dp"
@@ -618,8 +594,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="gone">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -639,9 +614,7 @@
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content">
-                    <com.aptmobility.lynx.CustomButtonView
-                        style="@style/Phastt.button"
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Confirm"
@@ -651,11 +624,9 @@
                         android:layout_margin="20dp"
                         android:background="@drawable/lynx_button"
                         android:textColor="@color/white"
-                        android:textAllCaps="true"
+                        android:textStyle="bold"
                         android:onClick="onRegSummaryConfirm" />
-                    <com.aptmobility.lynx.CustomButtonView
-                        style="@style/Phastt.button"
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Revise"
@@ -665,15 +636,11 @@
                         android:textColor="@color/white"
                         android:layout_alignParentLeft="true"
                         android:layout_margin="20dp"
-                        android:textAllCaps="true"
+                        android:textStyle="bold"
                         android:onClick="onRegSummaryPrev"
                         />
                 </RelativeLayout>
-
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
-
-
 </LinearLayout>

@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
-    tools:context="com.aptmobility.lynx.TestingInstructionFragment">
+    tools:context="com.lynxstudy.lynx.LynxTesting$PlaceholderFragment">
 
     <ScrollView
         android:layout_width="fill_parent"

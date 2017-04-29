@@ -2,66 +2,53 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:background="@color/main_bg">
-
-
-    <LinearLayout
-        android:orientation="vertical"
+    android:background="@color/white">
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal">
+        android:id="@+id/scrollView"
+        android:fillViewport="false">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="NEW ENCOUNTER"
+                android:id="@+id/newEncounter"
+                android:layout_alignParentTop="true"
+                android:textColor="@color/colorAccent"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="20dp"/>
 
-        <com.aptmobility.lynx.CustomTextView
-            custom:fontAssetName="OpenSansRegular.ttf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:text="New Encounter"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="10dp"
-            android:textAllCaps="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Nick name"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/encounter_notes_nickName"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:background="@drawable/lynx_button_dark"
+                android:gravity="center_vertical|center_horizontal" />
 
-        <com.aptmobility.lynx.CustomTextView
-            custom:fontAssetName="OpenSansRegular.ttf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Nick name"
-            android:layout_margin="10dp"
-            android:id="@+id/encounter_notes_nickName"
-            android:textAllCaps="true"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:background="@drawable/lynx_button_dark"
-            android:gravity="center_vertical|center_horizontal" />
-
-        <com.aptmobility.lynx.CustomTextView
-            custom:fontAssetName="OpenSansRegular.ttf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Encounter Notes"
-            android:textSize="20sp"
-            android:textColor="@color/text_color"
-            android:id="@+id/textView10"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp" />
-
-        <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/scrollView"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="60dp"
-            android:fillViewport="false">
-            <com.aptmobility.lynx.CustomEditText
-                android:background="@drawable/apptheme_edit_text_holo_light"
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Encounter Notes"
+                android:textSize="20sp"
+                android:textColor="@color/text_color"
+                android:id="@+id/textView10"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp" />
+            <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
@@ -70,41 +57,48 @@
                 android:textColor="@color/text_color"
                 android:id="@+id/encNotes"
                 android:layout_gravity="center_horizontal" />
-        </ScrollView>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:onClick="onEncNotesNext"
+                android:layout_gravity="bottom|center_horizontal"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:id="@+id/onEncNotesNext"
+                android:background="@drawable/lynx_button"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
-
-    <RelativeLayout
+    <!--<RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:visibility="gone"
         android:layout_margin="10dp">
 
-        <com.aptmobility.lynx.CustomButtonView
-            style="@style/Phastt.button"
-            custom:fontAssetName="OpenSansRegular.ttf"
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Revise"
             android:onClick="onEncNotesPrev"
             android:layout_gravity="left"
             android:visibility="gone"
-            android:textAllCaps="false"
-            android:background="@drawable/phastt_button"
+            android:textStyle="bold"
+            android:background="@drawable/lynx_button"
             android:textColor="@color/white"
             android:layout_alignParentLeft="true" />
 
-        <com.aptmobility.lynx.CustomButtonView
-            style="@style/Phastt.button"
-            custom:fontAssetName="OpenSansRegular.ttf"
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Next"
             android:onClick="onEncNotesNext"
             android:layout_gravity="right"
-            android:textAllCaps="true"
+            android:textStyle="bold"
             android:background="@drawable/lynx_button"
             android:textColor="@color/white"
             android:layout_centerInParent="true" />
-    </RelativeLayout>
+    </RelativeLayout>-->
 </RelativeLayout>

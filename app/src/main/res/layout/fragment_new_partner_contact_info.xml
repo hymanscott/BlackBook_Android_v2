@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
     <ScrollView
         android:layout_width="fill_parent"
@@ -13,31 +12,31 @@
             android:layout_width="fill_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
-            <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textSize="24sp" android:textAllCaps="true"
+                android:textSize="24sp"
                 android:text="@string/AddPartnerTitle"
-                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorAccent"
                 android:id="@+id/add_partner_title"
                 android:gravity="center_vertical|center_horizontal" />
-            <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Nick name"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
                 android:textSize="20sp"
                 android:textColor="@color/white"
-                android:textAllCaps="true"
                 android:background="@drawable/lynx_button_dark"
                 android:gravity="center_vertical|center_horizontal"
                 android:id="@+id/new_partner_nickname" />
-            <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -45,6 +44,7 @@
                 android:textColor="@color/text_color"
                 android:text="What is their contact info?"
                 android:layout_margin="10dp"
+                android:id="@+id/contactInfoTitle"
                 android:gravity="center_vertical|center_horizontal" />
             <LinearLayout
                 android:orientation="horizontal"
@@ -59,19 +59,14 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_email"
                     android:layout_gravity="center"/>
-                <com.aptmobility.lynx.CustomEditText
-                    android:background="@drawable/apptheme_edit_text_holo_light"
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
                     android:ems="10"
                     android:textSize="18sp"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:textColor="@color/text_color"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
                     android:id="@+id/newPartnerEmail"
                     android:hint="Email address" />
             </LinearLayout>
@@ -88,19 +83,14 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_phone"
                     android:layout_gravity="center"/>
-                <com.aptmobility.lynx.CustomEditText
-                    android:background="@drawable/apptheme_edit_text_holo_light"
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Mobile Phone Number"
                     android:textSize="18sp"
                     android:textColor="@color/text_color"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:inputType="phone"
                     android:id="@+id/newPartnerPhone"
                     android:maxLength="11"/>
@@ -118,19 +108,14 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_marker"
                     android:layout_gravity="center"/>
-                <com.aptmobility.lynx.CustomEditText
-                    android:background="@drawable/apptheme_edit_text_holo_light"
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="City/Neighborhood"
                     android:textSize="18sp"
                     android:textColor="@color/text_color"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="10dp"
                     android:id="@+id/newPartnerCity"
                     android:inputType="textPostalAddress" />
             </LinearLayout>
@@ -147,19 +132,14 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_met_on"
                     android:layout_gravity="center"/>
-                <com.aptmobility.lynx.CustomEditText
-                    android:background="@drawable/apptheme_edit_text_holo_light"
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:ems="10"
                     android:textSize="18sp"
                     android:textColor="@color/text_color"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="10dp"
                     android:hint="Met on/at"
                     android:id="@+id/newPartnerMetAt"/>
             </LinearLayout>
@@ -176,29 +156,27 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/icon_social"
                     android:layout_gravity="center"/>
-                <com.aptmobility.lynx.CustomEditText
+                <EditText
                     android:id="@+id/newPartnerHandle"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
-                    android:background="@drawable/apptheme_edit_text_holo_light"
+                    android:layout_marginLeft="10dp"
                     android:ems="10"
                     android:hint="Social Media"
                     android:inputType="text"
                     android:textColor="@color/text_color"
-                    android:textSize="18sp"
-                    custom:fontAssetName="OpenSansRegular.ttf" />
+                    android:textSize="18sp" />
             </LinearLayout>
-            <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Partner type"
                 android:textSize="20sp"
-                android:textColor="@color/apptheme_color"
+                android:id="@+id/partnerTypeTitle"
+                android:textColor="@color/colorAccent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_margin="20dp"/>
             <RadioGroup
@@ -207,101 +185,86 @@
                 android:id="@+id/newPartnerType"
                 android:layout_marginLeft="50dp">
 
-                <com.aptmobility.lynx.CustomRadioButton
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Phastt.Radiobutton"
                     android:textSize="18sp"
                     android:textColor="@color/text_color"
                     android:text="Primary / Main partner"
                     android:id="@+id/newPartnerPrimary" />
-                <com.aptmobility.lynx.CustomRadioButton
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Regular"
                     android:textSize="18sp"
                     android:textColor="@color/text_color"
-                    style="@style/Phastt.Radiobutton"
                     android:id="@+id/newPartnerRegular" />
-                <com.aptmobility.lynx.CustomRadioButton
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hook-up"
                     android:id="@+id/newPartnerCasual"
                     android:textSize="18sp"
                     android:textColor="@color/text_color"
-                    style="@style/Phastt.Radiobutton"
                     android:checked="true" />
-                <com.aptmobility.lynx.CustomRadioButton
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="NSA"
-                    style="@style/Phastt.Radiobutton"
                     android:textSize="18sp"
                     android:textColor="@color/text_color"
                     android:id="@+id/newPartnerNSA" />
-                <com.aptmobility.lynx.CustomRadioButton
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:textColor="@color/text_color"
                     android:text="Friends with benefits"
-                    style="@style/Phastt.Radiobutton"
                     android:id="@+id/newPartnerFriends" />
             </RadioGroup>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone"
-            android:id="@+id/partnerHaveOtherPartner_layout">
-            <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Do they have other partners ?"
-                android:textSize="20sp"
-                android:textColor="@color/apptheme_color"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_margin="20dp"/>
-            <RadioGroup
-                android:id="@+id/radio_partner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp">
-
-                <com.aptmobility.lynx.CustomRadioButton
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/partnerHaveOtherPartner_layout">
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Do they have other partners ?"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorAccent"
+                    android:id="@+id/otherPartnersTitle"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_margin="20dp"/>
+                <RadioGroup
+                    android:id="@+id/radio_partner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Yes"
-                    android:textSize="18sp"
-                    android:textColor="@color/text_color"
-                    android:checked="true"
-                    style="@style/Phastt.Radiobutton"
-                    android:id="@+id/radio_partner_yes"
-                    />
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp">
 
-                <com.aptmobility.lynx.CustomRadioButton
-                    custom:fontAssetName="OpenSansRegular.ttf"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="No"
-                    android:textSize="18sp"
-                    android:textColor="@color/text_color"
-                    style="@style/Phastt.Radiobutton"
-                    android:id="@+id/radio_partner_no" />
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yes"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_color"
+                        android:checked="true"
+                        android:id="@+id/radio_partner_yes" />
 
-            </RadioGroup>
-        </LinearLayout>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_color"
+                        android:id="@+id/radio_partner_no" />
+
+                </RadioGroup>
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -310,16 +273,16 @@
                 android:id="@+id/partnerRelationshipPeriodLayout"
                 android:visibility="gone"
                 android:orientation="vertical">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="How long have you been with this partner in a mutually monogamous relationship? "
                     android:textSize="20sp"
-                    android:textColor="@color/apptheme_color"
+                    android:textColor="@color/colorAccent"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
+                    android:id="@+id/monogamousTitle"
                     android:gravity="center_vertical"/>
                 <RadioGroup
                     android:id="@+id/radio_relationshipPeriod"
@@ -330,26 +293,22 @@
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="5dp">
 
-                    <com.aptmobility.lynx.CustomRadioButton
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Less than 6 months"
                         android:textSize="18sp"
                         android:textColor="@color/text_color"
-                        style="@style/Phastt.Radiobutton"
                         android:checked="true"
                         android:id="@+id/radio_lessThanSixMonths"
                         />
 
-                    <com.aptmobility.lynx.CustomRadioButton
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="6 months or more"
                         android:textSize="18sp"
                         android:textColor="@color/text_color"
-                        style="@style/Phastt.Radiobutton"
                         android:id="@+id/radio_moreThanSixMonths" />
 
                 </RadioGroup>
@@ -364,31 +323,29 @@
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="bottom"
                     android:gravity="bottom">
-                    <com.aptmobility.lynx.CustomButtonView
-                        style="@style/Phastt.button"
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Next"
                         android:layout_gravity="right"
                         android:background="@drawable/lynx_button"
                         android:textColor="@color/white"
-                        android:textAllCaps="true"
+                        android:textStyle="bold"
                         android:layout_centerInParent="true"
                         android:layout_margin="20dp"
+                        android:id="@+id/next"
                         android:onClick="onContactInfoNext"
                         />
-                    <com.aptmobility.lynx.CustomButtonView
-                        style="@style/Phastt.button"
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Revise"
                         android:layout_gravity="left"
                         android:visibility="gone"
-                        android:background="@drawable/phastt_button"
+                        android:background="@drawable/lynx_button"
                         android:textColor="@color/white"
-                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        android:id="@+id/revise"
                         android:layout_alignParentLeft="true"
                         android:layout_margin="20dp"
                         android:onClick="onContactInfoPrev"
@@ -397,6 +354,4 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-
 </RelativeLayout>

@@ -2,10 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="@color/white"
-    android:layout_height="match_parent"
-    xmlns:custom="http://schemas.android.com/apk/res-auto">
-
-
+    android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
@@ -13,35 +10,30 @@
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal">
 
-        <com.aptmobility.lynx.CustomTextView
-            custom:fontAssetName="OpenSansRegular.ttf"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
-            android:text="New Encounter"
+            android:text="NEW ENCOUNTER"
             android:layout_alignParentTop="true"
-            android:textColor="@color/blue_theme"
+            android:textColor="@color/colorAccent"
             android:layout_centerHorizontal="true"
-            android:layout_margin="10dp"
-            android:textAllCaps="true" />
+            android:id="@+id/newEncounter"
+            android:layout_margin="20dp" />
 
-        <com.aptmobility.lynx.CustomTextView
+        <TextView
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginBottom="20dp"
             android:text="Who did you have sex with?"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="20sp"
-            custom:fontAssetName="OpenSansRegular.ttf" />
+            android:textSize="20sp"/>
 
-        <com.aptmobility.lynx.CustomButtonView
-            style="@style/Phastt.button"
-            custom:fontAssetName="OpenSansRegular.ttf"
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add New Partner"
-            android:textAllCaps="false"
+            android:textStyle="bold"
             android:id="@+id/addNewPartner"
             android:background="@drawable/lynx_button"
             android:textColor="@color/white"
@@ -51,7 +43,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:id="@+id/scrollView"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:fillViewport="false">
@@ -74,29 +66,27 @@
         android:visibility="gone"
         android:layout_margin="10dp">
 
-        <com.aptmobility.lynx.CustomButtonView
-            style="@style/Phastt.button"
-            custom:fontAssetName="OpenSansRegular.ttf"
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Revise"
-            android:textAllCaps="false"
+            android:textStyle="bold"
             android:onClick="onChoosePartnerPrev"
-            android:background="@drawable/phastt_button"
+            android:background="@drawable/lynx_button"
             android:textColor="@color/white"
+            android:id="@+id/revise"
             android:layout_gravity="left"
             android:layout_alignParentLeft="true" />
 
-        <com.aptmobility.lynx.CustomButtonView
-            style="@style/Phastt.button"
-            custom:fontAssetName="OpenSansRegular.ttf"
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
+            android:textStyle="bold"
             android:text="Next"
             android:onClick="onChoosePartnerNext"
             android:background="@drawable/lynx_button"
             android:textColor="@color/white"
+            android:id="@+id/next"
             android:layout_gravity="right"
             android:layout_alignParentRight="true" />
     </RelativeLayout>

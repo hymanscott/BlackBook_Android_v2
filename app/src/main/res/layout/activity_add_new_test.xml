@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
 
     <ScrollView
@@ -12,20 +11,17 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/addNewTestTitle"
                 android:textSize="24sp"
                 android:text="Add New HIV Test"
                 android:layout_margin="10dp"
-                android:textColor="@color/blue_theme"
+                android:textColor="@color/colorAccent"
                 android:layout_gravity="center_horizontal|center_vertical"/>
 
-            <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/titleText"
@@ -38,8 +34,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.aptmobility.lynx.CustomEditText
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -47,7 +42,6 @@
                     android:hint="MM/DD/YYYY"
                     android:textSize="18sp"
                     android:textColor="@color/text_color"
-                    android:background="@drawable/apptheme_edit_text_holo_light"
                     android:ems="8"
                     android:id="@+id/addNewTestDate"/>
                 <ImageView
@@ -65,12 +59,12 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/hivTestStatusTitle"
                 android:orientation="horizontal">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Is your HIV test positive?"
                     android:textSize="20sp"
+                    android:id="@+id/hivPosQn"
                     android:textColor="@color/text_color"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_margin="10dp"/>
@@ -98,9 +92,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="5dp">
 
-                    <com.aptmobility.lynx.CustomRadioButton
-                        style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
@@ -108,18 +100,14 @@
                         android:text="Yes"
                         android:id="@+id/hivTestYes"
                         />
-                    <com.aptmobility.lynx.CustomRadioButton
-                        style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:textColor="@color/text_color"
                         android:text="No"
                         android:id="@+id/hivTestNo"/>
-                    <com.aptmobility.lynx.CustomRadioButton
-                        style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="I Didn't test"
@@ -146,12 +134,12 @@
                 android:orientation="vertical"
                 android:visibility="gone"
                 android:id="@+id/std_layout">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Were any of your STD tests positive?"
                     android:textSize="20sp"
+                    android:id="@+id/stdTesPosQn"
                     android:textColor="@color/text_color"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     />
@@ -159,11 +147,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Gonorrhea"
+                        android:id="@+id/gonorrheaTitle"
                         android:textSize="20sp"
                         android:textColor="@color/text_color"
                         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -190,10 +178,8 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="5dp">
-
-                        <com.aptmobility.lynx.CustomRadioButton
-                            style="@style/Phastt.Radiobutton"
-                            custom:fontAssetName="OpenSansRegular.ttf"
+                        
+                        <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="18sp"
@@ -201,18 +187,14 @@
                             android:text="Yes"
                             android:id="@+id/gonorrheaYes"
                             />
-                        <com.aptmobility.lynx.CustomRadioButton
-                            style="@style/Phastt.Radiobutton"
-                            custom:fontAssetName="OpenSansRegular.ttf"
+                        <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="18sp"
                             android:textColor="@color/text_color"
                             android:text="No"
                             android:id="@+id/gonorrheaNo"/>
-                        <com.aptmobility.lynx.CustomRadioButton
-                            style="@style/Phastt.Radiobutton"
-                            custom:fontAssetName="OpenSansRegular.ttf"
+                        <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="I Didn't test"
@@ -235,12 +217,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Syphilis"
                         android:textSize="20sp"
+                        android:id="@+id/syphilisTitle"
                         android:textColor="@color/text_color"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_margin="10dp"/>
@@ -267,9 +249,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="5dp">
 
-                        <com.aptmobility.lynx.CustomRadioButton
-                            style="@style/Phastt.Radiobutton"
-                            custom:fontAssetName="OpenSansRegular.ttf"
+                        <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Yes"
@@ -277,18 +257,14 @@
                             android:textColor="@color/text_color"
                             android:id="@+id/syphilisYes"
                             />
-                        <com.aptmobility.lynx.CustomRadioButton
-                            style="@style/Phastt.Radiobutton"
-                            custom:fontAssetName="OpenSansRegular.ttf"
+                        <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="18sp"
                             android:textColor="@color/text_color"
                             android:text="No"
                             android:id="@+id/syphilisNo" />
-                        <com.aptmobility.lynx.CustomRadioButton
-                            style="@style/Phastt.Radiobutton"
-                            custom:fontAssetName="OpenSansRegular.ttf"
+                        <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
@@ -311,12 +287,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Chlamydia"
                         android:textSize="20sp"
+                        android:id="@+id/chlamydiaTitle"
                         android:textColor="@color/text_color"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_margin="10dp"/>
@@ -343,9 +319,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="5dp">
 
-                        <com.aptmobility.lynx.CustomRadioButton
-                            style="@style/Phastt.Radiobutton"
-                            custom:fontAssetName="OpenSansRegular.ttf"
+                        <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Yes"
@@ -353,18 +327,14 @@
                             android:textColor="@color/text_color"
                             android:id="@+id/chlamydiaYes"
                             />
-                        <com.aptmobility.lynx.CustomRadioButton
-                            style="@style/Phastt.Radiobutton"
-                            custom:fontAssetName="OpenSansRegular.ttf"
+                        <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="No"
                             android:textSize="18sp"
                             android:textColor="@color/text_color"
                             android:id="@+id/chlamydiaNo"/>
-                        <com.aptmobility.lynx.CustomRadioButton
-                            style="@style/Phastt.Radiobutton"
-                            custom:fontAssetName="OpenSansRegular.ttf"
+                        <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="I Didn't test"
@@ -390,9 +360,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_height="wrap_content">
-                <com.aptmobility.lynx.CustomButtonView
-                    style="@style/Phastt.button"
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Save"
@@ -401,7 +369,7 @@
                     android:layout_centerInParent="true"
                     android:layout_alignParentBottom="true"
                     android:background="@drawable/lynx_button"
-                    android:textAllCaps="true"
+                    android:textStyle="bold"
                     android:textColor="@color/white"
                     android:layout_margin="10dp" />
             </RelativeLayout>

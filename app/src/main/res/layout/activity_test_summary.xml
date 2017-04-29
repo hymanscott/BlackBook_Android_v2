@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:layout_width="match_parent" android:layout_height="match_parent">
     <ScrollView
@@ -10,9 +9,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/testingHistoryTitle"
@@ -25,16 +22,15 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:orientation="horizontal">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="20sp"
                     android:textColor="@color/text_color"
+                    android:id="@+id/testedOn"
                     android:text="Tested on:" />
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/testingHistorydate"
@@ -53,16 +49,15 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:orientation="horizontal">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="20sp"
                         android:textColor="@color/text_color"
+                        android:id="@+id/teststatus"
                         android:text="Test Status:" />
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/hivTestStatus"
@@ -96,16 +91,15 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:orientation="horizontal">
-                        <com.aptmobility.lynx.CustomTextView
-                            custom:fontAssetName="OpenSansRegular.ttf"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:textSize="20sp"
                             android:textColor="@color/text_color"
+                            android:id="@+id/gonorrheaTitle"
                             android:text="Gonorrhea:" />
-                        <com.aptmobility.lynx.CustomTextView
-                            custom:fontAssetName="OpenSansRegular.ttf"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/gonorrheaStatus"
@@ -135,16 +129,15 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:orientation="horizontal">
-                        <com.aptmobility.lynx.CustomTextView
-                            custom:fontAssetName="OpenSansRegular.ttf"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:textSize="20sp"
                             android:textColor="@color/text_color"
+                            android:id="@+id/syphilisTitle"
                             android:text="Syphilis:" />
-                        <com.aptmobility.lynx.CustomTextView
-                            custom:fontAssetName="OpenSansRegular.ttf"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/syphilisStatus"
@@ -174,16 +167,15 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:orientation="horizontal">
-                        <com.aptmobility.lynx.CustomTextView
-                            custom:fontAssetName="OpenSansRegular.ttf"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:textSize="20sp"
                             android:textColor="@color/text_color"
+                            android:id="@+id/chlamydiaTitle"
                             android:text="Chlamydia:" />
-                        <com.aptmobility.lynx.CustomTextView
-                            custom:fontAssetName="OpenSansRegular.ttf"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/chlamydiaStatus"
@@ -198,7 +190,6 @@
                         android:scaleType="centerInside"
                         android:layout_height="200dp"
                         android:id="@+id/chlamydiaAttachment"/>
-
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

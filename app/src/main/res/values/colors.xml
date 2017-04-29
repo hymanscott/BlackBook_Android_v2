@@ -1,41 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="light_gray">#E5E5E5</color>
-    <color name="gray">#CCC</color>
-    <color name="white">#ffffff</color>
-    <!--<color name="list_row_selected">#78c8e6</color>-->
-    <!--<color name="light_green">#8bca00</color>-->
-    <!--<color name="orange">#f15d25</color>
-    <color name="apptheme_color">#f15d25</color>
-    <color name="yellow">#fbad2f</color>
-    <color name="button_gray">#666666</color>
-    <color name="button_blue">#448BB4</color>
-    <color name="text_color">#727272</color>
-    <color name="main_bg">#f0efee</color>
-    <color name="black">#000</color>-->
-
-    <!-- LYNX colors -->
-        <!-- Main -->
-    <color name="blue_theme">#2196f3 </color>
+    <color name="colorPrimary">#2196f3</color>
+    <color name="colorPrimaryDark">#1d87da</color>
+    <color name="colorAccent">#2196f3</color>
     <color name="dark_boxes">#444444 </color>
     <color name="gray_bar">#d5d5d5 </color>
     <color name="blue_boxes">#dceefd </color>
     <color name="darker_line">#aeaeae </color>
     <color name="lighter_line">#d5d5d5 </color>
-    <color name="green">#3ad45b</color>
-        <!-- Sub -->
-    <color name="orange">#f15d25</color>
-    <color name="apptheme_color">#2196f3</color>
-    <color name="yellow">#fbad2f</color>
-    <color name="button_gray">#666666</color>
-    <color name="button_blue">#448BB4</color>
+    <color name="white">#FFFFFF </color>
+    <color name="green">#14ab34</color>
+    <color name="button_red">#ff5d55</color>
+
     <color name="text_color">#444444</color>
-    <color name="main_bg">#f0efee</color>
-    <color name="black">#000</color>
-    <color name="colorPrimary">#2196f3</color>
-    <color name="colorPrimaryDark">#3ad45b</color>
-    <color name="colorAccent">#fbad2f</color>
-
     <color name="starBG">#D5D5D5</color>
-</resources>
 
+    <!-- Passcode Screen-->
+    <color name="light_gray">#E5E5E5</color>
+    <color name="gray">#CCC</color>
+
+    <!-- From Phastt -->
+    <color name="button_gray">#666666</color>
+    <color name="black">#000</color>
+</resources>

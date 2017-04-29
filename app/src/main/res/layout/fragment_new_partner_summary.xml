@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
     <ScrollView
         android:layout_width="fill_parent"
@@ -13,24 +12,21 @@
             android:layout_width="fill_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
-            <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
                 android:text="New Partner Summary"
-                android:textAllCaps="true"
-                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
                 android:id="@+id/add_partner_title"
+                android:textColor="@color/colorAccent"
                 android:gravity="center_vertical|center_horizontal" />
-            <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Nick name"
-                android:layout_margin="10dp"
-                android:textAllCaps="true"
+                android:layout_marginTop="20dp"
                 android:textSize="20sp"
                 android:background="@drawable/lynx_button_dark"
                 android:textColor="@color/white"
@@ -39,26 +35,25 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="horizontal">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:text="Add to list?"
                     android:textSize="20sp"
+                    android:id="@+id/addToList"
                     android:layout_margin="10dp"
                     android:textColor="@color/text_color"/>
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:textColor="#333"
+                    android:textColor="@color/text_color"
                     android:text="yes"
                     android:id="@+id/newPartnerSumm_partnerList"/>
             </LinearLayout>
@@ -68,23 +63,22 @@
                 android:layout_marginRight="10dp"
                 android:orientation="horizontal"
                 android:layout_height="wrap_content">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:textSize="20sp"
+                    android:id="@+id/nick_name"
                     android:textColor="@color/text_color"
                     android:text="Nickname :"/>
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:text="x"
-                    android:textSize="18sp"
-                    android:textColor="#333"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_color"
                     android:id="@+id/newPartnerSumm_nickName"/>
             </LinearLayout>
             <LinearLayout
@@ -92,23 +86,22 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:textSize="20sp"
+                    android:id="@+id/hivStatus"
                     android:textColor="@color/text_color"
                     android:text="HIV Status :"/>
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:id="@+id/newPartnerSumm_hivStatus"
-                    android:textSize="18sp"
-                    android:textColor="#333"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_color"
                     android:text="x"/>
             </LinearLayout>
             <LinearLayout
@@ -116,22 +109,21 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:textSize="20sp"
+                    android:id="@+id/email"
                     android:textColor="@color/text_color"
                     android:text="Email :"/>
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:textSize="18sp"
-                    android:textColor="#333"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_color"
                     android:id="@+id/newPartnerSumm_email"
                     android:text="x"/>
             </LinearLayout>
@@ -140,23 +132,22 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:textSize="20sp"
+                    android:id="@+id/mobile"
                     android:textColor="@color/text_color"
                     android:text="Mobile :"/>
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:id="@+id/newPartnerSumm_phone"
-                    android:textSize="18sp"
-                    android:textColor="#333"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_color"
                     android:text="x"/>
             </LinearLayout>
             <LinearLayout
@@ -164,26 +155,25 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:textSize="20sp"
                     android:textColor="@color/text_color"
+                    android:id="@+id/city"
                     android:text="City / Neighborhood :"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:orientation="vertical"
                     android:layout_height="wrap_content">
-                    <com.aptmobility.lynx.CustomTextView
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:textSize="18sp"
-                        android:textColor="#333"
+                        android:textSize="20sp"
+                        android:textColor="@color/text_color"
                         android:id="@+id/newPartnerSumm_address"
                         android:text="x"/>
                 </LinearLayout>
@@ -193,23 +183,22 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:textSize="20sp"
                     android:textColor="@color/text_color"
+                    android:id="@+id/metAt"
                     android:text="Met at :"/>
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:id="@+id/newPartnerSumm_metAt"
-                    android:textSize="18sp"
-                    android:textColor="#333"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_color"
                     android:text="x"/>
             </LinearLayout>
             <LinearLayout
@@ -217,22 +206,21 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:textSize="20sp"
                     android:textColor="@color/text_color"
+                    android:id="@+id/social"
                     android:text="Social Media :"/>
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:textSize="18sp"
-                    android:textColor="#333"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_color"
                     android:id="@+id/newPartnerSumm_handle"
                     android:text="x"/>
             </LinearLayout>
@@ -241,23 +229,22 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
-                <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:textSize="20sp"
                     android:textColor="@color/text_color"
+                    android:id="@+id/partnerTypeTitle"
                     android:text="Partner Type :"/>
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:id="@+id/newPartnerSumm_partnerType"
-                    android:textSize="18sp"
-                    android:textColor="#333"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_color"
                     android:text="x"/>
             </LinearLayout>
             <LinearLayout
@@ -265,22 +252,21 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:textSize="20sp"
                     android:textColor="@color/text_color"
+                    android:id="@+id/partnerNotes"
                     android:text="Partner Notes :"/>
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:textSize="18sp"
-                    android:textColor="#333"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_color"
                     android:id="@+id/newPartnerSumm_partnerNotes"
                     android:text="x"/>
             </LinearLayout>
@@ -289,14 +275,14 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_gravity="center_vertical"
                     android:textSize="20sp"
                     android:textColor="@color/text_color"
+                    android:id="@+id/overAll"
                     android:text="Overall :"/>
                 <RatingBar
                     android:layout_width="wrap_content"
@@ -304,6 +290,8 @@
                     android:id="@+id/newPartnerSumm_ratingBar1"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
                     android:layout_gravity="center_vertical"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -312,8 +300,7 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -328,6 +315,8 @@
                     android:id="@+id/newPartnerSumm_ratingBar2"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
                     android:layout_gravity="center_vertical"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -336,8 +325,7 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -351,6 +339,8 @@
                     style="?android:attr/ratingBarStyleIndicator"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/newPartnerSumm_ratingBar3"
                     android:layout_height="wrap_content" />
@@ -360,8 +350,7 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -377,6 +366,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
                     android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
@@ -384,8 +375,7 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -399,6 +389,8 @@
                     style="?android:attr/ratingBarStyleIndicator"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/newPartnerSumm_ratingBar5"
                     android:layout_height="wrap_content" />
@@ -408,8 +400,7 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -423,6 +414,8 @@
                     style="?android:attr/ratingBarStyleIndicator"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/newPartnerSumm_ratingBar6"
                     android:layout_height="wrap_content" />
@@ -432,8 +425,7 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                <TextView
                     android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -447,6 +439,8 @@
                     style="?android:attr/ratingBarStyleIndicator"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/newPartnerSumm_ratingBar7"
                     android:layout_height="wrap_content" />
@@ -461,9 +455,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="bottom"
                     android:gravity="bottom">
-                    <com.aptmobility.lynx.CustomButtonView
-                        style="@style/Phastt.button"
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                    <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Save"
@@ -471,25 +463,23 @@
                         android:layout_centerInParent="true"
                         android:background="@drawable/lynx_button"
                         android:textColor="@color/white"
-                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:id="@+id/next"
                         android:layout_margin="20dp"
-                        android:onClick="onPartnerSummaryNext"
-                        />
-                    <com.aptmobility.lynx.CustomButtonView
-                        style="@style/Phastt.button"
-                        custom:fontAssetName="OpenSansRegular.ttf"
+                        android:onClick="onPartnerSummaryNext" />
+                    <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Revise"
                         android:layout_gravity="left"
                         android:visibility="gone"
                         android:layout_alignParentLeft="true"
-                        android:background="@drawable/phastt_button"
+                        android:background="@drawable/lynx_button"
                         android:textColor="@color/white"
-                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        android:id="@+id/revise"
                         android:layout_margin="20dp"
-                        android:onClick="onPartnerSummaryPrev"
-                        />
+                        android:onClick="onPartnerSummaryPrev" />
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>

@@ -1,20 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">LYNX</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_reg_login2">LYNX</string>
     <string name="regloginIntroLable">Register here if you are a new LYNX user</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sec_question_prompt">Pick a Security Question</string>
     <string name="gender">Gender</string>
     <string name="race">Race</string>
+    <!-- Passcode Strings-->
+    <string name="passcode_manage">Manage passcode</string>
+    <string name="passcode_enter_passcode">Enter your passcode</string>
+    <string name="passcode_enter_old_passcode">Enter your old passcode</string>
+    <string name="passcode_re_enter_passcode">Re-enter your passcode</string>
+    <string name="passcode_change_passcode">Change passcode</string>
+    <string name="passcode_set">Passcode set</string>
+    <string name="passcode_wrong_passcode">Wrong passcode, please try again.</string>
+    <string name="passcode_preference_title">Passcode lock</string>
+    <string name="passcode_turn_off">Turn passcode off</string>
+    <string name="passcode_turn_on">Turn passcode on</string>
+    <string name="password_preference_key">passcode_lock_prefs_password_key</string>
+    <string name="password_salt">11-maggio-2014-osvaldo-al-49novesimo!</string>
+    <string name="password_enc_secret">5-maggio-2002-Karel-Poborsky</string>
 
     <!-- Status -->
     <string name="statusUpdateNo">No</string>
     <string name="statusUpdateYes">Yes</string>
 
-
+    <!-- Registration -->
+    <string name="reg_score_summary">This is a relative score and higher numbers mean higher levels of protection. Even with a perfect 20 (strongest protection), you could still become HIV infected. But it means that you are doing a lot to stay protected. Your score is based on the last three months but we know it’s sometimes hard to remember back that far; so, your score will be updated automatically based on your LYNX entries.</string>
+    <string name="forget_pass_intro">Enter your Email address and you\'ll receive an email with a new password.</string>
     <string-array name="security_questions">
         <item>What was the name of your first pet</item>
         <item>What is your mother\'s maiden name</item>
@@ -36,35 +47,7 @@
         <item>Native American</item>
         <item>White</item>
         <item>Other</item>
-        <!--
-        <item>Mixed Race</item>
-        <item>Arctic (Siberian, Eskimo)</item>
-        <item>Caucasian (European)</item>
-        <item>Caucasian (Indian)</item>
-        <item>Caucasian (Middle East)</item>
-        <item>Caucasian (North African, Other)</item>
-        <item>Indigenous Australian</item>
-        <item>North East Asian</item>
-        <item>Pacific</item>
-        <item>South East Asian</item>
-        <item>West African, Bushmen, Ethiopian</item>
-        -->
     </string-array>
-    <!-- passcode strings -->
-    <string name="passcode_manage">Manage passcode</string>
-    <string name="passcode_enter_passcode">Enter your passcode</string>
-    <string name="passcode_enter_old_passcode">Enter your old passcode</string>
-    <string name="passcode_re_enter_passcode">Re-enter your passcode</string>
-    <string name="passcode_change_passcode">Change passcode</string>
-    <string name="passcode_set">Passcode set</string>
-    <string name="passcode_wrong_passcode">Wrong passcode, please try again.</string>
-    <string name="passcode_preference_title">Passcode lock</string>
-    <string name="passcode_turn_off">Turn passcode off</string>
-    <string name="passcode_turn_on">Turn passcode on</string>
-    <string name="password_preference_key">passcode_lock_prefs_password_key</string>
-    <string name="password_salt">11-maggio-2014-osvaldo-al-49novesimo!</string>
-    <string name="password_enc_secret">5-maggio-2002-Karel-Poborsky</string>
-    <!-- registration2 strings -->
     <string-array name="numbers_20">
         <item>0</item>
         <item>1</item>
@@ -88,14 +71,6 @@
         <item>19</item>
         <item>20</item>
     </string-array>
-
-    <string name="title_activity_home_screen">homeScreenActivity</string>
-    <string name="title_section1">History</string>
-    <string name="title_section2">Partners</string>
-    <string name="title_section3">My Score</string>
-    <string name="title_section4">Testing</string>
-    <string name="title_activity_settings">settings</string>
-
     <string-array name="days_of_week">
         <item>Sunday</item>
         <item>Monday</item>
@@ -106,30 +81,10 @@
         <item>Saturday</item>
     </string-array>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_encounter__encounter_start">Encounter_EncounterStart</string>
-    <string name="AddPartnerTitle">New Partner</string>
-    <string name="title_activity_encounter_new_partner">Encounter_new_partner</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_myscore_prep">Myscore_Activity</string>
-    <string name="title_activity_encounter__list__summary">Selected_Encounter_Summary</string>
-    <string name="title_activity_selected__partner__summary">Selected_Partner_Summary</string>
-    <string name="title_activity_testing_instructions">Testing_Instructions</string>
-    <string name="title_activity_request_home_test_kit">RequestHomeTestKit</string>
-    <string name="title_activity_testing_location">Map</string>
-    <string name="title_activity_testing_nearest_testing_location">Nearest Testing Location</string>
-    <string name="title_activity_forgot_password">ForgotPassword</string>
-    <string name="title_activity_passcode_change_passcode">PasscodeChangePasscode</string>
-    <string name="title_activity_connecting_to_care">ConnectingToCare</string>
+    <string name="AddPartnerTitle">NEW PARTNER</string>
+    <string name="title_activity_lynx_diary">LynxDiary</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
-    <string name="reg_score_summary">This is a relative score and higher numbers mean higher levels of protection. Even with a perfect 20 (strongest protection), you could still become HIV infected. But it means that you are doing a lot to stay protected. Your score is based on the last three months but we know it’s sometimes hard to remember back that far; so, your score will be updated automatically based on your LYNX entries.</string>
-
-    <string-array name="tab_colors">
-        <item>#2196f3</item>
-        <item>#fbad2f</item>
-        <item>#727272</item>
-        <item>#2196f3</item>
-        <item>#fbad2f</item>
-    </string-array>
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

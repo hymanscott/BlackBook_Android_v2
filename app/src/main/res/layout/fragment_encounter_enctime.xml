@@ -3,10 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
-    >
-
-
+    android:background="@color/white">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
@@ -14,28 +11,27 @@
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal">
 
-        <com.aptmobility.lynx.CustomTextView
-            custom:fontAssetName="OpenSansRegular.ttf"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
-            android:text="New Encounter"
+            android:text="NEW ENCOUNTER"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:id="@+id/textView14"
-            android:textColor="@color/blue_theme"
-            android:layout_margin="10dp"
-            android:textAllCaps="true"/>
+            android:textColor="@color/colorAccent"
+            android:layout_margin="20dp"/>
 
-        <com.aptmobility.lynx.CustomTextView
-            custom:fontAssetName="OpenSansRegular.ttf"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:gravity="center"
             android:textColor="@color/text_color"
             android:text="Enter date and time of new encounter"
-            android:layout_margin="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:id="@+id/textView13" />
 
         <LinearLayout
@@ -55,9 +51,7 @@
                 android:src="@drawable/calender"
                 android:layout_margin="5dp"
                 android:layout_gravity="center"/>
-            <com.aptmobility.lynx.CustomEditText
-                android:background="@drawable/apptheme_edit_text_holo_light"
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="date"
@@ -68,8 +62,8 @@
                 android:textColor="@color/text_color"
                 android:hint="MM/DD/YYYY"
                 android:textColorHint="@color/text_color"
-                android:layout_marginLeft="5dp" />
-            </LinearLayout>
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
@@ -87,9 +81,7 @@
                 android:src="@drawable/cleartime"
                 android:layout_marginLeft="5dp"
                 android:layout_gravity="center"/>
-            <com.aptmobility.lynx.CustomEditText
-                android:background="@drawable/apptheme_edit_text_holo_light"
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="datetime"
@@ -101,60 +93,53 @@
                 android:text="00:00 AM"
                 android:hint="00:00 AM"
                 android:textColorHint="@color/text_color"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="10dp" />
         </LinearLayout>
-        <com.aptmobility.lynx.CustomButtonView
-            style="@style/Phastt.button"
-            custom:fontAssetName="OpenSansRegular.ttf"
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Next"
             android:background="@drawable/lynx_button"
             android:textColor="@color/white"
-            android:textAllCaps="true"
+            android:textStyle="bold"
             android:layout_marginTop="40dp"
-            android:layout_gravity="right"
-            android:layout_marginRight="25dp"
-            android:layout_alignParentRight="true"
+            android:id="@+id/next"
+            android:layout_gravity="center_horizontal"
             android:onClick="onNextEnctime"/>
     </LinearLayout>
 
 
-    <RelativeLayout
+    <!--<RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp">
 
-        <com.aptmobility.lynx.CustomButtonView
-            style="@style/Phastt.button"
-            custom:fontAssetName="OpenSansRegular.ttf"
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancel"
             android:id="@+id/button10"
-            android:textAllCaps="false"
+            android:textStyle="bold"
             android:layout_gravity="left"
             android:background="@drawable/lynx_button"
             android:textColor="@color/white"
             android:layout_alignParentLeft="true"
             android:onClick="onCancelEnctime"/>
 
-        <com.aptmobility.lynx.CustomButtonView
-            style="@style/Phastt.button"
-            custom:fontAssetName="OpenSansRegular.ttf"
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Next"
             android:id="@+id/button11"
             android:background="@drawable/lynx_button"
             android:textColor="@color/white"
-            android:textAllCaps="false"
+            android:textStyle="bold"
             android:layout_gravity="right"
             android:layout_alignParentRight="true"
             android:onClick="onNextEnctime"/>
-    </RelativeLayout>
+    </RelativeLayout>-->
 
 </RelativeLayout>
 

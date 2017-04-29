@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:background="@color/main_bg">
+    android:background="@color/white">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -14,15 +13,13 @@
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" >
-            <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
-                android:text="Baseline SexPro Score"
-                android:textAllCaps="true"
+                android:text="BASELINE SEX PRO SCORE"
                 android:id="@+id/textView8"
-                android:textColor="@color/blue_theme"
+                android:textColor="@color/colorAccent"
                 android:layout_margin="10dp"
                 android:gravity="center_vertical|center_horizontal" />
 
@@ -30,18 +27,16 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:orientation="vertical"
-                >
-                <com.aptmobility.lynx.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
+                android:orientation="vertical">
+                <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
-                    android:textColor="@color/apptheme_color"
+                    android:textColor="@color/colorAccent"
                     android:text="In the past three months, have you been diagnosed with any of the following sexually transmitted infections?"
                     android:layout_margin="10dp"
-                    android:gravity="center_vertical"
-                     />
+                    android:id="@+id/textview9"
+                    android:gravity="center_vertical" />
             </LinearLayout>
             <!-- Container for Dyanamic checkbox-->
 
@@ -64,9 +59,7 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
-            <com.aptmobility.lynx.CustomButtonView
-                style="@style/Phastt.button"
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Next"
@@ -75,12 +68,10 @@
                 android:layout_alignParentRight="true"
                 android:background="@drawable/lynx_button"
                 android:textColor="@color/white"
-                android:textAllCaps="true"
+                android:textStyle="bold"
                 android:layout_margin="20dp"
                 android:onClick="onSTIInfoNext" />
-            <com.aptmobility.lynx.CustomButtonView
-                style="@style/Phastt.button"
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/lynx_button"
@@ -89,7 +80,7 @@
                 android:id="@+id/partner_info_revisebtn"
                 android:layout_gravity="left"
                 android:layout_alignParentLeft="true"
-                android:textAllCaps="true"
+                android:textStyle="bold"
                 android:layout_margin="20dp"
                 android:onClick="onSTIInfoPrev"
                 />

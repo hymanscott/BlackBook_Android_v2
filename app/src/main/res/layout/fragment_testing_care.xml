@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
-    tools:context="com.aptmobility.lynx.TestingCareFragment">
+    tools:context="com.lynxstudy.lynx.TestingCareFragment">
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -15,8 +14,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="If your HIV test was positive"
@@ -24,16 +22,17 @@
                 android:paddingLeft="25dp"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
+                android:textColor="@color/text_color"
                 android:background="@drawable/border_top_bottom"
                 android:id="@+id/positiveHIVtest"/>
-            <com.aptmobility.lynx.CustomTextView
-                custom:fontAssetName="OpenSansRegular.ttf"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="If your HIV test was negative"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:paddingLeft="25dp"
                 android:paddingTop="20dp"
+                android:textColor="@color/text_color"
                 android:paddingBottom="20dp"
                 android:background="@drawable/border_bottom"
                 android:id="@+id/negativeHIVtest"/>

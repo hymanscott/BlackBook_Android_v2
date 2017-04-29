@@ -1,20 +1,35 @@
 {
   "project_info": {
-    "project_number": "30720444261",
-    "project_id": "lynx-d8331"
+    "project_number": "246630683921",
+    "firebase_url": "https://lynxstudy-164907.firebaseio.com",
+    "project_id": "lynxstudy-164907",
+    "storage_bucket": "lynxstudy-164907.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:30720444261:android:1e148e1fcb7b324a",
+        "mobilesdk_app_id": "1:246630683921:android:46b96e3043cd4feb",
         "android_client_info": {
-          "package_name": "com.aptmobility.lynx"
+          "package_name": "com.lynxstudy.lynx"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "246630683921-3mhbjql3v7vciogeeo8c3bdldo0nscse.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lynxstudy.lynx",
+            "certificate_hash": "4c0cc171ba8aeaf30025a5b1785522c25fa98efc"
+          }
+        },
+        {
+          "client_id": "246630683921-fbqrmkiv42pm4aboc9isf2nibfkrcge3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyAkTasxAlo8s69X9Wn83Lq0ac0iLfdaxOE"
+          "current_key": "AIzaSyBGwgXcqpGt1bsnXgX3nSug3w1SlcxAyMs"
         }
       ],
       "services": {
@@ -22,11 +37,16 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "246630683921-fbqrmkiv42pm4aboc9isf2nibfkrcge3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }

@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:text="@string/AddPartnerTitle"
+        android:layout_margin="20dp"
+        android:textColor="@color/colorAccent"
+        android:gravity="center_vertical|center_horizontal"
+        android:id="@+id/add_partner_title" />
+
+    <TextView
+        android:id="@+id/whoIsYourPartner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:text="Who is your new partner?"
+        android:textColor="@color/text_color"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="20sp" />
+
+    <!-- Title for EDIT PARTNER -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nick name"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_margin="20dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:background="@drawable/lynx_button_dark"
+        android:gravity="center_vertical|center_horizontal"
+        android:id="@+id/selectedPartner_bannername" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="false"
+        android:layout_alignParentBottom="true">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:id="@+id/linearLayout6">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/icon_person"
+                        android:layout_margin="5dp"
+                        android:id="@+id/nick_name_icon"
+                        android:layout_gravity="center"/>
+                    <EditText
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/nick_name"
+                        android:ems="10"
+                        android:maxLength="20"
+                        android:textColor="@color/text_color"
+                        android:textSize="18sp"
+                        android:inputType="textPersonName"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:hint="Nickname"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="New Partner HIV Status:"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="20sp"
+                        android:id="@+id/hivStatusTitle"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"/>
+
+                    <RadioGroup
+                        android:id="@+id/radio_hivstatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="5dp">
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="HIV Negative"
+                            android:textColor="@color/text_color"
+                            android:textSize="18sp"
+                            android:id="@+id/radio_hiv_neg" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="HIV Negative and On PrEP"
+                            android:textColor="@color/text_color"
+                            android:textSize="18sp"
+                            android:id="@+id/radio_hiv_prep" />
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="I don't know"
+                            android:textColor="@color/text_color"
+                            android:textSize="18sp"
+                            android:checked="true"
+                            android:id="@+id/radio_hiv_idk" />
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="HIV Positive"
+                            android:textColor="@color/text_color"
+                            android:textSize="18sp"
+                            android:id="@+id/radio_hiv_pos" />
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/text_color"
+                            android:textSize="18sp"
+                            android:layout_height="wrap_content"
+                            android:text="HIV Positive and Undetectable"
+                            android:id="@+id/radio_hiv_und" />
+                    </RadioGroup>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/linearLayout_undetectable"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Have they been undetectable for at least 6 months?"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="20sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/undetectableTitle"
+                        android:gravity="center_vertical"/>
+                    <RadioGroup
+                        android:id="@+id/radio_undetectable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="5dp">
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Yes"
+                            android:textColor="@color/text_color"
+                            android:textSize="18sp"
+                            android:id="@+id/radio_undetectable_yes" />
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="No"
+                            android:textColor="@color/text_color"
+                            android:textSize="18sp"
+                            android:id="@+id/radio_undetectable_no" />
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_color"
+                            android:textSize="18sp"
+                            android:text="I don't know"
+                            android:checked="true"
+                            android:id="@+id/radio_undetectable_iDontKnow" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Add to SexPro:"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="20sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/addToSexPro"
+                        android:gravity="center_vertical"/>
+
+                    <RadioGroup
+                        android:id="@+id/radio_is_listed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="5dp">
+
+                        <RadioButton
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Yes"
+                            android:textColor="@color/text_color"
+                            android:textSize="18sp"
+                            android:checked="true"
+                            android:id="@+id/radio_blackbook_yes"
+                            />
+
+                        <RadioButton
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_color"
+                            android:textSize="18sp"
+                            android:text="No"
+                            android:id="@+id/radio_blackbook_no" />
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Next"
+                        android:id="@+id/partner_info_nextbtn"
+                        android:layout_gravity="right"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/lynx_button"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:onClick="onAddNewPartnerNext"
+                        />
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Revise"
+                        android:id="@+id/partner_info_revisebtn"
+                        android:layout_gravity="left"
+                        android:visibility="gone"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:background="@drawable/lynx_button"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:onClick="onAddNewPartnerPrev"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

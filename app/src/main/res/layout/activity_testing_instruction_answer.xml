@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/parentLayout"
     android:background="@color/white"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context="com.aptmobility.lynx.PrepFactsAnswer">
+    tools:context="com.lynxstudy.lynx.PrepFactsAnswer">
 
-    <com.aptmobility.lynx.CustomTextView
-        custom:fontAssetName="OpenSansRegular.ttf"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp"
@@ -21,9 +18,8 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:id="@+id/question"
-        android:textColor="@color/blue_theme"
-        android:layout_margin="20dp"
-        android:textAllCaps="true"/>
+        android:textColor="@color/colorAccent"
+        android:layout_margin="20dp"/>
     <WebView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

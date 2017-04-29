@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="@string/regloginIntroLable"
+                android:textColor="@color/text_color"
+                android:id="@+id/regloginIntroLable"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical|center_horizontal" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="register"
+                android:onClick="showRegistration"
+                android:background="@drawable/lynx_button"
+                android:textColor="@color/white"
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:id="@+id/registration"
+                android:layout_gravity="center_horizontal"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="New Phone? If you have already registered with LYNX on a pervious phone, you can login here."
+                android:id="@+id/textView2"
+                android:textColor="@color/text_color"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_centerVertical="true"
+                android:layout_margin="10dp" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/loginEmail"
+                android:layout_margin="10dp"
+                android:textSize="18sp"
+                android:textColor="@color/text_color"
+                android:hint="Email Address" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/loginPassword"
+                android:hint="Password"
+                android:textSize="18sp"
+                android:textColor="@color/text_color"
+                android:layout_margin="10dp" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="login"
+                android:onClick="showLogin"
+                android:background="@drawable/lynx_button"
+                android:textColor="@color/white"
+                android:layout_margin="10dp"
+                android:id="@+id/login"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Forgot Password"
+                android:onClick="showForgotPassword"
+                android:background="@drawable/lynx_button"
+                android:textColor="@color/white"
+                android:id="@+id/forgetPassword"
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

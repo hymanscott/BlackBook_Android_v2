@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.aptmobility.lynx"
-    android:installLocation="preferExternal">
-
-    <uses-sdk
-        android:minSdkVersion="16"
-        android:targetSdkVersion="25" />
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.lynxstudy.lynx">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -18,44 +12,51 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
 
-    <permission
-        android:name="com.aptmobility.pushnotification.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
-
+    <!-- Usage Stats -->
+    <uses-permission
+          android:name="android.permission.PACKAGE_USAGE_STATS"
+          tools:ignore="ProtectedPermissions" />
     <!--
- The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but are recommended.
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+        Google Maps Android API v2, but are recommended.
     -->
     <permission
-        android:name="com.aptmobility.lynx.permission.MAPS_RECEIVE"
-        android:protectionLevel="signature"/>
+        android:name="com.lynxstudy.lynx.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
     <!-- Auto Location Enable -->
     <uses-feature
         android:name="android.hardware.location.gps"
         android:required="true" />
-    <uses-permission android:name="com.example.barcodelibrary.permission.MAPS_RECEIVE"/>
-    <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> -->
+
+    <uses-permission android:name="com.example.barcodelibrary.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <!-- Local Notification -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
+    <receiver android:name=".AlarmReceiver" />
+    <receiver android:name=".AlarmRestoreOnBoot">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </intent-filter>
+    </receiver>
+
     <application
-        android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
-        android:hardwareAccelerated="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".RegLogin"
-            android:label="@string/title_activity_reg_login2"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="com.aptmobility.phastt.RegLogin" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -66,168 +67,84 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".PasscodeManagePasswordActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".homeScreenActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".settings"
-            android:label="@string/title_activity_settings"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Encounter_EncounterStartActivity"
-            android:label="@string/title_activity_encounter__encounter_start"
-            android:parentActivityName=".homeScreenActivity"
+            android:name=".PasscodeChangePasscode"
+            android:parentActivityName=".PasscodeUnlockActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.aptmobility.lynx.homeScreenActivity" />
+                android:value="com.lynxstudy.lynx.PasscodeUnlockActivity" />
         </activity>
         <activity
-            android:name=".encounter_new_partner"
-            android:label="@string/title_activity_encounter_new_partner"
+            android:name=".LynxSexPro"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Myscore_Activity"
-            android:label="@string/title_activity_myscore_prep"
-            android:screenOrientation="portrait" />
+            android:name=".LynxTesting"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".Selected_Encounter_Summary"
-            android:label="@string/title_activity_encounter__list__summary"
-            android:screenOrientation="portrait" />
+            android:name=".LynxPrep"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Selected_Partner_Activity"
-            android:label="@string/title_activity_selected__partner__summary"
-            android:screenOrientation="portrait" />
+            android:name=".LynxChat"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+            />
+        <activity android:name=".LynxProfile"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".Testing_Instructions"
-            android:label="@string/title_activity_testing_instructions"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".RequestHomeTestKit"
-            android:label="@string/title_activity_request_home_test_kit"
-            android:screenOrientation="portrait" />
+            android:name=".LynxDiary"
+            android:label="@string/title_activity_lynx_diary"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SelectedEncounterSummary"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SelectedPartnerActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".EncounterStartActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".EncounterNewPartner"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PrepFactsAnswer"
+            android:screenOrientation="portrait"/>
 
+        <service
+            android:name="com.lynxstudy.helper.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.lynxstudy.helper.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="@string/google_maps_key" />
-
-        <activity
-            android:name=".TestingLocation"
-            android:label="@string/title_activity_testing_location"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".testing_nearestTestingLocation"
-            android:label="@string/title_activity_testing_nearest_testing_location"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.aptmobility.lynx.homeScreenActivity" />
-        </activity>
-        <activity
-            android:name=".PasscodeChangePasscode"
-            android:label="@string/title_activity_passcode_change_passcode"
-            android:parentActivityName=".PasscodeUnlockActivity"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.aptmobility.lynx.PasscodeUnlockActivity" />
-        </activity>
-
-        <receiver android:name=".AlarmReceiver" />
-        <receiver android:name=".AlarmRestoreOnBoot">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-
-        <activity
-            android:name=".ConnectingToCare"
-            android:label="@string/title_activity_connecting_to_care"
-            android:screenOrientation="portrait" />
-
-        <receiver
-            android:name="com.google.android.gms.gcm.GcmReceiver"
-            android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-
-                <category android:name="com.example.gcm" />
-            </intent-filter>
-        </receiver>
-
-        <service
-            android:name=".MyGcmListenerService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-            </intent-filter>
-        </service>
-        <service
-            android:name=".MyInstanceIDListenerService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID" />
-            </intent-filter>
-        </service>
-        <service
-            android:name=".RegistrationIntentService"
-            android:exported="false" />
-        <service android:name=".FirbaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
-        <service android:name=".MyFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
-        <activity
-            android:name=".LYNXSexPro"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".LYNXTesting"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name" />
-        <activity
-            android:name=".LYNXDiary"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".LYNXPrep"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".LYNXChat"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".PrepFactsAnswer"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".TestingInstructionAnswer"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".TestingCareAnswer"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".LYNXProfile"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
+            android:value="AIzaSyDe-RP8wn4NK3-JipjvhLEgPO3baWVyjxo" />
+        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
+             See README(https://goo.gl/l4GJaQ) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_launcher" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
         <activity android:name=".AddNewTest"
+            android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait"/>
         <activity android:name=".TestSummary"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TestingInstructionAnswer"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TestingCareAnswer"
             android:screenOrientation="portrait"/>
     </application>
 
