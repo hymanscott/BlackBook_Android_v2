@@ -11,17 +11,20 @@ import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.text.format.DateFormat;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -78,6 +81,7 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lynx_sex_pro);
+        db = new DatabaseHelper(LynxSexPro.this);
         /*//Check if permission enabled
         if (UStats.getUsageStatsList(this).isEmpty()){
             Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
@@ -237,6 +241,48 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
             default:
                 dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_1));
                 break;
+        }
+        // update fcm id //
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String tokenid = sharedPref.getString("lynxfirebasetokenid",null);
+        /*
+            * system Information
+            * */
+        String serviceName = Context.TELEPHONY_SERVICE;
+        TelephonyManager m_telephonyManager = (TelephonyManager) getSystemService(serviceName);
+        LynxManager.deviceId = m_telephonyManager.getDeviceId();
+        Log.v("deviceId", LynxManager.deviceId);
+
+        JSONObject additional_info = new JSONObject();
+        try {
+            additional_info.put("kernel_version", System.getProperty("os.version"));
+            additional_info.put("api_level", System.getProperty("APILEVEL", Build.VERSION.SDK));
+            additional_info.put("device_name", System.getProperty("DEVICENAME", Build.DEVICE));
+            additional_info.put("model", System.getProperty("MODEL", Build.MODEL));
+            additional_info.put("product", System.getProperty("PRODUCT", Build.PRODUCT));
+            additional_info.put("imei", m_telephonyManager.getDeviceId());
+            additional_info.put("imsi",m_telephonyManager.getSubscriberId());
+            additional_info.put("device_sft_version",m_telephonyManager.getDeviceSoftwareVersion());
+            additional_info.put("phone_type",String.valueOf(m_telephonyManager.getPhoneType()));
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+        String device_info = additional_info.toString();
+        Log.v("Device_info",device_info);
+        if (tokenid != null) {
+            CloudMessages cloudMessaging = new CloudMessages(LynxManager.getActiveUser().getUser_id(),
+                    LynxManager.getActiveUser().getEmail(), LynxManager.encryptString(tokenid), LynxManager.encryptString("Android"),
+                    LynxManager.encryptString(device_info), String.valueOf(R.string.statusUpdateNo), true);
+            if (db.getCloudMessagingCount() < 1) {
+                db.createCloudMessaging(cloudMessaging);
+                Log.v("Cloud Messagin", "Token created");
+            } else {
+                CloudMessages old_CM = db.getCloudMessaging();
+                if (!tokenid.equals(LynxManager.decryptString(old_CM.getToken_id()))){
+                    db.updateCloudMessaging(cloudMessaging);
+                    Log.v("Cloud Messagin", "Token Updated");
+                }
+            }
         }
 
         ScheduledExecutorService scheduleTaskExecutor = Executors.newScheduledThreadPool(5);
