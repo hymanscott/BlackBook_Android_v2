@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/actionBarSize"
+    android:padding="0dp"
+    android:layout_margin="0dp"
+    android:gravity="center_vertical"
+    android:background="@color/colorPrimary">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sexualHistory"
+        android:visibility="visible"
+        android:gravity="start"
+        android:layout_weight="0.1"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sexual History"
+            android:textColor="#ffffff"
+            android:padding="0dp"
+            android:layout_margin="0dp"
+            android:textSize="18sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/app_name"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:padding="0dp"
+            android:id="@+id/actionbartitle"
+            android:layout_margin="0dp"
+            android:textSize="32sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_weight="0.3">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewProfile"
+            android:contentDescription="Profile"
+            android:src="@drawable/icon_person_white" />
+    </LinearLayout>
+</LinearLayout>

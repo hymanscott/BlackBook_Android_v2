@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
@@ -73,8 +74,16 @@ public class EncounterStartActivity extends AppCompatActivity {
         ImageView viewProfile = (ImageView)cView.findViewById(R.id.viewProfile);
         TextView title = (TextView)cView.findViewById(R.id.actionbartitle);
         title.setTypeface(tf);
-        viewProfile.setVisibility(View.GONE);
-
+        /*viewProfile.setVisibility(View.GONE);*/
+        LinearLayout sexualHistory = (LinearLayout)cView.findViewById(R.id.sexualHistory);
+        sexualHistory.setVisibility(View.VISIBLE);
+        viewProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EncounterStartActivity.this,LynxProfile.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

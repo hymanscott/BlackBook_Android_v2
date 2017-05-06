@@ -245,6 +245,8 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         // update fcm id //
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String tokenid = sharedPref.getString("lynxfirebasetokenid",null);
+
+        Log.v("tokenid",tokenid);
         /*
             * system Information
             * */

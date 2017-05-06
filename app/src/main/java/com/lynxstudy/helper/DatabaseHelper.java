@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.lynxstudy.model.ChatMessage;
 import com.lynxstudy.model.CloudMessages;
 import com.lynxstudy.model.DrugMaster;
 import com.lynxstudy.model.Encounter;
@@ -84,6 +85,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_TESTING_INSTRUCTION = "TestingInstruction";
     private static final String TABLE_CLOUD_MESSAGES = "CloudMessages";
     private static final String TABLE_VIDEOS = "Videos";
+    private static final String TABLE_CHAT_MESSAGES = "ChatMessages";
 
 
     // Common column names
@@ -297,6 +299,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_VIDEO_IMAGE_URL = "video_image_url";
     private static final String KEY_VIDEO_PRIORITY = "video_priority";
 
+    //Chat Messages Column Names //
+
+    private static final String KEY_CHAT_MESSAGE_ID = "chat_message_id";
+    private static final String KEY_CHAT_MESSAGE = "chat_message";
+    private static final String KEY_CHAT_MESSAGE_SENDER = "sender";
+    private static final String KEY_CHAT_MESSAGE_SENDER_PIC = "sender_pic";
+    private static final String KEY_CHAT_MESSAGE_DATETIME = "datetime";
+
 
     // Table Create Statements
     // Users table create statement
@@ -430,6 +440,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_VIDEOS = "CREATE TABLE " + TABLE_VIDEOS + "("+
             KEY_VIDEO_ID + " INTEGER PRIMARY KEY," + KEY_VIDEO_NAME+ " TEXT," + KEY_VIDEO_DESCRIPTION + " TEXT," +
             KEY_VIDEO_URL + " TEXT,"+ KEY_VIDEO_IMAGE_URL + " TEXT," + KEY_VIDEO_PRIORITY + " INTEGER,"  + KEY_CREATED_AT + " DATETIME"+")";
+
+    private static final String CREATE_TABLE_CHAT_MESSAGES = "CREATE TABLE " + TABLE_CHAT_MESSAGES + "(" +
+            KEY_CHAT_MESSAGE_ID + " INTEGER PRIMARY KEY," + KEY_CHAT_MESSAGE + " TEXT," + KEY_CHAT_MESSAGE_SENDER + " TEXT," +
+            KEY_CHAT_MESSAGE_SENDER_PIC + " TEXT," + KEY_CHAT_MESSAGE_DATETIME + " TEXT," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
@@ -465,6 +480,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_TESTING_INSTRUCTION);
         db.execSQL(CREATE_TABLE_CLOUD_MESSAGES);
         db.execSQL(CREATE_TABLE_VIDEOS);
+        db.execSQL(CREATE_TABLE_CHAT_MESSAGES);
 
     }
 
@@ -495,6 +511,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TESTING_INSTRUCTION);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CLOUD_MESSAGES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_VIDEOS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CHAT_MESSAGES);
         // create new tables
         onCreate(db);
     }
@@ -550,6 +567,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_TESTING_INSTRUCTION, null, null);
         db.delete(TABLE_CLOUD_MESSAGES, null, null);
         db.delete(TABLE_VIDEOS, null, null);
+        db.delete(TABLE_CHAT_MESSAGES, null, null);
     }
 
     // ------------------------ "Users" table methods ----------------//
@@ -5710,6 +5728,60 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     public int getVideosCount() {
         String countQuery = "SELECT  * FROM " + TABLE_VIDEOS;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+
+    // ------------------------ VIDEOS table methods ----------------//
+
+    /**
+     * Creating a ChatMessage
+     */
+    public int createChatMessage(ChatMessage chatMessage) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_CHAT_MESSAGE,chatMessage.getMessage());
+        values.put(KEY_CHAT_MESSAGE_SENDER, chatMessage.getSender());
+        values.put(KEY_CHAT_MESSAGE_SENDER_PIC, chatMessage.getSender_pic());
+        values.put(KEY_CHAT_MESSAGE_DATETIME, chatMessage.getDatetime());
+        values.put(KEY_STATUS_UPDATE,chatMessage.getStatusUpdate());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        return (int) db.insert(TABLE_CHAT_MESSAGES, null, values);
+    }
+    /**
+     * getting all ChatMessages
+     */
+    public List<ChatMessage> getAllChatMessages() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<ChatMessage> messageList = new ArrayList<ChatMessage>();
+        String selectQuery = "SELECT  * FROM " + TABLE_CHAT_MESSAGES;
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+        if (c.moveToFirst()) {
+            do {
+                ChatMessage message = new ChatMessage();
+                message.setId(c.getInt(c.getColumnIndex(KEY_CHAT_MESSAGE_ID)));
+                message.setMessage(c.getString(c.getColumnIndex(KEY_CHAT_MESSAGE)));
+                message.setSender(c.getString(c.getColumnIndex(KEY_CHAT_MESSAGE_SENDER)));
+                message.setSender_pic(c.getString(c.getColumnIndex(KEY_CHAT_MESSAGE_SENDER_PIC)));
+                message.setDatetime(c.getString(c.getColumnIndex(KEY_CHAT_MESSAGE_DATETIME)));
+                message.setStatusUpdate(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+                messageList.add(message);
+            } while (c.moveToNext());
+        }
+        return messageList;
+    }
+
+    /**
+     * getting ChatMessages count
+     */
+    public int getChatMessagesCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_CHAT_MESSAGES;
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();

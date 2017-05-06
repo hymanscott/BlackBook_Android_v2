@@ -10,10 +10,17 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
+import android.widget.Toast;
+
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.lynxstudy.lynx.LynxChat;
+import com.lynxstudy.lynx.LynxManager;
 import com.lynxstudy.lynx.LynxSexPro;
+import com.lynxstudy.lynx.LynxTesting;
 import com.lynxstudy.lynx.R;
+import com.lynxstudy.model.ChatMessage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +36,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      *
      * @param remoteMessage Object representing the message received from Firebase Cloud Messaging.
      */
+    DatabaseHelper db;
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
@@ -38,6 +46,20 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // message, here is where that should be initiated. See sendNotification method below.
         RemoteMessage.Notification notification = remoteMessage.getNotification();
         Map<String, String> data = remoteMessage.getData();
+        Log.v("PushNotification",String.valueOf(data));
+        int pushnotification_flag = Integer.parseInt(data.get("pushnotification_flag"));
+        db = new DatabaseHelper(getApplicationContext());
+        if (pushnotification_flag == 1){
+            ChatMessage newmessage = new ChatMessage();
+            newmessage.setMessage(LynxManager.encryptString(data.get("message")));
+            newmessage.setSender_pic(LynxManager.encryptString(data.get("sender_profile_pic_url")));
+            newmessage.setSender(LynxManager.encryptString(data.get("sender_name")));
+            newmessage.setDatetime(LynxManager.encryptString(data.get("date")));
+            newmessage.setStatusUpdate(LynxManager.encryptString(String.valueOf(R.string.statusUpdateYes)));
+            db.createChatMessage(newmessage);
+        }else if(pushnotification_flag == 0){
+            // test history goes here
+        }
 
         sendNotification(notification, data);
     }
@@ -51,22 +73,31 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void sendNotification(RemoteMessage.Notification notification, Map<String, String> data) {
         Bitmap icon = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
 
-        Intent intent = new Intent(this, LynxSexPro.class);
+        int pushnotification_flag = Integer.parseInt(data.get("pushnotification_flag"));
+        Intent intent= new Intent(this, LynxSexPro.class);
+        String message="Message From LYNX";
+        if(pushnotification_flag==1){
+            intent = new Intent(this, LynxChat.class);
+            message = "You received a new message from LYNX";
+        }else if(pushnotification_flag==0){
+            intent = new Intent(this, LynxTesting.class);
+        }
+
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setContentTitle(notification.getTitle())
-                .setContentText(notification.getBody())
+                .setContentTitle("LYNX")
+                .setContentText(message)
                 .setAutoCancel(true)
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setContentIntent(pendingIntent)
-                .setContentInfo(notification.getTitle())
+                .setContentInfo("LYNX")
                 .setLargeIcon(icon)
                 .setColor(Color.RED)
                 .setSmallIcon(R.mipmap.ic_launcher);
 
-        try {
+        /*try {
             String picture_url = data.get("picture_url");
             if (picture_url != null && !"".equals(picture_url)) {
                 URL url = new URL(picture_url);
@@ -77,7 +108,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
         notificationBuilder.setDefaults(Notification.DEFAULT_VIBRATE);
         notificationBuilder.setLights(Color.YELLOW, 1000, 300);

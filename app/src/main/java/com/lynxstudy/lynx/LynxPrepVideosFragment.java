@@ -21,16 +21,25 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.User_baseline_info;
 import com.lynxstudy.model.Videos;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +58,7 @@ public class LynxPrepVideosFragment extends Fragment {
     Typeface tf;
     int currentVideoId;
     WebView mWebView;
+    int thumbnailwidth;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -97,6 +107,7 @@ public class LynxPrepVideosFragment extends Fragment {
         DisplayMetrics metrics = new DisplayMetrics();
         display.getMetrics(metrics);
         int width = metrics.widthPixels;
+        thumbnailwidth = width/3;
         //int height1 = metrics.heightPixels;
         int height = ((width/4)*3);
 
@@ -105,7 +116,7 @@ public class LynxPrepVideosFragment extends Fragment {
         LinearLayout.LayoutParams params =new LinearLayout.LayoutParams(width,height);
         mWebView.setLayoutParams(params);
         if(db.getVideosCount()==0){
-            addTempVideos();
+            getVideosFromServer();
             Videos video1 = new Videos();
             video1.setName("My Prep Story: Curtis");
             video1.setDescription("My Prep Story: Curtis");
@@ -134,7 +145,9 @@ public class LynxPrepVideosFragment extends Fragment {
             videoTitle.setText(videos.getName());
             videoDescription.setTypeface(tf);
             videoDescription.setText(videos.getDescription());
+            RelativeLayout.LayoutParams params =new RelativeLayout.LayoutParams(thumbnailwidth,(thumbnailwidth/4)*3);
             ImageView thumnail = (ImageView)v.findViewById(R.id.thumnail);
+            thumnail.setLayoutParams(params);
             new DownloadImagesTask(videos.getVideo_image_url()).execute(thumnail);
 
             v.setId(videos.getVideo_id());
@@ -181,7 +194,9 @@ public class LynxPrepVideosFragment extends Fragment {
         videoTitle.setText(videos.getName());
         videoDescription.setTypeface(tf);
         videoDescription.setText(videos.getDescription());
+        RelativeLayout.LayoutParams params =new RelativeLayout.LayoutParams(thumbnailwidth,(thumbnailwidth/4)*3);
         ImageView thumnail = (ImageView)view.findViewById(R.id.thumnail);
+        thumnail.setLayoutParams(params);
         new DownloadImagesTask(videos.getVideo_image_url()).execute(thumnail);
         view.setId(videos.getVideo_id());
         view.setClickable(true);
@@ -210,38 +225,24 @@ public class LynxPrepVideosFragment extends Fragment {
         reloadFragment();
     }
 
-    private void addTempVideos(){
-        Videos video1 = new Videos();
-        video1.setName("My Prep Story: Curtis");
-        video1.setDescription("My Prep Story: Curtis");
-        video1.setPriority(1);
-        video1.setVideo_url("https://www.youtube.com/embed/vHPh46gRPvc");
-        video1.setVideo_image_url("https://img.youtube.com/vi/vHPh46gRPvc/mqdefault.jpg");
-        db.createVideos(video1);
+    private void getVideosFromServer(){
+        // Get Videos List from Online //
+        JSONObject loginOBJ = new JSONObject();
+        try {
+            loginOBJ.put("email",LynxManager.getActiveUser().getEmail());
+            loginOBJ.put("password",LynxManager.getActiveUser().getPassword());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        Videos video2 = new Videos();
-        video2.setName("My Prep Experience: Donny");
-        video2.setDescription("My Prep Experience: Donny");
-        video2.setPriority(2);
-        video2.setVideo_url("https://www.youtube.com/embed/5CQCcxV385Y");
-        video2.setVideo_image_url("https://img.youtube.com/vi/5CQCcxV385Y/mqdefault.jpg");
-        db.createVideos(video2);
-
-        Videos video3 = new Videos();
-        video3.setName("Why I take PrEP: David");
-        video3.setDescription("Why I take PrEP: David");
-        video3.setPriority(3);
-        video3.setVideo_url("https://www.youtube.com/embed/cEE0OCJpP6w");
-        video3.setVideo_image_url("https://img.youtube.com/vi/cEE0OCJpP6w/mqdefault.jpg");
-        db.createVideos(video3);
-
-        Videos video4 = new Videos();
-        video4.setName("Using PrEP: Some General Information");
-        video4.setDescription("Using PrEP: Some General Information");
-        video4.setPriority(4);
-        video4.setVideo_url("https://www.youtube.com/embed/dRmxyh1TTkE");
-        video4.setVideo_image_url("https://img.youtube.com/vi/dRmxyh1TTkE/mqdefault.jpg");
-        db.createVideos(video4);
+        String login_query_string = LynxManager.getQueryString(loginOBJ.toString());
+        boolean internet_status = LynxManager.haveNetworkConnection(getActivity());
+        if(!internet_status){
+            Toast.makeText(getActivity(), "Internet connection is not available", Toast.LENGTH_SHORT).show();
+        }else{
+            new videosListOnline(login_query_string).execute();
+        }
+        setVideoListData();
     }
     public class DownloadImagesTask extends AsyncTask<ImageView, Void, Bitmap> {
 
@@ -259,8 +260,8 @@ public class LynxPrepVideosFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Bitmap result) {
-            int h = 50; // height in pixels
-            int w = 50; // width in pixels
+            int h = (thumbnailwidth/4)*3; // height in pixels
+            int w = thumbnailwidth; // width in pixels
             Bitmap scaled = Bitmap.createScaledBitmap(result, w, h, true);
             imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             imageView.setImageBitmap(scaled);
@@ -280,6 +281,85 @@ public class LynxPrepVideosFragment extends Fragment {
             }catch(Exception e){}
             return bmp;
         }
+    }
+
+    private class videosListOnline extends AsyncTask<Void, Void, Void> {
+
+        String videosListOnlineResult;
+        String jsonVideosListObj;
+
+
+        videosListOnline(String jsonVideosListObj) {
+            this.jsonVideosListObj = jsonVideosListObj;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Showing progress dialog
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+
+            // Creating service handler class instance
+            ServiceHandler sh = new ServiceHandler();
+            // Making a request to url and getting response
+            String jsonVideosListStr = null;
+            try {
+                jsonVideosListStr = sh.makeServiceCall(LynxManager.getBaseURL() + "videos/getInfo?hashkey="+ LynxManager.stringToHashcode(jsonVideosListObj + LynxManager.hashKey)+"&timestamp="+ URLEncoder.encode(LynxManager.getDateTime(), "UTF-8"), jsonVideosListObj);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            Log.d("Response: ", ">VideosListOnline " + jsonVideosListStr);
+            videosListOnlineResult = jsonVideosListStr;
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            // Dismiss the progress dialog
+            /*if (pDialog.isShowing())
+                pDialog.dismiss(); */
+
+            if (videosListOnlineResult != null) {
+                try {
+                    JSONObject jsonObj = new JSONObject(videosListOnlineResult);
+
+                    // Getting JSON Array node
+                    boolean is_error = jsonObj.getBoolean("is_error");
+                    // Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
+                    if (is_error) {
+                        Log.d("Response: ", "> VideosListOnlineError. " + jsonObj.getString("message"));
+                    } else {
+                        JSONArray videosArray = jsonObj.getJSONArray("videos");
+                        for(int i=0;i<videosArray.length();i++){
+                            /*JSONObject videoObject = videosArray.getJSONObject(i);*/
+                            JSONObject childObj = videosArray.getJSONObject(i).getJSONObject("Video");
+                            Videos video4 = new Videos();
+                            video4.setName(childObj.getString("name"));
+                            video4.setDescription(childObj.getString("description"));
+                            video4.setPriority(childObj.getInt("priority"));
+                            video4.setVideo_url(childObj.getString("video_url"));
+                            video4.setVideo_image_url(childObj.getString("video_image_url"));
+                            db.createVideos(video4);
+
+                        }
+                    }
+                    // looping through All Contacts
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Log.e("ServiceHandler", "Couldn't get any data from the url");
+            }
+
+
+        }
+
     }
 }
 
