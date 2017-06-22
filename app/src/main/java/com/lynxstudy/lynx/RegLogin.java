@@ -10,6 +10,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -34,6 +36,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.vision.text.Text;
 import com.google.gson.Gson;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.DrugMaster;
@@ -69,6 +72,7 @@ import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -89,11 +93,12 @@ public class RegLogin extends AppCompatActivity {
         initializeDatabase();
         AppLockManager.getInstance().enableDefaultAppLockIfAvailable(this);
         int user_count = db.getUsersCount();
+        Log.v("UserCount", String.valueOf(user_count));
         if (user_count > 0) {
             int userBaselineInfoCount = db.getUserBaselineInfoCount();
             List<Users> allUsers = db.getAllUsers();
             LynxManager.setActiveUser(allUsers.get(0));
-
+            Log.v("userBaselineInfoCount", String.valueOf(userBaselineInfoCount));
             if (userBaselineInfoCount == 0) {
 
                 if (savedInstanceState == null) {
@@ -102,8 +107,11 @@ public class RegLogin extends AppCompatActivity {
                             .commit();
                 }
 
-                RegistrationPrimaryPartner regPrimaryPartner = new RegistrationPrimaryPartner();
-                pushFragments("home", regPrimaryPartner, true);
+                /*RegistrationBaselineIntro regPrimaryPartner = new RegistrationBaselineIntro();
+                pushFragments("home", regPrimaryPartner, true);*/
+                Intent baseline = new Intent(this, BaselineActivity.class);
+                startActivity(baseline);
+                finish();
             } else {
                 Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);
                 startActivity(lockscreen);
@@ -119,14 +127,14 @@ public class RegLogin extends AppCompatActivity {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/OpenSans-Regular.ttf");
-        // Custom ActionBar //
+        /*// Custom ActionBar //
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
         getSupportActionBar().setCustomView(cView);
         ImageView viewProfile = (ImageView)cView.findViewById(R.id.viewProfile);
         TextView title = (TextView)cView.findViewById(R.id.actionbartitle);
         title.setTypeface(tf);
-        viewProfile.setVisibility(View.GONE);
+        viewProfile.setVisibility(View.GONE);*/
     }
     private void initializeDatabase() {
         db = new DatabaseHelper(this);
@@ -135,75 +143,75 @@ public class RegLogin extends AppCompatActivity {
         List<TestingLocations> testingLocations = new ArrayList<TestingLocations>();
 
         TestingLocations testingLocation1 = new TestingLocations("AIDS Healthcare Foundation Oakland Wellness Center", "238 E 18th St, Oakland, CA 94606, United States","510-251-8671",
-                "37.8003832", "-122.2528517", " ");
+                "37.8003832", "-122.2528517", " ", "PrEP");
 
         TestingLocations testingLocation2 = new TestingLocations("Berkeley Free Clinic", "2339 Durant Ave, Berkeley, CA 94704, United States","510-548-2570",
-                "37.8677161", "-122.2618111", "http://www.berkeleyfreeclinic.org/pages/gmhc");
+                "37.8677161", "-122.2618111", "http://www.berkeleyfreeclinic.org/pages/gmhc","PrEP");
 
         TestingLocations testingLocation3 = new TestingLocations("Native American Health Center Incorporated NAHC of Oakland ", "2950 International Blvd , Oakland, CA 94601" ,"415-621-4371",
-                "37.7790324", "-122.2282187", "http://www.nativehealth.org/content/circle-healing-hiv-and-hcv-services");
+                "37.7790324", "-122.2282187", "http://www.nativehealth.org/content/circle-healing-hiv-and-hcv-services","PrEP");
 
         TestingLocations testingLocation4 = new TestingLocations("San Francisco City Clinic", "356 7th Street, San Francisco, CA 94103","415-487-5500",
-                "37.7759146", "-122.407104", "http://www.sfcityclinic.org/");
+                "37.7759146", "-122.407104", "http://www.sfcityclinic.org/","PrEP");
 
         TestingLocations testingLocation5 = new TestingLocations("Alameda County Medical Center Highland Adult Immunology Clinic ",
-                "1411 E 31st St 7th Floor, Oakland, CA 94602","510-437-4373", "37.7986299", "-122.231627", " ");
+                "1411 E 31st St 7th Floor, Oakland, CA 94602","510-437-4373", "37.7986299", "-122.231627", " ","PrEP");
 
         TestingLocations testingLocation6 = new TestingLocations("Ann Chandler Public Health Center", "830 University Avenue, Berkeley, CA 94710","510-981-5350",
-                "37.8678272", "-122.2972235", "http://www.ci.berkeley.ca.us/Ann_Chandler_Public_Health_Center/");
+                "37.8678272", "-122.2972235", "http://www.ci.berkeley.ca.us/Ann_Chandler_Public_Health_Center/","HIV Testing");
 
         TestingLocations testingLocation7 = new TestingLocations(" Planned Parenthood ", "1682 7th Street , Oakland, CA 94607","510-300-3800",
-                "37.806617", "-122.300454", "	");
+                "37.806617", "-122.300454", "	","HIV Testing");
 
         TestingLocations testingLocation8 = new TestingLocations("Planned Parenthood", "7200 Bancroft Ave. , Oakland, CA 94605","510-300-3800",
-                "37.7673194", "-122.1779008", "");
+                "37.7673194", "-122.1779008", "","HIV Testing");
 
         TestingLocations testingLocation9 = new TestingLocations("Planned Parenthood", "1032 A Street , Hayward, CA 94541","510-300-3800",
-                "37.6743445", "-122.0831806", "");
+                "37.6743445", "-122.0831806", "","HIV Testing");
 
         TestingLocations testingLocation10 = new TestingLocations("AIDS Project of the East Bay ", "1320 Webster St, Oakland, CA 94612" ,"510-663-7979 x122",
-                "37.802962", "-122.2687084", "http://www.apeb.org/programs.htm#well");
+                "37.802962", "-122.2687084", "http://www.apeb.org/programs.htm#well","HIV Testing");
 
         TestingLocations testingLocation11 = new TestingLocations("Asian Health Services Asian Medical Center ", "818 Webster St, Oakland, CA 94607","510-986-6830",
-                "37.7993669", "-122.270941", "http://www.asianhealthservices.org/handler.php?p=services-HIVAIDS");
+                "37.7993669", "-122.270941", "http://www.asianhealthservices.org/handler.php?p=services-HIVAIDS","STI Testing");
 
         TestingLocations testingLocation12 = new TestingLocations("Alameda County Medical Center Eastmont Wellness Center ", "6955 Foothill Blvd Suite 200, Oakland, CA 94605" ,"510-567-5700",
-                "37.7680904", "-122.1760889", "http://www.eastmontahs.org/");
+                "37.7680904", "-122.1760889", "http://www.eastmontahs.org/","STI Testing");
 
         TestingLocations testingLocation13 = new TestingLocations("Planned Parenthood Shasta Pacific El Cerrito Health Center ", "320 El Cerrito Plaza, El Cerrito, CA 94530","510-527-5806",
-                "37.8996547", "-122.2998653", "");
+                "37.8996547", "-122.2998653", "","STI Testing");
 
         TestingLocations testingLocation14 = new TestingLocations("Asian and Pacific Islander Wellness Center", "730 Polk St, 4th Floor, San Francisco, CA 94109","415-292-3400 x368",
-                "37.7837216", "-122.4191438", "http://www.apiwellness.org/wellnessclinic.html");
+                "37.7837216", "-122.4191438", "http://www.apiwellness.org/wellnessclinic.html","STI Testing");
 
         TestingLocations testingLocation15 = new TestingLocations("Mission Neighborhood Health Center ", "1663 Mission Street, Suite 603, San Francisco, CA 94013","415-240-4104",
-                "37.7712065", "-122.4192045", "http://www.mnhc.org/community_programs/latino-wellness-center/");
+                "37.7712065", "-122.4192045", "http://www.mnhc.org/community_programs/latino-wellness-center/","STI Testing");
 
-        TestingLocations testingLocation16 = new TestingLocations("Magnet", "4122 18th St, San Francisco, CA 94114","415-581-1600", "37.7609663", "-122.4356606", "http://www.magnetsf.org/");
+        TestingLocations testingLocation16 = new TestingLocations("Magnet", "4122 18th St, San Francisco, CA 94114","415-581-1600", "37.7609663", "-122.4356606", "http://www.magnetsf.org/","PrEP");
 
         TestingLocations testingLocation17 = new TestingLocations(" UCSF Alliance Health Project", "1930 Market St, San Francisco, CA 94102","415-502-8378",
-                "37.7705078", "-122.4257072", "http://www.ucsf-ahp.org/hiv/hcat/");
+                "37.7705078", "-122.4257072", "http://www.ucsf-ahp.org/hiv/hcat/","PrEP");
 
         TestingLocations testingLocation18 = new TestingLocations("Marin County STD Clinic", "920 Grand Ave, San Rafael, CA","415-499-6944", "37.9717107",
-                "-122.5184603", "https://www.marinhhs.org/sexually-transmitted-disease-std-services");
+                "-122.5184603", "https://www.marinhhs.org/sexually-transmitted-disease-std-services","PrEP");
 
         TestingLocations testingLocation19 = new TestingLocations("Concord Health Center", "3052 Willow Pass Road, Clinic D, Concord, CA 94519", "1-800-479-9664",
-                "37.980602", "-122.0210839", "http://cchealth.org/std/");
+                "37.980602", "-122.0210839", "http://cchealth.org/std/","HIV Testing");
 
         TestingLocations testingLocation20 = new TestingLocations("Pittsburg Health Center", "2311 Loveridge Road, East Clinic, Pittsburg, CA 94565","1-800-479-9664",
-                "38.0067923", "-121.8695384", "http://cchealth.org/std/");
+                "38.0067923", "-121.8695384", "http://cchealth.org/std/","HIV Testing");
 
         TestingLocations testingLocation21 = new TestingLocations("West County Health Center", "13601 San Pablo Ave, San Pablo, CA  94806","1-800-479-9664",
-                "37.9557666", "-122.3381267", "http://cchealth.org/std/");
+                "37.9557666", "-122.3381267", "http://cchealth.org/std/","HIV Testing");
 
         TestingLocations testingLocation22 = new TestingLocations("Planned Parenthood", "2907 El Camino Real, Redwood City, CA 94061","650-503-7810",
-                "37.4692778", "-122.2112942", "");
+                "37.4692778", "-122.2112942", "","STI Testing");
 
         TestingLocations testingLocation23 = new TestingLocations("Planned Parenthood", "225 San Antonio Rd, Mountain View, CA 94040","650-948-0807",
-                "37.4059219", "-122.1102896", "");
+                "37.4059219", "-122.1102896", "","STI Testing");
 
         TestingLocations testingLocation24 = new TestingLocations("Billy DeFrank LGBT Community Center of Silicon Valley", "938 The Alameda, San Jose, CA 95126","408-293-3040",
-                "37.3313637", "-121.9080087", "http://www.defrankcenter.org/");
+                "37.3313637", "-121.9080087", "http://www.defrankcenter.org/","STI Testing");
 
 
         testingLocations.add(testingLocation1);
@@ -423,261 +431,244 @@ public class RegLogin extends AppCompatActivity {
         return true;
     }
 
-    public boolean showRegistrationConfirm(View view) {
-        RegistrationConfirmFragment fragRegConfirmation = new RegistrationConfirmFragment();
-
+    public boolean showRegistrationUserDetails(View view){
+        RegistrationUserDetails fragRegUserDetails = new RegistrationUserDetails();
         EditText firstname = (EditText) findViewById(R.id.regFirstName);
         EditText lastname = (EditText) findViewById(R.id.regLastName);
-        EditText email = (EditText) findViewById(R.id.regEmail);
-        EditText pass = (EditText) findViewById(R.id.regPass);
-        EditText reppass = (EditText) findViewById(R.id.regRepPass);
         EditText phonenumber = (EditText) findViewById(R.id.regPhone);
-        EditText et_passcode = (EditText) findViewById(R.id.regPasscode);
-        EditText et_sec_ans = (EditText) findViewById(R.id.regSecAnswer);
         EditText et_dob = (EditText) findViewById(R.id.regDOB);
-
-        Spinner spinner_races_list = (Spinner) findViewById(R.id.mySpinner);
-        Spinner spinner = (Spinner) findViewById(R.id.regSecQuestion);
+        TextView spinner_races_list = (TextView)findViewById(R.id.SelectBox);
 
         String first_name = firstname.getText().toString();
         String last_name = lastname.getText().toString();
+        String races_list = spinner_races_list.getText().toString();
+        String dob = et_dob.getText().toString();
+        boolean invalid_dob = LynxManager.dateValidation(dob);
+        String phone_number = phonenumber.getText().toString();
+
+        if (first_name.isEmpty()) {
+            Toast.makeText(RegLogin.this,"First Name should not be Empty",Toast.LENGTH_SHORT).show();
+            firstname.requestFocus();
+        } else if (last_name.isEmpty()) {
+            Toast.makeText(RegLogin.this,"Last Name should not be Empty",Toast.LENGTH_SHORT).show();
+            lastname.requestFocus();
+        }else if (dob.isEmpty()) {
+            Toast.makeText(RegLogin.this,"Enter your Date of Birth",Toast.LENGTH_SHORT).show();
+            et_dob.requestFocus();
+        } else if(invalid_dob){
+            Toast.makeText(RegLogin.this,"Invalid Date",Toast.LENGTH_SHORT).show();
+        }else if(phone_number.isEmpty()){
+            Toast.makeText(RegLogin.this,"Please enter mobile number",Toast.LENGTH_SHORT).show();
+        } else if(races_list.equals("Race/Ethnicity")){
+            Toast.makeText(this,"Please Select Race/Ethnicity",Toast.LENGTH_SHORT).show();
+        }else{
+            String isPrep = "No";
+            dob = LynxManager.getFormatedDate("MM/dd/yyyy",dob,"dd-MMM-yyyy");
+            Users tmpUser = new Users(1, LynxManager.encryptString(first_name), LynxManager.encryptString(last_name),
+                    "", "", LynxManager.encryptString(phone_number),"", "", "", "", "", "","", LynxManager.encryptString(dob), LynxManager.encryptString(races_list),
+                    "", LynxManager.encryptString(isPrep), String.valueOf(R.string.statusUpdateNo),true);
+            LynxManager.setActiveUser(tmpUser);
+            pushFragments("home", fragRegUserDetails, true);
+        }
+        return true;
+    }
+    public boolean showRegistrationSecurityDetails(View view){
+        EditText email = (EditText) findViewById(R.id.regEmail);
+        EditText pass = (EditText) findViewById(R.id.regPass);
+        EditText reppass = (EditText) findViewById(R.id.regRepPass);
         String e_mail = email.getText().toString();
         String password = pass.getText().toString();
         String rep_password = reppass.getText().toString();
-        String phone_number = phonenumber.getText().toString();
-        String pass_code = et_passcode.getText().toString();
-        String sec_ans = et_sec_ans.getText().toString();
-        String dob = et_dob.getText().toString();
-        String sec_qn = spinner.getSelectedItem().toString();
-        String gender_list = "male";
-        String races_list = spinner_races_list.getSelectedItem().toString();
 
         Pattern pattern;
         Matcher matcher;
         final String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         pattern = Pattern.compile(EMAIL_PATTERN);
         matcher = pattern.matcher(e_mail);
-        boolean invalid_dob = LynxManager.dateValidation(dob);
-        if (first_name.isEmpty()) {
-            firstname.setError("First name should not be Empty");
-            firstname.requestFocus();
-        } else if (last_name.isEmpty()) {
-            lastname.setError("Last Name should not be Empty");
-            lastname.requestFocus();
-        } else if (e_mail.isEmpty() || !matcher.matches()) {
-            email.setError("Enter a valid Email");
+
+        if (e_mail.isEmpty() || !matcher.matches()) {
+            Toast.makeText(RegLogin.this,"In-valid email",Toast.LENGTH_SHORT).show();
             email.requestFocus();
         } else if (password.isEmpty() || !rep_password.equals(password)) {
-            pass.setError("Password Mismatching");
+            Toast.makeText(RegLogin.this,"Password Mismatching",Toast.LENGTH_SHORT).show();
             pass.requestFocus();
         } else if (rep_password.isEmpty() || !rep_password.equals(password)) {
-            reppass.setError("Password Mismatching");
+            Toast.makeText(RegLogin.this,"Password Mismatching",Toast.LENGTH_SHORT).show();
             reppass.requestFocus();
-        } else if (phone_number.isEmpty()) {
-            phonenumber.setError("Enter a valid Phone Number");
-            phonenumber.requestFocus();
-        } else if (pass_code.isEmpty()) {
-            et_passcode.setError("Enter passcode");
-            et_passcode.requestFocus();
-        } else if (sec_ans.isEmpty()) {
-            et_sec_ans.setError("Enter answer for your Security Question");
+        } else{
+            LynxManager.getActiveUser().setEmail(LynxManager.encryptString(e_mail));
+            LynxManager.getActiveUser().setPassword(LynxManager.encryptString(password));
+            RegistrationSecurityDetails fragRegistration = new RegistrationSecurityDetails();
+            pushFragments("home", fragRegistration, true);
+        }
+            return true;
+    }
+    public boolean showRegistrationConfirm(View view) {
+        RegistrationConfirmFragment fragRegConfirmation = new RegistrationConfirmFragment();
+        EditText et_sec_ans = (EditText) findViewById(R.id.sec_ans);
+        EditText et_passcode = (EditText) findViewById(R.id.newPasscode);
+        TextView tv_sec_qn = (TextView) findViewById(R.id.sec_qn);
+        if(tv_sec_qn.getText().toString().equals("Pick a security question")){
+            Toast.makeText(RegLogin.this,"Please select security question",Toast.LENGTH_SHORT).show();
+        } else if (et_sec_ans.getText().toString().isEmpty()) {
+            Toast.makeText(RegLogin.this,"Enter answer for your security question",Toast.LENGTH_SHORT).show();
             et_sec_ans.requestFocus();
-        } else if (dob.isEmpty()) {
-            et_dob.setError("Enter your Date of Birth");
-            et_dob.requestFocus();
-        } else if(invalid_dob){
-            et_dob.setError("Invalid Date");
-        } else if(races_list.length()==0){
-            Toast.makeText(this,"Please Select Race/Ethnicity",Toast.LENGTH_SHORT).show();
-        } else {
-            et_dob.setError(null);
-            et_sec_ans.setError(null);
-            String isPrep = "No";
-            dob = LynxManager.getFormatedDate("MM/dd/yyyy",dob,"dd-MMM-yyyy");
-            Users tmpUser = new Users(1, LynxManager.encryptString(first_name), LynxManager.encryptString(last_name),
-                    LynxManager.encryptString(e_mail), LynxManager.encryptString(password), LynxManager.encryptString(phone_number),
-                    LynxManager.encryptString(pass_code), "", "", "", "", LynxManager.encryptString(sec_qn),
-                    LynxManager.encryptString(sec_ans), LynxManager.encryptString(dob), LynxManager.encryptString(races_list),
-                    LynxManager.encryptString(gender_list), LynxManager.encryptString(isPrep), String.valueOf(R.string.statusUpdateNo),true);
-            LynxManager.setActiveUser(tmpUser);
+        } else if (et_passcode.getText().toString().length()<4) {
+            Toast.makeText(RegLogin.this,"Enter passcode",Toast.LENGTH_SHORT).show();
+            et_passcode.requestFocus();
+        }else{
+            LynxManager.getActiveUser().setSecurityquestion(LynxManager.encryptString(tv_sec_qn.getText().toString()));
+            LynxManager.getActiveUser().setSecurityanswer(LynxManager.encryptString(et_sec_ans.getText().toString()));
+            LynxManager.getActiveUser().setPasscode(LynxManager.encryptString(et_passcode.getText().toString()));
             pushFragments("home", fragRegConfirmation, true);
         }
+        return true;
+    }
 
+    public boolean showEditDetails (View view){
+        RegistrationEdit edit = new RegistrationEdit();
+        pushFragments("home", edit, true);
+        return true;
+    }
+
+    public boolean backToConfirmScreen (View view){
+        /*RegistrationConfirmFragment fragRegConfirmation = new RegistrationConfirmFragment();
+        pushFragments("home", fragRegConfirmation, true);*/
+
+        EditText firstname = (EditText) findViewById(R.id.regFirstName);
+        EditText lastname = (EditText) findViewById(R.id.regLastName);
+        EditText phonenumber = (EditText) findViewById(R.id.regPhone);
+        EditText confirm_email = (EditText) findViewById(R.id.confirm_email);
+        EditText confirm_password = (EditText) findViewById(R.id.confirm_password);
+        EditText confirm_sec_ans = (EditText) findViewById(R.id.confirm_sec_ans);
+        EditText c_passcode = (EditText) findViewById(R.id.c_passcode);
+        EditText confirm_dob = (EditText) findViewById(R.id.confirm_dob);
+        TextView confirm_race = (TextView) findViewById(R.id.confirm_race);
+        TextView confirm_sec_qn = (TextView) findViewById(R.id.confirm_sec_qn);
+
+        String first_name = firstname.getText().toString();
+        String last_name = lastname.getText().toString();
+        String phone_number = phonenumber.getText().toString();
+        String pass_code = c_passcode.getText().toString();
+        String email = confirm_email.getText().toString();
+        String password = confirm_password.getText().toString();
+        String sec_ans = confirm_sec_ans.getText().toString();
+        String dob = confirm_dob.getText().toString();
+        String sec_qn = confirm_sec_qn.getText().toString();
+        String gender_list = "male";
+        String races_list = confirm_race.getText().toString();
+        boolean invalid_dob = LynxManager.dateValidation(dob);
+
+        Pattern pattern;
+        Matcher matcher;
+        final String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        pattern = Pattern.compile(EMAIL_PATTERN);
+        matcher = pattern.matcher(email);
+
+        if (first_name.isEmpty()) {
+            Toast.makeText(RegLogin.this,"First Name should not be Empty",Toast.LENGTH_SHORT).show();
+            firstname.requestFocus();
+        } else if (last_name.isEmpty()) {
+            Toast.makeText(RegLogin.this,"Last Name should not be Empty",Toast.LENGTH_SHORT).show();
+            lastname.requestFocus();
+        }else if (dob.isEmpty()) {
+            Toast.makeText(RegLogin.this,"Enter your Date of Birth",Toast.LENGTH_SHORT).show();
+            confirm_dob.requestFocus();
+        } else if(invalid_dob){
+            Toast.makeText(RegLogin.this,"Invalid Date",Toast.LENGTH_SHORT).show();
+        }else if(phone_number.isEmpty()){
+            Toast.makeText(RegLogin.this,"Please enter mobile number",Toast.LENGTH_SHORT).show();
+        } else if(races_list.equals("Race/Ethnicity")){
+            Toast.makeText(this,"Please Select Race/Ethnicity",Toast.LENGTH_SHORT).show();
+        }else if (email.isEmpty() || !matcher.matches()) {
+            Toast.makeText(RegLogin.this,"In-valid email",Toast.LENGTH_SHORT).show();
+            confirm_email.requestFocus();
+        } else if (password.isEmpty()) {
+            Toast.makeText(RegLogin.this,"Enter password",Toast.LENGTH_SHORT).show();
+            confirm_password.requestFocus();
+        } else if (confirm_sec_ans.getText().toString().isEmpty()) {
+            Toast.makeText(RegLogin.this,"Enter answer for your security question",Toast.LENGTH_SHORT).show();
+            confirm_sec_ans.requestFocus();
+        } else if (c_passcode.getText().toString().length()<4) {
+            Toast.makeText(RegLogin.this,"Enter passcode",Toast.LENGTH_SHORT).show();
+            c_passcode.requestFocus();
+        }else{
+            LynxManager.getActiveUser().setFirstname(LynxManager.encryptString(first_name));
+            LynxManager.getActiveUser().setLastname(LynxManager.encryptString(last_name));
+            LynxManager.getActiveUser().setMobile(LynxManager.encryptString(phone_number));
+            LynxManager.getActiveUser().setPasscode(LynxManager.encryptString(pass_code));
+            LynxManager.getActiveUser().setEmail(LynxManager.encryptString(email));
+            LynxManager.getActiveUser().setPassword(LynxManager.encryptString(password));
+            LynxManager.getActiveUser().setSecurityanswer(LynxManager.encryptString(sec_ans));
+            LynxManager.getActiveUser().setSecurityquestion(LynxManager.encryptString(sec_qn));
+            LynxManager.getActiveUser().setDob(LynxManager.encryptString(dob));
+            LynxManager.getActiveUser().setGender(LynxManager.encryptString(gender_list));
+            LynxManager.getActiveUser().setRace(LynxManager.encryptString(races_list));
+            popFragment();
+        }
         return true;
     }
 
     public boolean showRegistration_primary_partner(View view) throws ParseException {
-
-        RegistrationPrimaryPartner regPrimaryPartner = new RegistrationPrimaryPartner();
-        Users user = LynxManager.getActiveUser();
-        Gson gson = new Gson();
-        user.setStatus_encrypt(true);
-        user.decryptUser();
-        String json = gson.toJson(user);
-        String get_query_string = LynxManager.getQueryString(json);
-        boolean internet_status = LynxManager.haveNetworkConnection(this);
-        if(!internet_status){
-            Toast.makeText(this, "Internet connection is not available", Toast.LENGTH_SHORT).show();
-        }
-
-        if (LynxManager.releaseMode == 0) {
-            int user_local_id = db.createuser(LynxManager.getActiveUser());
-            LynxManager.getActiveUser().setUser_id(user_local_id);
-            LynxManager.getActiveUser().setCreated_at(db.getUserCreatedAt(user_local_id));
-            pushFragments("Home", regPrimaryPartner, true);
+        TextView confirm_firstname,confirm_lastname,confirm_email,confirm_password;
+        TextView confirm_phone,c_passcode,confirm_sec_qn,confirm_sec_ans,confirm_dob,confirm_race;
+        confirm_firstname = (TextView)findViewById(R.id.confirm_firstname);
+        confirm_lastname = (TextView)findViewById(R.id.confirm_lastname);
+        confirm_email = (TextView)findViewById(R.id.confirm_email);
+        confirm_password = (TextView)findViewById(R.id.confirm_password);
+        confirm_phone = (TextView)findViewById(R.id.confirm_phone);
+        c_passcode = (TextView)findViewById(R.id.c_passcode);
+        confirm_sec_qn = (TextView)findViewById(R.id.confirm_sec_qn);
+        confirm_sec_ans = (TextView)findViewById(R.id.confirm_sec_ans);
+        confirm_dob = (TextView)findViewById(R.id.confirm_dob);
+        confirm_race = (TextView)findViewById(R.id.confirm_race);
+        if (confirm_firstname.getText().toString().isEmpty()) {
+            Toast.makeText(RegLogin.this,"Please enter all the required fields",Toast.LENGTH_SHORT).show();
+        }else if (confirm_lastname.getText().toString().isEmpty()) {
+            Toast.makeText(RegLogin.this,"Please enter all the required fields",Toast.LENGTH_SHORT).show();
+        }else if (confirm_email.getText().toString().isEmpty()) {
+            Toast.makeText(RegLogin.this,"Please enter all the required fields",Toast.LENGTH_SHORT).show();
+        }else if (confirm_password.getText().toString().isEmpty()) {
+            Toast.makeText(RegLogin.this,"Please enter all the required fields",Toast.LENGTH_SHORT).show();
+        }else if (confirm_phone.getText().toString().isEmpty()) {
+            Toast.makeText(RegLogin.this,"Please enter all the required fields",Toast.LENGTH_SHORT).show();
+        }else if (c_passcode.getText().toString().isEmpty()) {
+            Toast.makeText(RegLogin.this,"Please enter all the required fields",Toast.LENGTH_SHORT).show();
+        }else if (confirm_sec_qn.getText().toString().isEmpty()) {
+            Toast.makeText(RegLogin.this,"Please enter all the required fields",Toast.LENGTH_SHORT).show();
+        }else if (confirm_sec_ans.getText().toString().isEmpty()) {
+            Toast.makeText(RegLogin.this,"Please enter all the required fields",Toast.LENGTH_SHORT).show();
+        }else if (confirm_dob.getText().toString().isEmpty()) {
+            Toast.makeText(RegLogin.this,"Please enter all the required fields",Toast.LENGTH_SHORT).show();
+        }else if (confirm_race.getText().toString().isEmpty()) {
+            Toast.makeText(RegLogin.this,"Please enter all the required fields",Toast.LENGTH_SHORT).show();
         }else{
-            new registerOnline(get_query_string).execute();
+            RegistrationBaselineIntro regPrimaryPartner = new RegistrationBaselineIntro();
+            Users user = LynxManager.getActiveUser();
+            Gson gson = new Gson();
+            user.setStatus_encrypt(true);
+            user.decryptUser();
+            String json = gson.toJson(user);
+            String get_query_string = LynxManager.getQueryString(json);
+            boolean internet_status = LynxManager.haveNetworkConnection(this);
+            if(!internet_status){
+                Toast.makeText(this, "Internet connection is not available", Toast.LENGTH_SHORT).show();
+            }
+
+            if (LynxManager.releaseMode == 0) {
+                int user_local_id = db.createuser(LynxManager.getActiveUser());
+                LynxManager.getActiveUser().setUser_id(user_local_id);
+                LynxManager.getActiveUser().setCreated_at(db.getUserCreatedAt(user_local_id));
+                /*pushFragments("Home", regPrimaryPartner, true);*/
+                Intent baseline = new Intent(this, BaselineActivity.class);
+                startActivity(baseline);
+                finish();
+            }else{
+                new registerOnline(get_query_string).execute();
+            }
         }
         return true;
-
     }
-
-
-
-    public boolean showRegistration_partner_info(View view) {
-        RegistrationPartnerInfo fragPartnerInfo = new RegistrationPartnerInfo();
-        EditText HIVNegativeCount = (EditText) findViewById(R.id.negativePartners);
-        EditText HIVPossitiveCount = (EditText) findViewById(R.id.positivePartners);
-        EditText HIVUnknownCount = (EditText) findViewById(R.id.unknownPartners);
-        EditText asTOP = (EditText) findViewById(R.id.number_as_top);
-        EditText asBottom = (EditText) findViewById(R.id.number_as_bottom);
-        RadioGroup pri_partner = (RadioGroup) findViewById(R.id.primary_sex_partner);
-        int selectedId = pri_partner.getCheckedRadioButtonId();
-        RadioButton rd_btn = (RadioButton) findViewById(selectedId);
-        String pri_partner_value = rd_btn.getText().toString();
-        String strHIVNegativeCount = HIVNegativeCount.getText().toString();
-        String strHIVPossitiveCount = HIVPossitiveCount.getText().toString();
-        String strHIVUnknownCount = HIVUnknownCount.getText().toString();
-        String strasTOP = asTOP.getText().toString();
-        String strasBottom = asBottom.getText().toString();
-        String strasTOPPercent = String.valueOf(((TextView) findViewById(R.id.textProgress_id1)).getText());
-        String strasBOTTPercent = String.valueOf(((TextView) findViewById(R.id.textProgress_id2)).getText());
-        RadioGroup regPrep = (RadioGroup) findViewById(R.id.regPrep);
-        int regPrepID = regPrep.getCheckedRadioButtonId();
-        String isPrep = ((RadioButton) findViewById(regPrepID)).getText().toString();
-        LynxManager.getActiveUser().setIs_prep(isPrep);
-        LynxManager.getActiveUser().setStatus_update(String.valueOf(R.string.statusUpdateNo));
-        db.updateUsers(LynxManager.getActiveUser());
-        if(strHIVNegativeCount.isEmpty()){
-            HIVNegativeCount.setError("Enter the number of HIV negative partners");
-            HIVNegativeCount.requestFocus();
-        }else if(strHIVPossitiveCount.isEmpty()){
-            HIVPossitiveCount.setError("Enter the number of HIV positive partners");
-            HIVPossitiveCount.requestFocus();
-        }else if(strHIVUnknownCount.isEmpty()){
-            HIVUnknownCount.setError("Enter the number of unknown HIV partners");
-            HIVUnknownCount.requestFocus();
-        }else if(strasTOP.isEmpty()){
-            asTOP.setError("Enter the number of times you had anal sex as TOP");
-            asTOP.requestFocus();
-        }else if(strasBottom.isEmpty()){
-            asBottom.setError("Enter the number of times you had anal sex as BOTTOM");
-            asBottom.requestFocus();
-        }else{
-            User_baseline_info userBaselineInfo = new User_baseline_info(LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(strHIVNegativeCount)
-                    , LynxManager.encryptString(strHIVPossitiveCount), LynxManager.encryptString(strHIVUnknownCount),
-                    LynxManager.encryptString(strasTOP), LynxManager.encryptString(strasTOPPercent),
-                    LynxManager.encryptString(strasBottom), LynxManager.encryptString(strasBOTTPercent),
-                    LynxManager.encryptString(pri_partner_value), String.valueOf(R.string.statusUpdateNo),true);
-
-            LynxManager.setActiveUserBaselineInfo(userBaselineInfo);
-            if (pri_partner_value.equals("Yes")) {
-                pushFragments("Home", fragPartnerInfo, true);
-            } else {
-                RegistrationDrugContent fragDrugUsage = new RegistrationDrugContent();
-                pushFragments("Home", fragDrugUsage, true);
-
-            }
-        }
-
-        return true;
-    }
-
-    public boolean onPrimaryPartnerNext(View view) {
-        TextView nick_name = (TextView) findViewById(R.id.nick_name);
-        String partnerNickName = nick_name.getText().toString();
-        String partRelationshipPeriod;
-        String partUndetectable;
-
-        if (partnerNickName.isEmpty()){
-            Toast.makeText(this, "Please enter your partner's Nick name", Toast.LENGTH_SHORT).show();
-            nick_name.requestFocus();
-        }
-        else {
-
-            //RadioButton radioGender = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_gender)).getCheckedRadioButtonId());
-            RadioButton radioHIVStatus = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_hivstatus)).getCheckedRadioButtonId());
-            RadioButton radioOtherPartner = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_partner)).getCheckedRadioButtonId());
-            RadioButton radioAddtoBB = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_blackbook)).getCheckedRadioButtonId());
-            RadioButton radioRelationshipPeriod = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_relationshipPeriod)).getCheckedRadioButtonId());
-            RadioButton radioUndetectable = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_undetectable)).getCheckedRadioButtonId());
-            if (!LynxManager.relationShipLayoutHidden){
-                partRelationshipPeriod = radioRelationshipPeriod.getText().toString();
-                if (partRelationshipPeriod.equals("Less than 6 months") ){
-                    partRelationshipPeriod = "Yes";
-                }
-                else{
-                    partRelationshipPeriod = "No";
-                }
-            }
-            else {
-                partRelationshipPeriod = "";
-            }
-
-            if (!LynxManager.undetectableLayoutHidden){
-                partUndetectable = radioUndetectable.getText().toString();
-            }
-            else {
-                partUndetectable = "";
-            }
-
-
-            // String partGender = radioGender.getText().toString();
-            String partGender = "Male";
-            String partHIVStatus = radioHIVStatus.getText().toString();
-            String partOtherPartner = radioOtherPartner.getText().toString();
-            String partAddtoBB = radioAddtoBB.getText().toString();
-
-            UserPrimaryPartner userPrimaryPartner = new UserPrimaryPartner(LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(partnerNickName)
-                    , LynxManager.encryptString(partGender), LynxManager.encryptString(partHIVStatus), LynxManager.encryptString(partUndetectable)
-                    , LynxManager.encryptString(partOtherPartner), LynxManager.encryptString(partRelationshipPeriod), LynxManager.encryptString(partAddtoBB),String.valueOf(R.string.statusUpdateNo),true);
-
-            LynxManager.setActiveUserPrimaryPartner(userPrimaryPartner);
-
-            RegistrationDrugContent fragDrugUsage = new RegistrationDrugContent();
-            pushFragments("Home", fragDrugUsage, true);
-        }
-
-        return true;
-    }
-
-    public boolean showRegistration_alcohol_calculation(View view) {
-        RegistrationAlcoholCalculation regHeavyAlcoholUse = new RegistrationAlcoholCalculation();
-        RegistrationStiInfo fragRegSTIInfo = new RegistrationStiInfo();
-        boolean isAlcoholSelected = false;
-        LynxManager.curDurgUseID = 0;
-
-        String searchString = "Alcohol";
-        LynxManager.removeAllUserDrugUse();
-        for (String drugName : LynxManager.selectedDrugs) {
-            DrugMaster drugMaster = db.getDrugbyName(drugName);
-            UserDrugUse userDrugUse = new UserDrugUse(LynxManager.getActiveUser().getUser_id(), drugMaster.getDrug_id(), LynxManager.encryptString("Yes"),String.valueOf(R.string.statusUpdateNo),true);
-            if (drugName.equals(searchString)) {
-                isAlcoholSelected = true;
-                LynxManager.curDurgUseID = -1;
-            }
-
-            LynxManager.setActiveUserDrugUse(userDrugUse);
-        }
-
-
-        if (isAlcoholSelected)
-            pushFragments("Home", regHeavyAlcoholUse, true);
-        else
-            pushFragments("Home", fragRegSTIInfo, true);
-        return true;
-    }
-
     public boolean showRegistration_change_passcode(View view) {
         //   registration_change_passcode fragChangePasscode = new registration_change_passcode();
         //    pushFragments("home", fragChangePasscode, true);
@@ -700,161 +691,7 @@ public class RegLogin extends AppCompatActivity {
         return true;
     }
 
-    public boolean onHeavyAlcholNext(View view) {
 
-        RadioButton alcDaysCountPerWeek = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.alcoholCalculation)).getCheckedRadioButtonId());
-        EditText alcCountPerDay = (EditText) findViewById(R.id.no_of_drinks);
-        if(alcCountPerDay.getText().toString().isEmpty()){
-            alcCountPerDay.setError("Enter how many drinks you had on a typical day");
-            alcCountPerDay.requestFocus();
-        }else{
-
-            UserAlcoholUse userAlcoholUse = new UserAlcoholUse(2, LynxManager.getActiveUser().getUser_id(),
-                    LynxManager.encryptString(alcDaysCountPerWeek.getText().toString()), LynxManager.encryptString(alcCountPerDay.getText().toString()), LynxManager.encryptString("Yes"),String.valueOf(R.string.statusUpdateNo),true);
-            LynxManager.setActiveUserAlcoholUse(userAlcoholUse);
-            RegistrationStiInfo fragRegSTIInfo = new RegistrationStiInfo();
-
-            pushFragments("Home", fragRegSTIInfo, true);
-        }
-        return true;
-    }
-
-    public boolean onSTIInfoNext(View view) {
-
-        LynxManager.removeAllUserSTIDiag();
-        for (String stiName : LynxManager.selectedSTIs) {
-            STIMaster stiMaster = db.getSTIbyName(stiName);
-            UserSTIDiag userSTIDiag = new UserSTIDiag(LynxManager.getActiveUser().getUser_id(), stiMaster.getSti_id(), LynxManager.encryptString("Yes"),String.valueOf(R.string.statusUpdateNo),true);
-            LynxManager.setActiveUserSTIDiag(userSTIDiag);
-        }
-        RegistrationSummary fragRegSummary = new RegistrationSummary();
-        pushFragments("home", fragRegSummary, true);
-
-
-        return true;
-    }
-
-    public boolean onRegSummaryConfirm(View view) throws JSONException {
-
-        //Create BaseLine
-        User_baseline_info activeBaselineInfo = LynxManager.getActiveUserBaselineInfo();
-        int createbaselineID = db.createbaseline(activeBaselineInfo);
-        activeBaselineInfo.setBaseline_id(createbaselineID);
-        activeBaselineInfo.setCreated_at(db.getUserBaselineCreatedAtByUserId(LynxManager.getActiveUser().getUser_id()));
-
-        Gson gson_baseline = new Gson();
-        activeBaselineInfo.setStatus_encrypt(true);
-        activeBaselineInfo.decryptUserBaselineInfo();
-        String json_baseline = gson_baseline.toJson(activeBaselineInfo);
-        String baseLineQueryString = LynxManager.getQueryString(json_baseline);
-        new userBaseLineOnline(baseLineQueryString).execute();
-
-        // Create PrimaryPartner
-        UserPrimaryPartner activePrimaryPartner = LynxManager.getActiveUserPrimaryPartner();
-        int primarypartnerID = db.createPrimaryPartner(activePrimaryPartner);
-        activePrimaryPartner.setPrimarypartner_id(primarypartnerID);
-        activePrimaryPartner.setCreated_at(db.getPriPartnerCreatedAtbyID(primarypartnerID));
-
-        Gson gson_primaryPartner = new Gson();
-        activePrimaryPartner.setStatus_encrypt(true);
-        activePrimaryPartner.decryptUserPrimaryPartner();
-        String json_primaryPartner = gson_primaryPartner.toJson(activePrimaryPartner);
-        String primaryPartnerQueryString = LynxManager.getQueryString(json_primaryPartner);
-        new userPrimaryPartnerOnline(primaryPartnerQueryString).execute();
-        if(LynxManager.decryptString(activeBaselineInfo.getIs_primary_partner()).equals("Yes")) {
-
-            if (LynxManager.decryptString(activePrimaryPartner.getIs_added_to_blackbook()).contentEquals("Yes")) {
-                Partners partner = new Partners(activePrimaryPartner.getUser_id(), activePrimaryPartner.getName(), activePrimaryPartner.getHiv_status(),activePrimaryPartner.getUndetectable_for_sixmonth(), LynxManager.encryptString("Yes"), String.valueOf(R.string.statusUpdateNo), true);
-                int pri_partner_partnerID = db.createPartner(partner);
-
-                PartnerContact PriPartnerContact = new PartnerContact(pri_partner_partnerID, LynxManager.getActiveUser().getUser_id(), activePrimaryPartner.getName(), "", "", "", "", "", "", "", "", "", "",activePrimaryPartner.getPartner_have_other_partners(),activePrimaryPartner.getRelationship_period(), String.valueOf(R.string.statusUpdateNo), true);
-                db.createPartnerContact(PriPartnerContact);
-
-                List<Integer> rating_field_id = new ArrayList<Integer>();
-                rating_field_id.clear();
-                rating_field_id.add(1);
-                rating_field_id.add(2);
-                rating_field_id.add(3);
-                rating_field_id.add(4);
-                rating_field_id.add(5);
-                rating_field_id.add(6);
-                rating_field_id.add(7);
-                LynxManager.setPartnerRatingIds(rating_field_id);
-                LynxManager.activePartnerRating.clear();
-                for (Integer field_id : rating_field_id) {
-                    PartnerRating partner_rating = new PartnerRating(activePrimaryPartner.getUser_id(), pri_partner_partnerID,
-                            field_id, String.valueOf(0), String.valueOf(R.string.statusUpdateNo));
-                    LynxManager.setActivePartnerRating(partner_rating);
-                }
-
-                int i = 0;
-                for (PartnerRating partnerRating : LynxManager.getActivePartnerRating()) {
-                    partnerRating.setPartner_id(pri_partner_partnerID);
-                    int partner_rating_ID = db.createPartnerRating(partnerRating);
-                    LynxManager.getActivePartnerRating().get(i++).setPartner_rating_id(partner_rating_ID);
-                }
-            }
-        }
-
-        for(UserDrugUse drugUse: LynxManager.getActiveUserDrugUse()){
-            int id = db.createDrugUser(drugUse);
-            drugUse.setDruguse_id(id);
-            Gson gson_drugUse = new Gson();
-            drugUse.setStatus_encrypt(true);
-            drugUse.decryptUserDrugUse();
-            String json_drugUse = gson_drugUse.toJson(drugUse);
-            String get_query_string = LynxManager.getQueryString(json_drugUse);
-            new userDrugUseOnline(get_query_string).execute();
-        }
-
-        for(UserSTIDiag stiDiag: LynxManager.getActiveUserSTIDiag()){
-            int id = db.createSTIDiag(stiDiag);
-            stiDiag.setSti_diag_id(id);
-            UserSTIDiag sti = db.getSTIDiagbyID(id);
-            stiDiag.setCreated_at(sti.getCreated_at());
-
-            Gson gson_drugUse = new Gson();
-            stiDiag.setStatus_encrypt(true);
-            stiDiag.decryptUserSTIDiag();
-            String json_STIdiag = gson_drugUse.toJson(stiDiag);
-            String get_query_string = LynxManager.getQueryString(json_STIdiag);
-            new userSTIDiagOnline(get_query_string).execute();
-        }
-
-        int userAlcoholUseID = db.createAlcoholUser(LynxManager.getActiveUserAlcoholUse());
-        LynxManager.getActiveUserAlcoholUse().setAlcohol_use_id(userAlcoholUseID);
-        UserAlcoholUse activeAlcoholUse =  LynxManager.getActiveUserAlcoholUse();
-        Gson gson_alcoholUse = new Gson();
-        activeAlcoholUse.setStatus_encrypt(true);
-        activeAlcoholUse.decryptUserAlcoholUse();
-        String json_AlcoholUse = gson_alcoholUse.toJson(activeAlcoholUse);
-        String get_query_string = LynxManager.getQueryString(json_AlcoholUse);
-        new userAlcoholUseOnline(get_query_string).execute();
-
-        RegistrationSexproScore fragsexProScore = new RegistrationSexproScore();
-        pushFragments("Reg",fragsexProScore,true);
-        return true;
-
-    }
-
-    public boolean onSexProScoreClose(View view) {
-         /*
-        * Scheduling Local Notification
-        **/
-        String notes = "You have a new message!";
-        SimpleDateFormat inputDF1  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date1 = null;
-        try {
-            date1 = inputDF1.parse(LynxManager.getActiveUser().getCreated_at());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        String dayOfTheWeek = (String) android.text.format.DateFormat.format("EEEE", date1);
-        Intent home = new Intent(this, LynxSexPro.class);
-        startActivity(home);
-        finish();
-        return true;
-    }
     public void popAllFragment() {
         // pop back stack all the way
         final FragmentManager fm = getSupportFragmentManager();
@@ -919,27 +756,136 @@ public class RegLogin extends AppCompatActivity {
             Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                     "fonts/OpenSans-Regular.ttf");
             View view = inflater.inflate(R.layout.fragment_reg_login, container, false);
-            TextView regloginIntroLable = (TextView)view.findViewById(R.id.regloginIntroLable);
+            /*TextView regloginIntroLable = (TextView)view.findViewById(R.id.regloginIntroLable);
             regloginIntroLable.setTypeface(tf);
             TextView textView2 = (TextView)view.findViewById(R.id.textView2);
             textView2.setTypeface(tf);
             Button registration = (Button)view.findViewById(R.id.registration);
+            registration.setTypeface(tf);*/
+            TextView registration = (TextView)view.findViewById(R.id.registration);
             registration.setTypeface(tf);
             Button login = (Button)view.findViewById(R.id.login);
             login.setTypeface(tf);
-            Button forgetPassword = (Button)view.findViewById(R.id.forgetPassword);
+            TextView forgetPassword = (TextView)view.findViewById(R.id.forgetPassword);
             forgetPassword.setTypeface(tf);
             EditText loginEmail = (EditText)view.findViewById(R.id.loginEmail);
             loginEmail.setTypeface(tf);
             EditText loginPassword = (EditText)view.findViewById(R.id.loginPassword);
             loginPassword.setTypeface(tf);
+            /*ImageView passicon = (ImageView)view.findViewById(R.id.passicon);
+            Bitmap icon = BitmapFactory.decodeResource(getActivity().getResources(),
+                    R.drawable.passicon);
+            passicon.setImageBitmap(crop(icon));*/
             return view;
         }
 
 
     }
 
+    /*public static Bitmap crop (Bitmap bitmap){
 
+        int height = bitmap.getHeight();
+        int width = bitmap.getWidth();
+        int[] empty = new int[width];
+        int[] buffer = new int[width];
+        Arrays.fill(empty,0);
+        int top = 0;
+        int left = 0;
+        int botton = height;
+        int right = width;
+
+        for (int y = 0; y < height; y++) {
+            bitmap.getPixels(buffer, 0, width, 0, y, width, 1);
+            if (!Arrays.equals(empty, buffer)) {
+                top = y;
+                break;
+            }
+        }
+
+        for (int y = height - 1; y > top; y--) {
+            bitmap.getPixels(buffer, 0, width, 0, y, width, 1);
+            if (!Arrays.equals(empty, buffer)) {
+                botton = y;
+                break;
+            }
+        }
+
+        int bufferSize = botton -top +1;
+        empty = new int[bufferSize];
+        buffer = new int[bufferSize];
+        Arrays.fill(empty,0);
+
+        for (int x = 0; x < width; x++) {
+            //bitmap.getPixels(buffer, 0, 1, x, top + 1, 1, bufferSize);
+            bitmap.getPixels(buffer, 0, width, 0, top, width, 1);
+            if (!Arrays.equals(empty, buffer)) {
+                left = x;
+                break;
+            }
+        }
+
+        for (int x = width - 1; x > left; x--) {
+            //bitmap.getPixels(buffer, 0, 1, x, top + 1, 1, bufferSize);
+            bitmap.getPixels(buffer, 0, 1, x, top , 1, bufferSize);
+            if (!Arrays.equals(empty, buffer)) {
+                right = x;
+                break;
+            }
+        }
+
+        Bitmap cropedBitmap = Bitmap.createBitmap(bitmap, left, top, right-left, botton-top);
+        return cropedBitmap;
+    }
+    public static Bitmap eraseColor(Bitmap src, int color) {
+        int width = src.getWidth();
+        int height = src.getHeight();
+        Bitmap b = src.copy(Bitmap.Config.ARGB_8888, true);
+        b.setHasAlpha(true);
+
+        int[] pixels = new int[width * height];
+        src.getPixels(pixels, 0, width, 0, 0, width, height);
+
+        for (int i = 0; i < width * height; i++) {
+            if (pixels[i] == color) {
+                pixels[i] = 0;
+            }
+        }
+
+        b.setPixels(pixels, 0, width, 0, 0, width, height);
+
+        return b;
+    }
+
+    private static Bitmap CropBitmapTransparency(Bitmap sourceBitmap)
+    {
+        int minX = sourceBitmap.getWidth();
+        int minY = sourceBitmap.getHeight();
+        int maxX = -1;
+        int maxY = -1;
+        for(int y = 0; y < sourceBitmap.getHeight(); y++)
+        {
+            for(int x = 0; x < sourceBitmap.getWidth(); x++)
+            {
+                int alpha = (sourceBitmap.getPixel(x, y) >> 24) & 255;
+                if(alpha > 0)   // pixel is not 100% transparent
+                {
+                    if(x < minX)
+                        minX = x;
+                    if(x > maxX)
+                        maxX = x;
+                    if(y < minY)
+                        minY = y;
+                    if(y > maxY)
+                        maxY = y;
+                }
+            }
+        }
+        if((maxX < minX) || (maxY < minY))
+            return null; // Bitmap is entirely transparent
+
+        // crop bitmap to non-transparent area and return:
+        return Bitmap.createBitmap(sourceBitmap, minX, minY, (maxX - minX) + 1, (maxY - minY) + 1);
+    }*/
 
     /**
      * Async task class to get json by making HTTP call
@@ -1015,8 +961,11 @@ public class RegLogin extends AppCompatActivity {
                         LynxManager.getActiveUser().setUser_id(user_online_id);
                         //LynxManager.getActiveUser().setCreated_at(LynxManager.getDateTime());
                         LynxManager.getActiveUser().setCreated_at(db.getUserCreatedAt(user_online_id));
-                        RegistrationPrimaryPartner regPrimaryPartner = new RegistrationPrimaryPartner();
-                        pushFragments("Home", regPrimaryPartner, true);
+                        /*RegistrationBaselineIntro regPrimaryPartner = new RegistrationBaselineIntro();
+                        pushFragments("Home", regPrimaryPartner, true);*/
+                        Intent baseline = new Intent(RegLogin.this, BaselineActivity.class);
+                        startActivity(baseline);
+                        finish();
                     }
                     // looping through All Contacts
                 } catch (JSONException e) {
@@ -1357,6 +1306,7 @@ public class RegLogin extends AppCompatActivity {
                         }*/
 
                         Intent home = new Intent(RegLogin.this, LynxSexPro.class);
+                        home.putExtra("fromactivity",RegLogin.this.getClass().getSimpleName());
                         startActivity(home);
                         finish();
                     }
@@ -1369,337 +1319,6 @@ public class RegLogin extends AppCompatActivity {
 
         }
 
-    }
-
-    /**
-     * Async task class to get json by making HTTP call
-     *
-     * UserBaseLine
-     */
-
-    private class userBaseLineOnline extends AsyncTask<Void, Void, Void> {
-
-        String userBaseLineResult;
-        String jsonuserBaseLineObj;
-        ProgressDialog pDialog;
-
-        userBaseLineOnline(String jsonuserBaseLineObj) {
-            this.jsonuserBaseLineObj = jsonuserBaseLineObj;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            // Showing progress dialog
-            pDialog = new ProgressDialog(RegLogin.this);
-            pDialog.setMessage("Please wait...");
-            pDialog.setCancelable(false);
-
-            pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            pDialog.setIndeterminate(true);
-            pDialog.setProgress(0);
-
-            //pDialog.show();
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-            pDialog.setProgress(50);
-            // Creating service handler class instance
-            ServiceHandler sh = new ServiceHandler();
-            // Making a request to url and getting response
-            String jsonBaseLineStr = null;
-            try {
-                jsonBaseLineStr = sh.makeServiceCall(LynxManager.getBaseURL() + "UserBaseLines/add?hashkey="+ LynxManager.stringToHashcode(jsonuserBaseLineObj + LynxManager.hashKey)+"&timestamp="+ URLEncoder.encode(LynxManager.getDateTime(), "UTF-8"), jsonuserBaseLineObj);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            Log.d("Response: ", ">BaselineResult " + jsonBaseLineStr);
-            userBaseLineResult = jsonBaseLineStr;
-            pDialog.setProgress(100);
-            return null;
-        }
-
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            // Dismiss the progress dialog
-            /*if (pDialog.isShowing())
-                pDialog.dismiss(); */
-
-            if (userBaseLineResult != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(userBaseLineResult);
-
-                    // Getting JSON Array node
-                    boolean is_error = jsonObj.getBoolean("is_error");
-                    //Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
-                    if (is_error) {
-                        Log.d("Response: ", "> UserBaseLineError. " + jsonObj.getString("message"));
-                    } else {
-                        // Toast.makeText(getApplication().getBaseContext(),"User Baseline Info Added", Toast.LENGTH_SHORT).show();
-
-                        // updateBy(baselineID,userID,status)
-                        db.updateUserBaselineInfoByStatus(LynxManager.getActiveUserBaselineInfo().getBaseline_id(), LynxManager.getActiveUser().getUser_id(), String.valueOf(R.string.statusUpdateYes));
-
-                    }
-                    // looping through All Contacts
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
-            }
-
-
-        }
-
-    }
-
-    /**
-     * Async task class to get json by making HTTP call
-     *
-     * userPrimaryPartnerOnline
-     */
-
-    private class userPrimaryPartnerOnline extends AsyncTask<Void, Void, Void> {
-
-        String userPrimaryPartnerResult;
-        String jsonuserPrimaryPartnerObj;
-
-
-        userPrimaryPartnerOnline(String jsonuserPrimaryPartnerObj) {
-            this.jsonuserPrimaryPartnerObj = jsonuserPrimaryPartnerObj;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            // Showing progress dialog
-
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-
-            // Creating service handler class instance
-            ServiceHandler sh = new ServiceHandler();
-            // Making a request to url and getting response
-            String jsonPrimaryPartnerStr = null;
-            try {
-                jsonPrimaryPartnerStr = sh.makeServiceCall(LynxManager.getBaseURL() + "UserPrimaryPartners/add?hashkey="+ LynxManager.stringToHashcode(jsonuserPrimaryPartnerObj + LynxManager.hashKey)+"&timestamp="+ URLEncoder.encode(LynxManager.getDateTime(), "UTF-8"), jsonuserPrimaryPartnerObj);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            Log.d("Response: ", ">PrimaryPartner " + jsonPrimaryPartnerStr);
-            userPrimaryPartnerResult = jsonPrimaryPartnerStr;
-            return null;
-        }
-
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            // Dismiss the progress dialog
-            /*if (pDialog.isShowing())
-                pDialog.dismiss(); */
-
-            if (userPrimaryPartnerResult != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(userPrimaryPartnerResult);
-
-                    // Getting JSON Array node
-                    boolean is_error = jsonObj.getBoolean("is_error");
-                    // Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
-                    if (is_error) {
-                        Log.d("Response: ", "> UserPrimaryPartnerError. " + jsonObj.getString("message"));
-                    } else {
-                        //Toast.makeText(getApplication().getBaseContext(),"User Primary Partner Added", Toast.LENGTH_SHORT).show();
-                        db.updatePrimaryPartnerbyStatus(LynxManager.getActiveUserPrimaryPartner().getPrimarypartner_id(), LynxManager.getActiveUser().getUser_id(), String.valueOf(R.string.statusUpdateYes));
-                    }
-                    // looping through All Contacts
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
-            }
-
-
-        }
-
-    }
-
-    /**
-     * Async task class to get json by making HTTP call
-     *
-     * userDrugUseOnline
-     */
-
-    private class userDrugUseOnline extends AsyncTask<Void, Void, Void> {
-
-        String userDrugUseResult;
-        String jsonObj;
-
-        userDrugUseOnline(String jsonObj) {
-            this.jsonObj = jsonObj;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-            ServiceHandler sh = new ServiceHandler();
-            String jsonDrugUseStr = null;
-            try {
-                jsonDrugUseStr = sh.makeServiceCall(LynxManager.getBaseURL() + "UserDrugUsages/add?hashkey="+ LynxManager.stringToHashcode(jsonObj + LynxManager.hashKey)+"&timestamp="+ URLEncoder.encode(LynxManager.getDateTime(), "UTF-8"), jsonObj);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            Log.d("Response:Druguse ", ">DrugUse " + jsonDrugUseStr);
-            userDrugUseResult = jsonDrugUseStr;
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            if (userDrugUseResult != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(userDrugUseResult);
-                    boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", "> UserDrugUseError. " + jsonObj.getString("message"));
-                    } else {
-                        int druguse_id = Integer.parseInt(jsonObj.getString("id"));
-                        db.updateDrugUsesByStatus(druguse_id, String.valueOf(R.string.statusUpdateYes));
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
-            }
-        }
-    }
-
-    /**
-     * Async task class to get json by making HTTP call
-     *
-     * userSTIDiagOnline
-     */
-
-    private class userSTIDiagOnline extends AsyncTask<Void, Void, Void> {
-
-        String userSTIDiagResult;
-        String jsonObj;
-
-        userSTIDiagOnline(String jsonObj) {
-            this.jsonObj = jsonObj;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-            ServiceHandler sh = new ServiceHandler();
-            String jsonSTIDiagStr = null;
-            try {
-                jsonSTIDiagStr = sh.makeServiceCall(LynxManager.getBaseURL() + "UserStiDiagnoses/add?hashkey="+ LynxManager.stringToHashcode(jsonObj + LynxManager.hashKey)+"&timestamp="+ URLEncoder.encode(LynxManager.getDateTime(), "UTF-8"), jsonObj);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            Log.d("Response: ", ">STIDiag " + jsonSTIDiagStr);
-            userSTIDiagResult = jsonSTIDiagStr;
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            if (userSTIDiagResult != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(userSTIDiagResult);
-                    boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", "> UserSTIDiagError. " + jsonObj.getString("message"));
-                    } else {
-                        int stiDiag_id = Integer.parseInt(jsonObj.getString("id"));
-                        db.updateSTIDiagsByStatus(stiDiag_id, String.valueOf(R.string.statusUpdateYes));
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
-            }
-        }
-
-    }
-
-    /**
-     * Async task class to get json by making HTTP call
-     *
-     * userAlcoholUseOnline
-     */
-
-    private class userAlcoholUseOnline extends AsyncTask<Void, Void, Void> {
-
-        String userAlcoholUseResult;
-        String jsonObj;
-
-
-        userAlcoholUseOnline(String jsonObj) {
-            this.jsonObj = jsonObj;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-            ServiceHandler sh = new ServiceHandler();
-            String jsonAlcoholUseStr = null;
-            try {
-                jsonAlcoholUseStr = sh.makeServiceCall(LynxManager.getBaseURL() + "UserAlcholUsages/add?hashkey="+ LynxManager.stringToHashcode(jsonObj + LynxManager.hashKey)+"&timestamp="+ URLEncoder.encode(LynxManager.getDateTime(), "UTF-8"), jsonObj);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            Log.d("Response: ", ">AlcoholUse " + jsonAlcoholUseStr);
-            userAlcoholUseResult = jsonAlcoholUseStr;
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            if (userAlcoholUseResult != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(userAlcoholUseResult);
-                    boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", "> UserAlcoholUseError. " + jsonObj.getString("message"));
-                    } else {
-
-                        int alcUse_id = Integer.parseInt(jsonObj.getString("id"));
-                        db.updateAlcoholUseByStatus(alcUse_id, String.valueOf(R.string.statusUpdateYes));
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
-            }
-        }
     }
 
     /*

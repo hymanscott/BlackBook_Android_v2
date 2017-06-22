@@ -3,17 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white">
-
+    android:background="@drawable/main_bg_gradient">
     <TextView
+        android:id="@+id/textView8"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
+        android:gravity="center_vertical|center_horizontal"
         android:text="BASELINE SEX PRO SCORE"
         android:textColor="@color/colorAccent"
-        android:id="@+id/textView8"
-        android:layout_margin="10dp"
-        android:gravity="center_vertical|center_horizontal" />
+        android:textSize="24sp" />
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -28,16 +26,17 @@
                 android:layout_height="fill_parent"
                 android:orientation="horizontal"
                 android:layout_marginTop="20dp"
+                android:background="@color/edittext_bg"
                 android:layout_gravity="center">
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/reg_sexPro_score"
-                    android:background="@drawable/lynx_button"
                     android:textColor="@color/white"
                     android:layout_marginLeft="25dp"
                     android:clickable="false"
                     android:textSize="18sp"
+                    android:background="@android:color/transparent"
                     android:layout_marginRight="25dp"
                     android:layout_gravity="center_horizontal"
                     android:textStyle="bold"

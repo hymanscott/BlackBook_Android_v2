@@ -82,7 +82,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }else if(pushnotification_flag==0){
             intent = new Intent(this, LynxTesting.class);
         }
-
+        intent.putExtra("fromactivity","PushNotification");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 

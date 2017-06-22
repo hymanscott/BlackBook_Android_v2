@@ -11,15 +11,17 @@ public class LocationsDistance {
     double longitude;
     int distance;
     String name;
+    String type;
     public LocationsDistance() {
     }
 
-    public LocationsDistance(int id, double latitude, double longitude, int distance, String name) {
+    public LocationsDistance(int id, double latitude, double longitude, int distance, String name,String type) {
         this.location_distance_id = id;
         this.latitude = latitude;
         this.longitude = longitude;
         this.distance = distance;
         this.name = name;
+        this.type = type;
     }
 
     public String getName() {
@@ -60,6 +62,14 @@ public class LocationsDistance {
 
     public void setDistance(int distance) {
         this.distance = distance;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public static Comparator<LocationsDistance> LocDist = new Comparator<LocationsDistance>() {

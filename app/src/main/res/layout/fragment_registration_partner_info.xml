@@ -3,6 +3,386 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/main_bg_gradient">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="32dp"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/diallarge" />
+
+            <TextView
+                android:id="@+id/frag_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Baseline Sex Pro Score"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@color/edittext_bg" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:orientation="horizontal"
+                android:padding="@dimen/edittext_padding">
+
+                <ImageView
+                    android:id="@+id/usericon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/usericon" />
+
+                <EditText
+                    android:id="@+id/nick_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/rectangle_edittext"
+                    android:backgroundTint="@color/edittext_bg"
+                    android:ems="10"
+                    android:hint="Nickname"
+                    android:inputType="textPersonName"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/edittext_hint_color"
+                    android:textCursorDrawable="@drawable/white_cursor"
+                    android:textSize="@dimen/edittext_textsize" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@color/edittext_bg" />
+
+            <TextView
+                android:id="@+id/hivStatus"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:gravity="center_vertical"
+                android:text="HIV Status of your primary partner:"
+                android:textColor="@color/white"
+                android:textSize="@dimen/reg_tv_textsize" />
+
+            <RadioGroup
+                android:id="@+id/radio_hivstatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginRight="32dp">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HIV Negative"
+                    android:textSize="14sp"
+                    android:buttonTint="@color/white"
+                    android:textColor="@color/white"
+                    android:id="@+id/radio_hiv_neg" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HIV negative and on PrEP"
+                    android:textSize="14sp"
+                    android:buttonTint="@color/white"
+                    android:textColor="@color/white"
+                    android:id="@+id/radio_hiv_prep" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I don't know"
+                    android:checked="true"
+                    android:textSize="14sp"
+                    android:buttonTint="@color/white"
+                    android:textColor="@color/white"
+                    android:id="@+id/radio_hiv_idk" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HIV Positive"
+                    android:textSize="14sp"
+                    android:buttonTint="@color/white"
+                    android:textColor="@color/white"
+                    android:id="@+id/radio_hiv_pos" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HIV positive and Undetectable"
+                    android:textSize="14sp"
+                    android:buttonTint="@color/white"
+                    android:textColor="@color/white"
+                    android:id="@+id/radio_hiv_und" />
+            </RadioGroup>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout_undetectable"
+                android:visibility="gone"
+                android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@color/edittext_bg" />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Have they been undetectable for at least 6 months?"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginLeft="32dp"
+                    android:textSize="@dimen/reg_tv_textsize"
+                    android:id="@+id/undetectableTitle"
+                    android:gravity="center_vertical"/>
+                <RadioGroup
+                    android:id="@+id/radio_undetectable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginLeft="32dp">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yes"
+                        android:textSize="14sp"
+                        android:buttonTint="@color/white"
+                        android:textColor="@color/white"
+                        android:id="@+id/radio_undetectable_yes" />
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:textSize="14sp"
+                        android:buttonTint="@color/white"
+                        android:textColor="@color/white"
+                        android:id="@+id/radio_undetectable_no" />
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="I don't know"
+                        android:textSize="14sp"
+                        android:buttonTint="@color/white"
+                        android:checked="true"
+                        android:textColor="@color/white"
+                        android:id="@+id/radio_undetectable_iDontKnow" />
+                </RadioGroup>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@color/edittext_bg" />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Do they have other sex partners ?"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/reg_tv_textsize"
+                    android:id="@+id/otherPartnersTitle"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:gravity="center_vertical"/>
+
+                <RadioGroup
+                    android:id="@+id/radio_partner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yes"
+                        android:textSize="14sp"
+                        android:buttonTint="@color/white"
+                        android:textColor="@color/white"
+                        android:id="@+id/radio_partner_yes"/>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:textSize="14sp"
+                        android:buttonTint="@color/white"
+                        android:textColor="@color/white"
+                        android:checked="true"
+                        android:id="@+id/radio_partner_no" />
+
+                </RadioGroup>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:id="@+id/linearLayout_relationshipPeriod"
+                android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@color/edittext_bg" />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="How long have you been with this partner in a mutually monogamous relationship? "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/reg_tv_textsize"
+                    android:id="@+id/textview9"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:gravity="center_vertical"/>
+                <RadioGroup
+                    android:id="@+id/radio_relationshipPeriod"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Less than 6 months"
+                        android:checked="true"
+                        android:textSize="14sp"
+                        android:buttonTint="@color/white"
+                        android:textColor="@color/white"
+                        android:id="@+id/radio_lessThanSixMonths" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="6 months or more"
+                        android:textSize="14sp"
+                        android:buttonTint="@color/white"
+                        android:textColor="@color/white"
+                        android:id="@+id/radio_moreThanSixMonths" />
+
+                </RadioGroup>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@color/edittext_bg" />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add to your SexPro Diary?"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:textSize="@dimen/reg_tv_textsize"
+                    android:id="@+id/addToDiary"
+                    android:gravity="center_vertical"/>
+
+                <RadioGroup
+                    android:id="@+id/radio_blackbook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginBottom="54dp">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yes"
+                        android:checked="true"
+                        android:textSize="14sp"
+                        android:buttonTint="@color/white"
+                        android:textColor="@color/white"
+                        android:id="@+id/radio_blackbook_yes" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:textSize="14sp"
+                        android:buttonTint="@color/white"
+                        android:textColor="@color/white"
+                        android:id="@+id/radio_blackbook_no" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NEXT"
+                android:background="@drawable/buttonbluegradient"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/button_top_margin"
+                android:id="@+id/partner_info_nextbtn"
+                android:textSize="@dimen/button_textsize"
+                android:onClick="onPrimaryPartnerNext"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+<!--<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/white">
     <TextView
         android:layout_width="fill_parent"
@@ -352,3 +732,4 @@
     </ScrollView>
 
 </LinearLayout>
+-->

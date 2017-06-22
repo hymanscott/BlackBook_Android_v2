@@ -51,8 +51,8 @@ public class EncounterDrugCalculationFragment extends Fragment {
         no_of_drinks.setTypeface(tf);
         alcohol_cal_nextbtn = (Button) rootview.findViewById(R.id.alcohol_cal_nextbtn);
         alcohol_cal_nextbtn.setTypeface(tf);
-        alcohol_cal_revisebtn = (Button) rootview.findViewById(R.id.alcohol_cal_revisebtn);
-        alcohol_cal_revisebtn.setTypeface(tf);
+        /*alcohol_cal_revisebtn = (Button) rootview.findViewById(R.id.alcohol_cal_revisebtn);
+        alcohol_cal_revisebtn.setTypeface(tf);*/
         alcCal_5to7days = (RadioButton) rootview.findViewById(R.id.alcCal_5to7days);
         alcCal_5to7days.setTypeface(tf);
         alcCal_1to4days = (RadioButton) rootview.findViewById(R.id.alcCal_1to4days);

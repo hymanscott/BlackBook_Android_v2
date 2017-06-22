@@ -88,6 +88,7 @@ public class calculateSexProScore {
     private double P2y;
     private double Pt;
 
+    private int elapsed_days;
 
     public calculateSexProScore(Context context) {
         db = new DatabaseHelper(context);
@@ -114,7 +115,9 @@ public class calculateSexProScore {
         }
 
         Calendar cal = Calendar.getInstance();
-        cal.setTime(date1);
+        if(date1!=null){
+            cal.setTime(date1);
+        }
 
         int month = cal.get(Calendar.MONTH);
         int year = cal.get(Calendar.YEAR);
@@ -204,7 +207,7 @@ public class calculateSexProScore {
         long milliSeconds2 = calCurrentDate.getTimeInMillis();
         long periodSeconds = (milliSeconds2 - milliSeconds1) ;
         long elapsedDays = periodSeconds / (1000 * 60 * 60 * 24);
-
+        elapsed_days = (int) elapsedDays;
         int hiv_negativePeople =0;
         int hiv_positivePeople =0;
         int hiv_unknownPeople =0;
@@ -470,6 +473,10 @@ public class calculateSexProScore {
             }
         }
 
+    }
+
+    public int getElapsedDays(){
+        return elapsed_days;
     }
     public double getUnAdjustedScore(){
 

@@ -1,7 +1,9 @@
 package com.lynxstudy.lynx;
 
 
+import android.content.res.ColorStateList;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -30,7 +32,7 @@ public class RegistrationDrugContent extends Fragment {
 
     List<String> checked_list = new ArrayList<String>();
     TextView baselineTitle,drugContentTitle;
-    Button drugContent_revisebtn,drugContent_nextbtn;
+    Button drugContent_nextbtn;
     public RegistrationDrugContent() {
         // Required empty public constructor
     }
@@ -52,12 +54,10 @@ public class RegistrationDrugContent extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/OpenSans-Regular.ttf");
-        baselineTitle= (TextView) view.findViewById(R.id.baselineTitle);
+        baselineTitle= (TextView) view.findViewById(R.id.frag_title);
         baselineTitle.setTypeface(tf);
         drugContentTitle= (TextView) view.findViewById(R.id.drugContentTitle);
         drugContentTitle.setTypeface(tf);
-        drugContent_revisebtn= (Button) view.findViewById(R.id.drugContent_revisebtn);
-        drugContent_revisebtn.setTypeface(tf);
         drugContent_nextbtn= (Button) view.findViewById(R.id.drugContent_nextbtn);
         drugContent_nextbtn.setTypeface(tf);
 
@@ -69,13 +69,32 @@ public class RegistrationDrugContent extends Fragment {
             DrugMaster array_id = drug.get(i);
             final String drugName = array_id.getDrugName();
 
+            LayoutInflater chInflater = (getActivity()).getLayoutInflater();
+            View convertView = chInflater.inflate(R.layout.checkbox_row,container,false);
+            CheckBox ch = (CheckBox)convertView.findViewById(R.id.checkbox);
+            ch.setText(drugName);
+            drugs_container.addView(ch);
+            ch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        checked_list.add(String.valueOf(drugName));
+                        LynxManager.selectedDrugs.add(String.valueOf(drugName));
+                    } else {
+                        checked_list.remove(String.valueOf(drugName));
+                        LynxManager.selectedDrugs.remove(String.valueOf(drugName));
+                    }
+                    //   Log.v("Drug Checked List",checked_list.toArray().toString());
+                }
+            });
+
             //  Log.v("Drug Content Fragment", drugName +" - "+ drug.size() + "  -  "+i );
-            final CheckBox ch;
+            /*final CheckBox ch;
             ch = new CheckBox(getActivity());
             ch.setText(drugName);
             ch.setPadding(0,0,0,2);
             ch.setTextSize(18);
-            ch.setTextColor(getResources().getColor(R.color.text_color));
+            ch.setTextColor(getResources().getColor(R.color.white));
             ch.setTypeface(tf);
             drugs_container.addView(ch);
 
@@ -91,8 +110,7 @@ public class RegistrationDrugContent extends Fragment {
                     }
                     //   Log.v("Drug Checked List",checked_list.toArray().toString());
                 }
-            });
-
+            });*/
 
         }
 

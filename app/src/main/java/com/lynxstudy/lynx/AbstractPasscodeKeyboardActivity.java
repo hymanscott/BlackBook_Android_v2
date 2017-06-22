@@ -2,6 +2,8 @@ package com.lynxstudy.lynx;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -17,6 +19,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +36,9 @@ public abstract class AbstractPasscodeKeyboardActivity extends AppCompatActivity
     protected EditText pinCodeField4 = null;
     protected InputFilter[] filters = null;
     protected TextView topMessage = null;
+    TableLayout tableLayout1 ;
+    TextView forgotpasscode;
+    LinearLayout back;
     private View.OnClickListener defaultButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View arg0) {
@@ -125,15 +132,10 @@ public abstract class AbstractPasscodeKeyboardActivity extends AppCompatActivity
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/OpenSans-Regular.ttf");
-        // Custom Action Bar //
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
-        getSupportActionBar().setCustomView(cView);
-        ImageView viewProfile = (ImageView)cView.findViewById(R.id.viewProfile);
-        TextView title = (TextView)cView.findViewById(R.id.actionbartitle);
-        title.setTypeface(tf);
-        viewProfile.setVisibility(View.GONE);
-
+        back = (LinearLayout)findViewById(R.id.back);
+        tableLayout1 = (TableLayout)findViewById(R.id.tableLayout1);
+        forgotpasscode = (TextView)findViewById(R.id.forgotpasscode);
+        forgotpasscode.setTypeface(tf);
         topMessage = (TextView) findViewById(R.id.top_message);
         topMessage.setTypeface(tf);
         Bundle extras = getIntent().getExtras();
@@ -165,6 +167,39 @@ public abstract class AbstractPasscodeKeyboardActivity extends AppCompatActivity
         pinCodeField2.setTypeface(tf);
         pinCodeField3.setTypeface(tf);
         pinCodeField4.setTypeface(tf);
+
+        pinCodeField1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pinCodeField1.requestFocus();
+                forgotpasscode.setVisibility(View.GONE);
+                tableLayout1.setVisibility(View.VISIBLE);
+            }
+        });
+        pinCodeField2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pinCodeField2.requestFocus();
+                forgotpasscode.setVisibility(View.GONE);
+                tableLayout1.setVisibility(View.VISIBLE);
+            }
+        });
+        pinCodeField3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pinCodeField3.requestFocus();
+                forgotpasscode.setVisibility(View.GONE);
+                tableLayout1.setVisibility(View.VISIBLE);
+            }
+        });
+        pinCodeField4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pinCodeField4.requestFocus();
+                forgotpasscode.setVisibility(View.GONE);
+                tableLayout1.setVisibility(View.VISIBLE);
+            }
+        });
         //setup the keyboard
         ((Button) findViewById(R.id.button0)).setOnClickListener(defaultButtonListener);
         ((Button) findViewById(R.id.button0)).setTypeface(tf);
@@ -205,7 +240,23 @@ public abstract class AbstractPasscodeKeyboardActivity extends AppCompatActivity
                         }
                     }
                 });
-
+        // Hide Buttons //
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tableLayout1.setVisibility(View.INVISIBLE);
+                forgotpasscode.setVisibility(View.VISIBLE);
+            }
+        });
+        forgotpasscode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent resetPasscode = new Intent(AbstractPasscodeKeyboardActivity.this, PasscodeResetActivity.class);
+                resetPasscode.putExtra("question",LynxManager.decryptString(LynxManager.getActiveUser().getSecurityquestion()));
+                resetPasscode.putExtra("answer",LynxManager.decryptString(LynxManager.getActiveUser().getSecurityanswer()));
+                startActivityForResult(resetPasscode, 102);
+            }
+        });
     }
 
     protected void setupPinItem(EditText item) {
@@ -223,10 +274,47 @@ public abstract class AbstractPasscodeKeyboardActivity extends AppCompatActivity
 
     protected abstract void onPinLockInserted();
 
-    public void callchangepasscode() {
-        /*Intent settings_act = new Intent(this, settings.class);
-        startActivity(settings_act);*/
+    int onPause_count =0;
+    @Override
+    public void onBackPressed() {
+        // do something on back.
+        if (onPause_count > 0) {
+            AlertDialog.Builder alertbox = new AlertDialog.Builder(this);
+            alertbox.setTitle("Are you sure, you want to exit ?");
+            alertbox.setPositiveButton("Yes",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            System.exit(0);
+                        }
+                    });
 
+            alertbox.setNeutralButton("No",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                        }
+                    });
+
+            AlertDialog dialog = alertbox.create();
+            dialog.show();
+            Button neg_btn = dialog.getButton(DialogInterface.BUTTON_NEUTRAL);
+            if (neg_btn != null){
+                neg_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.lynx_button));
+                neg_btn.setTextColor(getResources().getColor(R.color.white));
+            }
+
+            Button pos_btn = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+            if(pos_btn != null) {
+                pos_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.lynx_button));
+                pos_btn.setTextColor(getResources().getColor(R.color.white));
+            }
+        }
+        else{
+            Toast.makeText(this,"Press Back one more time to exit",Toast.LENGTH_SHORT).show();
+        }
+        onPause_count++;
+        return;
     }
+
+
 
 }

@@ -69,9 +69,10 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
         getSupportActionBar().setCustomView(cView);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView)cView.findViewById(R.id.viewProfile);
-        TextView actionbartitle = (TextView)cView.findViewById(R.id.actionbartitle);
-        actionbartitle.setTypeface(tf);
+        /*TextView actionbartitle = (TextView)cView.findViewById(R.id.actionbartitle);
+        actionbartitle.setTypeface(tf);*/
         bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
         bot_nav_sexpro_tv.setTypeface(tf);
         bot_nav_diary_tv = (TextView)findViewById(R.id.bot_nav_diary_tv);
@@ -85,9 +86,9 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         newMessage = (EditText) findViewById(R.id.newMessage);
         newMessage.setTypeface(tf);
         /********************************************/
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        /*SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String tokenid = sharedPref.getString("lynxfirebasetokenid",null);
-        newMessage.setText(tokenid);
+        newMessage.setText(tokenid);*/
         /********************************************/
         // Click Listners //
         btn_sexpro = (LinearLayout)findViewById(R.id.bot_nav_sexpro);
@@ -133,6 +134,8 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                 if(!newMessage.getText().toString().isEmpty()){
                     JSONObject newMessageObj = new JSONObject();
                     try {
+                        newMessageObj.put("email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail()));
+                        newMessageObj.put("password",LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
                         newMessageObj.put("user_id",LynxManager.getActiveUser().getUser_id());
                         newMessageObj.put("message",newMessage.getText().toString());
                         newMessageObj.put("sender_name",LynxManager.decryptString(LynxManager.getActiveUser().getFirstname()));
@@ -186,22 +189,22 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         switch (v.getId()) {
 
             case R.id.bot_nav_sexpro:
-                LynxManager.goToIntent(LynxChat.this,"sexpro");
+                LynxManager.goToIntent(LynxChat.this,"sexpro",LynxChat.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
             case R.id.bot_nav_testing:
-                LynxManager.goToIntent(LynxChat.this,"testing");
+                LynxManager.goToIntent(LynxChat.this,"testing",LynxChat.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
             case R.id.bot_nav_prep:
-                LynxManager.goToIntent(LynxChat.this,"prep");
+                LynxManager.goToIntent(LynxChat.this,"prep",LynxChat.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
             case R.id.bot_nav_diary:
-                LynxManager.goToIntent(LynxChat.this,"diary");
+                LynxManager.goToIntent(LynxChat.this,"diary",LynxChat.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
@@ -430,8 +433,6 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             } else {
                 Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
-
-
         }
 
     }

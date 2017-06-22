@@ -21,6 +21,7 @@ import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.Partners;
 import com.lynxstudy.model.PrepInformation;
 import com.lynxstudy.model.STIMaster;
+import com.lynxstudy.model.Statistics;
 import com.lynxstudy.model.TestNameMaster;
 import com.lynxstudy.model.TestingHistory;
 import com.lynxstudy.model.TestingHistoryInfo;
@@ -86,7 +87,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_CLOUD_MESSAGES = "CloudMessages";
     private static final String TABLE_VIDEOS = "Videos";
     private static final String TABLE_CHAT_MESSAGES = "ChatMessages";
-
+    private static final String TABLE_STATISTICS = "Statistics";
 
     // Common column names
     private static final String KEY_CREATED_AT = "created_at";
@@ -269,6 +270,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_TESTING_LOCATION_LATITUDE = "latitude";
     private static final String KEY_TESTING_LOCATION_LONGITUDE = "longitude";
     private static final String KEY_TESTING_LOCATION_URL = "url";
+    private static final String KEY_TESTING_LOCATION_TYPE = "type";
 
     //PREP information column names
     private static final String KEY_PREP_INFO_ID = "prep_information_id";
@@ -307,6 +309,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_CHAT_MESSAGE_SENDER_PIC = "sender_pic";
     private static final String KEY_CHAT_MESSAGE_DATETIME = "datetime";
 
+    // Statistics Column Names //
+    private static final String KEY_STATISTICS_ID = "id";
+    private static final String KEY_STATISTICS_ACTIVITY = "activity";
+    private static final String KEY_STATISTICS_FROM_ACTIVITY = "from_activity";
+    private static final String KEY_STATISTICS_TO_ACTIVITY ="to_activity";
+    private static final String KEY_STATISTICS_ACTION = "action";
+    private static final String KEY_STATISTICS_START_TIME = "starttime";
+    private static final String KEY_STATISTICS_END_TIME = "endtime";
 
     // Table Create Statements
     // Users table create statement
@@ -419,7 +429,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_TESTING_LOCATION = "CREATE TABLE "
             + TABLE_TESTING_LOCATION + "(" + KEY_TESTING_LOCATION_ID + " INTEGER PRIMARY KEY," + KEY_TESTING_LOCATION_NAME + " TEXT,"
             + KEY_TESTING_LOCATION_ADDRESS + " TEXT," + KEY_TESTING_LOCATION_PHONE + " TEXT," + KEY_TESTING_LOCATION_LATITUDE + " TEXT,"
-            + KEY_TESTING_LOCATION_LONGITUDE + " TEXT," + KEY_TESTING_LOCATION_URL + " TEXT,"
+            + KEY_TESTING_LOCATION_LONGITUDE + " TEXT," + KEY_TESTING_LOCATION_URL + " TEXT," + KEY_TESTING_LOCATION_TYPE + " TEXT,"
             + KEY_CREATED_AT + " DATETIME" + ")";
 
     private static final String CREATE_TABLE_TESTING_INSTRUCTION = "CREATE TABLE "
@@ -444,6 +454,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_CHAT_MESSAGES = "CREATE TABLE " + TABLE_CHAT_MESSAGES + "(" +
             KEY_CHAT_MESSAGE_ID + " INTEGER PRIMARY KEY," + KEY_CHAT_MESSAGE + " TEXT," + KEY_CHAT_MESSAGE_SENDER + " TEXT," +
             KEY_CHAT_MESSAGE_SENDER_PIC + " TEXT," + KEY_CHAT_MESSAGE_DATETIME + " TEXT," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
+
+
+    private static final String CREATE_TABLE_STATISTICS = "CREATE TABLE " + TABLE_STATISTICS + "(" +
+            KEY_STATISTICS_ID + " INTEGER PRIMARY KEY," + KEY_STATISTICS_ACTIVITY + " TEXT," + KEY_STATISTICS_FROM_ACTIVITY + " TEXT," +
+            KEY_STATISTICS_TO_ACTIVITY + " TEXT," + KEY_STATISTICS_ACTION + " TEXT," + KEY_STATISTICS_START_TIME + " TEXT," +
+            KEY_STATISTICS_END_TIME + " TEXT," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -481,6 +497,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_CLOUD_MESSAGES);
         db.execSQL(CREATE_TABLE_VIDEOS);
         db.execSQL(CREATE_TABLE_CHAT_MESSAGES);
+        db.execSQL(CREATE_TABLE_STATISTICS);
 
     }
 
@@ -512,6 +529,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CLOUD_MESSAGES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_VIDEOS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CHAT_MESSAGES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_STATISTICS);
         // create new tables
         onCreate(db);
     }
@@ -568,6 +586,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_CLOUD_MESSAGES, null, null);
         db.delete(TABLE_VIDEOS, null, null);
         db.delete(TABLE_CHAT_MESSAGES, null, null);
+        db.delete(TABLE_STATISTICS, null, null);
     }
 
     // ------------------------ "Users" table methods ----------------//
@@ -5142,6 +5161,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_TESTING_LOCATION_LATITUDE, testingLocations.getLatitude());
         values.put(KEY_TESTING_LOCATION_LONGITUDE, testingLocations.getLongitude());
         values.put(KEY_TESTING_LOCATION_URL, testingLocations.getUrl());
+        values.put(KEY_TESTING_LOCATION_TYPE,testingLocations.getType());
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
@@ -5175,6 +5195,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         testingLocations.setLatitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LATITUDE)));
         testingLocations.setLongitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LONGITUDE)));
         testingLocations.setUrl(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_URL)));
+        testingLocations.setType(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_TYPE)));
 
         return testingLocations;
     }
@@ -5203,6 +5224,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 testingLocations.setLatitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LATITUDE)));
                 testingLocations.setLongitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LONGITUDE)));
                 testingLocations.setUrl(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_URL)));
+                testingLocations.setType(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_TYPE)));
 
                 // adding to TESTING LOCATION list
                 testingLocationsList.add(testingLocations);
@@ -5235,6 +5257,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 testingLocations.setLatitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LATITUDE)));
                 testingLocations.setLongitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LONGITUDE)));
                 testingLocations.setUrl(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_URL)));
+                testingLocations.setType(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_TYPE)));
 
                 // adding to TESTING LOCATION list
                 testingLocationsList.add(testingLocations);
@@ -5273,6 +5296,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_TESTING_LOCATION_LATITUDE, testingLocations.getLatitude());
         values.put(KEY_TESTING_LOCATION_LONGITUDE, testingLocations.getLongitude());
         values.put(KEY_TESTING_LOCATION_URL, testingLocations.getUrl());
+        values.put(KEY_TESTING_LOCATION_TYPE, testingLocations.getType());
         values.put(KEY_CREATED_AT, getDateTime());
 
         // updating row
@@ -5788,5 +5812,67 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return count;
     }
+
+
+    //*****************Statistics Table Methods *******************//
+
+    /**
+     *  Create Statistics
+     */
+
+    public int createStatistics(Statistics statistics) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_STATISTICS_ACTIVITY,statistics.getActivity());
+        values.put(KEY_STATISTICS_FROM_ACTIVITY, statistics.getFrom_activity());
+        values.put(KEY_STATISTICS_TO_ACTIVITY, statistics.getTo_activity());
+        values.put(KEY_STATISTICS_ACTION, statistics.getAction());
+        values.put(KEY_STATISTICS_START_TIME,statistics.getStarttime());
+        values.put(KEY_STATISTICS_END_TIME,statistics.getEndtime());
+        values.put(KEY_STATUS_UPDATE,statistics.getStatusUpdate());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        return (int) db.insert(TABLE_STATISTICS, null, values);
+    }
+    /**
+     * getting all ChatMessages
+     */
+    public List<Statistics> getAllStatistics() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Statistics> messageList = new ArrayList<Statistics>();
+        String selectQuery = "SELECT  * FROM " + TABLE_STATISTICS;
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+        if (c.moveToFirst()) {
+            do {
+                Statistics statistics = new Statistics();
+                statistics.setStatistics_id(c.getInt(c.getColumnIndex(KEY_STATISTICS_ID)));
+                statistics.setAction(c.getString(c.getColumnIndex(KEY_STATISTICS_ACTION)));
+                statistics.setActivity(c.getString(c.getColumnIndex(KEY_STATISTICS_ACTIVITY)));
+                statistics.setFrom_activity(c.getString(c.getColumnIndex(KEY_STATISTICS_FROM_ACTIVITY)));
+                statistics.setTo_activity(c.getString(c.getColumnIndex(KEY_STATISTICS_TO_ACTIVITY)));
+                statistics.setStarttime(c.getString(c.getColumnIndex(KEY_STATISTICS_START_TIME)));
+                statistics.setEndtime(c.getString(c.getColumnIndex(KEY_STATISTICS_END_TIME)));
+                statistics.setStatusUpdate(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+                messageList.add(statistics);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return messageList;
+    }
+
+    /**
+     * getting Statistics count
+     */
+    public int getStatisticsCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_STATISTICS;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+
 }
 

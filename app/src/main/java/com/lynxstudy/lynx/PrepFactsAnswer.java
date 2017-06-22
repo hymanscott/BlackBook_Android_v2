@@ -35,10 +35,9 @@ public class PrepFactsAnswer extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
         getSupportActionBar().setCustomView(cView);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView)cView.findViewById(R.id.viewProfile);
-        TextView actionbartitle = (TextView) cView.findViewById(R.id.actionbartitle);
-        actionbartitle.setTypeface(tf);
-        viewProfile.setVisibility(View.GONE);
+        viewProfile.setVisibility(View.INVISIBLE);
 
         TextView question = (TextView)findViewById(R.id.question);
         question.setTypeface(tf);

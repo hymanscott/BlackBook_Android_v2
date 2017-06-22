@@ -31,8 +31,8 @@ public class RegistrationStiInfo extends Fragment {
         public RegistrationStiInfo() {
             // Required empty public constructor
         }
-        TextView textView8,textview9;
-        Button partner_info_nextbtn,partner_info_revisebtn;
+        TextView frag_title,textview9;
+        Button partner_info_nextbtn;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,14 +42,12 @@ public class RegistrationStiInfo extends Fragment {
             //Type face
             Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                     "fonts/OpenSans-Regular.ttf");
-            textView8 = (TextView)rootview.findViewById(R.id.textView8);
-            textView8.setTypeface(tf);
+            frag_title = (TextView)rootview.findViewById(R.id.frag_title);
+            frag_title.setTypeface(tf);
             textview9 = (TextView)rootview.findViewById(R.id.textview9);
             textview9.setTypeface(tf);
             partner_info_nextbtn = (Button)rootview.findViewById(R.id.partner_info_nextbtn);
             partner_info_nextbtn.setTypeface(tf);
-            partner_info_revisebtn = (Button)rootview.findViewById(R.id.partner_info_revisebtn);
-            partner_info_revisebtn.setTypeface(tf);
 
             newdb = new DatabaseHelper(getActivity());
             LinearLayout drugs_container = (LinearLayout) rootview.findViewById(R.id.linearLayout_drugs);
@@ -60,14 +58,32 @@ public class RegistrationStiInfo extends Fragment {
                 STIMaster stiInfo = stis.get(i);
                 final String stiName = stiInfo.getstiName();
 
-                Log.v("STI Content Fragment", stiName + " - " + stis.size() + "  -  " + i);
+                LayoutInflater chInflater = (getActivity()).getLayoutInflater();
+                View convertView = chInflater.inflate(R.layout.checkbox_row,container,false);
+                CheckBox ch = (CheckBox)convertView.findViewById(R.id.checkbox);
+                ch.setText(stiName);
+                drugs_container.addView(ch);
+                ch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            LynxManager.selectedSTIs.add(String.valueOf(stiName));
+                        } else {
+                            LynxManager.selectedSTIs.remove(String.valueOf(stiName));
+                        }
+
+                    }
+                });
+
+
+                /*Log.v("STI Content Fragment", stiName + " - " + stis.size() + "  -  " + i);
                 final CheckBox ch;
                 ch = new CheckBox(getActivity());
                 ch.setText(stiName);
                 ch.setTextSize(18);
                 ch.setPadding(0,0,0,2);
                 ch.setTypeface(tf);
-                ch.setTextColor(getResources().getColor(R.color.text_color));
+                ch.setTextColor(getResources().getColor(R.color.white));
                 drugs_container.addView(ch);
 
                 ch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -80,7 +96,7 @@ public class RegistrationStiInfo extends Fragment {
                         }
 
                     }
-                });
+                });*/
 
             }
             return rootview;

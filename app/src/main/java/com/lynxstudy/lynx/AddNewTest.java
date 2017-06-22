@@ -80,15 +80,14 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
         getSupportActionBar().setCustomView(cView);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
-        TextView actionbartitle = (TextView) cView.findViewById(R.id.actionbartitle);
-        viewProfile.setVisibility(View.GONE);
+        viewProfile.setVisibility(View.INVISIBLE);
         // Typeface //
         Typeface ty = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/OpenSans-Regular.ttf");
         /*Typeface ty = Typeface.createFromAsset(getResources().getAssets(),
                 "RobotoSlabRegular.ttf");*/
-        actionbartitle.setTypeface(ty);
         titleText = (TextView)findViewById(R.id.titleText);
         titleText.setTypeface(ty);
         hivPosQn = (TextView)findViewById(R.id.hivPosQn);

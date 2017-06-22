@@ -76,6 +76,7 @@ public class PasscodeUnlockActivity extends AbstractPasscodeKeyboardActivity {
             else{
                 //Intent home = new Intent(this, homeScreenActivity.class);
                 Intent home = new Intent(this, LynxSexPro.class);
+                home.putExtra("fromactivity",PasscodeUnlockActivity.this.getClass().getSimpleName());
                 startActivity(home);
                 finish();
             }
@@ -97,7 +98,12 @@ public class PasscodeUnlockActivity extends AbstractPasscodeKeyboardActivity {
         } else {
             hide_keyboard(this);
             clearPasswodeFields();
-            AlertDialog.Builder adb = new AlertDialog.Builder(this);
+            Intent resetPasscode = new Intent(this, PasscodeResetActivity.class);
+            resetPasscode.putExtra("question",LynxManager.decryptString(LynxManager.getActiveUser().getSecurityquestion()));
+            resetPasscode.putExtra("answer",LynxManager.decryptString(LynxManager.getActiveUser().getSecurityanswer()));
+            startActivityForResult(resetPasscode, 102);
+
+            /*AlertDialog.Builder adb = new AlertDialog.Builder(this);
             adb.setTitle("Please provide answer for your security question!");
             //   TextView txt=new TextView(this);
             // txt.setText(LynxManager.decryptString(LynxManager.getActiveUser().getSecurityquestion()));
@@ -133,7 +139,7 @@ public class PasscodeUnlockActivity extends AbstractPasscodeKeyboardActivity {
                     //  finish();
                 }
             });
-            adb.show();
+            adb.show();*/
 
         }
 

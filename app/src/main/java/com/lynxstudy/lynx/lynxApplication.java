@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.ComponentCallbacks2;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
  * Created by Hari on 2017-04-13.
  */
 
-public class lynxApplication extends Application {
+public class lynxApplication extends MultiDexApplication {
 
     public boolean getAppStatus() {
         boolean status = getSharedPreferences("PASSCODE", 0).getBoolean("IN_APP", false);

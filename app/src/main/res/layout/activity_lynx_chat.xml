@@ -83,7 +83,7 @@
             android:layout_height="?android:attr/actionBarSize"
             android:layout_alignParentBottom="true"
             android:id="@+id/bot_nav"
-            android:background="@color/light_gray"
+            android:background="@color/starBG"
             android:orientation="horizontal"
             android:weightSum="1">
 

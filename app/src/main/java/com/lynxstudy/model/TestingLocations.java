@@ -11,6 +11,7 @@ public class TestingLocations {
     String latitude;
     String longitude;
     String url;
+    String type;
     String created_at;
     public TestingLocations() {
     }
@@ -25,13 +26,14 @@ public class TestingLocations {
         this.url = url;
     }
 
-    public TestingLocations(String name, String address,String phone_number, String latitude, String longitude, String url) {
+    public TestingLocations(String name, String address,String phone_number, String latitude, String longitude, String url, String type) {
         this.name = name;
         this.address = address;
         this.phone_number = phone_number;
         this.latitude = latitude;
         this.longitude = longitude;
         this.url = url;
+        this.type = type;
     }
 
     public String getPhone_number() {
@@ -88,5 +90,13 @@ public class TestingLocations {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -24,10 +24,9 @@ public class TestingCareAnswer extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
         getSupportActionBar().setCustomView(cView);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView)cView.findViewById(R.id.viewProfile);
-        TextView title = (TextView) cView.findViewById(R.id.actionbartitle);
-        title.setTypeface(tf);
-        viewProfile.setVisibility(View.GONE);
+        viewProfile.setVisibility(View.INVISIBLE);
 
         TextView qn = (TextView)findViewById(R.id.question);
         qn.setAllCaps(true);

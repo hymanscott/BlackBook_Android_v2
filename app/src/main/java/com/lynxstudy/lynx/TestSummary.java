@@ -45,10 +45,9 @@ public class TestSummary extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
         getSupportActionBar().setCustomView(cView);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
         viewProfile.setVisibility(View.GONE);
-        TextView title = (TextView) cView.findViewById(R.id.actionbartitle);
-        title.setTypeface(tf);
 
         db = new DatabaseHelper(TestSummary.this);
         int testingHistoryID = getIntent().getIntExtra("testingHistoryID",0);

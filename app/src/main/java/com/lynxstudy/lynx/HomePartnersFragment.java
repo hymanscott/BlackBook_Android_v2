@@ -77,6 +77,7 @@ public class HomePartnersFragment extends Fragment {
                 partner_Name.setLayoutParams(params);
                 partner_Name.setTypeface(tf);
                 partner_Name.setTextColor(getResources().getColor(R.color.text_color));
+                partner_Name.setTextSize(16);
                 partner_Name.setPadding(10, 10, 10, 10);
                 int partner_id = partner.getPartner_id();
                 PartnerRating partnerRating = db.getPartnerRatingbyPartnerID(partner_id, 1);
@@ -100,8 +101,8 @@ public class HomePartnersFragment extends Fragment {
                 partnerRow.addView(partner_Name);
                 partnerRow.addView(partner_Rating_Bar);
                 partnerRow.setBackground(getResources().getDrawable(R.drawable.border_bottom));
-                if(j==0)
-                    partnerRow.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
+                /*if(j==0)
+                    partnerRow.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));*/
                 partnerRow.setClickable(true);
                 partnerRow.setFocusable(true);
                 partnerRow.setId(partner_id);

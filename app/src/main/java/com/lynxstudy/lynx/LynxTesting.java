@@ -65,8 +65,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         btn_prep.setOnClickListener(this);
         btn_chat.setOnClickListener(this);
         viewProfile.setOnClickListener(this);
-        TextView title = (TextView)findViewById(R.id.actionbartitle);
-        title.setTypeface(tf);
+
         bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
         bot_nav_sexpro_tv.setTypeface(tf);
         bot_nav_diary_tv = (TextView)findViewById(R.id.bot_nav_diary_tv);
@@ -243,22 +242,22 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()) {
 
             case R.id.bot_nav_sexpro:
-                LynxManager.goToIntent(LynxTesting.this,"sexpro");
+                LynxManager.goToIntent(LynxTesting.this,"sexpro",LynxTesting.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
             case R.id.bot_nav_diary:
-                LynxManager.goToIntent(LynxTesting.this,"diary");
+                LynxManager.goToIntent(LynxTesting.this,"diary",LynxTesting.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
             case R.id.bot_nav_prep:
-                LynxManager.goToIntent(LynxTesting.this,"prep");
+                LynxManager.goToIntent(LynxTesting.this,"prep",LynxTesting.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
             case R.id.bot_nav_chat:
-                LynxManager.goToIntent(LynxTesting.this,"chat");
+                LynxManager.goToIntent(LynxTesting.this,"chat",LynxTesting.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;

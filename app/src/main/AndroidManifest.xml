@@ -14,8 +14,8 @@
 
     <!-- Usage Stats -->
     <uses-permission
-          android:name="android.permission.PACKAGE_USAGE_STATS"
-          tools:ignore="ProtectedPermissions" />
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
         Google Maps Android API v2, but are recommended.
@@ -44,8 +44,9 @@
     </receiver>
 
     <application
+        android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -54,6 +55,7 @@
         <activity
             android:name=".RegLogin"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -64,12 +66,13 @@
         <activity
             android:name=".PasscodeUnlockActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".PasscodeChangePasscode"
             android:parentActivityName=".PasscodeUnlockActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.lynxstudy.lynx.PasscodeUnlockActivity" />
@@ -80,7 +83,7 @@
         <activity
             android:name=".LynxTesting"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LynxPrep"
             android:screenOrientation="portrait"
@@ -88,64 +91,86 @@
         <activity
             android:name=".LynxChat"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"
-            />
-        <activity android:name=".LynxProfile"
-            android:windowSoftInputMode="stateHidden"
-            android:screenOrientation="portrait"/>
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".LynxProfile"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".LynxDiary"
             android:label="@string/title_activity_lynx_diary"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SelectedEncounterSummary"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SelectedPartnerActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".EncounterStartActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".EncounterNewPartner"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".PrepFactsAnswer"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SelectedEncounterSummary"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SelectedPartnerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EncounterStartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EncounterNewPartner"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PrepFactsAnswer"
+            android:screenOrientation="portrait" />
 
-        <service
-            android:name="com.lynxstudy.helper.MyFirebaseMessagingService">
+        <service android:name="com.lynxstudy.helper.MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service
-            android:name="com.lynxstudy.helper.MyFirebaseInstanceIDService">
+        <service android:name="com.lynxstudy.helper.MyFirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDe-RP8wn4NK3-JipjvhLEgPO3baWVyjxo" />
-        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
-             See README(https://goo.gl/l4GJaQ) for more. -->
+        <!--
+             Set custom default icon. This is used when no icon is set for incoming notification messages.
+             See README(https://goo.gl/l4GJaQ) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_launcher" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+            android:resource="@mipmap/ic_launcher_round" />
+        <!--
+             Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
-        <activity android:name=".AddNewTest"
-            android:windowSoftInputMode="stateHidden"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".TestSummary"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".TestingInstructionAnswer"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".TestingCareAnswer"
-            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".AddNewTest"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".TestSummary"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TestingInstructionAnswer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TestingCareAnswer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PasscodeResetActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!--
+            <activity android:name=".RegistrationEdit"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        -->
+        <activity android:name=".BaselineActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

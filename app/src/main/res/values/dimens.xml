@@ -4,4 +4,12 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="button_top_margin">24dp</dimen>
+    <dimen name="edittext_padding">8dp</dimen>
+    <dimen name="edittext_textsize">16sp</dimen>
+    <dimen name="reg_tv_textsize">16sp</dimen>
+    <dimen name="button_textsize">16sp</dimen>
+    <dimen name="paragraph_text_size">16sp</dimen>
+    <dimen name="banner_logo_top_margin">96dp</dimen>
+    <dimen name="banner_logo_bottom_margin">64dp</dimen>
 </resources>

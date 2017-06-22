@@ -75,8 +75,8 @@ public class RegistrationPartnerInfo extends Fragment {
         radio_blackbook_no.setTypeface(tf);
         frag_title = (TextView)view.findViewById(R.id.frag_title);
         frag_title.setTypeface(tf);
-        primaryPartner = (TextView)view.findViewById(R.id.primaryPartner);
-        primaryPartner.setTypeface(tf);
+        /*primaryPartner = (TextView)view.findViewById(R.id.primaryPartner);
+        primaryPartner.setTypeface(tf);*/
         hivStatus = (TextView)view.findViewById(R.id.hivStatus);
         hivStatus.setTypeface(tf);
         undetectableTitle = (TextView)view.findViewById(R.id.undetectableTitle);
@@ -91,8 +91,8 @@ public class RegistrationPartnerInfo extends Fragment {
         nick_name.setTypeface(tf);
         partner_info_nextbtn = (Button) view.findViewById(R.id.partner_info_nextbtn);
         partner_info_nextbtn.setTypeface(tf);
-        partner_info_revisebtn = (Button) view.findViewById(R.id.partner_info_revisebtn);
-        partner_info_revisebtn.setTypeface(tf);
+        /*partner_info_revisebtn = (Button) view.findViewById(R.id.partner_info_revisebtn);
+        partner_info_revisebtn.setTypeface(tf);*/
 
         RadioButton hivNegPrep = (RadioButton)view.findViewById(R.id.radio_hiv_prep);
         hivNegPrep.setText(Html.fromHtml("HIV negative & on PrEP"));
@@ -146,6 +146,78 @@ public class RegistrationPartnerInfo extends Fragment {
                 }
             }
         });
+
+        // Set Back values //
+        nick_name.setText(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getName()));
+        if(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getHiv_status())!=null){
+            switch (LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getHiv_status())){
+                case "HIV Negative":
+                    radio_hiv_neg.setSelected(true);
+                    break;
+                case "HIV negative & on PrEP":
+                    hivNegPrep.setSelected(true);
+                    break;
+                case "I don't know":
+                    radio_hiv_idk.setSelected(true);
+                    break;
+                case "HIV Positive":
+                    radio_hiv_pos.setSelected(true);
+                    break;
+                case "HIV positive & Undetectable":
+                    hivPosUnd.setSelected(true);
+                    undetectable_layout.setVisibility(View.VISIBLE);
+                    LynxManager.undetectableLayoutHidden = false;
+                    break;
+                default:
+            }
+        }
+
+        if(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getUndetectable_for_sixmonth())!=null){
+            switch (LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getHiv_status())){
+                case "Yes":
+                    radio_undetectable_yes.setSelected(true);
+                    break;
+                default:
+                    radio_undetectable_iDontKnow.setSelected(true);
+            }
+        }
+
+        if(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getPartner_have_other_partners())!=null){
+            switch (LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getPartner_have_other_partners())){
+                case "Yes":
+                    radio_partner_yes.setSelected(true);
+                    relationshipPeriod_layout.setVisibility(View.GONE);
+                    LynxManager.relationShipLayoutHidden = true;
+                    break;
+                default:
+                    if(count==1){
+                        relationshipPeriod_layout.setVisibility(View.VISIBLE);
+                        LynxManager.relationShipLayoutHidden = false;
+                    }
+                    radio_partner_no.setSelected(true);
+            }
+        }
+
+        if(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getRelationship_period())!=null){
+            switch (LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getRelationship_period())){
+                case "6 months or more":
+                    radio_moreThanSixMonths.setSelected(true);
+                    break;
+                default:
+                    radio_lessThanSixMonths.setSelected(true);
+            }
+        }
+
+        if(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getIs_added_to_blackbook())!=null){
+            switch (LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getIs_added_to_blackbook())){
+                case "No":
+                    radio_blackbook_no.setSelected(true);
+                    break;
+                default:
+                    radio_blackbook_yes.setSelected(true);
+            }
+        }
+        // Set Back values ends //
         return view;
     }
 }

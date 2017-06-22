@@ -36,16 +36,6 @@ public class PasscodeChangePasscode extends AppCompatActivity {
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/OpenSans-Regular.ttf");
 
-        // Custom Action Bar //
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
-        getActionBar().setCustomView(cView);
-        ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
-        TextView actionbartitle = (TextView) cView.findViewById(R.id.actionbartitle);
-        actionbartitle.setTypeface(tf);
-        viewProfile.setVisibility(View.GONE);
-        title = (TextView) findViewById(R.id.title);
-        title.setTypeface(tf);
         frag_title = (TextView) findViewById(R.id.frag_title);
         frag_title.setTypeface(tf);
         newPasscode = (EditText) findViewById(R.id.newPasscode);

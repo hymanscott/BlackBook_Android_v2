@@ -34,7 +34,7 @@ public class SelectedEncounterSummary extends AppCompatActivity {
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
         getSupportActionBar().setCustomView(cView);
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
-        viewProfile.setVisibility(View.GONE);
+        viewProfile.setVisibility(View.INVISIBLE);
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
@@ -71,23 +71,23 @@ public class SelectedEncounterSummary extends AppCompatActivity {
         TextView hivStatus = (TextView) findViewById(R.id.encListSumm_hivStatus);
         hivStatus.setText(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()));
         hivStatus.setTypeface(tf);
-        ToggleButton btn_sexType_kissing = (ToggleButton) findViewById(R.id.encSumm_kissing);
+        ToggleButton btn_sexType_kissing = (ToggleButton) findViewById(R.id.encListSumm_kissing);
         btn_sexType_kissing.setTypeface(tf);
-        ToggleButton btn_sexType_iSucked = (ToggleButton) findViewById(R.id.encSumm_iSucked);
+        ToggleButton btn_sexType_iSucked = (ToggleButton) findViewById(R.id.encListSumm_iSucked);
         btn_sexType_iSucked.setTypeface(tf);
-        ToggleButton btn_sexType_heSucked = (ToggleButton) findViewById(R.id.encSumm_heSucked);
+        ToggleButton btn_sexType_heSucked = (ToggleButton) findViewById(R.id.encListSumm_heSucked);
         btn_sexType_heSucked.setTypeface(tf);
-        ToggleButton btn_sexType_iBottomed = (ToggleButton) findViewById(R.id.encSumm_iBottomed);
+        ToggleButton btn_sexType_iBottomed = (ToggleButton) findViewById(R.id.encListSumm_iBottomed);
         btn_sexType_iBottomed.setTypeface(tf);
-        ToggleButton btn_sexType_iTopped = (ToggleButton) findViewById(R.id.encSumm_iTopped);
+        ToggleButton btn_sexType_iTopped = (ToggleButton) findViewById(R.id.encListSumm_iTopped);
         btn_sexType_iTopped.setTypeface(tf);
-        ToggleButton btn_sexType_ijerked = (ToggleButton) findViewById(R.id.encSumm_iJerked);
+        ToggleButton btn_sexType_ijerked = (ToggleButton) findViewById(R.id.encListSumm_iJerked);
         btn_sexType_ijerked.setTypeface(tf);
-        ToggleButton btn_sexType_hejerked = (ToggleButton) findViewById(R.id.encSumm_heJerked);
+        ToggleButton btn_sexType_hejerked = (ToggleButton) findViewById(R.id.encListSumm_heJerked);
         btn_sexType_hejerked.setTypeface(tf);
-        ToggleButton btn_sexType_irimmed = (ToggleButton) findViewById(R.id.encSumm_iRimmed);
+        ToggleButton btn_sexType_irimmed = (ToggleButton) findViewById(R.id.encListSumm_iRimmed);
         btn_sexType_irimmed.setTypeface(tf);
-        ToggleButton btn_sexType_herimmed = (ToggleButton) findViewById(R.id.encSumm_heRimmed);
+        ToggleButton btn_sexType_herimmed = (ToggleButton) findViewById(R.id.encListSumm_heRimmed);
         btn_sexType_herimmed.setTypeface(tf);
         for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
             switch (encSexType.getSex_type()) {

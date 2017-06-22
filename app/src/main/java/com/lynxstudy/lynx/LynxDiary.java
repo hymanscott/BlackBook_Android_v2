@@ -65,8 +65,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         btn_prep = (LinearLayout) findViewById(R.id.bot_nav_prep);
         btn_chat = (LinearLayout) findViewById(R.id.bot_nav_chat);
         viewProfile = (ImageView)findViewById(R.id.viewProfile);
-        TextView title = (TextView)findViewById(R.id.actionbartitle);
-        title.setTypeface(tf);
+
         bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
         bot_nav_sexpro_tv.setTypeface(tf);
         bot_nav_diary_tv = (TextView)findViewById(R.id.bot_nav_diary_tv);
@@ -229,22 +228,22 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         switch (v.getId()) {
 
             case R.id.bot_nav_sexpro:
-                LynxManager.goToIntent(LynxDiary.this,"sexpro");
+                LynxManager.goToIntent(LynxDiary.this,"sexpro",LynxDiary.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
             case R.id.bot_nav_testing:
-                LynxManager.goToIntent(LynxDiary.this,"testing");
+                LynxManager.goToIntent(LynxDiary.this,"testing",LynxDiary.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
             case R.id.bot_nav_prep:
-                LynxManager.goToIntent(LynxDiary.this,"prep");
+                LynxManager.goToIntent(LynxDiary.this,"prep",LynxDiary.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
             case R.id.bot_nav_chat:
-                LynxManager.goToIntent(LynxDiary.this,"chat");
+                LynxManager.goToIntent(LynxDiary.this,"chat",LynxDiary.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;

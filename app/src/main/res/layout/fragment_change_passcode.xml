@@ -2,67 +2,119 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@drawable/main_bg_gradient"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    <TextView
-        android:text="Change Passcode"
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="30dp"
-        android:id="@+id/frag_title"
-        android:textAllCaps="true"
-        android:gravity="center_horizontal|center_vertical" />
+        android:layout_height="fill_parent">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:id="@+id/change_passcode_layout"
-        android:layout_margin="10dp">
-        <TextView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:id="@+id/title"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Enter New 4 Digit Passcode"/>
+            android:layout_height="fill_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/lynxverticallogo"
+                android:layout_marginTop="@dimen/banner_logo_top_margin"
+                android:layout_marginBottom="@dimen/banner_logo_bottom_margin"
+                android:layout_gravity="center"/>
+            <TextView
+                android:text="Choose a new passcode"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/frag_title"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:gravity="center_horizontal|center_vertical" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:padding="@dimen/edittext_padding"
+                android:background="@color/edittext_bg"
+                android:orientation="horizontal">
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:id="@+id/newPasscode"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:hint="Passcode"
-            android:inputType="numberPassword"
-            android:maxLength="4"/>
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:id="@+id/confirmNewPasscode"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:hint="Repeat Passcode"
-            android:inputType="numberPassword"
-            android:maxLength="4"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:id="@+id/change_passcode_submit"
-            android:text="Submit"
-            android:textAllCaps="false"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/lynx_button"
-            android:textColor="@color/white"
-            android:onClick="changePasscode"/>
-    </LinearLayout>
+                <ImageView
+                    android:id="@+id/passicon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/passcodeicon" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/rectangle_edittext"
+                    android:backgroundTint="@color/edittext_bg"
+                    android:ems="10"
+                    android:hint="4 digit passcode"
+                    android:maxLength="4"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/newPasscode"
+                    android:inputType="numberPassword"
+                    android:textColor="@color/white"
+                    android:textCursorDrawable="@drawable/white_cursor"
+                    android:textColorHint="@color/edittext_hint_color"
+                    android:textSize="@dimen/edittext_textsize" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:padding="@dimen/edittext_padding"
+                android:background="@color/edittext_bg"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/passcodeicon" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/rectangle_edittext"
+                    android:backgroundTint="@color/edittext_bg"
+                    android:ems="10"
+                    android:hint="Repeat passcode"
+                    android:maxLength="4"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/confirmNewPasscode"
+                    android:inputType="numberPassword"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/edittext_hint_color"
+                    android:textCursorDrawable="@drawable/white_cursor"
+                    android:textSize="@dimen/edittext_textsize" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/button_top_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:id="@+id/change_passcode_submit"
+                android:text="LOGIN"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/buttonbluegradient"
+                android:textColor="@color/white"
+                android:textSize="@dimen/button_textsize"
+                android:onClick="changePasscode"/>
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

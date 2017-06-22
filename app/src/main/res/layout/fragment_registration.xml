@@ -3,8 +3,264 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white">
-    <TextView
+    android:background="@drawable/main_bg_gradient">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="24dp"
+                    android:src="@drawable/userlarge" />
+
+                <TextView
+                    android:id="@+id/frag_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Register a new account"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_weight="0.5"
+                        android:background="@color/edittext_bg"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/edittext_padding">
+
+                        <ImageView
+                            android:id="@+id/usericon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/usericon" />
+
+                        <EditText
+                            android:id="@+id/regFirstName"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:background="@drawable/rectangle_edittext"
+                            android:backgroundTint="@color/edittext_bg"
+                            android:ems="10"
+                            android:hint="First Name"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:imeOptions="actionNext"
+                            android:inputType="textPersonName"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/edittext_hint_color"
+                            android:textCursorDrawable="@drawable/white_cursor"
+                            android:textSize="@dimen/edittext_textsize" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_weight="0.5"
+                        android:background="@color/edittext_bg"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/edittext_padding">
+
+                        <ImageView
+                            android:id="@+id/emailicon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/emailicon"
+                            android:visibility="invisible" />
+
+                        <EditText
+                            android:id="@+id/regLastName"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/rectangle_edittext"
+                            android:backgroundTint="@color/edittext_bg"
+                            android:ems="10"
+                            android:hint="Last name"
+                            android:paddingTop="5dp"
+                            android:imeOptions="actionNext"
+                            android:paddingBottom="5dp"
+                            android:inputType="textPersonName"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/edittext_hint_color"
+                            android:textCursorDrawable="@drawable/white_cursor"
+                            android:textSize="@dimen/edittext_textsize" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:background="@color/edittext_bg"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/edittext_padding">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/phoneicon" />
+
+                    <EditText
+                        android:id="@+id/regPhone"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:background="@drawable/rectangle_edittext"
+                        android:backgroundTint="@color/edittext_bg"
+                        android:ems="10"
+                        android:hint="Mobile phone number"
+                        android:inputType="phone"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:windowSoftInputMode="adjustPan"
+                        android:textColor="@color/white"
+                        android:imeOptions="actionDone"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textCursorDrawable="@drawable/white_cursor"
+                        android:textSize="@dimen/edittext_textsize" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:background="@color/edittext_bg"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/edittext_padding">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/calendericon" />
+
+                    <EditText
+                        android:id="@+id/regDOB"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:background="@drawable/rectangle_edittext"
+                        android:backgroundTint="@color/edittext_bg"
+                        android:clickable="true"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:hint="Birthday"
+                        android:inputType="none"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textCursorDrawable="@drawable/white_cursor"
+                        android:textSize="@dimen/edittext_textsize" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:background="@color/edittext_bg"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/edittext_padding">
+
+                    <ImageView
+                        android:id="@+id/raceicon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:src="@drawable/raceicon" />
+                    <!--<com.lynxstudy.lynx.MultiSelectionSpinner
+                        android:id="@+id/mySpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/raceicon"
+                        android:layout_centerVertical="true"
+                        android:backgroundTint="@color/white"
+                        android:layout_marginLeft="16dp"/>-->
+                    <TextView
+                        android:id="@+id/SelectBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:layout_toEndOf="@+id/raceicon"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:text="Race/Ethnicity"
+                        android:textColor="@color/edittext_hint_color" />
+
+                    <ImageView
+                        android:id="@+id/create"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:src="@drawable/dropdownicon" />
+                </RelativeLayout>
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent">
+                <Button
+                    android:id="@+id/regBasicNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="@dimen/button_top_margin"
+                    android:background="@drawable/buttonbluegradient"
+                    android:onClick="showRegistrationUserDetails"
+                    android:text="NEXT"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/button_textsize"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="NEW USER REGISTRATION"
@@ -33,7 +289,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true">
 
-                <EditText
+               &lt;!&ndash; <EditText
                     android:textColor="@color/text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -43,9 +299,9 @@
                     android:id="@+id/regFirstName"
                     android:layout_weight="1"
                     android:layout_margin="5dp"
-                    android:hint="First Name" />
+                    android:hint="First Name" />&ndash;&gt;
 
-                <EditText
+                &lt;!&ndash;<EditText
                     android:textColor="@color/text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -55,7 +311,7 @@
                     android:textSize="18sp"
                     android:layout_weight="1"
                     android:layout_margin="5dp"
-                    android:hint="Last Name" />
+                    android:hint="Last Name" />&ndash;&gt;
             </LinearLayout>
 
             <EditText
@@ -151,8 +407,6 @@
                     android:spinnerMode="dialog"
                     android:dropDownSelector="@color/colorAccent" />
             </LinearLayout>
-
-
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -186,7 +440,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginBottom="5dp"/>
 
-                <EditText
+                &lt;!&ndash;<EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:focusable="true"
@@ -197,7 +451,7 @@
                     android:textColorHint="@color/text_color"
                     android:textColor="@color/text_color"
                     android:hint="MM/DD/YYYY"
-                    android:inputType="date"/>
+                    android:inputType="date"/>&ndash;&gt;
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -221,7 +475,7 @@
                 android:layout_marginLeft="5dp"
                 android:textStyle="bold"
                 android:layout_weight="1" />
-            <LinearLayout
+            &lt;!&ndash;<LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -237,7 +491,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"/>
 
-            </LinearLayout>
+            </LinearLayout>&ndash;&gt;
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -250,6 +504,6 @@
                 android:layout_margin="20dp"
                 android:onClick="showRegistrationConfirm"/>
         </LinearLayout>
-    </ScrollView>
+    </ScrollView>-->
 
 </LinearLayout>

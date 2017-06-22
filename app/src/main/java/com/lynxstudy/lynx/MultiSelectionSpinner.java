@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -22,14 +24,16 @@ public class MultiSelectionSpinner extends Spinner implements
     boolean[] mSelection = null;
     boolean[] mSelectionAtStart = null;
     String _itemsAtStart = null;
-
+    String _title = "Race/Ethnicity";
     ArrayAdapter<String> simple_adapter;
 
     public MultiSelectionSpinner(Context context) {
         super(context);
 
         simple_adapter = new ArrayAdapter<>(context,
-                android.R.layout.simple_spinner_item);
+                R.layout.multiselect_spinner_item);
+        /*simple_adapter = new ArrayAdapter<>(context,
+                android.R.layout.simple_spinner_item);*/
         super.setAdapter(simple_adapter);
     }
 
@@ -37,13 +41,24 @@ public class MultiSelectionSpinner extends Spinner implements
         super(context, attrs);
 
         simple_adapter = new ArrayAdapter<>(context,
-                android.R.layout.simple_spinner_item);
+                R.layout.multiselect_spinner_item);
         super.setAdapter(simple_adapter);
     }
 
     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
         if (mSelection != null && which < mSelection.length) {
+            String select = null;
             mSelection[which] = isChecked;
+/*
+            if (!isAnySelect())
+                select = _title;
+            else
+                select = buildSelectedItemString();
+
+            simple_adapter.clear();
+            simple_adapter.add(select);
+*/
+
             simple_adapter.clear();
             simple_adapter.add(buildSelectedItemString());
         } else {
@@ -51,7 +66,18 @@ public class MultiSelectionSpinner extends Spinner implements
                     "Argument 'which' is out of bounds.");
         }
     }
-
+    /*public void setTitle(String title) {
+        _title = "Race/Ethnicity";
+        simple_adapter.clear();
+        simple_adapter.add(title);
+        setSelection(0);
+    }
+    private boolean isAnySelect() {
+        for (boolean b : mSelection) {
+            if (b == true) return true;
+        }
+        return false;
+    }*/
     @Override
     public boolean performClick() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

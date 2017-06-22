@@ -14,7 +14,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.BitmapFactory;
+import android.graphics.Shader;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -24,6 +27,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
 import android.text.format.DateFormat;
 import android.util.DisplayMetrics;
@@ -46,6 +50,7 @@ import com.lynxstudy.model.HomeTestingRequest;
 import com.lynxstudy.model.PartnerContact;
 import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.Partners;
+import com.lynxstudy.model.Statistics;
 import com.lynxstudy.model.TestingHistory;
 import com.lynxstudy.model.TestingHistoryInfo;
 import com.lynxstudy.model.TestingReminder;
@@ -75,28 +80,33 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
     DatabaseHelper db;
     ImageView dialScoreImage;
-    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv;
+    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,score_update_date;
+    private Statistics statistics = new Statistics();
+    private String fromactivity = null;
+    private String toactivity = null;
     private static final int READ_WRITE_PERMISSION = 100;
+    private static final int READ_PHONE_STATE = 101;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lynx_sex_pro);
         db = new DatabaseHelper(LynxSexPro.this);
-        /*//Check if permission enabled
-        if (UStats.getUsageStatsList(this).isEmpty()){
-            Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
-            startActivity(intent);
+        if(getIntent().getExtras()!=null) {
+            fromactivity = getIntent().getStringExtra("fromactivity");
         }
-        //UStats.printCurrentUsageStatus(LynxSexPro.this);
-        List<UsageStats> usageStats = UStats.getUsageStatsList(LynxSexPro.this);
-        for (UsageStats us :usageStats){
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && us.getPackageName().equals("com.lynxstudy.lynx")) {
-                Log.v("FirstTimeStamp",getDate(us.getFirstTimeStamp()));
-                Log.v("LastTimeStamp",getDate(us.getLastTimeStamp()));
-                Log.v("LastTimeUsed",getDate(us.getLastTimeUsed()));
-                Log.v("LastTimeUsed",getDate(us.getTotalTimeInForeground()));
-            }
-        }*/
+        statistics.setActivity(LynxSexPro.this.getClass().getSimpleName());
+        statistics.setStatusUpdate(String.valueOf(R.string.statusUpdateNo));
+        statistics.setFrom_activity(fromactivity);
+        statistics.setTo_activity(null);
+        statistics.setStarttime(LynxManager.getDateTime());
+        statistics.setEndtime(LynxManager.getDateTime());
+        statistics.setAction(null);
+        // Printing Recent Actions //
+        List<Statistics> statisticsList= db.getAllStatistics();
+        for(Statistics recentStat:statisticsList) {
+            Log.v("RecentStatStart",recentStat.getFrom_activity() + "->" +recentStat.getActivity() +" at " + recentStat.getStarttime());
+            Log.v("RecentStatEnd", "Ended at" + recentStat.getEndtime() +" moved to " + recentStat.getTo_activity() + " with action " + recentStat.getAction());
+        }
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/OpenSans-Regular.ttf");
@@ -105,9 +115,13 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
         getSupportActionBar().setCustomView(cView);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
+        /*Toolbar parent =(Toolbar) cView.getParent();
+        //parent.setPadding(0,0,0,0);//for tab otherwise give space in tab
+        parent.setContentInsetsAbsolute(0,0);
+        parent.setBackgroundResource(R.drawable.actionbar_bg);*/
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
-        TextView title = (TextView)cView.findViewById(R.id.actionbartitle);
-        title.setTypeface(tf);
+
         bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
         bot_nav_sexpro_tv.setTypeface(tf);
         bot_nav_diary_tv = (TextView)findViewById(R.id.bot_nav_diary_tv);
@@ -118,6 +132,8 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         bot_nav_prep_tv.setTypeface(tf);
         bot_nav_chat_tv = (TextView)findViewById(R.id.bot_nav_chat_tv);
         bot_nav_chat_tv.setTypeface(tf);
+        score_update_date = (TextView)findViewById(R.id.score_update_date);
+        score_update_date.setTypeface(tf);
 
         // Click Listners //
         btn_testing = (LinearLayout)findViewById(R.id.bot_nav_testing);
@@ -130,17 +146,7 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         btn_prep.setOnClickListener(this);
         btn_chat.setOnClickListener(this);
         viewProfile.setOnClickListener(this);
-        /*btn_testing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LynxSexPro.this,LYNXTesting.class);
-                startActivity(i);
-                int id = R.anim.activity_slide_from_right;
-                overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
-                finish();
-                //overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
-            }
-        });*/
+
         // MyScore Dial //
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         int width = (int) ((metrics.widthPixels / metrics.density) * 1.3);
@@ -242,6 +248,15 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
                 dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_1));
                 break;
         }
+        db = new DatabaseHelper(this);
+        if ( Build.VERSION.SDK_INT >= 23 &&
+                ContextCompat.checkSelfPermission(LynxSexPro.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(LynxSexPro.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(LynxSexPro.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, READ_WRITE_PERMISSION);
+        }
+
+        // Score Update Date //
+        score_update_date.setText("Your Score will update in " + (90 - getscore.getElapsedDays())+" days");
         // update fcm id //
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String tokenid = sharedPref.getString("lynxfirebasetokenid",null);
@@ -250,27 +265,32 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         /*
             * system Information
             * */
-        String serviceName = Context.TELEPHONY_SERVICE;
-        TelephonyManager m_telephonyManager = (TelephonyManager) getSystemService(serviceName);
-        LynxManager.deviceId = m_telephonyManager.getDeviceId();
-        Log.v("deviceId", LynxManager.deviceId);
+        String device_info ="";
+        if ( Build.VERSION.SDK_INT >= 23 &&
+                ContextCompat.checkSelfPermission(LynxSexPro.this, android.Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED ) {
+            ActivityCompat.requestPermissions(LynxSexPro.this, new String[]{android.Manifest.permission.READ_PHONE_STATE}, READ_PHONE_STATE);
+        }else{
+            String serviceName = Context.TELEPHONY_SERVICE;
+            TelephonyManager m_telephonyManager = (TelephonyManager) getSystemService(serviceName);
+            LynxManager.deviceId = m_telephonyManager.getDeviceId();
+            Log.v("deviceId", LynxManager.deviceId);
 
-        JSONObject additional_info = new JSONObject();
-        try {
-            additional_info.put("kernel_version", System.getProperty("os.version"));
-            additional_info.put("api_level", System.getProperty("APILEVEL", Build.VERSION.SDK));
-            additional_info.put("device_name", System.getProperty("DEVICENAME", Build.DEVICE));
-            additional_info.put("model", System.getProperty("MODEL", Build.MODEL));
-            additional_info.put("product", System.getProperty("PRODUCT", Build.PRODUCT));
-            additional_info.put("imei", m_telephonyManager.getDeviceId());
-            additional_info.put("imsi",m_telephonyManager.getSubscriberId());
-            additional_info.put("device_sft_version",m_telephonyManager.getDeviceSoftwareVersion());
-            additional_info.put("phone_type",String.valueOf(m_telephonyManager.getPhoneType()));
-        }catch (JSONException e){
-            e.printStackTrace();
+            JSONObject additional_info = new JSONObject();
+            try {
+                additional_info.put("kernel_version", System.getProperty("os.version"));
+                additional_info.put("api_level", System.getProperty("APILEVEL", Build.VERSION.SDK));
+                additional_info.put("device_name", System.getProperty("DEVICENAME", Build.DEVICE));
+                additional_info.put("model", System.getProperty("MODEL", Build.MODEL));
+                additional_info.put("product", System.getProperty("PRODUCT", Build.PRODUCT));
+                additional_info.put("imei", m_telephonyManager.getDeviceId());
+                additional_info.put("imsi",m_telephonyManager.getSubscriberId());
+                additional_info.put("device_sft_version",m_telephonyManager.getDeviceSoftwareVersion());
+                additional_info.put("phone_type",String.valueOf(m_telephonyManager.getPhoneType()));
+            }catch (JSONException e){
+                e.printStackTrace();
+            }
+            device_info = additional_info.toString();
         }
-        String device_info = additional_info.toString();
-        Log.v("Device_info",device_info);
         if (tokenid != null) {
             CloudMessages cloudMessaging = new CloudMessages(LynxManager.getActiveUser().getUser_id(),
                     LynxManager.getActiveUser().getEmail(), LynxManager.encryptString(tokenid), LynxManager.encryptString("Android"),
@@ -301,12 +321,6 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
                 }
             }
         }, 0, 1, TimeUnit.MINUTES);
-        db = new DatabaseHelper(this);
-        if ( Build.VERSION.SDK_INT >= 23 &&
-                ContextCompat.checkSelfPermission(LynxSexPro.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(LynxSexPro.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(LynxSexPro.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, READ_WRITE_PERMISSION);
-        }
     }
     private String getDate(long time) {
         Calendar cal = Calendar.getInstance(Locale.US);
@@ -319,23 +333,27 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         switch (v.getId()) {
 
             case R.id.bot_nav_testing:
-                LynxManager.goToIntent(LynxSexPro.this,"testing");
+                LynxManager.goToIntent(LynxSexPro.this,"testing",LynxSexPro.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
+                toactivity = new LynxTesting().getClass().getSimpleName();
                 finish();
                 break;
             case R.id.bot_nav_diary:
-                LynxManager.goToIntent(LynxSexPro.this,"diary");
+                LynxManager.goToIntent(LynxSexPro.this,"diary",LynxSexPro.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
+                toactivity = new LynxDiary().getClass().getSimpleName();
                 finish();
                 break;
             case R.id.bot_nav_prep:
-                LynxManager.goToIntent(LynxSexPro.this,"prep");
+                LynxManager.goToIntent(LynxSexPro.this,"prep",LynxSexPro.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
+                toactivity = new LynxPrep().getClass().getSimpleName();
                 finish();
                 break;
             case R.id.bot_nav_chat:
-                LynxManager.goToIntent(LynxSexPro.this,"chat");
+                LynxManager.goToIntent(LynxSexPro.this,"chat",LynxSexPro.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
+                toactivity = new LynxChat().getClass().getSimpleName();
                 finish();
                 break;
             case R.id.viewProfile:
@@ -361,7 +379,25 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
             startActivity(lockscreen);
             Log.v("onResumeusername", LynxManager.getActiveUser().getFirstname());
         }
+        statistics.setStarttime(LynxManager.getDateTime());
     }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        Log.v("statOnPause",LynxManager.getDateTime());
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        statistics.setEndtime(LynxManager.getDateTime());
+        statistics.setAction("Activity Stoped");
+        statistics.setTo_activity(toactivity);
+        db.createStatistics(statistics);
+        Log.v("statOnStop",LynxManager.getDateTime());
+    }
+
     int onPause_count =0;
 
     @Override
@@ -374,6 +410,10 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface arg0, int arg1) {
                             System.exit(0);
+                            statistics.setEndtime(LynxManager.getDateTime());
+                            statistics.setAction("Activity Closed");
+                            statistics.setTo_activity(toactivity);
+                            db.createStatistics(statistics);
                         }
                     });
 
@@ -396,7 +436,7 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
                 pos_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.lynx_button));
                 pos_btn.setTextColor(getResources().getColor(R.color.white));
             }
-            try{
+            /*try{
                 Resources resources = dialog.getContext().getResources();
                 int color = resources.getColor(R.color.black); // your color here
                 int textColor = resources.getColor(R.color.button_gray);
@@ -410,7 +450,7 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
                 titleDivider.setBackgroundColor(color); // change divider color
             } catch (Exception ex) {
                 ex.printStackTrace();
-            }
+            }*/
 
         }
         else{

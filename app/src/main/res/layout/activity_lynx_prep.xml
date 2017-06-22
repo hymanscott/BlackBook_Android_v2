@@ -18,7 +18,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@drawable/actionbar_bg"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay">
             <RelativeLayout
@@ -27,21 +27,15 @@
                 android:gravity="center_horizontal|top"
                 android:padding="0dp"
                 android:layout_margin="0dp"
-                android:background="@color/colorPrimary"
                 android:layout_height="wrap_content">
-                <TextView
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/app_name"
-                    android:textColor="#ffffff"
+                    android:id="@+id/logo"
                     android:layout_centerInParent="true"
-                    android:textStyle="bold"
-                    android:id="@+id/actionbartitle"
-                    android:gravity="center_horizontal"
-                    android:padding="0dp"
-                    android:layout_margin="0dp"
-                    android:textSize="32sp" />
+                    android:src="@drawable/logohorizontal"
+                    android:layout_marginRight="20dp"
+                    android:layout_gravity="center"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -49,7 +43,7 @@
                     android:src="@drawable/icon_person_white"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"/>
+                    android:layout_marginRight="5dp"/>
             </RelativeLayout>
         </android.support.v7.widget.Toolbar>
 
@@ -79,7 +73,7 @@
         android:layout_alignParentBottom="true"
         android:id="@+id/bot_nav"
         android:layout_gravity="bottom"
-        android:background="@color/light_gray"
+        android:background="@color/starBG"
         android:orientation="horizontal"
         android:weightSum="1">
 

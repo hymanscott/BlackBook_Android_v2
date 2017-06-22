@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -20,6 +22,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +58,8 @@ import com.lynxstudy.lynx.R;
 import com.lynxstudy.model.LocationsDistance;
 import com.lynxstudy.model.TestingLocations;
 
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -71,6 +81,13 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
     LatLngBounds.Builder bounds;
     DatabaseHelper db;
     LocationManager mlocManager;
+    String[] filters = {"Filters", "PrEP", "HIV Testing",
+            "STI Testing"};
+    String[] miles = {"10 miles", "20 miles", "50 miles",
+            "100 miles"};
+    ImageView search;
+    EditText zipcode;
+    Spinner filterSpinner,milesSpinner;
     public TestingLocationFragment() {
         // Required empty public constructor
     }
@@ -80,13 +97,21 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_testing_location, container, false);
+        View view = inflater.inflate(R.layout.fragment_lynx_prep_map, container, false);
         setUpGClient();
         db = new DatabaseHelper(getActivity());
         mMapView = (MapView) view.findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
 
         mMapView.onResume(); // needed to get the map to display immediately
+        // Moving MyLocation Button to bottom //
+        View btnMyLocation = ((View) mMapView.findViewById(1).getParent()).findViewById(2);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(80,80); // size of button in dp
+        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+        params.setMargins(0, 0, 15, 15);
+        btnMyLocation.setLayoutParams(params);
+
         mlocManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         try {
@@ -111,6 +136,20 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                     return;
                 }
                 googleMap.setMyLocationEnabled(true);
+                googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+                    @Override
+                    public boolean onMyLocationButtonClick() {
+                        Log.v("onMyLocationButtonClick","yes");
+                        String filter = null;
+                        if(!filterSpinner.getSelectedItem().toString().equals("Filters"))
+                            filter = filterSpinner.getSelectedItem().toString();
+
+                        Location ll = googleMap.getMyLocation();
+                        LatLng yourLoc = new LatLng(ll.getLatitude(), ll.getLongitude());
+                        showFilteredMarker(yourLoc,filter,milesSpinner.getSelectedItem().toString());
+                        return false;
+                    }
+                });
 
                 /*// For dropping a marker at a point on the Map
                 LatLng sydney = new LatLng(12.968123, 77.654530);
@@ -121,7 +160,218 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                 googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));*/
             }
         });
+
+        // Spinner Items //
+        filterSpinner = (Spinner)view.findViewById(R.id.filters);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                R.layout.spinner_row, R.id.txtView, filters);
+        filterSpinner.setAdapter(adapter);
+        filterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                LatLng searchLatLng = null;
+                String filter = null;
+                if(!zipcode.getText().toString().isEmpty())
+                {
+                    searchLatLng = getLatLngFromZip(zipcode.getText().toString());
+                }
+                if(position!=0)
+                    filter = filterSpinner.getSelectedItem().toString();
+
+                showFilteredMarker(searchLatLng,filter,milesSpinner.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        milesSpinner = (Spinner)view.findViewById(R.id.miles);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(),
+                R.layout.spinner_row, R.id.txtView, miles);
+        milesSpinner.setAdapter(adapter1);
+        milesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                LatLng searchLatLng = null;
+                String filter = null;
+                if(!filterSpinner.getSelectedItem().toString().equals("Filters"))
+                    filter = filterSpinner.getSelectedItem().toString();
+                if(!zipcode.getText().toString().isEmpty())
+                    searchLatLng = getLatLngFromZip(zipcode.getText().toString());
+                showFilteredMarker(searchLatLng,filter,milesSpinner.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        search = (ImageView)view.findViewById(R.id.search);
+        zipcode = (EditText) view.findViewById(R.id.zipCode);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!zipcode.getText().toString().isEmpty()){
+                    String filter=null;
+                    if(!filterSpinner.getSelectedItem().toString().equals("Filters"))
+                        filter = filterSpinner.getSelectedItem().toString();
+
+                    showFilteredMarker(getLatLngFromZip(zipcode.getText().toString()),filter,milesSpinner.getSelectedItem().toString());
+                }
+            }
+        });
+
         return view;
+    }
+
+    // Getting latlng from zip code //
+    public LatLng getLatLngFromZip(String zip){
+
+        try {
+            BigDecimal n = new BigDecimal(zip);
+            final Geocoder geocoder = new Geocoder(getActivity());
+            LatLng latLng = null;
+
+            try {
+                List<Address> addresses = geocoder.getFromLocationName(zip, 1);
+                if (addresses != null && !addresses.isEmpty()) {
+                    Address address = addresses.get(0);
+                    // Use the address as needed
+               /* String message = String.format("Latitude: %f, Longitude: %f",
+                        address.getLatitude(), address.getLongitude());*/
+                    latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                } else {
+                    // Display appropriate message when Geocoder services are not available
+                    latLng = null;
+                }
+            } catch (IOException e) {
+                // handle exception
+            }
+            return latLng;
+        } catch (Exception e) {
+            LatLng latLng = null;
+            if(Geocoder.isPresent()){
+                try {
+                    Geocoder gc = new Geocoder(getActivity());
+                    List<Address> addresses= gc.getFromLocationName(zip, 5); // get the found Address Objects
+
+                    List<LatLng> ll = new ArrayList<LatLng>(addresses.size()); // A list to save the coordinates if they are available
+                    for(Address a : addresses){
+                        if(a.hasLatitude() && a.hasLongitude()){
+                        /*String message = String.format("Latitude: %f, Longitude: %f",
+                                a.getLatitude(), a.getLongitude());*/
+                            latLng = new LatLng(a.getLatitude(), a.getLongitude());
+                        }
+                    }
+                } catch (IOException ex) {
+                    // handle the exception
+                }
+            }
+            return latLng;
+        }
+    }
+
+    private void showFilteredMarker(LatLng latLng, String filter,String miles){
+        // Set Location //
+        Location l = new Location("");
+        if(latLng!=null){
+            l.setLatitude(latLng.latitude);
+            l.setLongitude(latLng.longitude);
+        }
+        // set miles //
+        String m[] = miles.split(" ");
+        int maxDist = Integer.parseInt(m[0]);
+        getTestingLocations(l,filter);
+        Collections.sort(Locations_DistanceArray, LocationsDistance.LocDist);
+        googleMap.clear();
+
+        // Add Marker on the Location found based on search Result //
+        LatLng yourLoc = new LatLng(l.getLatitude(), l.getLongitude());
+        MarkerOptions yourLocMarker = new MarkerOptions().position(yourLoc).title(null).snippet(null);
+        yourLocMarker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker));
+        googleMap.addMarker(yourLocMarker);
+
+        int marker_count = 0;
+        bounds = new LatLngBounds.Builder();
+        for (LocationsDistance locationsDistance : Locations_DistanceArray) {
+            if (locationsDistance.getDistance() < maxDist) {
+                LatLng firstLatLng =null;
+                LatLng latlng = new LatLng(locationsDistance.getLatitude(), locationsDistance.getLongitude());
+                MarkerOptions marker = new MarkerOptions().position(latlng).title(String.valueOf(locationsDistance.getLocation_distance_id())).snippet("Distance in Miles : " + locationsDistance.getDistance());
+                if(marker_count==0)
+                    firstLatLng = latlng;
+                if(filter==null || filter.equals("null")){
+                    googleMap.addMarker(getMarkerIcon(locationsDistance.getType(),marker));
+                    bounds.include(new LatLng(locationsDistance.getLatitude(), locationsDistance.getLongitude()));
+                }else if(filter.equals(locationsDistance.getType())){
+                    /*switch (filter){
+                        case "PrEP":
+                            marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.prepmarker));
+                            break;
+                        case "HIV Testing":
+                            marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.hivmarker));
+                            break;
+                        case "STI Testing":
+                            marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.stimarker));
+                            break;
+                        default:
+                            marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker));
+                    }*/
+
+                    googleMap.addMarker(getMarkerIcon(filter,marker));
+                    bounds.include(new LatLng(locationsDistance.getLatitude(), locationsDistance.getLongitude()));
+                }
+                marker_count++;
+                // Move Camera to very first location //
+                if(firstLatLng!=null){
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(firstLatLng));
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(firstLatLng, (float) 7.6));
+                }
+            }
+        }
+
+        if (marker_count == 0) {
+            for (LocationsDistance locationsDistance : Locations_DistanceArray) {
+                LatLng latlng = new LatLng(locationsDistance.getLatitude(), locationsDistance.getLongitude());
+                MarkerOptions marker = new MarkerOptions().position(latlng).title(String.valueOf(locationsDistance.getLocation_distance_id())).snippet("Distance in Miles : " + locationsDistance.getDistance());
+                /*switch (locationsDistance.getType()){
+                    case "PrEP":
+                        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.prepmarker));
+                        break;
+                    case "HIV Testing":
+                        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.hivmarker));
+                        break;
+                    case "STI Testing":
+                        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.stimarker));
+                        break;
+                    default:
+                        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker));
+                }*/
+                googleMap.addMarker(getMarkerIcon(locationsDistance.getType(),marker));
+                bounds.include(new LatLng(locationsDistance.getLatitude(), locationsDistance.getLongitude()));
+                // Move Camera to very first location //
+                LatLng firstLatLng = new LatLng(Locations_DistanceArray.get(0).getLatitude(),Locations_DistanceArray.get(0).getLongitude());
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(firstLatLng));
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(firstLatLng, (float) 7.6));
+            }
+        }
+    }
+    public MarkerOptions getMarkerIcon(String filter,MarkerOptions marker){
+        switch (filter){
+            case "PrEP":
+                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.prepmarker));
+                break;
+            case "HIV Testing":
+                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.hivmarker));
+                break;
+            case "STI Testing":
+                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.stimarker));
+                break;
+            default:
+                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker));
+        }
+        return marker;
     }
     @Override
     public void onResume() {
@@ -180,8 +430,8 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
             addDraggableMarker(latlng);
             count++;
         }
-
-        getTestingLocations(mylocation);
+        //showFilteredMarker(latlng,filterSpinner.getSelectedItem().toString(),milesSpinner.getSelectedItem().toString());
+        /*getTestingLocations(mylocation);
 
         Collections.sort(Locations_DistanceArray, LocationsDistance.LocDist);
 
@@ -204,7 +454,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                 googleMap.addMarker(marker);
                 bounds.include(new LatLng(Locations_DistanceArray.get(i).getLatitude(), Locations_DistanceArray.get(i).getLongitude()));
             }
-        }
+        }*/
         /**/
     }
 
@@ -340,6 +590,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
             getMyLocation();
         }
     }
+
     private synchronized void setUpGClient() {
         if (googleApiClient != null && googleApiClient.isConnected()) {
             googleApiClient.stopAutoManage(getActivity());
@@ -353,7 +604,8 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                 .build();
         //googleApiClient.connect();
     }
-    public void getTestingLocations(Location currentlocation) {
+
+    public void getTestingLocations(Location currentlocation,String type) {
         Locations_DistanceArray.clear();
         List<TestingLocations> locationsList = db.getAllTestingLocations();
         for (TestingLocations location : locationsList) {
@@ -367,8 +619,13 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
             // converting into miles (1m = 0.000621371 mi)
             int distance_inMiles = (int) (distance_inMeters * 0.000621371);
 
-            LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName());
-            Locations_DistanceArray.add(location_distance);
+            if(type==null){
+                LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(),location.getType());
+                Locations_DistanceArray.add(location_distance);
+            }else if(type.equals(location.getType())){
+                LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(),location.getType());
+                Locations_DistanceArray.add(location_distance);
+            }
         }
 
         //custom info window

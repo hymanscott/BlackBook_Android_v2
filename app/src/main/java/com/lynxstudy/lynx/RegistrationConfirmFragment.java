@@ -21,9 +21,9 @@ public class RegistrationConfirmFragment extends Fragment {
         // Required empty public constructor
     }
 
-    TextView frag_title,first_name,confirm_firstname,last_name,confirm_lastname,confirm_email,email,password,confirm_password;
-    TextView confirm_phone,phone,passcode,c_passcode,confirm_sec_qn,sec_qn,confirm_sec_ans,sec_ans,confirm_dob,dob,confirm_race,race;
-    Button reg_confirmbtn,reg_confirm_revisebtn;
+    TextView frag_title,confirm_firstname,confirm_lastname,confirm_email,confirm_password;
+    TextView confirm_phone,edit_details,c_passcode,confirm_sec_qn,confirm_sec_ans,confirm_dob,confirm_race;
+    Button reg_confirmbtn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,47 +35,46 @@ public class RegistrationConfirmFragment extends Fragment {
 
         frag_title = (TextView)view.findViewById(R.id.frag_title);
         frag_title.setTypeface(tf);
-        first_name = (TextView)view.findViewById(R.id.first_name);
-        first_name.setTypeface(tf);
         confirm_firstname = (TextView)view.findViewById(R.id.confirm_firstname);
         confirm_firstname.setTypeface(tf);
-        last_name = (TextView)view.findViewById(R.id.last_name);
-        last_name.setTypeface(tf);
         confirm_lastname = (TextView)view.findViewById(R.id.confirm_lastname);
         confirm_lastname.setTypeface(tf);
         confirm_email = (TextView)view.findViewById(R.id.confirm_email);
         confirm_email.setTypeface(tf);
-        email = (TextView)view.findViewById(R.id.email);
-        email.setTypeface(tf);
-        password = (TextView)view.findViewById(R.id.password);
-        password.setTypeface(tf);
         confirm_password = (TextView)view.findViewById(R.id.confirm_password);
         confirm_password.setTypeface(tf);
         confirm_phone = (TextView)view.findViewById(R.id.confirm_phone);
         confirm_phone.setTypeface(tf);
-        phone = (TextView)view.findViewById(R.id.phone);
-        phone.setTypeface(tf);
-        passcode = (TextView)view.findViewById(R.id.passcode);
-        passcode.setTypeface(tf);
         c_passcode = (TextView)view.findViewById(R.id.c_passcode);
         c_passcode.setTypeface(tf);
         confirm_sec_qn = (TextView)view.findViewById(R.id.confirm_sec_qn);
         confirm_sec_qn.setTypeface(tf);
-        sec_qn = (TextView)view.findViewById(R.id.sec_qn);
-        sec_qn.setTypeface(tf);
         confirm_sec_ans = (TextView)view.findViewById(R.id.confirm_sec_ans);
         confirm_sec_ans.setTypeface(tf);
-        sec_ans = (TextView)view.findViewById(R.id.sec_ans);
-        sec_ans.setTypeface(tf);
         confirm_dob = (TextView)view.findViewById(R.id.confirm_dob);
         confirm_dob.setTypeface(tf);
-        dob = (TextView)view.findViewById(R.id.dob);
-        dob.setTypeface(tf);
         confirm_race = (TextView)view.findViewById(R.id.confirm_race);
         confirm_race.setTypeface(tf);
-        race = (TextView)view.findViewById(R.id.race);
-        race.setTypeface(tf);
+        edit_details = (TextView)view.findViewById(R.id.edit_details);
+        edit_details.setTypeface(tf);
+        reg_confirmbtn = (Button)view.findViewById(R.id.reg_confirmbtn);
+        reg_confirmbtn.setTypeface(tf);
 
+        confirm_firstname.setText(LynxManager.decryptString(LynxManager.getActiveUser().getFirstname()));
+        confirm_lastname.setText(LynxManager.decryptString(LynxManager.getActiveUser().getLastname()));
+        confirm_phone.setText(LynxManager.decryptString(LynxManager.getActiveUser().getMobile()));
+        String dob = LynxManager.getFormatedDate("dd-MMM-yyyy",LynxManager.decryptString(LynxManager.getActiveUser().getDob()),"MM/dd/yyyy");
+        confirm_dob.setText(dob);
+        confirm_race.setText(LynxManager.decryptString(LynxManager.getActiveUser().getRace()));
+        confirm_email.setText(LynxManager.decryptString(LynxManager.getActiveUser().getEmail()));
+        confirm_sec_qn.setText(LynxManager.decryptString(LynxManager.getActiveUser().getSecurityquestion()));
+        confirm_sec_ans.setText(LynxManager.decryptString(LynxManager.getActiveUser().getSecurityanswer()));
+        int password_length = LynxManager.decryptString(LynxManager.getActiveUser().getPassword()).length();
+        String temp_pass = "";
+        for(int i=1;i<password_length;i++){
+            temp_pass+="*";
+        }
+        confirm_password.setText(temp_pass);
         return view;
     }
 

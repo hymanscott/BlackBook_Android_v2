@@ -64,8 +64,8 @@ public class RegistrationAlcoholCalculation extends Fragment {
         no_of_drinks.setTypeface(tf);
         alcohol_cal_nextbtn = (Button) view.findViewById(R.id.alcohol_cal_nextbtn);
         alcohol_cal_nextbtn.setTypeface(tf);
-        alcohol_cal_revisebtn = (Button) view.findViewById(R.id.alcohol_cal_revisebtn);
-        alcohol_cal_revisebtn.setTypeface(tf);
+        /*alcohol_cal_revisebtn = (Button) view.findViewById(R.id.alcohol_cal_revisebtn);
+        alcohol_cal_revisebtn.setTypeface(tf);*/
         alcCal_5to7days = (RadioButton) view.findViewById(R.id.alcCal_5to7days);
         alcCal_5to7days.setTypeface(tf);
         alcCal_1to4days = (RadioButton) view.findViewById(R.id.alcCal_1to4days);
@@ -74,6 +74,24 @@ public class RegistrationAlcoholCalculation extends Fragment {
         alcCal_lessThanOnce.setTypeface(tf);
         alcCal_never = (RadioButton) view.findViewById(R.id.alcCal_never);
         alcCal_never.setTypeface(tf);
+
+        // Set Back Values //
+        no_of_drinks.setText(LynxManager.decryptString(LynxManager.getActiveUserAlcoholUse().getNo_alcohol_in_day()));
+        if(LynxManager.decryptString(LynxManager.getActiveUserAlcoholUse().getNo_alcohol_in_week())!=null){
+            switch (LynxManager.decryptString(LynxManager.getActiveUserAlcoholUse().getNo_alcohol_in_week())){
+                case "1-4 days a week":
+                    alcCal_1to4days.setSelected(true);
+                    break;
+                case "Less than once a week":
+                    alcCal_lessThanOnce.setSelected(true);
+                    break;
+                case "Never":
+                    alcCal_never.setSelected(true);
+                    break;
+                default:
+                    alcCal_5to7days.setSelected(true);
+            }
+        }
 
         return view;
     }
