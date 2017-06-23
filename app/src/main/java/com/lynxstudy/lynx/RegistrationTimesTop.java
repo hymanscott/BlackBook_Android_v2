@@ -2,6 +2,7 @@ package com.lynxstudy.lynx;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -78,32 +79,42 @@ public class RegistrationTimesTop extends Fragment implements SeekBar.OnSeekBarC
                                           boolean fromUser) {
                 // TODO Auto-generated method stub
                 progress = ((int)Math.round(progress/stepSize))*stepSize;
-                seekBar.setProgress(progress);
-                // seek_textviewoneLabel = (TextView) view.findViewById(R.id.textProgress_id1_toplabel);
-                seek_textviewone.setText(progress + "%");
-                //seek_textviewoneLabel.setText(progress + "%");
-                //int seek_label_pos = (int) ((float) (seek_barone.getMeasuredWidth()) * ((float) progress / 100));
-                //int seek_label_pos = seek_barone.getThumb().getBounds().left;
-                int seek_label_pos = (int) ((float) (seek_barone.getMeasuredWidth()) * ((float) progress / 100));
-                if(progress==80){
-                    seek_label_pos = (int) ((float) (seek_barone.getMeasuredWidth()) * ((float) 75 / 100));
-                }else if(progress>=90){
-                    seek_label_pos = (int) ((float) (seek_barone.getMeasuredWidth()) * ((float) 85 / 100));
-                }else{
-                    seek_label_pos = (int) ((float) (seek_barone.getMeasuredWidth()) * ((float) progress / 100));
-                }
-                Log.v("seek_label_pos", String.valueOf(seek_label_pos));
-                seek_textviewone.setX(seek_label_pos);
+                //seekBar.setProgress(progress);
+
+                setSeekBarText(progress);
             }
+
+
         });
         editText.setText(LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getNo_of_times_top_hivposs()));
-        String topPercent = LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getTop_condom_use_percent());
-        seek_textviewone.setText(topPercent);
-        topPercent = topPercent.substring(0, topPercent.length() - 1);
-        seek_barone.setProgress(Integer.parseInt(topPercent));
-        int seek_label_pos = (int) ((float) (seek_barone.getMeasuredWidth()) * ((float) Integer.parseInt(topPercent) / 100));
-        seek_textviewone.setX(seek_label_pos);
+
+
+        new Handler().postDelayed(new Runnable() {
+                                      @Override
+                                      public void run() {
+                                          String topPercent = LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getTop_condom_use_percent());
+                                          seek_textviewone.setText(topPercent);
+                                          topPercent = topPercent.substring(0, topPercent.length() - 1);
+                                          setSeekBarText(Integer.parseInt(topPercent));
+
+                                      }
+                                  },
+                500);
+
         return view;
+    }
+
+    private void setSeekBarText(int progress) {
+        seek_barone.setProgress(progress);
+        seek_textviewone.setText(progress + "%");
+        int seek_label_pos = (int) ((float) (seek_barone.getMeasuredWidth()) * ((float) progress / 100));
+        if(progress>=90){
+            seek_label_pos = (int) ((float) (seek_barone.getMeasuredWidth()) * ((float) 85 / 100));
+        }else if(progress>10){
+            progress = progress - (progress/15);
+            seek_label_pos = (int) ((float) (seek_barone.getMeasuredWidth()) * ((float) progress  / 100));
+        }
+        seek_textviewone.setX(seek_label_pos);
     }
 
     @Override
