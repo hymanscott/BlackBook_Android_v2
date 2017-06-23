@@ -51,7 +51,7 @@ public class HomePartnersFragment extends Fragment {
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
 
         partnerTable = (TableLayout) rootview.findViewById(R.id.homepartnerTable);
         partnerTable.removeAllViews();

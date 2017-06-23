@@ -30,7 +30,7 @@ public class EditPartnerNotesFragment extends Fragment {
         final View rootview = inflater.inflate(R.layout.fragment_new_partner_notes, container, false);
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         TextView add_partner_title = (TextView) rootview.findViewById(R.id.add_partner_title);
         add_partner_title.setVisibility(View.GONE);
         db = new DatabaseHelper(getActivity());

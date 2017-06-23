@@ -36,7 +36,7 @@ public class NewPartnerContactInfoFragment extends Fragment {
         final View rootview = inflater.inflate(R.layout.fragment_new_partner_contact_info, container, false);
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         contactInfoTitle = (TextView)rootview.findViewById(R.id.contactInfoTitle);
         contactInfoTitle.setTypeface(tf);
         add_partner_title = (TextView)rootview.findViewById(R.id.add_partner_title);

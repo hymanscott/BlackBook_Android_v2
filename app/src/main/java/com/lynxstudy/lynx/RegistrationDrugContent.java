@@ -53,7 +53,7 @@ public class RegistrationDrugContent extends Fragment {
         View view = inflater.inflate(R.layout.fragment_registration_drug_content, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         baselineTitle= (TextView) view.findViewById(R.id.frag_title);
         baselineTitle.setTypeface(tf);
         drugContentTitle= (TextView) view.findViewById(R.id.drugContentTitle);

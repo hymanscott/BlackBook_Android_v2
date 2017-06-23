@@ -53,7 +53,7 @@ public class HomeEncounterFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_encounter, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         Log.v("priPartId", String.valueOf(LynxManager.getActiveUserPrimaryPartner().getPrimarypartner_id()));
         Button addNewEncounter = (Button) view.findViewById(R.id.addNewEncounter);
         addNewEncounter.setTypeface(tf);

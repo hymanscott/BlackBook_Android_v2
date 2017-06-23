@@ -53,7 +53,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         // Click Listners //
         btn_sexpro = (LinearLayout)findViewById(R.id.bot_nav_sexpro);
         btn_diary = (LinearLayout) findViewById(R.id.bot_nav_diary);

@@ -29,7 +29,7 @@ public class TestingCareFragment extends Fragment {
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
 
         TextView positiveHIVtest = (TextView)view.findViewById(R.id.positiveHIVtest);
         positiveHIVtest.setTypeface(tf);

@@ -42,7 +42,7 @@ public class EncounterDrugCalculationFragment extends Fragment {
         View rootview = inflater.inflate(R.layout.fragment_registration_alcohol_calculation, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         drinksTitle = (TextView)rootview.findViewById(R.id.drinksTitle);
         drinksTitle.setTypeface(tf);
         drinksdefine = (TextView)rootview.findViewById(R.id.drinksdefine);

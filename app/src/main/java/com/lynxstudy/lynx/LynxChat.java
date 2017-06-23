@@ -61,7 +61,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         db = new DatabaseHelper(LynxChat.this);
         //Type face
        tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         needUsNow = (Button)findViewById(R.id.needUsNow);
         needUsNow.setTypeface(tf);
 

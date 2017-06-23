@@ -46,7 +46,7 @@ public class EncounterEnctimeFragment extends Fragment {
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         textView14 = (TextView) rootview.findViewById(R.id.textView14);
         textView14.setTypeface(tf);
         textView13 = (TextView) rootview.findViewById(R.id.textView13);

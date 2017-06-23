@@ -46,7 +46,7 @@ public class EditPartner extends Fragment {
         final View rootview = inflater.inflate(R.layout.fragment_add_new_partner, container, false);
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
 
         hivStatusTitle = (TextView)rootview.findViewById(R.id.hivStatusTitle);
         hivStatusTitle.setTypeface(tf);

@@ -72,7 +72,7 @@ public class LynxPrepVideosFragment extends Fragment {
 
         //TYpe face
         tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
 
         // Inflate the layout for this fragment
         final View rootview = inflater.inflate(R.layout.fragment_lynx_prep_videos, container, false);

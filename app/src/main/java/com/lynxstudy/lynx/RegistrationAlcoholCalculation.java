@@ -51,7 +51,7 @@ public class RegistrationAlcoholCalculation extends Fragment {
         */
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         reg_alc_baseline_title = (TextView)view.findViewById(R.id.reg_alc_baseline_title);
         reg_alc_baseline_title.setTypeface(tf);
         no_of_days_text = (TextView)view.findViewById(R.id.no_of_days_text);

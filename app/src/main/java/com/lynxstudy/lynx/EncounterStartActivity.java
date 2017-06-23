@@ -66,7 +66,7 @@ public class EncounterStartActivity extends AppCompatActivity {
         }
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         // Custom Action Bar //
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);

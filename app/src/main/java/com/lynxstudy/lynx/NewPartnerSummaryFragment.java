@@ -40,7 +40,7 @@ public class NewPartnerSummaryFragment extends Fragment {
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         next = (Button)rootview.findViewById(R.id.next);
         next.setTypeface(tf);
         revise = (Button)rootview.findViewById(R.id.revise);

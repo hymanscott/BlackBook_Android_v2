@@ -30,7 +30,7 @@ public class RegistrationBaselineIntro extends Fragment {
         Button next =(Button)view.findViewById(R.id.next);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         textView8.setTypeface(tf);
         textView9.setTypeface(tf);
         textView10.setTypeface(tf);

@@ -33,7 +33,7 @@ public class EncounterCondomuseFragment extends Fragment {
         View rootview = inflater.inflate(R.layout.fragment_encounter_condomuse, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
 
         revise = (Button)rootview.findViewById(R.id.revise);
         revise.setTypeface(tf);

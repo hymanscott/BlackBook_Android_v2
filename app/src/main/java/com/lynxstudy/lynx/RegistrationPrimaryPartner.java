@@ -50,7 +50,7 @@ public class RegistrationPrimaryPartner extends Fragment{
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         frag_title = (TextView)view.findViewById(R.id.frag_title);
         frag_title.setTypeface(tf);
         textview8 = (TextView)view.findViewById(R.id.textview8);

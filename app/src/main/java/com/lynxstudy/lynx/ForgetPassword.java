@@ -26,7 +26,7 @@ public class ForgetPassword extends Fragment {
         View view = inflater.inflate(R.layout.fragment_forget_password, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
 
         EditText reqNewPassEmail = (EditText)view.findViewById(R.id.reqNewPassEmail);
         bannerText = (TextView)view.findViewById(R.id.bannerText);

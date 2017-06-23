@@ -48,7 +48,7 @@ public class RegistrationPartnerInfo extends Fragment {
         final RadioGroup radioGrp_partner = (RadioGroup)view.findViewById(R.id.radio_partner);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         radio_hiv_neg = (RadioButton)view.findViewById(R.id.radio_hiv_neg);
         radio_hiv_neg.setTypeface(tf);
         radio_hiv_idk = (RadioButton)view.findViewById(R.id.radio_hiv_idk);

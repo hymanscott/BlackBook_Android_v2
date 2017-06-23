@@ -32,7 +32,7 @@ public class NewPartnerNotesFragment extends Fragment {
         View rootview = inflater.inflate(R.layout.fragment_new_partner_notes, container, false);
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
 
         TextView new_partner_nickname = (TextView) rootview.findViewById(R.id.new_partner_nickname);
         new_partner_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));

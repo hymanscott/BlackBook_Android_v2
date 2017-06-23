@@ -45,7 +45,7 @@ public class SelectedPartnerSummaryFragment extends Fragment {
         final View rootview = inflater.inflate(R.layout.fragment_selected_partner_summary, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
 
         hivStatus = (TextView) rootview.findViewById(R.id.hivStatus);
         hivStatus.setTypeface(tf);

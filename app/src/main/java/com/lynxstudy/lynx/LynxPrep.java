@@ -54,7 +54,7 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
 
         // Click Listners //
         viewProfile = (ImageView)findViewById(R.id.viewProfile);

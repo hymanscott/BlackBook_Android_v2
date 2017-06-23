@@ -34,7 +34,7 @@ public class PasscodeChangePasscode extends AppCompatActivity {
         setContentView(R.layout.fragment_change_passcode);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
 
         frag_title = (TextView) findViewById(R.id.frag_title);
         frag_title.setTypeface(tf);

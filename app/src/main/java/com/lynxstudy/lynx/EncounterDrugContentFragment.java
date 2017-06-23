@@ -40,7 +40,7 @@ public class EncounterDrugContentFragment extends Fragment {
         fragmentTitle.setVisibility(View.GONE);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         drugContent_revisebtn = (Button)rootview.findViewById(R.id.drugContent_revisebtn);
         drugContent_revisebtn.setTypeface(tf);
         drugContent_nextbtn = (Button)rootview.findViewById(R.id.drugContent_nextbtn);

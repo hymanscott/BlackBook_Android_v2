@@ -36,7 +36,7 @@ public class LynxPrepFactsFragment extends Fragment {
 
         //TYpe face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");//use this.getAssets if you are calling from an Activity
+                "fonts/Roboto-Regular.ttf");//use this.getAssets if you are calling from an Activity
 
         // Inflate the layout for this fragment
         final View rootview = inflater.inflate(R.layout.fragment_lynx_prep_facts, container, false);

@@ -23,7 +23,7 @@ public class PasscodeResetActivity extends AppCompatActivity {
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         reset_passcode = (Button)findViewById(R.id.reset_passcode);
         reset_passcode.setTypeface(tf);
         frag_title = (TextView)findViewById(R.id.frag_title);

@@ -58,7 +58,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         setSupportActionBar(toolbar);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         // Click Listners //
         btn_sexpro = (LinearLayout)findViewById(R.id.bot_nav_sexpro);
         btn_testing = (LinearLayout) findViewById(R.id.bot_nav_testing);

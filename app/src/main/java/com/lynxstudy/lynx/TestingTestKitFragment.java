@@ -52,7 +52,7 @@ public class TestingTestKitFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_testing_test_kit, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         frag_title = (TextView) view.findViewById(R.id.frag_title);
         frag_title.setTypeface(tf);
         title = (TextView) view.findViewById(R.id.title);

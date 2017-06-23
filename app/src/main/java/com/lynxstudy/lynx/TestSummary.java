@@ -38,7 +38,7 @@ public class TestSummary extends AppCompatActivity {
         setContentView(R.layout.activity_test_summary);
         // Type face //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         
         // Custom Action Bar //
 

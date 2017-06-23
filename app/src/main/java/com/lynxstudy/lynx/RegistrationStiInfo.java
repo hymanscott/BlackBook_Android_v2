@@ -41,7 +41,7 @@ public class RegistrationStiInfo extends Fragment {
             View rootview = inflater.inflate(R.layout.fragment_registration_sti_info, container, false);
             //Type face
             Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                    "fonts/OpenSans-Regular.ttf");
+                    "fonts/Roboto-Regular.ttf");
             frag_title = (TextView)rootview.findViewById(R.id.frag_title);
             frag_title.setTypeface(tf);
             textview9 = (TextView)rootview.findViewById(R.id.textview9);

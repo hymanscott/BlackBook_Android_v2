@@ -30,7 +30,7 @@ public class NewPartnerLoggedFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_new_partner_logged, container, false);
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
 
         thankyou = (TextView)view.findViewById(R.id.thankyou);
         thankyou.setTypeface(tf);

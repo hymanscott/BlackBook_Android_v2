@@ -126,7 +126,7 @@ public class RegLogin extends AppCompatActivity {
         }
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         /*// Custom ActionBar //
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
@@ -754,7 +754,7 @@ public class RegLogin extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             //Type face
             Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                    "fonts/OpenSans-Regular.ttf");
+                    "fonts/Roboto-Regular.ttf");
             View view = inflater.inflate(R.layout.fragment_reg_login, container, false);
             /*TextView regloginIntroLable = (TextView)view.findViewById(R.id.regloginIntroLable);
             regloginIntroLable.setTypeface(tf);

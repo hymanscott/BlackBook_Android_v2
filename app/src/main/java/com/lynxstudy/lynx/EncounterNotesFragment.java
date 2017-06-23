@@ -32,7 +32,7 @@ public class EncounterNotesFragment extends Fragment {
         View rootview = inflater.inflate(R.layout.fragment_encounter_notes, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         newEncounter = (TextView) rootview.findViewById(R.id.newEncounter);
         newEncounter.setTypeface(tf);
         textView10 = (TextView) rootview.findViewById(R.id.textView10);

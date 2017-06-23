@@ -28,7 +28,7 @@ public class HomeDrugUse extends Fragment {
 
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
 
         return rootview;
     }

@@ -44,7 +44,7 @@ public class EncounterChoosePartnerFragment extends Fragment {
         View rootview = inflater.inflate(R.layout.fragment_encounter_choose_partner, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         newEncounter = (TextView)rootview.findViewById(R.id.newEncounter);
         newEncounter.setTypeface(tf);
         textView12 = (TextView)rootview.findViewById(R.id.textView12);

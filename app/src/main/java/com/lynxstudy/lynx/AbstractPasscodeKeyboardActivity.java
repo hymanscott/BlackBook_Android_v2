@@ -131,7 +131,7 @@ public abstract class AbstractPasscodeKeyboardActivity extends AppCompatActivity
         setContentView(R.layout.app_passcode_keyboard);
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         back = (LinearLayout)findViewById(R.id.back);
         tableLayout1 = (TableLayout)findViewById(R.id.tableLayout1);
         forgotpasscode = (TextView)findViewById(R.id.forgotpasscode);

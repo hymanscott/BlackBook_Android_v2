@@ -82,7 +82,7 @@ public class BaselineActivity extends AppCompatActivity {
             Button next =(Button)view.findViewById(R.id.next);
             //Type face
             Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                    "fonts/OpenSans-Regular.ttf");
+                    "fonts/Roboto-Regular.ttf");
             textView8.setTypeface(tf);
             textView9.setTypeface(tf);
             textView10.setTypeface(tf);
@@ -324,6 +324,135 @@ public class BaselineActivity extends AppCompatActivity {
         pushFragments("home", fragRegSummary, true);
 
 
+        return true;
+    }
+    public boolean showEditDetails (View view){
+        BaselineSummaryEdit edit = new BaselineSummaryEdit();
+        pushFragments("home", edit, true);
+        return true;
+    }
+
+    public boolean backtoBaselineConfirm(View view){
+        EditText HIVNegativeCount = (EditText) findViewById(R.id.negativePartners);
+        EditText HIVPossitiveCount = (EditText) findViewById(R.id.positivePartners);
+        EditText HIVUnknownCount = (EditText) findViewById(R.id.unknownPartners);
+        String strHIVNegativeCount = HIVNegativeCount.getText().toString();
+        String strHIVPossitiveCount = HIVPossitiveCount.getText().toString();
+        String strHIVUnknownCount = HIVUnknownCount.getText().toString();
+        EditText asTOP = (EditText) findViewById(R.id.editText);
+        String strasTOP = asTOP.getText().toString();
+        String strasTOPPercent = String.valueOf(((TextView) findViewById(R.id.textProgress_id1)).getText());
+        EditText asBottom = (EditText) findViewById(R.id.editText1);
+        String strasBottom = asBottom.getText().toString();
+        String strasBOTTPercent = String.valueOf(((TextView) findViewById(R.id.textProgress_id2)).getText());
+        RadioGroup pri_partner = (RadioGroup) findViewById(R.id.primary_sex_partner);
+        int selectedId = pri_partner.getCheckedRadioButtonId();
+        RadioButton rd_btn = (RadioButton) findViewById(selectedId);
+        String pri_partner_value = rd_btn.getText().toString();
+        TextView nick_name = (TextView) findViewById(R.id.nick_name);
+        String partnerNickName = nick_name.getText().toString();
+        String partRelationshipPeriod;
+        String partUndetectable;
+
+        if(strHIVNegativeCount.isEmpty()){
+            Toast.makeText(BaselineActivity.this,"Enter the number of HIV negative partners",Toast.LENGTH_SHORT).show();
+            HIVNegativeCount.requestFocus();
+        }else if(strHIVPossitiveCount.isEmpty()){
+            Toast.makeText(BaselineActivity.this,"Enter the number of HIV positive partners",Toast.LENGTH_SHORT).show();
+            HIVPossitiveCount.requestFocus();
+        }else if(strHIVUnknownCount.isEmpty()){
+            Toast.makeText(BaselineActivity.this,"Enter the number of unknown HIV partners",Toast.LENGTH_SHORT).show();
+            HIVUnknownCount.requestFocus();
+        }else if(strasTOP.isEmpty()){
+            Toast.makeText(BaselineActivity.this,"Enter the number of times you had anal sex as TOP",Toast.LENGTH_SHORT).show();
+            asTOP.requestFocus();
+        }else if(strasBottom.isEmpty()){
+            Toast.makeText(BaselineActivity.this,"Enter the number of times you had anal sex as BOTTOM",Toast.LENGTH_SHORT).show();
+            asBottom.requestFocus();
+        }else if (partnerNickName.isEmpty()){
+            Toast.makeText(this, "Please enter your partner's Nick name", Toast.LENGTH_SHORT).show();
+            nick_name.requestFocus();
+        }else{
+            LynxManager.getActiveUserBaselineInfo().setHiv_positive_count(LynxManager.encryptString(strHIVPossitiveCount));
+            LynxManager.getActiveUserBaselineInfo().setHiv_negative_count(LynxManager.encryptString(strHIVNegativeCount));
+            LynxManager.getActiveUserBaselineInfo().setHiv_unknown_count(LynxManager.encryptString(strHIVUnknownCount));
+            LynxManager.getActiveUserBaselineInfo().setNo_of_times_top_hivposs(LynxManager.encryptString(strasTOP));
+            LynxManager.getActiveUserBaselineInfo().setTop_condom_use_percent(LynxManager.encryptString(strasTOPPercent));
+            LynxManager.getActiveUserBaselineInfo().setNo_of_times_bot_hivposs(LynxManager.encryptString(strasBottom));
+            LynxManager.getActiveUserBaselineInfo().setBottom_condom_use_percent(LynxManager.encryptString(strasBOTTPercent));
+            LynxManager.getActiveUserBaselineInfo().setIs_primary_partner(LynxManager.encryptString(pri_partner_value));
+            RadioButton radioHIVStatus = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_hivstatus)).getCheckedRadioButtonId());
+            RadioButton radioOtherPartner = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_partner)).getCheckedRadioButtonId());
+            RadioButton radioAddtoBB = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_blackbook)).getCheckedRadioButtonId());
+            RadioButton radioRelationshipPeriod = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_relationshipPeriod)).getCheckedRadioButtonId());
+            RadioButton radioUndetectable = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_undetectable)).getCheckedRadioButtonId());
+            if (!LynxManager.relationShipLayoutHidden){
+                partRelationshipPeriod = radioRelationshipPeriod.getText().toString();
+                if (partRelationshipPeriod.equals("Less than 6 months") ){
+                    partRelationshipPeriod = "Yes";
+                }
+                else{
+                    partRelationshipPeriod = "No";
+                }
+            }
+            else {
+                partRelationshipPeriod = "";
+            }
+
+            if (!LynxManager.undetectableLayoutHidden){
+                partUndetectable = radioUndetectable.getText().toString();
+            }
+            else {
+                partUndetectable = "";
+            }
+            String partHIVStatus = radioHIVStatus.getText().toString();
+            String partOtherPartner = radioOtherPartner.getText().toString();
+            String partAddtoBB = radioAddtoBB.getText().toString();
+            LynxManager.getActiveUserPrimaryPartner().setName(partnerNickName);
+            LynxManager.getActiveUserPrimaryPartner().setHiv_status(partHIVStatus);
+            LynxManager.getActiveUserPrimaryPartner().setUndetectable_for_sixmonth(partUndetectable);
+            LynxManager.getActiveUserPrimaryPartner().setPartner_have_other_partners(partOtherPartner);
+            LynxManager.getActiveUserPrimaryPartner().setRelationship_period(partRelationshipPeriod);
+            LynxManager.getActiveUserPrimaryPartner().setIs_added_to_blackbook(partAddtoBB);
+
+            LynxManager.curDurgUseID = 0;
+            boolean isAlcoholSelected = false;
+            String searchString = "Alcohol";
+            LynxManager.removeAllUserDrugUse();
+            for (String drugName : LynxManager.selectedDrugs) {
+                DrugMaster drugMaster = db.getDrugbyName(drugName);
+                UserDrugUse userDrugUse = new UserDrugUse(LynxManager.getActiveUser().getUser_id(), drugMaster.getDrug_id(), LynxManager.encryptString("Yes"),String.valueOf(R.string.statusUpdateNo),true);
+                if (drugName.equals(searchString)) {
+                    isAlcoholSelected = true;
+                    LynxManager.curDurgUseID = -1;
+                }
+
+                LynxManager.setActiveUserDrugUse(userDrugUse);
+            }
+
+            if(isAlcoholSelected){
+                RadioButton alcDaysCountPerWeek = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.alcoholCalculation)).getCheckedRadioButtonId());
+                EditText alcCountPerDay = (EditText) findViewById(R.id.no_of_drinks);
+                if(alcCountPerDay.getText().toString().isEmpty()){
+                    Toast.makeText(BaselineActivity.this,"Enter how many drinks you had on a typical day",Toast.LENGTH_SHORT).show();
+                    alcCountPerDay.requestFocus();
+                }else{
+
+                    UserAlcoholUse userAlcoholUse = new UserAlcoholUse(2, LynxManager.getActiveUser().getUser_id(),
+                            LynxManager.encryptString(alcDaysCountPerWeek.getText().toString()), LynxManager.encryptString(alcCountPerDay.getText().toString()), LynxManager.encryptString("Yes"),String.valueOf(R.string.statusUpdateNo),true);
+                    LynxManager.setActiveUserAlcoholUse(userAlcoholUse);
+                }
+            }
+
+            LynxManager.removeAllUserSTIDiag();
+            for (String stiName : LynxManager.selectedSTIs) {
+                STIMaster stiMaster = db.getSTIbyName(stiName);
+                UserSTIDiag userSTIDiag = new UserSTIDiag(LynxManager.getActiveUser().getUser_id(), stiMaster.getSti_id(), LynxManager.encryptString("Yes"),String.valueOf(R.string.statusUpdateNo),true);
+                LynxManager.setActiveUserSTIDiag(userSTIDiag);
+            }
+            popFragment();
+            // else ends
+        }
         return true;
     }
     public boolean onRegSummaryConfirm(View view) throws JSONException {

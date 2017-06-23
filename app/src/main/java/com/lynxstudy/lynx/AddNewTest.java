@@ -85,7 +85,7 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
         viewProfile.setVisibility(View.INVISIBLE);
         // Typeface //
         Typeface ty = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         /*Typeface ty = Typeface.createFromAsset(getResources().getAssets(),
                 "RobotoSlabRegular.ttf");*/
         titleText = (TextView)findViewById(R.id.titleText);

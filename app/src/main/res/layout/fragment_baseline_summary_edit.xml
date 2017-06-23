@@ -162,7 +162,7 @@
                     android:maxLength="3"
                     android:digits="0123456789"
                     android:textColor="@color/white"
-                    android:imeOptions="actionDone"
+                    android:imeOptions="actionNext"
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
@@ -181,7 +181,6 @@
                 android:layout_marginRight="32dp"
                 android:gravity="center_vertical"
                 android:text="How many TIMES have you had anal sex as a TOP with your HIV positive or unknown status partners?"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
             <TextView
@@ -193,7 +192,6 @@
                 android:layout_marginTop="40dp"
                 android:gravity="center_vertical"
                 android:text="In the last 3 months:"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
             <TextView
@@ -205,7 +203,6 @@
                 android:layout_marginTop="32dp"
                 android:gravity="center_vertical"
                 android:text="Number of TIMES (NOT Partner) as a TOP with men ot transwomen?"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
             <LinearLayout
@@ -242,7 +239,6 @@
                 android:layout_marginTop="40dp"
                 android:gravity="center_vertical"
                 android:text="And how often did you use a condom?"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
             <LinearLayout
@@ -265,7 +261,6 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="0%"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
 
@@ -302,7 +297,6 @@
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentTop="true"
                             android:text="0%"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
 
@@ -313,7 +307,6 @@
                             android:layout_alignParentRight="true"
                             android:layout_alignParentTop="true"
                             android:text="100%"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
 
@@ -336,7 +329,6 @@
                 android:layout_marginRight="32dp"
                 android:gravity="center_vertical"
                 android:text="How many TIMES have you had anal sex as a BOTTOM with your HIV positive or unknown status partners?"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
             <TextView
@@ -348,7 +340,6 @@
                 android:layout_marginTop="40dp"
                 android:gravity="center_vertical"
                 android:text="In the last 3 months:"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
             <TextView
@@ -360,7 +351,6 @@
                 android:layout_marginTop="32dp"
                 android:gravity="center_vertical"
                 android:text="Number of TIMES (NOT Partner) as a BOTTOM with men ot transwomen?"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
             <LinearLayout
@@ -397,7 +387,6 @@
                 android:layout_marginTop="40dp"
                 android:gravity="center_vertical"
                 android:text="And how often did you use a condom?"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
             <LinearLayout
@@ -420,7 +409,6 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="0%"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
 
@@ -457,7 +445,6 @@
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentTop="true"
                             android:text="0%"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
 
@@ -468,7 +455,6 @@
                             android:layout_alignParentRight="true"
                             android:layout_alignParentTop="true"
                             android:text="100%"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
 
@@ -491,7 +477,6 @@
                 android:layout_marginRight="32dp"
                 android:gravity="center_vertical"
                 android:text="Do you have a primary sex partner?"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
             <TextView
@@ -502,7 +487,6 @@
                 android:layout_marginRight="32dp"
                 android:gravity="center_vertical"
                 android:text="This is someone whom you may consider a boy/girlfriend, partner, husband, wife, lover, spouse, or significant other."
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
             <RadioGroup
@@ -884,7 +868,6 @@
                     android:layout_marginRight="32dp"
                     android:gravity="center_vertical"
                     android:text="Have you used any of the following in the past 3 months?"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/white"
                     android:textSize="@dimen/reg_tv_textsize" />
                 <!-- Container for Dyanamic checkbox-->
@@ -920,7 +903,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/no_of_days_text"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textSize="@dimen/reg_tv_textsize"
                         android:layout_marginLeft="32dp"
                         android:layout_marginRight="32dp"
@@ -985,7 +967,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="About how many drinks did you have on a typical day? "
                         android:textColor="@color/white"
                         android:layout_marginLeft="32dp"
@@ -1074,6 +1055,7 @@
                 android:layout_marginTop="@dimen/button_top_margin"
                 android:id="@+id/save"
                 android:textSize="@dimen/button_textsize"
+                android:onClick="backtoBaselineConfirm"
                 android:layout_alignParentBottom="true"
                 android:textStyle="bold" />
         </LinearLayout>

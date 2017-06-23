@@ -30,7 +30,7 @@ public class RegistrationSummary extends Fragment {
     public RegistrationSummary() {
         // Required empty public constructor
     }
-    TextView textView8,prepStatus,malePartners,hivNeg,hivPos,hivUnknown,topTimes,condomUse,bottomtimes,condomUseBot;
+    TextView textview1,textview2,prepStatus,malePartners,hivNeg,hivPos,hivUnknown,topTimes,condomUse,bottomtimes,condomUseBot;
     TextView nick_name,gender,hivStatus,otherPartner,sexproList,drugTitle,alcholtitle,drinksCount,diagTitle;
     Button partner_info_nextbtn,partner_info_revisebtn;
 
@@ -43,11 +43,13 @@ public class RegistrationSummary extends Fragment {
         View view = inflater.inflate(R.layout.fragment_registration_summary, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
-        textView8 = (TextView) view.findViewById(R.id.textView8);
-        textView8.setTypeface(tf);
-        prepStatus = (TextView) view.findViewById(R.id.prepStatus);
-        prepStatus.setTypeface(tf);
+                "fonts/Roboto-Regular.ttf");
+        textview1 = (TextView) view.findViewById(R.id.textview1);
+        textview1.setTypeface(tf);
+        textview2 = (TextView) view.findViewById(R.id.textview2);
+        textview2.setTypeface(tf);
+        /*prepStatus = (TextView) view.findViewById(R.id.prepStatus);
+        prepStatus.setTypeface(tf);*/
         malePartners = (TextView) view.findViewById(R.id.malePartners);
         malePartners.setTypeface(tf);
         hivNeg = (TextView) view.findViewById(R.id.hivNeg);
@@ -66,8 +68,6 @@ public class RegistrationSummary extends Fragment {
         condomUseBot.setTypeface(tf);
         nick_name = (TextView) view.findViewById(R.id.nick_name);
         nick_name.setTypeface(tf);
-        gender = (TextView) view.findViewById(R.id.gender);
-        gender.setTypeface(tf);
         hivStatus = (TextView) view.findViewById(R.id.hivStatus);
         hivStatus.setTypeface(tf);
         otherPartner = (TextView) view.findViewById(R.id.otherPartner);
@@ -84,14 +84,14 @@ public class RegistrationSummary extends Fragment {
         diagTitle.setTypeface(tf);
         partner_info_nextbtn = (Button) view.findViewById(R.id.partner_info_nextbtn);
         partner_info_nextbtn.setTypeface(tf);
-        partner_info_revisebtn = (Button) view.findViewById(R.id.partner_info_revisebtn);
-        partner_info_revisebtn.setTypeface(tf);
+        /*partner_info_revisebtn = (Button) view.findViewById(R.id.partner_info_revisebtn);
+        partner_info_revisebtn.setTypeface(tf);*/
 
 
-        TextView prep = (TextView) view.findViewById(R.id.confirm_prep);
+       /* TextView prep = (TextView) view.findViewById(R.id.confirm_prep);
         prep.setTypeface(tf);
         String prEP = LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep());
-        prep.setText(prEP);
+        prep.setText(prEP);*/
         TextView neg_count = (TextView) view.findViewById(R.id.regSumm_hiv_neg);
         neg_count.setTypeface(tf);
         neg_count.setText(LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getHiv_negative_count()));
@@ -123,26 +123,29 @@ public class RegistrationSummary extends Fragment {
 
 
         if(LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getIs_primary_partner()).equals("No")){
-            TableRow nickname = (TableRow)view.findViewById(R.id.regSumm_partner_nickName);
+            LinearLayout nickname = (LinearLayout)view.findViewById(R.id.regSumm_partner_nickName);
+            LinearLayout regSumm_pri_partner_parent = (LinearLayout)view.findViewById(R.id.regSumm_pri_partner_parent);
+/*
             TableRow gender = (TableRow)view.findViewById(R.id.regSumm_partner_gender);
-            TableRow hivStatus = (TableRow)view.findViewById(R.id.regSumm_partner_hivStatus);
-            TableRow haveOtherPartner = (TableRow)view.findViewById(R.id.regSumm_partner_haveOtherPartner);
-            TableRow addToPartnerlist = (TableRow)view.findViewById(R.id.regSumm_partner_addToPartnerlist);
+*/
+            LinearLayout hivStatus = (LinearLayout)view.findViewById(R.id.regSumm_partner_hivStatus);
+            LinearLayout haveOtherPartner = (LinearLayout)view.findViewById(R.id.regSumm_partner_haveOtherPartner);
+            LinearLayout addToPartnerlist = (LinearLayout)view.findViewById(R.id.regSumm_partner_addToPartnerlist);
             nickname.setVisibility(View.GONE);
-            gender.setVisibility(View.GONE);
+            /*gender.setVisibility(View.GONE);*/
             hivStatus.setVisibility(View.GONE);
             haveOtherPartner.setVisibility(View.GONE);
             addToPartnerlist.setVisibility(View.GONE);
-            pri_partner.setVisibility(View.GONE);
+            regSumm_pri_partner_parent.setVisibility(View.GONE);
             have_pripartner.setText("No primary sex partner");
         }
 
         TextView nick_name= (TextView)view.findViewById(R.id.regSumm_nickName);
         nick_name.setTypeface(tf);
         nick_name.setText(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getName()));
-        TextView gender = (TextView) view.findViewById(R.id.regSumm_gender);
+        /*TextView gender = (TextView) view.findViewById(R.id.regSumm_gender);
         gender.setTypeface(tf);
-        gender.setText(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getGender()));
+        gender.setText(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getGender()));*/
         TextView hiv_status = (TextView) view.findViewById(R.id.regSumm_hivStatus);
         hiv_status.setTypeface(tf);
         hiv_status.setText(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getHiv_status()));
@@ -155,7 +158,7 @@ public class RegistrationSummary extends Fragment {
 
         //  UserDrugUse
 
-        TableRow drug_layout_title = (TableRow)view.findViewById(R.id.regSumm_drug_container_title);
+        LinearLayout drug_layout_title = (LinearLayout)view.findViewById(R.id.regSumm_drug_container_title);
         LinearLayout drug_layout = (LinearLayout)view.findViewById(R.id.regSumm_drug_container);
         if(LynxManager.getActiveUserDrugUse().size()==0){
             drug_layout_title.setVisibility(View.GONE);
@@ -167,8 +170,8 @@ public class RegistrationSummary extends Fragment {
             DrugMaster drugname = dbnew.getDrugbyID(drug_use_id);
             TextView drug_txtview = new TextView(getActivity());
             drug_txtview.setText(drugname.getDrugName());
-            drug_txtview.setTextColor(Color.parseColor("#333333"));
-            drug_txtview.setTextSize(18);
+            drug_txtview.setTextColor(getResources().getColor(R.color.white));
+            drug_txtview.setTextSize(16);
             drug_txtview.setTypeface(tf);
             drug_layout.addView(drug_txtview);
 
@@ -180,8 +183,8 @@ public class RegistrationSummary extends Fragment {
         String searchString = "Alcohol";
         for (String drugName : LynxManager.selectedDrugs){
             if (drugName.equals(searchString)){
-                TableRow regSumm_noofDrinks = (TableRow)view.findViewById(R.id.regSumm_noofDrinks);
-                TableRow regSumm_noofdays_alcoholUse = (TableRow)view.findViewById(R.id.regSumm_noofdays_alcoholUse);
+                LinearLayout regSumm_noofDrinks = (LinearLayout)view.findViewById(R.id.regSumm_noofDrinks);
+                LinearLayout regSumm_noofdays_alcoholUse = (LinearLayout)view.findViewById(R.id.regSumm_noofdays_alcoholUse);
                 regSumm_noofdays_alcoholUse.setVisibility(View.VISIBLE);
                 regSumm_noofDrinks.setVisibility(View.VISIBLE);
             }
@@ -196,7 +199,7 @@ public class RegistrationSummary extends Fragment {
 
         //  UserStiDiag
         LinearLayout stidiag_layout = (LinearLayout)view.findViewById(R.id.regSumm_diag_container);
-        TableRow stidiag_layout_title = (TableRow)view.findViewById(R.id.regSumm_diag_container_title);
+        LinearLayout stidiag_layout_title = (LinearLayout)view.findViewById(R.id.regSumm_diag_container_title);
 
         if(LynxManager.getActiveUserSTIDiag().size()==0){
             stidiag_layout.setVisibility(View.GONE);
@@ -208,8 +211,8 @@ public class RegistrationSummary extends Fragment {
             STIMaster diagname = dbnew.getSTIbyID(diag_id);
             TextView diag_txtview = new TextView(getActivity());
             diag_txtview.setText(diagname.getstiName());
-            diag_txtview.setTextColor(Color.parseColor("#333333"));
-            diag_txtview.setTextSize(18);
+            diag_txtview.setTextColor(getResources().getColor(R.color.white));
+            diag_txtview.setTextSize(16);
             diag_txtview.setTypeface(tf);
             stidiag_layout.addView(diag_txtview);
 

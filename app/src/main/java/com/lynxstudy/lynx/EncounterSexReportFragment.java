@@ -31,7 +31,7 @@ public class EncounterSexReportFragment extends Fragment {
         View rootview = inflater.inflate(R.layout.fragment_encounter_sex_report, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         yes = (Button)rootview.findViewById(R.id.yes);
         yes.setTypeface(tf);
         no = (Button)rootview.findViewById(R.id.no);

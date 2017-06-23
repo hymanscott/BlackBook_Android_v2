@@ -32,7 +32,7 @@ public class EncounterFromNotificationFragment extends Fragment {
         db= new DatabaseHelper(getActivity());
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         yes = (Button)rootview.findViewById(R.id.yes);
         yes.setTypeface(tf);
         no = (Button)rootview.findViewById(R.id.no);

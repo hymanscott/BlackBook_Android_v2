@@ -128,7 +128,7 @@ public class TestingHomeFragment extends Fragment {
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
 
         Button addNewHIVtest = (Button) view.findViewById(R.id.testing_addNewHIVtest);
         addNewHIVtest.setTypeface(tf);

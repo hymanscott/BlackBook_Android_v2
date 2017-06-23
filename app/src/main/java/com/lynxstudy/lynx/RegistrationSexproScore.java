@@ -35,7 +35,7 @@ public class RegistrationSexproScore extends Fragment {
         View rootview = inflater.inflate(R.layout.fragment_registration_sexpro_score, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         sexpro_score_close = (Button)rootview.findViewById(R.id.sexpro_score_close);
         sexpro_score_close.setTypeface(tf);
         textView8 = (TextView)rootview.findViewById(R.id.textView8);

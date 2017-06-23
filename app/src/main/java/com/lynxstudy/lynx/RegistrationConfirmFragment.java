@@ -31,7 +31,7 @@ public class RegistrationConfirmFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_registration_confirm, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
 
         frag_title = (TextView)view.findViewById(R.id.frag_title);
         frag_title.setTypeface(tf);

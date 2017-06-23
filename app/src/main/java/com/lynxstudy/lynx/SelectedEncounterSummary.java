@@ -38,7 +38,7 @@ public class SelectedEncounterSummary extends AppCompatActivity {
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/OpenSans-Regular.ttf");
+                "fonts/Roboto-Regular.ttf");
         frag_title = (TextView) findViewById(R.id.frag_title);
         frag_title.setTypeface(tf);
         partner = (TextView) findViewById(R.id.partner);
