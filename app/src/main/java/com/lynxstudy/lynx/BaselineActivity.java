@@ -369,7 +369,7 @@ public class BaselineActivity extends AppCompatActivity {
         }else if(strasBottom.isEmpty()){
             Toast.makeText(BaselineActivity.this,"Enter the number of times you had anal sex as BOTTOM",Toast.LENGTH_SHORT).show();
             asBottom.requestFocus();
-        }else if (partnerNickName.isEmpty()){
+        }else if (LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getIs_primary_partner()).equals("Yes")&&partnerNickName.isEmpty()){
             Toast.makeText(this, "Please enter your partner's Nick name", Toast.LENGTH_SHORT).show();
             nick_name.requestFocus();
         }else{

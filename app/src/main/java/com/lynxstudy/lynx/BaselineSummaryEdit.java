@@ -2,8 +2,10 @@ package com.lynxstudy.lynx;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.lynxstudy.helper.DatabaseHelper;
@@ -25,7 +28,7 @@ import java.util.List;
  * Created by Hari on 2017-06-24.
  */
 
-public class BaselineSummaryEdit extends Fragment {
+public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarChangeListener {
     public BaselineSummaryEdit() {
     }
     TextView textview,textview6,textview7,textview8,textview9,textview10,textview11,textview12,addToDiary,drugContentTitle;
@@ -38,6 +41,8 @@ public class BaselineSummaryEdit extends Fragment {
     RadioButton alcCal_5to7days,alcCal_1to4days,alcCal_lessThanOnce,alcCal_never;
     RadioButton radio_partner_yes,radio_partner_no,radio_lessThanSixMonths,radio_moreThanSixMonths,radio_blackbook_yes,radio_blackbook_no;
     DatabaseHelper db;
+    private SeekBar seek_barone,seek_bartwo;
+    LinearLayout partnerInfoLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -191,7 +196,7 @@ public class BaselineSummaryEdit extends Fragment {
         LinearLayout drugs_container = (LinearLayout) view.findViewById(R.id.linearLayout_drugs);
         final LinearLayout alcCalLayout = (LinearLayout) view.findViewById(R.id.alcCalLayout);
         List<DrugMaster> drug = db.getAllDrugs();
-        LynxManager.selectedDrugs.clear();
+        /*LynxManager.selectedDrugs.clear();*/
         for (int i = 0; i < drug.size(); i++) {
             DrugMaster array_id = drug.get(i);
             final String drugName = array_id.getDrugName();
@@ -199,6 +204,9 @@ public class BaselineSummaryEdit extends Fragment {
             LayoutInflater chInflater = (getActivity()).getLayoutInflater();
             View convertView = chInflater.inflate(R.layout.checkbox_row,container,false);
             CheckBox ch = (CheckBox)convertView.findViewById(R.id.checkbox);
+            if(LynxManager.selectedDrugs.contains(drugName)){
+                ch.setChecked(true);
+            }
             ch.setText(drugName);
             drugs_container.addView(ch);
             ch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -219,10 +227,16 @@ public class BaselineSummaryEdit extends Fragment {
             });
         }
 
+        if(LynxManager.selectedDrugs.contains("Alcohol")){
+            alcCalLayout.setVisibility(View.VISIBLE);
+        }else{
+            alcCalLayout.setVisibility(View.GONE);
+        }
+
         // Loading STI Content //
         LinearLayout sti_container = (LinearLayout) view.findViewById(R.id.linearLayout_drugs1);
         List<STIMaster> stis = db.getAllSTIs();
-        LynxManager.selectedSTIs.clear();
+        /*LynxManager.selectedSTIs.clear();*/
         for (int i = 0; i < stis.size(); i++) {
             STIMaster stiInfo = stis.get(i);
             final String stiName = stiInfo.getstiName();
@@ -230,6 +244,9 @@ public class BaselineSummaryEdit extends Fragment {
             LayoutInflater chInflater = (getActivity()).getLayoutInflater();
             View convertView = chInflater.inflate(R.layout.checkbox_row,container,false);
             CheckBox ch = (CheckBox)convertView.findViewById(R.id.checkbox);
+            if(LynxManager.selectedSTIs.contains(stiName)){
+                ch.setChecked(true);
+            }
             ch.setText(stiName);
             sti_container.addView(ch);
             ch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -250,15 +267,101 @@ public class BaselineSummaryEdit extends Fragment {
         unknownPartners.setText(LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getHiv_unknown_count()));
 
         // Is primary partner //
+        partnerInfoLayout = (LinearLayout)view.findViewById(R.id.partnerInfoLayout);
+
         if(LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getIs_primary_partner())!=null){
             switch (LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getIs_primary_partner())){
                 case "Yes":
                     PSP_Yes.setSelected(true);
+                    partnerInfoLayout.setVisibility(View.VISIBLE);
                     break;
                 default:
                     PSP_No.setSelected(true);
+                    partnerInfoLayout.setVisibility(View.GONE);
             }
         }
+
+
+        final int stepSize =10;
+        seek_barone = (SeekBar) view.findViewById(R.id.seekBar_one); // make seekbar object
+        seek_barone.setOnSeekBarChangeListener(this);
+        seek_barone.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,
+                                          boolean fromUser) {
+                // TODO Auto-generated method stub
+                progress = ((int)Math.round(progress/stepSize))*stepSize;
+                seekBar.setProgress(progress);
+                setSeekBarText(progress,seek_barone,textProgress_id1);
+            }
+
+
+        });
+        editText.setText(LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getNo_of_times_top_hivposs()));
+        new Handler().postDelayed(new Runnable() {
+                                      @Override
+                                      public void run() {
+                                          String topPercent = LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getTop_condom_use_percent());
+                                          textProgress_id1.setText(topPercent);
+                                          topPercent = topPercent.substring(0, topPercent.length() - 1);
+                                          setSeekBarText(Integer.parseInt(topPercent),seek_barone,textProgress_id1);
+
+                                      }
+                                  },
+                500);
+
+        // Times Bottom //
+        seek_bartwo = (SeekBar) view.findViewById(R.id.seekBar_two); // make seekbar object
+        seek_bartwo.setOnSeekBarChangeListener(this);
+        seek_bartwo.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,
+                                          boolean fromUser) {
+                // TODO Auto-generated method stub
+                progress = ((int)Math.round(progress/stepSize))*stepSize;
+                seekBar.setProgress(progress);
+                setSeekBarText(progress,seek_bartwo,textProgress_id2);
+            }
+        });
+        editText1.setText(LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getNo_of_times_bot_hivposs()));
+
+        new Handler().postDelayed(new Runnable() {
+                                      @Override
+                                      public void run() {
+                                          String botPercent = LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getBottom_condom_use_percent());
+                                          textProgress_id2.setText(botPercent);
+                                          botPercent = botPercent.substring(0, botPercent.length() - 1);
+                                          setSeekBarText(Integer.parseInt(botPercent),seek_bartwo,textProgress_id2);
+
+                                      }
+                                  },
+                500);
 
         // Partner Info //
         String neg = LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getHiv_negative_count());
@@ -355,8 +458,35 @@ public class BaselineSummaryEdit extends Fragment {
                     alcCal_5to7days.setSelected(true);
             }
         }
-
-
         return view;
+    }
+
+
+    private void setSeekBarText(int progress, SeekBar seek_barone,TextView tv) {
+        tv.setText(progress + "%");
+        seek_barone.setProgress(progress);
+        int seek_label_pos = (int) ((float) (seek_barone.getMeasuredWidth()) * ((float) progress / 100));
+        if(progress>=90){
+            seek_label_pos = (int) ((float) (seek_barone.getMeasuredWidth()) * ((float) 85 / 100));
+        }else if(progress>10){
+            progress = progress - (progress/15);
+            seek_label_pos = (int) ((float) (seek_barone.getMeasuredWidth()) * ((float) progress  / 100));
+        }
+        tv.setX(seek_label_pos);
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
     }
 }
