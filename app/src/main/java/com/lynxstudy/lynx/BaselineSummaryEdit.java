@@ -15,6 +15,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -42,12 +43,14 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
     RadioButton radio_partner_yes,radio_partner_no,radio_lessThanSixMonths,radio_moreThanSixMonths,radio_blackbook_yes,radio_blackbook_no;
     DatabaseHelper db;
     private SeekBar seek_barone,seek_bartwo;
-    LinearLayout partnerInfoLayout;
+    LinearLayout partnerInfoLayout,undetectable_layout,relationshipPeriod_layout;
+    RadioGroup radioGrp_hivstatus,radioGrp_partner,radio_undetectable,radio_relationshipPeriod,radio_blackbook,alcoholCalculation,primary_sex_partner;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_baseline_summary_edit, container, false);
+        final View view = inflater.inflate(R.layout.fragment_baseline_summary_edit, container, false);
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
@@ -168,35 +171,72 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
         Progress_maxvalue1.setTypeface(tf);
         textview20 = (TextView)view.findViewById(R.id.textview20);
         textview20.setTypeface(tf);
-        textview21 = (TextView)view.findViewById(R.id.textview20);
+        textview21 = (TextView)view.findViewById(R.id.textview21);
         textview21.setTypeface(tf);
-        textview22 = (TextView)view.findViewById(R.id.textview20);
+        textview22 = (TextView)view.findViewById(R.id.textview22);
         textview22.setTypeface(tf);
-        textview23 = (TextView)view.findViewById(R.id.textview20);
+        textview23 = (TextView)view.findViewById(R.id.textview23);
         textview23.setTypeface(tf);
-        textview24 = (TextView)view.findViewById(R.id.textview20);
+        textview24 = (TextView)view.findViewById(R.id.textview24);
         textview24.setTypeface(tf);
-        textview25 = (TextView)view.findViewById(R.id.textview20);
+        textview25 = (TextView)view.findViewById(R.id.textview25);
         textview25.setTypeface(tf);
-        textview26 = (TextView)view.findViewById(R.id.textview20);
+        textview26 = (TextView)view.findViewById(R.id.textview26);
         textview26.setTypeface(tf);
-        textview27 = (TextView)view.findViewById(R.id.textview20);
+        textview27 = (TextView)view.findViewById(R.id.textview27);
         textview27.setTypeface(tf);
-        textview28 = (TextView)view.findViewById(R.id.textview20);
+        textview28 = (TextView)view.findViewById(R.id.textview28);
         textview28.setTypeface(tf);
         save = (Button)view.findViewById(R.id.save);
         save.setTypeface(tf);
-
+        undetectable_layout = (LinearLayout)view.findViewById(R.id.linearLayout_undetectable);
+        relationshipPeriod_layout = (LinearLayout)view.findViewById(R.id.linearLayout_relationshipPeriod);
+        radioGrp_hivstatus = (RadioGroup)view.findViewById(R.id.radio_hivstatus);
+        radioGrp_partner = (RadioGroup)view.findViewById(R.id.radio_partner);
+        radio_undetectable = (RadioGroup)view.findViewById(R.id.radio_undetectable);
+        radio_relationshipPeriod = (RadioGroup)view.findViewById(R.id.radio_relationshipPeriod);
+        radio_blackbook = (RadioGroup)view.findViewById(R.id.radio_blackbook);
+        alcoholCalculation = (RadioGroup)view.findViewById(R.id.alcoholCalculation);
+        primary_sex_partner = (RadioGroup)view.findViewById(R.id.primary_sex_partner);
 
         radio_hiv_prep.setText(Html.fromHtml("HIV negative & on PrEP"));
         radio_hiv_und.setText(Html.fromHtml("HIV positive & Undetectable"));
 
         db = new DatabaseHelper(getActivity());
+
+        // Focus change listener to hide/show the relationship layout //
+        negativePartners.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                int selectedId = radioGrp_partner.getCheckedRadioButtonId();
+                RadioButton rd_btn = (RadioButton) view.findViewById(selectedId);
+                String btn_text = rd_btn.getText().toString();
+                    hideShowRelationshipLayout(btn_text);
+            }
+        });
+        positivePartners.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                int selectedId = radioGrp_partner.getCheckedRadioButtonId();
+                RadioButton rd_btn = (RadioButton) view.findViewById(selectedId);
+                String btn_text = rd_btn.getText().toString();
+                    hideShowRelationshipLayout(btn_text);
+            }
+        });
+        unknownPartners.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                int selectedId = radioGrp_partner.getCheckedRadioButtonId();
+                RadioButton rd_btn = (RadioButton) view.findViewById(selectedId);
+                String btn_text = rd_btn.getText().toString();
+                    hideShowRelationshipLayout(btn_text);
+            }
+        });
+
         // Loading Drug Content //
         LinearLayout drugs_container = (LinearLayout) view.findViewById(R.id.linearLayout_drugs);
         final LinearLayout alcCalLayout = (LinearLayout) view.findViewById(R.id.alcCalLayout);
         List<DrugMaster> drug = db.getAllDrugs();
-        /*LynxManager.selectedDrugs.clear();*/
         for (int i = 0; i < drug.size(); i++) {
             DrugMaster array_id = drug.get(i);
             final String drugName = array_id.getDrugName();
@@ -236,7 +276,6 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
         // Loading STI Content //
         LinearLayout sti_container = (LinearLayout) view.findViewById(R.id.linearLayout_drugs1);
         List<STIMaster> stis = db.getAllSTIs();
-        /*LynxManager.selectedSTIs.clear();*/
         for (int i = 0; i < stis.size(); i++) {
             STIMaster stiInfo = stis.get(i);
             final String stiName = stiInfo.getstiName();
@@ -268,15 +307,16 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
 
         // Is primary partner //
         partnerInfoLayout = (LinearLayout)view.findViewById(R.id.partnerInfoLayout);
-
         if(LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getIs_primary_partner())!=null){
             switch (LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getIs_primary_partner())){
                 case "Yes":
-                    PSP_Yes.setSelected(true);
+                    /*PSP_Yes.setSelected(true);*/
+                    primary_sex_partner.check(PSP_Yes.getId());
                     partnerInfoLayout.setVisibility(View.VISIBLE);
                     break;
                 default:
-                    PSP_No.setSelected(true);
+                    /*PSP_No.setSelected(true);*/
+                    primary_sex_partner.check(PSP_No.getId());
                     partnerInfoLayout.setVisibility(View.GONE);
             }
         }
@@ -364,30 +404,55 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
                 500);
 
         // Partner Info //
-        String neg = LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getHiv_negative_count());
-        String pos = LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getHiv_positive_count());
-        String unk = LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getHiv_unknown_count());
+        String neg = negativePartners.getText().toString();
+        String pos = positivePartners.getText().toString();
+        String unk = unknownPartners.getText().toString();
         final int count = Integer.parseInt(neg) + Integer.parseInt(pos) + Integer.parseInt(unk);
-        final LinearLayout undetectable_layout = (LinearLayout)view.findViewById(R.id.linearLayout_undetectable);
-        final LinearLayout relationshipPeriod_layout = (LinearLayout)view.findViewById(R.id.linearLayout_relationshipPeriod);
+
+        radioGrp_hivstatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                int selectedId = radioGrp_hivstatus.getCheckedRadioButtonId();
+                RadioButton rd_btn = (RadioButton) view.findViewById(selectedId);
+                String btn_text = rd_btn.getText().toString();
+                if (btn_text.equals("HIV positive & Undetectable")){
+                    undetectable_layout.setVisibility(View.VISIBLE);
+                    LynxManager.undetectableLayoutHidden = false;
+                }
+                else {
+                    undetectable_layout.setVisibility(View.GONE);
+                    LynxManager.undetectableLayoutHidden = true;
+                }
+            }
+        });
+
+        radioGrp_partner.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                int selectedId = radioGrp_partner.getCheckedRadioButtonId();
+                RadioButton rd_btn = (RadioButton) view.findViewById(selectedId);
+                String btn_text = rd_btn.getText().toString();
+                hideShowRelationshipLayout(btn_text);
+            }
+        });
 
         nick_name.setText(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getName()));
         if(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getHiv_status())!=null){
             switch (LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getHiv_status())){
                 case "HIV Negative":
-                    radio_hiv_neg.setSelected(true);
+                    radioGrp_hivstatus.check(radio_hiv_neg.getId());
                     break;
                 case "HIV negative & on PrEP":
-                    radio_hiv_prep.setSelected(true);
+                    radioGrp_hivstatus.check(radio_hiv_prep.getId());
                     break;
                 case "I don't know":
-                    radio_hiv_idk.setSelected(true);
+                    radioGrp_hivstatus.check(radio_hiv_idk.getId());
                     break;
                 case "HIV Positive":
-                    radio_hiv_pos.setSelected(true);
+                    radioGrp_hivstatus.check(radio_hiv_pos.getId());
                     break;
                 case "HIV positive & Undetectable":
-                    radio_hiv_und.setSelected(true);
+                    radioGrp_hivstatus.check(radio_hiv_und.getId());
                     undetectable_layout.setVisibility(View.VISIBLE);
                     LynxManager.undetectableLayoutHidden = false;
                     break;
@@ -398,17 +463,20 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
         if(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getUndetectable_for_sixmonth())!=null){
             switch (LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getHiv_status())){
                 case "Yes":
-                    radio_undetectable_yes.setSelected(true);
+                    radio_undetectable.check(radio_undetectable_yes.getId());
+                    /*radio_undetectable_yes.setSelected(true);*/
                     break;
                 default:
-                    radio_undetectable_iDontKnow.setSelected(true);
+                    radio_undetectable.check(radio_undetectable_iDontKnow.getId());
+                    /*radio_undetectable_iDontKnow.setSelected(true);*/
             }
         }
 
         if(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getPartner_have_other_partners())!=null){
             switch (LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getPartner_have_other_partners())){
                 case "Yes":
-                    radio_partner_yes.setSelected(true);
+                    /*radio_partner_yes.setSelected(true);*/
+                    radioGrp_partner.check(radio_partner_yes.getId());
                     relationshipPeriod_layout.setVisibility(View.GONE);
                     LynxManager.relationShipLayoutHidden = true;
                     break;
@@ -417,27 +485,32 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
                         relationshipPeriod_layout.setVisibility(View.VISIBLE);
                         LynxManager.relationShipLayoutHidden = false;
                     }
-                    radio_partner_no.setSelected(true);
+                    /*radio_partner_no.setSelected(true);*/
+                    radioGrp_partner.check(radio_partner_no.getId());
             }
         }
 
         if(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getRelationship_period())!=null){
             switch (LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getRelationship_period())){
                 case "6 months or more":
-                    radio_moreThanSixMonths.setSelected(true);
+                    radio_relationshipPeriod.check(radio_moreThanSixMonths.getId());
+                    /*radio_moreThanSixMonths.setSelected(true);*/
                     break;
                 default:
-                    radio_lessThanSixMonths.setSelected(true);
+                    radio_relationshipPeriod.check(radio_lessThanSixMonths.getId());
+                    /*radio_lessThanSixMonths.setSelected(true);*/
             }
         }
 
         if(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getIs_added_to_blackbook())!=null){
             switch (LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getIs_added_to_blackbook())){
                 case "No":
-                    radio_blackbook_no.setSelected(true);
+                    /*radio_blackbook_no.setSelected(true);*/
+                    radio_blackbook.check(radio_blackbook_no.getId());
                     break;
                 default:
-                    radio_blackbook_yes.setSelected(true);
+                    radio_blackbook.check(radio_blackbook_yes.getId());
+                    /*radio_blackbook_yes.setSelected(true);*/
             }
         }
 
@@ -446,19 +519,35 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
         if(LynxManager.decryptString(LynxManager.getActiveUserAlcoholUse().getNo_alcohol_in_week())!=null){
             switch (LynxManager.decryptString(LynxManager.getActiveUserAlcoholUse().getNo_alcohol_in_week())){
                 case "1-4 days a week":
-                    alcCal_1to4days.setSelected(true);
+                    /*alcCal_1to4days.setSelected(true);*/
+                    alcoholCalculation.check(alcCal_1to4days.getId());
                     break;
                 case "Less than once a week":
-                    alcCal_lessThanOnce.setSelected(true);
+                    /*alcCal_lessThanOnce.setSelected(true);*/
+                    alcoholCalculation.check(alcCal_lessThanOnce.getId());
                     break;
                 case "Never":
-                    alcCal_never.setSelected(true);
+                    /*alcCal_never.setSelected(true);*/
+                    alcoholCalculation.check(alcCal_never.getId());
                     break;
                 default:
-                    alcCal_5to7days.setSelected(true);
+                    alcoholCalculation.check(alcCal_5to7days.getId());
+                    /*alcCal_5to7days.setSelected(true);*/
             }
         }
         return view;
+    }
+
+    private void hideShowRelationshipLayout(String btn_text) {
+        int count = Integer.parseInt(negativePartners.getText().toString())+Integer.parseInt(positivePartners.getText().toString())+Integer.parseInt(unknownPartners.getText().toString());
+        if(btn_text.equals("No") && count==1){
+            relationshipPeriod_layout.setVisibility(View.VISIBLE);
+            LynxManager.relationShipLayoutHidden = false;
+        }
+        else {
+            relationshipPeriod_layout.setVisibility(View.GONE);
+            LynxManager.relationShipLayoutHidden = true;
+        }
     }
 
 
