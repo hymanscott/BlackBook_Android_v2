@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +17,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.TestingReminder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +36,7 @@ public class RegistrationPrimaryPartner extends Fragment{
     public RegistrationPrimaryPartner() {
         // Required empty public constructor
     }
-
+    DatabaseHelper db;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +87,13 @@ public class RegistrationPrimaryPartner extends Fragment{
         negativePartners.setText(LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getHiv_negative_count()));
         positivePartners.setText(LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getHiv_positive_count()));
         unknownPartners.setText(LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getHiv_unknown_count()));
+
+        db= new DatabaseHelper(getActivity());
+        TestingReminder testing_Reminder = db.getTestingReminderByFlag(1);
+        Log.v("Testing Reminder",LynxManager.decryptString(testing_Reminder.getNotification_day())+"--"+LynxManager.decryptString(testing_Reminder.getNotification_time()));
+        TestingReminder diary_Reminder = db.getTestingReminderByFlag(0);
+        Log.v("Dairy Reminder",LynxManager.decryptString(diary_Reminder.getNotification_day())+"--"+LynxManager.decryptString(diary_Reminder.getNotification_time()));
+
         return view;
     }
 

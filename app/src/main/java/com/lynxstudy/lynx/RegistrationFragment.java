@@ -300,12 +300,12 @@ public class RegistrationFragment  extends Fragment implements DatePickerDialog.
     private void initialize(){
         //data source for drop-down list
         final ArrayList<String> items = new ArrayList<String>();
-        items.add("American");
-        items.add("White");
+        items.add("Latino");
         items.add("Black");
-        items.add("Straight");
+        items.add("Asian/Pacific Islander");
+        items.add("Native American");
+        items.add("White");
         items.add("Others");
-
         checkSelected = new boolean[items.size()];
         //initialize all values of list to 'unselected' initially
         for (int i = 0; i < checkSelected.length; i++) {

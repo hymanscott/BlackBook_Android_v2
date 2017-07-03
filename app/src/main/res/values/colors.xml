@@ -32,7 +32,8 @@
     <color name="edittext">#F9FAFB</color>
     <color name="btn_blue_start">#80693CDD</color>
     <color name="btn_blue_end">#80683BDD</color>
-
+    <color name="btn_blue">#4D4AED</color>
+    <color name="btn_blue_solid">#683BDD</color>
     <!-- New Theme Colors -->
     <color name="white">#FFFFFF </color>
     <color name="edittext_hint_color">#80FFFFFF</color>

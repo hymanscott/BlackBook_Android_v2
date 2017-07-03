@@ -28,6 +28,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_width="wrap_content"
+        android:id="@+id/first_paragraph"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="You can rate your partners using seven rating categories. The first category will always be 'Overall', but you can configure the labels for ratings categories 2 through 7 with any text (up to 15 characters)" />
@@ -37,6 +38,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_width="wrap_content"
+        android:id="@+id/second_paragraph"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="This is a global setting for all partners in your partner list. If you change any category label, all partner ratings numbers previously set for that same category will be shown with the new category label." />

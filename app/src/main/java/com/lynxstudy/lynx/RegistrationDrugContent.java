@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,9 @@ public class RegistrationDrugContent extends Fragment {
         LinearLayout drugs_container = (LinearLayout) view.findViewById(R.id.linearLayout_drugs);
         List<DrugMaster> drug = newdb.getAllDrugs();
         LynxManager.selectedDrugs.clear();
+        for (int i = 0; i < LynxManager.lastSelectedDrugs.size(); i++) {
+            Log.v("LastSelectedDrugs",LynxManager.lastSelectedDrugs.get(i));
+        }
         for (int i = 0; i < drug.size(); i++) {
             DrugMaster array_id = drug.get(i);
             final String drugName = array_id.getDrugName();
@@ -73,6 +77,11 @@ public class RegistrationDrugContent extends Fragment {
             View convertView = chInflater.inflate(R.layout.checkbox_row,container,false);
             CheckBox ch = (CheckBox)convertView.findViewById(R.id.checkbox);
             ch.setText(drugName);
+            if(LynxManager.lastSelectedDrugs.contains(drugName)){
+                ch.setChecked(true);
+            }else{
+                ch.setChecked(false);
+            }
             drugs_container.addView(ch);
             ch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 

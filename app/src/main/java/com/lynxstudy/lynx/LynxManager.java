@@ -49,7 +49,9 @@ import javax.crypto.spec.DESKeySpec;
 
 public class LynxManager {
     public static List<String> selectedDrugs = new ArrayList<String>();
+    public static List<String> lastSelectedDrugs = new ArrayList<String>();
     public static List<String> selectedSTIs = new ArrayList<String>();
+    public static List<String> lastSelectedSTIs = new ArrayList<String>();
     public static List<String> selectedTestKits = new ArrayList<String>();
     public static List<String> PrepVideos = new ArrayList<String>();
     public static Encounter activeEncounter = new Encounter();
@@ -62,7 +64,7 @@ public class LynxManager {
     public static String encRateofSex;
     public static int selectedPartnerID;
     public static int selectedEncounterID;
-    public static int releaseMode = 2; //0 - Development, 1 - Internal Release , 2 - Client Release
+    public static int releaseMode = 0; //0 - Development, 1 - Internal Release , 2 - Client Release
     /* Config Variables for Nearest Testing Locations */
     public static int minMarker = 2;   // Minimum number of Markers to be Displayed
     public static int maxMarker = 10;  // Maximum number of Markers to be Displayed

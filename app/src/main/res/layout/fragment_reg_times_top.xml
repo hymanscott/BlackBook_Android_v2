@@ -142,7 +142,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="0%"
+                        android:text="0 %"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
@@ -179,7 +179,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentTop="true"
-                            android:text="0%"
+                            android:text="0 %"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
@@ -190,7 +190,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_alignParentTop="true"
-                            android:text="100%"
+                            android:text="100 %"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
@@ -205,7 +205,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="@dimen/button_top_margin"
-                android:background="@drawable/buttonbluegradient"
+                android:background="@color/btn_blue"
                 android:text="NEXT"
                 android:onClick="showTimesBottom"
                 android:textColor="@color/white"

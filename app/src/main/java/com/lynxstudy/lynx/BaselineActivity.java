@@ -29,6 +29,7 @@ import com.lynxstudy.model.PartnerContact;
 import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.Partners;
 import com.lynxstudy.model.STIMaster;
+import com.lynxstudy.model.TestingReminder;
 import com.lynxstudy.model.UserAlcoholUse;
 import com.lynxstudy.model.UserDrugUse;
 import com.lynxstudy.model.UserPrimaryPartner;
@@ -88,7 +89,6 @@ public class BaselineActivity extends AppCompatActivity {
             textView10.setTypeface(tf);
             textView11.setTypeface(tf);
             next.setTypeface(tf);
-
             return view;
         }
     }
@@ -286,8 +286,11 @@ public class BaselineActivity extends AppCompatActivity {
 
             LynxManager.setActiveUserDrugUse(userDrugUse);
         }
-
-
+        LynxManager.lastSelectedDrugs.clear();
+        LynxManager.lastSelectedDrugs = LynxManager.selectedDrugs;
+        for (int i = 0; i < LynxManager.lastSelectedDrugs.size(); i++) {
+            Log.v("LastSelectedDrugs",LynxManager.lastSelectedDrugs.get(i));
+        }
         if (isAlcoholSelected)
             pushFragments("Home", regHeavyAlcoholUse, true);
         else
@@ -320,10 +323,9 @@ public class BaselineActivity extends AppCompatActivity {
             UserSTIDiag userSTIDiag = new UserSTIDiag(LynxManager.getActiveUser().getUser_id(), stiMaster.getSti_id(), LynxManager.encryptString("Yes"),String.valueOf(R.string.statusUpdateNo),true);
             LynxManager.setActiveUserSTIDiag(userSTIDiag);
         }
-        RegistrationSummary fragRegSummary = new RegistrationSummary();
-        pushFragments("home", fragRegSummary, true);
-
-
+        /*RegistrationSummary fragRegSummary = new RegistrationSummary();
+        pushFragments("home", fragRegSummary, true);*/
+        finishBaseline();
         return true;
     }
     public boolean showEditDetails (View view){
@@ -455,8 +457,13 @@ public class BaselineActivity extends AppCompatActivity {
         }
         return true;
     }
-    public boolean onRegSummaryConfirm(View view) throws JSONException {
 
+    public boolean onRegSummaryConfirm(View view) throws JSONException {
+        finishBaseline();
+        return true;
+
+    }
+    public void finishBaseline(){
         //Create BaseLine
         User_baseline_info activeBaselineInfo = LynxManager.getActiveUserBaselineInfo();
         int createbaselineID = db.createbaseline(activeBaselineInfo);
@@ -554,8 +561,10 @@ public class BaselineActivity extends AppCompatActivity {
 
         RegistrationSexproScore fragsexProScore = new RegistrationSexproScore();
         pushFragments("Reg",fragsexProScore,true);
-        return true;
-
+       /* Intent home = new Intent(this, LynxSexPro.class);
+        home.putExtra("fromactivity",BaselineActivity.this.getClass().getSimpleName());
+        startActivity(home);
+        finish();*/
     }
     public boolean onSexProScoreClose(View view) {
          /*

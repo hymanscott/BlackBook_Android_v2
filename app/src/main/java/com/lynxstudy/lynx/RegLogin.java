@@ -109,7 +109,14 @@ public class RegLogin extends AppCompatActivity {
 
                 /*RegistrationBaselineIntro regPrimaryPartner = new RegistrationBaselineIntro();
                 pushFragments("home", regPrimaryPartner, true);*/
-                Intent baseline = new Intent(this, BaselineActivity.class);
+                TestingReminder testing_Reminder = db.getTestingReminderByFlag(1);
+                TestingReminder diary_Reminder = db.getTestingReminderByFlag(0);
+                Intent baseline;
+                if(testing_Reminder != null && diary_Reminder!=null){
+                    baseline = new Intent(this, BaselineActivity.class);
+                }else{
+                    baseline = new Intent(this, RemindersActivity.class);
+                }
                 startActivity(baseline);
                 finish();
             } else {
@@ -660,7 +667,7 @@ public class RegLogin extends AppCompatActivity {
                 LynxManager.getActiveUser().setUser_id(user_local_id);
                 LynxManager.getActiveUser().setCreated_at(db.getUserCreatedAt(user_local_id));
                 /*pushFragments("Home", regPrimaryPartner, true);*/
-                Intent baseline = new Intent(this, BaselineActivity.class);
+                Intent baseline = new Intent(this, RemindersActivity.class);
                 startActivity(baseline);
                 finish();
             }else{
@@ -963,8 +970,8 @@ public class RegLogin extends AppCompatActivity {
                         LynxManager.getActiveUser().setCreated_at(db.getUserCreatedAt(user_online_id));
                         /*RegistrationBaselineIntro regPrimaryPartner = new RegistrationBaselineIntro();
                         pushFragments("Home", regPrimaryPartner, true);*/
-                        Intent baseline = new Intent(RegLogin.this, BaselineActivity.class);
-                        startActivity(baseline);
+                        Intent reminders = new Intent(RegLogin.this, RemindersActivity.class);
+                        startActivity(reminders);
                         finish();
                     }
                     // looping through All Contacts

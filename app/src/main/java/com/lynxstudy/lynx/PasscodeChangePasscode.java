@@ -80,18 +80,17 @@ public class PasscodeChangePasscode extends AppCompatActivity {
         final EditText confrim_passcode = (EditText) findViewById(R.id.confirmNewPasscode);
         final String strConfirmPasscode = confrim_passcode.getText().toString();
 
-        if(strPasscode.equals(strConfirmPasscode)){
+        if(!strPasscode.isEmpty() && strPasscode.equals(strConfirmPasscode)){
             db  =   new DatabaseHelper(this);
             db.updateUserPasscode(strPasscode, LynxManager.getActiveUser().getUser_id());
             LynxManager.getActiveUser().setPasscode(LynxManager.encryptString(strPasscode));
-            Toast.makeText(this, "Passcode Updated", Toast.LENGTH_LONG);
+            Toast.makeText(PasscodeChangePasscode.this, "Passcode Updated", Toast.LENGTH_LONG).show();
             finish();
         }
         else {
-            Toast.makeText(this, "Passcode does not match", Toast.LENGTH_LONG);
+            Toast.makeText(this, "Passcode does not match", Toast.LENGTH_LONG).show();
             passcode.setText("");
             confrim_passcode.setText("");
-
         }
         return true;
     }

@@ -342,7 +342,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="@dimen/button_top_margin"
-                android:background="@drawable/buttonbluegradient"
+                android:background="@color/btn_blue"
                 android:onClick="showRegistration_primary_partner"
                 android:text="CONFIRM"
                 android:textColor="@color/white"

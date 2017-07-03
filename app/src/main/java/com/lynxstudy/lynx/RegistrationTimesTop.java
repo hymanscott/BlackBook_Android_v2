@@ -106,7 +106,7 @@ public class RegistrationTimesTop extends Fragment implements SeekBar.OnSeekBarC
 
     private void setSeekBarText(int progress) {
         seek_barone.setProgress(progress);
-        seek_textviewone.setText(progress + "%");
+        seek_textviewone.setText(progress + " %");
         int seek_label_pos = (int) ((float) (seek_barone.getMeasuredWidth()) * ((float) progress / 100));
         if(progress>=90){
             seek_label_pos = (int) ((float) (seek_barone.getMeasuredWidth()) * ((float) 85 / 100));

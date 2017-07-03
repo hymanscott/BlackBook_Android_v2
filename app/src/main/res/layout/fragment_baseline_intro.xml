@@ -75,7 +75,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="20dp"
                         android:gravity="center"
-                        android:text="Sex Pro scores range from 1 to 20, with higher scores meaning higher levels of protection. Although a perfect score(20) isn't a guarantee againt HIV infection, it does mean that you are doing a lot to stay protected."
+                        android:text="Sex Pro scores range from 1 to 20, with higher scores meaning higher levels of protection. Although a perfect score (20) isn't a guarantee againt HIV infection, it does mean that you are doing a lot to stay protected."
                         android:textColor="@color/white"
                         android:textSize="@dimen/paragraph_text_size" />
                 </LinearLayout>
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginTop="@dimen/button_top_margin"
-                    android:background="@drawable/buttonbluegradient"
+                    android:background="@color/btn_blue"
                     android:text="LET's GET STARTED!"
                     android:textColor="@color/white"
                     android:onClick="startBaseline"

@@ -110,7 +110,7 @@
                 android:text="LOGIN"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/buttonbluegradient"
+                android:background="@color/btn_blue"
                 android:textColor="@color/white"
                 android:textSize="@dimen/button_textsize"
                 android:onClick="changePasscode"/>

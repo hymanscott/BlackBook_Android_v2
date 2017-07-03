@@ -4,6 +4,8 @@
     <string name="sec_question_prompt">Pick a security question</string>
     <string name="gender">Gender</string>
     <string name="race">Race</string>
+    <string name="set_day_of_week">Set day of week</string>
+    <string name="set_time_of_day">Set time of day</string>
     <!-- Passcode Strings-->
     <string name="passcode_manage">Manage passcode</string>
     <string name="passcode_enter_passcode">Enter your passcode</string>
