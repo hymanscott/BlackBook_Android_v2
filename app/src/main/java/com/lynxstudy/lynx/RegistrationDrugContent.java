@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,7 +32,7 @@ public class RegistrationDrugContent extends Fragment {
 
     DatabaseHelper newdb;
 
-    List<String> checked_list = new ArrayList<String>();
+
     TextView baselineTitle,drugContentTitle;
     Button drugContent_nextbtn;
     public RegistrationDrugContent() {
@@ -45,13 +46,13 @@ public class RegistrationDrugContent extends Fragment {
 
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         getActivity().getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        View view = inflater.inflate(R.layout.fragment_registration_drug_content, container, false);
+        final View view = inflater.inflate(R.layout.fragment_registration_drug_content, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
@@ -63,12 +64,12 @@ public class RegistrationDrugContent extends Fragment {
         drugContent_nextbtn.setTypeface(tf);
 
         newdb = new DatabaseHelper(view.getContext());
-        LinearLayout drugs_container = (LinearLayout) view.findViewById(R.id.linearLayout_drugs);
-        List<DrugMaster> drug = newdb.getAllDrugs();
-        LynxManager.selectedDrugs.clear();
-        for (int i = 0; i < LynxManager.lastSelectedDrugs.size(); i++) {
-            Log.v("LastSelectedDrugs",LynxManager.lastSelectedDrugs.get(i));
-        }
+        final LinearLayout drugs_container = (LinearLayout) view.findViewById(R.id.linearLayout_drugs);
+        final List<DrugMaster> drug = newdb.getAllDrugs();
+        //LynxManager.selectedDrugs.clear();
+
+
+
         for (int i = 0; i < drug.size(); i++) {
             DrugMaster array_id = drug.get(i);
             final String drugName = array_id.getDrugName();
@@ -76,52 +77,52 @@ public class RegistrationDrugContent extends Fragment {
             LayoutInflater chInflater = (getActivity()).getLayoutInflater();
             View convertView = chInflater.inflate(R.layout.checkbox_row,container,false);
             CheckBox ch = (CheckBox)convertView.findViewById(R.id.checkbox);
+   //         ch.setOnClickListener(null);
             ch.setText(drugName);
-            if(LynxManager.lastSelectedDrugs.contains(drugName)){
-                ch.setChecked(true);
-            }else{
-                ch.setChecked(false);
-            }
+            ch.setSelected(false);
             drugs_container.addView(ch);
-            ch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        checked_list.add(String.valueOf(drugName));
-                        LynxManager.selectedDrugs.add(String.valueOf(drugName));
-                    } else {
-                        checked_list.remove(String.valueOf(drugName));
-                        LynxManager.selectedDrugs.remove(String.valueOf(drugName));
-                    }
-                    //   Log.v("Drug Checked List",checked_list.toArray().toString());
-                }
-            });
-
-            //  Log.v("Drug Content Fragment", drugName +" - "+ drug.size() + "  -  "+i );
-            /*final CheckBox ch;
-            ch = new CheckBox(getActivity());
-            ch.setText(drugName);
-            ch.setPadding(0,0,0,2);
-            ch.setTextSize(18);
-            ch.setTextColor(getResources().getColor(R.color.white));
-            ch.setTypeface(tf);
-            drugs_container.addView(ch);
-
-            ch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        checked_list.add(String.valueOf(drugName));
-                        LynxManager.selectedDrugs.add(String.valueOf(drugName));
-                    } else {
-                        checked_list.remove(String.valueOf(drugName));
-                        LynxManager.selectedDrugs.remove(String.valueOf(drugName));
-                    }
-                    //   Log.v("Drug Checked List",checked_list.toArray().toString());
-                }
-            });*/
-
         }
+
+
+        new Handler().postDelayed(new Runnable() {
+                                      @Override
+                                      public void run() {
+
+
+                                          for(int i=0; i< drugs_container.getChildCount(); i++) {
+                                              View element = drugs_container.getChildAt(i);
+
+                                              if( element instanceof CheckBox){
+                                                  CheckBox ch1 = (CheckBox) element;
+                                                  final String drugName = ((CheckBox) element).getText().toString();
+
+                                                  if(LynxManager.selectedDrugs.contains(drugName)){
+                                                      ch1.setChecked(true);
+                                                  }else{
+                                                      ch1.setChecked(false);
+                                                  }
+
+                                                  ch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+                                                      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                                          if (isChecked) {
+
+                                                              if(!LynxManager.selectedDrugs.contains(drugName))
+                                                                  LynxManager.selectedDrugs.add(String.valueOf(drugName));
+                                                          } else {
+
+                                                              LynxManager.selectedDrugs.remove(String.valueOf(drugName));
+                                                          }
+
+                                                      }
+                                                  });
+                                              }
+
+                                          }
+
+                                      }
+                                  },
+                200);
 
         return view;
     }

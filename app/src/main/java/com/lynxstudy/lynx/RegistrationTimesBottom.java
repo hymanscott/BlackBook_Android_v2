@@ -121,7 +121,7 @@ public class RegistrationTimesBottom extends Fragment implements SeekBar.OnSeekB
         if(progress>=90){
             seek_label_pos = (int) ((float) (seek_bartwo.getMeasuredWidth()) * ((float) 85 / 100));
         }else if(progress>10){
-            progress = progress - (progress/15);
+            progress = progress - (progress/12);
             seek_label_pos = (int) ((float) (seek_bartwo.getMeasuredWidth()) * ((float) progress  / 100));
         }
         seek_textviewone.setX(seek_label_pos);

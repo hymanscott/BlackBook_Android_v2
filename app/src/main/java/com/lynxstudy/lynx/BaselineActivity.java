@@ -286,11 +286,12 @@ public class BaselineActivity extends AppCompatActivity {
 
             LynxManager.setActiveUserDrugUse(userDrugUse);
         }
-        LynxManager.lastSelectedDrugs.clear();
+       /* LynxManager.lastSelectedDrugs.clear();
         LynxManager.lastSelectedDrugs = LynxManager.selectedDrugs;
         for (int i = 0; i < LynxManager.lastSelectedDrugs.size(); i++) {
             Log.v("LastSelectedDrugs",LynxManager.lastSelectedDrugs.get(i));
         }
+        */
         if (isAlcoholSelected)
             pushFragments("Home", regHeavyAlcoholUse, true);
         else
