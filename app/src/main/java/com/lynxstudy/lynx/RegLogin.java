@@ -1208,6 +1208,7 @@ public class RegLogin extends AppCompatActivity {
                             //Log.v("partnersInfo", partnersObject.getString(""));
                             Partners partner = new Partners(partnersObject.getInt("partner_id"), LynxManager.getActiveUser().getUser_id(),
                                     LynxManager.encryptString(partnersObject.getString("nickname")),
+                                    LynxManager.encryptString(partnersObject.getString("gender")),
                                     LynxManager.encryptString(partnersObject.getString("hiv_status")),
                                     LynxManager.encryptString(partnersObject.getString("undetectable_for_sixmonth")),
                                     LynxManager.encryptString(partnersObject.getString("is_added_to_partners")),

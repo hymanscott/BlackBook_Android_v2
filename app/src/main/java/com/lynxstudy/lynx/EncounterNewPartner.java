@@ -198,6 +198,8 @@ public class EncounterNewPartner extends AppCompatActivity {
             Toast.makeText(getApplication(), "Please Enter the Nick name", Toast.LENGTH_SHORT).show();
             nickName_et.requestFocus();
         } else {
+            RadioButton gender_btn = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_gender)).getCheckedRadioButtonId());
+            String gender = gender_btn.getText().toString();
             RadioButton hiv_status_btn = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_hivstatus)).getCheckedRadioButtonId());
             String hiv_status = hiv_status_btn.getText().toString();
             RadioButton is_list_btn = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_is_listed)).getCheckedRadioButtonId());
@@ -212,7 +214,7 @@ public class EncounterNewPartner extends AppCompatActivity {
             }
             // Adding new partner details into phast manager
             Log.v("UndetectableFor6Months", partUndetectable);
-            Partners new_partner = new Partners(LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(nickName), LynxManager.encryptString(hiv_status),
+            Partners new_partner = new Partners(LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(nickName),LynxManager.encryptString(gender), LynxManager.encryptString(hiv_status),
                     LynxManager.encryptString(partUndetectable), LynxManager.encryptString(is_listed),String.valueOf(R.string.statusUpdateNo),true);
             LynxManager.setActivePartner(new_partner);
 

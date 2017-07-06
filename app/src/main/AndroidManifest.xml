@@ -109,9 +109,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".EncounterStartActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
         <activity
             android:name=".EncounterNewPartner"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" />
         <activity
             android:name=".PrepFactsAnswer"
@@ -164,14 +166,17 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".PasscodeResetActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <!--
             <activity android:name=".RegistrationEdit"
             android:theme="@style/AppTheme.NoActionBar"/>
         -->
         <activity android:name=".BaselineActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".RemindersActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 

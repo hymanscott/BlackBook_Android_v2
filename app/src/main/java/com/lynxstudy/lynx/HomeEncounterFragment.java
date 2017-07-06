@@ -132,8 +132,8 @@ public class HomeEncounterFragment extends Fragment {
                             View row = encounterTable.getChildAt(i);
                             if (row == view) {
                                 row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
-                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(1)).setTextColor(getResources().getColor(R.color.colorAccent));
-                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.colorAccent));
+                                /*((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(1)).setTextColor(getResources().getColor(R.color.colorAccent));
+                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.colorAccent));*/
                                 LynxManager.selectedEncounterID = row.getId();
                                 LynxManager.activePartnerSexType.clear();
 
@@ -154,8 +154,8 @@ public class HomeEncounterFragment extends Fragment {
                                 startActivity(selectedEncounterSumm);
                             } else {
                                 //Change this to your normal background color.
-                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(1)).setTextColor(Color.parseColor("#444444"));
-                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#444444"));
+                                /*((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(1)).setTextColor(Color.parseColor("#444444"));
+                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#444444"));*/
                                 row.setBackground(getResources().getDrawable(R.drawable.border_bottom));
                                 if(i==0)
                                     row.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));

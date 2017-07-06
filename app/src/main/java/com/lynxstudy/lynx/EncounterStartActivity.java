@@ -68,12 +68,12 @@ public class EncounterStartActivity extends AppCompatActivity {
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
         // Custom Action Bar //
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        /*getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView)cView.findViewById(R.id.viewProfile);
-        /*viewProfile.setVisibility(View.GONE);*/
+        *//*viewProfile.setVisibility(View.GONE);*//*
         LinearLayout sexualHistory = (LinearLayout)cView.findViewById(R.id.sexualHistory);
         sexualHistory.setVisibility(View.VISIBLE);
         viewProfile.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +82,7 @@ public class EncounterStartActivity extends AppCompatActivity {
                 Intent intent = new Intent(EncounterStartActivity.this,LynxProfile.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
 

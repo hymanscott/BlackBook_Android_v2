@@ -1,6 +1,7 @@
 package com.lynxstudy.lynx;
 
 
+import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.graphics.Typeface;
@@ -58,10 +59,68 @@ public class EncounterEnctimeFragment extends Fragment {
         final EditText enctime = (EditText) rootview.findViewById(R.id.encTime);
         encdate.setTypeface(tf);
         enctime.setTypeface(tf);
-        ImageView clearEncTime = (ImageView)rootview.findViewById(R.id.enctimeClear);
-        ImageView calenderIconEncDate = (ImageView)rootview.findViewById(R.id.calenderIconEncDate);
 
-        encdate.addTextChangedListener(new TextWatcher() {
+        //Date Picker
+        final Calendar myCalendar = Calendar.getInstance();
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                String myFormat = "dd/MM/yy"; //In which you need put here
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+                encdate.setText(sdf.format(myCalendar.getTime()));
+            }
+
+        };
+        encdate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(getActivity(), date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+        enctime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // TODO Auto-generated method stub
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+
+                mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+
+                        Calendar datetime = Calendar.getInstance();
+                        datetime.set(Calendar.HOUR_OF_DAY, selectedHour);
+                        datetime.set(Calendar.MINUTE, selectedMinute);
+
+                        String myFormat = "hh:mm a"; // your own format
+                        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                        String formated_time = sdf.format(datetime.getTime());
+                        enctime.setText(formated_time);
+                    }
+                }, hour, minute, false);//Yes 24 hour time
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+            }
+        });
+        /*ImageView clearEncTime = (ImageView)rootview.findViewById(R.id.enctimeClear);
+        ImageView calenderIconEncDate = (ImageView)rootview.findViewById(R.id.calenderIconEncDate);*/
+
+        /*encdate.addTextChangedListener(new TextWatcher() {
             private String current = "";
             private String mmddyyyy = "MMDDYYYY";
             private Calendar cal = Calendar.getInstance();
@@ -123,8 +182,8 @@ public class EncounterEnctimeFragment extends Fragment {
             public void afterTextChanged(Editable s) {
 
             }
-        });
-        calenderIconEncDate.setOnClickListener(new View.OnClickListener() {
+        });*/
+        /*calenderIconEncDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogFragment datePickerFragment = new DatePickerFragment() {
@@ -175,7 +234,7 @@ public class EncounterEnctimeFragment extends Fragment {
                 mTimePicker.show();
 
             }
-        });
+        });*/
         return rootview;
     }
 

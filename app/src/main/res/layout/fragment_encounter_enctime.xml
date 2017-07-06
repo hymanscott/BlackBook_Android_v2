@@ -3,143 +3,148 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:text="NEW ENCOUNTER"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/textView14"
-            android:textColor="@color/colorAccent"
-            android:layout_margin="20dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textColor="@color/text_color"
-            android:text="Enter date and time of new encounter"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:id="@+id/textView13" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginRight="20dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:id="@+id/calenderIconEncDate"
-                android:src="@drawable/calender"
-                android:layout_margin="5dp"
-                android:layout_gravity="center"/>
-            <EditText
+    android:background="@color/encounter_bg">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="date"
-                android:focusable="true"
-                android:ems="10"
-                android:id="@+id/encDate"
-                android:textSize="18sp"
-                android:textColor="@color/text_color"
-                android:hint="MM/DD/YYYY"
-                android:textColorHint="@color/text_color"
-                android:layout_marginLeft="10dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginRight="20dp">
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:layout_alignParentTop="true">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:src="@drawable/encounterlarge" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="NEW ENCOUNTER"
+                    android:id="@+id/textView14"
+                    android:textColor="@color/white"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/edittext_bg"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="24dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:text="Enter date and time of new encounter"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:id="@+id/textView13" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="32dp"
+                    android:background="@color/edittext_bg"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/edittext_padding">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/enctimeClear"
-                android:scaleType="fitXY"
-                android:src="@drawable/cleartime"
-                android:layout_marginLeft="5dp"
-                android:layout_gravity="center"/>
-            <EditText
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/calendericon" />
+
+                    <EditText
+                        android:id="@+id/encDate"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:background="@drawable/rectangle_edittext"
+                        android:backgroundTint="@color/edittext_bg"
+                        android:clickable="true"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:hint="DD/MM/YY"
+                        android:inputType="none"
+                        android:textColor="@color/white"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textCursorDrawable="@drawable/white_cursor"
+                        android:textSize="@dimen/encounter_tv_textsize" />
+                </LinearLayout>
+                <RelativeLayout
+                    android:id="@+id/time_of_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:background="@color/edittext_bg"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/edittext_padding">
+
+                    <ImageView
+                        android:id="@+id/calendericon1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:src="@drawable/clockicon" />
+                    <EditText
+                        android:id="@+id/encTime"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:background="@drawable/rectangle_edittext"
+                        android:backgroundTint="@color/edittext_bg"
+                        android:clickable="true"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:hint="00:00 AM"
+                        android:text="00:00 AM"
+                        android:inputType="none"
+                        android:textColor="@color/white"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/calendericon1"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textCursorDrawable="@drawable/white_cursor"
+                        android:textSize="@dimen/encounter_tv_textsize" />
+                </RelativeLayout>
+            </LinearLayout>
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="datetime"
-                android:focusable="true"
-                android:ems="10"
-                android:textSize="18sp"
-                android:textColor="@color/text_color"
-                android:id="@+id/encTime"
-                android:text="00:00 AM"
-                android:hint="00:00 AM"
-                android:textColorHint="@color/text_color"
-                android:layout_marginLeft="10dp" />
-        </LinearLayout>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Next"
-            android:background="@drawable/lynx_button"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_marginTop="40dp"
-            android:id="@+id/next"
-            android:layout_gravity="center_horizontal"
-            android:onClick="onNextEnctime"/>
-    </LinearLayout>
-
-
-    <!--<RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="20dp">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cancel"
-            android:id="@+id/button10"
-            android:textStyle="bold"
-            android:layout_gravity="left"
-            android:background="@drawable/lynx_button"
-            android:textColor="@color/white"
-            android:layout_alignParentLeft="true"
-            android:onClick="onCancelEnctime"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Next"
-            android:id="@+id/button11"
-            android:background="@drawable/lynx_button"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_gravity="right"
-            android:layout_alignParentRight="true"
-            android:onClick="onNextEnctime"/>
-    </RelativeLayout>-->
-
+                android:layout_height="fill_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true">
+                <Button
+                    android:id="@+id/next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="@dimen/button_top_margin"
+                    android:background="@color/encounter_btn_bg"
+                    android:onClick="onNextEnctime"
+                    android:text="NEXT"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/button_textsize"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
 

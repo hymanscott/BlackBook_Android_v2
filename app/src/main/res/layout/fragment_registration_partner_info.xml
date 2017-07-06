@@ -44,13 +44,14 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:background="@color/edittext_bg" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:orientation="horizontal"
                 android:background="@color/edittext_bg"
+                android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
                 <ImageView
@@ -71,13 +72,14 @@
                     android:ems="10"
                     android:hint="Nickname for primary partner"
                     android:inputType="textPersonName"
-                    android:paddingTop="5dp"
                     android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
                     android:textColor="@color/white"
                     android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

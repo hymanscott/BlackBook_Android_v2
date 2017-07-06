@@ -1,7 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:background="@color/encounter_bg">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:id="@+id/topLayout"
+                android:layout_alignParentTop="true">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:src="@drawable/encounterlarge" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="NEW ENCOUNTER"
+                    android:id="@+id/newEncounter"
+                    android:textColor="@color/white"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/edittext_bg"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="24dp" />
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="Who did you have sex with?"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/encounter_tv_textsize"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add New Partner"
+                    android:textStyle="bold"
+                    android:id="@+id/addNewPartner"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@color/encounter_btn_grey"
+                    android:textColor="@color/encounter_btn_bg"
+                    android:onClick="onClickaddNewPartner" />
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/scrollView"
+                    android:layout_alignBottom="@id/topLayout"
+                    android:paddingBottom="5dp"
+                    android:layout_marginTop="24dp"
+                    android:fillViewport="false">
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/partnerTable">
+
+
+                    </TableLayout>
+                </ScrollView>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:background="@color/white"
+    android:visibility="gone"
     android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical"
@@ -91,4 +173,4 @@
             android:layout_alignParentRight="true" />
     </RelativeLayout>
 
-</RelativeLayout>
+</RelativeLayout> -->

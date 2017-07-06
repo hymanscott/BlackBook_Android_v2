@@ -34,14 +34,14 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:clickable="false"
                     android:textSize="16sp"
-                    android:background="@color/btn_blue_solid"
+                    android:background="@color/update_score_bg"
                     android:textStyle="bold"
                     android:text="Your Sex pro Score is 10"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/reg_tv_textsize"
-                    android:textColor="@color/btn_blue_solid"
+                    android:textColor="@color/update_score_bg"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:text="Trigger message depending on score will go here"

@@ -150,6 +150,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_PARTNER_ID = "partner_id";
     private static final String KEY_PARTNER_USERID = "user_id";
     private static final String KEY_PARTNER_NICKNAME = "nickname";
+    private static final String KEY_PARTNER_GENDER = "gender";
     private static final String KEY_PARTNER_HIVSTATUS = "hiv_status";
     private static final String KEY_PARTNER_UNDETECTABLE = "undetectable";
     private static final String KEY_PARTNER_ADDEDTOLIST = "is_added_to_partners";
@@ -357,7 +358,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_PARTNERS = "CREATE TABLE "
             + TABLE_PARTNERS + "(" + KEY_PARTNER_ID + " INTEGER PRIMARY KEY," + KEY_PARTNER_USERID + " INTEGER,"
-            + KEY_PARTNER_NICKNAME + " TEXT," + KEY_PARTNER_HIVSTATUS + " TEXT," + KEY_PARTNER_UNDETECTABLE + " TEXT,"
+            + KEY_PARTNER_NICKNAME + " TEXT," + KEY_PARTNER_GENDER + " TEXT," + KEY_PARTNER_HIVSTATUS + " TEXT," + KEY_PARTNER_UNDETECTABLE + " TEXT,"
             + KEY_PARTNER_ADDEDTOLIST + " TEXT," + KEY_PARTNER_IDLE + " INTEGER DEFAULT 0," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
 
     private static final String CREATE_TABLE_USER_DRUGUSE = "CREATE TABLE "
@@ -1762,6 +1763,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_PARTNER_USERID, partner.getUser_id());
         values.put(KEY_PARTNER_NICKNAME, partner.getNickname());
+        values.put(KEY_PARTNER_GENDER, partner.getGender());
         values.put(KEY_PARTNER_HIVSTATUS, partner.getHiv_status());
         values.put(KEY_PARTNER_UNDETECTABLE,partner.getUndetectable_for_sixmonth());
         values.put(KEY_PARTNER_ADDEDTOLIST, partner.getIs_added_to_partners());
@@ -1785,6 +1787,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_PARTNER_ID,partner.getPartner_id());
         values.put(KEY_PARTNER_USERID, partner.getUser_id());
         values.put(KEY_PARTNER_NICKNAME, partner.getNickname());
+        values.put(KEY_PARTNER_GENDER, partner.getGender());
         values.put(KEY_PARTNER_HIVSTATUS, partner.getHiv_status());
         values.put(KEY_PARTNER_UNDETECTABLE,partner.getUndetectable_for_sixmonth());
         values.put(KEY_PARTNER_ADDEDTOLIST, partner.getIs_added_to_partners());
@@ -1818,6 +1821,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         partner.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNER_ID)));
         partner.setUser_id(c.getInt(c.getColumnIndex(KEY_PARTNER_USERID)));
         partner.setNickname(c.getString(c.getColumnIndex(KEY_PARTNER_NICKNAME)));
+        partner.setGender(c.getString(c.getColumnIndex(KEY_PARTNER_GENDER)));
         partner.setHiv_status(c.getString(c.getColumnIndex(KEY_PARTNER_HIVSTATUS)));
         partner.setUndetectable_for_sixmonth(c.getString(c.getColumnIndex(KEY_PARTNER_UNDETECTABLE)));
         partner.setIs_added_to_partners(c.getString(c.getColumnIndex(KEY_PARTNER_ADDEDTOLIST)));
@@ -1846,6 +1850,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         partner.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNER_ID)));
         partner.setUser_id(c.getInt(c.getColumnIndex(KEY_PARTNER_USERID)));
         partner.setNickname(c.getString(c.getColumnIndex(KEY_PARTNER_NICKNAME)));
+        partner.setGender(c.getString(c.getColumnIndex(KEY_PARTNER_GENDER)));
         partner.setHiv_status(c.getString(c.getColumnIndex(KEY_PARTNER_HIVSTATUS)));
         partner.setUndetectable_for_sixmonth(c.getString(c.getColumnIndex(KEY_PARTNER_UNDETECTABLE)));
         partner.setIs_added_to_partners(c.getString(c.getColumnIndex(KEY_PARTNER_ADDEDTOLIST)));
@@ -1873,6 +1878,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 partner.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNER_ID)));
                 partner.setUser_id(c.getInt(c.getColumnIndex(KEY_PARTNER_USERID)));
                 partner.setNickname(c.getString(c.getColumnIndex(KEY_PARTNER_NICKNAME)));
+                partner.setGender(c.getString(c.getColumnIndex(KEY_PARTNER_GENDER)));
                 partner.setHiv_status(c.getString(c.getColumnIndex(KEY_PARTNER_HIVSTATUS)));
                 partner.setUndetectable_for_sixmonth(c.getString(c.getColumnIndex(KEY_PARTNER_UNDETECTABLE)));
                 partner.setIs_added_to_partners(c.getString(c.getColumnIndex(KEY_PARTNER_ADDEDTOLIST)));
@@ -1907,6 +1913,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 partner.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNER_ID)));
                 partner.setUser_id(c.getInt(c.getColumnIndex(KEY_PARTNER_USERID)));
                 partner.setNickname(c.getString(c.getColumnIndex(KEY_PARTNER_NICKNAME)));
+                partner.setGender(c.getString(c.getColumnIndex(KEY_PARTNER_GENDER)));
                 partner.setHiv_status(c.getString(c.getColumnIndex(KEY_PARTNER_HIVSTATUS)));
                 partner.setUndetectable_for_sixmonth(c.getString(c.getColumnIndex(KEY_PARTNER_UNDETECTABLE)));
                 partner.setIs_added_to_partners(c.getString(c.getColumnIndex(KEY_PARTNER_ADDEDTOLIST)));
@@ -1945,6 +1952,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_PARTNER_USERID, partner.getUser_id());
         values.put(KEY_PARTNER_NICKNAME, partner.getNickname());
+        values.put(KEY_PARTNER_GENDER, partner.getGender());
         values.put(KEY_PARTNER_HIVSTATUS, partner.getHiv_status());
         values.put(KEY_PARTNER_UNDETECTABLE,partner.getUndetectable_for_sixmonth());
         values.put(KEY_STATUS_UPDATE,partner.getStatus_update());
@@ -1963,6 +1971,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_PARTNER_USERID, partner.getUser_id());
         values.put(KEY_PARTNER_NICKNAME, partner.getNickname());
+        values.put(KEY_PARTNER_GENDER, partner.getGender());
         values.put(KEY_PARTNER_HIVSTATUS, partner.getHiv_status());
         values.put(KEY_PARTNER_UNDETECTABLE,partner.getUndetectable_for_sixmonth());
         values.put(KEY_STATUS_UPDATE,partner.getStatus_update());
@@ -2021,6 +2030,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 partner.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNER_ID)));
                 partner.setUser_id(c.getInt(c.getColumnIndex(KEY_PARTNER_USERID)));
                 partner.setNickname(c.getString(c.getColumnIndex(KEY_PARTNER_NICKNAME)));
+                partner.setGender(c.getString(c.getColumnIndex(KEY_PARTNER_GENDER)));
                 partner.setHiv_status(c.getString(c.getColumnIndex(KEY_PARTNER_HIVSTATUS)));
                 partner.setUndetectable_for_sixmonth(c.getString(c.getColumnIndex(KEY_PARTNER_UNDETECTABLE)));
                 partner.setIs_added_to_partners(c.getString(c.getColumnIndex(KEY_PARTNER_ADDEDTOLIST)));

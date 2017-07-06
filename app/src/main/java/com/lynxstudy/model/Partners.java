@@ -14,6 +14,7 @@ public class Partners {
     int	partner_id;
     int	user_id;
     String	nickname;
+    String gender;
     String	hiv_status;
     String undetectable_for_sixmonth;
     String	is_added_to_partners;
@@ -25,10 +26,11 @@ public class Partners {
     public Partners() {
     }
 
-    public Partners( int user_id, String nickname, String hiv_status,String undetectable_for_sixmonth, String is_added_to_partners, String status_update,boolean status_encrypt) {
+    public Partners( int user_id, String nickname, String gender, String hiv_status,String undetectable_for_sixmonth, String is_added_to_partners, String status_update,boolean status_encrypt) {
 
         this.user_id = user_id;
         this.nickname = nickname;
+        this.gender = gender;
         this.hiv_status = hiv_status;
         this.undetectable_for_sixmonth = undetectable_for_sixmonth;
         this.is_added_to_partners = is_added_to_partners;
@@ -36,10 +38,11 @@ public class Partners {
         this.status_encrypt = status_encrypt;
     }
 
-    public Partners(int id, int user_id, String nickname, String hiv_status,String undetectable_for_sixmonth, String is_added_to_partners, String status_update,boolean status_encrypt) {
+    public Partners(int id, int user_id, String nickname, String gender, String hiv_status,String undetectable_for_sixmonth, String is_added_to_partners, String status_update,boolean status_encrypt) {
         this.partner_id = id;
         this.user_id = user_id;
         this.nickname = nickname;
+        this.gender = gender;
         this.hiv_status = hiv_status;
         this.undetectable_for_sixmonth = undetectable_for_sixmonth;
         this.is_added_to_partners = is_added_to_partners;
@@ -87,6 +90,14 @@ public class Partners {
         this.nickname = nickname;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public String getHiv_status() {
         return hiv_status;
     }
@@ -129,6 +140,7 @@ public class Partners {
     public void decryptPartners(){
         if (this.status_encrypt) {
             this.nickname = LynxManager.decryptString(nickname);
+            this.gender =  LynxManager.decryptString(gender);
             this.hiv_status = LynxManager.decryptString(hiv_status);
             this.undetectable_for_sixmonth = LynxManager.decryptString(undetectable_for_sixmonth);
             this.is_added_to_partners = LynxManager.decryptString(is_added_to_partners);
@@ -138,6 +150,7 @@ public class Partners {
     public void encryptPartners(){
         if (!this.status_encrypt) {
             this.nickname = LynxManager.encryptString(nickname);
+            this.gender =  LynxManager.encryptString(gender);
             this.hiv_status = LynxManager.encryptString(hiv_status);
             this.undetectable_for_sixmonth = LynxManager.encryptString(undetectable_for_sixmonth);
             this.is_added_to_partners = LynxManager.encryptString(is_added_to_partners);
@@ -161,6 +174,7 @@ public class Partners {
             partner_jsonObj.put("partner_id", partner_id);
             partner_jsonObj.put("user_id", user_id);
             partner_jsonObj.put("nickname", LynxManager.decryptString(nickname));
+            partner_jsonObj.put("gender", LynxManager.decryptString(gender));
             partner_jsonObj.put("hiv_status", LynxManager.decryptString(hiv_status));
             partner_jsonObj.put("undetectable_for_sixmonth", LynxManager.decryptString(undetectable_for_sixmonth));
             partner_jsonObj.put("is_added_to_partners", LynxManager.decryptString(is_added_to_partners));

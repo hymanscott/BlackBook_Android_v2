@@ -28,10 +28,10 @@ public class EditPartner extends Fragment {
 
 
     DatabaseHelper db;
-    TextView hivStatusTitle,undetectableTitle,addToSexPro;
+    TextView hivStatusTitle,undetectableTitle,addToSexPro,partnerGenderTitle;
     RadioButton radio_hiv_neg,radio_hiv_idk,radio_hiv_pos,radio_undetectable_yes,radio_undetectable_no,radio_undetectable_iDontKnow;
-    RadioButton radio_blackbook_yes,radio_blackbook_no;
-    Button partner_info_nextbtn,partner_info_revisebtn;
+    RadioButton radio_blackbook_yes,radio_blackbook_no,radio_gender_man,radio_gender_woman,radio_gender_transwoman,radio_gender_transman;
+    Button partner_info_nextbtn;
     public EditPartner() {
     }
 
@@ -50,10 +50,20 @@ public class EditPartner extends Fragment {
 
         hivStatusTitle = (TextView)rootview.findViewById(R.id.hivStatusTitle);
         hivStatusTitle.setTypeface(tf);
+        partnerGenderTitle = (TextView)rootview.findViewById(R.id.partnerGenderTitle);
+        partnerGenderTitle.setTypeface(tf);
         undetectableTitle = (TextView)rootview.findViewById(R.id.undetectableTitle);
         undetectableTitle.setTypeface(tf);
         addToSexPro = (TextView)rootview.findViewById(R.id.addToSexPro);
         addToSexPro.setTypeface(tf);
+        radio_gender_man = (RadioButton)rootview.findViewById(R.id.radio_gender_man);
+        radio_gender_man.setTypeface(tf);
+        radio_gender_woman = (RadioButton)rootview.findViewById(R.id.radio_gender_woman);
+        radio_gender_woman.setTypeface(tf);
+        radio_gender_transwoman = (RadioButton)rootview.findViewById(R.id.radio_gender_transwoman);
+        radio_gender_transwoman.setTypeface(tf);
+        radio_gender_transman = (RadioButton)rootview.findViewById(R.id.radio_gender_transman);
+        radio_gender_transman.setTypeface(tf);
         radio_hiv_neg = (RadioButton)rootview.findViewById(R.id.radio_hiv_neg);
         radio_hiv_neg.setTypeface(tf);
         radio_hiv_idk = (RadioButton)rootview.findViewById(R.id.radio_hiv_idk);
@@ -72,8 +82,6 @@ public class EditPartner extends Fragment {
         radio_blackbook_no.setTypeface(tf);
         partner_info_nextbtn = (Button)rootview.findViewById(R.id.partner_info_nextbtn);
         partner_info_nextbtn.setTypeface(tf);
-        partner_info_revisebtn= (Button)rootview.findViewById(R.id.partner_info_revisebtn);
-        partner_info_revisebtn.setTypeface(tf);
 
         TextView add_partner_title = (TextView) rootview.findViewById(R.id.add_partner_title);
         TextView whoIsYourPartner = (TextView) rootview.findViewById(R.id.whoIsYourPartner);
