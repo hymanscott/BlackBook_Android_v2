@@ -94,6 +94,7 @@ public class RegistrationTimesTop extends Fragment implements SeekBar.OnSeekBarC
                                       public void run() {
                                           String topPercent = LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getTop_condom_use_percent());
                                           seek_textviewone.setText(topPercent);
+                                          topPercent = topPercent.replaceAll("\\s+","");
                                           topPercent = topPercent.substring(0, topPercent.length() - 1);
                                           setSeekBarText(Integer.parseInt(topPercent));
 

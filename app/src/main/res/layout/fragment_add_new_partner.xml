@@ -69,7 +69,9 @@
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="24dp"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:background="@color/edittext_bg"
+                    android:id="@+id/nickNameLayout"
                     android:orientation="horizontal"
                     android:padding="@dimen/edittext_padding">
 
@@ -104,7 +106,7 @@
                     android:background="@color/edittext_bg"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin" />
+                    />
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"

@@ -105,6 +105,7 @@ public class RegistrationTimesBottom extends Fragment implements SeekBar.OnSeekB
                                       public void run() {
                                           String botPercent = LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getBottom_condom_use_percent());
                                           seek_textviewone.setText(botPercent);
+                                          botPercent = botPercent.replaceAll("\\s+","");
                                           botPercent = botPercent.substring(0, botPercent.length() - 1);
                                           setSeekBarText(Integer.parseInt(botPercent));
 

@@ -83,7 +83,7 @@
         <item>Saturday</item>
     </string-array>
 
-    <string name="AddPartnerTitle">NEW PARTNER</string>
+    <string name="AddPartnerTitle">New Partner</string>
     <string name="title_activity_lynx_diary">LynxDiary</string>
     <string name="section_format">Hello World from section: %1$d</string>
 

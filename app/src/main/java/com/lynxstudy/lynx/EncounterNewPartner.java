@@ -49,13 +49,13 @@ public class EncounterNewPartner extends AppCompatActivity {
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
 
-        // Custom Action Bar //
+       /* // Custom Action Bar //
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
-        viewProfile.setVisibility(View.INVISIBLE);
+        viewProfile.setVisibility(View.INVISIBLE);*/
 
 
         rating_field_id.add(1);

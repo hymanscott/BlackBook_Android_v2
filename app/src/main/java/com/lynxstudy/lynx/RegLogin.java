@@ -1417,21 +1417,7 @@ public class RegLogin extends AppCompatActivity {
                             pos_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.lynx_button));
                             pos_btn.setTextColor(getResources().getColor(R.color.white));
                         }
-                        try {
-                            Resources resources = dialog.getContext().getResources();
-                            int color = resources.getColor(R.color.black); // your color here
-                            int textColor = resources.getColor(R.color.button_gray);
 
-                            int alertTitleId = resources.getIdentifier("alertTitle", "id", "android");
-                            TextView alertTitle = (TextView) dialog.getWindow().getDecorView().findViewById(alertTitleId);
-                            alertTitle.setTextColor(textColor); // change title text color
-
-                            int titleDividerId = resources.getIdentifier("titleDivider", "id", "android");
-                            View titleDivider = dialog.getWindow().getDecorView().findViewById(titleDividerId);
-                            titleDivider.setBackgroundColor(color); // change divider color
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
 
 
 

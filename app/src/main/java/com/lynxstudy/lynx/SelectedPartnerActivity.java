@@ -61,12 +61,12 @@ public class SelectedPartnerActivity extends AppCompatActivity {
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
 
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        /*getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
-        viewProfile.setVisibility(View.GONE);
+        viewProfile.setVisibility(View.GONE);*/
 
 
     }

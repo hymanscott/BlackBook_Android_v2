@@ -7,14 +7,13 @@
     <color name="gray_bar">#d5d5d5 </color>
     <color name="blue_boxes">#dceefd </color>
     <color name="darker_line">#aeaeae </color>
-    <color name="lighter_line">#d5d5d5 </color>
+    <color name="lighter_line">#d5d5d5</color>
     <color name="shadow_white">#FAFAFA</color>
     <color name="green">#14ab34</color>
     <color name="button_red">#ff5d55</color>
 
     <color name="text_color">#444444</color>
-    <color name="starBG">#D5D5D5</color>
-
+    <color name="starBG">#D6D6D6</color>
     <!-- Passcode Screen-->
     <color name="light_gray">#E5E5E5</color>
     <color name="gray">#CCC</color>
@@ -41,4 +40,6 @@
     <color name="encounter_bg">#444444</color>
     <color name="encounter_btn_bg">#2E86FF</color>
     <color name="encounter_btn_grey">#D6D6D6</color>
+    <color name="banner_name_bg">#d5d5d5</color>
+    <color name="toggle_btn_bg">#d5d5d5</color>
 </resources>

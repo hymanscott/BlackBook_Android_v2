@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/encounter_bg"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1">
+            <ToggleButton
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toggle_btn_height"
+                android:textOn="She sucked me"
+                android:textOff="She sucked me"
+                android:textColor="@color/colorAccent"
+                android:id="@+id/sexType_heSucked"
+                android:layout_gravity="center"
+                android:textAlignment="gravity"
+                android:gravity="center_horizontal|center_vertical"
+                android:background="@drawable/toggle_button"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1">
+            <ToggleButton
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toggle_btn_height"
+                android:textOn="I went down on her"
+                android:textColor="@color/colorAccent"
+                android:textOff="I went down on her"
+                android:layout_gravity="center"
+                android:id="@+id/sexType_iWentDown"
+                android:textAlignment="gravity"
+                android:gravity="center_horizontal|center_vertical"
+                android:background="@drawable/toggle_button"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1">
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/toggle_btn_height"
+                android:textOn="I fucked her"
+                android:textOff="I fucked her"
+                android:textColor="@color/colorAccent"
+                android:id="@+id/sexType_iFucked"
+                android:layout_gravity="center"
+                android:textAlignment="gravity"
+                android:padding="10dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|center_vertical"
+                android:background="@drawable/toggle_button"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1">
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/toggle_btn_height"
+                android:textOn="She jerked me"
+                android:textOff="She jerked me"
+                android:textColor="@color/colorAccent"
+                android:id="@+id/sexType_heJerked"
+                android:layout_gravity="center"
+                android:textAlignment="gravity"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:background="@drawable/toggle_button"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1">
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/toggle_btn_height"
+                android:textOn="I fingered her"
+                android:textOff="I fingered her"
+                android:textColor="@color/colorAccent"
+                android:id="@+id/sexType_iFingered"
+                android:layout_gravity="center"
+                android:textAlignment="gravity"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:background="@drawable/toggle_button"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1">
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/toggle_btn_height"
+                android:textOn="Kissing / making out"
+                android:textOff="Kissing / making out"
+                android:textColor="@color/colorAccent"
+                android:layout_gravity="center"
+                android:textAlignment="gravity"
+                android:layout_weight="1"
+                android:id="@+id/sexType_kissing"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/toggle_button"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1">
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/toggle_btn_height"
+                android:textOn="I rimmed her"
+                android:textOff="I rimmed him"
+                android:textColor="@color/colorAccent"
+                android:id="@+id/sexType_iRimmed"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:textAlignment="gravity"
+                android:padding="10dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:background="@drawable/toggle_button"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1">
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/toggle_btn_height"
+                android:textOn="She rimmed me"
+                android:textOff="She rimmed me"
+                android:textColor="@color/colorAccent"
+                android:id="@+id/sexType_heRimmed"
+                android:layout_gravity="center"
+                android:textAlignment="gravity"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:background="@drawable/toggle_button"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/toggle_btn_height"
+        android:textOn="I bottomed"
+        android:textOff="I bottomed"
+        android:textColor="@color/colorAccent"
+        android:id="@+id/sexType_iBottomed"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:textAlignment="gravity"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:padding="10dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:background="@drawable/toggle_button"/>
+    <ToggleButton
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toggle_btn_height"
+        android:textOn="I sucked him"
+        android:textColor="@color/colorAccent"
+        android:textOff="I sucked him"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:id="@+id/sexType_iSucked"
+        android:textAlignment="gravity"
+        android:gravity="center_horizontal|center_vertical"
+        android:background="@drawable/toggle_button"/>
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/toggle_btn_height"
+        android:textOn="I fucked her"
+        android:textOff="I fucked her"
+        android:textColor="@color/colorAccent"
+        android:id="@+id/sexType_iJerked"
+        android:layout_gravity="center"
+        android:textAlignment="gravity"
+        android:visibility="gone"
+        android:padding="10dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal|center_vertical"
+        android:background="@drawable/toggle_button"/>
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/toggle_btn_height"
+        android:textOn="I topped"
+        android:textOff="I topped"
+        android:textColor="@color/colorAccent"
+        android:id="@+id/sexType_iTopped"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:textAlignment="gravity"
+        android:layout_weight="1"
+        android:padding="10dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:background="@drawable/toggle_button"/>
+</LinearLayout>

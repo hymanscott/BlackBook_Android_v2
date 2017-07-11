@@ -1,234 +1,276 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/encounter_bg">
+
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:fillViewport="false"
-        android:layout_alignParentBottom="true">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_centerHorizontal="true"
-            android:gravity="center_horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:text="NEW ENCOUNTER"
-                android:id="@+id/newEncounter"
-                android:layout_alignParentTop="true"
-                android:textColor="@color/colorAccent"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="20dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Nick name"
-                android:id="@+id/enc_sexType_condomUse_nickName"
-                android:layout_marginBottom="10dp"
-                android:textSize="20sp"
-                android:textColor="@color/white"
-                android:background="@drawable/lynx_button_dark"
-                android:gravity="center_vertical|center_horizontal" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone"
-                android:id="@+id/whenIsucked_layout"
-                android:layout_margin="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottomNav"
+                android:layout_marginBottom="5dp"
+                android:layout_alignParentTop="true">
+                <ScrollView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="When I sucked him:"
-                    android:textSize="20sp"
-                    android:id="@+id/whenIsucked"
-                    android:textColor="@color/colorAccent"
-                    android:layout_margin="10dp" />
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:id="@+id/whenIsucked_group"
-                    android:layout_marginLeft="30dp"
-                    android:layout_height="wrap_content">
-                    <RadioButton
-                        android:layout_width="wrap_content"
+                    android:fillViewport="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textColor="@color/text_color"
-                        android:id="@+id/whenIsucked_CondomUsed"
-                        android:text="Condom used"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textColor="@color/text_color"
-                        android:id="@+id/whenIsucked_CondomPartTime"
-                        android:text="Condom used part of the time"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/whenIsucked_CondomNotUsed"
-                        android:checked="true"
-                        android:textSize="18sp"
-                        android:textColor="@color/text_color"
-                        android:text="Condom not used"/>
-                </RadioGroup>
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginBottom="32dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/encounterlarge" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:text="NEW ENCOUNTER"
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/newEncounter"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nick name"
+                            android:layout_marginTop="@dimen/activity_vertical_margin"
+                            android:id="@+id/enc_sexType_condomUse_nickName"
+                            android:textSize="18sp"
+                            android:paddingTop="5dp"
+                            android:textAllCaps="true"
+                            android:textStyle="bold"
+                            android:paddingBottom="5dp"
+                            android:layout_marginBottom="48dp"
+                            android:textColor="@color/encounter_btn_bg"
+                            android:background="@color/banner_name_bg"
+                            android:gravity="center_vertical|center_horizontal" />
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:id="@+id/whenIsucked_layout">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="When I sucked him:"
+                                android:textSize="@dimen/encounter_tv_textsize"
+                                android:id="@+id/whenIsucked"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginRight="24dp"
+                                android:textColor="@color/white" />
+                            <RadioGroup
+                                android:layout_width="wrap_content"
+                                android:id="@+id/whenIsucked_group"
+                                android:layout_marginTop="@dimen/activity_vertical_margin"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginRight="24dp"
+                                android:layout_height="wrap_content">
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:textColor="@color/white"
+                                    android:buttonTint="@color/white"
+                                    android:id="@+id/whenIsucked_CondomUsed"
+                                    android:text="Condom used"/>
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:textColor="@color/white"
+                                    android:buttonTint="@color/white"
+                                    android:id="@+id/whenIsucked_CondomPartTime"
+                                    android:text="Condom used part of the time"/>
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/whenIsucked_CondomNotUsed"
+                                    android:checked="true"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:textColor="@color/white"
+                                    android:buttonTint="@color/white"
+                                    android:text="Condom not used"/>
+                            </RadioGroup>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/edittext_bg"
+                                android:layout_marginTop="24dp"
+                                android:layout_marginBottom="24dp"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:id="@+id/whenItopped_layout">
 
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="When I topped:"
+                                android:textSize="@dimen/encounter_tv_textsize"
+                                android:id="@+id/whenItopped"
+                                android:textColor="@color/white"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginRight="24dp" />
+                            <RadioGroup
+                                android:layout_width="wrap_content"
+                                android:id="@+id/whenItopped_group"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/activity_vertical_margin"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginRight="24dp">
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:textColor="@color/white"
+                                    android:buttonTint="@color/white"
+                                    android:id="@+id/whenItopped_CondomUsed"
+                                    android:text="Condom used"/>
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/whenItopped_CondomPartTime"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:textColor="@color/white"
+                                    android:buttonTint="@color/white"
+                                    android:text="Condom used part of the time"/>
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/whenItopped_CondomNotUsed"
+                                    android:checked="true"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:textColor="@color/white"
+                                    android:buttonTint="@color/white"
+                                    android:text="Condom not used"/>
+                            </RadioGroup>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/edittext_bg"
+                                android:layout_marginTop="24dp"
+                                android:layout_marginBottom="24dp"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:id="@+id/whenIbottomed_layout">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="When I bottomed:"
+                                android:textSize="20sp"
+                                android:id="@+id/whenIbottom"
+                                android:textColor="@color/white"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginRight="24dp"/>
+                            <RadioGroup
+                                android:layout_width="wrap_content"
+                                android:id="@+id/whenIbottomed_group"
+                                android:layout_marginTop="@dimen/activity_vertical_margin"
+                                android:layout_marginLeft="24dp"
+                                android:layout_marginRight="24dp"
+                                android:layout_height="wrap_content">
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:textColor="@color/white"
+                                    android:buttonTint="@color/white"
+                                    android:id="@+id/whenIbottomed_CondomUsed"
+                                    android:text="Condom used"/>
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/whenIbottomed_CondomPartTime"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:textColor="@color/white"
+                                    android:buttonTint="@color/white"
+                                    android:text="Condom used part of the time"/>
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:textColor="@color/white"
+                                    android:buttonTint="@color/white"
+                                    android:id="@+id/whenIbottomed_CondomNotUsed"
+                                    android:checked="true"
+                                    android:text="Condom not used"/>
+                            </RadioGroup>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/edittext_bg"
+                                android:layout_marginTop="24dp"
+                                android:layout_marginBottom="24dp"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                            <!--<com.aptmobility.phastt.CustomTextView
+                                custom:fontAssetName="OpenSansRegular.ttf"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="He came in me:"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginTop="10dp"/>
+                            <RadioGroup
+                                android:layout_width="wrap_content"
+                                android:id="@+id/whenIbottomed_cameInMe"
+                                android:layout_marginLeft="60dp"
+                                android:layout_height="wrap_content">
+                                <com.aptmobility.phastt.CustomRadioButton                     style="@style/Phastt.Radiobutton"
+                                    custom:fontAssetName="OpenSansRegular.ttf"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/whenIbottomed_cameInMeYes"
+                                    android:text="Yes"/>
+                                <com.aptmobility.phastt.CustomRadioButton
+                                     style="@style/Phastt.Radiobutton"
+                                    custom:fontAssetName="OpenSansRegular.ttf"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/whenIbottomed_cameInMeNo"
+                                    android:checked="true"
+                                    android:text="No"/>
+                                <com.aptmobility.phastt.CustomRadioButton
+                                   style="@style/Phastt.Radiobutton"
+                                    custom:fontAssetName="OpenSansRegular.ttf"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/whenIbottomed_cameInMeDontknow"
+                                    android:text="Don't know"/>
+                            </RadioGroup>-->
+                        </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/whenItopped_layout"
-                android:visibility="gone"
-                android:layout_margin="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="When I topped:"
-                    android:textSize="20sp"
-                    android:id="@+id/whenItopped"
-                    android:textColor="@color/colorAccent"
-                    android:layout_margin="10dp" />
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:id="@+id/whenItopped_group"
-                    android:layout_marginLeft="30dp"
-                    android:layout_height="wrap_content">
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textColor="@color/text_color"
-                        android:id="@+id/whenItopped_CondomUsed"
-                        android:text="Condom used"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/whenItopped_CondomPartTime"
-                        android:textSize="18sp"
-                        android:textColor="@color/text_color"
-                        android:text="Condom used part of the time"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/whenItopped_CondomNotUsed"
-                        android:checked="true"
-                        android:textSize="18sp"
-                        android:textColor="@color/text_color"
-                        android:text="Condom not used"/>
-                </RadioGroup>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone"
-                android:id="@+id/whenIbottomed_layout"
-                android:layout_margin="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="When I bottomed:"
-                    android:textSize="20sp"
-                    android:id="@+id/whenIbottom"
-                    android:textColor="@color/colorAccent"
-                    android:layout_margin="10dp" />
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:id="@+id/whenIbottomed_group"
-                    android:layout_marginLeft="30dp"
-                    android:layout_height="wrap_content">
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textColor="@color/text_color"
-                        android:id="@+id/whenIbottomed_CondomUsed"
-                        android:text="Condom used"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/whenIbottomed_CondomPartTime"
-                        android:textSize="18sp"
-                        android:textColor="@color/text_color"
-                        android:text="Condom used part of the time"/>
-                    <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textColor="@color/text_color"
-                        android:id="@+id/whenIbottomed_CondomNotUsed"
-                        android:checked="true"
-                        android:text="Condom not used"/>
-                </RadioGroup>
-                <!--<com.aptmobility.phastt.CustomTextView
-                    custom:fontAssetName="OpenSansRegular.ttf"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="He came in me:"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"/>
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:id="@+id/whenIbottomed_cameInMe"
-                    android:layout_marginLeft="60dp"
-                    android:layout_height="wrap_content">
-                    <com.aptmobility.phastt.CustomRadioButton                     style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="OpenSansRegular.ttf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/whenIbottomed_cameInMeYes"
-                        android:text="Yes"/>
-                    <com.aptmobility.phastt.CustomRadioButton
-                         style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="OpenSansRegular.ttf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/whenIbottomed_cameInMeNo"
-                        android:checked="true"
-                        android:text="No"/>
-                    <com.aptmobility.phastt.CustomRadioButton
-                       style="@style/Phastt.Radiobutton"
-                        custom:fontAssetName="OpenSansRegular.ttf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/whenIbottomed_cameInMeDontknow"
-                        android:text="Don't know"/>
-                </RadioGroup>-->
-            </LinearLayout>
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="20dp">
-
+                android:id="@+id/bottomNav"
+                android:layout_alignParentBottom="true">
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Revise"
-                    android:onClick="onEncCondomUsePrev"
-                    android:background="@drawable/lynx_button"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                    android:id="@+id/revise"
-                    android:layout_gravity="left"
-                    android:layout_alignParentLeft="true" />
-
-                <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Next"
                     android:onClick="onEncCondomUseNext"
@@ -238,8 +280,7 @@
                     android:id="@+id/next"
                     android:layout_gravity="right"
                     android:layout_centerInParent="true" />
-            </RelativeLayout>
-
-        </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
-</RelativeLayout>
+</LinearLayout>

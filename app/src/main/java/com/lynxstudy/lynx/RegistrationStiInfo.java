@@ -74,30 +74,6 @@ public class RegistrationStiInfo extends Fragment {
 
                     }
                 });
-
-
-                /*Log.v("STI Content Fragment", stiName + " - " + stis.size() + "  -  " + i);
-                final CheckBox ch;
-                ch = new CheckBox(getActivity());
-                ch.setText(stiName);
-                ch.setTextSize(18);
-                ch.setPadding(0,0,0,2);
-                ch.setTypeface(tf);
-                ch.setTextColor(getResources().getColor(R.color.white));
-                drugs_container.addView(ch);
-
-                ch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (isChecked) {
-                            LynxManager.selectedSTIs.add(String.valueOf(stiName));
-                        } else {
-                            LynxManager.selectedSTIs.remove(String.valueOf(stiName));
-                        }
-
-                    }
-                });*/
-
             }
             return rootview;
         }

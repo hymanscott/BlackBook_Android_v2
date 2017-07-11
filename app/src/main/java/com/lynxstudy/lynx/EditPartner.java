@@ -32,6 +32,7 @@ public class EditPartner extends Fragment {
     RadioButton radio_hiv_neg,radio_hiv_idk,radio_hiv_pos,radio_undetectable_yes,radio_undetectable_no,radio_undetectable_iDontKnow;
     RadioButton radio_blackbook_yes,radio_blackbook_no,radio_gender_man,radio_gender_woman,radio_gender_transwoman,radio_gender_transman;
     Button partner_info_nextbtn;
+    LinearLayout nickNameLayout;
     public EditPartner() {
     }
 
@@ -82,6 +83,7 @@ public class EditPartner extends Fragment {
         radio_blackbook_no.setTypeface(tf);
         partner_info_nextbtn = (Button)rootview.findViewById(R.id.partner_info_nextbtn);
         partner_info_nextbtn.setTypeface(tf);
+        nickNameLayout = (LinearLayout)rootview.findViewById(R.id.nickNameLayout);
 
         TextView add_partner_title = (TextView) rootview.findViewById(R.id.add_partner_title);
         TextView whoIsYourPartner = (TextView) rootview.findViewById(R.id.whoIsYourPartner);
@@ -98,6 +100,7 @@ public class EditPartner extends Fragment {
         ImageView nick_name_icon = (ImageView)rootview.findViewById(R.id.nick_name_icon);
         nick_name_icon.setVisibility(View.GONE);
         nick_name.setVisibility(View.GONE);
+        nickNameLayout.setVisibility(View.GONE);
         TextView selectedPartner_bannername = (TextView) rootview.findViewById(R.id.selectedPartner_bannername);
         selectedPartner_bannername.setVisibility(View.VISIBLE);
         selectedPartner_bannername.setTypeface(tf);

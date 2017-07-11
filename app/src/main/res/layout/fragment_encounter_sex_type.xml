@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/encounter_bg">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -14,34 +14,40 @@
             android:layout_height="fill_parent"
             android:layout_centerHorizontal="true"
             android:gravity="center_horizontal">
-
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:src="@drawable/encounterlarge" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:text="NEW ENCOUNTER"
-                android:layout_alignParentTop="true"
                 android:id="@+id/newEncounter"
-                android:layout_centerHorizontal="true"
-                android:textColor="@color/colorAccent"
-                android:layout_margin="20dp"/>
+                android:textColor="@color/white"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nick name"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:id="@+id/enc_sexType_nickName"
-                android:textSize="20sp"
-                android:textColor="@color/white"
-                android:background="@drawable/lynx_button_dark"
+                android:textSize="18sp"
+                android:paddingTop="5dp"
+                android:textStyle="bold"
+                android:paddingBottom="5dp"
+                android:textColor="@color/encounter_btn_bg"
+                android:background="@color/banner_name_bg"
                 android:gravity="center_vertical|center_horizontal" />
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
-                android:textColor="@color/text_color"
+                android:textColor="@color/white"
                 android:text="Rate the sex"
-                android:layout_margin="10dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="24dp"
                 android:id="@+id/rateSex"
                 android:gravity="center_vertical|center_horizontal" />
             <RatingBar
@@ -51,9 +57,16 @@
                 android:id="@+id/sexType_RateTheSex"
                 android:scaleX="0.9"
                 android:scaleY="0.9"
-                android:layout_marginBottom="10dp"
                 android:stepSize="0.5"/>
             <!--style= "@style/CustomRatingBar"-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/edittext_bg"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="32dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
@@ -63,168 +76,24 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/white"
                     android:text="Type of sex"
                     android:layout_margin="10dp"
                     android:id="@+id/typeSex"
                     android:gravity="center_vertical|center_horizontal" />
             </LinearLayout>
-
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
-
-                <ToggleButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textOn="I sucked him"
-                    android:textColor="@color/colorAccent"
-                    android:textOff="I sucked him"
-                    android:layout_gravity="center"
-                    android:id="@+id/sexType_iSucked"
-                    android:textAlignment="gravity"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:background="@drawable/toggle_button"/>
-                <ToggleButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textOn="He sucked me"
-                    android:textOff="He sucked me"
-                    android:textColor="@color/colorAccent"
-                    android:id="@+id/sexType_heSucked"
-                    android:layout_gravity="center"
-                    android:textAlignment="gravity"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:background="@drawable/toggle_button"/>
+                android:orientation="vertical"
+                android:id="@+id/sexTypeLayout">
+                <!--Encounter Sex Types-->
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
-                <ToggleButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textOn="I topped"
-                    android:textOff="I topped"
-                    android:textColor="@color/colorAccent"
-                    android:id="@+id/sexType_iTopped"
-                    android:layout_gravity="center"
-                    android:textAlignment="gravity"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:background="@drawable/toggle_button"/>
-                <ToggleButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textOn="I bottomed"
-                    android:textOff="I bottomed"
-                    android:textColor="@color/colorAccent"
-                    android:id="@+id/sexType_iBottomed"
-                    android:layout_gravity="center"
-                    android:textAlignment="gravity"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:background="@drawable/toggle_button"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
-                <ToggleButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textOn="I jerked him"
-                    android:textOff="I jerked him"
-                    android:textColor="@color/colorAccent"
-                    android:id="@+id/sexType_iJerked"
-                    android:layout_gravity="center"
-                    android:textAlignment="gravity"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:background="@drawable/toggle_button"/>
-                <ToggleButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textOn="He jerked me"
-                    android:textOff="He jerked me"
-                    android:textColor="@color/colorAccent"
-                    android:id="@+id/sexType_heJerked"
-                    android:layout_gravity="center"
-                    android:textAlignment="gravity"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:background="@drawable/toggle_button"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
-                <ToggleButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textOn="I rimmed him"
-                    android:textOff="I rimmed him"
-                    android:textColor="@color/colorAccent"
-                    android:id="@+id/sexType_iRimmed"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:textAlignment="gravity"
-                    android:padding="10dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:background="@drawable/toggle_button"/>
-                <ToggleButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textOn="He rimmed me"
-                    android:textOff="He rimmed me"
-                    android:textColor="@color/colorAccent"
-                    android:id="@+id/sexType_heRimmed"
-                    android:layout_margin="10dp"
-                    android:layout_gravity="center"
-                    android:textAlignment="gravity"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:background="@drawable/toggle_button"/>
-
-            </LinearLayout>
-            <ToggleButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOn="Kissing / making out"
-                android:textOff="Kissing / making out"
-                android:textColor="@color/colorAccent"
-                android:layout_gravity="center"
-                android:textAlignment="gravity"
-                android:layout_margin="10dp"
-                android:id="@+id/sexType_kissing"
-                android:padding="10dp"
-                android:gravity="center_vertical|center_horizontal"
-                android:background="@drawable/toggle_button"/>
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="20dp">
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true">
 
                 <!--<Button
                     android:layout_width="wrap_content"
@@ -239,7 +108,7 @@
                     android:layout_alignParentLeft="true" />-->
 
                 <Button
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Next"
                     android:onClick="onSexTypeNext"

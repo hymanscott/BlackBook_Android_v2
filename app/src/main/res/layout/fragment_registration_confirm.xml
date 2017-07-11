@@ -303,7 +303,7 @@
                     android:src="@drawable/passcodeicon"
                     android:layout_gravity="center"/>
                 <TextView
-                    android:text="****"
+                    android:text=""
                     android:id="@+id/c_passcode"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"

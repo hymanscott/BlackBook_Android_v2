@@ -121,6 +121,8 @@ public class RegistrationEdit extends Fragment {
         confirm_email.setText(LynxManager.decryptString(LynxManager.getActiveUser().getEmail()));
         confirm_sec_qn.setText(LynxManager.decryptString(LynxManager.getActiveUser().getSecurityquestion()));
         confirm_sec_ans.setText(LynxManager.decryptString(LynxManager.getActiveUser().getSecurityanswer()));
+        confirm_password.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
+        c_passcode.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPasscode()));
 
         // Race/Ethnicity //
         initialize();

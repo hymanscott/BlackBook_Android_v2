@@ -560,17 +560,17 @@ public class BaselineActivity extends AppCompatActivity {
         String get_query_string = LynxManager.getQueryString(json_AlcoholUse);
         new userAlcoholUseOnline(get_query_string).execute();
 
-        RegistrationSexproScore fragsexProScore = new RegistrationSexproScore();
-        pushFragments("Reg",fragsexProScore,true);
-       /* Intent home = new Intent(this, LynxSexPro.class);
+        /*RegistrationSexproScore fragsexProScore = new RegistrationSexproScore();
+        pushFragments("Reg",fragsexProScore,true);*/
+        Intent home = new Intent(this, BaselineSexproScoreActivity.class);
         home.putExtra("fromactivity",BaselineActivity.this.getClass().getSimpleName());
         startActivity(home);
-        finish();*/
+        finish();
     }
-    public boolean onSexProScoreClose(View view) {
-         /*
+    /*public boolean onSexProScoreClose(View view) {
+         *//*
         * Scheduling Local Notification
-        **/
+        **//*
         String notes = "You have a new message!";
         SimpleDateFormat inputDF1  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date1 = null;
@@ -585,7 +585,7 @@ public class BaselineActivity extends AppCompatActivity {
         startActivity(home);
         finish();
         return true;
-    }
+    }*/
     /**
      * Async task class to get json by making HTTP call
      *

@@ -27,7 +27,7 @@ public class EditPartnerContactInfoFragment extends Fragment {
     }
     TextView contactInfoTitle,partnerTypeTitle,otherPartnersTitle,monogamousTitle;
     RadioButton newPartnerPrimary,newPartnerRegular,newPartnerCasual,newPartnerNSA,newPartnerFriends,radio_partner_yes,radio_partner_no,radio_lessThanSixMonths,radio_moreThanSixMonths;
-    Button revise,next;
+    Button next;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,8 +45,6 @@ public class EditPartnerContactInfoFragment extends Fragment {
         otherPartnersTitle.setTypeface(tf);
         monogamousTitle = (TextView)rootview.findViewById(R.id.monogamousTitle);
         monogamousTitle.setTypeface(tf);
-        revise = (Button)rootview.findViewById(R.id.revise);
-        revise.setTypeface(tf);
         next = (Button)rootview.findViewById(R.id.next);
         next.setTypeface(tf);
         newPartnerPrimary = (RadioButton)rootview.findViewById(R.id.newPartnerPrimary);

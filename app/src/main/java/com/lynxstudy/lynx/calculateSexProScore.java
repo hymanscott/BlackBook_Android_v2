@@ -1,6 +1,7 @@
 package com.lynxstudy.lynx;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.Partners;
@@ -374,10 +375,14 @@ public class calculateSexProScore {
 
 
         String topCondomUse =   LynxManager.decryptString(baselineInfo.getTop_condom_use_percent());
-        topCondomUse        =   topCondomUse.length()==3?topCondomUse.substring(0,2):(topCondomUse.substring(0,1));
+        topCondomUse        =   topCondomUse.replaceAll("\\s+","");
+        /*topCondomUse        =   topCondomUse.length()==3?topCondomUse.substring(0,2):(topCondomUse.substring(0,1));*/
+        topCondomUse        =   topCondomUse.substring(0, topCondomUse.length() - 1);
 
         String botCondomUse =   LynxManager.decryptString(baselineInfo.getBottom_condom_use_percent());
-        botCondomUse        =   botCondomUse.length()==3?botCondomUse.substring(0,2):(botCondomUse.substring(0,1));
+        botCondomUse        =   botCondomUse.replaceAll("\\s+","");
+        /*botCondomUse        =   botCondomUse.length()==3?botCondomUse.substring(0,2):(botCondomUse.substring(0,1));*/
+        botCondomUse        =   botCondomUse.substring(0, topCondomUse.length() - 1);
 
         NIAS_POS_UNK    =   Integer.parseInt(LynxManager.decryptString(baselineInfo.getNo_of_times_top_hivposs()));
         PPIAS_POS_UNK   =   Integer.parseInt(topCondomUse) * 0.01;

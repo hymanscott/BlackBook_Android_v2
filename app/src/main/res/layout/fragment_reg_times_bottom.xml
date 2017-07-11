@@ -100,7 +100,7 @@
                     android:maxLength="4"
                     android:inputType="number"
                     android:paddingLeft="8dp"
-                    android:hint="0"
+                    android:hint="-"
                     android:imeOptions="actionDone"
                     android:textColorHint="@color/edittext_hint_color"
                     android:textColor="@color/white"

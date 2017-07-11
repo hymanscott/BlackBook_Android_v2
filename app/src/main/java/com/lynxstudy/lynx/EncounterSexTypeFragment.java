@@ -7,11 +7,13 @@ import android.graphics.Typeface;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -28,6 +30,7 @@ public class EncounterSexTypeFragment extends Fragment {
     }
     TextView newEncounter,rateSex,typeSex;
     Button next;
+    LinearLayout sexTypeLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,10 +55,30 @@ public class EncounterSexTypeFragment extends Fragment {
         next = (Button)rootview.findViewById(R.id.next);
         next.setTypeface(tf);
 
+        sexTypeLayout = (LinearLayout)rootview.findViewById(R.id.sexTypeLayout);
+        String gender = LynxManager.decryptString(LynxManager.getActivePartner().getGender());
+        Log.v("Gender",gender);
+        View sextypeView;
+        switch (gender){
+            case "Woman":
+                sextypeView  = inflater.inflate(R.layout.encounter_sextype_woman, container, false);
+                break;
+            case "Trans woman":
+                sextypeView  = inflater.inflate(R.layout.encounter_sextype_transwoman, container, false);
+                break;
+            case "Trans man":
+                sextypeView  = inflater.inflate(R.layout.encounter_sextype_transman, container, false);
+                break;
+            default:
+                sextypeView  = inflater.inflate(R.layout.encounter_sextype_man, container, false);
+                break;
+        }
+        sexTypeLayout.addView(sextypeView);
+
         RatingBar rate_The_Sex = (RatingBar) rootview.findViewById(R.id.sexType_RateTheSex);
         LayerDrawable stars = (LayerDrawable) rate_The_Sex.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);// On State color
-        stars.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP);// Off State color
+        stars.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_IN);// Off State color
         stars.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);// Stroke (On State Stars Only)
 
         final ToggleButton btn_sexType_kissing = (ToggleButton) rootview.findViewById(R.id.sexType_kissing);
@@ -76,6 +99,13 @@ public class EncounterSexTypeFragment extends Fragment {
         btn_sexType_iRimmed.setTypeface(tf);
         final ToggleButton btn_sexType_heRimmed = (ToggleButton) rootview.findViewById(R.id.sexType_heRimmed);
         btn_sexType_heRimmed.setTypeface(tf);
+        final ToggleButton btn_sexType_iWentDown = (ToggleButton) rootview.findViewById(R.id.sexType_iWentDown);
+        btn_sexType_iWentDown.setTypeface(tf);
+        final ToggleButton btn_sexType_iFucked = (ToggleButton) rootview.findViewById(R.id.sexType_iFucked);
+        btn_sexType_iFucked.setTypeface(tf);
+        final ToggleButton btn_sexType_iFingered = (ToggleButton) rootview.findViewById(R.id.sexType_iFingered);
+        btn_sexType_iFingered.setTypeface(tf);
+
         String sexType_kissing = btn_sexType_kissing.getText().toString();
         String sexType_iSucked= btn_sexType_iSucked.getText().toString();
         String sexType_heSucked= btn_sexType_heSucked.getText().toString();
@@ -85,6 +115,10 @@ public class EncounterSexTypeFragment extends Fragment {
         String sexType_heJerked= btn_sexType_heJerked.getText().toString();
         String sexType_iRimmed= btn_sexType_iRimmed.getText().toString();
         String sexType_heRimmed= btn_sexType_heRimmed.getText().toString();
+        String sexType_iwentdown= btn_sexType_iWentDown.getText().toString();
+        String sexType_ifucked= btn_sexType_iFucked.getText().toString();
+        String sexType_ifingered= btn_sexType_iFingered.getText().toString();
+
         final EncounterSexType encSexType_kissing = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_kissing) , "", "",String.valueOf(R.string.statusUpdateNo),true);
         final EncounterSexType encSexType_iSucked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_iSucked) , "", "",String.valueOf(R.string.statusUpdateNo),true);
         final EncounterSexType encSexType_heSucked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_heSucked) , "", "",String.valueOf(R.string.statusUpdateNo),true);
@@ -94,6 +128,9 @@ public class EncounterSexTypeFragment extends Fragment {
         final EncounterSexType encSexType_heJerked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_heJerked), "", "",String.valueOf(R.string.statusUpdateNo),true);
         final EncounterSexType encSexType_iRimmed = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_iRimmed), "", "",String.valueOf(R.string.statusUpdateNo),true);
         final EncounterSexType encSexType_heRimmed = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_heRimmed), "", "",String.valueOf(R.string.statusUpdateNo),true);
+        final EncounterSexType encSexType_iWentDown = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_iwentdown), "", "",String.valueOf(R.string.statusUpdateNo),true);
+        final EncounterSexType encSexType_iFucked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_ifucked), "", "",String.valueOf(R.string.statusUpdateNo),true);
+        final EncounterSexType encSexType_iFingered= new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_ifingered), "", "",String.valueOf(R.string.statusUpdateNo),true);
         LynxManager.activePartnerSexType.clear();
 
         btn_sexType_kissing.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -252,6 +289,54 @@ public class EncounterSexTypeFragment extends Fragment {
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_heRimmed);
                     btn_sexType_heRimmed.setTextColor(getResources().getColor(R.color.colorAccent));
+                }
+            }
+        });
+        btn_sexType_iWentDown.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked) {
+                    // The toggle is enabled
+                    buttonView.setSelected(true);
+                    btn_sexType_iWentDown.setTextColor(Color.parseColor("#ffffff"));
+                    LynxManager.activePartnerSexType.add(encSexType_iWentDown);
+                } else {
+                    // The toggle is disabled
+                    buttonView.setSelected(false);
+                    LynxManager.activePartnerSexType.remove(encSexType_iWentDown);
+                    btn_sexType_iWentDown.setTextColor(getResources().getColor(R.color.colorAccent));
+                }
+            }
+        });
+        btn_sexType_iFucked.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked) {
+                    // The toggle is enabled
+                    buttonView.setSelected(true);
+                    btn_sexType_iFucked.setTextColor(Color.parseColor("#ffffff"));
+                    LynxManager.activePartnerSexType.add(encSexType_iFucked);
+                } else {
+                    // The toggle is disabled
+                    buttonView.setSelected(false);
+                    LynxManager.activePartnerSexType.remove(encSexType_iFucked);
+                    btn_sexType_iFucked.setTextColor(getResources().getColor(R.color.colorAccent));
+                }
+            }
+        });
+        btn_sexType_iFingered.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked) {
+                    // The toggle is enabled
+                    buttonView.setSelected(true);
+                    btn_sexType_iFingered.setTextColor(Color.parseColor("#ffffff"));
+                    LynxManager.activePartnerSexType.add(encSexType_iFingered);
+                } else {
+                    // The toggle is disabled
+                    buttonView.setSelected(false);
+                    LynxManager.activePartnerSexType.remove(encSexType_iFingered);
+                    btn_sexType_iFingered.setTextColor(getResources().getColor(R.color.colorAccent));
                 }
             }
         });

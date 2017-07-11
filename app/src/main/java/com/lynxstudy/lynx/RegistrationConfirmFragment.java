@@ -69,12 +69,8 @@ public class RegistrationConfirmFragment extends Fragment {
         confirm_email.setText(LynxManager.decryptString(LynxManager.getActiveUser().getEmail()));
         confirm_sec_qn.setText(LynxManager.decryptString(LynxManager.getActiveUser().getSecurityquestion()));
         confirm_sec_ans.setText(LynxManager.decryptString(LynxManager.getActiveUser().getSecurityanswer()));
-        int password_length = LynxManager.decryptString(LynxManager.getActiveUser().getPassword()).length();
-        String temp_pass = "";
-        for(int i=1;i<password_length;i++){
-            temp_pass+="*";
-        }
-        confirm_password.setText(temp_pass);
+        confirm_password.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
+        c_passcode.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPasscode()));
         return view;
     }
 

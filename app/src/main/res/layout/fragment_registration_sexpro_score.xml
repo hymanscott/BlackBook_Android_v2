@@ -88,7 +88,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Close"
+                android:text="GOT IT!"
                 android:id="@+id/sexpro_score_close"
                 android:textStyle="bold"
                 android:background="@color/btn_blue"

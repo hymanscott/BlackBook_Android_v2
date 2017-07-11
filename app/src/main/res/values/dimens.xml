@@ -2,6 +2,8 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin_half">8dp</dimen>
+    <dimen name="activity_vertical_margin_half">8dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
     <dimen name="button_top_margin">24dp</dimen>
@@ -15,4 +17,6 @@
 
     <dimen name="encounter_tv_textsize">16sp</dimen>
     <dimen name="encounter_radio_btn_textsize">14sp</dimen>
+    <dimen name="toggle_btn_textsize">16sp</dimen>
+    <dimen name="toggle_btn_height">40dp</dimen>
 </resources>
