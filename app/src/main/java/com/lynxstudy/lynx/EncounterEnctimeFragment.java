@@ -52,6 +52,7 @@ public class EncounterEnctimeFragment extends Fragment {
         textView14.setTypeface(tf);
         textView13 = (TextView) rootview.findViewById(R.id.textView13);
         textView13.setTypeface(tf);
+        textView13.setText("Enter date & time of new encounter");
         next = (Button) rootview.findViewById(R.id.next);
         next.setTypeface(tf);
         //Date Picker

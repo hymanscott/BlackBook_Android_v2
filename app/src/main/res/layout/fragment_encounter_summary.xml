@@ -2,290 +2,440 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/encounter_bg">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fillViewport="false"
-        android:layout_alignParentBottom="true">
-
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_centerHorizontal="true"
             android:gravity="center_horizontal">
-
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/encounterlarge" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:text="NEW ENCOUNTER SUMMARY"
-                android:layout_alignParentTop="true"
-                android:gravity="center_horizontal"
+                android:textSize="20sp"
+                android:text="Encounter Summary"
+                android:layout_gravity="center_horizontal"
                 android:id="@+id/newEncounter"
-                android:textColor="@color/colorAccent"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="20dp" />
-
+                android:textColor="@color/white"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nick name"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:id="@+id/encounter_summary_nickName"
-                android:textSize="20sp"
-                android:textColor="@color/white"
-                android:background="@drawable/lynx_button_dark"
+                android:textSize="18sp"
+                android:paddingTop="5dp"
+                android:textStyle="bold"
+                android:paddingBottom="5dp"
+                android:layout_marginBottom="32dp"
+                android:textColor="@color/encounter_btn_bg"
+                android:background="@color/banner_name_bg"
                 android:gravity="center_vertical|center_horizontal" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/edittext_bg"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+            <!--<LinearLayout-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_margin="10dp">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="150dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Partner:"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:id="@+id/partner"/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/encSumm_partnerName"-->
+                    <!--android:text="x"-->
+                    <!--android:textSize="20sp"-->
+                    <!--android:textColor="@color/white" />-->
+            <!--</LinearLayout>-->
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp">
+                android:layout_gravity="left"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp">
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:text="Partner:"
-                    android:textSize="20sp"
-                    android:textColor="@color/text_color"
-                    android:id="@+id/partner"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/encSumm_partnerName"
-                    android:text="x"
-                    android:textSize="20sp"
-                    android:textColor="#333" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="10dp">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/encounter_tv_textsize"
                     android:id="@+id/sexRating"
-                    android:textColor="@color/text_color"
-                    android:text="Sex Rating:"
-                    />
-                <RatingBar
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/white"
+                    android:text="Sex Rating :" />
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:id="@+id/encSumm_sexRating"
-                    style="?android:attr/ratingBarStyleIndicator"
-                    android:scaleX="0.9"
-                    android:scaleY="0.9"/>
+                    android:layout_weight="1">
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/encSumm_sexRating"
+                        android:numStars="5"
+                        android:isIndicator="true"
+                        android:scaleX="0.9"
+                        android:scaleY="0.9"/>
+                </LinearLayout>
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/edittext_bg"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="10dp">
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
 
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textColor="@color/text_color"
-                    android:text="HIV Status:"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:textColor="@color/white"
+                    android:text="HIV Status :"
                     android:id="@+id/hivStatus"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textColor="#333"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
                     android:id="@+id/encSumm_hivStatus"
-                    android:text="x"
-                    />
+                    android:text="x" />
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/edittext_bg"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:textColor="@color/white"
+                    android:text="Partner Notes :"
+                    android:id="@+id/partnerNotes"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:id="@+id/encSumm_partnerNotes"
+                    android:text="x" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/edittext_bg"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="@color/text_color"
-                android:layout_margin="10dp"
+                android:textSize="@dimen/encounter_tv_textsize"
+                android:textColor="@color/white"
+                android:layout_margin="24dp"
                 android:text="Type of Sex:"
                 android:id="@+id/typeSex"/>
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="5dp">
+                android:orientation="vertical"
+                android:layout_marginBottom="24dp"
+                android:id="@+id/sexTypeLayout">
+                <!--Encounter Sex Types-->
 
-                <ToggleButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textOn="I sucked him"
-                    android:textOff="I sucked him"
-                    android:textColor="@color/colorAccent"
-                    android:layout_gravity="center"
-                    android:textAlignment="gravity"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:id="@+id/encSumm_iSucked"
-                    android:padding="10dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:background="@drawable/toggle_button"/>
-                <ToggleButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textOn="He sucked me"
-                    android:textOff="He sucked me"
-                    android:textColor="@color/colorAccent"
-                    android:layout_gravity="center"
-                    android:textAlignment="gravity"
-                    android:layout_weight="1"
-                    android:id="@+id/encSumm_heSucked"
-                    android:padding="10dp"
-                    android:layout_margin="10dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:background="@drawable/toggle_button"/>
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/edittext_bg"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/condomUsedLayout"
+                android:orientation="vertical">
+                <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_margin="5dp">
+                android:layout_margin="24dp">
 
-                <ToggleButton
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:textOn="I topped"
-                    android:textOff="I topped"
-                    android:textColor="@color/colorAccent"
-                    android:layout_gravity="center"
-                    android:textAlignment="gravity"
-                    android:id="@+id/encSumm_iTopped"
-                    android:padding="10dp"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:background="@drawable/toggle_button"/>
-                <ToggleButton
-                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:textColor="@color/white"
+                    android:text="Condom Used :"
+                    android:id="@+id/condomUsed"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textOn="I bottomed"
-                    android:textOff="I bottomed"
-                    android:textColor="@color/colorAccent"
-                    android:layout_gravity="center"
-                    android:textAlignment="gravity"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:id="@+id/encSumm_iBottomed"
-                    android:padding="10dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:background="@drawable/toggle_button"/>
+                    android:orientation="vertical"
+                    android:id="@+id/condomUsedContent">
+
+                </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="5dp">
-                <ToggleButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textOn="I jerked him"
-                    android:textOff="I jerked him"
-                    android:textColor="@color/colorAccent"
-                    android:layout_gravity="center"
-                    android:textAlignment="gravity"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:id="@+id/encSumm_iJerked"
-                    android:padding="10dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:background="@drawable/toggle_button"/>
-                <ToggleButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textOn="He jerked me"
-                    android:textOff="He jerked me"
-                    android:textColor="@color/colorAccent"
-                    android:layout_gravity="center"
-                    android:textAlignment="gravity"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:id="@+id/encSumm_heJerked"
-                    android:padding="10dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:background="@drawable/toggle_button"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="5dp">
-                <ToggleButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textOn="I rimmed him"
-                    android:textOff="I rimmed him"
-                    android:textColor="@color/colorAccent"
-                    android:layout_gravity="center"
-                    android:textAlignment="gravity"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:id="@+id/encSumm_iRimmed"
-                    android:padding="10dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:background="@drawable/toggle_button"/>
-                <ToggleButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textOn="He rimmed me"
-                    android:textOff="He rimmed me"
-                    android:textColor="@color/colorAccent"
-                    android:layout_gravity="center"
-                    android:textAlignment="gravity"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:id="@+id/encSumm_heRimmed"
-                    android:padding="10dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:background="@drawable/toggle_button"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_margin="5dp">
-                <ToggleButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textOn="Kissing / making out"
-                    android:textOff="Kissing / making out"
-                    android:textColor="@color/colorAccent"
-                    android:layout_gravity="center"
-                    android:textAlignment="gravity"
-                    android:layout_margin="10dp"
-                    android:id="@+id/encSumm_kissing"
-                    android:padding="10dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:background="@drawable/toggle_button"/>
+                <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/edittext_bg"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
             </LinearLayout>
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="75dp"
+                android:paddingRight="75dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/reg_tv_textsize"
+                android:background="@drawable/border_full_white"
+                android:text="EDIT"
+                android:onClick="showEditDetails"
+                android:id="@+id/edit_details"/>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Confirm"
+                    android:onClick="onEncSummNext"
+                    android:layout_gravity="right"
+                    android:textStyle="bold"
+                    android:id="@+id/next"
+                    android:textSize="@dimen/button_textsize"
+                    android:background="@color/encounter_btn_bg"
+                    android:textColor="@color/white"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
+
+<!--
+<LinearLayout
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_margin="5dp">
+
+<ToggleButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textOn="I sucked him"
+    android:textOff="I sucked him"
+    android:textColor="@color/colorAccent"
+    android:layout_gravity="center"
+    android:textAlignment="gravity"
+    android:layout_margin="10dp"
+    android:layout_weight="1"
+    android:id="@+id/encSumm_iSucked"
+    android:padding="10dp"
+    android:gravity="center_vertical|center_horizontal"
+    android:background="@drawable/toggle_button"/>
+<ToggleButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textOn="He sucked me"
+    android:textOff="He sucked me"
+    android:textColor="@color/colorAccent"
+    android:layout_gravity="center"
+    android:textAlignment="gravity"
+    android:layout_weight="1"
+    android:id="@+id/encSumm_heSucked"
+    android:padding="10dp"
+    android:layout_margin="10dp"
+    android:gravity="center_vertical|center_horizontal"
+    android:background="@drawable/toggle_button"/>
+</LinearLayout>
+<LinearLayout
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_margin="5dp">
+
+<ToggleButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textOn="I topped"
+    android:textOff="I topped"
+    android:textColor="@color/colorAccent"
+    android:layout_gravity="center"
+    android:textAlignment="gravity"
+    android:id="@+id/encSumm_iTopped"
+    android:padding="10dp"
+    android:layout_margin="10dp"
+    android:layout_weight="1"
+    android:gravity="center_vertical|center_horizontal"
+    android:background="@drawable/toggle_button"/>
+<ToggleButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textOn="I bottomed"
+    android:textOff="I bottomed"
+    android:textColor="@color/colorAccent"
+    android:layout_gravity="center"
+    android:textAlignment="gravity"
+    android:layout_margin="10dp"
+    android:layout_weight="1"
+    android:id="@+id/encSumm_iBottomed"
+    android:padding="10dp"
+    android:gravity="center_vertical|center_horizontal"
+    android:background="@drawable/toggle_button"/>
+</LinearLayout>
+<LinearLayout
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_margin="5dp">
+<ToggleButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textOn="I jerked him"
+    android:textOff="I jerked him"
+    android:textColor="@color/colorAccent"
+    android:layout_gravity="center"
+    android:textAlignment="gravity"
+    android:layout_margin="10dp"
+    android:layout_weight="1"
+    android:id="@+id/encSumm_iJerked"
+    android:padding="10dp"
+    android:gravity="center_vertical|center_horizontal"
+    android:background="@drawable/toggle_button"/>
+<ToggleButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textOn="He jerked me"
+    android:textOff="He jerked me"
+    android:textColor="@color/colorAccent"
+    android:layout_gravity="center"
+    android:textAlignment="gravity"
+    android:layout_margin="10dp"
+    android:layout_weight="1"
+    android:id="@+id/encSumm_heJerked"
+    android:padding="10dp"
+    android:gravity="center_vertical|center_horizontal"
+    android:background="@drawable/toggle_button"/>
+</LinearLayout>
+<LinearLayout
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+android:layout_margin="5dp">
+<ToggleButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textOn="I rimmed him"
+    android:textOff="I rimmed him"
+    android:textColor="@color/colorAccent"
+    android:layout_gravity="center"
+    android:textAlignment="gravity"
+    android:layout_margin="10dp"
+    android:layout_weight="1"
+    android:id="@+id/encSumm_iRimmed"
+    android:padding="10dp"
+    android:gravity="center_vertical|center_horizontal"
+    android:background="@drawable/toggle_button"/>
+<ToggleButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textOn="He rimmed me"
+    android:textOff="He rimmed me"
+    android:textColor="@color/colorAccent"
+    android:layout_gravity="center"
+    android:textAlignment="gravity"
+    android:layout_margin="10dp"
+    android:layout_weight="1"
+    android:id="@+id/encSumm_heRimmed"
+    android:padding="10dp"
+    android:gravity="center_vertical|center_horizontal"
+    android:background="@drawable/toggle_button"/>
+</LinearLayout>
+<LinearLayout
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:gravity="center"
+android:layout_margin="5dp">
+<ToggleButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textOn="Kissing / making out"
+    android:textOff="Kissing / making out"
+    android:textColor="@color/colorAccent"
+    android:layout_gravity="center"
+    android:textAlignment="gravity"
+    android:layout_margin="10dp"
+    android:id="@+id/encSumm_kissing"
+    android:padding="10dp"
+    android:gravity="center_vertical|center_horizontal"
+    android:background="@drawable/toggle_button"/>
+</LinearLayout>
+ <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:visibility="gone"
                 android:id="@+id/encSumm_iSucked_condomuse"
                 android:layout_marginTop="20dp"
                 android:text="x"/>
-
-            <TextView
+               <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="20dp"
-                android:visibility="gone"
                 android:id="@+id/encSumm_iTopped_condomuse"
                 android:text="x"/>
 
@@ -295,41 +445,5 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="20dp"
-                android:visibility="gone"
                 android:id="@+id/encSumm_iBottomed_condomuse"
-                android:text="x"/>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="20dp">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Revise"
-                    android:onClick="onEncSummPrev"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                    android:background="@drawable/lynx_button"
-                    android:textColor="@color/white"
-                    android:layout_gravity="left"
-                    android:layout_alignParentLeft="true" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Save"
-                    android:onClick="onEncSummNext"
-                    android:layout_gravity="right"
-                    android:textStyle="bold"
-                    android:id="@+id/next"
-                    android:background="@drawable/lynx_button"
-                    android:textColor="@color/white"
-                    android:layout_centerInParent="true" />
-            </RelativeLayout>
-        </LinearLayout>
-    </ScrollView>
-</RelativeLayout>
-
+                android:text="x"/> -->

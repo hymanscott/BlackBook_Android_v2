@@ -278,7 +278,6 @@ public class HomeEncounterFragment extends Fragment {
     public void onResume() {
 
         super.onResume();
-
         //   reloadFragment();
     }
 
@@ -297,6 +296,7 @@ public class HomeEncounterFragment extends Fragment {
         if (requestCode == 100) {
             reloadFragment();
             LynxManager.isRefreshRequired = true;
+            startActivity(getActivity().getIntent());
         }
     }
 

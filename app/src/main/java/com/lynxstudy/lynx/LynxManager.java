@@ -61,6 +61,7 @@ public class LynxManager {
     public static List<Integer> partnerRatingIds = new ArrayList<Integer>();
     public static List<String> partnerRatingValues = new ArrayList<String>();
     public static List<EncounterSexType> activePartnerSexType = new ArrayList<EncounterSexType>();
+    public static List<String> activeEncCondomUsed = new ArrayList<String>();
     public static String encRateofSex;
     public static int selectedPartnerID;
     public static int selectedEncounterID;

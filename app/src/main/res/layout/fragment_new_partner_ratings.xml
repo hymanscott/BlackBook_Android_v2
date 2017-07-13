@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/encounter_bg">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -12,197 +12,271 @@
             android:layout_width="fill_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="fill_parent"
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:text="@string/AddPartnerTitle"
-                android:textColor="@color/colorAccent"
-                android:layout_marginTop="20dp"
-                android:id="@+id/add_partner_title"
-                android:gravity="center_vertical|center_horizontal" />
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/encounterlarge" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Nick name"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
                 android:textSize="20sp"
-                android:textColor="@color/white"
-                android:background="@drawable/lynx_button_dark"
-                android:gravity="center_vertical|center_horizontal"
-                android:id="@+id/newPartner_rating_nickname" />
+                android:text="New Partner"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/add_partner_title"
+                android:textColor="@color/white"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nick name"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:id="@+id/newPartner_rating_nickname"
+                android:textSize="18sp"
+                android:paddingTop="5dp"
+                android:textStyle="bold"
+                android:paddingBottom="5dp"
+                android:layout_marginBottom="48dp"
+                android:textColor="@color/encounter_btn_bg"
+                android:background="@color/banner_name_bg"
+                android:gravity="center_vertical|center_horizontal" />
+
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Rate your partner"
-                android:textSize="20sp"
-                android:textColor="@color/text_color"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
+                android:textSize="@dimen/encounter_tv_textsize"
+                android:textColor="@color/white"
+                android:layout_marginBottom="32dp"
                 android:id="@+id/rateTitle"
                 android:gravity="center_vertical|center_horizontal" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_weight="0.8"
+                    android:layout_weight="1"
                     android:text="Overall"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:textColor="@color/white"
                     android:id="@+id/newPartner_rate1"
-                    android:layout_margin="10dp"
-                    android:layout_gravity="center_horizontal|center_vertical"/>
-                <RatingBar
+                    android:layout_gravity="center_vertical"/>
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:id="@+id/ratingBar1"
-                    android:layout_margin="10dp"
-                    android:stepSize="0.5"
-                    android:rating="1.0"
-                    style="?android:attr/ratingBarStyle"
-                    android:layout_gravity="center_horizontal|center_vertical|left"/>
+                    android:gravity="right"
+                    android:layout_weight="1">
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ratingBar1"
+                        android:stepSize="0.5"
+                        android:rating="1.0"
+                        style="?android:attr/ratingBarStyle"
+                        android:layout_gravity="center_horizontal|center_vertical|left"/>
+                </LinearLayout>
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:orientation="horizontal">
                 <TextView
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Chemistry"
+                    android:layout_weight="1"
+                    android:maxWidth="100dp"
+                    android:layout_gravity="center_vertical"
                     android:id="@+id/newPartner_rate2"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorAccent"
-                    android:layout_margin="10dp" />
-                <RatingBar
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:textColor="@color/white" />
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/ratingBar2"
-                    android:layout_margin="10dp"
-                    android:stepSize="0.5"
-                    android:rating="1.0"
-                    android:layout_gravity="center_horizontal|center_vertical"/>
+                    android:gravity="right"
+                    android:layout_weight="1">
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ratingBar2"
+                        android:stepSize="0.5"
+                        android:rating="1.0"
+                        android:layout_gravity="center_horizontal|center_vertical"/>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:orientation="horizontal">
                 <TextView
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Personality"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:textColor="@color/white"
+                    android:maxWidth="100dp"
+                    android:layout_weight="1"
                     android:id="@+id/newPartner_rate3"
-                    android:layout_margin="10dp" />
-                <RatingBar
+                    android:layout_gravity="center_vertical" />
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/ratingBar3"
-                    android:layout_margin="10dp"
-                    android:stepSize="0.5"
-                    android:rating="1.0"
-                    android:layout_gravity="center_horizontal|center_vertical"/>
+                    android:gravity="right"
+                    android:layout_weight="1">
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ratingBar3"
+                        android:stepSize="0.5"
+                        android:rating="1.0"
+                        android:layout_gravity="center_horizontal|center_vertical"/>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:orientation="horizontal">
                 <TextView
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Face"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:maxWidth="100dp"
+                    android:textColor="@color/white"
                     android:id="@+id/newPartner_rate4"
-                    android:layout_margin="10dp" />
-                <RatingBar
+                    android:layout_gravity="center_vertical"/>
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/ratingBar4"
-                    android:layout_margin="10dp"
-                    android:stepSize="0.5"
-                    android:rating="1.0"
-                    android:layout_gravity="center_horizontal|center_vertical"/>
+                    android:gravity="right"
+                    android:layout_weight="1">
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ratingBar4"
+                        android:stepSize="0.5"
+                        android:rating="1.0"
+                        android:layout_gravity="center_horizontal|center_vertical"/>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:orientation="horizontal">
                 <TextView
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Body"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:textColor="@color/white"
                     android:id="@+id/newPartner_rate5"
-                    android:layout_margin="10dp" />
-                <RatingBar
+                    android:maxWidth="100dp"
+                    android:layout_gravity="center_vertical"/>
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/ratingBar5"
-                    android:layout_margin="10dp"
-                    android:stepSize="0.5"
-                    android:rating="1.0"
-                    android:layout_gravity="center_horizontal|center_vertical"/>
+                    android:gravity="right"
+                    android:layout_weight="1">
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ratingBar5"
+                        android:stepSize="0.5"
+                        android:rating="1.0"
+                        android:layout_gravity="center_horizontal|center_vertical"/>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:orientation="horizontal">
                 <TextView
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Cock"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:textColor="@color/white"
                     android:id="@+id/newPartner_rate6"
-                    android:layout_margin="10dp" />
-                <RatingBar
+                    android:maxWidth="100dp"
+                    android:layout_gravity="center_vertical" />
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/ratingBar6"
-                    android:layout_margin="10dp"
-                    android:stepSize="0.5"
-                    android:rating="1.0"
-                    android:layout_gravity="center_horizontal|center_vertical"/>
+                    android:gravity="right"
+                    android:layout_weight="1">
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ratingBar6"
+                        android:stepSize="0.5"
+                        android:rating="1.0"
+                        android:layout_gravity="center_horizontal|center_vertical"/>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:orientation="horizontal">
                 <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Butt"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorAccent"
-                    android:id="@+id/newPartner_rate7"
-                    android:layout_margin="10dp" />
-                <RatingBar
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/ratingBar7"
-                    android:layout_margin="10dp"
-                    android:stepSize="0.5"
-                    android:rating="1.0"
-                    android:layout_gravity="center_horizontal|center_vertical"/>
+                    android:text="Butt"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:textColor="@color/white"
+                    android:id="@+id/newPartner_rate7"
+                    android:maxWidth="100dp"
+                    android:layout_gravity="center_vertical" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_weight="1">
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ratingBar7"
+                        android:stepSize="0.5"
+                        android:rating="1.0"
+                        android:layout_gravity="center_horizontal|center_vertical"/>
+                </LinearLayout>
             </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:layout_gravity="right"
+                android:textStyle="bold"
+                android:layout_marginTop="40dp"
+                android:layout_centerInParent="true"
+                android:id="@+id/next"
+                android:background="@drawable/lynx_button"
+                android:textColor="@color/white"
+                android:onClick="onPartnerRatingsNext" />
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -216,19 +290,6 @@
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Next"
-                        android:layout_gravity="right"
-                        android:textStyle="bold"
-                        android:layout_centerInParent="true"
-                        android:layout_margin="20dp"
-                        android:id="@+id/next"
-                        android:background="@drawable/lynx_button"
-                        android:textColor="@color/white"
-                        android:onClick="onPartnerRatingsNext"
-                        />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:text="Revise"
                         android:textStyle="bold"
                         android:layout_gravity="left"
@@ -237,7 +298,6 @@
                         android:background="@drawable/lynx_button"
                         android:textColor="@color/white"
                         android:id="@+id/revise"
-                        android:layout_margin="20dp"
                         android:onClick="onPartnerRatingsPrev"
                         />
                 </RelativeLayout>

@@ -1,39 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/encounter_bg"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:text="THANK YOU!"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/thankyou"
-        android:gravity="center_vertical|center_horizontal" />
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/encloggedText"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Your new encounter was logged."
-        android:textSize="20sp"
-        android:textColor="@color/text_color"
-        android:layout_margin="20dp"
-        android:gravity="center_vertical|center_horizontal" />
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/encounterlarge" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="THANK YOU!"
+            android:textColor="@color/white"
+            android:id="@+id/thankyou"
+            android:gravity="center_vertical|center_horizontal" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/encloggedText"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Your new encounter was logged."
+            android:textSize="@dimen/encounter_tv_textsize"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:gravity="center_vertical|center_horizontal" />
+    </LinearLayout>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="50dp"
         android:id="@+id/newPartnerLoggedNext"
         android:onClick="newPartnerLoggedNext"
-        android:background="@drawable/lynx_button"
+        android:background="@color/encounter_btn_bg"
         android:textColor="@color/white"
+        android:textSize="@dimen/button_textsize"
         android:textStyle="bold"
         android:text="Next"
-        android:layout_gravity="center_horizontal|center_vertical"/>
+        android:layout_alignParentBottom="true"/>
 
-</LinearLayout>
+</RelativeLayout>

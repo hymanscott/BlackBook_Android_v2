@@ -320,7 +320,7 @@ public class EncounterStartActivity extends AppCompatActivity {
 
             for (EncounterSexType partnerSexType : LynxManager.getActivePartnerSexType()) {
                 String sexTypeText = LynxManager.decryptString(partnerSexType.getSex_type());
-                if (sexTypeText.equals("I sucked him") || sexTypeText.equals("I bottomed") || sexTypeText.equals("I topped")) {
+                if (sexTypeText.equals("I sucked him") || sexTypeText.equals("I sucked her") || sexTypeText.equals("I bottomed") || sexTypeText.equals("I topped") || sexTypeText.equals("I fucked her")) {
                     pushFragments("encounter", fragSextypeCondomuse, true);
                     return true;
                 }
@@ -342,6 +342,7 @@ public class EncounterStartActivity extends AppCompatActivity {
 
             switch (LynxManager.decryptString(encSexType.getSex_type())) {
                 case "I sucked him":
+                case "I sucked her":
                     RadioGroup whenISuckedHimGroup = (RadioGroup) findViewById(R.id.whenIsucked_group);
                     RadioButton whenISuckedHim_btn = (RadioButton) findViewById(whenISuckedHimGroup.getCheckedRadioButtonId());
                     encSexType.setCondom_use(whenISuckedHim_btn.getText().toString());
@@ -362,6 +363,11 @@ public class EncounterStartActivity extends AppCompatActivity {
                     RadioButton whenITopped_btn = (RadioButton) findViewById(whenItoppedGroup.getCheckedRadioButtonId());
                     encSexType.setCondom_use(whenITopped_btn.getText().toString());
                     /*encSexType.setNote("");*/
+                    break;
+                case "I fucked her":
+                    RadioGroup whenIfuckedGroup = (RadioGroup) findViewById(R.id.whenIfucked_group);
+                    RadioButton whenIFucked_btn = (RadioButton) findViewById(whenIfuckedGroup.getCheckedRadioButtonId());
+                    encSexType.setCondom_use(whenIFucked_btn.getText().toString());
                     break;
             }
         }
@@ -389,7 +395,68 @@ public class EncounterStartActivity extends AppCompatActivity {
         popFragment();
         return true;
     }
+    public boolean showEditDetails(View view){
+        EncounterSummaryEditFragment fragEncounterEdit = new EncounterSummaryEditFragment();
+        pushFragments("encounter", fragEncounterEdit, true);
+        return true;
+    }
+    public boolean editCondomUse(View view){
+        EncounterCondomuseFragmentEdit fragEncounterEdit = new EncounterCondomuseFragmentEdit();
+        pushFragments("encounter", fragEncounterEdit, true);
+        return true;
+    }
+    public boolean onEncCondomUseEditNext(View view){
+        for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
 
+            switch (LynxManager.decryptString(encSexType.getSex_type())) {
+                case "I sucked him":
+                case "I sucked her":
+                    RadioGroup whenISuckedHimGroup = (RadioGroup) findViewById(R.id.whenIsucked_group);
+                    RadioButton whenISuckedHim_btn = (RadioButton) findViewById(whenISuckedHimGroup.getCheckedRadioButtonId());
+                    encSexType.setCondom_use(whenISuckedHim_btn.getText().toString());
+                    if(!whenISuckedHim_btn.getText().toString().equals("Condom used")){
+                        LynxManager.activeEncCondomUsed.remove("I sucked her");
+                        LynxManager.activeEncCondomUsed.remove("I sucked him");
+                    }
+                    break;
+                case "I bottomed":
+                    RadioGroup whenIBottomedGroup = (RadioGroup) findViewById(R.id.whenIbottomed_group);
+                    RadioButton whenIBottomed_btn = (RadioButton) findViewById(whenIBottomedGroup.getCheckedRadioButtonId());
+                    encSexType.setCondom_use(whenIBottomed_btn.getText().toString());
+                    if(!whenIBottomed_btn.getText().toString().equals("Condom used")){
+                        LynxManager.activeEncCondomUsed.remove("I bottomed");
+                    }
+                    break;
+                case "I topped":
+                    RadioGroup whenItoppedGroup = (RadioGroup) findViewById(R.id.whenItopped_group);
+                    RadioButton whenITopped_btn = (RadioButton) findViewById(whenItoppedGroup.getCheckedRadioButtonId());
+                    encSexType.setCondom_use(whenITopped_btn.getText().toString());
+                    if(!whenITopped_btn.getText().toString().equals("Condom used")){
+                        LynxManager.activeEncCondomUsed.remove("I topped");
+                    }
+                    break;
+                case "I fucked her":
+                    RadioGroup whenIfuckedGroup = (RadioGroup) findViewById(R.id.whenIfucked_group);
+                    RadioButton whenIFucked_btn = (RadioButton) findViewById(whenIfuckedGroup.getCheckedRadioButtonId());
+                    encSexType.setCondom_use(whenIFucked_btn.getText().toString());
+                    if(!whenIFucked_btn.getText().toString().equals("Condom used")){
+                        LynxManager.activeEncCondomUsed.remove("I fucked her");
+                    }
+                    break;
+            }
+        }
+        popFragment();
+        return true;
+    }
+    public boolean backToEncSummary(View view){
+        RatingBar sexType_RateTheSex = (RatingBar)findViewById(R.id.sexType_RateTheSex);
+        LynxManager.activeEncounter.setRate_the_sex(LynxManager.encryptString(String.valueOf(sexType_RateTheSex.getRating())));
+        LynxManager.encRateofSex = String.valueOf(sexType_RateTheSex.getRating());
+        String encNotes = String.valueOf(((EditText) findViewById(R.id.encNotes)).getText());
+        LynxManager.activeEncounter.setEncounter_notes(LynxManager.encryptString(encNotes));
+        popFragment();
+        return true;
+    }
     public boolean onEncSummNext(View view) {
         int encounterID = db.createEncounter(LynxManager.activeEncounter);
         for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
@@ -398,6 +465,8 @@ public class EncounterStartActivity extends AppCompatActivity {
             db.createEncounterSexType(encSexType);
             Log.v("Encounter Created", "Encounter ID : " + encounterID);
         }
+        // Clear Condomuse list//
+        LynxManager.activeEncCondomUsed.clear();
         EncounterLoggedFragment fragEncounterLogged = new EncounterLoggedFragment();
         pushFragments("encounter", fragEncounterLogged, true);
         // finish();

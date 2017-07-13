@@ -1,8 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:orientation="vertical"
+    android:background="@color/encounter_bg">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottomNav"
+                android:layout_marginBottom="5dp"
+                android:layout_alignParentTop="true">
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fillViewport="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginBottom="32dp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/encounterlarge" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:text="@string/new_encounter"
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/newEncounter"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nick name"
+                            android:layout_marginTop="@dimen/activity_vertical_margin"
+                            android:id="@+id/encounter_notes_nickName"
+                            android:textSize="18sp"
+                            android:paddingTop="5dp"
+                            android:textStyle="bold"
+                            android:paddingBottom="5dp"
+                            android:layout_marginBottom="48dp"
+                            android:textColor="@color/encounter_btn_bg"
+                            android:background="@color/banner_name_bg"
+                            android:gravity="center_vertical|center_horizontal" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Encounter Notes"
+                            android:textSize="@dimen/encounter_tv_textsize"
+                            android:textColor="@color/white"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="48dp"
+                            android:id="@+id/textView10" />
+
+                        <EditText
+                            android:id="@+id/encNotes"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:ems="10"
+                            android:inputType="textMultiLine"
+                            android:textColorHint="@color/edittext_hint_color"
+                            android:hint="Add notes about this partner"
+                            android:textColor="@color/white"
+                            android:imeOptions="actionDone"
+                            android:background="@drawable/rectangle_edittext"
+                            android:backgroundTint="@color/edittext_bg"
+                            android:textCursorDrawable="@drawable/white_cursor"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:textSize="@dimen/encounter_tv_textsize" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/edittext_bg"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/bottomNav"
+                android:layout_alignParentBottom="true">
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Next"
+                    android:onClick="onEncNotesNext"
+                    android:textStyle="bold"
+                    android:id="@+id/onEncNotesNext"
+                    android:textSize="@dimen/button_textsize"
+                    android:background="@color/encounter_btn_bg"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/encounter_bg">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -11,52 +125,71 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/encounterlarge" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:text="NEW ENCOUNTER"
-                android:id="@+id/newEncounter"
-                android:layout_alignParentTop="true"
-                android:textColor="@color/colorAccent"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="20dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Nick name"
-                android:layout_marginBottom="10dp"
-                android:id="@+id/encounter_notes_nickName"
                 android:textSize="20sp"
-                android:textColor="@color/white"
-                android:background="@drawable/lynx_button_dark"
+                android:text="NEW ENCOUNTER"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/newEncounter"
+                android:textColor="@color/white"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nick name"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:id="@+id/encounter_notes_nickName"
+                android:textSize="18sp"
+                android:paddingTop="5dp"
+                android:textStyle="bold"
+                android:paddingBottom="5dp"
+                android:layout_marginBottom="48dp"
+                android:textColor="@color/encounter_btn_bg"
+                android:background="@color/banner_name_bg"
                 android:gravity="center_vertical|center_horizontal" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Encounter Notes"
-                android:textSize="20sp"
-                android:textColor="@color/text_color"
-                android:id="@+id/textView10"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp" />
+                android:textSize="@dimen/encounter_tv_textsize"
+                android:textColor="@color/white"
+                android:layout_marginBottom="48dp"
+                android:id="@+id/textView10" />
+
             <EditText
+                android:id="@+id/encNotes"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
+                android:layout_gravity="center_horizontal"
                 android:ems="10"
-                android:textSize="18sp"
-                android:textColor="@color/text_color"
-                android:id="@+id/encNotes"
-                android:layout_gravity="center_horizontal" />
+                android:inputType="textMultiLine"
+                android:textColorHint="@color/edittext_hint_color"
+                android:hint="Add notes about this partner"
+                android:textColor="@color/white"
+                android:imeOptions="actionDone"
+                android:background="@drawable/rectangle_edittext"
+                android:backgroundTint="@color/edittext_bg"
+                android:textCursorDrawable="@drawable/white_cursor"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:textSize="@dimen/encounter_tv_textsize" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/edittext_bg"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,35 +203,4 @@
                 android:textColor="@color/white" />
         </LinearLayout>
     </ScrollView>
-
-    <!--<RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:visibility="gone"
-        android:layout_margin="10dp">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Revise"
-            android:onClick="onEncNotesPrev"
-            android:layout_gravity="left"
-            android:visibility="gone"
-            android:textStyle="bold"
-            android:background="@drawable/lynx_button"
-            android:textColor="@color/white"
-            android:layout_alignParentLeft="true" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Next"
-            android:onClick="onEncNotesNext"
-            android:layout_gravity="right"
-            android:textStyle="bold"
-            android:background="@drawable/lynx_button"
-            android:textColor="@color/white"
-            android:layout_centerInParent="true" />
-    </RelativeLayout>-->
-</RelativeLayout>
+</RelativeLayout>-->

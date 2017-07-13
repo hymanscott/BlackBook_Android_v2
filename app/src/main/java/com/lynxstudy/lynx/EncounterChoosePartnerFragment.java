@@ -83,7 +83,7 @@ public class EncounterChoosePartnerFragment extends Fragment {
             for (Partners partner : partners) {
                 if(partner.getPartner_idle()!=1) {
                     TableRow partnerRow = new TableRow(getActivity());
-                    partnerRow.setPadding(10, 0, 0, 0);
+                    partnerRow.setPadding(16, 0, 0, 0);
                     partnerRow.setGravity(Gravity.CENTER_VERTICAL);
                     TextView partner_Name = new TextView(getActivity());
                     RatingBar partner_Rating_Bar = new RatingBar(getActivity(), null, android.R.attr.ratingBarStyleIndicator);

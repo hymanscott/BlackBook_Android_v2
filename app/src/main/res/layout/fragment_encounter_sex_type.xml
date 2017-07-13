@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="NEW ENCOUNTER"
+                android:text="@string/new_encounter"
                 android:id="@+id/newEncounter"
                 android:textColor="@color/white"/>
             <TextView
@@ -43,7 +43,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textColor="@color/white"
                 android:text="Rate the sex"
                 android:layout_marginTop="40dp"
@@ -75,7 +75,7 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="24sp"
+                    android:textSize="18sp"
                     android:textColor="@color/white"
                     android:text="Type of sex"
                     android:layout_margin="10dp"
@@ -86,6 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_marginBottom="64dp"
                 android:id="@+id/sexTypeLayout">
                 <!--Encounter Sex Types-->
 
@@ -94,30 +95,16 @@
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentBottom="true">
-
-                <!--<Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Revise"
-                    android:onClick="onSexTypePrev"
-                    android:background="@drawable/lynx_button"
-                    android:textColor="@color/white"
-                    android:visibility="gone"
-                    android:textStyle="bold"
-                    android:layout_gravity="left"
-                    android:layout_alignParentLeft="true" />-->
-
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Next"
                     android:onClick="onSexTypeNext"
-                    android:background="@drawable/lynx_button"
+                    android:background="@color/encounter_btn_bg"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:id="@+id/next"
-                    android:layout_gravity="right"
-                    android:layout_centerInParent="true" />
+                    android:textSize="@dimen/button_textsize"
+                    android:id="@+id/next" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
