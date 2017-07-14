@@ -7,7 +7,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fillViewport="false"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
         <LinearLayout
             android:layout_width="fill_parent"
             android:orientation="vertical"
@@ -43,19 +44,15 @@
                 android:textColor="@color/encounter_btn_bg"
                 android:background="@color/banner_name_bg"
                 android:gravity="center_vertical|center_horizontal" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/edittext_bg"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/rectangle_bg"
+                android:padding="@dimen/edittext_padding"
                 android:id="@+id/nickNameLayout"
                 android:orientation="horizontal">
 
@@ -65,30 +62,32 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/usericon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/newPartnerSumm_nickName"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nick Name"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:background="@drawable/rectangle_edittext"
+                    android:backgroundTint="@color/edittext_bg"
+                    android:ems="10"
+                    android:hint="Nickname"
+                    android:inputType="textPersonName"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
                     android:textColor="@color/white"
-                    android:id="@+id/newPartnerSumm_nickName"/>
+                    android:textColorHint="@color/edittext_hint_color"
+                    android:textCursorDrawable="@drawable/white_cursor"
+                    android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/edittext_bg"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/rectangle_bg"
+                android:padding="@dimen/edittext_padding"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -97,29 +96,33 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/emailicon" />
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/newPartnerSumm_email"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Email"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:background="@drawable/rectangle_edittext"
+                    android:backgroundTint="@color/edittext_bg"
+                    android:ems="10"
+                    android:hint="Email Address"
+                    android:inputType="textEmailAddress"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:imeOptions="actionNext"
                     android:textColor="@color/white"
-                    android:id="@+id/newPartnerSumm_email"/>
+                    android:textColorHint="@color/edittext_hint_color"
+                    android:textCursorDrawable="@drawable/white_cursor"
+                    android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/edittext_bg"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/rectangle_bg"
+                android:padding="@dimen/edittext_padding"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -127,29 +130,34 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/phoneicon" />
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/newPartnerSumm_phone"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Phone"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:background="@drawable/rectangle_edittext"
+                    android:backgroundTint="@color/edittext_bg"
+                    android:ems="10"
+                    android:hint="Mobile phone number"
+                    android:inputType="phone"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:windowSoftInputMode="adjustPan"
                     android:textColor="@color/white"
-                    android:id="@+id/newPartnerSumm_phone"/>
+                    android:imeOptions="actionDone"
+                    android:textColorHint="@color/edittext_hint_color"
+                    android:textCursorDrawable="@drawable/white_cursor"
+                    android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/edittext_bg"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/rectangle_bg"
+                android:padding="@dimen/edittext_padding"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -157,29 +165,34 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/cityicon" />
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/newPartnerSumm_address"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="City"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:background="@drawable/rectangle_edittext"
+                    android:backgroundTint="@color/edittext_bg"
+                    android:ems="10"
+                    android:hint="City/Neighborhood"
+                    android:inputType="textPostalAddress"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:windowSoftInputMode="adjustPan"
                     android:textColor="@color/white"
-                    android:id="@+id/newPartnerSumm_address"/>
+                    android:imeOptions="actionDone"
+                    android:textColorHint="@color/edittext_hint_color"
+                    android:textCursorDrawable="@drawable/white_cursor"
+                    android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/edittext_bg"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/rectangle_bg"
+                android:padding="@dimen/edittext_padding"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -187,59 +200,68 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/texticon" />
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/newPartnerSumm_metAt"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Met at"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:background="@drawable/rectangle_edittext"
+                    android:backgroundTint="@color/edittext_bg"
+                    android:ems="10"
+                    android:hint="Met on/at"
+                    android:inputType="text"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:windowSoftInputMode="adjustPan"
                     android:textColor="@color/white"
-                    android:id="@+id/newPartnerSumm_metAt"/>
+                    android:imeOptions="actionDone"
+                    android:textColorHint="@color/edittext_hint_color"
+                    android:textCursorDrawable="@drawable/white_cursor"
+                    android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/edittext_bg"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
-                android:orientation="horizontal">
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/rectangle_bg"
+                android:orientation="horizontal"
+                android:padding="@dimen/edittext_padding">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/socialicon" />
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/newPartnerSumm_handle"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Social"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:background="@drawable/rectangle_edittext"
+                    android:backgroundTint="@color/edittext_bg"
+                    android:ems="10"
+                    android:hint="Social Media"
+                    android:inputType="text"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:windowSoftInputMode="adjustPan"
                     android:textColor="@color/white"
-                    android:id="@+id/newPartnerSumm_handle"/>
+                    android:imeOptions="actionDone"
+                    android:textColorHint="@color/edittext_hint_color"
+                    android:textCursorDrawable="@drawable/white_cursor"
+                    android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/edittext_bg"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin" />
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:orientation="horizontal"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/rectangle_bg"
+                android:layout_marginBottom="2dp"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="145dp"
@@ -249,26 +271,24 @@
                     android:textColor="@color/white"
                     android:text="HIV Status :"/>
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/newPartnerSumm_hivStatus"
                     android:textSize="14sp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:clickable="true"
+                    android:onClick="showHivStatusEdit"
                     android:textColor="@color/white"
                     android:text="x"/>
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/edittext_bg"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin" />
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/rectangle_bg"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="145dp"
@@ -278,26 +298,24 @@
                     android:id="@+id/partnerTypeTitle"
                     android:text="Partner Type :"/>
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/newPartnerSumm_partnerType"
                     android:textSize="14sp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:clickable="true"
+                    android:onClick="showPartnerTypeEdit"
                     android:textColor="@color/white"
                     android:text="x"/>
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/edittext_bg"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin" />
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
+                android:layout_marginBottom="32dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/rectangle_bg"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="145dp"
@@ -306,21 +324,23 @@
                     android:textColor="@color/white"
                     android:id="@+id/partnerNotes"
                     android:text="Partner Notes :"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@color/white"
+
+                <EditText
                     android:id="@+id/newPartnerSumm_partnerNotes"
-                    android:text="x"/>
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/rectangle_edittext"
+                    android:backgroundTint="@color/edittext_bg"
+                    android:ems="10"
+                    android:hint="Add notes about this partner"
+                    android:imeOptions="actionDone"
+                    android:inputType="textMultiLine"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/edittext_hint_color"
+                    android:textCursorDrawable="@drawable/white_cursor"
+                    android:textSize="14sp" />
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/edittext_bg"
-                android:layout_marginBottom="32dp"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin" />
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -348,7 +368,6 @@
                         android:rating="1.0"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
-                        android:isIndicator="true"
                         style="?android:attr/ratingBarStyle"
                         android:layout_gravity="center_horizontal|center_vertical|left"/>
                 </LinearLayout>
@@ -381,7 +400,6 @@
                         android:rating="1.0"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
-                        android:isIndicator="true"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
             </LinearLayout>
@@ -413,7 +431,6 @@
                         android:rating="1.0"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
-                        android:isIndicator="true"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
             </LinearLayout>
@@ -443,7 +460,6 @@
                         android:stepSize="0.5"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
-                        android:isIndicator="true"
                         android:rating="1.0"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
@@ -475,7 +491,6 @@
                         android:rating="1.0"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
-                        android:isIndicator="true"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
             </LinearLayout>
@@ -505,7 +520,6 @@
                         android:stepSize="0.5"
                         android:rating="1.0"
                         android:scaleX="0.8"
-                        android:isIndicator="true"
                         android:scaleY="0.8"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
@@ -537,27 +551,9 @@
                         android:rating="1.0"
                         android:scaleX="0.8"
                         android:scaleY="0.8"
-                        android:isIndicator="true"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
             </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="40dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingLeft="70dp"
-                android:paddingRight="70dp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/reg_tv_textsize"
-                android:background="@drawable/border_full_white"
-                android:text="EDIT"
-                android:onClick="showEditDetails"
-                android:id="@+id/edit_details"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -565,9 +561,10 @@
                 android:background="@color/encounter_btn_bg"
                 android:textColor="@color/white"
                 android:textStyle="bold"
+                android:layout_marginTop="42dp"
                 android:textSize="@dimen/button_textsize"
                 android:id="@+id/next"
-                android:onClick="onPartnerSummaryNext" />
+                android:onClick="backToPartnerSummary" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

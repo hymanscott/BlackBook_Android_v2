@@ -297,6 +297,7 @@ public class HomeEncounterFragment extends Fragment {
             reloadFragment();
             LynxManager.isRefreshRequired = true;
             startActivity(getActivity().getIntent());
+            getActivity().finish();
         }
     }
 

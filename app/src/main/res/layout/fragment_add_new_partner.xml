@@ -70,7 +70,7 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:background="@color/edittext_bg"
+                    android:background="@drawable/rectangle_bg"
                     android:id="@+id/nickNameLayout"
                     android:orientation="horizontal"
                     android:padding="@dimen/edittext_padding">

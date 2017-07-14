@@ -223,12 +223,6 @@ public class EncounterNewPartner extends AppCompatActivity {
         return true;
     }
 
-    public boolean onAddNewPartnerPrev(View view) {
-        popFragment();
-        finish();
-        return true;
-    }
-
     public boolean onContactInfoNext(View view) {
         NewPartnerNotesFragment fragNewPartnerNotes = new NewPartnerNotesFragment();
         // Contact info validation
@@ -299,21 +293,11 @@ public class EncounterNewPartner extends AppCompatActivity {
         return true;
     }
 
-    public boolean onContactInfoPrev(View view) {
-        popFragment();
-        return true;
-    }
-
     public boolean onPartnerNotesNext(View view) {
         NewPartnerRatingsFragment fragPartnerRatings = new NewPartnerRatingsFragment();
         String partnerNotes = String.valueOf(((EditText) findViewById(R.id.partnerNotes)).getText());
         LynxManager.getActivePartnerContact().setPartner_notes(partnerNotes);
         pushFragments("Encounter", fragPartnerRatings, true);
-        return true;
-    }
-
-    public boolean onPartnerNotesPrev(View view) {
-        popFragment();
         return true;
     }
 
@@ -360,11 +344,110 @@ public class EncounterNewPartner extends AppCompatActivity {
 
     }
 
-    public boolean onPartnerRatingsPrev(View view) {
+    public boolean showEditDetails(View view){
+        NewPartnerSummaryEditFragment fragPartnerSummaryEdit = new NewPartnerSummaryEditFragment();
+        pushFragments("Encounter", fragPartnerSummaryEdit, true);
+        return true;
+    }
+
+    public boolean showHivStatusEdit(View view){
+        NewPartnerHivStatusEditFragment frag = new NewPartnerHivStatusEditFragment();
+        pushFragments("Encounter", frag, true);
+        return true;
+    }
+
+    public boolean changeHivStatus(View view) {
+        RadioButton hiv_status_btn = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_hivstatus)).getCheckedRadioButtonId());
+        String hiv_status = hiv_status_btn.getText().toString();
+        RadioButton radioUndetectable = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_undetectable)).getCheckedRadioButtonId());
+        String partUndetectable ="";
+        if (!LynxManager.undetectableLayoutHidden){  partUndetectable = radioUndetectable.getText().toString();} else { partUndetectable = ""; }
+        LynxManager.getActivePartner().setHiv_status(hiv_status);
+        LynxManager.getActivePartner().setUndetectable_for_sixmonth(partUndetectable);
         popFragment();
         return true;
     }
 
+    public boolean showPartnerTypeEdit(View view){
+        NewPartnerEditTypeFragment frag = new NewPartnerEditTypeFragment();
+        pushFragments("Encounter", frag, true);
+        return true;
+    }
+
+    public boolean changePartnerType(View view){
+        RadioButton radioPartnerType= (RadioButton) findViewById(((RadioGroup) findViewById(R.id.newPartnerType)).getCheckedRadioButtonId());
+        RadioButton radioRelationshipPeriod = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_relationshipPeriod)).getCheckedRadioButtonId());
+        RadioButton radioOtherPartner = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_partner)).getCheckedRadioButtonId());
+        String newPartnerType = radioPartnerType.getText().toString();
+        String newPartnerHaveOtherPartner = "";
+        String newPartnerRltnPeriod = "";
+        if (!LynxManager.partnerHaveOtherPartnerLayoutHidden){newPartnerHaveOtherPartner = radioOtherPartner.getText().toString();}
+        if (!LynxManager.partnerRelationshipLayoutHidden){
+            newPartnerRltnPeriod = radioRelationshipPeriod.getText().toString();
+            if (newPartnerRltnPeriod.equals("Less than 6 months") ){ newPartnerRltnPeriod = "Yes";}else{newPartnerRltnPeriod = "No";}
+        }
+        LynxManager.getActivePartnerContact().setPartner_type(LynxManager.encryptString(newPartnerType));
+        LynxManager.getActivePartnerContact().setRelationship_period(LynxManager.encryptString(newPartnerRltnPeriod));
+        LynxManager.getActivePartnerContact().setPartner_have_other_partners(LynxManager.encryptString(newPartnerHaveOtherPartner));
+        popFragment();
+        return true;
+    }
+
+    public boolean backToPartnerSummary(View view){
+        EditText nickName = (EditText)findViewById(R.id.newPartnerSumm_nickName);
+        TextView hivStatus = (TextView)findViewById(R.id.newPartnerSumm_hivStatus);
+        EditText email = (EditText)findViewById(R.id.newPartnerSumm_email);
+        EditText phone = (EditText)findViewById(R.id.newPartnerSumm_phone);
+        EditText city_neighbor = (EditText)findViewById(R.id.newPartnerSumm_address);
+        EditText metat = (EditText)findViewById(R.id.newPartnerSumm_metAt);
+        EditText handle = (EditText)findViewById(R.id.newPartnerSumm_handle);
+        TextView partnerType = (TextView)findViewById(R.id.newPartnerSumm_partnerType);
+        EditText partnerNotes = (EditText)findViewById(R.id.newPartnerSumm_partnerNotes);
+        LynxManager.getActivePartner().setNickname(LynxManager.encryptString(nickName.getText().toString()));
+        LynxManager.getActivePartner().setHiv_status(LynxManager.encryptString(hivStatus.getText().toString()));
+        LynxManager.getActivePartnerContact().setEmail(LynxManager.encryptString(email.getText().toString()));
+        LynxManager.getActivePartnerContact().setPhone(LynxManager.encryptString(phone.getText().toString()));
+        LynxManager.getActivePartnerContact().setCity(LynxManager.encryptString(city_neighbor.getText().toString()));
+        LynxManager.getActivePartnerContact().setMet_at(LynxManager.encryptString(metat.getText().toString()));
+        LynxManager.getActivePartnerContact().setHandle(LynxManager.encryptString(handle.getText().toString()));
+        LynxManager.getActivePartnerContact().setPartner_type(LynxManager.encryptString(partnerType.getText().toString()));
+        LynxManager.getActivePartnerContact().setPartner_notes(LynxManager.encryptString(partnerNotes.getText().toString()));
+        RatingBar ratingBar1 = (RatingBar) findViewById(R.id.newPartnerSumm_ratingBar1);
+        String ratingValue1 = String.valueOf((ratingBar1.getRating()));
+        RatingBar ratingBar2 = (RatingBar) findViewById(R.id.newPartnerSumm_ratingBar2);
+        String ratingValue2 = String.valueOf((ratingBar2.getRating()));
+        RatingBar ratingBar3 = (RatingBar) findViewById(R.id.newPartnerSumm_ratingBar3);
+        String ratingValue3 = String.valueOf((ratingBar3.getRating()));
+        RatingBar ratingBar4 = (RatingBar) findViewById(R.id.newPartnerSumm_ratingBar4);
+        String ratingValue4 = String.valueOf((ratingBar4.getRating()));
+        RatingBar ratingBar5 = (RatingBar) findViewById(R.id.newPartnerSumm_ratingBar5);
+        String ratingValue5 = String.valueOf((ratingBar5.getRating()));
+        RatingBar ratingBar6 = (RatingBar) findViewById(R.id.newPartnerSumm_ratingBar6);
+        String ratingValue6 = String.valueOf((ratingBar6.getRating()));
+        RatingBar ratingBar7 = (RatingBar) findViewById(R.id.newPartnerSumm_ratingBar7);
+        String ratingValue7 = String.valueOf((ratingBar7.getRating()));
+        List<String> rating_values = new ArrayList<String>();
+        rating_values.add(ratingValue1);
+        rating_values.add(ratingValue2);
+        rating_values.add(ratingValue3);
+        rating_values.add(ratingValue4);
+        rating_values.add(ratingValue5);
+        rating_values.add(ratingValue6);
+        rating_values.add(ratingValue7);
+        LynxManager.partnerRatingValues.clear();
+        LynxManager.setPartnerRatingValues(rating_values);
+        LynxManager.setPartnerRatingIds(rating_field_id);
+        LynxManager.activePartnerRating.clear();
+        for (Integer field_id : rating_field_id) {
+            System.out.println("FIELD ID"+field_id);
+            System.out.println(rating_values.get(field_id - 1));
+            PartnerRating partner_rating = new PartnerRating(LynxManager.getActiveUser().getUser_id(), LynxManager.getActivePartner().getPartner_id(),
+                    field_id, String.valueOf(rating_values.get(field_id - 1)), String.valueOf(R.string.statusUpdateNo));
+            LynxManager.setActivePartnerRating(partner_rating);
+        }
+        popFragment();
+        return true;
+    }
 
     public boolean onPartnerSummaryNext(View view) {
         NewPartnerLoggedFragment fragnewpartnerLogged = new NewPartnerLoggedFragment();

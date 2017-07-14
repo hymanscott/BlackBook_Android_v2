@@ -26,7 +26,7 @@ import java.util.List;
 public class EditPartnerRatingsFragment extends Fragment {
     DatabaseHelper db;
     TextView rateTitle,newPartner_rate1,newPartner_rate2,newPartner_rate3,newPartner_rate4,newPartner_rate5,newPartner_rate6,newPartner_rate7;
-    Button next,revise;
+    Button next;
     public EditPartnerRatingsFragment() {
     }
     @Override
@@ -42,8 +42,6 @@ public class EditPartnerRatingsFragment extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         next = (Button)rootview.findViewById(R.id.next);
         next.setTypeface(tf);
-        revise = (Button)rootview.findViewById(R.id.revise);
-        revise.setTypeface(tf);
         rateTitle = (TextView)rootview.findViewById(R.id.rateTitle);
         rateTitle.setTypeface(tf);
         /*newPartner_rate1 = (TextView)rootview.findViewById(R.id.newPartner_rate1);

@@ -40,24 +40,8 @@ public class EditPartnerSummaryFragment extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         next = (Button)rootview.findViewById(R.id.next);
         next.setTypeface(tf);
-        revise = (Button)rootview.findViewById(R.id.revise);
-        revise.setTypeface(tf);
-        addToList = (TextView)rootview.findViewById(R.id.addToList);
-        addToList.setTypeface(tf);
-        nick_name = (TextView)rootview.findViewById(R.id.nick_name);
-        nick_name.setTypeface(tf);
         hivStatus = (TextView)rootview.findViewById(R.id.hivStatus);
         hivStatus.setTypeface(tf);
-        email = (TextView)rootview.findViewById(R.id.email);
-        email.setTypeface(tf);
-        mobile = (TextView)rootview.findViewById(R.id.mobile);
-        mobile.setTypeface(tf);
-        city = (TextView)rootview.findViewById(R.id.city);
-        city.setTypeface(tf);
-        metAt = (TextView)rootview.findViewById(R.id.metAt);
-        metAt.setTypeface(tf);
-        social = (TextView)rootview.findViewById(R.id.social);
-        social.setTypeface(tf);
         partnerTypeTitle = (TextView)rootview.findViewById(R.id.partnerTypeTitle);
         partnerTypeTitle.setTypeface(tf);
         partnerNotes = (TextView)rootview.findViewById(R.id.partnerNotes);
@@ -73,7 +57,6 @@ public class EditPartnerSummaryFragment extends Fragment {
         new_partner_Summ_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         new_partner_Summ_nickname.setAllCaps(true);
         new_partner_Summ_nickname.setTypeface(tf);
-        TextView partnerlist = (TextView) rootview.findViewById(R.id.newPartnerSumm_partnerList);
         TextView nickName = (TextView) rootview.findViewById(R.id.newPartnerSumm_nickName);
         TextView hivStatus = (TextView) rootview.findViewById(R.id.newPartnerSumm_hivStatus);
         TextView email = (TextView) rootview.findViewById(R.id.newPartnerSumm_email);
@@ -84,8 +67,6 @@ public class EditPartnerSummaryFragment extends Fragment {
         TextView partnerType = (TextView) rootview.findViewById(R.id.newPartnerSumm_partnerType);
         TextView partnerNotes = (TextView) rootview.findViewById(R.id.newPartnerSumm_partnerNotes);
 
-        partnerlist.setText(LynxManager.decryptString(LynxManager.getActivePartner().getIs_added_to_partners()));
-        partnerlist.setTypeface(tf);
         nickName.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         nickName.setTypeface(tf);
         hivStatus.setText(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()));

@@ -12,13 +12,16 @@
             android:layout_width="fill_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
+
             <ImageView
+                android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="32dp"
+                android:layout_marginTop="32dp"
                 android:src="@drawable/encounterlarge" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,7 +59,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -78,6 +80,8 @@
                         android:id="@+id/ratingBar1"
                         android:stepSize="0.5"
                         android:rating="1.0"
+                        android:scaleX="0.9"
+                        android:scaleY="0.9"
                         style="?android:attr/ratingBarStyle"
                         android:layout_gravity="center_horizontal|center_vertical|left"/>
                 </LinearLayout>
@@ -88,7 +92,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -111,6 +114,8 @@
                         android:id="@+id/ratingBar2"
                         android:stepSize="0.5"
                         android:rating="1.0"
+                        android:scaleX="0.9"
+                        android:scaleY="0.9"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
             </LinearLayout>
@@ -119,7 +124,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -142,6 +146,8 @@
                         android:id="@+id/ratingBar3"
                         android:stepSize="0.5"
                         android:rating="1.0"
+                        android:scaleX="0.9"
+                        android:scaleY="0.9"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
             </LinearLayout>
@@ -150,7 +156,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -171,6 +176,8 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/ratingBar4"
                         android:stepSize="0.5"
+                        android:scaleX="0.9"
+                        android:scaleY="0.9"
                         android:rating="1.0"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
@@ -180,7 +187,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -202,6 +208,8 @@
                         android:id="@+id/ratingBar5"
                         android:stepSize="0.5"
                         android:rating="1.0"
+                        android:scaleX="0.9"
+                        android:scaleY="0.9"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
             </LinearLayout>
@@ -210,7 +218,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -232,6 +239,8 @@
                         android:id="@+id/ratingBar6"
                         android:stepSize="0.5"
                         android:rating="1.0"
+                        android:scaleX="0.9"
+                        android:scaleY="0.9"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
             </LinearLayout>
@@ -240,7 +249,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
@@ -262,6 +270,8 @@
                         android:id="@+id/ratingBar7"
                         android:stepSize="0.5"
                         android:rating="1.0"
+                        android:scaleX="0.9"
+                        android:scaleY="0.9"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
             </LinearLayout>
@@ -277,32 +287,6 @@
                 android:background="@drawable/lynx_button"
                 android:textColor="@color/white"
                 android:onClick="onPartnerRatingsNext" />
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/buttonLayout">
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_gravity="bottom"
-                    android:gravity="bottom">
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Revise"
-                        android:textStyle="bold"
-                        android:layout_gravity="left"
-                        android:layout_alignParentLeft="true"
-                        android:visibility="gone"
-                        android:background="@drawable/lynx_button"
-                        android:textColor="@color/white"
-                        android:id="@+id/revise"
-                        android:onClick="onPartnerRatingsPrev"
-                        />
-                </RelativeLayout>
-            </LinearLayout>
-
         </LinearLayout>
 
     </ScrollView>

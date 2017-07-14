@@ -31,7 +31,7 @@ public class NewPartnerRatingsFragment extends Fragment {
 
     }
     TextView add_partner_title,rateTitle,newPartner_rate1;
-    Button next,revise;
+    Button next;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,8 +43,6 @@ public class NewPartnerRatingsFragment extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         next = (Button)rootview.findViewById(R.id.next);
         next.setTypeface(tf);
-        revise = (Button)rootview.findViewById(R.id.revise);
-        revise.setTypeface(tf);
         rateTitle = (TextView)rootview.findViewById(R.id.rateTitle);
         rateTitle.setTypeface(tf);
         add_partner_title = (TextView)rootview.findViewById(R.id.add_partner_title);

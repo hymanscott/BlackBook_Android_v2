@@ -1,58 +1,54 @@
 package com.lynxstudy.lynx;
 
-
+import android.support.v4.app.Fragment;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.google.android.gms.vision.text.Text;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.UserRatingFields;
 
 import java.util.List;
 
-
 /**
- * A simple {@link Fragment} subclass.
+ * Created by Hari on 2017-07-14.
  */
-public class NewPartnerSummaryFragment extends Fragment {
 
-    DatabaseHelper db;
-    public NewPartnerSummaryFragment() {
+public class NewPartnerSummaryEditFragment extends Fragment{
+
+    public NewPartnerSummaryEditFragment() {
     }
-
+    DatabaseHelper db;
     TextView add_partner_title,hivStatus,partnerTypeTitle,partnerNotes,overAll;
     Button next;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootview = inflater.inflate(R.layout.fragment_new_partner_summary, container, false);
+        View rootview = inflater.inflate(R.layout.fragment_new_partner_summary_edit, container, false);
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-        next = (Button)rootview.findViewById(R.id.next);
+        next = (Button) rootview.findViewById(R.id.next);
         next.setTypeface(tf);
-        hivStatus = (TextView)rootview.findViewById(R.id.hivStatus);
+        hivStatus = (TextView) rootview.findViewById(R.id.hivStatus);
         hivStatus.setTypeface(tf);
-        partnerTypeTitle = (TextView)rootview.findViewById(R.id.partnerTypeTitle);
+        partnerTypeTitle = (TextView) rootview.findViewById(R.id.partnerTypeTitle);
         partnerTypeTitle.setTypeface(tf);
-        partnerNotes = (TextView)rootview.findViewById(R.id.partnerNotes);
+        partnerNotes = (TextView) rootview.findViewById(R.id.partnerNotes);
         partnerNotes.setTypeface(tf);
-        overAll = (TextView)rootview.findViewById(R.id.overAll);
+        overAll = (TextView) rootview.findViewById(R.id.overAll);
         overAll.setTypeface(tf);
-        add_partner_title = (TextView)rootview.findViewById(R.id.add_partner_title);
+        add_partner_title = (TextView) rootview.findViewById(R.id.add_partner_title);
         add_partner_title.setTypeface(tf);
 
         // Display Summary
@@ -60,15 +56,15 @@ public class NewPartnerSummaryFragment extends Fragment {
         new_partner_Summ_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         new_partner_Summ_nickname.setAllCaps(true);
         new_partner_Summ_nickname.setTypeface(tf);
-        TextView nickName = (TextView) rootview.findViewById(R.id.newPartnerSumm_nickName);
+        EditText nickName = (EditText) rootview.findViewById(R.id.newPartnerSumm_nickName);
         TextView hivStatus = (TextView) rootview.findViewById(R.id.newPartnerSumm_hivStatus);
-        TextView email = (TextView) rootview.findViewById(R.id.newPartnerSumm_email);
-        TextView phone = (TextView) rootview.findViewById(R.id.newPartnerSumm_phone);
-        TextView city_neighbor = (TextView) rootview.findViewById(R.id.newPartnerSumm_address);
-        TextView metat = (TextView) rootview.findViewById(R.id.newPartnerSumm_metAt);
-        TextView handle = (TextView) rootview.findViewById(R.id.newPartnerSumm_handle);
+        EditText email = (EditText) rootview.findViewById(R.id.newPartnerSumm_email);
+        EditText phone = (EditText) rootview.findViewById(R.id.newPartnerSumm_phone);
+        EditText city_neighbor = (EditText) rootview.findViewById(R.id.newPartnerSumm_address);
+        EditText metat = (EditText) rootview.findViewById(R.id.newPartnerSumm_metAt);
+        EditText handle = (EditText) rootview.findViewById(R.id.newPartnerSumm_handle);
         TextView partnerType = (TextView) rootview.findViewById(R.id.newPartnerSumm_partnerType);
-        TextView partnerNotes = (TextView) rootview.findViewById(R.id.newPartnerSumm_partnerNotes);
+        EditText partnerNotes = (EditText) rootview.findViewById(R.id.newPartnerSumm_partnerNotes);
 
         nickName.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         nickName.setTypeface(tf);
@@ -106,13 +102,13 @@ public class NewPartnerSummaryFragment extends Fragment {
         }
 
 
-        final RatingBar rating1 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar1);
-        final RatingBar rating2 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar2);
-        final RatingBar rating3 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar3);
-        final RatingBar rating4 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar4);
-        final RatingBar rating5 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar5);
-        final RatingBar rating6 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar6);
-        final RatingBar rating7 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar7);
+        RatingBar rating1 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar1);
+        RatingBar rating2 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar2);
+        RatingBar rating3 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar3);
+        RatingBar rating4 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar4);
+        RatingBar rating5 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar5);
+        RatingBar rating6 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar6);
+        RatingBar rating7 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar7);
 
         List<String> rating_values = LynxManager.getPartnerRatingValues();
         rating1.setRating(Float.parseFloat(rating_values.get(0)));
@@ -157,20 +153,6 @@ public class NewPartnerSummaryFragment extends Fragment {
         stars7.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars7.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                List<String> rating_values = LynxManager.getPartnerRatingValues();
-                rating1.setRating(Float.parseFloat(rating_values.get(0)));
-                rating2.setRating(Float.parseFloat(rating_values.get(1)));
-                rating3.setRating(Float.parseFloat(rating_values.get(2)));
-                rating4.setRating(Float.parseFloat(rating_values.get(3)));
-                rating5.setRating(Float.parseFloat(rating_values.get(4)));
-                rating6.setRating(Float.parseFloat(rating_values.get(5)));
-                rating7.setRating(Float.parseFloat(rating_values.get(6)));
-            }
-        },500);
         return rootview;
     }
 }
-

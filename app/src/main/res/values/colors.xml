@@ -27,7 +27,7 @@
     <color name="bottom">#2196F3</color>
     <color name="center">#4b61e6</color>
     <!--<color name="button_darkblue">#505be5</color>-->
-    <color name="edittext_bg">#1AF9FAFB</color>
+    <color name="edittext_bg">#1AFFFFFF</color>
     <color name="edittext">#F9FAFB</color>
     <color name="btn_blue_start">#80693CDD</color>
     <color name="btn_blue_end">#80683BDD</color>
