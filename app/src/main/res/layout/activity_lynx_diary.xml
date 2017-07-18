@@ -55,7 +55,7 @@
             app:tabSelectedTextColor="@color/text_color"
             app:tabTextAppearance="@style/MineCustomTabText"
             app:tabIndicatorHeight="3dp"
-            app:tabMode="scrollable"
+            app:tabMode="fixed"
             android:layout_height="wrap_content" />
 
     </android.support.design.widget.AppBarLayout>

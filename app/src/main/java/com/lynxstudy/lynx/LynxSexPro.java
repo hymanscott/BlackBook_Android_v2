@@ -1041,7 +1041,7 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">Encounter " + jsonEncounterStr);
+            Log.d("Response: ", ">>Encounter " + jsonEncounterStr);
             encounterJsonArrayResult = jsonEncounterStr;
             return null;
         }

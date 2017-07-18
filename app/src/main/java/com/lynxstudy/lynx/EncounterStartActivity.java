@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.DrugMaster;
+import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
 import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.UserAlcoholUse;
@@ -239,7 +240,7 @@ public class EncounterStartActivity extends AppCompatActivity {
         }else if(!LynxManager.timeValidation(enctime.getText().toString())){
             Toast.makeText(this, "Invalid Time", Toast.LENGTH_LONG).show();
         }else{
-            String encounter_datetime = LynxManager.getFormatedDate("dd/MM/yyyy hh:mm a", encdate.getText().toString() + " " + enctime.getText().toString(), "yyyy-MM-dd HH:mm:ss");
+            String encounter_datetime = LynxManager.getFormatedDate("dd/MM/yy hh:mm a", encdate.getText().toString() + " " + enctime.getText().toString(), "yyyy-MM-dd HH:mm:ss");
             Log.v("encounter datetime",encounter_datetime);
             LynxManager.activeEncounter.setDatetime(LynxManager.encryptString(encounter_datetime));
             EncounterChoosePartnerFragment fragEncChoosePartner = new EncounterChoosePartnerFragment();
@@ -270,7 +271,6 @@ public class EncounterStartActivity extends AppCompatActivity {
             LynxManager.setActivePartnerContact(db.getPartnerContactbyID(LynxManager.selectedPartnerID));
             LynxManager.activePartnerRating.clear();
             LynxManager.activeEncounter.setEncounter_partner_id(LynxManager.selectedPartnerID);
-
 
             for (PartnerRating partnerRating : db.getPartnerRatingbyPartnerID(LynxManager.selectedPartnerID)) {
                 LynxManager.setActivePartnerRating(partnerRating);
@@ -312,7 +312,6 @@ public class EncounterStartActivity extends AppCompatActivity {
         LynxManager.activeEncounter.setRate_the_sex(LynxManager.encryptString(String.valueOf(rate_of_sex.getRating())));
 
         LynxManager.activeEncounter.setEncounter_partner_id(LynxManager.getActivePartner().getPartner_id());
-
 
         if (LynxManager.getActivePartnerSexType().size() == 0) {
             Toast.makeText(this, "Please select Type of sex", Toast.LENGTH_SHORT).show();
@@ -458,6 +457,8 @@ public class EncounterStartActivity extends AppCompatActivity {
         return true;
     }
     public boolean onEncSummNext(View view) {
+        LynxManager.activeEncounter.setIs_drug_used(LynxManager.encryptString("0"));
+        LynxManager.activeEncounter.setIs_possible_sex_tomorrow(LynxManager.encryptString("0"));
         int encounterID = db.createEncounter(LynxManager.activeEncounter);
         for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
             Log.v("condomUseText",encSexType.getSex_type()+encSexType.getCondom_use());

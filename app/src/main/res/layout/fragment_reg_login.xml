@@ -47,6 +47,7 @@
                     android:layout_gravity="center_vertical"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/white"
+                    android:imeOptions="actionNext"
                     android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="@dimen/edittext_textsize" />
@@ -76,6 +77,7 @@
                     android:backgroundTint="@color/edittext_bg"
                     android:ems="10"
                     android:hint="Password"
+                    android:imeOptions="actionDone"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/loginPassword"
                     android:inputType="textPassword"

@@ -102,17 +102,17 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         tab2.setTextColor(getResources().getColor(R.color.text_color));
         tab2.setTypeface(tf);
         tab2.setTextSize(16);
-        TextView tab3 = new TextView(LynxDiary.this);
-        tab3.setText("DRUG USE");
-        tab3.setTextColor(getResources().getColor(R.color.text_color));
-        tab3.setTypeface(tf);
-        tab3.setTextSize(16);
+//        TextView tab3 = new TextView(LynxDiary.this);
+//        tab3.setText("DRUG USE");
+//        tab3.setTextColor(getResources().getColor(R.color.text_color));
+//        tab3.setTypeface(tf);
+//        tab3.setTextSize(16);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.getTabAt(0).setCustomView(tab1);
         tabLayout.getTabAt(1).setCustomView(tab2);
-        tabLayout.getTabAt(2).setCustomView(tab3);
+//        tabLayout.getTabAt(2).setCustomView(tab3);
 
     }
 
@@ -197,8 +197,8 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
                     return new HomeEncounterFragment();
                 case 1:
                     return new HomePartnersFragment();
-                case 2:
-                    return new HomeDrugUse();
+//                case 2:
+//                    return new HomeDrugUse();
                 default:
                     return null;
             }
@@ -207,7 +207,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 2;
         }
 
         @Override
@@ -217,8 +217,8 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
                     return "SEXUAL HISTORY";
                 case 1:
                     return "SEXUAL PARTNERS";
-                case 2:
-                    return "DRUG USE";
+//                case 2:
+//                    return "DRUG USE";
             }
             return null;
         }

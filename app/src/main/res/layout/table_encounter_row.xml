@@ -34,6 +34,9 @@
             android:layout_marginLeft="10dp"
             android:textColor="@color/text_color"
             android:layout_weight="0.5"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:maxEms="8"
             android:id="@+id/name"/>
     </LinearLayout>
     <LinearLayout

@@ -446,7 +446,7 @@ public class LynxManager {
     private static Matcher matcher;
     //date validation
     public static boolean dateValidation(String date){
-        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy");
         String Cur_date = df.format(new Date());
         Date d1 = null,d2=null;
         try {

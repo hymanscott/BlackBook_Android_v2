@@ -118,7 +118,7 @@ public class HomeEncounterFragment extends Fragment {
                 ratingBar.setScaleY(rating_bar_scale);
                 LayerDrawable stars4 = (LayerDrawable) ratingBar.getProgressDrawable();
                 stars4.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);// On State color
-                stars4.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP);// Off State color
+                stars4.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_IN);// Off State color
                 stars4.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);// Stroke (On State Stars Only)
                 int encounterId = encounter.getEncounter_id();
                 v.setClickable(true);

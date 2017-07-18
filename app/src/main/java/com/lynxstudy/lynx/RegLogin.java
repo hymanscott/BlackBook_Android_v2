@@ -1053,7 +1053,7 @@ public class RegLogin extends AppCompatActivity {
                         //And then read attributes like
                         int logged_userId = loggedUser.getInt("id");
                         String logged_userDob = String.valueOf(loggedUser.getString("dob"));
-                        String dob = LynxManager.getFormatedDate("yyyy-MM-dd",logged_userDob,"dd-MMM-yyyy");
+                        String dob = LynxManager.getFormatedDate("MM/dd/yyyy",logged_userDob,"dd-MMM-yyyy");
                         Users logged_user = new Users(LynxManager.encryptString(loggedUser.getString("firstname")), LynxManager.encryptString(loggedUser.getString("lastname")),
                                 LynxManager.encryptString(loggedUser.getString("email")), LynxManager.encryptString(loggedUser.getString("password_plain_text")), LynxManager.encryptString(loggedUser.getString("mobile")),
                                 LynxManager.encryptString(loggedUser.getString("passcode")), LynxManager.encryptString(loggedUser.getString("address")), LynxManager.encryptString(loggedUser.getString("city")),
@@ -1085,10 +1085,12 @@ public class RegLogin extends AppCompatActivity {
                                     LynxManager.encryptString(user_baseline_object.getString("is_primary_partner")),
                                     String.valueOf(R.string.statusUpdateYes), true);
                             int createBaselineID = db.createbaseline(userBaselineInfo);
+                            db.updateUserBaselineCreatedDate(user_baseline_object.getString("created_at"),createBaselineID);
                             userBaselineInfo.setBaseline_id(createBaselineID);
                             userBaselineInfo.setCreated_at(db.getUserBaselineCreatedAtByUserId(LynxManager.getActiveUser().getUser_id()));
+                            Log.v("BaselineCreatedDate",userBaselineInfo.getCreated_at());
                             LynxManager.setActiveUserBaselineInfo(userBaselineInfo);
-
+                            Log.v("BaselineCreatedDate",LynxManager.getActiveUserBaselineInfo().getCreated_at());
 
                         }
 

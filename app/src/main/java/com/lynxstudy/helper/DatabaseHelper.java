@@ -918,7 +918,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return user_baseline_id;
     }
+    public int updateUserBaselineCreatedDate(String date, int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(KEY_CREATED_AT, date);
+
+        // updating row
+        return db.update(TABLE_USER_BASE_INFO, values, KEY_BASE_ID + " = ?",
+                new String[]{String.valueOf(id)});
+    }
     /**
      * get single Users Baseline Infor by user_id
      */

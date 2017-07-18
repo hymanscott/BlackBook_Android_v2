@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -63,6 +64,7 @@ public class EncounterEnctimeFragment extends Fragment {
 
         //Date Picker
         final Calendar myCalendar = Calendar.getInstance();
+        final Calendar today = Calendar.getInstance();
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -75,8 +77,11 @@ public class EncounterEnctimeFragment extends Fragment {
 
                 String myFormat = "dd/MM/yy"; //In which you need put here
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-
-                encdate.setText(sdf.format(myCalendar.getTime()));
+                /*if(myCalendar.getTimeInMillis()>today.getTimeInMillis()){
+                    Toast.makeText(getActivity(),"Invalid Date",Toast.LENGTH_SHORT).show();
+                }else {*/
+                    encdate.setText(sdf.format(myCalendar.getTime()));
+                //}
             }
 
         };

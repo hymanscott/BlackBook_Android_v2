@@ -277,19 +277,23 @@ public class EncounterNewPartner extends AppCompatActivity {
                 newPartnerRltnPeriod = "No";
             }
         }
-
-        PartnerContact newPartnerContact = new PartnerContact(LynxManager.getActivePartner().getPartner_id(),
-                LynxManager.getActiveUser().getUser_id(),
-                LynxManager.getActivePartner().getNickname(), LynxManager.encryptString(""),
-                LynxManager.encryptString(newPartner_City), LynxManager.encryptString(""), LynxManager.encryptString(""),
-                LynxManager.encryptString(newPartner_phone), LynxManager.encryptString(newPartnerEmail),
-                LynxManager.encryptString(newPartner_MetAt), LynxManager.encryptString(newPartner_Handle),
-                LynxManager.encryptString(newPartnerType), LynxManager.encryptString(newPartnerHaveOtherPartner),
-                LynxManager.encryptString(newPartnerRltnPeriod), LynxManager.encryptString(newPartnerNotes),
-                String.valueOf(R.string.statusUpdateNo),true);
-        LynxManager.setActivePartnerContact(newPartnerContact);
-        pushFragments("Encounter", fragNewPartnerNotes, true);
-
+        if (!matcher.matches()) {
+            Toast.makeText(EncounterNewPartner.this,"Please enter valid email",Toast.LENGTH_SHORT).show();
+        }else if(newPartner_phone.length()<10 || newPartner_phone.length()>11){
+            Toast.makeText(EncounterNewPartner.this,"Please enter valid mobile number",Toast.LENGTH_SHORT).show();
+        }else{
+            PartnerContact newPartnerContact = new PartnerContact(LynxManager.getActivePartner().getPartner_id(),
+                    LynxManager.getActiveUser().getUser_id(),
+                    LynxManager.getActivePartner().getNickname(), LynxManager.encryptString(""),
+                    LynxManager.encryptString(newPartner_City), LynxManager.encryptString(""), LynxManager.encryptString(""),
+                    LynxManager.encryptString(newPartner_phone), LynxManager.encryptString(newPartnerEmail),
+                    LynxManager.encryptString(newPartner_MetAt), LynxManager.encryptString(newPartner_Handle),
+                    LynxManager.encryptString(newPartnerType), LynxManager.encryptString(newPartnerHaveOtherPartner),
+                    LynxManager.encryptString(newPartnerRltnPeriod), LynxManager.encryptString(newPartnerNotes),
+                    String.valueOf(R.string.statusUpdateNo),true);
+            LynxManager.setActivePartnerContact(newPartnerContact);
+            pushFragments("Encounter", fragNewPartnerNotes, true);
+        }
         return true;
     }
 

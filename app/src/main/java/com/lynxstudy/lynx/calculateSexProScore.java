@@ -106,7 +106,8 @@ public class calculateSexProScore {
         List<UserDrugUse> baselineDrugUse  =   LynxManager.getActiveUserDrugUse();
         List<UserSTIDiag>  baselineSTI      =   LynxManager.getActiveUserSTIDiag();
         UserAlcoholUse userAlcoholUse   =   LynxManager.getActiveUserAlcoholUse();
-        SimpleDateFormat inputDF  = new SimpleDateFormat("dd-MMM-yyyy");
+        //SimpleDateFormat inputDF  = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat inputDF  = new SimpleDateFormat("MM/dd/yy");
 
         Date date1 = null;
         try {
@@ -128,7 +129,7 @@ public class calculateSexProScore {
         SimpleDateFormat inputDF1  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         try {
-            date1 = inputDF1.parse(cur_user.getCreated_at());
+            date1 = inputDF1.parse(baselineInfo.getCreated_at());
         } catch (ParseException e) {
             e.printStackTrace();
         }

@@ -394,6 +394,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
+                android:visibility="gone"
                 android:gravity="bottom">
                 <RelativeLayout
                     android:layout_width="fill_parent"
