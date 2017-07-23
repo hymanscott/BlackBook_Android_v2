@@ -1,175 +1,127 @@
 package com.lynxstudy.lynx;
 
-import android.app.ActionBar;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
+import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.LayerDrawable;
+import android.media.Image;
+import android.support.design.widget.TabLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RatingBar;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.ToggleButton;
+import android.widget.Toast;
 
-import com.lynxstudy.model.EncounterSexType;
+public class SelectedEncounterSummary extends AppCompatActivity implements View.OnClickListener {
 
-public class SelectedEncounterSummary extends AppCompatActivity {
+    /**
+     * The {@link android.support.v4.view.PagerAdapter} that will provide
+     * fragments for each of the sections. We use a
+     * {@link FragmentPagerAdapter} derivative, which will keep every
+     * loaded fragment in memory. If this becomes too memory intensive, it
+     * may be best to switch to a
+     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
+     */
+    private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    TextView frag_title,partner,sexRating,hivStatus,typeSex;
+    /**
+     * The {@link ViewPager} that will host the section contents.
+     */
+    private ViewPager mViewPager;
+    LinearLayout btn_sexpro,btn_testing,btn_prep,btn_chat;
+    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv;
+    ImageView viewProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_encounter_summary);
 
-        // Custom Action Bar //
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
-        getSupportActionBar().setCustomView(cView);
-        ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
-        viewProfile.setVisibility(View.INVISIBLE);
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-        frag_title = (TextView) findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf);
-        partner = (TextView) findViewById(R.id.partner);
-        partner.setTypeface(tf);
-        sexRating = (TextView) findViewById(R.id.sexRating);
-        sexRating.setTypeface(tf);
-        hivStatus = (TextView) findViewById(R.id.hivStatus);
-        hivStatus.setTypeface(tf);
-        typeSex = (TextView) findViewById(R.id.typeSex);
-        typeSex.setTypeface(tf);
+        // Click Listners //
+        btn_sexpro = (LinearLayout)findViewById(R.id.bot_nav_sexpro);
+        btn_testing = (LinearLayout) findViewById(R.id.bot_nav_testing);
+        btn_prep = (LinearLayout) findViewById(R.id.bot_nav_prep);
+        btn_chat = (LinearLayout) findViewById(R.id.bot_nav_chat);
+        viewProfile = (ImageView)findViewById(R.id.viewProfile);
 
-        TextView nickname = (TextView) findViewById(R.id.encList_summary_nickName);
-        nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        nickname.setAllCaps(true);
-        nickname.setTypeface(tf);
-        TextView partnername = (TextView) findViewById(R.id.encListSumm_partnerName);
-        partnername.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        partnername.setTypeface(tf);
+        bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
+        bot_nav_sexpro_tv.setTypeface(tf);
+        bot_nav_diary_tv = (TextView)findViewById(R.id.bot_nav_diary_tv);
+        bot_nav_diary_tv.setTypeface(tf);
+        bot_nav_testing_tv = (TextView)findViewById(R.id.bot_nav_testing_tv);
+        bot_nav_testing_tv.setTypeface(tf);
+        bot_nav_prep_tv = (TextView)findViewById(R.id.bot_nav_prep_tv);
+        bot_nav_prep_tv.setTypeface(tf);
+        bot_nav_chat_tv = (TextView)findViewById(R.id.bot_nav_chat_tv);
+        bot_nav_chat_tv.setTypeface(tf);
 
-        RatingBar sexRating = (RatingBar) findViewById(R.id.encListSumm_sexRating);
-        sexRating.setRating(Float.parseFloat(LynxManager.decryptString(String.valueOf(LynxManager.getActiveEncounter().getRate_the_sex()))));
+        btn_sexpro.setOnClickListener(this);
+        btn_testing.setOnClickListener(this);
+        btn_prep.setOnClickListener(this);
+        btn_chat.setOnClickListener(this);
+        viewProfile.setOnClickListener(this);
 
+        // Create the adapter that will return a fragment for each of the three
+        // primary sections of the activity.
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        LayerDrawable stars1 = (LayerDrawable) sexRating.getProgressDrawable();
-        stars1.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars1.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
-        stars1.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        // Custom tab views //
+        TextView tab1 = new TextView(SelectedEncounterSummary.this);
+        tab1.setText("SEXUAL HISTORY");
+        tab1.setTextColor(getResources().getColor(R.color.text_color));
+        tab1.setTypeface(tf);
+        tab1.setTextSize(16);
+        TextView tab2 = new TextView(SelectedEncounterSummary.this);
+        tab2.setText("SEXUAL PARTNERS");
+        tab2.setTextColor(getResources().getColor(R.color.text_color));
+        tab2.setTypeface(tf);
+        tab2.setTextSize(16);
+//        TextView tab3 = new TextView(LynxDiary.this);
+//        tab3.setText("DRUG USE");
+//        tab3.setTextColor(getResources().getColor(R.color.text_color));
+//        tab3.setTypeface(tf);
+//        tab3.setTextSize(16);
 
-        TextView hivStatus = (TextView) findViewById(R.id.encListSumm_hivStatus);
-        hivStatus.setText(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()));
-        hivStatus.setTypeface(tf);
-        ToggleButton btn_sexType_kissing = (ToggleButton) findViewById(R.id.encListSumm_kissing);
-        btn_sexType_kissing.setTypeface(tf);
-        ToggleButton btn_sexType_iSucked = (ToggleButton) findViewById(R.id.encListSumm_iSucked);
-        btn_sexType_iSucked.setTypeface(tf);
-        ToggleButton btn_sexType_heSucked = (ToggleButton) findViewById(R.id.encListSumm_heSucked);
-        btn_sexType_heSucked.setTypeface(tf);
-        ToggleButton btn_sexType_iBottomed = (ToggleButton) findViewById(R.id.encListSumm_iBottomed);
-        btn_sexType_iBottomed.setTypeface(tf);
-        ToggleButton btn_sexType_iTopped = (ToggleButton) findViewById(R.id.encListSumm_iTopped);
-        btn_sexType_iTopped.setTypeface(tf);
-        ToggleButton btn_sexType_ijerked = (ToggleButton) findViewById(R.id.encListSumm_iJerked);
-        btn_sexType_ijerked.setTypeface(tf);
-        ToggleButton btn_sexType_hejerked = (ToggleButton) findViewById(R.id.encListSumm_heJerked);
-        btn_sexType_hejerked.setTypeface(tf);
-        ToggleButton btn_sexType_irimmed = (ToggleButton) findViewById(R.id.encListSumm_iRimmed);
-        btn_sexType_irimmed.setTypeface(tf);
-        ToggleButton btn_sexType_herimmed = (ToggleButton) findViewById(R.id.encListSumm_heRimmed);
-        btn_sexType_herimmed.setTypeface(tf);
-        for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
-            switch (encSexType.getSex_type()) {
-                case "Kissing / making out":
-                    btn_sexType_kissing.setSelected(true);
-                    btn_sexType_kissing.setClickable(false);
-                    btn_sexType_kissing.setTextColor(Color.parseColor("#ffffff"));
-                    break;
-                case "I sucked him":
-                    btn_sexType_iSucked.setSelected(true);
-                    btn_sexType_iSucked.setClickable(false);
-                    btn_sexType_iSucked.setTextColor(Color.parseColor("#ffffff"));
-                    /*TextView isucked_txt = (TextView) findViewById(R.id.encListSumm_iSucked_condomuse);
-                    isucked_txt.setVisibility(View.VISIBLE);
-                    //isucked_txt.setText("When I sucked him, " + encSexType.getCondom_use() + " \n Did Come in my mouth :" + encSexType.getNote());
-                    isucked_txt.setText("When I sucked him, " + encSexType.getCondom_use());*/
-                    break;
-                case "He sucked me":
-                    btn_sexType_heSucked.setSelected(true);
-                    btn_sexType_heSucked.setClickable(false);
-                    btn_sexType_heSucked.setTextColor(Color.parseColor("#ffffff"));
-                    break;
-                case "I bottomed":
-                    btn_sexType_iBottomed.setSelected(true);
-                    btn_sexType_iBottomed.setClickable(false);
-                    btn_sexType_iBottomed.setTextColor(Color.parseColor("#ffffff"));
-                    /*TextView iBottomed_txt = (TextView) findViewById(R.id.encListSumm_iBottomed_condomuse);
-                    iBottomed_txt.setVisibility(View.VISIBLE);
-                    //iBottomed_txt.setText("When I Bottomed, " + encSexType.getCondom_use() + " \n Did Come in me :" + encSexType.getNote());
-                    iBottomed_txt.setText("When I Bottomed, " + encSexType.getCondom_use());*/
-                    break;
-                case "I topped":
-                    btn_sexType_iTopped.setSelected(true);
-                    btn_sexType_iTopped.setClickable(false);
-                    btn_sexType_iTopped.setTextColor(Color.parseColor("#ffffff"));
-                    /*TextView iTopped_txt = (TextView) findViewById(R.id.encListSumm_iTopped_condomuse);
-                    iTopped_txt.setVisibility(View.VISIBLE);
-                    iTopped_txt.setText("When I Topped him, " + encSexType.getCondom_use());*/
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+        tabLayout.getTabAt(0).setCustomView(tab1);
+        tabLayout.getTabAt(1).setCustomView(tab2);
+//        tabLayout.getTabAt(2).setCustomView(tab3);
 
-                    break;
-                case "I jerked him":
-                    btn_sexType_ijerked.setSelected(true);
-                    btn_sexType_ijerked.setClickable(false);
-                    btn_sexType_ijerked.setTextColor(Color.parseColor("#ffffff"));
-                    break;
-                case "He jerked me":
-                    btn_sexType_hejerked.setSelected(true);
-                    btn_sexType_hejerked.setClickable(false);
-                    btn_sexType_hejerked.setTextColor(Color.parseColor("#ffffff"));
-                    break;
-                case "I rimmed him":
-                    btn_sexType_irimmed.setSelected(true);
-                    btn_sexType_irimmed.setClickable(false);
-                    btn_sexType_irimmed.setTextColor(Color.parseColor("#ffffff"));
-                    break;
-                case "He rimmed me":
-                    btn_sexType_herimmed.setSelected(true);
-                    btn_sexType_herimmed.setClickable(false);
-                    btn_sexType_herimmed.setTextColor(Color.parseColor("#ffffff"));
-                    break;
-
-            }
-        }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_lynx_diary, menu);
         return true;
-    }
-
-    public String getVersion() {
-        String versionName = "Version not found";
-
-        try {
-            versionName = this.getPackageManager().getPackageInfo(this.getPackageName(), 0).versionName;
-            Log.i("Version", "Version Name: " + versionName);
-        } catch (PackageManager.NameNotFoundException e) {
-            // TODO Auto-generated catch block
-            Log.e("Version", "Exception Version Name: " + e.getLocalizedMessage());
-        }
-        return versionName;
     }
 
     @Override
@@ -177,32 +129,203 @@ public class SelectedEncounterSummary extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
-    @Override
-    public void onStart() {
-        super.onStart();
 
+    /**
+     * A placeholder fragment containing a simple view.
+     */
+    public static class PlaceholderFragment extends Fragment {
+        /**
+         * The fragment argument representing the section number for this
+         * fragment.
+         */
+        private static final String ARG_SECTION_NUMBER = "section_number";
 
-    }
+        public PlaceholderFragment() {
+        }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (LynxManager.onPause == true){
-            Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);
-            startActivity(lockscreen);
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static PlaceholderFragment newInstance(int sectionNumber) {
+            PlaceholderFragment fragment = new PlaceholderFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            fragment.setArguments(args);
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            int page_id = getArguments().getInt(ARG_SECTION_NUMBER);
+            Log.v("page_id ", String.valueOf(page_id));
+            View rootView = inflater.inflate(R.layout.fragment_lynx_diary, container, false);
+            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            return rootView;
         }
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
+    /**
+     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
+     * one of the sections/tabs/pages.
+     */
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            // getItem is called to instantiate the fragment for the given page.
+            // Return a PlaceholderFragment (defined as a static inner class below).
+            /*Log.v("page_id ", String.valueOf(position));
+            return PlaceholderFragment.newInstance(position + 1);*/
+            switch (position) {
+                case 0:
+                    return new SelectedEncounterSummaryFragment();
+                case 1:
+                    return new HomePartnersFragment();
+//                case 2:
+//                    return new HomeDrugUse();
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            // Show 3 total pages.
+            return 2;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "SEXUAL HISTORY";
+                case 1:
+                    return "SEXUAL PARTNERS";
+//                case 2:
+//                    return "DRUG USE";
+            }
+            return null;
+        }
     }
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
 
-    public void close(View v){
+            case R.id.bot_nav_sexpro:
+                LynxManager.goToIntent(SelectedEncounterSummary.this,"sexpro",SelectedEncounterSummary.this.getClass().getSimpleName());
+                overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
+                finish();
+                break;
+            case R.id.bot_nav_testing:
+                LynxManager.goToIntent(SelectedEncounterSummary.this,"testing",SelectedEncounterSummary.this.getClass().getSimpleName());
+                overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
+                finish();
+                break;
+            case R.id.bot_nav_prep:
+                LynxManager.goToIntent(SelectedEncounterSummary.this,"prep",SelectedEncounterSummary.this.getClass().getSimpleName());
+                overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
+                finish();
+                break;
+            case R.id.bot_nav_chat:
+                LynxManager.goToIntent(SelectedEncounterSummary.this,"chat",SelectedEncounterSummary.this.getClass().getSimpleName());
+                overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
+                finish();
+                break;
+            case R.id.viewProfile:
+                Intent profile = new Intent(SelectedEncounterSummary.this,LynxProfile.class);
+                startActivity(profile);
+                break;
+            default:
+                break;
+        }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Closing the App if sign out enabled
+        Log.v("SignOut", String.valueOf(LynxManager.signOut));
+        if(LynxManager.signOut){
+            finish();
+            System.exit(0);
+        }
+        if (LynxManager.onPause){
+            Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);
+            startActivity(lockscreen);
+            Log.v("onResumeusername", LynxManager.getActiveUser().getFirstname());
+        }
+    }
+    int onPause_count =0;
+
+    @Override
+    public void onBackPressed() {
+        // do something on back.
+        /*if (onPause_count > 0) {
+            AlertDialog.Builder alertbox = new AlertDialog.Builder(this);
+            alertbox.setTitle("Are you sure, you want to exit ?");
+            alertbox.setPositiveButton("Yes",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            System.exit(0);
+                        }
+                    });
+
+            alertbox.setNeutralButton("No",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                        }
+                    });
+
+            AlertDialog dialog = alertbox.create();
+            dialog.show();
+            Button neg_btn = dialog.getButton(DialogInterface.BUTTON_NEUTRAL);
+            if (neg_btn != null){
+                neg_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.lynx_button));
+                neg_btn.setTextColor(getResources().getColor(R.color.white));
+            }
+
+            Button pos_btn = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+            if(pos_btn != null) {
+                pos_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.lynx_button));
+                pos_btn.setTextColor(getResources().getColor(R.color.white));
+            }
+            try{
+                Resources resources = dialog.getContext().getResources();
+                int color = resources.getColor(R.color.black); // your color here
+                int textColor = resources.getColor(R.color.button_gray);
+
+                int alertTitleId = resources.getIdentifier("alertTitle", "id", "android");
+                TextView alertTitle = (TextView) dialog.getWindow().getDecorView().findViewById(alertTitleId);
+                alertTitle.setTextColor(textColor); // change title text color
+
+                int titleDividerId = resources.getIdentifier("titleDivider", "id", "android");
+                View titleDivider = dialog.getWindow().getDecorView().findViewById(titleDividerId);
+                titleDivider.setBackgroundColor(color); // change divider color
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
+        }
+        else{
+            Toast.makeText(this,"Press Back one more time to exit",Toast.LENGTH_SHORT).show();
+        }
+        onPause_count++;*/
         finish();
+        return;
     }
 }
-

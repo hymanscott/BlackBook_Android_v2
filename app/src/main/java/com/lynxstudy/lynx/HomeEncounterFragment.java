@@ -1,5 +1,6 @@
 package com.lynxstudy.lynx;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -7,11 +8,15 @@ import android.graphics.Typeface;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -36,7 +41,7 @@ import java.util.List;
 public class HomeEncounterFragment extends Fragment {
 
     DatabaseHelper db;
-
+    private  int width,height;
     public HomeEncounterFragment() {
         // Required empty public constructor
     }
@@ -51,6 +56,9 @@ public class HomeEncounterFragment extends Fragment {
         setHasOptionsMenu(true);
 
         View view = inflater.inflate(R.layout.fragment_home_encounter, container, false);
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        width = display.getWidth();
+        height = display.getHeight();
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
@@ -100,7 +108,11 @@ public class HomeEncounterFragment extends Fragment {
                 Partners partner = db.getPartnerbyID(enc_partner_id);
 
                 TableRow encounterRow = new TableRow(getActivity());
-                final View v = LayoutInflater.from(getActivity()).inflate(R.layout.table_encounter_row, encounterRow, false);
+                View v = LayoutInflater.from(getActivity()).inflate(R.layout.table_encounter_row, encounterRow, false);
+                if (width == 480 && height == 800)
+                {
+                    v = LayoutInflater.from(getActivity()).inflate(R.layout.table_encounter_row_alt, encounterRow, false);
+                }
                 TextView date = (TextView)v.findViewById(R.id.date);
                 TextView name = (TextView)v.findViewById(R.id.name);
                 RatingBar ratingBar = (RatingBar)v.findViewById(R.id.rating);
@@ -131,9 +143,7 @@ public class HomeEncounterFragment extends Fragment {
                         for (int i = 0; i < encounterTable.getChildCount(); i++) {
                             View row = encounterTable.getChildAt(i);
                             if (row == view) {
-                                row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
-                                /*((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(1)).setTextColor(getResources().getColor(R.color.colorAccent));
-                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.colorAccent));*/
+                                //row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
                                 LynxManager.selectedEncounterID = row.getId();
                                 LynxManager.activePartnerSexType.clear();
 
@@ -141,8 +151,10 @@ public class HomeEncounterFragment extends Fragment {
                                 Encounter selectedEncounter = db.getEncounter(row.getId());
                                 LynxManager.setActiveEncounter(selectedEncounter);
                                 Log.v("sextypeID", String.valueOf(selectedEncounter.getEncounter_id()));
-                                //set Active partner
+                                //set Active partner and Contact
                                 LynxManager.setActivePartner(db.getPartnerbyID(selectedEncounter.getEncounter_partner_id()));
+                                LynxManager.setActivePartnerContact(db.getPartnerContactbyPartnerID(selectedEncounter.getEncounter_partner_id()));
+
                                 List<EncounterSexType> selectedSEXtypes = db.getAllEncounterSexTypes(row.getId());
 
                                 for (EncounterSexType setSextype : selectedSEXtypes) {
@@ -150,15 +162,13 @@ public class HomeEncounterFragment extends Fragment {
                                     Log.v("sextypes", String.valueOf(encounterSexType));
                                     LynxManager.activePartnerSexType.add(encounterSexType);
                                 }
+                                //Intent selectedEncounterSumm = new Intent(getActivity(), SelectedEncounterSummary.class);
+                                Log.v("EncounterID", String.valueOf(row.getId()));
                                 Intent selectedEncounterSumm = new Intent(getActivity(), SelectedEncounterSummary.class);
                                 startActivity(selectedEncounterSumm);
                             } else {
                                 //Change this to your normal background color.
-                                /*((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(1)).setTextColor(Color.parseColor("#444444"));
-                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#444444"));*/
                                 row.setBackground(getResources().getDrawable(R.drawable.border_bottom));
-                                if(i==0)
-                                    row.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
                             }
                         }
                     }
@@ -301,5 +311,21 @@ public class HomeEncounterFragment extends Fragment {
         }
     }
 
+    public void pushFragments(String tag, Fragment fragment, Boolean addToStack) {
 
+        FragmentManager manager = getFragmentManager();
+
+        FragmentTransaction ft = manager.beginTransaction();
+
+        // Hide Soft Keyboard
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getActivity().getWindow().getDecorView().getWindowToken(), 0);
+
+        ft.replace(R.id.container, fragment);
+        if (addToStack == true)
+            ft.addToBackStack(null);
+        ft.commit();
+
+
+    }
 }

@@ -32,11 +32,13 @@ import android.telephony.TelephonyManager;
 import android.text.format.DateFormat;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -86,6 +88,7 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
     private String toactivity = null;
     private static final int READ_WRITE_PERMISSION = 100;
     private static final int READ_PHONE_STATE = 101;
+    Typeface tf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,7 +111,7 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
             Log.v("RecentStatEnd", "Ended at" + recentStat.getEndtime() +" moved to " + recentStat.getTo_activity() + " with action " + recentStat.getAction());
         }
         //Type face
-        Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
+        tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
 
         // Custom Action Bar //
@@ -404,53 +407,40 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
     public void onBackPressed() {
         // do something on back.
         if (onPause_count > 0) {
-            AlertDialog.Builder alertbox = new AlertDialog.Builder(this);
-            alertbox.setTitle("Are you sure, you want to exit ?");
-            alertbox.setPositiveButton("Yes",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            System.exit(0);
-                            statistics.setEndtime(LynxManager.getDateTime());
-                            statistics.setAction("Activity Closed");
-                            statistics.setTo_activity(toactivity);
-                            db.createStatistics(statistics);
-                        }
-                    });
+            final View popupView = getLayoutInflater().inflate(R.layout.popup_alert_dialog_template, null);
+            final PopupWindow signOut = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+            TextView title = (TextView)popupView.findViewById(R.id.alertTitle);
+            TextView message = (TextView)popupView.findViewById(R.id.alertMessage);
+            Button positive_btn = (Button) popupView.findViewById(R.id.alertPositiveButton);
+            Button negative_btn = (Button) popupView.findViewById(R.id.alertNegativeButton);
+            title.setVisibility(View.GONE);
+            message.setText("Are you sure, you want to exit?");
+            message.setTypeface(tf);
+            positive_btn.setTypeface(tf);
+            negative_btn.setTypeface(tf);
 
-            alertbox.setNeutralButton("No",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                        }
-                    });
+            positive_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.exit(0);
+                    statistics.setEndtime(LynxManager.getDateTime());
+                    statistics.setAction("Activity Closed");
+                    statistics.setTo_activity(toactivity);
+                    db.createStatistics(statistics);
+                }
+            });
+            negative_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    signOut.dismiss();
+                }
+            });
+            // If the PopupWindow should be focusable
+            signOut.setFocusable(true);
 
-            AlertDialog dialog = alertbox.create();
-            dialog.show();
-            Button neg_btn = dialog.getButton(DialogInterface.BUTTON_NEUTRAL);
-            if (neg_btn != null){
-                neg_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.lynx_button));
-                neg_btn.setTextColor(getResources().getColor(R.color.white));
-            }
-
-            Button pos_btn = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
-            if(pos_btn != null) {
-                pos_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.lynx_button));
-                pos_btn.setTextColor(getResources().getColor(R.color.white));
-            }
-            /*try{
-                Resources resources = dialog.getContext().getResources();
-                int color = resources.getColor(R.color.black); // your color here
-                int textColor = resources.getColor(R.color.button_gray);
-
-                int alertTitleId = resources.getIdentifier("alertTitle", "id", "android");
-                TextView alertTitle = (TextView) dialog.getWindow().getDecorView().findViewById(alertTitleId);
-                alertTitle.setTextColor(textColor); // change title text color
-
-                int titleDividerId = resources.getIdentifier("titleDivider", "id", "android");
-                View titleDivider = dialog.getWindow().getDecorView().findViewById(titleDividerId);
-                titleDivider.setBackgroundColor(color); // change divider color
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }*/
+            // If you need the PopupWindow to dismiss when when touched outside
+            signOut.setBackgroundDrawable(new ColorDrawable());
+            signOut.showAtLocation(popupView, Gravity.CENTER,0,0);
 
         }
         else{

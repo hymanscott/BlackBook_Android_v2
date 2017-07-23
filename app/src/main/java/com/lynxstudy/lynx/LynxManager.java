@@ -442,11 +442,25 @@ public class LynxManager {
         return haveConnectedWifi || haveConnectedMobile;
     }
 
+
     private static Pattern pattern;
     private static Matcher matcher;
     //date validation
     public static boolean dateValidation(String date){
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy");
+        String Cur_date = df.format(new Date());
+        Date d1 = null,d2=null;
+        try {
+            d1 = df.parse(date);
+            d2 = df.parse(Cur_date);
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        //Return true if date is null or Future date
+        return !(d1!=null && d2!= null)|| d1.after(d2);
+    }
+    public static boolean regDateValidation(String date){
+        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
         String Cur_date = df.format(new Date());
         Date d1 = null,d2=null;
         try {

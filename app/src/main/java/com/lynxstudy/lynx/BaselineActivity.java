@@ -512,15 +512,17 @@ public class BaselineActivity extends AppCompatActivity {
                 LynxManager.activePartnerRating.clear();
                 for (Integer field_id : rating_field_id) {
                     PartnerRating partner_rating = new PartnerRating(activePrimaryPartner.getUser_id(), pri_partner_partnerID,
-                            field_id, String.valueOf(0), String.valueOf(R.string.statusUpdateNo));
+                            field_id, String.valueOf(1), String.valueOf(R.string.statusUpdateNo));
+                    int partner_rating_ID = db.createPartnerRating(partner_rating);
+                    partner_rating.setPartner_rating_id(partner_rating_ID);
                     LynxManager.setActivePartnerRating(partner_rating);
                 }
 
                 int i = 0;
                 for (PartnerRating partnerRating : LynxManager.getActivePartnerRating()) {
                     partnerRating.setPartner_id(pri_partner_partnerID);
-                    int partner_rating_ID = db.createPartnerRating(partnerRating);
-                    LynxManager.getActivePartnerRating().get(i++).setPartner_rating_id(partner_rating_ID);
+                    //int partner_rating_ID = db.createPartnerRating(partnerRating);
+                    //LynxManager.getActivePartnerRating().get(i++).setPartner_rating_id(partner_rating_ID);
                 }
             }
         }

@@ -6,242 +6,309 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:fillViewport="false">
+        android:fillViewport="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="?android:attr/actionBarSize">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
             <TextView
-                android:text="UPDATE PROFILE"
+                android:text="Your account details"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorAccent"
-                android:textSize="24sp"
-                android:layout_margin="10dp"
+                android:textColor="@color/profile_title_text_color"
+                android:textSize="20sp"
+                android:layout_margin="32dp"
+                android:id="@+id/fragTitle"
                 android:gravity="center_horizontal|center_vertical" />
-
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true">
-
-                <TextView
-                    android:layout_width="100dp"
+                android:weightSum="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Name:"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorAccent"
-                    android:layout_margin="10dp"
-                    android:gravity="center_vertical" />
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:padding="@dimen/edittext_padding"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/usericonblue"
+                        android:id="@+id/usericon"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/profile_name"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/profile_text_color"
+                        android:text="First name"
+                        android:textSize="@dimen/reg_tv_textsize" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Name"
-                    android:id="@+id/profile_name"
-                    android:layout_margin="10dp"
-                    android:textSize="18sp"
-                    android:textColor="@color/text_color"
-                    android:layout_weight="1"/>
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/profile_email"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:text="Email"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/text_color"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Password"
-                android:textSize="20sp"
-                android:textColor="@color/colorAccent"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:textStyle="bold"
-                android:layout_weight="1" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" >
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/updatePass"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
-                    android:hint="Password"
-                    android:textSize="18sp"
-                    android:textColor="@color/text_color"
-                    android:inputType="textPassword"
-                    android:maxLength="12"/>
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/updateRepPass"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
-                    android:textSize="18sp"
-                    android:textColor="@color/text_color"
-                    android:hint="Repeat Password"
-                    android:inputType="textPassword"
-                    android:maxLength="12"/>
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:padding="@dimen/edittext_padding"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/emailiconblue"
+                        android:id="@+id/emailicon"
+                        android:visibility="invisible"
+                        android:layout_gravity="center"/>
+                    <TextView
+                        android:id="@+id/profile_lastname"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Last name"
+                        android:textColor="@color/profile_text_color"
+                        android:textSize="@dimen/reg_tv_textsize" />
+                </LinearLayout>
 
             </LinearLayout>
-
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:id="@+id/updatePhone"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:hint="Mobile Phone Number"
-                android:textSize="18sp"
-                android:textColor="@color/text_color"
-                android:layout_margin="5dp"
-                android:inputType="phone"
-                android:maxLength="11"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Passcode"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="5dp"
-                android:textSize="20sp"
-                android:textColor="@color/colorAccent"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:textStyle="bold"
-                android:layout_weight="1" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:id="@+id/updatePasscode"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:textSize="18sp"
-                android:textColor="@color/text_color"
-                android:hint="4 Digit Passcode"
-                android:inputType="numberPassword"
-                android:maxLength="4"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/grey_border"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:background="@drawable/border_spinner"
-                android:layout_margin="10dp"
-                android:layout_height="wrap_content">
-                <Spinner
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/updateSecQuestion"
-                    android:prompt="@string/sec_question_prompt"
-                    android:theme="@style/AppTheme"
-                    android:layout_margin="2dp" />
-            </LinearLayout>
-            <EditText
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:id="@+id/updateSecAnswer"
-                android:hint="Your answer to the Securtiy Question"
-                android:textSize="18sp"
-                android:textColor="@color/text_color"
-                android:inputType="text"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="5dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Demographics"
-                android:layout_marginTop="10dp"
-                android:textSize="20sp"
-                android:textColor="@color/colorAccent"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:textStyle="bold"
-                android:layout_weight="1" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Date of Birth"
-                    android:textSize="18sp"
-                    android:textColor="@color/text_color"
-                    android:layout_margin="5dp" />
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:focusable="true"
-                    android:ems="6"
-                    android:id="@+id/updateDOB"
-                    android:layout_margin="5dp"
-                    android:textSize="18sp"
-                    android:textColor="@color/text_color"
-                    android:hint="MM/DD/YYYY"
-                    android:inputType="date" />
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:padding="@dimen/edittext_padding"
+                android:orientation="horizontal">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitXY"
-                    android:id="@+id/calenderIconUpdateDOB"
-                    android:src="@drawable/calender"
-                    android:layout_margin="5dp"
+                    android:src="@drawable/phoneiconblue"
                     android:layout_gravity="center"/>
-
+                <TextView
+                    android:id="@+id/updatePhone"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:text="9876543210"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/profile_text_color"
+                    android:textSize="@dimen/reg_tv_textsize" />
             </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/grey_border"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Race/Ethnicity"
-                android:textSize="20sp"
-                android:textColor="@color/colorAccent"
-                android:id="@+id/textView4"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:textStyle="bold"
-                android:layout_weight="1" />
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:padding="@dimen/edittext_padding"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/calendariconblue"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:id="@+id/updateDOB"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:text="11/25/1992"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/profile_text_color"
+                    android:textSize="@dimen/reg_tv_textsize" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/grey_border"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:padding="@dimen/edittext_padding"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/raceiconblue"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:id="@+id/updateRace"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:text="Race"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/profile_text_color"
+                    android:textSize="@dimen/reg_tv_textsize" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/grey_border"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:padding="@dimen/edittext_padding"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/emailiconblue"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:id="@+id/profile_email"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:text="test@lynx.com"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/profile_text_color"
+                    android:textSize="@dimen/reg_tv_textsize" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/grey_border"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:padding="@dimen/edittext_padding"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/passwordiconblue"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:id="@+id/updatePass"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:text="password"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/profile_text_color"
+                    android:textSize="@dimen/reg_tv_textsize" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/grey_border"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:padding="@dimen/edittext_padding"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shieldiconblue"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:id="@+id/updateSecQn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:text="Security question"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/profile_text_color"
+                    android:textSize="@dimen/reg_tv_textsize" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/grey_border"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:padding="@dimen/edittext_padding"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/shieldiconblue"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:id="@+id/updateSecAnswer"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:text="Security answer"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/profile_text_color"
+                    android:textSize="@dimen/reg_tv_textsize" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/grey_border"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:padding="@dimen/edittext_padding"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/passcodeiconblue"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:text=""
+                    android:id="@+id/updatePasscode"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/profile_text_color"
+                    android:textSize="@dimen/reg_tv_textsize" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/grey_border"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
@@ -249,6 +316,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/border_spinner"
+                android:visibility="gone"
                 android:layout_alignParentEnd="true"
                 android:id="@+id/linearLayout4"
                 android:layout_margin="10dp">
@@ -262,55 +330,232 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="PrEP Status"
-                android:layout_marginTop="10dp"
-                android:textSize="20sp"
-                android:textColor="@color/colorAccent"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:textStyle="bold"
-                android:layout_weight="1" />
-
+                android:text="I'm taking Pre-exposure Prophylaxis:"
+                android:textSize="16sp"
+                android:textColor="@color/profile_text_color"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="24dp"
+                android:id="@+id/prepTitle"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="I'm taking Pre-exposure Prophylaxis:"
-                android:textSize="20sp"
-                android:textColor="@color/text_color"
-                android:layout_margin="5dp" />
-
-            <RadioGroup
-                android:id="@+id/updatePrep"
+                android:text="Yes"
+                android:textSize="16sp"
+                android:textColor="@color/profile_text_color"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:id="@+id/prepAnswer"
+                android:layout_marginTop="16dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/grey_border"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp">
-
-                <RadioButton
-                    android:textSize="18sp"
-                    android:textColor="@color/text_color"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Yes"
-                    android:id="@+id/updatePrepYes"
-                    />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="No"
-                    android:textSize="18sp"
-                    android:textColor="@color/text_color"
-                    android:id="@+id/updatePrepNo"
-                    />
-            </RadioGroup>
-
+                android:text="Diary Reminders"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/profile_text_color"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="24dp"
+                android:id="@+id/diaryTitle"/>
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/calendariconblue" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/dairyReminderDay"
+                    android:text="Monday"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/profile_text_color"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="32dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/clockiconblue" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10:00 AM"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    android:id="@+id/dairyReminderTime"
+                    android:textColor="@color/profile_text_color"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="32dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/texticonblue" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Do you have anything to report this week?"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    android:id="@+id/dairyReminderText"
+                    android:textColor="@color/profile_text_color"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="32dp" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/grey_border"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Testing Reminders"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:id="@+id/testingTitle"
+                android:textColor="@color/profile_text_color"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="24dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/calendariconblue" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/testingReminderDay"
+                    android:text="Monday"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/profile_text_color"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="32dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/clockiconblue" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10:00 AM"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    android:id="@+id/testingReminderTime"
+                    android:textColor="@color/profile_text_color"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="32dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/texticonblue" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="It's time for your test!"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    android:id="@+id/testingReminderText"
+                    android:textColor="@color/profile_text_color"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="32dp" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/grey_border"
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="40dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/profile_text_color"
+                android:textStyle="bold"
+                android:textSize="@dimen/reg_tv_textsize"
+                android:background="@drawable/border_full_grey"
+                android:text="EDIT ACCOUNT DETAILS"
+                android:onClick="showEditDetails"
+                android:id="@+id/edit_details"/>
+            <TextView
+                android:text="Log out of your account"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/profile_title_text_color"
+                android:textSize="14sp"
+                android:id="@+id/logout"
+                android:layout_marginBottom="48dp"
+                android:gravity="center_horizontal|center_vertical" />
+
+            <!--<LinearLayout
                 android:id="@+id/LynxRemainerLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -714,9 +959,135 @@
                 android:background="@drawable/lynx_button"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:onClick="updateProfile"/>
+                android:onClick="updateProfile"/>-->
+
 
         </LinearLayout>
     </ScrollView>
+    <LinearLayout
+        android:id="@+id/bot_nav"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/starBG"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
+        <LinearLayout
+            android:id="@+id/bot_nav_sexpro"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_weight="0.2"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+            <ImageView
+                android:id="@+id/bot_nav_sexpro_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_sexpro_white" />
+
+            <TextView
+                android:id="@+id/bot_nav_sexpro_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sex Pro"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bot_nav_diary"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+            <ImageView
+                android:id="@+id/bot_nav_diary_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_diary" />
+
+            <TextView
+                android:id="@+id/bot_nav_diary_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Diary" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bot_nav_testing"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+            <ImageView
+                android:id="@+id/bot_nav_testing_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_testing" />
+
+            <TextView
+                android:id="@+id/bot_nav_testing_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Testing" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bot_nav_prep"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+            <ImageView
+                android:id="@+id/bot_nav_prep_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_prep" />
+
+            <TextView
+                android:id="@+id/bot_nav_prep_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PrEP" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bot_nav_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+            <ImageView
+                android:id="@+id/bot_nav_chat_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_chat" />
+
+            <TextView
+                android:id="@+id/bot_nav_chat_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chat" />
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

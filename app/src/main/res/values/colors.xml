@@ -42,4 +42,11 @@
     <color name="encounter_btn_grey">#D6D6D6</color>
     <color name="banner_name_bg">#d5d5d5</color>
     <color name="toggle_btn_bg">#d5d5d5</color>
+
+    <!--Profile update-->
+    <color name="profile_title_text_color">#FF2E86FF</color>
+    <color name="profile_text_color">#FF444444</color>
+    <color name="grey_border">#1F000000</color>
+    <color name="profile_edittext_bg">#1A444444</color>
+    <color name="profile_edittext_hint">#80444444</color>
 </resources>

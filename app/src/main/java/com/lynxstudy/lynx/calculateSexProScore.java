@@ -106,8 +106,7 @@ public class calculateSexProScore {
         List<UserDrugUse> baselineDrugUse  =   LynxManager.getActiveUserDrugUse();
         List<UserSTIDiag>  baselineSTI      =   LynxManager.getActiveUserSTIDiag();
         UserAlcoholUse userAlcoholUse   =   LynxManager.getActiveUserAlcoholUse();
-        //SimpleDateFormat inputDF  = new SimpleDateFormat("dd-MMM-yyyy");
-        SimpleDateFormat inputDF  = new SimpleDateFormat("MM/dd/yy");
+        SimpleDateFormat inputDF  = new SimpleDateFormat("dd-MMM-yyyy");
 
         Date date1 = null;
         try {

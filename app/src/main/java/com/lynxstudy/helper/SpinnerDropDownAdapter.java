@@ -30,7 +30,8 @@ public class SpinnerDropDownAdapter extends BaseAdapter {
     private static String firstSelected = "";
     private ViewHolder holder;
     private static String selected = "";	//shortened selected values representation
-
+    private boolean[] checkSelected;
+    private boolean is_profile;
     public static String getSelected() {
         return selected;
     }
@@ -39,11 +40,13 @@ public class SpinnerDropDownAdapter extends BaseAdapter {
         SpinnerDropDownAdapter.selected = selected;
     }
     public SpinnerDropDownAdapter(Context context, ArrayList<String> items,
-                               TextView tv) {
+                               TextView tv,boolean[] checkSelected,boolean is_profile) {
         mListItems = new ArrayList<String>();
         mListItems.addAll(items);
         mInflater = LayoutInflater.from(context);
         mSelectedItems = tv;
+        this.checkSelected = checkSelected;
+        this.is_profile = is_profile;
     }
 
     @Override
@@ -69,7 +72,7 @@ public class SpinnerDropDownAdapter extends BaseAdapter {
         // TODO Auto-generated method stub
 
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.spinner_popup_row, null);
+            convertView = mInflater.inflate(R.layout.spinner_popup_row_grey, null);
             holder = new ViewHolder();
             holder.tv = (TextView) convertView.findViewById(R.id.SelectOption);
             holder.chkbox = (CheckBox) convertView.findViewById(R.id.checkbox);
@@ -92,7 +95,7 @@ public class SpinnerDropDownAdapter extends BaseAdapter {
             }
         });
 
-        if(RegistrationFragment.checkSelected[position])
+        if(checkSelected[position])
             holder.chkbox.setChecked(true);
         else
             holder.chkbox.setChecked(false);
@@ -104,39 +107,46 @@ public class SpinnerDropDownAdapter extends BaseAdapter {
      * Function which updates the selected values display and information(checkSelected[])
      * */
     private void setText(int position1){
-        if (!RegistrationFragment.checkSelected[position1]) {
-            RegistrationFragment.checkSelected[position1] = true;
+        if (!checkSelected[position1]) {
+            checkSelected[position1] = true;
             selectedCount++;
         } else {
-            RegistrationFragment.checkSelected[position1] = false;
+            checkSelected[position1] = false;
             selectedCount--;
         }
 
         if (selectedCount == 0) {
             mSelectedItems.setText(R.string.select_race);
-            mSelectedItems.setTextColor(Color.parseColor("#80FFFFFF"));
+            if(is_profile)
+                mSelectedItems.setTextColor(Color.parseColor("#80444444"));
+            else
+                mSelectedItems.setTextColor(Color.parseColor("#80FFFFFF"));
         } else if (selectedCount == 1) {
-            for (int i = 0; i < RegistrationFragment.checkSelected.length; i++) {
-                if (RegistrationFragment.checkSelected[i] == true) {
+            for (int i = 0; i < checkSelected.length; i++) {
+                if (checkSelected[i] == true) {
                     firstSelected = mListItems.get(i);
                     break;
                 }
             }
             mSelectedItems.setText(firstSelected);
-            mSelectedItems.setTextColor(Color.parseColor("#FFFFFF"));
+            if(is_profile)
+                mSelectedItems.setTextColor(Color.parseColor("#FF444444"));
+            else
+                mSelectedItems.setTextColor(Color.parseColor("#FFFFFF"));
+
             setSelected(firstSelected);
         } else if (selectedCount > 1) {
-            for (int i = 0; i < RegistrationFragment.checkSelected.length; i++) {
-                if (RegistrationFragment.checkSelected[i] == true) {
+            for (int i = 0; i < checkSelected.length; i++) {
+                if (checkSelected[i] == true) {
                     firstSelected = mListItems.get(i);
                     //firstSelected += mListItems.get(i)+",";
                     break;
                 }
             }
             String text = "";
-            for(int j=0;j<RegistrationFragment.checkSelected.length;j++){
-                if (RegistrationFragment.checkSelected[j]) {
-                    if(j!=RegistrationFragment.checkSelected.length-1)
+            for(int j=0;j<checkSelected.length;j++){
+                if (checkSelected[j]) {
+                    if(j!=checkSelected.length-1)
                         text += mListItems.get(j)+",";
                     else
                         text += mListItems.get(j);
@@ -148,7 +158,10 @@ public class SpinnerDropDownAdapter extends BaseAdapter {
                 text = text.substring(0, text.length()-1);
             }
             mSelectedItems.setText(text);
-            mSelectedItems.setTextColor(Color.parseColor("#FFFFFF"));
+            if(is_profile)
+                mSelectedItems.setTextColor(Color.parseColor("#FF444444"));
+            else
+                mSelectedItems.setTextColor(Color.parseColor("#FFFFFF"));
             setSelected(text);
         }
     }

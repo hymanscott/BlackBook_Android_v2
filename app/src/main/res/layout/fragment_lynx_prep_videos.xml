@@ -11,16 +11,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <WebView
-                android:id="@+id/youtubeplayer"
-                android:layout_width="match_parent"
-                android:layout_height="179dp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:background="@drawable/border_spinner"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
                 android:layout_gravity="center_vertical"
                 android:orientation="horizontal">
                 <TextView
@@ -30,7 +27,6 @@
                     android:textColor="@color/text_color"
                     android:id="@+id/CurrentVideoTitle"
                     android:textSize="18sp"
-                    android:padding="10dp"
                     android:text="Title "/>
                 <ImageView
                     android:layout_width="20dp"
@@ -38,10 +34,18 @@
                     android:layout_gravity="center"
                     android:layout_weight="0.1"
                     android:layout_marginLeft="10dp"
+                    android:visibility="gone"
                     android:id="@+id/showDescription"
                     android:scaleType="fitCenter"
                     android:src="@drawable/sortdown"/>
             </LinearLayout>
+            <WebView
+                android:id="@+id/youtubeplayer"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="24dp"
+                android:layout_height="wrap_content" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,6 +61,8 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
                 android:id="@+id/prepVideosList">
 
             </TableLayout>

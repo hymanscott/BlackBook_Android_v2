@@ -44,10 +44,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="0.5">
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
             <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -59,55 +55,6 @@
                 android:minWidth="100dp"
                 android:isIndicator="true"
                 style="?attr/ratingBarStyleIndicator" />
-        </RelativeLayout>
     </LinearLayout>
 
-</LinearLayout><!--<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="center_vertical"
-    android:paddingTop="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="6dp"
-    android:paddingBottom="16dp">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:text="06/06/17"
-            android:textSize="16dp"
-            android:maxWidth="70dp"
-            android:textColor="@color/text_color"
-            android:id="@+id/date"/>
-        <TextView
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="Demoprimary partner "
-            android:textSize="16dp"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/text_color"
-            android:id="@+id/name"/>
-    </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical">
-        <RatingBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="5"
-            android:id="@+id/rating"
-            android:rating="5"
-            android:stepSize="1"
-            android:layout_alignParentRight="true"
-            android:minWidth="100dp"
-            android:isIndicator="true"
-            style="?attr/ratingBarStyleIndicator" />
-    </RelativeLayout>
-</LinearLayout>-->
+</LinearLayout>

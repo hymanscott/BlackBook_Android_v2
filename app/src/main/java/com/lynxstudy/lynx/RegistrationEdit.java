@@ -275,7 +275,7 @@ public class RegistrationEdit extends Fragment {
 
         //populate the drop-down list
         final ListView list = (ListView) layout.findViewById(R.id.dropDownList);
-        SpinnerDropDownAdapter adapter = new SpinnerDropDownAdapter(getActivity(), items, tv);
+        SpinnerDropDownAdapter adapter = new SpinnerDropDownAdapter(getActivity(), items, tv,checkSelected,false); // is_profile=>false
         list.setAdapter(adapter);
     }
 }

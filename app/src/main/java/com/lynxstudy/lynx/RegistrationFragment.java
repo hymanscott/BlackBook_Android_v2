@@ -277,7 +277,7 @@ public class RegistrationFragment  extends Fragment implements DatePickerDialog.
             firstname.setText("Hari");
             lastname.setText("Hari");
             phonenumber.setText("9876543210");
-            dob.setText("15/11/1992");
+            dob.setText("11/15/1992");
         }else{
             firstname.setText(LynxManager.decryptString(LynxManager.getActiveUser().getFirstname()));
             lastname.setText(LynxManager.decryptString(LynxManager.getActiveUser().getLastname()));
@@ -402,7 +402,7 @@ public class RegistrationFragment  extends Fragment implements DatePickerDialog.
 
         //populate the drop-down list
         final ListView list = (ListView) layout.findViewById(R.id.dropDownList);
-        SpinnerDropDownAdapter adapter = new SpinnerDropDownAdapter(getActivity(), items, tv);
+        SpinnerDropDownAdapter adapter = new SpinnerDropDownAdapter(getActivity(), items, tv,checkSelected,false);// is_profile=>false
         list.setAdapter(adapter);
     }
 }

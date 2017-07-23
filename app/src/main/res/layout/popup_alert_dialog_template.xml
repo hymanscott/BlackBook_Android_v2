@@ -62,12 +62,11 @@
             android:visibility="gone"
             android:layout_centerInParent="true"
             android:id="@+id/alertNeturalButton"
-            android:background="@drawable/lynx_button"
+            android:background="@drawable/buttonbluecornered"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
-
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,7 +74,7 @@
             android:layout_gravity="left"
             android:layout_alignParentLeft="true"
             android:id="@+id/alertNegativeButton"
-            android:background="@drawable/lynx_button"
+            android:background="@drawable/buttonbluecornered"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:layout_marginLeft="10dp"

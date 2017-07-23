@@ -450,7 +450,7 @@ public class RegLogin extends AppCompatActivity {
         String last_name = lastname.getText().toString();
         String races_list = spinner_races_list.getText().toString();
         String dob = et_dob.getText().toString();
-        boolean invalid_dob = LynxManager.dateValidation(dob);
+        boolean invalid_dob = LynxManager.regDateValidation(dob);
         String phone_number = phonenumber.getText().toString();
 
         if (first_name.isEmpty()) {
@@ -564,7 +564,7 @@ public class RegLogin extends AppCompatActivity {
         String sec_qn = confirm_sec_qn.getText().toString();
         String gender_list = "male";
         String races_list = confirm_race.getText().toString();
-        boolean invalid_dob = LynxManager.dateValidation(dob);
+        boolean invalid_dob = LynxManager.regDateValidation(dob);
 
         Pattern pattern;
         Matcher matcher;
@@ -608,6 +608,7 @@ public class RegLogin extends AppCompatActivity {
             LynxManager.getActiveUser().setPassword(LynxManager.encryptString(password));
             LynxManager.getActiveUser().setSecurityanswer(LynxManager.encryptString(sec_ans));
             LynxManager.getActiveUser().setSecurityquestion(LynxManager.encryptString(sec_qn));
+            dob = LynxManager.getFormatedDate("MM/dd/yyyy",dob,"dd-MMM-yyyy");
             LynxManager.getActiveUser().setDob(LynxManager.encryptString(dob));
             LynxManager.getActiveUser().setGender(LynxManager.encryptString(gender_list));
             LynxManager.getActiveUser().setRace(LynxManager.encryptString(races_list));
@@ -1053,7 +1054,8 @@ public class RegLogin extends AppCompatActivity {
                         //And then read attributes like
                         int logged_userId = loggedUser.getInt("id");
                         String logged_userDob = String.valueOf(loggedUser.getString("dob"));
-                        String dob = LynxManager.getFormatedDate("MM/dd/yyyy",logged_userDob,"dd-MMM-yyyy");
+                        //String dob = LynxManager.getFormatedDate("MM/dd/yyyy",logged_userDob,"dd-MMM-yyyy");
+                        String dob = LynxManager.getFormatedDate("yyyy-MM-dd",logged_userDob,"dd-MMM-yyyy");
                         Users logged_user = new Users(LynxManager.encryptString(loggedUser.getString("firstname")), LynxManager.encryptString(loggedUser.getString("lastname")),
                                 LynxManager.encryptString(loggedUser.getString("email")), LynxManager.encryptString(loggedUser.getString("password_plain_text")), LynxManager.encryptString(loggedUser.getString("mobile")),
                                 LynxManager.encryptString(loggedUser.getString("passcode")), LynxManager.encryptString(loggedUser.getString("address")), LynxManager.encryptString(loggedUser.getString("city")),

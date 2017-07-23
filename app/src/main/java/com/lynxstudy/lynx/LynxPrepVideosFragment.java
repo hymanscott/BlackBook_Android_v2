@@ -83,7 +83,7 @@ public class LynxPrepVideosFragment extends Fragment {
         CurrentVideoDescription = (TextView)rootview.findViewById(R.id.CurrentVideoDescription);
         CurrentVideoDescription.setTypeface(tf);
 
-        showDescription = (ImageView) rootview.findViewById(R.id.showDescription);
+       /* showDescription = (ImageView) rootview.findViewById(R.id.showDescription);
         // Toggle description //
         showDescription.setSelected(false);
         showDescription.setOnClickListener(new View.OnClickListener() {
@@ -99,14 +99,14 @@ public class LynxPrepVideosFragment extends Fragment {
                     showDescription.setSelected(false);
                 }
             }
-        });
+        });*/
         /*Table layout for PREP Videos */
 
         WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         DisplayMetrics metrics = new DisplayMetrics();
         display.getMetrics(metrics);
-        int width = metrics.widthPixels;
+        int width = metrics.widthPixels-50;
         thumbnailwidth = width/3;
         //int height1 = metrics.heightPixels;
         int height = ((width/4)*3);
@@ -114,7 +114,9 @@ public class LynxPrepVideosFragment extends Fragment {
 
         mWebView = (WebView) rootview.findViewById(R.id.youtubeplayer);
         LinearLayout.LayoutParams params =new LinearLayout.LayoutParams(width,height);
+        params.setMargins(24,0,24,16);
         mWebView.setLayoutParams(params);
+
         if(db.getVideosCount()==0){
             getVideosFromServer();
             Videos video1 = new Videos();
@@ -147,7 +149,7 @@ public class LynxPrepVideosFragment extends Fragment {
             videoDescription.setText(videos.getDescription());
             RelativeLayout.LayoutParams params =new RelativeLayout.LayoutParams(thumbnailwidth,(thumbnailwidth/4)*3);
             ImageView thumnail = (ImageView)v.findViewById(R.id.thumnail);
-            thumnail.setLayoutParams(params);
+            //thumnail.setLayoutParams(params);
             new DownloadImagesTask(videos.getVideo_image_url()).execute(thumnail);
 
             v.setId(videos.getVideo_id());
@@ -196,7 +198,7 @@ public class LynxPrepVideosFragment extends Fragment {
         videoDescription.setText(videos.getDescription());
         RelativeLayout.LayoutParams params =new RelativeLayout.LayoutParams(thumbnailwidth,(thumbnailwidth/4)*3);
         ImageView thumnail = (ImageView)view.findViewById(R.id.thumnail);
-        thumnail.setLayoutParams(params);
+        //thumnail.setLayoutParams(params);
         new DownloadImagesTask(videos.getVideo_image_url()).execute(thumnail);
         view.setId(videos.getVideo_id());
         view.setClickable(true);
@@ -244,7 +246,7 @@ public class LynxPrepVideosFragment extends Fragment {
         }
         setVideoListData();
     }
-    public class DownloadImagesTask extends AsyncTask<ImageView, Void, Bitmap> {
+    private class DownloadImagesTask extends AsyncTask<ImageView, Void, Bitmap> {
 
         ImageView imageView = null;
         String url="";

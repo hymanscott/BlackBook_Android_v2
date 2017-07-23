@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +19,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +52,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
     LinearLayout btn_sexpro,btn_testing,btn_prep,btn_chat;
     TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv;
     ImageView viewProfile;
+    Typeface tf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +61,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //Type face
-        Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
+        tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
         // Click Listners //
         btn_sexpro = (LinearLayout)findViewById(R.id.bot_nav_sexpro);
@@ -276,50 +280,37 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
     public void onBackPressed() {
         // do something on back.
         if (onPause_count > 0) {
-            AlertDialog.Builder alertbox = new AlertDialog.Builder(this);
-            alertbox.setTitle("Are you sure, you want to exit ?");
-            alertbox.setPositiveButton("Yes",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            System.exit(0);
-                        }
-                    });
+            final View popupView = getLayoutInflater().inflate(R.layout.popup_alert_dialog_template, null);
+            final PopupWindow signOut = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+            TextView title = (TextView)popupView.findViewById(R.id.alertTitle);
+            TextView message = (TextView)popupView.findViewById(R.id.alertMessage);
+            Button positive_btn = (Button) popupView.findViewById(R.id.alertPositiveButton);
+            Button negative_btn = (Button) popupView.findViewById(R.id.alertNegativeButton);
+            title.setVisibility(View.GONE);
+            message.setText("Are you sure, you want to exit?");
+            message.setTypeface(tf);
+            positive_btn.setTypeface(tf);
+            negative_btn.setTypeface(tf);
 
-            alertbox.setNeutralButton("No",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                        }
-                    });
+            positive_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.exit(0);
+                }
+            });
+            negative_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    signOut.dismiss();
+                }
+            });
 
-            AlertDialog dialog = alertbox.create();
-            dialog.show();
-            Button neg_btn = dialog.getButton(DialogInterface.BUTTON_NEUTRAL);
-            if (neg_btn != null){
-                neg_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.lynx_button));
-                neg_btn.setTextColor(getResources().getColor(R.color.white));
-            }
+            // If the PopupWindow should be focusable
+            signOut.setFocusable(true);
 
-            Button pos_btn = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
-            if(pos_btn != null) {
-                pos_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.lynx_button));
-                pos_btn.setTextColor(getResources().getColor(R.color.white));
-            }
-            try{
-                Resources resources = dialog.getContext().getResources();
-                int color = resources.getColor(R.color.black); // your color here
-                int textColor = resources.getColor(R.color.button_gray);
-
-                int alertTitleId = resources.getIdentifier("alertTitle", "id", "android");
-                TextView alertTitle = (TextView) dialog.getWindow().getDecorView().findViewById(alertTitleId);
-                alertTitle.setTextColor(textColor); // change title text color
-
-                int titleDividerId = resources.getIdentifier("titleDivider", "id", "android");
-                View titleDivider = dialog.getWindow().getDecorView().findViewById(titleDividerId);
-                titleDivider.setBackgroundColor(color); // change divider color
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-
+            // If you need the PopupWindow to dismiss when when touched outside
+            signOut.setBackgroundDrawable(new ColorDrawable());
+            signOut.showAtLocation(popupView, Gravity.CENTER,0,0);
         }
         else{
             Toast.makeText(this,"Press Back one more time to exit",Toast.LENGTH_SHORT).show();

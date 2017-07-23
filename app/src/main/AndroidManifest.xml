@@ -103,11 +103,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SelectedEncounterSummary"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SelectedPartnerActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EncounterStartActivity"
             android:screenOrientation="portrait"
@@ -181,9 +182,12 @@
             android:name=".RemindersActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".BaselineSexproScoreActivity"
+        <activity
+            android:name=".BaselineSexproScoreActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".LynxProfileEdit"
+            android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>
