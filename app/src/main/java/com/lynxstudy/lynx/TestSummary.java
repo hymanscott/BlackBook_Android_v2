@@ -9,8 +9,14 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,7 +37,10 @@ import java.util.List;
 public class TestSummary extends AppCompatActivity {
 
     DatabaseHelper db;
-    TextView testedOn,teststatus,gonorrheaTitle,syphilisTitle,chlamydiaTitle;
+    TextView teststatus,gonorrheaTitle,syphilisTitle,chlamydiaTitle;
+    private ViewPager mViewPager;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
+    ImageView hivIcon,gonorrheaIcon,syphilisIcon,chlamydiaIcon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,29 +48,68 @@ public class TestSummary extends AppCompatActivity {
         // Type face //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-        
-        // Custom Action Bar //
+        Typeface tf_bold_italic = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-BoldItalic.ttf");
+        /*// Custom Action Bar //
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
-        viewProfile.setVisibility(View.GONE);
+        viewProfile.setVisibility(View.GONE);*/
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        TextView tab1 = new TextView(TestSummary.this);
+        tab1.setText("HISTORY");
+        tab1.setTextColor(getResources().getColor(R.color.text_color));
+        tab1.setTypeface(tf);
+        tab1.setTextSize(16);
+        TextView tab2 = new TextView(TestSummary.this);
+        tab2.setText("TEST KIT");
+        tab2.setTextColor(getResources().getColor(R.color.text_color));
+        tab2.setTypeface(tf);
+        tab2.setTextSize(16);
+        TextView tab3 = new TextView(TestSummary.this);
+        tab3.setText("LOCATIONS");
+        tab3.setTextColor(getResources().getColor(R.color.text_color));
+        tab3.setTypeface(tf);
+        tab3.setTextSize(16);
+        TextView tab4 = new TextView(TestSummary.this);
+        tab4.setText("INSTRUCTIONS");
+        tab4.setTextColor(getResources().getColor(R.color.text_color));
+        tab4.setTypeface(tf);
+        tab4.setTextSize(16);
+        TextView tab5 = new TextView(TestSummary.this);
+        tab5.setText("CARE");
+        tab5.setTextColor(getResources().getColor(R.color.text_color));
+        tab5.setTypeface(tf);
+        tab5.setTextSize(16);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+        tabLayout.getTabAt(0).setCustomView(tab1);
+        tabLayout.getTabAt(1).setCustomView(tab2);
+        tabLayout.getTabAt(2).setCustomView(tab3);
+        tabLayout.getTabAt(3).setCustomView(tab4);
+        tabLayout.getTabAt(4).setCustomView(tab5);
         db = new DatabaseHelper(TestSummary.this);
         int testingHistoryID = getIntent().getIntExtra("testingHistoryID",0);
 
-        testedOn = (TextView) findViewById(R.id.testedOn);
-        testedOn.setTypeface(tf);
-        teststatus = (TextView) findViewById(R.id.teststatus);
-        teststatus.setTypeface(tf);
+        /*teststatus = (TextView) findViewById(R.id.teststatus);
+        teststatus.setTypeface(tf);*/
         gonorrheaTitle = (TextView) findViewById(R.id.gonorrheaTitle);
-        gonorrheaTitle.setTypeface(tf);
+        gonorrheaTitle.setTypeface(tf_bold_italic);
         syphilisTitle = (TextView) findViewById(R.id.syphilisTitle);
-        syphilisTitle.setTypeface(tf);
+        syphilisTitle.setTypeface(tf_bold_italic);
         chlamydiaTitle = (TextView) findViewById(R.id.chlamydiaTitle);
-        chlamydiaTitle.setTypeface(tf);
+        chlamydiaTitle.setTypeface(tf_bold_italic);
 
         TextView testingHistoryTitle = (TextView) findViewById(R.id.testingHistoryTitle);
         testingHistoryTitle.setTypeface(tf);
@@ -85,6 +133,10 @@ public class TestSummary extends AppCompatActivity {
         chlamydiaAttachment.setScaleType(ImageView.ScaleType.CENTER_CROP);
         LinearLayout hivLayout = (LinearLayout)findViewById(R.id.hivLayout);
         LinearLayout std_list_parentLayout = (LinearLayout)findViewById(R.id.std_list_parentLayout);
+        hivIcon = (ImageView)findViewById(R.id.hivIcon);
+        gonorrheaIcon = (ImageView)findViewById(R.id.gonorrheaIcon);
+        syphilisIcon = (ImageView)findViewById(R.id.syphilisIcon);
+        chlamydiaIcon = (ImageView)findViewById(R.id.chlamydiaIcon);
 
         TestingHistory testingHistory = db.getTestingHistorybyID(testingHistoryID);
         String test_name = (db.getTestingNamebyID(testingHistory.getTesting_id())).getTestName();
@@ -98,10 +150,13 @@ public class TestSummary extends AppCompatActivity {
             for (final TestingHistoryInfo historyInfo : testinghistoryInfoList) {
                 if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
                     hivTestStatus.setText("Positive");
+                    hivIcon.setImageDrawable(getResources().getDrawable(R.drawable.pos_test));
                 }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
                     hivTestStatus.setText("Negative");
+                    hivIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
                 }else{
                     hivTestStatus.setText("Didn't Test");
+                    hivIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
                 }
                 String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
                 if(!historyInfoAttachment.equals("")){
@@ -126,7 +181,8 @@ public class TestSummary extends AppCompatActivity {
                         }
                     });
                 }else {
-                    hivAttachment.setVisibility(View.GONE);
+                    //hivAttachment.setVisibility(View.GONE);
+                    hivAttachment.setImageResource(R.drawable.photocamera);
                 }
             }
 
@@ -139,10 +195,13 @@ public class TestSummary extends AppCompatActivity {
                 if(stiName.getstiName().equals("Gonorrhea")){
                     if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
                         gonorrheaStatus.setText("Positive");
+                        gonorrheaIcon.setImageDrawable(getResources().getDrawable(R.drawable.pos_test));
                     }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
                         gonorrheaStatus.setText("Negative");
+                        gonorrheaIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
                     }else{
                         gonorrheaStatus.setText("Didn't Test");
+                        gonorrheaIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
                     }
                     String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
                     if(!historyInfoAttachment.equals("")){
@@ -166,16 +225,20 @@ public class TestSummary extends AppCompatActivity {
                             }
                         });
                     }else {
-                        gonorrheaAttachment.setVisibility(View.GONE);
+                        //gonorrheaAttachment.setVisibility(View.GONE);
+                        gonorrheaAttachment.setImageResource(R.drawable.photocamera);
                     }
 
                 }else if (stiName.getstiName().equals("Syphilis")){
                     if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
                         syphilisStatus.setText("Positive");
+                        syphilisIcon.setImageDrawable(getResources().getDrawable(R.drawable.pos_test));
                     }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
                         syphilisStatus.setText("Negative");
+                        syphilisIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
                     }else{
                         syphilisStatus.setText("Didn't Test");
+                        syphilisIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
                     }
                     String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
                     if(!historyInfoAttachment.equals("")){
@@ -198,15 +261,19 @@ public class TestSummary extends AppCompatActivity {
                             }
                         });
                     }else {
-                        syphilisAttachment.setVisibility(View.GONE);
+                       // syphilisAttachment.setVisibility(View.GONE);
+                        syphilisAttachment.setImageResource(R.drawable.photocamera);
                     }
                 }else if (stiName.getstiName().equals("Chlamydia")){
                     if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
                         chlamydiaStatus.setText("Positive");
+                        chlamydiaIcon.setImageDrawable(getResources().getDrawable(R.drawable.pos_test));
                     }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
                         chlamydiaStatus.setText("Negative");
+                        chlamydiaIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
                     }else{
                         chlamydiaStatus.setText("Didn't Test");
+                        chlamydiaIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
                     }
                     String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
                     if(!historyInfoAttachment.equals("")){
@@ -229,7 +296,8 @@ public class TestSummary extends AppCompatActivity {
                             }
                         });
                     }else {
-                        chlamydiaAttachment.setVisibility(View.GONE);
+                        //chlamydiaAttachment.setVisibility(View.GONE);
+                        chlamydiaAttachment.setImageResource(R.drawable.photocamera);
                     }
                 }
             }
@@ -277,5 +345,61 @@ public class TestSummary extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.fromFile(mediaFile),"image/*");
         startActivity(intent);
+    }
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            // getItem is called to instantiate the fragment for the given page.
+            // Return a PlaceholderFragment (defined as a static inner class below).
+            /*Log.v("page_id ", String.valueOf(position));
+            return PlaceholderFragment.newInstance(position + 1);*/
+            switch (position) {
+                case 0:
+                    //return new TestingHomeFragment();
+                    return new BlankFragment();
+                case 1:
+                    return new BlankFragment();
+                //return new TestingTestKitFragment();
+                case 2:
+                    return new BlankFragment();
+                //return new TestingLocationFragment();
+                case 3:
+                    return new BlankFragment();
+                //return new TestingInstructionFragment();
+                case 4:
+                    return new BlankFragment();
+                //return new TestingCareFragment();
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            // Show 5 total pages.
+            return 5;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "HISTORY";
+                case 1:
+                    return "TEST KIT";
+                case 2:
+                    return "LOCATIONS";
+                case 3:
+                    return "INSTRUCTIONS";
+                case 4:
+                    return "CARE";
+            }
+            return null;
+        }
     }
 }

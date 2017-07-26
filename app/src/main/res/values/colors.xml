@@ -49,4 +49,8 @@
     <color name="grey_border">#1F000000</color>
     <color name="profile_edittext_bg">#1A444444</color>
     <color name="profile_edittext_hint">#80444444</color>
+
+    <!-- FAQ Screen Colors -->
+    <color name="faq_blue">#DE2E86EF</color>
+    <color name="border_grey">#1F000000</color>
 </resources>

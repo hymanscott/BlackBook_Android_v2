@@ -156,10 +156,12 @@
         <activity
             android:name=".AddNewTest"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".TestSummary"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".TestingInstructionAnswer"
             android:screenOrientation="portrait" />

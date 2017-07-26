@@ -29,24 +29,37 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:weightSum="1"
                         android:background="@color/update_score_bg"
-                        android:gravity="center_horizontal"
-                        android:paddingBottom="20dp"
-                        android:paddingTop="20dp"
-                        android:text="Your Score will update in 90 days"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:id="@+id/score_update_date"/>
-
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:paddingBottom="20dp"
+                            android:paddingTop="20dp"
+                            android:layout_weight="0.9"
+                            android:text="Your Score will update in 90 days"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:id="@+id/score_update_date"/>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:src="@drawable/info_white"/>
+                    </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="30dp"
+                        android:visibility="gone"
                         android:orientation="horizontal">
 
                         <Button

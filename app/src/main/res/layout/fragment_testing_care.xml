@@ -13,28 +13,29 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="If your HIV test was positive"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:paddingLeft="25dp"
+                android:text="Your HIV test was positive"
+                android:paddingLeft="16dp"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
-                android:textColor="@color/text_color"
-                android:background="@drawable/border_top_bottom"
+                android:textSize="16sp"
+                android:textColor="@color/faq_blue"
+                android:background="@drawable/bottom_border_faq"
                 android:id="@+id/positiveHIVtest"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="If your HIV test was negative"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:paddingLeft="25dp"
+                android:text="Your HIV test was negative"
+                android:paddingLeft="16dp"
                 android:paddingTop="20dp"
-                android:textColor="@color/text_color"
+                android:textColor="@color/faq_blue"
+                android:textSize="16sp"
                 android:paddingBottom="20dp"
-                android:background="@drawable/border_bottom"
+                android:background="@drawable/bottom_border_faq"
                 android:id="@+id/negativeHIVtest"/>
         </LinearLayout>
     </ScrollView>

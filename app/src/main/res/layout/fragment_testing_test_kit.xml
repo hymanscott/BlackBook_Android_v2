@@ -19,24 +19,30 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:text="REQUEST A HOME TEST KIT"
-                android:layout_margin="10dp"
+                android:textSize="20sp"
+                android:text="Request a Home Test Kit"
                 android:id="@+id/frag_title"
-                android:textColor="@color/colorAccent"
-                android:gravity="center_vertical|center_horizontal" />
+                android:textColor="@color/profile_title_text_color"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="24dp"/>
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textColor="@color/text_color"
                 android:id="@+id/title"
                 android:text="Please confirm tests requested"
-                android:layout_margin="10dp" />
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin" />
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
+                android:layout_marginTop="32dp"
                 android:id="@+id/requestHomeKit_checkboxLayout"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_height="wrap_content">
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -45,8 +51,8 @@
                     android:id="@+id/oraQuickTestKit"
                     android:textSize="18sp"
                     android:textColor="@color/text_color"
-                    android:layout_marginLeft="40dp"
                     android:checked="true"
+                    android:buttonTint="@color/profile_text_color"
                     android:layout_centerHorizontal="true" />
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -55,28 +61,30 @@
                     android:id="@+id/analSwab"
                     android:textSize="18sp"
                     android:textColor="@color/text_color"
+                    android:buttonTint="@color/profile_text_color"
                     android:checked="true"
-                    android:layout_marginLeft="40dp"
                     android:layout_centerHorizontal="true" />
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Penile Swab"
                     android:checked="true"
+                    android:buttonTint="@color/profile_text_color"
                     android:textSize="18sp"
                     android:textColor="@color/text_color"
                     android:id="@+id/penileSwab"
-                    android:layout_marginLeft="40dp"
                     android:layout_centerHorizontal="true" />
             </LinearLayout>
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Confirm"
                 android:id="@+id/requestHomeKit_confirm"
-                android:background="@drawable/lynx_button"
+                android:background="@drawable/buttonbluecornered"
                 android:textColor="@color/white"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal" />
         </LinearLayout>

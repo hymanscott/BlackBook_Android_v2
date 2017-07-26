@@ -64,13 +64,12 @@ public class LynxPrepFactsFragment extends Fragment {
             prep_name.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
             prep_name.setLayoutParams(params);
             prep_name.setTypeface(tf);
-            prep_name.setTextColor(getResources().getColor(R.color.text_color));
-            prep_name.setPadding(25, 10, 10, 10);
+            prep_name.setTextColor(getResources().getColor(R.color.faq_blue));
+            prep_name.setPadding(40, 10, 10, 10);
+            prep_name.setTextSize(16);
 
             prepRow.addView(prep_name);
-            prepRow.setBackground(getResources().getDrawable(R.drawable.border_bottom));
-            if(j==0)
-                prepRow.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
+            prepRow.setBackground(getResources().getDrawable(R.drawable.bottom_border_faq));
 
             prepRow.setClickable(true);
             prepRow.setFocusable(true);
@@ -83,17 +82,15 @@ public class LynxPrepFactsFragment extends Fragment {
                         if (row == v) {
 
                             row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
-                            ((TextView) ((TableRow) prepTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.colorAccent));
+                            ((TextView) ((TableRow) prepTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.profile_text_color));
                             Intent selectedPartnerSumm = new Intent(getActivity(), PrepFactsAnswer.class);
                             int prepInformationId = row.getId();
                             selectedPartnerSumm.putExtra("prepInformationId", prepInformationId);
                             startActivityForResult(selectedPartnerSumm, 100);
 
                         } else {
-                            ((TextView) ((TableRow) prepTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#444444"));
-                            row.setBackground(getResources().getDrawable(R.drawable.border_bottom));
-                            if(i==0)
-                                row.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
+                            ((TextView) ((TableRow) prepTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.faq_blue));
+                            row.setBackground(getResources().getDrawable(R.drawable.bottom_border_faq));
                         }
                     }
                 }

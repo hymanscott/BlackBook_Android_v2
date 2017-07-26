@@ -13,17 +13,15 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="15dp">
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp">
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginRight="5dp"
                 android:id="@+id/testing_addNewHIVtest"
-                android:background="@drawable/lynx_button"
+                android:background="@drawable/buttonbluecornered"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="14sp"
@@ -36,7 +34,7 @@
                 android:textSize="14sp"
                 android:layout_marginLeft="5dp"
                 android:id="@+id/testing_addNewSTItest"
-                android:background="@drawable/lynx_button"
+                android:background="@drawable/buttonbluecornered"
                 android:textColor="@color/white"
                 android:text="ADD NEW STD TEST" />
         </LinearLayout>
@@ -47,7 +45,6 @@
         android:layout_height="fill_parent"
         android:id="@+id/scrollView2"
         android:paddingBottom="5dp"
-        android:paddingTop="5dp"
         android:fillViewport="false" >
         <RelativeLayout
             android:layout_width="fill_parent"

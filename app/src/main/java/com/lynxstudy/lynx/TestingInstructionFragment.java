@@ -64,13 +64,12 @@ public class TestingInstructionFragment extends Fragment {
             testingInsName.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
             testingInsName.setLayoutParams(params);
             testingInsName.setTypeface(roboto);
-            testingInsName.setTextColor(getResources().getColor(R.color.text_color));
-            testingInsName.setPadding(25, 10, 10, 10);
+            testingInsName.setTextColor(getResources().getColor(R.color.faq_blue));
+            testingInsName.setPadding(40, 10, 10, 10);
+            testingInsName.setTextSize(16);
 
             testingInsRow.addView(testingInsName);
-            testingInsRow.setBackground(getResources().getDrawable(R.drawable.border_bottom));
-            if(j==0)
-                testingInsRow.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
+            testingInsRow.setBackground(getResources().getDrawable(R.drawable.bottom_border_faq));
 
             testingInsRow.setClickable(true);
             testingInsRow.setFocusable(true);
@@ -83,17 +82,15 @@ public class TestingInstructionFragment extends Fragment {
                         if (row == v) {
 
                             row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
-                            ((TextView) ((TableRow) testingInsTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.colorAccent));
+                            ((TextView) ((TableRow) testingInsTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.profile_text_color));
                             Intent selectedPartnerSumm = new Intent(getActivity(), TestingInstructionAnswer.class);
                             int testingInsID = row.getId();
                             selectedPartnerSumm.putExtra("testingInsID", testingInsID);
                             startActivityForResult(selectedPartnerSumm, 100);
 
                         } else {
-                            ((TextView) ((TableRow) testingInsTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#444444"));
-                            row.setBackground(getResources().getDrawable(R.drawable.border_bottom));
-                            if(i==0)
-                                row.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
+                            ((TextView) ((TableRow) testingInsTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.faq_blue));
+                            row.setBackground(getResources().getDrawable(R.drawable.bottom_border_faq));
                         }
                     }
                 }

@@ -2,6 +2,7 @@ package com.lynxstudy.lynx;
 
 import android.app.ActionBar;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,10 +17,16 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -27,6 +34,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -51,13 +59,15 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.UUID;
 
 public class AddNewTest extends AppCompatActivity implements View.OnClickListener{
 
     DatabaseHelper db;
     String title="";
-    ImageView hivTestImage,gonorrheaImage,syphilisImage,chlamydiaImage,hivAttachment,gonorrheaAttachment,syphilisAttachment,chlamydiaAttachment;
+    ImageView hivAttachment,gonorrheaAttachment,syphilisAttachment,chlamydiaAttachment;
+    FrameLayout  hivTestImage,gonorrheaImage,syphilisImage,chlamydiaImage;
     int currentAttachmentId=0;
     String hivImageName="",gonorrheaImageName="",syphilisImageName="",chlamydiaImageName="";
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -71,23 +81,69 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
     RadioButton hivTestYes,hivTestNo,hivTestDidntTest,gonorrheaYes,gonorrheaNo,gonorrheaDidntTest,syphilisYes,syphilisNo,syphilisDidntTest;
     RadioButton chlamydiaYes,chlamydiaNo,chlamydiaDidntTest;
     Button add_new_test_ok;
+    LinearLayout bot_nav;
+    private ViewPager mViewPager;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_test);
 
         // Custom Action Bar //
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        /*getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
-        viewProfile.setVisibility(View.INVISIBLE);
+        viewProfile.setVisibility(View.INVISIBLE);*/
         // Typeface //
         Typeface ty = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-        /*Typeface ty = Typeface.createFromAsset(getResources().getAssets(),
-                "RobotoSlabRegular.ttf");*/
+        Typeface ty_bold_italic = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-BoldItalic.ttf");
+
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        TextView tab1 = new TextView(AddNewTest.this);
+        tab1.setText("HISTORY");
+        tab1.setTextColor(getResources().getColor(R.color.text_color));
+        tab1.setTypeface(ty);
+        tab1.setTextSize(16);
+        TextView tab2 = new TextView(AddNewTest.this);
+        tab2.setText("TEST KIT");
+        tab2.setTextColor(getResources().getColor(R.color.text_color));
+        tab2.setTypeface(ty);
+        tab2.setTextSize(16);
+        TextView tab3 = new TextView(AddNewTest.this);
+        tab3.setText("LOCATIONS");
+        tab3.setTextColor(getResources().getColor(R.color.text_color));
+        tab3.setTypeface(ty);
+        tab3.setTextSize(16);
+        TextView tab4 = new TextView(AddNewTest.this);
+        tab4.setText("INSTRUCTIONS");
+        tab4.setTextColor(getResources().getColor(R.color.text_color));
+        tab4.setTypeface(ty);
+        tab4.setTextSize(16);
+        TextView tab5 = new TextView(AddNewTest.this);
+        tab5.setText("CARE");
+        tab5.setTextColor(getResources().getColor(R.color.text_color));
+        tab5.setTypeface(ty);
+        tab5.setTextSize(16);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+        tabLayout.getTabAt(0).setCustomView(tab1);
+        tabLayout.getTabAt(1).setCustomView(tab2);
+        tabLayout.getTabAt(2).setCustomView(tab3);
+        tabLayout.getTabAt(3).setCustomView(tab4);
+        tabLayout.getTabAt(4).setCustomView(tab5);
+
         titleText = (TextView)findViewById(R.id.titleText);
         titleText.setTypeface(ty);
         hivPosQn = (TextView)findViewById(R.id.hivPosQn);
@@ -95,11 +151,11 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
         stdTesPosQn = (TextView)findViewById(R.id.stdTesPosQn);
         stdTesPosQn.setTypeface(ty);
         gonorrheaTitle = (TextView)findViewById(R.id.gonorrheaTitle);
-        gonorrheaTitle.setTypeface(ty);
+        gonorrheaTitle.setTypeface(ty_bold_italic);
         syphilisTitle = (TextView)findViewById(R.id.syphilisTitle);
-        syphilisTitle.setTypeface(ty);
+        syphilisTitle.setTypeface(ty_bold_italic);
         chlamydiaTitle = (TextView)findViewById(R.id.chlamydiaTitle);
-        chlamydiaTitle.setTypeface(ty);
+        chlamydiaTitle.setTypeface(ty_bold_italic);
 
         addNewTestDate = (EditText)findViewById(R.id.addNewTestDate);
         addNewTestDate.setTypeface(ty);
@@ -139,7 +195,7 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
         title = getIntent().getStringExtra("testname");
         TextView newTest_title = (TextView) findViewById(R.id.addNewTestTitle);
         newTest_title.setTypeface(ty);
-        newTest_title.setText("New " + title);
+        newTest_title.setText("Add New " + title);
         TextView titleText = (TextView) findViewById(R.id.titleText);
         titleText.setText("When was your most recent HIV test?");
         LinearLayout std_layout = (LinearLayout)findViewById(R.id.std_layout);
@@ -219,7 +275,7 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
             }
         });
 
-        ImageView calenderIconNewTestDate = (ImageView)findViewById(R.id.calenderIconNewTestDate);
+        /*ImageView calenderIconNewTestDate = (ImageView)findViewById(R.id.calenderIconNewTestDate);
         calenderIconNewTestDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -236,6 +292,35 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
                 };
                 datePickerFragment.show(AddNewTest.this.getFragmentManager(), "datePicker");
             }
+        });*/
+
+        final Calendar myCalendar = Calendar.getInstance();
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                String myFormat = "MM/dd/yyyy"; //In which you need put here
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+                newTestDate.setText(sdf.format(myCalendar.getTime()));
+            }
+
+        };
+        newTestDate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(AddNewTest.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
         });
 
         TestNameMaster testNameMaster = db.getTestingNamebyName(title);
@@ -246,9 +331,7 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
         add_new_test_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                boolean invalid_date = LynxManager.dateValidation(newTestDate.getText().toString());
+                boolean invalid_date = LynxManager.regDateValidation(newTestDate.getText().toString());
                 if (newTestDate.getText().toString().isEmpty()) {
                     Toast.makeText(AddNewTest.this, "Please Select Date", Toast.LENGTH_SHORT).show();
                 } else if(invalid_date){
@@ -308,13 +391,13 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
         });
 
         // Attachment //
-        hivTestImage = (ImageView) findViewById(R.id.hivTestImage);
+        hivTestImage = (FrameLayout) findViewById(R.id.hivTestImage);
         hivTestImage.setOnClickListener(AddNewTest.this);
-        gonorrheaImage = (ImageView) findViewById(R.id.gonorrheaImage);
+        gonorrheaImage = (FrameLayout) findViewById(R.id.gonorrheaImage);
         gonorrheaImage.setOnClickListener(AddNewTest.this);
-        syphilisImage = (ImageView) findViewById(R.id.syphilisImage);
+        syphilisImage = (FrameLayout) findViewById(R.id.syphilisImage);
         syphilisImage.setOnClickListener(AddNewTest.this);
-        chlamydiaImage = (ImageView) findViewById(R.id.chlamydiaImage);
+        chlamydiaImage = (FrameLayout) findViewById(R.id.chlamydiaImage);
         chlamydiaImage.setOnClickListener(AddNewTest.this);
 
         hivAttachment = (ImageView) findViewById(R.id.hivAttachment);
@@ -325,7 +408,13 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
         syphilisAttachment.setTag(0);
         chlamydiaAttachment = (ImageView) findViewById(R.id.chlamydiaAttachment);
         chlamydiaAttachment.setTag(0);
-
+        bot_nav = (LinearLayout)findViewById(R.id.bot_nav);
+        bot_nav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(AddNewTest.this,"Press back to exit from Test Screen",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     @Override
     public void onClick(View v) {
@@ -421,7 +510,22 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
                         attachment.setTag(1);
                     } else if (items[item].equals("Remove Image")) {
                         attachment.setTag(0);
-                        attachment.setVisibility(View.GONE);
+                        //attachment.setVisibility(View.GONE);
+                        attachment.setImageDrawable(getResources().getDrawable(R.drawable.photocamera));
+                        switch (currentAttachmentId){
+                            case R.id.hivAttachment:
+                                hivImageName = "";
+                                break;
+                            case R.id.gonorrheaAttachment:
+                                gonorrheaImageName= "";
+                                break;
+                            case R.id.syphilisAttachment:
+                                syphilisImageName= "";
+                                break;
+                            case R.id.chlamydiaAttachment:
+                                chlamydiaImageName= "";
+                                break;
+                        }
                     } else if (items[item].equals("Cancel")) {
                         dialog.dismiss();
                     }
@@ -500,7 +604,8 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
                     imagepath = realPath;
                 }else{
                     attachment.setTag(0);
-                    attachment.setVisibility(View.GONE);
+                   // attachment.setVisibility(View.GONE);
+                    attachment.setImageDrawable(getResources().getDrawable(R.drawable.photocamera));
                 }
                 break;
             case PICK_IMAGE_REQUEST_AFTER_KITKAT:
@@ -547,7 +652,7 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    Bitmap resized = ThumbnailUtils.extractThumbnail(bitmap,300,300);
+                    Bitmap resized = ThumbnailUtils.extractThumbnail(bitmap,400,400);
                     Drawable d =new BitmapDrawable(resized);
 
 
@@ -557,7 +662,8 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
                     attachment.setTag(1);
                 }else{
                     attachment.setTag(0);
-                    attachment.setVisibility(View.GONE);
+                    //attachment.setVisibility(View.GONE);
+                    attachment.setImageDrawable(getResources().getDrawable(R.drawable.photocamera));
                 }
 
                 break;
@@ -585,7 +691,9 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    Drawable d = new BitmapDrawable(thumbnail);
+                    Bitmap resized = ThumbnailUtils.extractThumbnail(thumbnail,400,400);
+                    Drawable d =new BitmapDrawable(resized);
+                    //Drawable d = new BitmapDrawable(thumbnail);
                     Log.v("FileComplatePath",file.getAbsolutePath() + fileName);
                     attachment.setImageDrawable(d);
                     attachment.setVisibility(View.VISIBLE);
@@ -594,7 +702,8 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
 
                 }else{
                     attachment.setTag(0);
-                    attachment.setVisibility(View.GONE);
+                    //attachment.setVisibility(View.GONE);
+                    attachment.setImageDrawable(getResources().getDrawable(R.drawable.photocamera));
                 }
                 break;
         }
@@ -677,6 +786,62 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
 
         } catch (Exception exc) {
             Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            // getItem is called to instantiate the fragment for the given page.
+            // Return a PlaceholderFragment (defined as a static inner class below).
+            /*Log.v("page_id ", String.valueOf(position));
+            return PlaceholderFragment.newInstance(position + 1);*/
+            switch (position) {
+                case 0:
+                    //return new TestingHomeFragment();
+                    return new BlankFragment();
+                case 1:
+                    return new BlankFragment();
+                    //return new TestingTestKitFragment();
+                case 2:
+                    return new BlankFragment();
+                    //return new TestingLocationFragment();
+                case 3:
+                    return new BlankFragment();
+                    //return new TestingInstructionFragment();
+                case 4:
+                    return new BlankFragment();
+                    //return new TestingCareFragment();
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            // Show 5 total pages.
+            return 5;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "HISTORY";
+                case 1:
+                    return "TEST KIT";
+                case 2:
+                    return "LOCATIONS";
+                case 3:
+                    return "INSTRUCTIONS";
+                case 4:
+                    return "CARE";
+            }
+            return null;
         }
     }
 }

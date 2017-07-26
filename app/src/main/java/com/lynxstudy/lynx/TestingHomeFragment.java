@@ -213,7 +213,7 @@ public class TestingHomeFragment extends Fragment {
                                 testimage.setImageBitmap(scaled);
                             }else{
                                 //  ***********set url from server*********** //
-                                testimage.setImageResource(R.drawable.testimage);
+                                testimage.setImageResource(R.drawable.photocamera);
                                 new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(testimage);
                                 new DownloadFileFromURL(testimage).execute(LynxManager.getTestImageBaseUrl()+historyInfoAttachment);
                             }
@@ -225,8 +225,6 @@ public class TestingHomeFragment extends Fragment {
                 v.setId(history.getTesting_history_id());
                 v.setClickable(true);
                 v.setFocusable(true);
-                if(j==0)
-                    v.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view1) {
@@ -274,7 +272,7 @@ public class TestingHomeFragment extends Fragment {
                             Log.v("ImagepathExists",imgDir+historyInfoAttachment);
                         }else{
                             //  ***********set url from server*********** //
-                            testimage.setImageResource(R.drawable.testimage);
+                            testimage.setImageResource(R.drawable.photocamera);
                             new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(testimage);
                             new DownloadFileFromURL(testimage).execute(LynxManager.getTestImageBaseUrl()+historyInfoAttachment);
                         }
@@ -283,8 +281,6 @@ public class TestingHomeFragment extends Fragment {
                     v.setId(history.getTesting_history_id());
                     v.setClickable(true);
                     v.setFocusable(true);
-                    if(j==0)
-                        v.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
                     v.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view1) {
