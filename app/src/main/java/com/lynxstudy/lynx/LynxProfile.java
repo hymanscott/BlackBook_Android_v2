@@ -143,30 +143,7 @@ public class LynxProfile extends AppCompatActivity {
         logout.setTypeface(tf);
 
         db = new DatabaseHelper(LynxProfile.this);
-
-        profile_name.setText(LynxManager.decryptString(LynxManager.getActiveUser().getFirstname()));
-        profile_lastname.setText(LynxManager.decryptString(LynxManager.getActiveUser().getLastname()));
-        profile_email.setText(LynxManager.decryptString(LynxManager.getActiveUser().getEmail()));
-        updatePass.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
-        updatePhone.setText(LynxManager.decryptString(LynxManager.getActiveUser().getMobile()));
-        updatePasscode.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPasscode()));
-        updateSecAnswer.setText(LynxManager.decryptString(LynxManager.getActiveUser().getSecurityanswer()));
-        String dob_user = LynxManager.decryptString(LynxManager.getActiveUser().getDob());
-        updateDOB.setText(LynxManager.getFormatedDate("dd-MMM-yyyy",dob_user,"MM/dd/yyyy"));
-        updateSecQn.setText(LynxManager.decryptString(LynxManager.getActiveUser().getSecurityquestion()));
-        updateRace.setText(LynxManager.decryptString(LynxManager.getActiveUser().getRace()));
-        TestingReminder diaryReminder = db.getTestingReminderByFlag(0);
-        TestingReminder testingReminder = db.getTestingReminderByFlag(1);
-        if(diaryReminder!=null){
-            dairyReminderDay.setText(LynxManager.decryptString(diaryReminder.getNotification_day()));
-            dairyReminderTime.setText(LynxManager.decryptString(diaryReminder.getNotification_time()));
-            dairyReminderText.setText(LynxManager.decryptString(diaryReminder.getReminder_notes()));
-        }
-        if(testingReminder!=null){
-            testingReminderDay.setText(LynxManager.decryptString(testingReminder.getNotification_day()));
-            testingReminderTime.setText(LynxManager.decryptString(testingReminder.getNotification_time()));
-            testingReminderText.setText(LynxManager.decryptString(testingReminder.getReminder_notes()));
-        }
+        setSelected();
         /*upt_secQuestions = getResources().getStringArray(R.array.security_questions);
         spinner_upt_sec_questions = (Spinner) findViewById(R.id.updateSecQuestion);
 
@@ -210,6 +187,41 @@ public class LynxProfile extends AppCompatActivity {
                 Toast.makeText(LynxProfile.this,"Press back to exit from profile",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void setSelected(){
+        profile_name.setText(LynxManager.decryptString(LynxManager.getActiveUser().getFirstname()));
+        profile_lastname.setText(LynxManager.decryptString(LynxManager.getActiveUser().getLastname()));
+        profile_email.setText(LynxManager.decryptString(LynxManager.getActiveUser().getEmail()));
+        updatePass.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
+        updatePhone.setText(LynxManager.decryptString(LynxManager.getActiveUser().getMobile()));
+        updatePasscode.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPasscode()));
+        updateSecAnswer.setText(LynxManager.decryptString(LynxManager.getActiveUser().getSecurityanswer()));
+        String dob_user = LynxManager.decryptString(LynxManager.getActiveUser().getDob());
+        updateDOB.setText(LynxManager.getFormatedDate("dd-MMM-yyyy",dob_user,"MM/dd/yyyy"));
+        updateSecQn.setText(LynxManager.decryptString(LynxManager.getActiveUser().getSecurityquestion()));
+        updateRace.setText(LynxManager.decryptString(LynxManager.getActiveUser().getRace()));
+        prepAnswer.setText(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()));
+        db = new DatabaseHelper(LynxProfile.this);
+
+
+        TestingReminder diaryReminder = db.getTestingReminderByFlag(0);
+        TestingReminder testingReminder = db.getTestingReminderByFlag(1);
+        if(diaryReminder!=null){
+            dairyReminderDay.setText(LynxManager.decryptString(diaryReminder.getNotification_day()));
+            dairyReminderTime.setText(LynxManager.decryptString(diaryReminder.getNotification_time()));
+            dairyReminderText.setText(LynxManager.decryptString(diaryReminder.getReminder_notes()));
+        }
+        if(testingReminder!=null){
+            testingReminderDay.setText(LynxManager.decryptString(testingReminder.getNotification_day()));
+            testingReminderTime.setText(LynxManager.decryptString(testingReminder.getNotification_time()));
+            testingReminderText.setText(LynxManager.decryptString(testingReminder.getReminder_notes()));
+        }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        setSelected();
     }
     public void signOut(){
 

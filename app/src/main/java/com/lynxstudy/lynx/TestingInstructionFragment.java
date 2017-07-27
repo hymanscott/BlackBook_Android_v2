@@ -1,26 +1,37 @@
 package com.lynxstudy.lynx;
 
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.lynx.R;
 import com.lynxstudy.lynx.TestingInstructionAnswer;
 import com.lynxstudy.model.TestingInstructions;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,19 +48,25 @@ public class TestingInstructionFragment extends Fragment {
     public TestingInstructionFragment() {
         // Required empty public constructor
     }
-
+    View view;
+    Typeface roboto;
+    LinearLayout questionLayout,answerLayout;
+    private boolean isAnswerShown = false;
+    int back_press_count;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment_testing_instruction, container, false);
+        view = inflater.inflate(R.layout.fragment_testing_instruction, container, false);
         db = new DatabaseHelper(getActivity());
 
         //Type face
-        Typeface roboto = Typeface.createFromAsset(getResources().getAssets(),
+        roboto = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
         List<TestingInstructions> testing_instruction_list = db.getAllTestingInstruction();
 
+        questionLayout = (LinearLayout) view.findViewById(R.id.questionLayout);
+        answerLayout = (LinearLayout) view.findViewById(R.id.answerLayout);
         testingInsTable = (TableLayout) view.findViewById(R.id.testingInsTable);
         testingInsTable.removeAllViews();
         int j = 0;
@@ -87,10 +104,10 @@ public class TestingInstructionFragment extends Fragment {
                             int testingInsID = row.getId();
                             selectedPartnerSumm.putExtra("testingInsID", testingInsID);
                             startActivityForResult(selectedPartnerSumm, 100);
-
+                            //showAnswerLayout(row.getId());
                         } else {
-                            ((TextView) ((TableRow) testingInsTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.faq_blue));
-                            row.setBackground(getResources().getDrawable(R.drawable.bottom_border_faq));
+                            //((TextView) ((TableRow) testingInsTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.faq_blue));
+                            //row.setBackground(getResources().getDrawable(R.drawable.bottom_border_faq));
                         }
                     }
                 }
@@ -99,6 +116,35 @@ public class TestingInstructionFragment extends Fragment {
             j++;
 
         }
+        back_press_count = 0;
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener( new View.OnKeyListener()
+        {
+            @Override
+            public boolean onKey( View v, int keyCode, KeyEvent event )
+            {
+                if( keyCode == KeyEvent.KEYCODE_BACK )
+                {
+                    if(isAnswerShown){
+                        answerLayout.setVisibility(View.GONE);
+                        questionLayout.setVisibility(View.VISIBLE);
+                        isAnswerShown = false;
+                        back_press_count = 0;
+                    }else{
+                        if(back_press_count>1){
+                            LynxManager.goToIntent(getActivity(),"sexpro",getActivity().getClass().getSimpleName());
+                            getActivity().overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
+                            getActivity().finish();
+                        }else{
+                            back_press_count++;
+                        }
+                    }
+                    return true;
+                }
+                return false;
+            }
+        } );
         return view;
     }
 
@@ -168,6 +214,78 @@ public class TestingInstructionFragment extends Fragment {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         reloadFragment();
+    }
+
+    public void showAnswerLayout(int id){
+        answerLayout.setVisibility(View.VISIBLE);
+        questionLayout.setVisibility(View.GONE);
+        isAnswerShown = true;
+        TextView qn = (TextView)view.findViewById(R.id.question);
+        qn.setTypeface(roboto);
+        WebView webView = (WebView)view.findViewById(R.id.webview);
+
+        TestingInstructions instruction = db.getTestingInstruction(id);
+        qn.setText(instruction.getQuestion());
+
+
+        final WebView instruction_ans_wv = new WebView(getActivity());
+        final WebView video_view = new WebView(getActivity());
+        LinearLayout.LayoutParams params = new TableRow.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT, 1f);
+
+        if (instruction.getVideo_link().isEmpty()) {
+            if (instruction.getPdf_link().isEmpty()) {
+                instruction_ans_wv.loadDataWithBaseURL("",instruction.getAnswer() , "text/html", "utf-8", "");
+            } else {
+                final String filename = instruction.getPdf_link();
+                instruction_ans_wv.loadDataWithBaseURL("",filename , "text/html", "utf-8", "");
+                instruction_ans_wv.setBackground(getResources().getDrawable(R.drawable.lynx_button));
+                instruction_ans_wv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        File fileBrochure = new File(Environment.getExternalStorageDirectory().getPath()+"/"+filename);
+                        if (!fileBrochure.exists()) {
+                            CopyAssetsbrochure(filename);
+                        }
+
+                            /* PDF reader code*/
+                        File file = new File(Environment.getExternalStorageDirectory().getPath() +"/"+filename);
+
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setDataAndType(Uri.fromFile(file), "application/pdf");
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        try {
+                            startActivity(intent);
+                        } catch (ActivityNotFoundException e) {
+                            Toast.makeText(getActivity(), "NO App found. Please install a pdf reader.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+            instruction_ans_wv.setPadding(10, 20, 10, 20);
+            answerLayout.removeAllViews();
+            answerLayout.addView(instruction_ans_wv, new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));
+        } else {
+            webView.getSettings().setJavaScriptEnabled(true);
+            webView.setWebChromeClient(new WebChromeClient() {
+            });
+            webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+            final String mimeType = "text/html";
+            final String encoding = "UTF-8";
+            DisplayMetrics metrics = getResources().getDisplayMetrics();
+            int width = (int) ((metrics.widthPixels / metrics.density) - 45);
+            int height = width * 3 / 5;
+            String link = "http://www.youtube.com/embed/";
+            String ss = instruction.getVideo_link();
+            ss = ss.substring(ss.indexOf("v=") + 2);
+            link += ss;
+            String html = getHTML(width, height, link);
+            webView.loadDataWithBaseURL("", html, mimeType, encoding, "");
+            webView.setVisibility(View.VISIBLE);
+            /*parentLayout.addView(video_view, new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));*/
+        }
     }
 }
 

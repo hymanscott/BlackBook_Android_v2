@@ -18,6 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/sexProMainContent"
             android:layout_alignParentTop="true">
 
             <ScrollView
@@ -50,6 +51,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
+                            android:id="@+id/infoIcon"
                             android:layout_gravity="center"
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
                             android:src="@drawable/info_white"/>
@@ -147,7 +149,67 @@
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sexProInfoContent"
+            android:visibility="gone"
+            android:layout_alignParentTop="true">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="?android:attr/actionBarSize">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="24dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/diallargeblue"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sex Pro Score"
+                        android:textSize="20sp"
+                        android:id="@+id/info_title"
+                        android:textColor="@color/text_color"
+                        android:gravity="center_horizontal"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Your Sex Pro score is based on the last three months of your diary entries."
+                        android:layout_margin="24dp"
+                        android:id="@+id/info_para_one"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/text_color"
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="The higher your score and the closer your needle gets to the green means higher levels of HIV protection."
+                        android:layout_marginLeft="24dp"
+                        android:id="@+id/info_para_two"
+                        android:layout_marginRight="24dp"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/text_color"
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Even with a perfect score of 20 (strongest protection), you could still become HIV infected. But it means you’re doing a lot to stay protected!"
+                        android:layout_margin="24dp"
+                        android:id="@+id/info_para_three"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/text_color"
+                        android:textSize="16sp"/>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/bot_nav"
             android:layout_width="match_parent"
@@ -172,13 +234,13 @@
                     android:id="@+id/bot_nav_sexpro_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_sexpro_white" />
+                    android:src="@drawable/nav_icon_home_white" />
 
                 <TextView
                     android:id="@+id/bot_nav_sexpro_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sex Pro"
+                    android:text="Home"
                     android:textColor="@color/white" />
             </LinearLayout>
 
@@ -196,7 +258,7 @@
                     android:id="@+id/bot_nav_diary_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_diary" />
+                    android:src="@drawable/nav_icon_diary" />
 
                 <TextView
                     android:id="@+id/bot_nav_diary_tv"
@@ -219,7 +281,7 @@
                     android:id="@+id/bot_nav_testing_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_testing" />
+                    android:src="@drawable/nav_icon_testing" />
 
                 <TextView
                     android:id="@+id/bot_nav_testing_tv"
@@ -242,7 +304,7 @@
                     android:id="@+id/bot_nav_prep_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_prep" />
+                    android:src="@drawable/nav_icon_prep" />
 
                 <TextView
                     android:id="@+id/bot_nav_prep_tv"
@@ -265,7 +327,7 @@
                     android:id="@+id/bot_nav_chat_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_chat" />
+                    android:src="@drawable/nav_icon_chat" />
 
                 <TextView
                     android:id="@+id/bot_nav_chat_tv"

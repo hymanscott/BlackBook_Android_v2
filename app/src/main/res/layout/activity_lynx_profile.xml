@@ -988,13 +988,13 @@
                 android:id="@+id/bot_nav_sexpro_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_sexpro_white" />
+                android:src="@drawable/nav_icon_home_white" />
 
             <TextView
                 android:id="@+id/bot_nav_sexpro_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sex Pro"
+                android:text="Home"
                 android:textColor="@color/white" />
         </LinearLayout>
 
@@ -1012,7 +1012,7 @@
                 android:id="@+id/bot_nav_diary_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_diary" />
+                android:src="@drawable/nav_icon_diary" />
 
             <TextView
                 android:id="@+id/bot_nav_diary_tv"
@@ -1035,7 +1035,7 @@
                 android:id="@+id/bot_nav_testing_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_testing" />
+                android:src="@drawable/nav_icon_testing" />
 
             <TextView
                 android:id="@+id/bot_nav_testing_tv"
@@ -1058,7 +1058,7 @@
                 android:id="@+id/bot_nav_prep_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_prep" />
+                android:src="@drawable/nav_icon_prep" />
 
             <TextView
                 android:id="@+id/bot_nav_prep_tv"
@@ -1081,7 +1081,7 @@
                 android:id="@+id/bot_nav_chat_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_chat" />
+                android:src="@drawable/nav_icon_chat" />
 
             <TextView
                 android:id="@+id/bot_nav_chat_tv"

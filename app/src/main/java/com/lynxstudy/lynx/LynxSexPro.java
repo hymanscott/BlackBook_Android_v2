@@ -82,13 +82,15 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
     DatabaseHelper db;
     ImageView dialScoreImage;
-    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,score_update_date;
+    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,score_update_date,info_title,info_para_one,info_para_two,info_para_three;
     private Statistics statistics = new Statistics();
     private String fromactivity = null;
     private String toactivity = null;
     private static final int READ_WRITE_PERMISSION = 100;
     private static final int READ_PHONE_STATE = 101;
     Typeface tf;
+    LinearLayout sexProMainContent,sexProInfoContent;
+    private boolean isInfoShown = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,7 +139,31 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         bot_nav_chat_tv.setTypeface(tf);
         score_update_date = (TextView)findViewById(R.id.score_update_date);
         score_update_date.setTypeface(tf);
-
+        info_title = (TextView)findViewById(R.id.info_title);
+        info_title.setTypeface(tf);
+        info_para_one = (TextView)findViewById(R.id.info_para_one);
+        info_para_one.setTypeface(tf);
+        info_para_two = (TextView)findViewById(R.id.info_para_two);
+        info_para_two.setTypeface(tf);
+        info_para_three = (TextView)findViewById(R.id.info_para_three);
+        info_para_three.setTypeface(tf);
+        sexProMainContent = (LinearLayout)findViewById(R.id.sexProMainContent);
+        sexProInfoContent = (LinearLayout)findViewById(R.id.sexProInfoContent);
+        ImageView infoIcon = (ImageView)findViewById(R.id.infoIcon);
+        infoIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!isInfoShown){
+                    sexProMainContent.setVisibility(View.GONE);
+                    sexProInfoContent.setVisibility(View.VISIBLE);
+                    isInfoShown = true;
+                }else{
+                    sexProMainContent.setVisibility(View.VISIBLE);
+                    sexProInfoContent.setVisibility(View.GONE);
+                    isInfoShown = false;
+                }
+            }
+        });
         // Click Listners //
         btn_testing = (LinearLayout)findViewById(R.id.bot_nav_testing);
         btn_diary = (LinearLayout) findViewById(R.id.bot_nav_diary);
@@ -259,7 +285,13 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         }
 
         // Score Update Date //
-        score_update_date.setText("Your Score will update in " + (90 - getscore.getElapsedDays())+" days");
+        String createdAt = LynxManager.getActiveUserBaselineInfo().getCreated_at();
+        createdAt = LynxManager.getFormatedDate("yyyy-MM-dd HH:mm:ss",createdAt,"MM/dd/yyyy");
+        if(getscore.getElapsedDays()>=90){
+            score_update_date.setText("SCORE UPDATED ON " + createdAt);
+        }else{
+            score_update_date.setText("YOUR SCORE WILL UPDATE IN " + (90 - getscore.getElapsedDays())+" DAYS");
+        }
         // update fcm id //
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String tokenid = sharedPref.getString("lynxfirebasetokenid",null);
@@ -406,47 +438,54 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onBackPressed() {
         // do something on back.
-        if (onPause_count > 0) {
-            final View popupView = getLayoutInflater().inflate(R.layout.popup_alert_dialog_template, null);
-            final PopupWindow signOut = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
-            TextView title = (TextView)popupView.findViewById(R.id.alertTitle);
-            TextView message = (TextView)popupView.findViewById(R.id.alertMessage);
-            Button positive_btn = (Button) popupView.findViewById(R.id.alertPositiveButton);
-            Button negative_btn = (Button) popupView.findViewById(R.id.alertNegativeButton);
-            title.setVisibility(View.GONE);
-            message.setText("Are you sure, you want to exit?");
-            message.setTypeface(tf);
-            positive_btn.setTypeface(tf);
-            negative_btn.setTypeface(tf);
+        if(isInfoShown){
+            sexProMainContent.setVisibility(View.VISIBLE);
+            sexProInfoContent.setVisibility(View.GONE);
+            isInfoShown = false;
+            onPause_count = 0;
+        }else{
+            if (onPause_count > 0) {
+                final View popupView = getLayoutInflater().inflate(R.layout.popup_alert_dialog_template, null);
+                final PopupWindow signOut = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+                TextView title = (TextView)popupView.findViewById(R.id.alertTitle);
+                TextView message = (TextView)popupView.findViewById(R.id.alertMessage);
+                Button positive_btn = (Button) popupView.findViewById(R.id.alertPositiveButton);
+                Button negative_btn = (Button) popupView.findViewById(R.id.alertNegativeButton);
+                title.setVisibility(View.GONE);
+                message.setText("Are you sure, you want to exit?");
+                message.setTypeface(tf);
+                positive_btn.setTypeface(tf);
+                negative_btn.setTypeface(tf);
 
-            positive_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    System.exit(0);
-                    statistics.setEndtime(LynxManager.getDateTime());
-                    statistics.setAction("Activity Closed");
-                    statistics.setTo_activity(toactivity);
-                    db.createStatistics(statistics);
-                }
-            });
-            negative_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    signOut.dismiss();
-                }
-            });
-            // If the PopupWindow should be focusable
-            signOut.setFocusable(true);
+                positive_btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        System.exit(0);
+                        statistics.setEndtime(LynxManager.getDateTime());
+                        statistics.setAction("Activity Closed");
+                        statistics.setTo_activity(toactivity);
+                        db.createStatistics(statistics);
+                    }
+                });
+                negative_btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        signOut.dismiss();
+                    }
+                });
+                // If the PopupWindow should be focusable
+                signOut.setFocusable(true);
 
-            // If you need the PopupWindow to dismiss when when touched outside
-            signOut.setBackgroundDrawable(new ColorDrawable());
-            signOut.showAtLocation(popupView, Gravity.CENTER,0,0);
+                // If you need the PopupWindow to dismiss when when touched outside
+                signOut.setBackgroundDrawable(new ColorDrawable());
+                signOut.showAtLocation(popupView, Gravity.CENTER,0,0);
 
+            }
+            else{
+                Toast.makeText(this,"Press Back one more time to exit",Toast.LENGTH_SHORT).show();
+            }
+            onPause_count++;
         }
-        else{
-            Toast.makeText(this,"Press Back one more time to exit",Toast.LENGTH_SHORT).show();
-        }
-        onPause_count++;
         return;
     }
 

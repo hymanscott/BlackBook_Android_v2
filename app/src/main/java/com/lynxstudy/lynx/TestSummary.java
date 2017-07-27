@@ -322,7 +322,7 @@ public class TestSummary extends AppCompatActivity {
             if(result!=null)
                 imageView.setImageBitmap(result);
             else
-                imageView.setImageDrawable(getResources().getDrawable(R.drawable.testimage));
+                imageView.setImageDrawable(getResources().getDrawable(R.drawable.photocamera));
         }
 
         private Bitmap download_Image(String url) {

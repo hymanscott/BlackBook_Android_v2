@@ -9,6 +9,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.RatingBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.PartnerRating;
@@ -140,7 +142,21 @@ public class HomePartnersFragment extends Fragment {
             }
             j++;
         }
-
+        rootview.setFocusableInTouchMode(true);
+        rootview.requestFocus();
+        rootview.setOnKeyListener( new View.OnKeyListener()
+        {
+            @Override
+            public boolean onKey( View v, int keyCode, KeyEvent event )
+            {
+                if( keyCode == KeyEvent.KEYCODE_BACK )
+                {
+                    Toast.makeText(getActivity(),"PartnersBack",Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                return false;
+            }
+        } );
         return rootview;
     }
 

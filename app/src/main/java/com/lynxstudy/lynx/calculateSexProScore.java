@@ -268,34 +268,35 @@ public class calculateSexProScore {
                     LynxManager.setActiveUserAlcoholUse(alcoholUse);
                 }
             }
-            String no_of_DaysinWeek = LynxManager.decryptString(LynxManager.getActiveUserAlcoholUse().getNo_alcohol_in_week());
-            String no_of_drinks = LynxManager.decryptString(LynxManager.getActiveUserAlcoholUse().getNo_alcohol_in_day());
-            if(no_of_DaysinWeek !=null){
+            if(userAlcoholUse!=null) {
+                String no_of_DaysinWeek = LynxManager.decryptString(userAlcoholUse.getNo_alcohol_in_week());
+                String no_of_drinks = LynxManager.decryptString(userAlcoholUse.getNo_alcohol_in_day());
+                if(no_of_DaysinWeek !=null){
 
-                switch (no_of_DaysinWeek){
-                    case "Never":
-                        DFREQ   =   0;
-                        break;
-                    case "5-7 days a week":
-                        DFREQ   =   6;
-                        break;
-                    case "1-4 days a week":
-                        DFREQ   =   3;
-                        break;
-                    case "Less than once a week":
-                        DFREQ   =   1;
-                        break;
+                    switch (no_of_DaysinWeek){
+                        case "Never":
+                            DFREQ   =   0;
+                            break;
+                        case "5-7 days a week":
+                            DFREQ   =   6;
+                            break;
+                        case "1-4 days a week":
+                            DFREQ   =   3;
+                            break;
+                        case "Less than once a week":
+                            DFREQ   =   1;
+                            break;
+                    }
                 }
+                if (no_of_drinks==null){
+                    DPD     =   0;
+                }
+                else {
+                    DPD = Integer.parseInt(LynxManager.decryptString(userAlcoholUse.getNo_alcohol_in_day()));
+                }
+
             }
             else{ DFREQ   =   0;}
-
-            if (no_of_drinks==null){
-                DPD     =   0;
-            }
-            else {
-                DPD = Integer.parseInt(LynxManager.decryptString(userAlcoholUse.getNo_alcohol_in_day()));
-
-            }
             //if elapsed day ends
         }
         // Validating 90 days ends

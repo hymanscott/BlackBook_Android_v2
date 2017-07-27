@@ -1,42 +1,73 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context="com.lynxstudy.lynx.TestingCareFragment">
-
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:fillViewport="false"
-        android:layout_alignParentBottom="true" >
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/questionLayout"
+        android:layout_height="wrap_content">
+        <ScrollView
             android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fillViewport="false"
+            android:layout_alignParentBottom="true" >
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Your HIV test was positive"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/faq_blue"
+                    android:background="@drawable/bottom_border_faq"
+                    android:id="@+id/positiveHIVtest"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Your HIV test was negative"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="20dp"
+                    android:textColor="@color/faq_blue"
+                    android:textSize="16sp"
+                    android:paddingBottom="20dp"
+                    android:background="@drawable/bottom_border_faq"
+                    android:id="@+id/negativeHIVtest"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/answerLayout"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Question"
+            android:layout_alignParentTop="true"
+            android:id="@+id/question"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:textColor="@color/colorAccent"
             android:layout_marginTop="24dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Your HIV test was positive"
-                android:paddingLeft="16dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:textSize="16sp"
-                android:textColor="@color/faq_blue"
-                android:background="@drawable/bottom_border_faq"
-                android:id="@+id/positiveHIVtest"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Your HIV test was negative"
-                android:paddingLeft="16dp"
-                android:paddingTop="20dp"
-                android:textColor="@color/faq_blue"
-                android:textSize="16sp"
-                android:paddingBottom="20dp"
-                android:background="@drawable/bottom_border_faq"
-                android:id="@+id/negativeHIVtest"/>
-        </LinearLayout>
-    </ScrollView>
-</FrameLayout>
+            android:layout_marginBottom="24dp" />
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:id="@+id/webview">
+
+        </WebView>
+    </LinearLayout>
+</LinearLayout>

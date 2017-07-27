@@ -214,6 +214,8 @@ public class TestingHomeFragment extends Fragment {
                             }else{
                                 //  ***********set url from server*********** //
                                 testimage.setImageResource(R.drawable.photocamera);
+                                LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                                testimage.setLayoutParams(p);
                                 new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(testimage);
                                 new DownloadFileFromURL(testimage).execute(LynxManager.getTestImageBaseUrl()+historyInfoAttachment);
                             }

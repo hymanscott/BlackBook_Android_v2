@@ -6,9 +6,8 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
     android:paddingTop="16dp"
-    android:paddingLeft="10dp"
+    android:paddingLeft="5dp"
     android:paddingRight="0dp"
-    android:weightSum="1"
     android:paddingBottom="16dp">
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +17,7 @@
         android:weightSum="1"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="70dp"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:text="06/06/17"
             android:textSize="16dp"
@@ -27,7 +26,7 @@
             android:layout_weight="0.5"
             android:id="@+id/date"/>
         <TextView
-            android:layout_width="80dp"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:text="Demoprimary partner "
             android:textSize="16dp"
@@ -36,7 +35,7 @@
             android:layout_weight="0.5"
             android:maxLines="1"
             android:ellipsize="end"
-            android:maxEms="8"
+            android:maxEms="7"
             android:id="@+id/name"/>
     </LinearLayout>
     <LinearLayout
@@ -50,7 +49,7 @@
                 android:numStars="5"
                 android:id="@+id/rating"
                 android:rating="5"
-                android:stepSize="1"
+                android:stepSize="0.5"
                 android:layout_alignParentRight="true"
                 android:minWidth="100dp"
                 android:isIndicator="true"

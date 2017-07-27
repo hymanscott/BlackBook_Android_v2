@@ -36,6 +36,10 @@
         <item>What\'s your paternal grandmother\'s first name</item>
         <item>In what city was your mother born"</item>
     </string-array>
+    <string-array name="is_prep_list">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
     <string-array name="gender_list">
         <item>Male</item>
         <item>Female</item>

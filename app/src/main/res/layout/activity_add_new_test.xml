@@ -478,13 +478,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/bot_nav_sexpro_iv"
-                android:src="@drawable/icon_sexpro" />
+                android:src="@drawable/nav_icon_home" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/bot_nav_sexpro_tv"
-                android:text="Sex Pro" />
+                android:text="Home" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -500,7 +500,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/bot_nav_diary_iv"
-                android:src="@drawable/icon_diary" />
+                android:src="@drawable/nav_icon_diary" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -524,7 +524,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/bot_nav_testing_iv"
-                android:src="@drawable/icon_testing_white" />
+                android:src="@drawable/nav_icon_testing_white" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -548,7 +548,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/bot_nav_prep_iv"
-                android:src="@drawable/icon_prep" />
+                android:src="@drawable/nav_icon_prep" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -571,7 +571,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/bot_nav_chat_iv"
-                android:src="@drawable/icon_chat" />
+                android:src="@drawable/nav_icon_chat" />
 
             <TextView
                 android:layout_width="wrap_content"

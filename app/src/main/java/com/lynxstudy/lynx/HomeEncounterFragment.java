@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +21,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.gson.Gson;
 import com.lynxstudy.helper.DatabaseHelper;
@@ -35,6 +38,8 @@ import com.lynxstudy.model.Users;
 import java.util.Collections;
 import java.util.List;
 
+import static android.R.attr.fragment;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -42,10 +47,16 @@ public class HomeEncounterFragment extends Fragment {
 
     DatabaseHelper db;
     private  int width,height;
+    TextView partner,sexRating,hivStatus,typeSex,condomUsed;
+    private boolean isSummaryShown = false;
     public HomeEncounterFragment() {
         // Required empty public constructor
     }
-
+    LinearLayout encounterListContent;
+    RelativeLayout encounterSummaryContent;
+    View view;
+    Typeface tf;
+    int back_press_count;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,14 +66,16 @@ public class HomeEncounterFragment extends Fragment {
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
-        View view = inflater.inflate(R.layout.fragment_home_encounter, container, false);
+        view = inflater.inflate(R.layout.fragment_home_encounter, container, false);
         Display display = getActivity().getWindowManager().getDefaultDisplay();
         width = display.getWidth();
         height = display.getHeight();
         //Type face
-        Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
+       tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
         Log.v("priPartId", String.valueOf(LynxManager.getActiveUserPrimaryPartner().getPrimarypartner_id()));
+        encounterListContent = (LinearLayout) view.findViewById(R.id.encounterListContent);
+        encounterSummaryContent = (RelativeLayout) view.findViewById(R.id.encounterSummaryContent);
         Button addNewEncounter = (Button) view.findViewById(R.id.addNewEncounter);
         addNewEncounter.setTypeface(tf);
         addNewEncounter.setOnClickListener(new View.OnClickListener() {
@@ -164,8 +177,10 @@ public class HomeEncounterFragment extends Fragment {
                                 }
                                 //Intent selectedEncounterSumm = new Intent(getActivity(), SelectedEncounterSummary.class);
                                 Log.v("EncounterID", String.valueOf(row.getId()));
-                                Intent selectedEncounterSumm = new Intent(getActivity(), SelectedEncounterSummary.class);
-                                startActivity(selectedEncounterSumm);
+                                /*Intent selectedEncounterSumm = new Intent(getActivity(), SelectedEncounterSummary.class);
+                                selectedEncounterSumm.putExtra("EncounterID",row.getId());
+                                startActivity(selectedEncounterSumm);*/
+                                setEncounterSummary(row.getId());
                             } else {
                                 //Change this to your normal background color.
                                 row.setBackground(getResources().getDrawable(R.drawable.border_bottom));
@@ -176,110 +191,38 @@ public class HomeEncounterFragment extends Fragment {
                 v.setBackground(getResources().getDrawable(R.drawable.border_bottom));
                 encounterTable.addView(v);
             }
-            /*for (Encounter encounter : allEncounters) {
-                TableRow encounterRow = new TableRow(getActivity());
-                encounterRow.setPadding(10, 10, 0, 10);
-                final TextView partnerName = new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);
-                final TextView encounterDate = new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);
-                TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1f);
-                TableRow.LayoutParams params1 = new TableRow.LayoutParams(100, TableRow.LayoutParams.MATCH_PARENT, 1f);
-
-                RatingBar encounter_Rating_Bar = new RatingBar(getActivity(), null, android.R.attr.ratingBarStyleIndicator);
-
-                int enc_partner_id = encounter.getEncounter_partner_id();
-                Log.v("Enc_Par_ID", String.valueOf(enc_partner_id));
-                Partners partner = db.getPartnerbyID(enc_partner_id);
-                partnerName.setText(LynxManager.decryptString(partner.getNickname()));
-                partnerName.setPadding(10, 10, 0, 10);
-                partnerName.setTextColor(getResources().getColor(R.color.text_color));
-                partnerName.setTypeface(tf);
-                partnerName.setTextSize(16);
-                partnerName.setLayoutParams(params);
-                partnerName.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
-                String format = "MM/dd/yy";
-                String current_format = "yyyy-MM-dd HH:mm:ss";
-                encounterDate.setText(LynxManager.getFormatedDate(current_format, LynxManager.decryptString(encounter.getDatetime()), format));
-                encounterDate.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
-                encounterDate.setTypeface(tf);
-                encounterDate.setTextSize(16);
-                encounterDate.setLayoutParams(params1);
-                encounterDate.setMinWidth(200);
-                encounterDate.setPadding(10, 5, 20, 10);
-                encounterDate.setTextColor(getResources().getColor(R.color.text_color));
-                int encounterId = encounter.getEncounter_id();
-
-*//*
-                double rateOfSex =  Double.parseDouble(String.valueOf(encounter.getRate_the_sex())) / Double.parseDouble(String.valueOf("10"));
-*//*
-                encounter_Rating_Bar.setRating(Float.parseFloat(LynxManager.decryptString(encounter.getRate_the_sex())));
-                encounter_Rating_Bar.setPadding(0,15,0,15);
-                encounter_Rating_Bar.setNumStars(5);
-                encounter_Rating_Bar.setRight(10);
-
-                float rating_bar_scale = (float) 0.9;
-                encounter_Rating_Bar.setScaleX(rating_bar_scale);
-                encounter_Rating_Bar.setScaleY(rating_bar_scale);
-                LayerDrawable stars4 = (LayerDrawable) encounter_Rating_Bar.getProgressDrawable();
-                stars4.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);// On State color
-                stars4.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP);// Off State color
-                stars4.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);// Stroke (On State Stars Only)
-
-                encounterRow.addView(encounterDate);
-                encounterRow.addView(partnerName);
-                encounterRow.addView(encounter_Rating_Bar);
-                encounterRow.setBackground(getResources().getDrawable(R.drawable.border_bottom));
-                if(j==0)
-                    encounterRow.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
-
-                encounterRow.setClickable(true);
-                encounterRow.setFocusable(true);
-                encounterRow.setId(encounterId);
-                encounterRow.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        //Highlight selected row
-                        for (int i = 0; i < encounterTable.getChildCount(); i++) {
-                            View row = encounterTable.getChildAt(i);
-                            if (row == view) {
-                                row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
-                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(1)).setTextColor(getResources().getColor(R.color.colorAccent));
-                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.colorAccent));
-                                LynxManager.selectedEncounterID = row.getId();
-                                LynxManager.activePartnerSexType.clear();
-
-                                //Set Active Encounter
-                                Encounter selectedEncounter = db.getEncounter(row.getId());
-                                LynxManager.setActiveEncounter(selectedEncounter);
-                                Log.v("sextypeID", String.valueOf(selectedEncounter.getEncounter_id()));
-                                //set Active partner
-                                LynxManager.setActivePartner(db.getPartnerbyID(selectedEncounter.getEncounter_partner_id()));
-                                List<EncounterSexType> selectedSEXtypes = db.getAllEncounterSexTypes(row.getId());
-
-                                for (EncounterSexType setSextype : selectedSEXtypes) {
-                                    EncounterSexType encounterSexType = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.decryptString(setSextype.getSex_type()), "", "", String.valueOf(R.string.statusUpdateNo),false);
-                                    Log.v("sextypes", String.valueOf(encounterSexType));
-                                    LynxManager.activePartnerSexType.add(encounterSexType);
-                                }
-                                Intent selectedEncounterSumm = new Intent(getActivity(), SelectedEncounterSummary.class);
-                                startActivity(selectedEncounterSumm);
-                            } else {
-                                //Change this to your normal background color.
-                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(1)).setTextColor(Color.parseColor("#444444"));
-                                ((TextView)((TableRow)encounterTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#444444"));
-                                row.setBackground(getResources().getDrawable(R.drawable.border_bottom));
-                                if(i==0)
-                                    row.setBackground(getResources().getDrawable(R.drawable.border_top_bottom));
-                            }
+        }
+        back_press_count=0;
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener( new View.OnKeyListener()
+        {
+            @Override
+            public boolean onKey( View v, int keyCode, KeyEvent event )
+            {
+                if( keyCode == KeyEvent.KEYCODE_BACK )
+                {
+                    if(isSummaryShown){
+                        encounterSummaryContent.setVisibility(View.GONE);
+                        encounterListContent.setVisibility(View.VISIBLE);
+                        isSummaryShown = false;
+                        back_press_count = 0;
+                    }else{
+                        if(back_press_count>1){
+                            /*Intent home = new Intent(getActivity(),LynxSexPro.class);
+                            startActivity(home);*/
+                            LynxManager.goToIntent(getActivity(),"sexpro",getActivity().getClass().getSimpleName());
+                            getActivity().overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
+                            getActivity().finish();
+                        }else{
+                            back_press_count++;
                         }
                     }
-                });
-
-                encounterTable.addView(encounterRow);
-                j++;
-            }*/
-        }
-
-
+                    return true;
+                }
+                return false;
+            }
+        } );
         return view;
     }
 
@@ -327,5 +270,186 @@ public class HomeEncounterFragment extends Fragment {
         ft.commit();
 
 
+    }
+
+    private void setEncounterSummary(int encounter_id){
+        encounterSummaryContent.setVisibility(View.VISIBLE);
+        encounterListContent.setVisibility(View.GONE);
+        isSummaryShown = true;
+        partner = (TextView)view.findViewById(R.id.partner);
+        partner.setTypeface(tf);
+        sexRating = (TextView)view.findViewById(R.id.sexRating);
+        sexRating.setTypeface(tf);
+        hivStatus = (TextView)view.findViewById(R.id.hivStatus);
+        hivStatus.setTypeface(tf);
+        typeSex = (TextView)view.findViewById(R.id.typeSex);
+        typeSex.setTypeface(tf);
+        condomUsed = (TextView)view.findViewById(R.id.condomUsed);
+        condomUsed.setTypeface(tf);
+        db = new DatabaseHelper(getActivity());
+        TextView nickname = (TextView) view.findViewById(R.id.encList_summary_nickName);
+        nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
+        nickname.setAllCaps(true);
+        nickname.setTypeface(tf);
+        TextView partnerNotes = (TextView) view.findViewById(R.id.encListSumm_partnerNotes);
+        partnerNotes.setText(LynxManager.decryptString(LynxManager.getActivePartnerContact().getPartner_notes()));
+        partnerNotes.setTypeface(tf);
+
+        RatingBar sexRating = (RatingBar) view.findViewById(R.id.encListSumm_sexRating);
+        sexRating.setRating(Float.parseFloat(LynxManager.decryptString(String.valueOf(LynxManager.getActiveEncounter().getRate_the_sex()))));
+
+
+        LayerDrawable stars1 = (LayerDrawable) sexRating.getProgressDrawable();
+        stars1.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+        stars1.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars1.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
+
+
+        TextView hivStatus = (TextView) view.findViewById(R.id.encListSumm_hivStatus);
+        hivStatus.setText(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()));
+        hivStatus.setTypeface(tf);
+
+        LinearLayout sexTypeLayout = (LinearLayout)view.findViewById(R.id.sexTypeLayout);
+        String gender = LynxManager.decryptString(LynxManager.getActivePartner().getGender());
+        Log.v("Gender",gender);
+        View sextypeView;
+        switch (gender){
+            case "Woman":
+                sextypeView  = getActivity().getLayoutInflater().inflate(R.layout.encounter_sextype_woman,null);
+                break;
+            case "Trans woman":
+                sextypeView  = getActivity().getLayoutInflater().inflate(R.layout.encounter_sextype_transwoman, null);
+                break;
+            case "Trans man":
+                sextypeView  = getActivity().getLayoutInflater().inflate(R.layout.encounter_sextype_transman, null);
+                break;
+            default:
+                sextypeView  = getActivity().getLayoutInflater().inflate(R.layout.encounter_sextype_man, null);
+                break;
+        }
+        sexTypeLayout.removeAllViews();
+        sexTypeLayout.addView(sextypeView);
+        //int encounter_id = getActivity().getIntent().getIntExtra("EncounterID",0);
+        LynxManager.activeEncCondomUsed.clear();
+        if(encounter_id!=0){
+            List<EncounterSexType> selectedSEXtypes = db.getAllEncounterSexTypes(encounter_id);
+
+            for (EncounterSexType encSexType : selectedSEXtypes) {
+                switch (LynxManager.decryptString(encSexType.getSex_type())) {
+                    case "Kissing / making out":
+                        ToggleButton sexType_kissing = (ToggleButton) view.findViewById(R.id.sexType_kissing);
+                        sexType_kissing.setSelected(true);
+                        sexType_kissing.setClickable(false);
+                        sexType_kissing.setTextColor(Color.parseColor("#ffffff"));
+                        break;
+                    case "I sucked him":
+                    case "I sucked her":
+                        ToggleButton sexType_iSucked = (ToggleButton)view.findViewById(R.id.sexType_iSucked);
+                        sexType_iSucked.setSelected(true);
+                        sexType_iSucked.setClickable(false);
+                        sexType_iSucked.setTextColor(Color.parseColor("#ffffff"));
+                        Log.v("CondomStatus","iSucked "+LynxManager.decryptString(encSexType.getCondom_use()));
+                        if(LynxManager.decryptString(encSexType.getCondom_use()).equals("Condom used")&& !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
+                            LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
+                        }
+                        break;
+                    case "He sucked me":
+                    case "She sucked me":
+                        ToggleButton sexType_heSucked = (ToggleButton)view.findViewById(R.id.sexType_heSucked);
+                        sexType_heSucked.setSelected(true);
+                        sexType_heSucked.setClickable(false);
+                        sexType_heSucked.setTextColor(Color.parseColor("#ffffff"));
+                        break;
+                    case "I bottomed":
+                        ToggleButton sexType_iBottomed = (ToggleButton)view.findViewById(R.id.sexType_iBottomed);
+                        sexType_iBottomed.setSelected(true);
+                        sexType_iBottomed.setClickable(false);
+                        sexType_iBottomed.setTextColor(Color.parseColor("#ffffff"));
+                        Log.v("CondomStatus","iBot "+LynxManager.decryptString(encSexType.getCondom_use()));
+                        if(LynxManager.decryptString(encSexType.getCondom_use()).equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
+                            LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
+                        }
+                        break;
+                    case "I topped":
+                        ToggleButton sexType_iTopped = (ToggleButton)view.findViewById(R.id.sexType_iTopped);
+                        sexType_iTopped.setSelected(true);
+                        sexType_iTopped.setClickable(false);
+                        sexType_iTopped.setTextColor(Color.parseColor("#ffffff"));
+                        if(LynxManager.decryptString(encSexType.getCondom_use()).equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
+                            LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
+                        }
+                        Log.v("CondomStatus","iTop "+LynxManager.decryptString(encSexType.getCondom_use()));
+                        break;
+                    case "I jerked him":
+                    case "I jerked her":
+                        ToggleButton sexType_iJerked = (ToggleButton)view.findViewById(R.id.sexType_iJerked);
+                        sexType_iJerked.setSelected(true);
+                        sexType_iJerked.setClickable(false);
+                        sexType_iJerked.setTextColor(Color.parseColor("#ffffff"));
+                        break;
+                    case "He jerked me":
+                    case "She jerked me":
+                        ToggleButton sexType_heJerked = (ToggleButton)view.findViewById(R.id.sexType_heJerked);
+                        sexType_heJerked.setSelected(true);
+                        sexType_heJerked.setClickable(false);
+                        sexType_heJerked.setTextColor(Color.parseColor("#ffffff"));
+                        break;
+                    case "I rimmed him":
+                    case "I rimmed her":
+                        ToggleButton sexType_iRimmed = (ToggleButton)view.findViewById(R.id.sexType_iRimmed);
+                        sexType_iRimmed.setSelected(true);
+                        sexType_iRimmed.setClickable(false);
+                        sexType_iRimmed.setTextColor(Color.parseColor("#ffffff"));
+                        break;
+                    case "He rimmed me":
+                    case "She rimmed me":
+                        ToggleButton sexType_heRimmed = (ToggleButton)view.findViewById(R.id.sexType_heRimmed);
+                        sexType_heRimmed.setSelected(true);
+                        sexType_heRimmed.setClickable(false);
+                        sexType_heRimmed.setTextColor(Color.parseColor("#ffffff"));
+                        break;
+                    case "I fucked her":
+                        ToggleButton sexType_iFucked = (ToggleButton)view.findViewById(R.id.sexType_iFucked);
+                        sexType_iFucked.setSelected(true);
+                        sexType_iFucked.setClickable(false);
+                        sexType_iFucked.setTextColor(Color.parseColor("#ffffff"));
+                        if(LynxManager.decryptString(encSexType.getCondom_use()).equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
+                            LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
+                        }
+                        Log.v("CondomStatus","iFucked "+LynxManager.decryptString(encSexType.getCondom_use()));
+                        break;
+                    case "I fingered her":
+                        ToggleButton sexType_iFingered = (ToggleButton)view.findViewById(R.id.sexType_iFingered);
+                        sexType_iFingered.setSelected(true);
+                        sexType_iFingered.setClickable(false);
+                        sexType_iFingered.setTextColor(Color.parseColor("#ffffff"));
+                        break;
+                    case "I went down on her":
+                        ToggleButton sexType_iWentDown = (ToggleButton)view.findViewById(R.id.sexType_iWentDown);
+                        sexType_iWentDown.setSelected(true);
+                        sexType_iWentDown.setClickable(false);
+                        sexType_iWentDown.setTextColor(Color.parseColor("#ffffff"));
+                        break;
+
+                }
+            }
+        }
+        LinearLayout condomUsedContent = (LinearLayout)view.findViewById(R.id.condomUsedContent);
+        condomUsedContent.removeAllViews();
+        Log.v("activeCondomUsedSize", String.valueOf(LynxManager.activeEncCondomUsed.size()));
+        if(LynxManager.activeEncCondomUsed.size()>0){
+            for (String str : LynxManager.activeEncCondomUsed){
+                TextView tv = new TextView(getActivity());
+                tv.setTypeface(tf);
+                tv.setText("When "+str);
+                tv.setPadding(0,0,0,16);
+                tv.setTextColor(getResources().getColor(R.color.text_color));
+                condomUsedContent.addView(tv);
+                Log.v("CondomUsedWhen",str);
+            }
+        }else{
+            LinearLayout condomUsedLayout = (LinearLayout)view.findViewById(R.id.condomUsedLayout);
+            condomUsedLayout.setVisibility(View.GONE);
+        }
     }
 }

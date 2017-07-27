@@ -1,49 +1,53 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context="com.lynxstudy.lynx.LynxTesting$PlaceholderFragment">
-
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/scrollView2"
-        android:fillViewport="false" >
-
-        <TableLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/questionLayout">
+        <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginTop="24dp"
-            android:id="@+id/testingInsTable">
+            android:id="@+id/scrollView2"
+            android:fillViewport="false" >
 
-        </TableLayout>
-    </ScrollView>
-
-    <!--<ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:fillViewport="false"
-        android:layout_alignParentBottom="true" >
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/testing_instruction_ParentLayout"
-            android:orientation="vertical">
-            <LinearLayout
-                android:id="@+id/testingInstructionLayout"
+            <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:orientation="vertical"
-                android:stretchColumns="*">
-            </LinearLayout>
+                android:layout_marginTop="24dp"
+                android:id="@+id/testingInsTable">
 
-        </LinearLayout>
+            </TableLayout>
+        </ScrollView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/answerLayout">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="Question"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/question"
+            android:textColor="@color/colorAccent"
+            android:layout_margin="20dp"/>
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/webview"
+            android:visibility="gone"
+            android:layout_margin="10dp">
 
-    </ScrollView>-->
-
-</FrameLayout>
+        </WebView>
+    </LinearLayout>
+</LinearLayout>

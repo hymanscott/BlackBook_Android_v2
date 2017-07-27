@@ -55,7 +55,7 @@ import java.util.regex.Pattern;
 public class LynxProfileEdit extends AppCompatActivity {
 
     DatabaseHelper db;
-    TextView fragTitle,tv,sec_qn,time,day,testing_time,testing_day;
+    TextView fragTitle,tv,sec_qn,time,day,testing_time,testing_day,is_prep;
     EditText phonenumber,firstname,lastname,dob,email,reppass,pass,sec_ans,newPasscode,notificationText,testing_notificationText;
     ImageView createButton;
     RelativeLayout race_layout,sec_qn_parent,testing_day_of_week,testing_time_of_day,day_of_week,time_of_day;
@@ -64,6 +64,7 @@ public class LynxProfileEdit extends AppCompatActivity {
     View view1;
     Button save;
     LinearLayout bot_nav;
+    RelativeLayout prep_parent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,6 +121,8 @@ public class LynxProfileEdit extends AppCompatActivity {
         testing_time.setTypeface(tf);
         testing_day = (TextView)findViewById(R.id.testing_day);
         testing_day.setTypeface(tf);
+        is_prep = (TextView)findViewById(R.id.is_prep);
+        is_prep.setTypeface(tf);
         save = (Button)findViewById(R.id.save);
         save.setTypeface(tf);
         testing_notificationText = (EditText)findViewById(R.id.testing_notificationText);
@@ -142,6 +145,7 @@ public class LynxProfileEdit extends AppCompatActivity {
         tv.setTextColor(getResources().getColor(R.color.profile_text_color));
         sec_qn.setTextColor(getResources().getColor(R.color.profile_text_color));
         sec_ans.setTextColor(getResources().getColor(R.color.profile_text_color));
+        is_prep.setText(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()));
         //Date Picker 82228622v
         dob.setTypeface(tf);
         final Calendar myCalendar = Calendar.getInstance();
@@ -246,7 +250,36 @@ public class LynxProfileEdit extends AppCompatActivity {
                         }).create().show();
             }
         });
+        final List<String> isPrepList= Arrays.asList(getResources().getStringArray(R.array.is_prep_list));
+        final ArrayAdapter<String> adapterPrep = new ArrayAdapter<String>(LynxProfileEdit.this,
+                R.layout.spinner_row_white, R.id.txtView, isPrepList);
+        is_prep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(LynxProfileEdit.this)
+                        .setAdapter(adapterPrep, new DialogInterface.OnClickListener() {
 
+                            public void onClick(DialogInterface dialog, int which) {
+                                is_prep.setText(isPrepList.get(which).toString());
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+        prep_parent = (RelativeLayout)findViewById(R.id.prep_parent);
+        prep_parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(LynxProfileEdit.this)
+                        .setAdapter(adapterPrep, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                is_prep.setText(isPrepList.get(which).toString());
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
         // Diary Reminders //
         final List<String> daysOfWeek = Arrays.asList(getResources().getStringArray(R.array.days_of_week));
         final ArrayAdapter<String> adapterDay = new ArrayAdapter<String>(LynxProfileEdit.this,
@@ -529,6 +562,7 @@ public class LynxProfileEdit extends AppCompatActivity {
         String sec_qn_value = sec_qn.getText().toString();
         String gender_list = "male";
         String races_list = tv.getText().toString();
+        String isPrep = is_prep.getText().toString();
 
         Log.v("updateraces_list",races_list);
         boolean invalid_dob = LynxManager.regDateValidation(dob_value);
@@ -565,7 +599,7 @@ public class LynxProfileEdit extends AppCompatActivity {
                     LynxManager.encryptString(pass_code), "", "",
                     "", "", LynxManager.encryptString(sec_qn_value),
                     LynxManager.encryptString(sec_ans_value), LynxManager.encryptString(dob_value), LynxManager.encryptString(races_list),
-                    LynxManager.encryptString(gender_list), LynxManager.encryptString("Yes"),String.valueOf(R.string.statusUpdateNo),true);
+                    LynxManager.encryptString(gender_list), LynxManager.encryptString(isPrep),String.valueOf(R.string.statusUpdateNo),true);
 
             LynxManager.setActiveUser(uptUser);
 

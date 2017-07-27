@@ -67,6 +67,6 @@
             android:maxHeight="50dp"
             android:scaleType="fitCenter"
             android:layout_gravity="end|center_vertical"
-            android:src="@drawable/testimage"/>
+            android:src="@drawable/photocamera"/>
     </LinearLayout>
 </LinearLayout>
