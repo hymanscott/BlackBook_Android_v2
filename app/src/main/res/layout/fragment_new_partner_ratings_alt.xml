@@ -192,7 +192,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:minWidth="100dp"
                     android:layout_gravity="center_vertical"
                     android:padding="@dimen/edittext_padding"
                     android:background="@color/edittext_bg">
@@ -208,7 +207,7 @@
                         android:textSize="@dimen/edittext_textsize"
                         android:id="@+id/newPartner_rate5"
                         android:backgroundTint="@android:color/transparent"
-                        android:maxWidth="100dp"
+                        android:maxWidth="50dp"
                         android:layout_gravity="center_vertical"/>
                 </LinearLayout>
                 <LinearLayout
@@ -237,7 +236,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:minWidth="100dp"
                     android:layout_gravity="center_vertical"
                     android:padding="@dimen/edittext_padding"
                     android:background="@color/edittext_bg">
@@ -253,7 +251,7 @@
                         android:textSize="@dimen/edittext_textsize"
                         android:id="@+id/newPartner_rate6"
                         android:backgroundTint="@android:color/transparent"
-                        android:maxWidth="100dp"
+                        android:maxWidth="50dp"
                         android:layout_gravity="center_vertical"/>
                 </LinearLayout>
                 <LinearLayout
@@ -282,7 +280,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:minWidth="100dp"
                     android:layout_gravity="center_vertical"
                     android:padding="@dimen/edittext_padding"
                     android:background="@color/edittext_bg">
@@ -298,7 +295,7 @@
                         android:textSize="@dimen/edittext_textsize"
                         android:id="@+id/newPartner_rate7"
                         android:backgroundTint="@android:color/transparent"
-                        android:maxWidth="100dp"
+                        android:maxWidth="50dp"
                         android:layout_gravity="center_vertical"/>
                 </LinearLayout>
                 <LinearLayout

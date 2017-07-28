@@ -40,6 +40,33 @@
         <item>Yes</item>
         <item>No</item>
     </string-array>
+    <string-array name="yes_no">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string-array name="yes_no_idk">
+        <item>Yes</item>
+        <item>No</item>
+        <item>I don\'t know</item>
+    </string-array>
+    <string-array name="hiv_status_list">
+        <item>HIV Negative</item>
+        <item>HIV Negative and on PrEP</item>
+        <item>I don\'t know</item>
+        <item>HIV Positive</item>
+        <item>HIV Positive and Undetectable</item>
+    </string-array>
+    <string-array name="partner_type">
+        <item>Primary / Main partner</item>
+        <item>Regular</item>
+        <item>Hook-up</item>
+        <item>NSA</item>
+        <item>Friends with benefits</item>
+    </string-array>
+    <string-array name="monogamous_relationship">
+        <item>Less than 6 months</item>
+        <item>6 months or more</item>
+    </string-array>
     <string-array name="gender_list">
         <item>Male</item>
         <item>Female</item>

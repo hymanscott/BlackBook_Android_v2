@@ -277,9 +277,9 @@ public class EncounterNewPartner extends AppCompatActivity {
                 newPartnerRltnPeriod = "No";
             }
         }
-        if (!matcher.matches()) {
+        if (!newPartnerEmail.isEmpty() && !matcher.matches()) {
             Toast.makeText(EncounterNewPartner.this,"Please enter valid email",Toast.LENGTH_SHORT).show();
-        }else if(newPartner_phone.length()<10 || newPartner_phone.length()>11){
+        }else if(newPartner_phone.length()!= 0 && (newPartner_phone.length()<10 || newPartner_phone.length()>11)){
             Toast.makeText(EncounterNewPartner.this,"Please enter valid mobile number",Toast.LENGTH_SHORT).show();
         }else{
             PartnerContact newPartnerContact = new PartnerContact(LynxManager.getActivePartner().getPartner_id(),
@@ -307,6 +307,21 @@ public class EncounterNewPartner extends AppCompatActivity {
 
     public boolean onPartnerRatingsNext(View view) {
         NewPartnerSummaryFragment fragPartnerSummary = new NewPartnerSummaryFragment();
+        TextView ratingField1 = (TextView)findViewById(R.id.newPartner_rate1);
+        String ratingFieldValue1 = ratingField1.getText().toString();
+        TextView ratingField2 = (TextView)findViewById(R.id.newPartner_rate2);
+        String ratingFieldValue2 = ratingField2.getText().toString();
+        TextView ratingField3 = (TextView)findViewById(R.id.newPartner_rate3);
+        String ratingFieldValue3 = ratingField3.getText().toString();
+        TextView ratingField4 = (TextView)findViewById(R.id.newPartner_rate4);
+        String ratingFieldValue4 = ratingField4.getText().toString();
+        EditText ratingField5 = (EditText)findViewById(R.id.newPartner_rate5);
+        String ratingFieldValue5 = ratingField5.getText().toString();
+        EditText ratingField6 = (EditText)findViewById(R.id.newPartner_rate6);
+        String ratingFieldValue6 = ratingField6.getText().toString();
+        EditText ratingField7 = (EditText)findViewById(R.id.newPartner_rate7);
+        String ratingFieldValue7 = ratingField7.getText().toString();
+
         RatingBar ratingBar1 = (RatingBar) findViewById(R.id.ratingBar1);
         String ratingValue1 = String.valueOf((ratingBar1.getRating()));
         RatingBar ratingBar2 = (RatingBar) findViewById(R.id.ratingBar2);
@@ -329,10 +344,20 @@ public class EncounterNewPartner extends AppCompatActivity {
         rating_values.add(ratingValue5);
         rating_values.add(ratingValue6);
         rating_values.add(ratingValue7);
-        LynxManager.partnerRatingValues.clear();
-        LynxManager.setPartnerRatingValues(rating_values);
-        Log.v("SETPhas-Rating Values", Arrays.toString(rating_values.toArray()));
+        List<String> rating_fields = new ArrayList<String>();
+        rating_fields.add(ratingFieldValue1);
+        rating_fields.add(ratingFieldValue2);
+        rating_fields.add(ratingFieldValue3);
+        rating_fields.add(ratingFieldValue4);
+        rating_fields.add(ratingFieldValue5);
+        rating_fields.add(ratingFieldValue6);
+        rating_fields.add(ratingFieldValue7);
 
+        LynxManager.partnerRatingValues.clear();
+        LynxManager.partnerRatingFields.clear();
+        LynxManager.setPartnerRatingValues(rating_values);
+        LynxManager.setPartnerRatingFields(rating_fields);
+        Log.v("SETPhas-Rating Values", Arrays.toString(rating_values.toArray()));
 
         LynxManager.setPartnerRatingIds(rating_field_id);
         LynxManager.activePartnerRating.clear();
@@ -340,7 +365,7 @@ public class EncounterNewPartner extends AppCompatActivity {
             System.out.println("FIELD ID"+field_id);
             System.out.println(rating_values.get(field_id - 1));
             PartnerRating partner_rating = new PartnerRating(LynxManager.getActiveUser().getUser_id(), LynxManager.getActivePartner().getPartner_id(),
-                    field_id, String.valueOf(rating_values.get(field_id - 1)), String.valueOf(R.string.statusUpdateNo));
+                    field_id, String.valueOf(rating_values.get(field_id - 1)),rating_fields.get(field_id - 1), String.valueOf(R.string.statusUpdateNo));
             LynxManager.setActivePartnerRating(partner_rating);
         }
         pushFragments("Encounter", fragPartnerSummary, true);
@@ -400,21 +425,43 @@ public class EncounterNewPartner extends AppCompatActivity {
     public boolean backToPartnerSummary(View view){
         EditText nickName = (EditText)findViewById(R.id.newPartnerSumm_nickName);
         TextView hivStatus = (TextView)findViewById(R.id.newPartnerSumm_hivStatus);
+        TextView undetectableAns = (TextView)findViewById(R.id.undetectableAns);
         EditText email = (EditText)findViewById(R.id.newPartnerSumm_email);
         EditText phone = (EditText)findViewById(R.id.newPartnerSumm_phone);
         EditText city_neighbor = (EditText)findViewById(R.id.newPartnerSumm_address);
         EditText metat = (EditText)findViewById(R.id.newPartnerSumm_metAt);
         EditText handle = (EditText)findViewById(R.id.newPartnerSumm_handle);
         TextView partnerType = (TextView)findViewById(R.id.newPartnerSumm_partnerType);
+        TextView otherPartner = (TextView)findViewById(R.id.otherPartner);
+        TextView monogamous = (TextView)findViewById(R.id.monogamous);
         EditText partnerNotes = (EditText)findViewById(R.id.newPartnerSumm_partnerNotes);
         LynxManager.getActivePartner().setNickname(LynxManager.encryptString(nickName.getText().toString()));
-        LynxManager.getActivePartner().setHiv_status(LynxManager.encryptString(hivStatus.getText().toString()));
-        LynxManager.getActivePartnerContact().setEmail(LynxManager.encryptString(email.getText().toString()));
-        LynxManager.getActivePartnerContact().setPhone(LynxManager.encryptString(phone.getText().toString()));
+        String selectedHIVstatus= hivStatus.getText().toString();
+        if(selectedHIVstatus.equals("HIV Positive and Undetectable")){
+            selectedHIVstatus = "HIV Positive & Undetectable";
+            LynxManager.getActivePartner().setUndetectable_for_sixmonth(LynxManager.encryptString(undetectableAns.getText().toString()));
+        }else if(selectedHIVstatus.equals("HIV Negative and on PrEP")){
+            selectedHIVstatus = "HIV Negative & on PrEP";
+        }
+        LynxManager.getActivePartner().setHiv_status(LynxManager.encryptString(selectedHIVstatus));
         LynxManager.getActivePartnerContact().setCity(LynxManager.encryptString(city_neighbor.getText().toString()));
         LynxManager.getActivePartnerContact().setMet_at(LynxManager.encryptString(metat.getText().toString()));
         LynxManager.getActivePartnerContact().setHandle(LynxManager.encryptString(handle.getText().toString()));
-        LynxManager.getActivePartnerContact().setPartner_type(LynxManager.encryptString(partnerType.getText().toString()));
+        String selectedPartnerType = partnerType.getText().toString();
+        if(selectedPartnerType.equals("Primary / Main partner")){
+            String selectedOtherPartner = otherPartner.getText().toString();
+            LynxManager.getActivePartnerContact().setPartner_have_other_partners(LynxManager.encryptString(selectedOtherPartner));
+            if(selectedOtherPartner.equals("No")){
+                String monogamousPeriod = monogamous.getText().toString();
+                if(monogamousPeriod.equals("Less than 6 months")){
+                    monogamousPeriod = "Yes";
+                }else {
+                    monogamousPeriod = "No";
+                }
+                LynxManager.getActivePartnerContact().setRelationship_period(LynxManager.encryptString(monogamousPeriod));
+            }
+        }
+        LynxManager.getActivePartnerContact().setPartner_type(LynxManager.encryptString(selectedPartnerType));
         LynxManager.getActivePartnerContact().setPartner_notes(LynxManager.encryptString(partnerNotes.getText().toString()));
         RatingBar ratingBar1 = (RatingBar) findViewById(R.id.newPartnerSumm_ratingBar1);
         String ratingValue1 = String.valueOf((ratingBar1.getRating()));
@@ -438,18 +485,59 @@ public class EncounterNewPartner extends AppCompatActivity {
         rating_values.add(ratingValue5);
         rating_values.add(ratingValue6);
         rating_values.add(ratingValue7);
+        TextView ratingField1 = (TextView)findViewById(R.id.overAll);
+        String ratingFieldValue1 = ratingField1.getText().toString();
+        TextView ratingField2 = (TextView)findViewById(R.id.newPartnerSumm_rate2);
+        String ratingFieldValue2 = ratingField2.getText().toString();
+        TextView ratingField3 = (TextView)findViewById(R.id.newPartnerSumm_rate3);
+        String ratingFieldValue3 = ratingField3.getText().toString();
+        TextView ratingField4 = (TextView)findViewById(R.id.newPartnerSumm_rate4);
+        String ratingFieldValue4 = ratingField4.getText().toString();
+        EditText ratingField5 = (EditText)findViewById(R.id.newPartnerSumm_rate5);
+        String ratingFieldValue5 = ratingField5.getText().toString();
+        EditText ratingField6 = (EditText)findViewById(R.id.newPartnerSumm_rate6);
+        String ratingFieldValue6 = ratingField6.getText().toString();
+        EditText ratingField7 = (EditText)findViewById(R.id.newPartnerSumm_rate7);
+        String ratingFieldValue7 = ratingField7.getText().toString();
+        List<String> rating_fields = new ArrayList<String>();
+        rating_fields.add(ratingFieldValue1);
+        rating_fields.add(ratingFieldValue2);
+        rating_fields.add(ratingFieldValue3);
+        rating_fields.add(ratingFieldValue4);
+        rating_fields.add(ratingFieldValue5);
+        rating_fields.add(ratingFieldValue6);
+        rating_fields.add(ratingFieldValue7);
+
         LynxManager.partnerRatingValues.clear();
+        LynxManager.partnerRatingFields.clear();
         LynxManager.setPartnerRatingValues(rating_values);
+        LynxManager.setPartnerRatingFields(rating_fields);
+
         LynxManager.setPartnerRatingIds(rating_field_id);
         LynxManager.activePartnerRating.clear();
         for (Integer field_id : rating_field_id) {
             System.out.println("FIELD ID"+field_id);
             System.out.println(rating_values.get(field_id - 1));
             PartnerRating partner_rating = new PartnerRating(LynxManager.getActiveUser().getUser_id(), LynxManager.getActivePartner().getPartner_id(),
-                    field_id, String.valueOf(rating_values.get(field_id - 1)), String.valueOf(R.string.statusUpdateNo));
+                    field_id, String.valueOf(rating_values.get(field_id - 1)),rating_fields.get(field_id - 1), String.valueOf(R.string.statusUpdateNo));
             LynxManager.setActivePartnerRating(partner_rating);
         }
-        popFragment();
+        String newPartnerEmail = email.getText().toString();
+        String newPartner_phone = phone.getText().toString();
+        Pattern pattern;
+        Matcher matcher;
+        final String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        pattern = Pattern.compile(EMAIL_PATTERN);
+        matcher = pattern.matcher(newPartnerEmail);
+        if (!newPartnerEmail.isEmpty() && !matcher.matches()) {
+            Toast.makeText(EncounterNewPartner.this,"Please enter valid email",Toast.LENGTH_SHORT).show();
+        }else if(newPartner_phone.length()!= 0 && (newPartner_phone.length()<10 || newPartner_phone.length()>11)){
+            Toast.makeText(EncounterNewPartner.this,"Please enter valid mobile number",Toast.LENGTH_SHORT).show();
+        }else{
+            LynxManager.getActivePartnerContact().setEmail(LynxManager.encryptString(newPartnerEmail));
+            LynxManager.getActivePartnerContact().setPhone(LynxManager.encryptString(newPartner_phone));
+            popFragment();
+        }
         return true;
     }
 

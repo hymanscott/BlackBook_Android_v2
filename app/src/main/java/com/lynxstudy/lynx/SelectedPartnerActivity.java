@@ -346,6 +346,21 @@ public class SelectedPartnerActivity extends AppCompatActivity {
     public boolean onPartnerRatingsNext (View view){
         EditPartnerSummaryFragment fragEditSummary = new EditPartnerSummaryFragment();
 
+        TextView ratingField1 = (TextView)findViewById(R.id.newPartner_rate1);
+        String ratingFieldValue1 = ratingField1.getText().toString();
+        TextView ratingField2 = (TextView)findViewById(R.id.newPartner_rate2);
+        String ratingFieldValue2 = ratingField2.getText().toString();
+        TextView ratingField3 = (TextView)findViewById(R.id.newPartner_rate3);
+        String ratingFieldValue3 = ratingField3.getText().toString();
+        TextView ratingField4 = (TextView)findViewById(R.id.newPartner_rate4);
+        String ratingFieldValue4 = ratingField4.getText().toString();
+        EditText ratingField5 = (EditText)findViewById(R.id.newPartner_rate5);
+        String ratingFieldValue5 = ratingField5.getText().toString();
+        EditText ratingField6 = (EditText)findViewById(R.id.newPartner_rate6);
+        String ratingFieldValue6 = ratingField6.getText().toString();
+        EditText ratingField7 = (EditText)findViewById(R.id.newPartner_rate7);
+        String ratingFieldValue7 = ratingField7.getText().toString();
+
         RatingBar ratingBar1 = (RatingBar) findViewById(R.id.ratingBar1);
         String ratingValue1 = String.valueOf((ratingBar1.getRating()));
         RatingBar ratingBar2 = (RatingBar) findViewById(R.id.ratingBar2);
@@ -368,7 +383,19 @@ public class SelectedPartnerActivity extends AppCompatActivity {
         rating_values.add(ratingValue5);
         rating_values.add(ratingValue6);
         rating_values.add(ratingValue7);
+        List<String> rating_fields = new ArrayList<String>();
+        rating_fields.add(ratingFieldValue1);
+        rating_fields.add(ratingFieldValue2);
+        rating_fields.add(ratingFieldValue3);
+        rating_fields.add(ratingFieldValue4);
+        rating_fields.add(ratingFieldValue5);
+        rating_fields.add(ratingFieldValue6);
+        rating_fields.add(ratingFieldValue7);
+
+        LynxManager.partnerRatingValues.clear();
+        LynxManager.partnerRatingFields.clear();
         LynxManager.setPartnerRatingValues(rating_values);
+        LynxManager.setPartnerRatingFields(rating_fields);
         Log.v("SETPhas-Rating Values", Arrays.toString(rating_values.toArray()));
 
         List<Integer> rating_field_id = new ArrayList<Integer>();
@@ -383,8 +410,10 @@ public class SelectedPartnerActivity extends AppCompatActivity {
         LynxManager.setPartnerRatingIds(rating_field_id);
         LynxManager.activePartnerRating.clear();
         for (Integer field_id : rating_field_id) {
+            System.out.println("FIELD ID"+field_id);
+            System.out.println(rating_values.get(field_id - 1));
             PartnerRating partner_rating = new PartnerRating(LynxManager.getActiveUser().getUser_id(), LynxManager.getActivePartner().getPartner_id(),
-                    field_id, rating_values.get(field_id - 1), String.valueOf(R.string.statusUpdateNo));
+                    field_id, String.valueOf(rating_values.get(field_id - 1)),rating_fields.get(field_id - 1), String.valueOf(R.string.statusUpdateNo));
             LynxManager.setActivePartnerRating(partner_rating);
         }
 
@@ -414,7 +443,7 @@ public class SelectedPartnerActivity extends AppCompatActivity {
             db.updatePrimaryPartner(priPartner);
         }
         for (PartnerRating partnerRating : LynxManager.getActivePartnerRating()) {
-            db.updatePartnerRatingbyPartnerIDnRatingFieldID(partnerRating);
+            db.updatePartnerRatingbyPartnerIDnRatingField(partnerRating);
         }
         Toast.makeText(this,"Partner Details are updated",Toast.LENGTH_SHORT).show();
         finish();

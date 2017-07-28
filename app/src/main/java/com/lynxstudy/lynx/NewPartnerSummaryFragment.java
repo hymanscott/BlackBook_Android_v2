@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -92,7 +93,7 @@ public class NewPartnerSummaryFragment extends Fragment {
         //   Setting Rating field name
         db= new DatabaseHelper(getActivity());
         db = new DatabaseHelper(getActivity().getBaseContext());
-        List<UserRatingFields> field = db.getAllUserRatingFields(LynxManager.getActiveUser().getUser_id());
+        /*List<UserRatingFields> field = db.getAllUserRatingFields(LynxManager.getActiveUser().getUser_id());
         int field_size = field.size();
         TextView[] txtview = new TextView[field_size];
         for (int i = 1; i < field.size(); i++) {
@@ -103,8 +104,30 @@ public class NewPartnerSummaryFragment extends Fragment {
             String titletext = LynxManager.decryptString(field_loc.getName()) + " :";
             txtview[i].setText(titletext);
             txtview[i].setTypeface(tf);
-        }
+        }*/
+        TextView overAll = (TextView) rootview.findViewById(R.id.overAll);
+        TextView newPartnerSumm_rate2 = (TextView) rootview.findViewById(R.id.newPartnerSumm_rate2);
+        TextView newPartnerSumm_rate3 = (TextView) rootview.findViewById(R.id.newPartnerSumm_rate3);
+        TextView newPartnerSumm_rate4 = (TextView) rootview.findViewById(R.id.newPartnerSumm_rate4);
+        TextView newPartnerSumm_rate5 = (TextView) rootview.findViewById(R.id.newPartnerSumm_rate5);
+        TextView newPartnerSumm_rate6 = (TextView) rootview.findViewById(R.id.newPartnerSumm_rate6);
+        TextView newPartnerSumm_rate7 = (TextView) rootview.findViewById(R.id.newPartnerSumm_rate7);
 
+        List<String> rating_fields = LynxManager.getPartnerRatingFields();
+        overAll.setText(rating_fields.get(0));
+        overAll.setTypeface(tf);
+        newPartnerSumm_rate2.setText(rating_fields.get(1));
+        newPartnerSumm_rate2.setTypeface(tf);
+        newPartnerSumm_rate3.setText(rating_fields.get(2));
+        newPartnerSumm_rate3.setTypeface(tf);
+        newPartnerSumm_rate4.setText(rating_fields.get(3));
+        newPartnerSumm_rate4.setTypeface(tf);
+        newPartnerSumm_rate5.setText(rating_fields.get(4));
+        newPartnerSumm_rate5.setTypeface(tf);
+        newPartnerSumm_rate6.setText(rating_fields.get(5));
+        newPartnerSumm_rate6.setTypeface(tf);
+        newPartnerSumm_rate7.setText(rating_fields.get(6));
+        newPartnerSumm_rate7.setTypeface(tf);
 
         final RatingBar rating1 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar1);
         final RatingBar rating2 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar2);

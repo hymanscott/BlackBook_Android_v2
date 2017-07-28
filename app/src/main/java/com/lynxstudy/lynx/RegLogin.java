@@ -1179,7 +1179,7 @@ public class RegLogin extends AppCompatActivity {
                             PartnerRating partner_rating = new PartnerRating(LynxManager.getActiveUser().getUser_id(),
                                     partnerRatingObject.getInt("partner_id"),
                                     partnerRatingObject.getInt("user_rating_field_id"),
-                                    partnerRatingObject.getString("rating"), String.valueOf(R.string.statusUpdateYes));
+                                    partnerRatingObject.getString("rating"), partnerRatingObject.getString("rating_field"), String.valueOf(R.string.statusUpdateYes));
                             db.createPartnerRating(partner_rating);
                         }
 

@@ -6,10 +6,12 @@ import android.graphics.Typeface;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -32,12 +34,19 @@ public class NewPartnerRatingsFragment extends Fragment {
     }
     TextView add_partner_title,rateTitle,newPartner_rate1;
     Button next;
+    private  int width,height;
+    View rootview;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootview = inflater.inflate(R.layout.fragment_new_partner_ratings, container, false);
-
+        rootview = inflater.inflate(R.layout.fragment_new_partner_ratings, container, false);
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        width = display.getWidth();
+        height = display.getHeight();
+        if (width == 480 && height == 800) {
+            rootview = inflater.inflate(R.layout.fragment_new_partner_ratings_alt, container, false);
+        }
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
@@ -54,7 +63,7 @@ public class NewPartnerRatingsFragment extends Fragment {
         newPartner_rating_nickname.setAllCaps(true);
         newPartner_rating_nickname.setTypeface(tf);
         db = new DatabaseHelper(getActivity().getBaseContext());
-        List<UserRatingFields> field = db.getAllUserRatingFields(LynxManager.getActiveUser().getUser_id());
+        /*List<UserRatingFields> field = db.getAllUserRatingFields(LynxManager.getActiveUser().getUser_id());
         int field_size = field.size();
         TextView[] txtview = new TextView[field_size];
         RatingBar[] ratingBars = new RatingBar[field_size];
@@ -68,7 +77,22 @@ public class NewPartnerRatingsFragment extends Fragment {
             txtview[i].setTypeface(tf);
 
             //   ratingBars[i]  = (RatingBar) rootview.findViewById("ratingBar"+i);
-        }
+        }*/
+        TextView newPartner_rate1 = (TextView)rootview.findViewById(R.id.newPartner_rate1);
+        TextView newPartner_rate2 = (TextView)rootview.findViewById(R.id.newPartner_rate2);
+        TextView newPartner_rate3 = (TextView)rootview.findViewById(R.id.newPartner_rate3);
+        TextView newPartner_rate4 = (TextView)rootview.findViewById(R.id.newPartner_rate4);
+        newPartner_rate1.setTypeface(tf);
+        newPartner_rate2.setTypeface(tf);
+        newPartner_rate3.setTypeface(tf);
+        newPartner_rate4.setTypeface(tf);
+        EditText newPartner_rate5 = (EditText)rootview.findViewById(R.id.newPartner_rate5);
+        EditText newPartner_rate6 = (EditText)rootview.findViewById(R.id.newPartner_rate6);
+        EditText newPartner_rate7 = (EditText)rootview.findViewById(R.id.newPartner_rate7);
+        newPartner_rate5.setTypeface(tf);
+        newPartner_rate6.setTypeface(tf);
+        newPartner_rate7.setTypeface(tf);
+
         RatingBar ratingbar_1 = (RatingBar) rootview.findViewById(R.id.ratingBar1);
         RatingBar ratingbar_2 = (RatingBar) rootview.findViewById(R.id.ratingBar2);
         RatingBar ratingbar_3 = (RatingBar) rootview.findViewById(R.id.ratingBar3);

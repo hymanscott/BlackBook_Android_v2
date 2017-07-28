@@ -12,18 +12,20 @@ public class PartnerRating {
     int partner_id;
     int user_rating_field_id;
     String rating;
+    String rating_field;
     String status_update;
     String created_at;
 
     public PartnerRating() {
     }
 
-    public PartnerRating(int user_id, int partner_id, int user_rating_field_id, String rating,String status_update) {
+    public PartnerRating(int user_id, int partner_id, int user_rating_field_id, String rating,String rating_field,String status_update) {
         this.user_id = user_id;
         this.partner_id = partner_id;
         this.user_rating_field_id = user_rating_field_id;
         this.status_update = status_update;
         this.rating = rating;
+        this.rating_field =rating_field;
     }
 
     public int getPartner_rating_id() {
@@ -74,6 +76,14 @@ public class PartnerRating {
         this.rating = rating;
     }
 
+    public String getRating_field() {
+        return rating_field;
+    }
+
+    public void setRating_field(String rating_field) {
+        this.rating_field = rating_field;
+    }
+
     public String getCreated_at() {
         return created_at;
     }
@@ -92,6 +102,7 @@ public class PartnerRating {
             pr_jsonObj.put("partner_id", partner_id);
             pr_jsonObj.put("user_rating_field_id", user_rating_field_id);
             pr_jsonObj.put("rating", rating);
+            pr_jsonObj.put("rating_field", rating_field);
             pr_jsonObj.put("status_update", status_update );
             pr_jsonObj.put("created_at", created_at);
         } catch (JSONException e) {

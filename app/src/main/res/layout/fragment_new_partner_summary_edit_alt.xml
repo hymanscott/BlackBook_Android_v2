@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/encounter_bg">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -13,17 +13,34 @@
             android:layout_width="fill_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="32dp"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/encounterlarge" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="New Partner Summary"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/add_partner_title"
+                android:textColor="@color/white"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nick name"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:id="@+id/new_partner_Summ_nickname"
                 android:textSize="18sp"
                 android:paddingTop="5dp"
                 android:textStyle="bold"
                 android:paddingBottom="5dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="40dp"
                 android:textColor="@color/encounter_btn_bg"
                 android:background="@color/banner_name_bg"
                 android:gravity="center_vertical|center_horizontal" />
@@ -34,7 +51,7 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:layout_marginBottom="2dp"
-                android:background="@color/profile_edittext_bg"
+                android:background="@drawable/rectangle_bg"
                 android:padding="@dimen/edittext_padding"
                 android:id="@+id/nickNameLayout"
                 android:orientation="horizontal">
@@ -44,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/usericonblue" />
+                    android:src="@drawable/usericon" />
                 <EditText
                     android:id="@+id/newPartnerSumm_nickName"
                     android:layout_width="fill_parent"
@@ -58,8 +75,8 @@
                     android:inputType="textPersonName"
                     android:paddingBottom="5dp"
                     android:paddingTop="5dp"
-                    android:textColor="@color/text_color"
-                    android:textColorHint="@color/profile_edittext_hint"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
@@ -69,7 +86,7 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@color/profile_edittext_bg"
+                android:background="@drawable/rectangle_bg"
                 android:padding="@dimen/edittext_padding"
                 android:orientation="horizontal">
 
@@ -78,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/emailiconblue" />
+                    android:src="@drawable/emailicon" />
                 <EditText
                     android:id="@+id/newPartnerSumm_email"
                     android:layout_width="fill_parent"
@@ -93,8 +110,8 @@
                     android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:imeOptions="actionNext"
-                    android:textColor="@color/text_color"
-                    android:textColorHint="@color/profile_edittext_hint"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
@@ -104,7 +121,7 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@color/profile_edittext_bg"
+                android:background="@drawable/rectangle_bg"
                 android:padding="@dimen/edittext_padding"
                 android:orientation="horizontal">
 
@@ -112,7 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/phoneiconblue" />
+                    android:src="@drawable/phoneicon" />
                 <EditText
                     android:id="@+id/newPartnerSumm_phone"
                     android:layout_width="fill_parent"
@@ -127,9 +144,9 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:windowSoftInputMode="adjustPan"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/white"
                     android:imeOptions="actionDone"
-                    android:textColorHint="@color/profile_edittext_hint"
+                    android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
@@ -139,7 +156,7 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@color/profile_edittext_bg"
+                android:background="@drawable/rectangle_bg"
                 android:padding="@dimen/edittext_padding"
                 android:orientation="horizontal">
 
@@ -147,7 +164,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/cityiconblue" />
+                    android:src="@drawable/cityicon" />
                 <EditText
                     android:id="@+id/newPartnerSumm_address"
                     android:layout_width="fill_parent"
@@ -162,9 +179,9 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:windowSoftInputMode="adjustPan"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/white"
                     android:imeOptions="actionDone"
-                    android:textColorHint="@color/profile_edittext_hint"
+                    android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
@@ -174,7 +191,7 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@color/profile_edittext_bg"
+                android:background="@drawable/rectangle_bg"
                 android:padding="@dimen/edittext_padding"
                 android:orientation="horizontal">
 
@@ -182,7 +199,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/texticonblue" />
+                    android:src="@drawable/texticon" />
                 <EditText
                     android:id="@+id/newPartnerSumm_metAt"
                     android:layout_width="fill_parent"
@@ -197,9 +214,9 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:windowSoftInputMode="adjustPan"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/white"
                     android:imeOptions="actionDone"
-                    android:textColorHint="@color/profile_edittext_hint"
+                    android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
@@ -209,7 +226,7 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@color/profile_edittext_bg"
+                android:background="@drawable/rectangle_bg"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -217,7 +234,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/socialiconblue" />
+                    android:src="@drawable/socialicon" />
                 <EditText
                     android:id="@+id/newPartnerSumm_handle"
                     android:layout_width="fill_parent"
@@ -232,261 +249,65 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:windowSoftInputMode="adjustPan"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/white"
                     android:imeOptions="actionDone"
-                    android:textColorHint="@color/profile_edittext_hint"
+                    android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:orientation="horizontal"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@color/profile_edittext_bg"
-                android:padding="@dimen/edittext_padding"
+                android:background="@drawable/rectangle_bg"
                 android:layout_marginBottom="2dp"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="110dp"
+                    android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/encounter_tv_textsize"
                     android:id="@+id/hivStatus"
-                    android:layout_alignParentLeft="true"
-                    android:padding="@dimen/edittext_padding"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/white"
                     android:text="HIV Status :"/>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/hivStatus"
-                    android:padding="@dimen/edittext_padding"
-                    android:id="@+id/hivStatusParent"
-                    android:layout_alignParentRight="true">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/newPartnerSumm_hivStatus"
-                        android:textSize="14sp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:layout_toLeftOf="@+id/dropDownIcon"
-                        android:clickable="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:textColor="@color/text_color"
-                        android:text="x"/>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="8dp"
-                        android:layout_alignParentRight="true"
-                        android:id="@+id/dropDownIcon"
-                        android:src="@drawable/dropdowngrey"/>
-                </RelativeLayout>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@color/profile_edittext_bg"
-                android:padding="@dimen/edittext_padding"
-                android:layout_marginBottom="2dp"
-                android:visibility="gone"
-                android:id="@+id/undetectableLayout"
-                android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="140dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/encounter_tv_textsize"
-                    android:id="@+id/undetectableQn"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/text_color"
-                    android:padding="@dimen/edittext_padding"
-                    android:text="Have they been undetectable for at least 6 months?"/>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:padding="@dimen/edittext_padding"
-                    android:layout_toRightOf="@+id/undetectableQn"
-                    android:id="@+id/undetectableAnsParent"
-                    android:layout_alignParentRight="true">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/undetectableAns"
-                        android:textSize="14sp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:clickable="true"
-                        android:layout_marginLeft="8dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:textColor="@color/text_color"
-                        android:text="I don't know"/>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:id="@+id/dropDownIcon1"
-                        android:src="@drawable/dropdowngrey"/>
-                </RelativeLayout>
-            </RelativeLayout>
+                    android:id="@+id/newPartnerSumm_hivStatus"
+                    android:textSize="14sp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:clickable="true"
+                    android:onClick="showHivStatusEdit"
+                    android:textColor="@color/white"
+                    android:text="x"/>
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:orientation="horizontal"
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@color/profile_edittext_bg"
-                android:padding="@dimen/edittext_padding"
+                android:background="@drawable/rectangle_bg"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="110dp"
+                    android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/encounter_tv_textsize"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/white"
                     android:id="@+id/partnerTypeTitle"
-                    android:padding="@dimen/edittext_padding"
                     android:text="Partner Type :"/>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:padding="@dimen/edittext_padding"
-                    android:layout_toRightOf="@+id/hivStatus"
-                    android:id="@+id/partnerTypeParent"
-                    android:layout_alignParentRight="true">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/newPartnerSumm_partnerType"
-                        android:textSize="14sp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:layout_toLeftOf="@+id/dropDownIcon2"
-                        android:clickable="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:textColor="@color/text_color"
-                        android:text="x"/>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="8dp"
-                        android:layout_alignParentRight="true"
-                        android:id="@+id/dropDownIcon2"
-                        android:src="@drawable/dropdowngrey"/>
-                </RelativeLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:orientation="horizontal"
-                android:layout_marginBottom="2dp"
-                android:id="@+id/otherPartnerLayout"
-                android:visibility="gone"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@color/profile_edittext_bg"
-                android:padding="@dimen/edittext_padding"
-                android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="140dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/encounter_tv_textsize"
-                    android:textColor="@color/text_color"
-                    android:id="@+id/otherPartnerTitle"
+                    android:id="@+id/newPartnerSumm_partnerType"
+                    android:textSize="14sp"
+                    android:paddingTop="5dp"
                     android:paddingBottom="5dp"
-                    android:text="Do they have other partners?"/>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/hivStatus"
-                    android:id="@+id/otherPartnerParent"
-                    android:layout_alignParentRight="true">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/otherPartner"
-                        android:textSize="14sp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:layout_toLeftOf="@+id/dropDownIcon3"
-                        android:clickable="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="8dp"
-                        android:textColor="@color/text_color"
-                        android:text="Yes"/>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="8dp"
-                        android:layout_alignParentRight="true"
-                        android:id="@+id/dropDownIcon3"
-                        android:src="@drawable/dropdowngrey"/>
-                </RelativeLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:orientation="horizontal"
-                android:layout_marginBottom="2dp"
-                android:id="@+id/monogamousLayout"
-                android:visibility="gone"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@color/profile_edittext_bg"
-                android:padding="@dimen/edittext_padding"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/encounter_tv_textsize"
-                    android:textColor="@color/text_color"
-                    android:id="@+id/monogamousTitle"
-                    android:paddingBottom="5dp"
-                    android:text="How long have been with this partner in a mutually monogamous relationship?"/>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_toRightOf="@+id/hivStatus"
-                    android:id="@+id/monogamousParent"
-                    android:layout_alignParentRight="true">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/monogamous"
-                        android:textSize="14sp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:layout_toLeftOf="@+id/dropDownIcon4"
-                        android:clickable="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="8dp"
-                        android:textColor="@color/text_color"
-                        android:text="Less than 6 months"/>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="8dp"
-                        android:layout_alignParentRight="true"
-                        android:id="@+id/dropDownIcon4"
-                        android:src="@drawable/dropdowngrey"/>
-                </RelativeLayout>
+                    android:clickable="true"
+                    android:onClick="showPartnerTypeEdit"
+                    android:textColor="@color/white"
+                    android:text="x"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -494,16 +315,14 @@
                 android:layout_marginBottom="32dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@color/profile_edittext_bg"
-                android:padding="@dimen/edittext_padding"
+                android:background="@drawable/rectangle_bg"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="110dp"
+                    android:layout_width="145dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/encounter_tv_textsize"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/white"
                     android:id="@+id/partnerNotes"
-                    android:padding="@dimen/edittext_padding"
                     android:text="Partner Notes :"/>
 
                 <EditText
@@ -517,9 +336,9 @@
                     android:hint="Add notes about this partner"
                     android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
-                    android:padding="@dimen/edittext_padding"
-                    android:textColor="@color/text_color"
-                    android:textColorHint="@color/profile_edittext_hint"
+                    android:lines="2"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -534,8 +353,7 @@
                     android:layout_weight="1"
                     android:text="Overall"
                     android:textSize="@dimen/encounter_tv_textsize"
-                    android:paddingLeft="8dp"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/white"
                     android:id="@+id/overAll"
                     android:layout_gravity="center_vertical"/>
                 <LinearLayout
@@ -565,12 +383,11 @@
                     android:layout_height="wrap_content"
                     android:text="Chemistry"
                     android:layout_weight="1"
-                    android:maxWidth="75dp"
-                    android:paddingLeft="8dp"
+                    android:maxWidth="70dp"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/newPartnerSumm_rate2"
                     android:textSize="@dimen/encounter_tv_textsize"
-                    android:textColor="@color/text_color" />
+                    android:textColor="@color/white" />
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -597,9 +414,8 @@
                     android:layout_height="wrap_content"
                     android:text="Personality"
                     android:textSize="@dimen/encounter_tv_textsize"
-                    android:textColor="@color/text_color"
-                    android:maxWidth="75dp"
-                    android:paddingLeft="8dp"
+                    android:textColor="@color/white"
+                    android:maxWidth="70dp"
                     android:layout_weight="1"
                     android:id="@+id/newPartnerSumm_rate3"
                     android:layout_gravity="center_vertical" />
@@ -630,10 +446,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:maxWidth="75dp"
+                    android:maxWidth="70dp"
                     android:text="Face"
-                    android:paddingLeft="8dp"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/encounter_tv_textsize" />
 
                 <LinearLayout
@@ -656,29 +471,27 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginBottom="2dp"
                 android:orientation="horizontal">
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:minWidth="75dp"
                     android:layout_gravity="center_vertical"
                     android:padding="@dimen/edittext_padding"
-                    android:background="@color/profile_edittext_bg">
+                    android:background="@color/edittext_bg">
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Body"
                         android:hint="Body"
                         android:imeOptions="actionNext"
-                        android:textColor="@color/text_color"
-                        android:textColorHint="@color/profile_edittext_hint"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/edittext_hint_color"
                         android:textCursorDrawable="@drawable/white_cursor"
                         android:textSize="@dimen/edittext_textsize"
                         android:id="@+id/newPartnerSumm_rate5"
                         android:backgroundTint="@android:color/transparent"
-                        android:maxWidth="75dp"
+                        android:maxWidth="100dp"
                         android:layout_gravity="center_vertical"/>
                 </LinearLayout>
                 <LinearLayout
@@ -701,29 +514,27 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginBottom="2dp"
                 android:orientation="horizontal">
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:minWidth="75dp"
                     android:layout_gravity="center_vertical"
                     android:padding="@dimen/edittext_padding"
-                    android:background="@color/profile_edittext_bg">
+                    android:background="@color/edittext_bg">
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Cock"
                         android:hint="Cock"
                         android:imeOptions="actionNext"
-                        android:textColor="@color/text_color"
-                        android:textColorHint="@color/profile_edittext_hint"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/edittext_hint_color"
                         android:textCursorDrawable="@drawable/white_cursor"
                         android:textSize="@dimen/edittext_textsize"
                         android:id="@+id/newPartnerSumm_rate6"
                         android:backgroundTint="@android:color/transparent"
-                        android:maxWidth="75dp"
+                        android:maxWidth="100dp"
                         android:layout_gravity="center_vertical"/>
                 </LinearLayout>
                 <LinearLayout
@@ -748,26 +559,25 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:orientation="horizontal">
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:minWidth="75dp"
                     android:layout_gravity="center_vertical"
                     android:padding="@dimen/edittext_padding"
-                    android:background="@color/profile_edittext_bg">
+                    android:background="@color/edittext_bg">
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Butt"
                         android:hint="Butt"
                         android:imeOptions="actionNext"
-                        android:textColor="@color/text_color"
-                        android:textColorHint="@color/profile_edittext_hint"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/edittext_hint_color"
                         android:textCursorDrawable="@drawable/white_cursor"
                         android:textSize="@dimen/edittext_textsize"
                         android:id="@+id/newPartnerSumm_rate7"
                         android:backgroundTint="@android:color/transparent"
-                        android:maxWidth="75dp"
+                        android:maxWidth="100dp"
                         android:layout_gravity="center_vertical"/>
                 </LinearLayout>
                 <LinearLayout
@@ -790,13 +600,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Save"
-                android:background="@drawable/buttonbluecornered"
+                android:background="@color/encounter_btn_bg"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:layout_marginTop="48dp"
-                android:layout_marginBottom="48dp"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="42dp"
                 android:textSize="@dimen/button_textsize"
                 android:id="@+id/next"
                 android:onClick="backToPartnerSummary" />

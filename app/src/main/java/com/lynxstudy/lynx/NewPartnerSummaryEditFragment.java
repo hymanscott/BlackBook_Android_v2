@@ -1,22 +1,32 @@
 package com.lynxstudy.lynx;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.UserRatingFields;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Hari on 2017-07-14.
@@ -27,14 +37,22 @@ public class NewPartnerSummaryEditFragment extends Fragment{
     public NewPartnerSummaryEditFragment() {
     }
     DatabaseHelper db;
-    TextView add_partner_title,hivStatus,partnerTypeTitle,partnerNotes,overAll;
+    TextView add_partner_title,hivStatus,partnerTypeTitle,partnerNotes,overAll,undetectableAns,undetectableQn,otherPartnerTitle,otherPartner,monogamous;
     Button next;
+    View rootview;
+    RelativeLayout undetectableLayout,undetectableAnsParent,hivStatusParent,partnerTypeParent,monogamousParent,otherPartnerParent;
+    LinearLayout monogamousLayout,otherPartnerLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootview = inflater.inflate(R.layout.fragment_new_partner_summary_edit, container, false);
-
+        rootview = inflater.inflate(R.layout.fragment_new_partner_summary_edit, container, false);
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        int width = display.getWidth();
+        int height = display.getHeight();
+        if (width == 480 && height == 800) {
+            rootview = inflater.inflate(R.layout.fragment_new_partner_summary_edit_alt, container, false);
+        }
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
@@ -50,26 +68,47 @@ public class NewPartnerSummaryEditFragment extends Fragment{
         overAll.setTypeface(tf);
         add_partner_title = (TextView) rootview.findViewById(R.id.add_partner_title);
         add_partner_title.setTypeface(tf);
-
+        monogamousLayout= (LinearLayout)rootview.findViewById(R.id.monogamousLayout);
+        otherPartnerLayout = (LinearLayout) rootview.findViewById(R.id.otherPartnerLayout);
+        otherPartnerParent = (RelativeLayout) rootview.findViewById(R.id.otherPartnerParent);
+        undetectableLayout = (RelativeLayout)rootview.findViewById(R.id.undetectableLayout);
+        undetectableAnsParent = (RelativeLayout)rootview.findViewById(R.id.undetectableAnsParent);
+        hivStatusParent = (RelativeLayout)rootview.findViewById(R.id.hivStatusParent);
+        partnerTypeParent = (RelativeLayout)rootview.findViewById(R.id.partnerTypeParent);
+        monogamousParent = (RelativeLayout)rootview.findViewById(R.id.monogamousParent);
+        undetectableAns= (TextView) rootview.findViewById(R.id.undetectableAns);
+        undetectableAns.setTypeface(tf);
+        undetectableQn= (TextView) rootview.findViewById(R.id.undetectableQn);
+        undetectableQn.setTypeface(tf);
+        otherPartnerTitle = (TextView) rootview.findViewById(R.id.otherPartnerTitle);
+        otherPartnerTitle.setTypeface(tf);
+        otherPartner = (TextView) rootview.findViewById(R.id.otherPartner);
+        otherPartner.setTypeface(tf);
+        monogamous = (TextView) rootview.findViewById(R.id.monogamous);
+        monogamous.setTypeface(tf);
         // Display Summary
         TextView new_partner_Summ_nickname = (TextView) rootview.findViewById(R.id.new_partner_Summ_nickname);
         new_partner_Summ_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         new_partner_Summ_nickname.setAllCaps(true);
         new_partner_Summ_nickname.setTypeface(tf);
         EditText nickName = (EditText) rootview.findViewById(R.id.newPartnerSumm_nickName);
-        TextView hivStatus = (TextView) rootview.findViewById(R.id.newPartnerSumm_hivStatus);
-        EditText email = (EditText) rootview.findViewById(R.id.newPartnerSumm_email);
-        EditText phone = (EditText) rootview.findViewById(R.id.newPartnerSumm_phone);
+        final TextView hivStatus = (TextView) rootview.findViewById(R.id.newPartnerSumm_hivStatus);
+        final EditText email = (EditText) rootview.findViewById(R.id.newPartnerSumm_email);
+        final EditText phone = (EditText) rootview.findViewById(R.id.newPartnerSumm_phone);
         EditText city_neighbor = (EditText) rootview.findViewById(R.id.newPartnerSumm_address);
         EditText metat = (EditText) rootview.findViewById(R.id.newPartnerSumm_metAt);
         EditText handle = (EditText) rootview.findViewById(R.id.newPartnerSumm_handle);
-        TextView partnerType = (TextView) rootview.findViewById(R.id.newPartnerSumm_partnerType);
+        final TextView partnerType = (TextView) rootview.findViewById(R.id.newPartnerSumm_partnerType);
         EditText partnerNotes = (EditText) rootview.findViewById(R.id.newPartnerSumm_partnerNotes);
 
         nickName.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         nickName.setTypeface(tf);
         hivStatus.setText(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()));
         hivStatus.setTypeface(tf);
+        if(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()).equals("HIV Positive & Undetectable")){
+            undetectableLayout.setVisibility(View.VISIBLE);
+            undetectableAns.setText(LynxManager.decryptString(LynxManager.getActivePartner().getUndetectable_for_sixmonth()));
+        }
         email.setText(LynxManager.decryptString(LynxManager.getActivePartnerContact().getEmail()));
         email.setTypeface(tf);
         phone.setText(LynxManager.decryptString(LynxManager.getActivePartnerContact().getPhone()));
@@ -82,13 +121,240 @@ public class NewPartnerSummaryEditFragment extends Fragment{
         handle.setTypeface(tf);
         partnerType.setText(LynxManager.decryptString(LynxManager.getActivePartnerContact().getPartner_type()));
         partnerType.setTypeface(tf);
+
+        // Email Validation //
+        email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                Pattern pattern;
+                Matcher matcher;
+                final String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+                pattern = Pattern.compile(EMAIL_PATTERN);
+                matcher = pattern.matcher(email.getText().toString());
+                if (!email.getText().toString().isEmpty() && !matcher.matches()) {
+                    Toast.makeText(getActivity(),"Please enter valid email",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        // Phone Validation //
+        phone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String newPartner_phone = phone.getText().toString();
+                if(newPartner_phone.length()!= 0 && (newPartner_phone.length()<10 || newPartner_phone.length()>11)){
+                    Toast.makeText(getActivity(),"Please enter valid mobile number",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        if(LynxManager.decryptString(LynxManager.getActivePartnerContact().getPartner_type()).equals("Primary / Main partner")){
+            otherPartnerLayout.setVisibility(View.VISIBLE);
+            otherPartner.setText(LynxManager.decryptString(LynxManager.getActivePartnerContact().getPartner_have_other_partners()));
+            if(LynxManager.decryptString(LynxManager.getActivePartnerContact().getPartner_have_other_partners()).equals("No")){
+                monogamousLayout.setVisibility(View.VISIBLE);
+                String monogamousvalue = "Less than 6 months";
+                if(LynxManager.decryptString(LynxManager.getActivePartnerContact().getRelationship_period()).equals("No")){
+                    monogamousvalue = "6 months or more";
+                }
+                monogamous.setText(monogamousvalue);
+            }
+        }
         partnerNotes.setText(LynxManager.decryptString(LynxManager.getActivePartnerContact().getPartner_notes()));
         partnerNotes.setTypeface(tf);
 
+        // HIV STATUS CHANGE //
+        final List<String> hiv_status_list= Arrays.asList(getResources().getStringArray(R.array.hiv_status_list));
+        final ArrayAdapter<String> adapterHIV = new ArrayAdapter<String>(getActivity(),
+                R.layout.spinner_row_white, R.id.txtView, hiv_status_list);
+        hivStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterHIV, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                String text = hiv_status_list.get(which).toString();
+                                hivStatus.setText(text);
+                                if(text.equals("HIV Positive and Undetectable")){
+                                    undetectableLayout.setVisibility(View.VISIBLE);
+                                }else{
+                                    undetectableLayout.setVisibility(View.GONE);
+                                }
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+        hivStatusParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterHIV, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                String text = hiv_status_list.get(which).toString();
+                                hivStatus.setText(text);
+                                if(text.equals("HIV Positive and Undetectable")){
+                                    undetectableLayout.setVisibility(View.VISIBLE);
+                                }else{
+                                    undetectableLayout.setVisibility(View.GONE);
+                                }
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+        // Undetectable Layout //
+        final List<String> yes_no_idk= Arrays.asList(getResources().getStringArray(R.array.yes_no_idk));
+        final ArrayAdapter<String> adapterUndetect = new ArrayAdapter<String>(getActivity(),
+                R.layout.spinner_row_white, R.id.txtView, yes_no_idk);
+        undetectableAns.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterUndetect, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                undetectableAns.setText(yes_no_idk.get(which).toString());
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+        undetectableAnsParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterUndetect, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                undetectableAns.setText(yes_no_idk.get(which).toString());
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+
+        // Partner Type Change //
+        final List<String> partner_type_list= Arrays.asList(getResources().getStringArray(R.array.partner_type));
+        final ArrayAdapter<String> adapterPartnerType = new ArrayAdapter<String>(getActivity(),
+                R.layout.spinner_row_white, R.id.txtView, partner_type_list);
+        partnerType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterPartnerType, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                String text = partner_type_list.get(which).toString();
+                                partnerType.setText(text);
+                                if(text.equals("Primary / Main partner")){
+                                    otherPartnerLayout.setVisibility(View.VISIBLE);
+                                }else{
+                                    otherPartnerLayout.setVisibility(View.GONE);
+                                    monogamousLayout.setVisibility(View.GONE);
+                                }
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+        partnerTypeParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterPartnerType, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                String text = partner_type_list.get(which).toString();
+                                partnerType.setText(text);
+                                if(text.equals("Primary / Main partner")){
+                                    otherPartnerLayout.setVisibility(View.VISIBLE);
+                                }else{
+                                    otherPartnerLayout.setVisibility(View.GONE);
+                                    monogamousLayout.setVisibility(View.GONE);
+                                }
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+        // Other Partner Type Change //
+        final List<String> yes_no= Arrays.asList(getResources().getStringArray(R.array.yes_no));
+        final ArrayAdapter<String> adapterOtherPartner = new ArrayAdapter<String>(getActivity(),
+                R.layout.spinner_row_white, R.id.txtView, yes_no);
+        otherPartner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterOtherPartner, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                String text = yes_no.get(which).toString();
+                                otherPartner.setText(text);
+                                if(text.equals("No")){
+                                    monogamousLayout.setVisibility(View.VISIBLE);
+                                }else{
+                                    monogamousLayout.setVisibility(View.GONE);
+                                }
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+        otherPartnerParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterOtherPartner, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                String text = yes_no.get(which).toString();
+                                otherPartner.setText(text);
+                                if(text.equals("No")){
+                                    monogamousLayout.setVisibility(View.VISIBLE);
+                                }else{
+                                    monogamousLayout.setVisibility(View.GONE);
+                                }
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+
+        // Monogamous relationship change //
+        final List<String> monogamous_list= Arrays.asList(getResources().getStringArray(R.array.monogamous_relationship));
+        final ArrayAdapter<String> adapterMonogamous = new ArrayAdapter<String>(getActivity(),
+                R.layout.spinner_row_white, R.id.txtView, monogamous_list);
+        monogamous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterMonogamous, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                monogamous.setText(monogamous_list.get(which).toString());
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+        monogamousParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterMonogamous, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                monogamous.setText(yes_no_idk.get(which).toString());
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
         //   Setting Rating field name
         db= new DatabaseHelper(getActivity());
         db = new DatabaseHelper(getActivity().getBaseContext());
-        List<UserRatingFields> field = db.getAllUserRatingFields(LynxManager.getActiveUser().getUser_id());
+        /*List<UserRatingFields> field = db.getAllUserRatingFields(LynxManager.getActiveUser().getUser_id());
         int field_size = field.size();
         TextView[] txtview = new TextView[field_size];
         for (int i = 1; i < field.size(); i++) {
@@ -99,8 +365,30 @@ public class NewPartnerSummaryEditFragment extends Fragment{
             String titletext = LynxManager.decryptString(field_loc.getName()) + " :";
             txtview[i].setText(titletext);
             txtview[i].setTypeface(tf);
-        }
+        }*/
+        TextView overAll = (TextView) rootview.findViewById(R.id.overAll);
+        TextView newPartnerSumm_rate2 = (TextView) rootview.findViewById(R.id.newPartnerSumm_rate2);
+        TextView newPartnerSumm_rate3 = (TextView) rootview.findViewById(R.id.newPartnerSumm_rate3);
+        TextView newPartnerSumm_rate4 = (TextView) rootview.findViewById(R.id.newPartnerSumm_rate4);
+        EditText newPartnerSumm_rate5 = (EditText) rootview.findViewById(R.id.newPartnerSumm_rate5);
+        EditText newPartnerSumm_rate6 = (EditText) rootview.findViewById(R.id.newPartnerSumm_rate6);
+        EditText newPartnerSumm_rate7 = (EditText) rootview.findViewById(R.id.newPartnerSumm_rate7);
 
+        List<String> rating_fields = LynxManager.getPartnerRatingFields();
+        overAll.setText(rating_fields.get(0));
+        overAll.setTypeface(tf);
+        newPartnerSumm_rate2.setText(rating_fields.get(1));
+        newPartnerSumm_rate2.setTypeface(tf);
+        newPartnerSumm_rate3.setText(rating_fields.get(2));
+        newPartnerSumm_rate3.setTypeface(tf);
+        newPartnerSumm_rate4.setText(rating_fields.get(3));
+        newPartnerSumm_rate4.setTypeface(tf);
+        newPartnerSumm_rate5.setText(rating_fields.get(4));
+        newPartnerSumm_rate5.setTypeface(tf);
+        newPartnerSumm_rate6.setText(rating_fields.get(5));
+        newPartnerSumm_rate6.setTypeface(tf);
+        newPartnerSumm_rate7.setText(rating_fields.get(6));
+        newPartnerSumm_rate7.setTypeface(tf);
 
         RatingBar rating1 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar1);
         RatingBar rating2 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar2);

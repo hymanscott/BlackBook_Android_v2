@@ -156,12 +156,12 @@
         <activity
             android:name=".AddNewTest"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".TestSummary"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TestingInstructionAnswer"
             android:screenOrientation="portrait" />
@@ -188,8 +188,9 @@
             android:name=".BaselineSexproScoreActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LynxProfileEdit"
-            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".LynxProfileEdit"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

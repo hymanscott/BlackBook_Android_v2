@@ -255,8 +255,8 @@
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -264,24 +264,93 @@
                 android:layout_marginBottom="2dp"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="145dp"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/encounter_tv_textsize"
                     android:id="@+id/hivStatus"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
                     android:textColor="@color/white"
                     android:text="HIV Status :"/>
-                <TextView
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/newPartnerSumm_hivStatus"
-                    android:textSize="14sp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:clickable="true"
-                    android:onClick="showHivStatusEdit"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/hivStatus"
+                    android:id="@+id/hivStatusParent"
+                    android:layout_alignParentRight="true">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/newPartnerSumm_hivStatus"
+                        android:textSize="14sp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_toLeftOf="@+id/dropDownIcon"
+                        android:clickable="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/white"
+                        android:text="x"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/dropDownIcon"
+                        android:src="@drawable/dropdownicon"/>
+                </RelativeLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/rectangle_bg"
+                android:layout_marginBottom="2dp"
+                android:visibility="gone"
+                android:id="@+id/undetectableLayout"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:id="@+id/undetectableQn"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
                     android:textColor="@color/white"
-                    android:text="x"/>
-            </LinearLayout>
+                    android:text="Have they been undetectable for at least 6 months?"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/undetectableQn"
+                    android:id="@+id/undetectableAnsParent"
+                    android:layout_alignParentRight="true">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/undetectableAns"
+                        android:textSize="14sp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:clickable="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/white"
+                        android:text="I don't know"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/dropDownIcon1"
+                        android:src="@drawable/dropdownicon"/>
+                </RelativeLayout>
+            </RelativeLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:orientation="horizontal"
@@ -291,23 +360,139 @@
                 android:background="@drawable/rectangle_bg"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="145dp"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/encounter_tv_textsize"
                     android:textColor="@color/white"
                     android:id="@+id/partnerTypeTitle"
                     android:text="Partner Type :"/>
-                <TextView
-                    android:layout_width="match_parent"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/newPartnerSumm_partnerType"
-                    android:textSize="14sp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:clickable="true"
-                    android:onClick="showPartnerTypeEdit"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/hivStatus"
+                    android:id="@+id/partnerTypeParent"
+                    android:layout_alignParentRight="true">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/newPartnerSumm_partnerType"
+                        android:textSize="14sp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_toLeftOf="@+id/dropDownIcon2"
+                        android:clickable="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/white"
+                        android:text="x"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/dropDownIcon2"
+                        android:src="@drawable/dropdownicon"/>
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="horizontal"
+                android:layout_marginBottom="2dp"
+                android:id="@+id/otherPartnerLayout"
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/rectangle_bg"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/encounter_tv_textsize"
                     android:textColor="@color/white"
-                    android:text="x"/>
+                    android:id="@+id/otherPartnerTitle"
+                    android:paddingBottom="5dp"
+                    android:text="Do they have other partners?"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/hivStatus"
+                    android:id="@+id/otherPartnerParent"
+                    android:layout_alignParentRight="true">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/otherPartner"
+                        android:textSize="14sp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_toLeftOf="@+id/dropDownIcon3"
+                        android:clickable="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="@color/white"
+                        android:text="Yes"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/dropDownIcon3"
+                        android:src="@drawable/dropdownicon"/>
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="horizontal"
+                android:layout_marginBottom="2dp"
+                android:id="@+id/monogamousLayout"
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/rectangle_bg"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:textColor="@color/white"
+                    android:id="@+id/monogamousTitle"
+                    android:paddingBottom="5dp"
+                    android:text="How long have been with this partner in a mutually monogamous relationship?"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_toRightOf="@+id/hivStatus"
+                    android:id="@+id/monogamousParent"
+                    android:layout_alignParentRight="true">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/monogamous"
+                        android:textSize="14sp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_toLeftOf="@+id/dropDownIcon4"
+                        android:clickable="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="@color/white"
+                        android:text="Less than 6 months"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/dropDownIcon4"
+                        android:src="@drawable/dropdownicon"/>
+                </RelativeLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -318,7 +503,7 @@
                 android:background="@drawable/rectangle_bg"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="145dp"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/encounter_tv_textsize"
                     android:textColor="@color/white"
@@ -352,6 +537,7 @@
                     android:layout_weight="1"
                     android:text="Overall"
                     android:textSize="@dimen/encounter_tv_textsize"
+                    android:paddingLeft="8dp"
                     android:textColor="@color/white"
                     android:id="@+id/overAll"
                     android:layout_gravity="center_vertical"/>
@@ -383,6 +569,7 @@
                     android:text="Chemistry"
                     android:layout_weight="1"
                     android:maxWidth="100dp"
+                    android:paddingLeft="8dp"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/newPartnerSumm_rate2"
                     android:textSize="@dimen/encounter_tv_textsize"
@@ -415,6 +602,7 @@
                     android:textSize="@dimen/encounter_tv_textsize"
                     android:textColor="@color/white"
                     android:maxWidth="100dp"
+                    android:paddingLeft="8dp"
                     android:layout_weight="1"
                     android:id="@+id/newPartnerSumm_rate3"
                     android:layout_gravity="center_vertical" />
@@ -439,15 +627,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:orientation="horizontal">
+
                 <TextView
+                    android:id="@+id/newPartnerSumm_rate4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Face"
-                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:layout_gravity="center_vertical"
                     android:maxWidth="100dp"
+                    android:text="Face"
+                    android:paddingLeft="8dp"
                     android:textColor="@color/white"
-                    android:id="@+id/newPartnerSumm_rate4"
-                    android:layout_gravity="center_vertical"/>
+                    android:textSize="@dimen/encounter_tv_textsize" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -468,16 +659,31 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="2dp"
                 android:orientation="horizontal">
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Body"
-                    android:textSize="@dimen/encounter_tv_textsize"
-                    android:textColor="@color/white"
-                    android:id="@+id/newPartnerSumm_rate5"
-                    android:maxWidth="100dp"
-                    android:layout_gravity="center_vertical"/>
+                    android:layout_weight="1"
+                    android:minWidth="100dp"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/edittext_padding"
+                    android:background="@color/edittext_bg">
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Body"
+                        android:hint="Body"
+                        android:imeOptions="actionNext"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textCursorDrawable="@drawable/white_cursor"
+                        android:textSize="@dimen/edittext_textsize"
+                        android:id="@+id/newPartnerSumm_rate5"
+                        android:backgroundTint="@android:color/transparent"
+                        android:maxWidth="100dp"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -498,16 +704,31 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="2dp"
                 android:orientation="horizontal">
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cock"
-                    android:textSize="@dimen/encounter_tv_textsize"
-                    android:textColor="@color/white"
-                    android:id="@+id/newPartnerSumm_rate6"
-                    android:maxWidth="100dp"
-                    android:layout_gravity="center_vertical" />
+                    android:layout_weight="1"
+                    android:minWidth="100dp"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/edittext_padding"
+                    android:background="@color/edittext_bg">
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cock"
+                        android:hint="Cock"
+                        android:imeOptions="actionNext"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textCursorDrawable="@drawable/white_cursor"
+                        android:textSize="@dimen/edittext_textsize"
+                        android:id="@+id/newPartnerSumm_rate6"
+                        android:backgroundTint="@android:color/transparent"
+                        android:maxWidth="100dp"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -529,15 +750,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:orientation="horizontal">
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Butt"
-                    android:textSize="@dimen/encounter_tv_textsize"
-                    android:textColor="@color/white"
-                    android:id="@+id/newPartnerSumm_rate7"
-                    android:maxWidth="100dp"
-                    android:layout_gravity="center_vertical" />
+                    android:layout_weight="1"
+                    android:minWidth="100dp"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/edittext_padding"
+                    android:background="@color/edittext_bg">
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Butt"
+                        android:hint="Butt"
+                        android:imeOptions="actionNext"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textCursorDrawable="@drawable/white_cursor"
+                        android:textSize="@dimen/edittext_textsize"
+                        android:id="@+id/newPartnerSumm_rate7"
+                        android:backgroundTint="@android:color/transparent"
+                        android:maxWidth="100dp"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

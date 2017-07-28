@@ -104,7 +104,7 @@ public class SelectedPartnerSummaryFragment extends Fragment {
         partnerType.setTypeface(tf);
         partnerNotes.setTypeface(tf);
 
-        //   Setting Rating field name
+        /*//   Setting Rating field name
         List<UserRatingFields> field = db.getAllUserRatingFields(user_id);
         int field_size = field.size();
         TextView[] txtview = new TextView[field_size];
@@ -116,7 +116,25 @@ public class SelectedPartnerSummaryFragment extends Fragment {
             String titletext = LynxManager.decryptString(field_loc.getName()) + " :";
             txtview[i].setText(titletext);
             txtview[i].setTypeface(tf);
-        }
+        }*/
+        TextView overAll = (TextView) rootview.findViewById(R.id.overAll);
+        TextView newPartnerSumm_rate2 = (TextView) rootview.findViewById(R.id.selectedPartner_rate2);
+        TextView newPartnerSumm_rate3 = (TextView) rootview.findViewById(R.id.selectedPartner_rate3);
+        TextView newPartnerSumm_rate4 = (TextView) rootview.findViewById(R.id.selectedPartner_rate4);
+        TextView newPartnerSumm_rate5 = (TextView) rootview.findViewById(R.id.selectedPartner_rate5);
+        TextView newPartnerSumm_rate6 = (TextView) rootview.findViewById(R.id.selectedPartner_rate6);
+        TextView newPartnerSumm_rate7 = (TextView) rootview.findViewById(R.id.selectedPartner_rate7);
+        overAll.setTypeface(tf);
+        newPartnerSumm_rate2.setTypeface(tf);
+        newPartnerSumm_rate3.setTypeface(tf);
+        newPartnerSumm_rate4.setTypeface(tf);
+        newPartnerSumm_rate5.setTypeface(tf);
+        newPartnerSumm_rate6.setTypeface(tf);
+        newPartnerSumm_rate7.setTypeface(tf);
+
+        List<String> rating_fields = new ArrayList<String>();;
+
+
 
         PartnerContact partnerContact = db.getPartnerContactbyPartnerID(partner_id);
 
@@ -135,9 +153,16 @@ public class SelectedPartnerSummaryFragment extends Fragment {
             List<PartnerRating> partnerRatingsList = db.getPartnerRatingbyPartnerID(partner_id);
             for (PartnerRating rating : partnerRatingsList) {
                 rating_values.add(rating.getRating());
+                rating_fields.add(rating.getRating_field());
                 Log.v("ratings", String.valueOf(rating.getRating()));
             }
-
+            overAll.setText(rating_fields.get(0));
+            newPartnerSumm_rate2.setText(rating_fields.get(1));
+            newPartnerSumm_rate3.setText(rating_fields.get(2));
+            newPartnerSumm_rate4.setText(rating_fields.get(3));
+            newPartnerSumm_rate5.setText(rating_fields.get(4));
+            newPartnerSumm_rate6.setText(rating_fields.get(5));
+            newPartnerSumm_rate7.setText(rating_fields.get(6));
             rating1.setRating(Float.parseFloat(rating_values.get(0)));
             rating2.setRating(Float.parseFloat(rating_values.get(1)));
             rating3.setRating(Float.parseFloat(rating_values.get(2)));

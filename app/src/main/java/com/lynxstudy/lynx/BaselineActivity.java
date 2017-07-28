@@ -508,11 +508,22 @@ public class BaselineActivity extends AppCompatActivity {
                 rating_field_id.add(5);
                 rating_field_id.add(6);
                 rating_field_id.add(7);
+
+                List<String> rating_fields = new ArrayList<String>();
+                rating_fields.clear();
+                rating_fields.add("Overall");
+                rating_fields.add("Chemistry");
+                rating_fields.add("Personality");
+                rating_fields.add("Face");
+                rating_fields.add("Body");
+                rating_fields.add("Cock");
+                rating_fields.add("Butt");
+
                 LynxManager.setPartnerRatingIds(rating_field_id);
                 LynxManager.activePartnerRating.clear();
                 for (Integer field_id : rating_field_id) {
                     PartnerRating partner_rating = new PartnerRating(activePrimaryPartner.getUser_id(), pri_partner_partnerID,
-                            field_id, String.valueOf(1), String.valueOf(R.string.statusUpdateNo));
+                            field_id, String.valueOf(1),rating_fields.get(field_id-1), String.valueOf(R.string.statusUpdateNo));
                     int partner_rating_ID = db.createPartnerRating(partner_rating);
                     partner_rating.setPartner_rating_id(partner_rating_ID);
                     LynxManager.setActivePartnerRating(partner_rating);

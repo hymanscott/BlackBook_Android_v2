@@ -60,6 +60,7 @@ public class LynxManager {
     public static List<PartnerRating> activePartnerRating = new ArrayList<PartnerRating>();
     public static List<Integer> partnerRatingIds = new ArrayList<Integer>();
     public static List<String> partnerRatingValues = new ArrayList<String>();
+    public static List<String> partnerRatingFields = new ArrayList<String>();
     public static List<EncounterSexType> activePartnerSexType = new ArrayList<EncounterSexType>();
     public static List<String> activeEncCondomUsed = new ArrayList<String>();
     public static String encRateofSex;
@@ -161,6 +162,14 @@ public class LynxManager {
 
     public static void setPartnerRatingValues(List<String> partnerRatingValues) {
         LynxManager.partnerRatingValues = partnerRatingValues;
+    }
+
+    public static List<String> getPartnerRatingFields() {
+        return partnerRatingFields;
+    }
+
+    public static void setPartnerRatingFields(List<String> partnerRatingFields) {
+        LynxManager.partnerRatingFields = partnerRatingFields;
     }
 
     public static List<EncounterSexType> getActivePartnerSexType() {

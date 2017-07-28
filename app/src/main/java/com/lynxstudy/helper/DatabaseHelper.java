@@ -210,6 +210,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_PARTNERRATING_PARTNERID = "partner_id";
     private static final String KEY_PARTNERRATING_RATINGFIELDID = "user_rating_field_id";
     private static final String KEY_PARTNERRATING_RATING = "rating";
+    private static final String KEY_PARTNERRATING_RATINGFIELD = "rating_field";
 
     // Encounter Table - Column Names
     private static final String KEY_ENCOUNTER_ID = "encounter_id";
@@ -393,6 +394,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + " INTEGER," + KEY_PARTNERRATING_PARTNERID
             + " INTEGER," + KEY_PARTNERRATING_RATINGFIELDID
             + " INTEGER," + KEY_PARTNERRATING_RATING
+            + " TEXT," +  KEY_PARTNERRATING_RATINGFIELD
             + " TEXT," + KEY_STATUS_UPDATE + " TEXT,"
             + KEY_CREATED_AT + " DATETIME" + ")";
 
@@ -1970,7 +1972,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.update(TABLE_PARTNERS, values, KEY_PARTNER_ID + " = ?",
                 new String[]{String.valueOf(partner.getPartner_id())});
     }
+    // Update partner from new summary screen layout //
+    public int updatePartnerFromSummary(Partners partner) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(KEY_PARTNER_NICKNAME, partner.getNickname());
+        values.put(KEY_PARTNER_HIVSTATUS, partner.getHiv_status());
+        values.put(KEY_PARTNER_UNDETECTABLE,partner.getUndetectable_for_sixmonth());
+        values.put(KEY_STATUS_UPDATE,partner.getStatus_update());
+        // updating row
+        return db.update(TABLE_PARTNERS, values, KEY_PARTNER_ID + " = ?",
+                new String[]{String.valueOf(partner.getPartner_id())});
+    }
     /**
      * Updating a Primary Partner by Userid
      */
@@ -2793,6 +2807,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.update(TABLE_PARTNER_CONTACT, values, KEY_PARTNERCONTACT_PARTNER_ID + " = ?",
                 new String[]{String.valueOf(partnerContact.getPartner_id())});
     }
+    // Update Partner Conatct from New Summary Screen //
+    public int updatePartnerContactFromSummary(PartnerContact partnerContact) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_PARTNERCONTACT_PARTNER_ID, partnerContact.getPartner_id());
+        values.put(KEY_PARTNER_CITY, partnerContact.getCity());
+        values.put(KEY_PARTNER_PHONE, partnerContact.getPhone());
+        values.put(KEY_PARTNER_EMAIL, partnerContact.getEmail());
+        values.put(KEY_PARTNER_METAT, partnerContact.getMet_at());
+        values.put(KEY_PARTNER_HANDLE, partnerContact.getHandle());
+        values.put(KEY_PARTNER_TYPE, partnerContact.getPartner_type());
+        values.put(KEY_PARTNER_NOTES, partnerContact.getPartner_notes());
+        values.put(KEY_PARTNER_OTHERPARTNER, partnerContact.getPartner_have_other_partners());
+        values.put(KEY_PARTNER_RELATIONSHIP_PERIOD, partnerContact.getRelationship_period());
+        values.put(KEY_STATUS_UPDATE, partnerContact.getStatus_update());
+
+        // updating row
+        return db.update(TABLE_PARTNER_CONTACT, values, KEY_PARTNERCONTACT_PARTNER_ID + " = ?",
+                new String[]{String.valueOf(partnerContact.getPartner_id())});
+    }
 
     /**
      * get single Partner Contact by Id
@@ -3328,6 +3363,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_PARTNERRATING_RATINGFIELDID, partner.getUser_rating_field_id());
         values.put(KEY_STATUS_UPDATE, partner.getStatus_update());
         values.put(KEY_PARTNERRATING_RATING, partner.getRating());
+        values.put(KEY_PARTNERRATING_RATINGFIELD, partner.getRating_field());
         values.put(KEY_STATUS_UPDATE, partner.getStatus_update());
         values.put(KEY_CREATED_AT, getDateTime());
 
@@ -3361,6 +3397,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         partner.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_PARTNERID)));
         partner.setUser_rating_field_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_RATINGFIELDID)));
         partner.setRating(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATING)));
+        partner.setRating_field(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATINGFIELD)));
         partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
         return partner;
     }
@@ -3391,6 +3428,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             partner.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_PARTNERID)));
             partner.setUser_rating_field_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_RATINGFIELDID)));
             partner.setRating(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATING)));
+            partner.setRating_field(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATINGFIELD)));
             partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
             return partner;
         }
@@ -3424,6 +3462,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     partner.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_PARTNERID)));
                     partner.setUser_rating_field_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_RATINGFIELDID)));
                     partner.setRating(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATING)));
+                    partner.setRating_field(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATINGFIELD)));
                     partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
                     Partners.add(partner);
                 } while (c.moveToNext());
@@ -3454,6 +3493,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 partner.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_PARTNERID)));
                 partner.setUser_rating_field_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_RATINGFIELDID)));
                 partner.setRating(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATING)));
+                partner.setRating_field(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATINGFIELD)));
                 partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
                 // adding to Users list
@@ -3492,6 +3532,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_PARTNERRATING_RATINGFIELDID, partner.getUser_rating_field_id());
         values.put(KEY_STATUS_UPDATE,partner.getStatus_update());
         values.put(KEY_PARTNERRATING_RATING, partner.getRating());
+        values.put(KEY_PARTNERRATING_RATINGFIELD, partner.getRating_field());
         values.put(KEY_STATUS_UPDATE, partner.getStatus_update());
 
         // updating row
@@ -3502,7 +3543,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * Updating a Partner Rating by Partnerid and RatingField ID
      */
-    public int updatePartnerRatingbyPartnerIDnRatingFieldID(PartnerRating partner) {
+    public int updatePartnerRatingbyPartnerIDnRatingField(PartnerRating partner) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -3510,6 +3551,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_PARTNERRATING_PARTNERID, partner.getPartner_id());
         values.put(KEY_PARTNERRATING_RATINGFIELDID, partner.getUser_rating_field_id());
         values.put(KEY_PARTNERRATING_RATING, partner.getRating());
+        values.put(KEY_PARTNERRATING_RATINGFIELD, partner.getRating_field());
         // updating row
         return db.update(TABLE_PARTNER_RATINGS, values, KEY_PARTNERRATING_PARTNERID + " = ? AND " + KEY_PARTNERRATING_RATINGFIELDID + " = ?",
                 new String[]{String.valueOf(partner.getPartner_id()),String.valueOf(partner.getUser_rating_field_id())});
@@ -3561,6 +3603,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 partner.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_PARTNERID)));
                 partner.setUser_rating_field_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_RATINGFIELDID)));
                 partner.setRating(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATING)));
+                partner.setRating_field(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATINGFIELD)));
                 partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
                 PartnerRatings.add(partner);
             } while (c.moveToNext());
