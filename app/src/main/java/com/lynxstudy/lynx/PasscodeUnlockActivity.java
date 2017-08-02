@@ -75,7 +75,7 @@ public class PasscodeUnlockActivity extends AbstractPasscodeKeyboardActivity {
             }
             else{
                 //Intent home = new Intent(this, homeScreenActivity.class);
-                Intent home = new Intent(this, LynxSexPro.class);
+                Intent home = new Intent(this, LynxHome.class);
                 home.putExtra("fromactivity",PasscodeUnlockActivity.this.getClass().getSimpleName());
                 startActivity(home);
                 finish();

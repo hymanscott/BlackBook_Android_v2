@@ -53,4 +53,7 @@
     <!-- FAQ Screen Colors -->
     <color name="faq_blue">#DE2E86EF</color>
     <color name="border_grey">#1F000000</color>
+
+    <!--Lynx Home -->
+    <color name="lynx_home_white">#CCFFFFFF</color>
 </resources>

@@ -191,6 +191,7 @@
         <activity
             android:name=".LynxProfileEdit"
             android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".LynxHome"></activity>
     </application>
 
 </manifest>

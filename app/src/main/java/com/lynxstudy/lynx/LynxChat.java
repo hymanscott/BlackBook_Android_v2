@@ -191,7 +191,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         switch (v.getId()) {
 
             case R.id.bot_nav_sexpro:
-                LynxManager.goToIntent(LynxChat.this,"sexpro",LynxChat.this.getClass().getSimpleName());
+                LynxManager.goToIntent(LynxChat.this,"home",LynxChat.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
@@ -213,6 +213,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             case R.id.viewProfile:
                 Intent profile = new Intent(LynxChat.this,LynxProfile.class);
                 startActivity(profile);
+                finish();
                 break;
             default:
                 break;

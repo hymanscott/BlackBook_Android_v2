@@ -360,13 +360,13 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
     public MarkerOptions getMarkerIcon(String filter,MarkerOptions marker){
         switch (filter){
             case "PrEP":
-                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.prepmarker));
+                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.cityiconblue));
                 break;
             case "HIV Testing":
-                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.hivmarker));
+                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.cityiconblue));
                 break;
             case "STI Testing":
-                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.stimarker));
+                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.cityiconblue));
                 break;
             default:
                 marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker));

@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -183,7 +184,6 @@ public class LynxPrepVideosFragment extends Fragment {
         mWebView.loadData(YouTubeVideoEmbedCode, "text/html", "utf-8");
         title.setText(video.getName());
         description.setText(video.getDescription());
-
     }
     public void videoRowClick(final View v){
         // Moving Existing video below //

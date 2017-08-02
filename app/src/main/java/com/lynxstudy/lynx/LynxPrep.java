@@ -197,7 +197,7 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
                 case 0:
                     return new LynxPrepFactsFragment();
                 case 1:
-                    return new LynxPrepMapFragment();
+                    return new TestingLocationFragment();
                 case 2:
                     return new LynxPrepVideosFragment();
                 default:
@@ -229,7 +229,7 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
         switch (v.getId()) {
 
             case R.id.bot_nav_sexpro:
-                LynxManager.goToIntent(LynxPrep.this,"sexpro",LynxPrep.this.getClass().getSimpleName());
+                LynxManager.goToIntent(LynxPrep.this,"home",LynxPrep.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
@@ -251,6 +251,7 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
             case R.id.viewProfile:
                 Intent profile = new Intent(LynxPrep.this,LynxProfile.class);
                 startActivity(profile);
+                finish();
                 break;
             default:
                 break;

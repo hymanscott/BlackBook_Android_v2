@@ -211,7 +211,7 @@ public class HomeEncounterFragment extends Fragment {
                         if(back_press_count>1){
                             /*Intent home = new Intent(getActivity(),LynxSexPro.class);
                             startActivity(home);*/
-                            LynxManager.goToIntent(getActivity(),"sexpro",getActivity().getClass().getSimpleName());
+                            LynxManager.goToIntent(getActivity(),"home",getActivity().getClass().getSimpleName());
                             getActivity().overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                             getActivity().finish();
                         }else{

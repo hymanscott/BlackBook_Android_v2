@@ -146,7 +146,7 @@ public class LynxProfileEdit extends AppCompatActivity {
         sec_qn.setTextColor(getResources().getColor(R.color.profile_text_color));
         sec_ans.setTextColor(getResources().getColor(R.color.profile_text_color));
         is_prep.setText(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()));
-        //Date Picker 82228622v
+        //Date Picker
         dob.setTypeface(tf);
         final Calendar myCalendar = Calendar.getInstance();
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {

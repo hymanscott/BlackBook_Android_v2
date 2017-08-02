@@ -187,7 +187,7 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
          /*
         * Scheduling Local Notification
         **/
-        Intent home = new Intent(this, LynxSexPro.class);
+        Intent home = new Intent(this, LynxHome.class);
         home.putExtra("fromactivity",BaselineSexproScoreActivity.this.getClass().getSimpleName());
         startActivity(home);
         finish();
@@ -195,7 +195,7 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        Intent home = new Intent(this, LynxSexPro.class);
+        Intent home = new Intent(this, LynxHome.class);
         home.putExtra("fromactivity",BaselineSexproScoreActivity.this.getClass().getSimpleName());
         startActivity(home);
         finish();

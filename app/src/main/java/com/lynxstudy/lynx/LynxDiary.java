@@ -232,7 +232,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         switch (v.getId()) {
 
             case R.id.bot_nav_sexpro:
-                LynxManager.goToIntent(LynxDiary.this,"sexpro",LynxDiary.this.getClass().getSimpleName());
+                LynxManager.goToIntent(LynxDiary.this,"home",LynxDiary.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
@@ -254,6 +254,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
             case R.id.viewProfile:
                 Intent profile = new Intent(LynxDiary.this,LynxProfile.class);
                 startActivity(profile);
+                finish();
                 break;
             default:
                 break;

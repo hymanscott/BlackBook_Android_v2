@@ -569,8 +569,8 @@ public class LynxManager {
 
     public static void goToIntent(Context ctx, String screen, String fromactivity){
         switch (screen) {
-            case"sexpro":
-                Intent LYNXSexPro = new Intent(ctx,LynxSexPro.class);
+            case"home":
+                Intent LYNXSexPro = new Intent(ctx,LynxHome.class);
                 LYNXSexPro.putExtra("fromactivity",fromactivity);
                 ctx.startActivity(LYNXSexPro);
                 break;

@@ -193,7 +193,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                         back_press_count = 0;
                     }else{
                         if(back_press_count>1){
-                            LynxManager.goToIntent(getActivity(),"sexpro",getActivity().getClass().getSimpleName());
+                            LynxManager.goToIntent(getActivity(),"home",getActivity().getClass().getSimpleName());
                             getActivity().overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                             getActivity().finish();
                         }else{

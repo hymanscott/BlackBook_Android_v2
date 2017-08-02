@@ -246,7 +246,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()) {
 
             case R.id.bot_nav_sexpro:
-                LynxManager.goToIntent(LynxTesting.this,"sexpro",LynxTesting.this.getClass().getSimpleName());
+                LynxManager.goToIntent(LynxTesting.this,"home",LynxTesting.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
@@ -268,6 +268,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
             case R.id.viewProfile:
                 Intent profile = new Intent(LynxTesting.this,LynxProfile.class);
                 startActivity(profile);
+                finish();
                 break;
             default:
                 break;

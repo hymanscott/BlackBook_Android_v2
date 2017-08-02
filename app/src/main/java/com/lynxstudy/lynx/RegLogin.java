@@ -1320,7 +1320,7 @@ public class RegLogin extends AppCompatActivity {
                             }
                         }*/
 
-                        Intent home = new Intent(RegLogin.this, LynxSexPro.class);
+                        Intent home = new Intent(RegLogin.this, LynxHome.class);
                         home.putExtra("fromactivity",RegLogin.this.getClass().getSimpleName());
                         startActivity(home);
                         finish();
