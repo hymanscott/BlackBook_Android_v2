@@ -37,12 +37,11 @@ public class lynxApplication extends MultiDexApplication {
         if (level == ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN) {
             // Get called every-time when application went to background.
             LynxManager.onPause = true;
-
             ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
             List<ActivityManager.RunningTaskInfo> tasks = activityManager.getRunningTasks(Integer.MAX_VALUE);
             for (ActivityManager.RunningTaskInfo task : tasks) {
                 Log.v("Activities", task.baseActivity.getClassName());
-                if("com.aptmobility.phastt.PasscodeUnlockActivity".equals(task.baseActivity.getClassName())){
+                if("com.lynxstudy.lynx.PasscodeUnlockActivity".equals(task.baseActivity.getClassName())){
                     System.exit(0);
                 }
             }

@@ -2,6 +2,10 @@ package com.lynxstudy.lynx;
 
 import android.*;
 import android.app.ActionBar;
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +13,8 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
@@ -52,6 +58,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -225,10 +232,11 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     /*// Clear Old Local notifications //
                     NotificationManager notifManager = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
                     notifManager.cancelAll();
-                    callNotification();*/
+                    */
                 }
             }
         }, 0, 1, TimeUnit.MINUTES);
+        callNotification();
     }
 
     @Override
@@ -323,6 +331,168 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             onPause_count++;
 
         return;
+    }
+    private void callNotification(){
+        NotificationManager notifManager = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
+        notifManager.cancelAll();
+        String notes = "You have a new message!";
+        TestingReminder testingReminder = db.getTestingReminderByFlag(1);
+        String day = "";
+        int hour = 10;
+        int min = 0;
+        if(testingReminder != null) {
+            String time = LynxManager.decryptString(testingReminder.getNotification_time());
+            if(time.length()!=8) {
+                String[] a = time.split(":");
+                hour = Integer.parseInt(a[0]);
+                min = Integer.parseInt(a[1]);
+            }else{
+                String[] a = time.split(" ");
+                String[] b = a[0].split(":");
+                if(a[1].equals("AM")){
+                    hour = Integer.parseInt(b[0])==12?0:Integer.parseInt(b[0]);
+                }else{
+                    hour = Integer.parseInt(b[0])==12?12:Integer.parseInt(b[0])+12;
+                }
+                min = Integer.parseInt(b[1]);
+            }
+            Log.v("NotifTime", String.valueOf(hour)+"----------"+ min);
+            day = LynxManager.decryptString(testingReminder.getNotification_day());
+
+        }
+        scheduleNotification(getWeeklyNotification(notes),day,hour,min,1); // 1-> Testing Reminder Notification ID
+
+        TestingReminder druguseReminder = db.getTestingReminderByFlag(0);
+        String drug_use_day = "";
+        int drug_use_hour = 10;
+        int drug_use_min = 0;
+        if(druguseReminder != null) {
+            String drug_use_time = LynxManager.decryptString(druguseReminder.getNotification_time());
+            if(drug_use_time.length()!=8) {
+                String[] a = drug_use_time.split(":");
+                drug_use_hour = Integer.parseInt(a[0]);
+                drug_use_min = Integer.parseInt(a[1]);
+            }else{
+                String[] a = drug_use_time.split(" ");
+                String[] b = a[0].split(":");
+                if(a[1].equals("AM")){
+                    drug_use_hour = Integer.parseInt(b[0])==12?0:Integer.parseInt(b[0]);
+                }else{
+                    drug_use_hour = Integer.parseInt(b[0])==12?12:Integer.parseInt(b[0])+12;
+                }
+                drug_use_min = Integer.parseInt(b[1]);
+            }
+            Log.v("NotifDrugTime", String.valueOf(drug_use_hour)+"----------"+ drug_use_min);
+            drug_use_day = LynxManager.decryptString(druguseReminder.getNotification_day());
+        }
+        scheduleNotification(getSexandEncounterNotification(notes), drug_use_day, drug_use_hour, drug_use_min, 0);// 0 -> DrugUse Reminder Notification ID
+    }
+    private Notification getWeeklyNotification(String content) {
+
+        Intent intent2 = new Intent(this, RegLogin.class);
+        intent2.putExtra("action", "TestingSure");
+        intent2.setAction("testingreminder");
+        PendingIntent sure = PendingIntent.getActivity(this, 101, intent2, 0);
+
+        Notification.Builder builder = new Notification.Builder(this);
+        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            builder.setContentTitle("SexPro");
+            builder.setContentText(content);
+            builder.setAutoCancel(true);
+            builder.setSmallIcon(R.mipmap.ic_launcher_round);
+            builder.setSound(soundUri);
+            builder.setContentIntent(sure);
+
+        } else {
+            // Lollipop specific setColor method goes here.
+            builder.setContentTitle("SexPro");
+            builder.setContentText(content);
+            builder.setAutoCancel(true);
+            builder.setContentIntent(sure);
+            builder.setSmallIcon(R.drawable.ic_silhouette);
+            builder.setColor(getResources().getColor(R.color.profile_title_text_color));
+            builder.setSound(soundUri);
+        }
+        //Toast.makeText(this,"Notification scheduled",Toast.LENGTH_LONG).show();
+        return builder.build();
+    }
+    private Notification getSexandEncounterNotification(String content) {
+        Intent intentyes = new Intent(this, RegLogin.class);
+        intentyes.putExtra("action", "NewSexReportYes");
+        intentyes.setAction("drugusereminder");
+        PendingIntent yes = PendingIntent.getActivity(this, 102, intentyes, 0);
+
+        Notification.Builder builder_Encounter = new Notification.Builder(this);
+        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            builder_Encounter.setContentTitle("SexPro");
+            builder_Encounter.setContentText(content);
+            builder_Encounter.setAutoCancel(true);
+            builder_Encounter.setSmallIcon(R.mipmap.ic_launcher_round);
+            builder_Encounter.setSound(soundUri);
+            builder_Encounter.setContentIntent(yes);
+        }else{
+            builder_Encounter.setContentTitle("SexPro");
+            builder_Encounter.setContentText(content);
+            builder_Encounter.setAutoCancel(true);
+            builder_Encounter.setSmallIcon(R.drawable.ic_silhouette);
+            builder_Encounter.setColor(getResources().getColor(R.color.profile_title_text_color));
+            builder_Encounter.setSound(soundUri);
+            builder_Encounter.setContentIntent(yes);
+        }
+        return builder_Encounter.build();
+    }
+    private void scheduleNotification(Notification notification, String day, int hour, int min, int id_notif) {
+
+        Intent notificationIntent = new Intent(this, AlarmReceiver.class);
+        notificationIntent.putExtra(AlarmReceiver.NOTIFICATION_ID, id_notif);
+        notificationIntent.putExtra(AlarmReceiver.NOTIFICATION, notification);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id_notif, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Calendar calendar = Calendar.getInstance();
+        if(day.isEmpty()) {
+            calendar.add(Calendar.DAY_OF_WEEK, 7);
+
+        }
+        else {
+            switch (day) {
+                case "Sunday":
+                    calendar = LynxManager.setNotificatonDay(Calendar.SUNDAY);
+                    break;
+                case "Monday":
+                    calendar = LynxManager.setNotificatonDay(Calendar.MONDAY);
+                    break;
+                case "Tuesday":
+                    calendar = LynxManager.setNotificatonDay(Calendar.TUESDAY);
+                    break;
+                case "Wednesday":
+                    calendar = LynxManager.setNotificatonDay(Calendar.WEDNESDAY);
+                    break;
+                case "Thursday":
+                    calendar = LynxManager.setNotificatonDay(Calendar.THURSDAY);
+                    break;
+                case "Friday":
+                    calendar = LynxManager.setNotificatonDay(Calendar.FRIDAY);
+                    break;
+                case "Saturday":
+                    calendar = LynxManager.setNotificatonDay(Calendar.SATURDAY);
+                    break;
+                default:
+                    calendar = LynxManager.setNotificatonDay(Calendar.MONDAY);
+            }
+
+            calendar.set(Calendar.HOUR_OF_DAY, hour);
+            calendar.set(Calendar.MINUTE, min);
+            calendar.set(Calendar.SECOND, 0);
+            Log.v("Time", String.valueOf(calendar.getTimeInMillis()));
+        }
+
+        long futureInMillis = calendar.getTimeInMillis();
+        Log.v("futureInMillis", String.valueOf(futureInMillis));
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, futureInMillis, AlarmManager.INTERVAL_DAY * 7, pendingIntent);
     }
     private void pushDataToServer() {
         // User

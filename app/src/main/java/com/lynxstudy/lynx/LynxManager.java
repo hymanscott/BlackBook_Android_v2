@@ -595,7 +595,9 @@ public class LynxManager {
                 ctx.startActivity(LYNXChat);
                 break;
             default:
-                Toast.makeText(ctx,"Invalid Action",Toast.LENGTH_LONG).show();
+                Intent home = new Intent(ctx,LynxHome.class);
+                home.putExtra("fromactivity",fromactivity);
+                ctx.startActivity(home);
                 break;
         }
 

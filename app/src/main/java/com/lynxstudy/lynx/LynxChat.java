@@ -240,7 +240,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onBackPressed() {
         // do something on back.
-        if (onPause_count > 0) {
+        /*if (onPause_count > 0) {
             final View popupView = getLayoutInflater().inflate(R.layout.popup_alert_dialog_template, null);
             final PopupWindow signOut = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
             TextView title = (TextView)popupView.findViewById(R.id.alertTitle);
@@ -277,8 +277,10 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         else{
             Toast.makeText(this,"Press Back one more time to exit",Toast.LENGTH_SHORT).show();
         }
-        onPause_count++;
-        return;
+        onPause_count++;*/
+        Intent home = new Intent(LynxChat.this,LynxHome.class);
+        startActivity(home);
+        finish();
     }
     private class sendNewMessage extends AsyncTask<Void, Void, Void> {
 

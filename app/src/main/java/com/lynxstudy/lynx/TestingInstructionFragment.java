@@ -98,16 +98,13 @@ public class TestingInstructionFragment extends Fragment {
                         View row = testingInsTable.getChildAt(i);
                         if (row == v) {
 
-                            row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
+                            /*row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
                             ((TextView) ((TableRow) testingInsTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.profile_text_color));
                             Intent selectedPartnerSumm = new Intent(getActivity(), TestingInstructionAnswer.class);
                             int testingInsID = row.getId();
                             selectedPartnerSumm.putExtra("testingInsID", testingInsID);
-                            startActivityForResult(selectedPartnerSumm, 100);
-                            //showAnswerLayout(row.getId());
-                        } else {
-                            //((TextView) ((TableRow) testingInsTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.faq_blue));
-                            //row.setBackground(getResources().getDrawable(R.drawable.bottom_border_faq));
+                            startActivityForResult(selectedPartnerSumm, 100);*/
+                            showAnswerLayout(row.getId());
                         }
                     }
                 }
@@ -133,7 +130,7 @@ public class TestingInstructionFragment extends Fragment {
                         back_press_count = 0;
                     }else{
                         if(back_press_count>1){
-                            LynxManager.goToIntent(getActivity(),"sexpro",getActivity().getClass().getSimpleName());
+                            LynxManager.goToIntent(getActivity(),"home",getActivity().getClass().getSimpleName());
                             getActivity().overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                             getActivity().finish();
                         }else{
@@ -222,8 +219,7 @@ public class TestingInstructionFragment extends Fragment {
         isAnswerShown = true;
         TextView qn = (TextView)view.findViewById(R.id.question);
         qn.setTypeface(roboto);
-        WebView webView = (WebView)view.findViewById(R.id.webview);
-
+        LinearLayout parentLayout = (LinearLayout)view.findViewById(R.id.parentLayout);
         TestingInstructions instruction = db.getTestingInstruction(id);
         qn.setText(instruction.getQuestion());
 
@@ -263,14 +259,14 @@ public class TestingInstructionFragment extends Fragment {
                 });
             }
             instruction_ans_wv.setPadding(10, 20, 10, 20);
-            answerLayout.removeAllViews();
-            answerLayout.addView(instruction_ans_wv, new TableLayout.LayoutParams(
+            parentLayout.removeAllViews();
+            parentLayout.addView(instruction_ans_wv, new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));
         } else {
-            webView.getSettings().setJavaScriptEnabled(true);
-            webView.setWebChromeClient(new WebChromeClient() {
+            video_view.getSettings().setJavaScriptEnabled(true);
+            video_view.setWebChromeClient(new WebChromeClient() {
             });
-            webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+            video_view.getSettings().setPluginState(WebSettings.PluginState.ON);
             final String mimeType = "text/html";
             final String encoding = "UTF-8";
             DisplayMetrics metrics = getResources().getDisplayMetrics();
@@ -281,10 +277,10 @@ public class TestingInstructionFragment extends Fragment {
             ss = ss.substring(ss.indexOf("v=") + 2);
             link += ss;
             String html = getHTML(width, height, link);
-            webView.loadDataWithBaseURL("", html, mimeType, encoding, "");
-            webView.setVisibility(View.VISIBLE);
-            /*parentLayout.addView(video_view, new TableLayout.LayoutParams(
-                    TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));*/
+            video_view.loadDataWithBaseURL("", html, mimeType, encoding, "");
+            parentLayout.removeAllViews();
+            parentLayout.addView(video_view, new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));
         }
     }
 }

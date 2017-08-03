@@ -726,6 +726,10 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onResume() {
         super.onResume();
+        if (LynxManager.onPause){
+            Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);
+            startActivity(lockscreen);
+        }
         setSelected();
     }
     @Override
