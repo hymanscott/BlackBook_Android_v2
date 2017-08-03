@@ -6,10 +6,15 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -27,6 +32,11 @@ import java.util.List;
 public class LynxPrepFactsFragment extends Fragment {
     DatabaseHelper db;
     TableLayout prepTable;
+    Typeface tf;
+    View rootview;
+    LinearLayout mainContentLayout,answerLayout;
+    private boolean isAnswerShown = false;
+    int back_press_count;
     public LynxPrepFactsFragment() {
     }
 
@@ -35,16 +45,18 @@ public class LynxPrepFactsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         //TYpe face
-        Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
+        tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");//use this.getAssets if you are calling from an Activity
 
         // Inflate the layout for this fragment
-        final View rootview = inflater.inflate(R.layout.fragment_lynx_prep_facts, container, false);
+        rootview = inflater.inflate(R.layout.fragment_lynx_prep_facts, container, false);
 
 
         /*Table layout for PREP information */
         db = new DatabaseHelper(getActivity());
         final LinearLayout myscorePrep = (LinearLayout) rootview.findViewById(R.id.myscore_prEPLayout);
+        mainContentLayout = (LinearLayout) rootview.findViewById(R.id.mainContentLayout);
+        answerLayout = (LinearLayout) rootview.findViewById(R.id.answerLayout);
 
         myscorePrep.removeAllViews();
 
@@ -81,12 +93,13 @@ public class LynxPrepFactsFragment extends Fragment {
                         View row = prepTable.getChildAt(i);
                         if (row == v) {
 
-                            row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
+                            /*row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
                             ((TextView) ((TableRow) prepTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.profile_text_color));
                             Intent selectedPartnerSumm = new Intent(getActivity(), PrepFactsAnswer.class);
                             int prepInformationId = row.getId();
                             selectedPartnerSumm.putExtra("prepInformationId", prepInformationId);
-                            startActivityForResult(selectedPartnerSumm, 100);
+                            startActivityForResult(selectedPartnerSumm, 100);*/
+                            setAnswerLayout(row.getId());
 
                         } else {
                             ((TextView) ((TableRow) prepTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.faq_blue));
@@ -99,8 +112,77 @@ public class LynxPrepFactsFragment extends Fragment {
             j++;
 
         }
+
+        back_press_count = 0;
+        rootview.setFocusableInTouchMode(true);
+        rootview.requestFocus();
+        rootview.setOnKeyListener( new View.OnKeyListener()
+        {
+            @Override
+            public boolean onKey( View v, int keyCode, KeyEvent event )
+            {
+                if( keyCode == KeyEvent.KEYCODE_BACK )
+                {
+                    if(isAnswerShown){
+                        answerLayout.setVisibility(View.GONE);
+                        mainContentLayout.setVisibility(View.VISIBLE);
+                        isAnswerShown = false;
+                        back_press_count = 0;
+                    }else{
+                        if(back_press_count>1){
+                            LynxManager.goToIntent(getActivity(),"home",getActivity().getClass().getSimpleName());
+                            getActivity().overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
+                            getActivity().finish();
+                        }else{
+                            back_press_count++;
+                        }
+                    }
+                    return true;
+                }
+                return false;
+            }
+        } );
         return rootview;
     }
+
+    private void setAnswerLayout(int id) {
+
+        mainContentLayout.setVisibility(View.GONE);
+        answerLayout.setVisibility(View.VISIBLE);
+        isAnswerShown = true;
+
+        db = new DatabaseHelper(getActivity());
+        TextView qn = (TextView)rootview.findViewById(R.id.question);
+        qn.setTypeface(tf);
+        LinearLayout parentLayout = (LinearLayout)rootview.findViewById(R.id.parentLayout);
+        parentLayout.removeAllViews();
+        PrepInformation prepInformation = db.getPrepInformationById(id);
+        qn.setText(prepInformation.getPrep_info_question());
+        qn.setAllCaps(true);
+        if (prepInformation.getPrep_info_question().equals("Getting on PrEP")) {
+            final WebView prepInfoAnswer = new WebView(getActivity());
+            prepInfoAnswer.loadDataWithBaseURL("",prepInformation.getPrep_info_answer() , "text/html", "utf-8", "");
+            prepInfoAnswer.setPadding(20, 10, 20, 10);
+            parentLayout.addView(prepInfoAnswer, new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));
+        } else {
+            //     prepInfoRow_qn.setPadding(0, 0, 10, 0);
+
+            final TextView prepInfoAnswer = new TextView(getActivity());
+            prepInfoAnswer.setText(Html.fromHtml(prepInformation.getPrep_info_answer()));
+            prepInfoAnswer.setAutoLinkMask(Linkify.WEB_URLS);
+            prepInfoAnswer.setMovementMethod(LinkMovementMethod.getInstance());
+            prepInfoAnswer.setTextSize(16);
+            prepInfoAnswer.setTypeface(tf);
+            prepInfoAnswer.setLinkTextColor(getResources().getColor(R.color.colorAccent));
+            prepInfoAnswer.setGravity(Gravity.LEFT);
+            prepInfoAnswer.setPadding(20, 10, 20, 10);
+
+            parentLayout.addView(prepInfoAnswer, new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));
+        }
+    }
+
     public void reloadFragment() {
         getActivity().getSupportFragmentManager()
                 .beginTransaction()

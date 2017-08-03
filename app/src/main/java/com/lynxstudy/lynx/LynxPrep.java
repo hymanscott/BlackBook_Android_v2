@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -55,6 +56,9 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+        params.setScrollFlags(0);
+        toolbar.setLayoutParams(params);
 
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),

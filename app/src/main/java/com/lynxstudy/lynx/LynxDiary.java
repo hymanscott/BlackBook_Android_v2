@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -60,6 +61,9 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+        params.setScrollFlags(0);
+        toolbar.setLayoutParams(params);
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
