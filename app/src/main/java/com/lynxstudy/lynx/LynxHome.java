@@ -53,6 +53,9 @@ import com.lynxstudy.model.UserSTIDiag;
 import com.lynxstudy.model.User_baseline_info;
 import com.lynxstudy.model.Users;
 
+import net.hockeyapp.android.CrashManager;
+import net.hockeyapp.android.UpdateManager;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -237,6 +240,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             }
         }, 0, 1, TimeUnit.MINUTES);
         callNotification();
+        checkForUpdates();
     }
 
     @Override
@@ -286,7 +290,31 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             startActivity(lockscreen);
             Log.v("onResumeusername", LynxManager.getActiveUser().getFirstname());
         }
+        checkForCrashes();
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterManagers();
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterManagers();
+    }
+    private void unregisterManagers() {
+        UpdateManager.unregister();
+    }
+    private void checkForCrashes() {
+        CrashManager.register(this);
+    }
+
+    private void checkForUpdates() {
+        // Remove this for store builds!
+        UpdateManager.register(this);
+    }
+
     int onPause_count =0;
     @Override
     public void onBackPressed() {

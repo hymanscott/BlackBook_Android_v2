@@ -33,7 +33,7 @@ public class RegistrationSexproScore extends Fragment {
     }
     DatabaseHelper db;
     TextView score_message;
-    Button sexpro_score_close,score_tv;
+    Button sexpro_score_close;
     ImageView dialScoreImage;
     Typeface tf;
     @Override
@@ -49,8 +49,6 @@ public class RegistrationSexproScore extends Fragment {
         score_message = (TextView)rootview.findViewById(R.id.score_message);
         score_message.setTypeface(tf);
 
-        score_tv = (Button)rootview.findViewById(R.id.reg_sexPro_score);
-        score_tv.setTypeface(tf);
         dialScoreImage = (ImageView)rootview.findViewById(R.id.dialScoreImage);
 
         calculateSexProScore getscore = new calculateSexProScore(getActivity());
@@ -61,7 +59,7 @@ public class RegistrationSexproScore extends Fragment {
         int score = Math.round(current_score);
         db =new DatabaseHelper(getActivity());
         db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), score, String.valueOf(R.string.statusUpdateNo));
-        score_tv.setText("Your Sex pro Score is " + score);
+//        score_tv.setText("Your Sex pro Score is " + score);
         if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
             score_message.setText("Daily PrEP raised your score from " +  String.valueOf(score) +
                     " & added an extra layer of protection.");

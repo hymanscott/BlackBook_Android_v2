@@ -54,6 +54,7 @@ import com.lynxstudy.model.TestingHistory;
 import com.lynxstudy.model.TestingHistoryInfo;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
+import net.gotev.uploadservice.UploadNotificationConfig;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -615,6 +616,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             TestingHistoryInfo historyInfo = new TestingHistoryInfo(testingHistoryid , LynxManager.getActiveUser().getUser_id(),sti_count,test_status,LynxManager.encryptString(name),String.valueOf(R.string.statusUpdateNo),true);
                             int historyInfo_id = db.createTestingHistoryInfo(historyInfo);
                             uploadMultipart(full_path,name); // fullpath,imagename
+                            Log.v("UploadedFilepath",full_path);
                         }
                     }else{
                         String path = hivImageName.substring(hivImageName.lastIndexOf("/") + 1);
@@ -622,6 +624,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                         TestingHistoryInfo historyInfo = new TestingHistoryInfo(testingHistoryid , LynxManager.getActiveUser().getUser_id(),0,test_status,LynxManager.encryptString(path),String.valueOf(R.string.statusUpdateNo),true);
                         int historyInfo_id = db.createTestingHistoryInfo(historyInfo);
                         uploadMultipart(hivImageName,path); // fullpath,imagename
+                        Log.v("UploadedFilepath",hivImageName);
                     }
                     Toast.makeText(getActivity(), "New "+ title +" Added", Toast.LENGTH_SHORT).show();
                     mainContentLayout.setVisibility(View.VISIBLE);
@@ -675,7 +678,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
             //.setNotificationConfig(new UploadNotificationConfig())
 
         } catch (Exception exc) {
-            Toast.makeText(getActivity(), "Upload:"+exc.getMessage(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), "Upload:"+exc.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
     public void testRowClick(View v){
@@ -737,6 +740,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         testingHistorydate.setText(test_date);
         if(test_name.equals("HIV Test")){
             std_list_parentLayout.setVisibility(View.GONE);
+            hivLayout.setVisibility(View.VISIBLE);
             List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(testingHistoryID);
             for (final TestingHistoryInfo historyInfo : testinghistoryInfoList) {
                 if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
@@ -762,7 +766,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                         hivAttachment.setImageBitmap(scaled);
                     }else{
                         //  ***********set url from server*********** //
-                        hivAttachment.setImageResource(R.drawable.icon_loading);
+                        hivAttachment.setImageResource(R.drawable.photocamera);
                         new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(hivAttachment);
                     }
                     hivAttachment.setOnClickListener(new View.OnClickListener() {
@@ -806,7 +810,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             gonorrheaAttachment.setImageBitmap(scaled);
                         }else{
                             //  ***********set url from server*********** //
-                            gonorrheaAttachment.setImageResource(R.drawable.icon_loading);
+                            gonorrheaAttachment.setImageResource(R.drawable.photocamera);
                             new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(gonorrheaAttachment);
                         }
                         gonorrheaAttachment.setOnClickListener(new View.OnClickListener() {
@@ -842,7 +846,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
                             syphilisAttachment.setImageBitmap(scaled);
                         }else{
-                            syphilisAttachment.setImageResource(R.drawable.icon_loading);
+                            syphilisAttachment.setImageResource(R.drawable.photocamera);
                             new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(syphilisAttachment);
                         }
                         syphilisAttachment.setOnClickListener(new View.OnClickListener() {
@@ -877,7 +881,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
                             chlamydiaAttachment.setImageBitmap(scaled);
                         }else{
-                            chlamydiaAttachment.setImageResource(R.drawable.icon_loading);
+                            chlamydiaAttachment.setImageResource(R.drawable.photocamera);
                             new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(chlamydiaAttachment);
                         }
                         chlamydiaAttachment.setOnClickListener(new View.OnClickListener() {
@@ -1295,9 +1299,13 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         protected void onPostExecute(Bitmap result) {
             int h = 50; // height in pixels
             int w = 50; // width in pixels
-            Bitmap scaled = Bitmap.createScaledBitmap(result, w, h, true);
-            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            imageView.setImageBitmap(scaled);
+            if(result!=null) {
+                Bitmap scaled = Bitmap.createScaledBitmap(result, w, h, true);
+                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                imageView.setImageBitmap(scaled);
+            }else{
+                imageView.setImageDrawable(getResources().getDrawable(R.drawable.photocamera));
+            }
         }
 
         private Bitmap download_Image(String url) {

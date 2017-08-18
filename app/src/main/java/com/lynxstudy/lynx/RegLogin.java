@@ -78,6 +78,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.hockeyapp.android.CrashManager;
+import net.hockeyapp.android.UpdateManager;
+
 public class RegLogin extends AppCompatActivity {
     DatabaseHelper db;
     private static final int READ_PHONE_STATE = 100;
@@ -142,6 +145,7 @@ public class RegLogin extends AppCompatActivity {
         TextView title = (TextView)cView.findViewById(R.id.actionbartitle);
         title.setTypeface(tf);
         viewProfile.setVisibility(View.GONE);*/
+        checkForUpdates();
     }
     private void initializeDatabase() {
         db = new DatabaseHelper(this);
@@ -316,6 +320,34 @@ public class RegLogin extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkForCrashes();
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterManagers();
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterManagers();
+    }
+
+    private void checkForCrashes() {
+        CrashManager.register(this);
+    }
+
+    private void checkForUpdates() {
+        // Remove this for store builds!
+        UpdateManager.register(this);
+    }
+
+    private void unregisterManagers() {
+        UpdateManager.unregister();
     }
 
     public void pushFragments(String tag, Fragment fragment, Boolean addToStack) {

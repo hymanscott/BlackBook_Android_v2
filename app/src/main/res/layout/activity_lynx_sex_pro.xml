@@ -16,9 +16,9 @@
         android:layout_alignParentTop="true">
 
         <LinearLayout
+            android:id="@+id/sexProMainContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/sexProMainContent"
             android:layout_alignParentTop="true">
 
             <ScrollView
@@ -30,39 +30,43 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="1"
                         android:background="@color/update_score_bg"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
                         <TextView
+                            android:id="@+id/score_update_date"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.9"
                             android:gravity="center_horizontal"
                             android:paddingBottom="20dp"
                             android:paddingTop="20dp"
-                            android:layout_weight="0.9"
                             android:text="Your Score will update in 90 days"
                             android:textColor="@color/white"
-                            android:textSize="16sp"
-                            android:id="@+id/score_update_date"/>
+                            android:textSize="16sp" />
+
                         <ImageView
+                            android:id="@+id/infoIcon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0"
-                            android:id="@+id/infoIcon"
                             android:layout_gravity="center"
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            android:src="@drawable/info_white"/>
+                            android:layout_weight="0"
+                            android:src="@drawable/info_white" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="30dp"
-                        android:visibility="gone"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <Button
                             android:id="@+id/textProgress_id1_toplabel"
@@ -138,23 +142,24 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="40dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="50dp"
-                        android:fontFamily="fonts/OpenSans-Regular"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:gravity="center_horizontal"
                         android:text="Score Description"
                         android:textColor="@color/text_color"
-                        android:textSize="20sp" />
+                        android:textSize="16sp" />
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
+
         <LinearLayout
+            android:id="@+id/sexProInfoContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/sexProInfoContent"
-            android:visibility="gone"
-            android:layout_alignParentTop="true">
+            android:layout_alignParentTop="true"
+            android:visibility="gone">
+
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -164,52 +169,58 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="24dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/diallargeblue"/>
+                        android:layout_margin="24dp"
+                        android:src="@drawable/diallargeblue" />
+
                     <TextView
+                        android:id="@+id/info_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:text="Sex Pro Score"
+                        android:textColor="@color/text_color"
                         android:textSize="20sp"
-                        android:id="@+id/info_title"
-                        android:textColor="@color/text_color"
-                        android:gravity="center_horizontal"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
+
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Your Sex Pro score is based on the last three months of your diary entries."
-                        android:layout_margin="24dp"
                         android:id="@+id/info_para_one"
-                        android:gravity="center_horizontal"
-                        android:textColor="@color/text_color"
-                        android:textSize="16sp"/>
-                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="The higher your score and the closer your needle gets to the green means higher levels of HIV protection."
-                        android:layout_marginLeft="24dp"
+                        android:layout_margin="24dp"
+                        android:gravity="center_horizontal"
+                        android:text="Your Sex Pro score is based on the last three months of your diary entries."
+                        android:textColor="@color/text_color"
+                        android:textSize="16sp" />
+
+                    <TextView
                         android:id="@+id/info_para_two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
                         android:layout_marginRight="24dp"
                         android:gravity="center_horizontal"
+                        android:text="The higher your score and the closer your needle gets to the green means higher levels of HIV protection."
                         android:textColor="@color/text_color"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
+
                     <TextView
+                        android:id="@+id/info_para_three"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Even with a perfect score of 20 (strongest protection), you could still become HIV infected. But it means you’re doing a lot to stay protected!"
                         android:layout_margin="24dp"
-                        android:id="@+id/info_para_three"
                         android:gravity="center_horizontal"
+                        android:text="Even with a perfect score of 20 (strongest protection), you could still become HIV infected. But it means you’re doing a lot to stay protected!"
                         android:textColor="@color/text_color"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/bot_nav"
             android:layout_width="match_parent"

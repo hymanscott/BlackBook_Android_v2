@@ -181,7 +181,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             int page_id = getArguments().getInt(ARG_SECTION_NUMBER);
-            Log.v("page_id ", String.valueOf(page_id));
+            //Log.v("page_id ", String.valueOf(page_id));
             View rootView = inflater.inflate(R.layout.fragment_lynx_diary, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
@@ -283,7 +283,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
     public void onResume() {
         super.onResume();
         // Closing the App if sign out enabled
-        Log.v("SignOut", String.valueOf(LynxManager.signOut));
+        //Log.v("SignOut", String.valueOf(LynxManager.signOut));
         if(LynxManager.signOut){
             finish();
             System.exit(0);
@@ -291,7 +291,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         if (LynxManager.onPause){
             Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);
             startActivity(lockscreen);
-            Log.v("onResumeusername", LynxManager.getActiveUser().getFirstname());
+           // Log.v("onResumeusername", LynxManager.getActiveUser().getFirstname());
         }
     }
     int onPause_count =0;

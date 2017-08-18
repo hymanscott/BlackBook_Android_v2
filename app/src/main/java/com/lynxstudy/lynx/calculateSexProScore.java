@@ -384,7 +384,6 @@ public class calculateSexProScore {
         botCondomUse        =   botCondomUse.replaceAll("\\s+","");
         /*botCondomUse        =   botCondomUse.length()==3?botCondomUse.substring(0,2):(botCondomUse.substring(0,1));*/
         botCondomUse        =   botCondomUse.substring(0, topCondomUse.length() - 1);
-
         NIAS_POS_UNK    =   Integer.parseInt(LynxManager.decryptString(baselineInfo.getNo_of_times_top_hivposs()));
         PPIAS_POS_UNK   =   Integer.parseInt(topCondomUse) * 0.01;
         NRAS_POS_UNK    =   Integer.parseInt(LynxManager.decryptString(baselineInfo.getNo_of_times_bot_hivposs()));
@@ -485,8 +484,11 @@ public class calculateSexProScore {
         return elapsed_days;
     }
     public double getUnAdjustedScore(){
-
-        return 1 + 2*(10-(100*Pt)); // SexproScore without PrEP
+        if(NASP_POS == 0 && NASP_UNKNOWN == 0 && NASP_NEG == 0 && DRUG == 0 && POP == 0 && HEAVYALC ==0 && STI == 0){
+            return 20;
+        }else{
+            return 1 + 2*(10-(100*Pt)); // SexproScore without PrEP
+        }
     }
     public double getAdjustedScore(){
 
@@ -556,7 +558,11 @@ public class calculateSexProScore {
         Log.v("Pt", String.valueOf(Pt));
 
         Log.v("sexProScore", String.valueOf(sexProScore));*/
-        return  16+4*(1-P2y); // SexproScore with PrEP
+        if(NASP_POS == 0 && NASP_UNKNOWN == 0 && NASP_NEG == 0 && DRUG == 0 && POP == 0 && HEAVYALC ==0 && STI == 0){
+            return 20;
+        }else{
+            return  16+4*(1-P2y); // SexproScore with PrEP
+        }
     }
 
     public static final int getMonthsDifference(Date date1, Date date2) {

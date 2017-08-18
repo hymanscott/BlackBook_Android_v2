@@ -398,7 +398,7 @@ public class LynxProfileEdit extends AppCompatActivity {
         items.add("Asian/Pacific Islander");
         items.add("Native American");
         items.add("White");
-        items.add("Others");
+        items.add("Other");
         checkSelected = new boolean[items.size()];
         //initialize all values of list to 'unselected' initially
         for (int i = 0; i < checkSelected.length; i++) {
@@ -589,7 +589,7 @@ public class LynxProfileEdit extends AppCompatActivity {
             dob.requestFocus();
         }  else if(invalid_dob){
             Toast.makeText(LynxProfileEdit.this,"Invalid DOB",Toast.LENGTH_SHORT).show();
-        } else if(races_list.equals("Race/Ethnicity")){
+        } else if(races_list.equals("Race/Ethnicity")||races_list.equals("")){
             Toast.makeText(this,"Please Select Race/Ethnicity",Toast.LENGTH_SHORT).show();
         }else {
             Log.v("created Date", LynxManager.getActiveUser().getCreated_at());

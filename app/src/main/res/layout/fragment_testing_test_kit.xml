@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,7 +8,7 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:fillViewport="false"
+        android:fillViewport="true"
         android:id="@+id/scrollView3">
 
         <LinearLayout
@@ -33,13 +33,13 @@
                 android:textColor="@color/text_color"
                 android:id="@+id/title"
                 android:text="Please confirm tests requested"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin" />
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="24dp"
                 android:id="@+id/requestHomeKit_checkboxLayout"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -47,9 +47,9 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="OraQuick Home HIV Test Kit"
+                    android:text="HIV Test Kit"
                     android:id="@+id/oraQuickTestKit"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textColor="@color/text_color"
                     android:checked="true"
                     android:buttonTint="@color/profile_text_color"
@@ -57,37 +57,26 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Anal Swab"
+                    android:text="STI Test Kit"
                     android:id="@+id/analSwab"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textColor="@color/text_color"
                     android:buttonTint="@color/profile_text_color"
                     android:checked="true"
-                    android:layout_centerHorizontal="true" />
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Penile Swab"
-                    android:checked="true"
-                    android:buttonTint="@color/profile_text_color"
-                    android:textSize="18sp"
-                    android:textColor="@color/text_color"
-                    android:id="@+id/penileSwab"
                     android:layout_centerHorizontal="true" />
             </LinearLayout>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Confirm"
-                android:id="@+id/requestHomeKit_confirm"
-                android:background="@drawable/buttonbluecornered"
-                android:textColor="@color/white"
-                android:layout_marginTop="48dp"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal" />
         </LinearLayout>
     </ScrollView>
-
-</FrameLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirm"
+        android:id="@+id/requestHomeKit_confirm"
+        android:background="@drawable/buttonbluecornered"
+        android:textColor="@color/white"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_alignParentBottom="true"
+        android:textStyle="bold"/>
+</RelativeLayout>

@@ -215,6 +215,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="16dp"
                     android:layout_toEndOf="@+id/raceicon"
+                    android:layout_marginRight="16dp"
                     android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:textSize="@dimen/reg_tv_textsize"

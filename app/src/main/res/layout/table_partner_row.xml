@@ -30,7 +30,7 @@
             android:numStars="5"
             android:id="@+id/rating"
             android:rating="5"
-            android:stepSize="1"
+            android:stepSize="0.5"
             android:layout_alignParentRight="true"
             android:minWidth="100dp"
             android:isIndicator="true"

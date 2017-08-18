@@ -23,9 +23,11 @@ import java.util.Date;
 public class BaselineSexproScoreActivity extends AppCompatActivity {
 
     DatabaseHelper db;
-    TextView score_message;
-    Button sexpro_score_close,score_tv;
+    TextView score_message,reg_sexPro_score_label,reg_sexPro_score_value;
+    Button sexpro_score_close;
     ImageView dialScoreImage;
+    LinearLayout infolayout,main_content;
+    boolean isInfoShown = false;
     Typeface tf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +40,15 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
         sexpro_score_close.setTypeface(tf);
         score_message = (TextView)findViewById(R.id.score_message);
         score_message.setTypeface(tf);
+        reg_sexPro_score_label = (TextView)findViewById(R.id.reg_sexPro_score_label);
+        reg_sexPro_score_label.setTypeface(tf);
+        reg_sexPro_score_value = (TextView)findViewById(R.id.reg_sexPro_score_value);
+        reg_sexPro_score_value.setTypeface(tf);
 
-        score_tv = (Button)findViewById(R.id.reg_sexPro_score);
-        score_tv.setTypeface(tf);
+
         dialScoreImage = (ImageView)findViewById(R.id.dialScoreImage);
-
+        infolayout = (LinearLayout)findViewById(R.id.infolayout);
+        main_content= (LinearLayout)findViewById(R.id.main_content);
         calculateSexProScore getscore = new calculateSexProScore(BaselineSexproScoreActivity.this);
         float current_score = (float) getscore.getUnAdjustedScore();
         if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
@@ -51,7 +57,7 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
         int score = Math.round(current_score);
         db =new DatabaseHelper(BaselineSexproScoreActivity.this);
         db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), score, String.valueOf(R.string.statusUpdateNo));
-        score_tv.setText("Your Sex pro Score is " + score);
+        reg_sexPro_score_value.setText(" " + score);
         if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
             score_message.setText("Daily PrEP raised your score from " +  String.valueOf(score) +
                     " & added an extra layer of protection.");
@@ -128,7 +134,7 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int[] location = new int[2];
+               /* int[] location = new int[2];
                 // Get the x, y location and store it in the location[] array
                 // location[0] = x, location[1] = y.
                 btn.getLocationOnScreen(location);
@@ -141,12 +147,15 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
                 //Open popup window
 
                 if (p != null)
-                    showPopup(v,p);
+                    showPopup(v,p);*/
+               infolayout.setVisibility(View.VISIBLE);
+               main_content.setVisibility(View.GONE);
+               isInfoShown = true;
 
             }
         });
     }
-    public void showPopup(View anchorView,Point p) {
+    /*public void showPopup(View anchorView,Point p) {
 
 
         View popupView = getLayoutInflater().inflate(R.layout.fragment_partner_ratings_popup, null);
@@ -172,17 +181,17 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
 
         // Get the View's(the one that was clicked in the Fragment) location
         //anchorView.getLocationOnScreen(location);
-        /*ImageView btn = (ImageView)findViewById(R.id.imgBtn_partner_ratings);
+        *//*ImageView btn = (ImageView)findViewById(R.id.imgBtn_partner_ratings);
         btn.getLocationOnScreen(location);
         p = new Point();
         p.x = location[0];
-        p.y = location[1];*/
+        p.y = location[1];*//*
         int OFFSET_X = 10;
         int OFFSET_Y = 20;
         // Using location, the PopupWindow will be displayed right under anchorView //Gravity.NO_GRAVITY
         popupWindow.showAtLocation(anchorView, Gravity.TOP | Gravity.START, p.x - (popupView.getWidth() + OFFSET_X), p.y + OFFSET_Y);
 
-    }
+    }*/
     public boolean onSexProScoreClose(View view) {
          /*
         * Scheduling Local Notification
@@ -195,9 +204,14 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        Intent home = new Intent(this, LynxHome.class);
-        home.putExtra("fromactivity",BaselineSexproScoreActivity.this.getClass().getSimpleName());
-        startActivity(home);
-        finish();
+        if(isInfoShown){
+            infolayout.setVisibility(View.GONE);
+            main_content.setVisibility(View.VISIBLE);
+        }else{
+            Intent home = new Intent(this, LynxHome.class);
+            home.putExtra("fromactivity",BaselineSexproScoreActivity.this.getClass().getSimpleName());
+            startActivity(home);
+            finish();
+        }
     }
 }

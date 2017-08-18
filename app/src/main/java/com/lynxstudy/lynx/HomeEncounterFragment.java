@@ -336,7 +336,7 @@ public class HomeEncounterFragment extends Fragment {
 
             for (EncounterSexType encSexType : selectedSEXtypes) {
                 switch (LynxManager.decryptString(encSexType.getSex_type())) {
-                    case "Kissing / making out":
+                    case "Kissing/making out":
                         ToggleButton sexType_kissing = (ToggleButton) view.findViewById(R.id.sexType_kissing);
                         sexType_kissing.setSelected(true);
                         sexType_kissing.setClickable(false);

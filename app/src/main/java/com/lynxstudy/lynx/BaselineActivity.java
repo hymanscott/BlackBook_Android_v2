@@ -36,6 +36,9 @@ import com.lynxstudy.model.UserPrimaryPartner;
 import com.lynxstudy.model.UserSTIDiag;
 import com.lynxstudy.model.User_baseline_info;
 
+import net.hockeyapp.android.CrashManager;
+import net.hockeyapp.android.UpdateManager;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,6 +63,7 @@ public class BaselineActivity extends AppCompatActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+        checkForUpdates();
     }
 
     /**
@@ -91,6 +95,33 @@ public class BaselineActivity extends AppCompatActivity {
             next.setTypeface(tf);
             return view;
         }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkForCrashes();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterManagers();
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterManagers();
+    }
+    private void unregisterManagers() {
+        UpdateManager.unregister();
+    }
+    private void checkForCrashes() {
+        CrashManager.register(this);
+    }
+
+    private void checkForUpdates() {
+        // Remove this for store builds!
+        UpdateManager.register(this);
     }
 
     public void pushFragments(String tag, Fragment fragment, Boolean addToStack) {

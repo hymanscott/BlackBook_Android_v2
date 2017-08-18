@@ -234,6 +234,7 @@
                     android:id="@+id/selectedPartner_ratingBar1"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+					android:stepSize="0.5"
                     android:scaleX="0.9"
                     android:scaleY="0.9"
                     android:layout_gravity="center_vertical"
@@ -259,6 +260,7 @@
                     android:id="@+id/selectedPartner_ratingBar2"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+					android:stepSize="0.5"
                     android:scaleX="0.9"
                     android:scaleY="0.9"
                     android:layout_gravity="center_vertical"
@@ -283,6 +285,7 @@
                     style="?android:attr/ratingBarStyleIndicator"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+					android:stepSize="0.5"
                     android:scaleX="0.9"
                     android:scaleY="0.9"
                     android:layout_gravity="center_vertical"
@@ -310,6 +313,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
+					android:stepSize="0.5"
                     android:scaleX="0.9"
                     android:scaleY="0.9"
                     android:layout_height="wrap_content" />
@@ -334,6 +338,7 @@
                     android:layout_marginTop="5dp"
                     android:scaleX="0.9"
                     android:scaleY="0.9"
+					android:stepSize="0.5"
                     android:layout_marginBottom="5dp"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/selectedPartner_ratingBar5"
@@ -360,6 +365,7 @@
                     android:layout_marginBottom="5dp"
                     android:scaleX="0.9"
                     android:scaleY="0.9"
+					android:stepSize="0.5"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/selectedPartner_ratingBar6"
                     android:layout_height="wrap_content" />
@@ -387,6 +393,7 @@
                     android:layout_gravity="center_vertical"
                     android:scaleX="0.9"
                     android:scaleY="0.9"
+					android:stepSize="0.5"
                     android:id="@+id/selectedPartner_ratingBar7"
                     android:layout_height="wrap_content" />
             </LinearLayout>

@@ -147,15 +147,15 @@ public class SpinnerDropDownAdapter extends BaseAdapter {
             for(int j=0;j<checkSelected.length;j++){
                 if (checkSelected[j]) {
                     if(j!=checkSelected.length-1)
-                        text += mListItems.get(j)+",";
+                        text += mListItems.get(j)+", ";
                     else
                         text += mListItems.get(j);
                 }
             }
 			/*mSelectedItems.setText(firstSelected + " & "+ (selectedCount - 1) + " more");
 			setSelected(firstSelected + " & "+ (selectedCount - 1) + " more");*/
-            if (text.endsWith(",")) {
-                text = text.substring(0, text.length()-1);
+            if (text.endsWith(", ")) {
+                text = text.substring(0, text.length()-2);
             }
             mSelectedItems.setText(text);
             if(is_profile)

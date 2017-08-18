@@ -42,8 +42,9 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical|center_horizontal"
-                        android:text="BASELINE SEX PRO SCORE"
+                        android:text="Baseline Sex Pro Score"
                         android:textColor="@color/white"
+                        android:textStyle="bold"
                         android:textSize="20sp" />
 
                     <TextView

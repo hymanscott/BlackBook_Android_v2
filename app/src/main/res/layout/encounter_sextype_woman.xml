@@ -22,6 +22,7 @@
                 android:id="@+id/sexType_heSucked"
                 android:layout_gravity="center"
                 android:textAlignment="gravity"
+                android:textSize="12sp"
                 android:gravity="center_horizontal|center_vertical"
                 android:background="@drawable/toggle_button"/>
         </LinearLayout>
@@ -39,6 +40,7 @@
                 android:layout_gravity="center"
                 android:id="@+id/sexType_iWentDown"
                 android:textAlignment="gravity"
+                android:textSize="12sp"
                 android:gravity="center_horizontal|center_vertical"
                 android:background="@drawable/toggle_button"/>
         </LinearLayout>
@@ -62,6 +64,7 @@
                 android:textAlignment="gravity"
                 android:padding="10dp"
                 android:layout_weight="1"
+                android:textSize="12sp"
                 android:gravity="center_horizontal|center_vertical"
                 android:background="@drawable/toggle_button"/>
         </LinearLayout>
@@ -80,6 +83,7 @@
                 android:layout_gravity="center"
                 android:textAlignment="gravity"
                 android:layout_weight="1"
+                android:textSize="12sp"
                 android:padding="10dp"
                 android:gravity="center_horizontal|center_vertical"
                 android:background="@drawable/toggle_button"/>
@@ -103,6 +107,7 @@
                 android:layout_gravity="center"
                 android:textAlignment="gravity"
                 android:layout_weight="1"
+                android:textSize="12sp"
                 android:padding="10dp"
                 android:gravity="center_horizontal|center_vertical"
                 android:background="@drawable/toggle_button"/>
@@ -115,12 +120,13 @@
             <ToggleButton
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/toggle_btn_height"
-                android:textOn="Kissing / making out"
-                android:textOff="Kissing / making out"
+                android:textOn="Kissing/making out"
+                android:textOff="Kissing/making out"
                 android:textColor="@color/colorAccent"
                 android:layout_gravity="center"
                 android:textAlignment="gravity"
                 android:layout_weight="1"
+                android:textSize="12sp"
                 android:id="@+id/sexType_kissing"
                 android:gravity="center_vertical|center_horizontal"
                 android:background="@drawable/toggle_button"/>
@@ -139,10 +145,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/toggle_btn_height"
                 android:textOn="I rimmed her"
-                android:textOff="I rimmed him"
+                android:textOff="I rimmed her"
                 android:textColor="@color/colorAccent"
                 android:id="@+id/sexType_iRimmed"
                 android:layout_weight="1"
+                android:textSize="12sp"
                 android:layout_gravity="center"
                 android:textAlignment="gravity"
                 android:padding="10dp"
@@ -164,6 +171,7 @@
                 android:layout_gravity="center"
                 android:textAlignment="gravity"
                 android:layout_weight="1"
+                android:textSize="12sp"
                 android:padding="10dp"
                 android:gravity="center_horizontal|center_vertical"
                 android:background="@drawable/toggle_button"/>
@@ -182,6 +190,7 @@
         android:textAlignment="gravity"
         android:layout_margin="10dp"
         android:layout_weight="1"
+        android:textSize="12sp"
         android:padding="10dp"
         android:gravity="center_horizontal|center_vertical"
         android:background="@drawable/toggle_button"/>
@@ -209,6 +218,7 @@
         android:visibility="gone"
         android:padding="10dp"
         android:layout_weight="1"
+        android:textSize="12sp"
         android:gravity="center_horizontal|center_vertical"
         android:background="@drawable/toggle_button"/>
     <ToggleButton
@@ -222,6 +232,7 @@
         android:visibility="gone"
         android:textAlignment="gravity"
         android:layout_weight="1"
+        android:textSize="12sp"
         android:padding="10dp"
         android:gravity="center_horizontal|center_vertical"
         android:background="@drawable/toggle_button"/>

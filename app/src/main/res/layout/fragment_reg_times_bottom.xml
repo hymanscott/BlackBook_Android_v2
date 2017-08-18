@@ -53,7 +53,6 @@
                 android:layout_marginRight="32dp"
                 android:gravity="center_vertical"
                 android:text="How many TIMES have you had anal sex as a BOTTOM with your HIV positive or unknown status partners?"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
 
@@ -66,7 +65,6 @@
                 android:layout_marginTop="40dp"
                 android:gravity="center_vertical"
                 android:text="In the last 3 months:"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
 
@@ -78,8 +76,7 @@
                 android:layout_marginRight="32dp"
                 android:layout_marginTop="32dp"
                 android:gravity="center_vertical"
-                android:text="Number of TIMES (NOT Partner) as a BOTTOM with men ot transwomen?"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Number of TIMES (NOT Partner) as a BOTTOM with men or transwomen?"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
 
@@ -118,7 +115,6 @@
                 android:layout_marginTop="40dp"
                 android:gravity="center_vertical"
                 android:text="And how often did you use a condom?"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
 
@@ -143,7 +139,6 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:text="0 %"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
 
@@ -180,7 +175,6 @@
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentTop="true"
                             android:text="0 %"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
 
@@ -191,7 +185,6 @@
                             android:layout_alignParentRight="true"
                             android:layout_alignParentTop="true"
                             android:text="100 %"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
 

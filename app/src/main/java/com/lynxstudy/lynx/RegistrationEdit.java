@@ -43,7 +43,7 @@ public class RegistrationEdit extends Fragment {
     private PopupWindow pw;
     private boolean expanded;
     public static boolean[] checkSelected;
-    LinearLayout layout1;
+    RelativeLayout layout1;
     View view1;
     LinearLayout sec_qn_parent;
     @Override
@@ -81,7 +81,7 @@ public class RegistrationEdit extends Fragment {
         c_passcode.setTypeface(tf);
         save = (Button) view.findViewById(R.id.save);
         save.setTypeface(tf);
-        layout1 = (LinearLayout)view.findViewById(R.id.relativeLayout1);
+        layout1 = (RelativeLayout)view.findViewById(R.id.relativeLayout1);
 
         final Calendar myCalendar = Calendar.getInstance();
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -127,7 +127,6 @@ public class RegistrationEdit extends Fragment {
         // Race/Ethnicity //
         initialize();
 
-        final TextView sec_qn = (TextView)view.findViewById(R.id.sec_qn);
         sec_qn_parent = (LinearLayout) view.findViewById(R.id.sec_qn_parent);
 
         final List<String> secQuestions = Arrays.asList(getResources().getStringArray(R.array.security_questions));
@@ -156,8 +155,8 @@ public class RegistrationEdit extends Fragment {
                         .setAdapter(adapterSecQues, new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int which) {
-                                sec_qn.setText(secQuestions.get(which).toString());
-                                sec_qn.setTextColor(getResources().getColor(R.color.white));
+                                confirm_sec_qn.setText(secQuestions.get(which).toString());
+                                confirm_sec_qn.setTextColor(getResources().getColor(R.color.white));
                                 dialog.dismiss();
                             }
                         }).create().show();

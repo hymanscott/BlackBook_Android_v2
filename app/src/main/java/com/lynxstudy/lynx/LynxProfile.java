@@ -98,7 +98,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lynx_profile);
-
             // Custom Action Bar //
             getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
             View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
@@ -611,8 +610,8 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         //get the pop-up window i.e.  drop-down layout
-        //LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.spinner_popup, (ViewGroup)findViewById(R.id.PopUpView));
-        LinearLayout layout = (LinearLayout) view1.findViewById(R.id.PopUpView);
+        LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.spinner_popup, (ViewGroup)findViewById(R.id.PopUpView));
+        //LinearLayout layout = (LinearLayout) view1.findViewById(R.id.PopUpView);
 
         //get the view to which drop-down layout is to be anchored
         pw = new PopupWindow(layout, ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);

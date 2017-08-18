@@ -365,7 +365,7 @@ public class EncounterSummaryEditFragment extends Fragment {
 
         for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
             switch (LynxManager.decryptString(encSexType.getSex_type())) {
-                case "Kissing / making out":
+                case "Kissing/making out":
                     btn_sexType_kissing.setSelected(true);
                     btn_sexType_kissing.setTextColor(Color.parseColor("#ffffff"));
                     break;

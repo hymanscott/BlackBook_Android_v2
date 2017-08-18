@@ -61,8 +61,6 @@ public class TestingTestKitFragment extends Fragment {
         oraQuickTestKit.setTypeface(tf);
         analSwab = (CheckBox) view.findViewById(R.id.analSwab);
         analSwab.setTypeface(tf);
-        penileSwab = (CheckBox) view.findViewById(R.id.penileSwab);
-        penileSwab.setTypeface(tf);
 
         Button confirm_btn = (Button) view.findViewById(R.id.requestHomeKit_confirm);
         confirm_btn.setTypeface(tf);
