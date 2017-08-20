@@ -45,13 +45,15 @@ public class EncounterChoosePartnerFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         newEncounter = (TextView)rootview.findViewById(R.id.newEncounter);
-        newEncounter.setTypeface(tf);
+        newEncounter.setTypeface(tf_bold);
         textView12 = (TextView)rootview.findViewById(R.id.textView12);
         textView12.setTypeface(tf);
 
         addNewPartner = (Button)rootview.findViewById(R.id.addNewPartner);
-        addNewPartner.setTypeface(tf);
+        addNewPartner.setTypeface(tf_bold);
         /*next = (Button)rootview.findViewById(R.id.next);
         next.setTypeface(tf);
         revise = (Button)rootview.findViewById(R.id.revise);

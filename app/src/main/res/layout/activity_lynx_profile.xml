@@ -340,6 +340,7 @@
                     android:textColor="@color/profile_text_color"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="32dp"
+                    android:textStyle="bold"
                     android:layout_marginTop="24dp"
                     android:id="@+id/prepTitle"/>
                 <TextView
@@ -545,7 +546,7 @@
                     android:paddingRight="20dp"
                     android:textColor="@color/profile_text_color"
                     android:textStyle="bold"
-                    android:textSize="@dimen/reg_tv_textsize"
+                    android:textSize="12sp"
                     android:background="@drawable/border_full_grey"
                     android:text="EDIT ACCOUNT DETAILS"
                     android:id="@+id/edit_details"/>

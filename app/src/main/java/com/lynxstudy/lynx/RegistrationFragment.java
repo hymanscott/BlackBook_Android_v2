@@ -72,8 +72,10 @@ public class RegistrationFragment  extends Fragment implements DatePickerDialog.
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         frag_title = (TextView)view.findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf);
+        frag_title.setTypeface(tf_bold);
         regBtnNext = (Button) view.findViewById(R.id.regBasicNext);
         regBtnNext.setTypeface(tf);
         tv = (TextView) view.findViewById(R.id.SelectBox);

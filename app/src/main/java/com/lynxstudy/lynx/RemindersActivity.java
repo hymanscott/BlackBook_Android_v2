@@ -63,11 +63,13 @@ public class RemindersActivity extends AppCompatActivity {
             //Type face
             Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                     "fonts/Roboto-Regular.ttf");
+            Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                    "fonts/Roboto-Bold.ttf");
             TextView frag_title,intro_first_paragraph,intro_second_paragraph,intro_third_paragraph;
             Button reminderIntroNext;
 
             frag_title = (TextView)view.findViewById(R.id.frag_title);
-            frag_title.setTypeface(tf);
+            frag_title.setTypeface(tf_bold);
             intro_first_paragraph = (TextView)view.findViewById(R.id.intro_first_paragraph);
             intro_first_paragraph.setTypeface(tf);
             intro_second_paragraph = (TextView)view.findViewById(R.id.intro_second_paragraph);

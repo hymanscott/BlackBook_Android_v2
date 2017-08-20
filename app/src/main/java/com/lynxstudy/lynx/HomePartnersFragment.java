@@ -61,7 +61,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
     RelativeLayout undetectableLayout,undetectableAnsParent,hivStatusParent,partnerTypeParent,monogamousParent,otherPartnerParent;
     LinearLayout monogamousLayout,otherPartnerLayout;
     View rootview;
-    Typeface tf;
+    Typeface tf,tf_bold;
     int back_press_count;
     public HomePartnersFragment() {
         // Required empty public constructor
@@ -82,6 +82,8 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         summaryLayout = (LinearLayout) rootview.findViewById(R.id.summaryLayout);
         mainContentLayout = (LinearLayout) rootview.findViewById(R.id.mainContentLayout);
         editLayout = (LinearLayout) rootview.findViewById(R.id.editLayout);
@@ -237,13 +239,13 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         mainContentLayout.setVisibility(View.GONE);
         isSummaryShown = true;
         hivStatus = (TextView) rootview.findViewById(R.id.hivStatus);
-        hivStatus.setTypeface(tf);
+        hivStatus.setTypeface(tf_bold);
         typePartner = (TextView) rootview.findViewById(R.id.typePartner);
-        typePartner.setTypeface(tf);
+        typePartner.setTypeface(tf_bold);
         notesPartner = (TextView) rootview.findViewById(R.id.notesPartner);
-        notesPartner.setTypeface(tf);
+        notesPartner.setTypeface(tf_bold);
         overAll = (TextView) rootview.findViewById(R.id.overAll);
-        overAll.setTypeface(tf);
+        overAll.setTypeface(tf_bold);
 
         // Display Summary
         TextView new_partner_Summ_nickname = (TextView) rootview.findViewById(R.id.selectedPartner_bannername);
@@ -273,7 +275,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         Partners partner = db.getPartnerbyID(partner_id);
 
         new_partner_Summ_nickname.setText(LynxManager.decryptString(partner.getNickname()));
-        new_partner_Summ_nickname.setTypeface(tf);
+        new_partner_Summ_nickname.setTypeface(tf_bold);
         selectedPartner_nickname.setText(LynxManager.decryptString(partner.getNickname()));
         selectedPartner_nickname.setTypeface(tf);
         edit_details.setTypeface(tf);
@@ -294,12 +296,12 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         TextView newPartnerSumm_rate5 = (TextView) rootview.findViewById(R.id.selectedPartner_rate5);
         TextView newPartnerSumm_rate6 = (TextView) rootview.findViewById(R.id.selectedPartner_rate6);
         TextView newPartnerSumm_rate7 = (TextView) rootview.findViewById(R.id.selectedPartner_rate7);
-        newPartnerSumm_rate2.setTypeface(tf);
-        newPartnerSumm_rate3.setTypeface(tf);
-        newPartnerSumm_rate4.setTypeface(tf);
-        newPartnerSumm_rate5.setTypeface(tf);
-        newPartnerSumm_rate6.setTypeface(tf);
-        newPartnerSumm_rate7.setTypeface(tf);
+        newPartnerSumm_rate2.setTypeface(tf_bold);
+        newPartnerSumm_rate3.setTypeface(tf_bold);
+        newPartnerSumm_rate4.setTypeface(tf_bold);
+        newPartnerSumm_rate5.setTypeface(tf_bold);
+        newPartnerSumm_rate6.setTypeface(tf_bold);
+        newPartnerSumm_rate7.setTypeface(tf_bold);
 
         List<String> rating_fields = new ArrayList<String>();
 
@@ -391,15 +393,15 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         PartnerContact partnerContact = db.getPartnerContactbyPartnerID(partner_id);
 
         next = (Button) rootview.findViewById(R.id.next);
-        next.setTypeface(tf);
+        next.setTypeface(tf_bold);
         edithivStatus = (TextView) rootview.findViewById(R.id.editHivStatus);
-        edithivStatus.setTypeface(tf);
+        edithivStatus.setTypeface(tf_bold);
         partnerTypeTitle = (TextView) rootview.findViewById(R.id.partnerTypeTitle);
-        partnerTypeTitle.setTypeface(tf);
+        partnerTypeTitle.setTypeface(tf_bold);
         partnerNotes = (TextView) rootview.findViewById(R.id.partnerNotes);
-        partnerNotes.setTypeface(tf);
+        partnerNotes.setTypeface(tf_bold);
         editoverAll = (TextView) rootview.findViewById(R.id.editOverAll);
-        editoverAll.setTypeface(tf);
+        editoverAll.setTypeface(tf_bold);
         monogamousLayout= (LinearLayout)rootview.findViewById(R.id.monogamousLayout);
         otherPartnerLayout = (LinearLayout) rootview.findViewById(R.id.otherPartnerLayout);
         otherPartnerParent = (RelativeLayout) rootview.findViewById(R.id.otherPartnerParent);
@@ -422,7 +424,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         TextView new_partner_Summ_nickname = (TextView) rootview.findViewById(R.id.new_partner_Summ_nickname);
         new_partner_Summ_nickname.setText(LynxManager.decryptString(partner.getNickname()));
         new_partner_Summ_nickname.setAllCaps(true);
-        new_partner_Summ_nickname.setTypeface(tf);
+        new_partner_Summ_nickname.setTypeface(tf_bold);
         final EditText nickName = (EditText) rootview.findViewById(R.id.newPartnerSumm_nickName);
         final TextView hivStatusAns = (TextView) rootview.findViewById(R.id.newPartnerSumm_hivStatus);
         final EditText email = (EditText) rootview.findViewById(R.id.newPartnerSumm_email);
@@ -701,19 +703,19 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         newPartnerSumm_rate6.setOnKeyListener(this);
         newPartnerSumm_rate7.setOnKeyListener(this);
 
-        editoverAll.setTypeface(tf);
+        editoverAll.setTypeface(tf_bold);
         newPartnerSumm_rate2.setText(rating_fields.get(1));
-        newPartnerSumm_rate2.setTypeface(tf);
+        newPartnerSumm_rate2.setTypeface(tf_bold);
         newPartnerSumm_rate3.setText(rating_fields.get(2));
-        newPartnerSumm_rate3.setTypeface(tf);
+        newPartnerSumm_rate3.setTypeface(tf_bold);
         newPartnerSumm_rate4.setText(rating_fields.get(3));
-        newPartnerSumm_rate4.setTypeface(tf);
+        newPartnerSumm_rate4.setTypeface(tf_bold);
         newPartnerSumm_rate5.setText(rating_fields.get(4));
-        newPartnerSumm_rate5.setTypeface(tf);
+        newPartnerSumm_rate5.setTypeface(tf_bold);
         newPartnerSumm_rate6.setText(rating_fields.get(5));
-        newPartnerSumm_rate6.setTypeface(tf);
+        newPartnerSumm_rate6.setTypeface(tf_bold);
         newPartnerSumm_rate7.setText(rating_fields.get(6));
-        newPartnerSumm_rate7.setTypeface(tf);
+        newPartnerSumm_rate7.setTypeface(tf_bold);
 
         final RatingBar rating1 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar1);
         final RatingBar rating2 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar2);

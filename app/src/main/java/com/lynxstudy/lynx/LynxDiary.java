@@ -53,7 +53,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
     LinearLayout btn_sexpro,btn_testing,btn_prep,btn_chat;
     TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv;
     ImageView viewProfile;
-    Typeface tf;
+    Typeface tf,tf_bold;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +67,8 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         // Click Listners //
         btn_sexpro = (LinearLayout)findViewById(R.id.bot_nav_sexpro);
         btn_testing = (LinearLayout) findViewById(R.id.bot_nav_testing);
@@ -100,28 +102,59 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         // Custom tab views //
-        TextView tab1 = new TextView(LynxDiary.this);
+        final TextView tab1 = new TextView(LynxDiary.this);
         tab1.setText("SEXUAL HISTORY");
         tab1.setTextColor(getResources().getColor(R.color.text_color));
-        tab1.setTypeface(tf);
+        tab1.setTypeface(tf_bold);
         tab1.setTextSize(16);
-        TextView tab2 = new TextView(LynxDiary.this);
+        tab1.setGravity(Gravity.CENTER_HORIZONTAL);
+        final TextView tab2 = new TextView(LynxDiary.this);
         tab2.setText("SEXUAL PARTNERS");
         tab2.setTextColor(getResources().getColor(R.color.text_color));
         tab2.setTypeface(tf);
         tab2.setTextSize(16);
+        tab2.setGravity(Gravity.CENTER_HORIZONTAL);
 //        TextView tab3 = new TextView(LynxDiary.this);
 //        tab3.setText("DRUG USE");
 //        tab3.setTextColor(getResources().getColor(R.color.text_color));
 //        tab3.setTypeface(tf);
 //        tab3.setTextSize(16);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.getTabAt(0).setCustomView(tab1);
         tabLayout.getTabAt(1).setCustomView(tab2);
 //        tabLayout.getTabAt(2).setCustomView(tab3);
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int pos = tab.getPosition();
+                switch (pos){
+                    case 0:
+                        tab1.setTypeface(tf_bold);
+                        tab2.setTypeface(tf);
+                        tab.setCustomView(tab1);
+                        tabLayout.getTabAt(1).setCustomView(tab2);
+                        break;
+                    case 1:
+                        tab1.setTypeface(tf);
+                        tab2.setTypeface(tf_bold);
+                        tabLayout.getTabAt(0).setCustomView(tab1);
+                        tab.setCustomView(tab2);
+                        break;
+                }
+            }
 
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
 

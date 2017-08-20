@@ -35,10 +35,12 @@ public class EncounterCondomuseFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         next = (Button)rootview.findViewById(R.id.next);
-        next.setTypeface(tf);
+        next.setTypeface(tf_bold);
         newEncounter = (TextView)rootview.findViewById(R.id.newEncounter);
-        newEncounter.setTypeface(tf);
+        newEncounter.setTypeface(tf_bold);
         whenIsucked = (TextView)rootview.findViewById(R.id.whenIsucked);
         whenIsucked.setTypeface(tf);
         whenItopped = (TextView)rootview.findViewById(R.id.whenItopped);
@@ -76,7 +78,7 @@ public class EncounterCondomuseFragment extends Fragment {
         TextView nickname = (TextView) rootview.findViewById(R.id.enc_sexType_condomUse_nickName);
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         nickname.setAllCaps(true);
-        nickname.setTypeface(tf);
+        nickname.setTypeface(tf_bold);
 
         LinearLayout layout_whenIsucked = (LinearLayout) rootview.findViewById(R.id.whenIsucked_layout);
 

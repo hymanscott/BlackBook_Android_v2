@@ -1450,7 +1450,7 @@ public class RegLogin extends AppCompatActivity {
                         dialog.show();
                         Button pos_btn = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
                         if(pos_btn != null) {
-                            pos_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.lynx_button));
+                            pos_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonbluecornered));
                             pos_btn.setTextColor(getResources().getColor(R.color.white));
                         }
 

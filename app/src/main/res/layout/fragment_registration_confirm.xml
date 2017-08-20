@@ -330,7 +330,7 @@
                 android:paddingRight="50dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="@dimen/reg_tv_textsize"
+                android:textSize="12sp"
                 android:background="@drawable/border_full_white"
                 android:text="EDIT"
                 android:onClick="showEditDetails"

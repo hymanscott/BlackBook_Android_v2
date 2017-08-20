@@ -23,7 +23,7 @@ import java.util.Date;
 public class BaselineSexproScoreActivity extends AppCompatActivity {
 
     DatabaseHelper db;
-    TextView score_message,reg_sexPro_score_label,reg_sexPro_score_value;
+    TextView score_message,reg_sexPro_score_label,reg_sexPro_score_value,info_title,info_para_one,info_para_two,info_para_three;
     Button sexpro_score_close;
     ImageView dialScoreImage;
     LinearLayout infolayout,main_content;
@@ -36,6 +36,8 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         sexpro_score_close = (Button)findViewById(R.id.sexpro_score_close);
         sexpro_score_close.setTypeface(tf);
         score_message = (TextView)findViewById(R.id.score_message);
@@ -44,8 +46,14 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
         reg_sexPro_score_label.setTypeface(tf);
         reg_sexPro_score_value = (TextView)findViewById(R.id.reg_sexPro_score_value);
         reg_sexPro_score_value.setTypeface(tf);
-
-
+        info_title = (TextView)findViewById(R.id.info_title);
+        info_title.setTypeface(tf_bold);
+        info_para_one = (TextView)findViewById(R.id.info_para_one);
+        info_para_one.setTypeface(tf);
+        info_para_two = (TextView)findViewById(R.id.info_para_two);
+        info_para_two.setTypeface(tf);
+        info_para_three = (TextView)findViewById(R.id.info_para_three);
+        info_para_three.setTypeface(tf);
         dialScoreImage = (ImageView)findViewById(R.id.dialScoreImage);
         infolayout = (LinearLayout)findViewById(R.id.infolayout);
         main_content= (LinearLayout)findViewById(R.id.main_content);

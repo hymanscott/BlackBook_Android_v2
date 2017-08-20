@@ -20,14 +20,7 @@
                 android:layout_marginBottom="16dp"
                 android:layout_gravity="center_vertical"
                 android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.9"
-                    android:textColor="@color/text_color"
-                    android:id="@+id/CurrentVideoTitle"
-                    android:textSize="18sp"
-                    android:text="Title "/>
+
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -38,6 +31,15 @@
                     android:id="@+id/showDescription"
                     android:scaleType="fitCenter"
                     android:src="@drawable/sortdown"/>
+
+                <TextView
+                    android:id="@+id/CurrentVideoTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:text="Title "
+                    android:textColor="@color/text_color"
+                    android:textSize="14sp" />
             </LinearLayout>
             <WebView
                 android:id="@+id/youtubeplayer"

@@ -43,24 +43,26 @@ public class NewPartnerSummaryFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         next = (Button)rootview.findViewById(R.id.next);
-        next.setTypeface(tf);
+        next.setTypeface(tf_bold);
         hivStatus = (TextView)rootview.findViewById(R.id.hivStatus);
-        hivStatus.setTypeface(tf);
+        hivStatus.setTypeface(tf_bold);
         partnerTypeTitle = (TextView)rootview.findViewById(R.id.partnerTypeTitle);
-        partnerTypeTitle.setTypeface(tf);
+        partnerTypeTitle.setTypeface(tf_bold);
         partnerNotes = (TextView)rootview.findViewById(R.id.partnerNotes);
-        partnerNotes.setTypeface(tf);
+        partnerNotes.setTypeface(tf_bold);
         overAll = (TextView)rootview.findViewById(R.id.overAll);
         overAll.setTypeface(tf);
         add_partner_title = (TextView)rootview.findViewById(R.id.add_partner_title);
-        add_partner_title.setTypeface(tf);
+        add_partner_title.setTypeface(tf_bold);
 
         // Display Summary
         TextView new_partner_Summ_nickname = (TextView) rootview.findViewById(R.id.new_partner_Summ_nickname);
         new_partner_Summ_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         new_partner_Summ_nickname.setAllCaps(true);
-        new_partner_Summ_nickname.setTypeface(tf);
+        new_partner_Summ_nickname.setTypeface(tf_bold);
         TextView nickName = (TextView) rootview.findViewById(R.id.newPartnerSumm_nickName);
         TextView hivStatus = (TextView) rootview.findViewById(R.id.newPartnerSumm_hivStatus);
         TextView email = (TextView) rootview.findViewById(R.id.newPartnerSumm_email);
@@ -115,19 +117,19 @@ public class NewPartnerSummaryFragment extends Fragment {
 
         List<String> rating_fields = LynxManager.getPartnerRatingFields();
         overAll.setText(rating_fields.get(0));
-        overAll.setTypeface(tf);
+        overAll.setTypeface(tf_bold);
         newPartnerSumm_rate2.setText(rating_fields.get(1));
-        newPartnerSumm_rate2.setTypeface(tf);
+        newPartnerSumm_rate2.setTypeface(tf_bold);
         newPartnerSumm_rate3.setText(rating_fields.get(2));
-        newPartnerSumm_rate3.setTypeface(tf);
+        newPartnerSumm_rate3.setTypeface(tf_bold);
         newPartnerSumm_rate4.setText(rating_fields.get(3));
-        newPartnerSumm_rate4.setTypeface(tf);
+        newPartnerSumm_rate4.setTypeface(tf_bold);
         newPartnerSumm_rate5.setText(rating_fields.get(4));
-        newPartnerSumm_rate5.setTypeface(tf);
+        newPartnerSumm_rate5.setTypeface(tf_bold);
         newPartnerSumm_rate6.setText(rating_fields.get(5));
-        newPartnerSumm_rate6.setTypeface(tf);
+        newPartnerSumm_rate6.setTypeface(tf_bold);
         newPartnerSumm_rate7.setText(rating_fields.get(6));
-        newPartnerSumm_rate7.setTypeface(tf);
+        newPartnerSumm_rate7.setTypeface(tf_bold);
 
         final RatingBar rating1 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar1);
         final RatingBar rating2 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar2);

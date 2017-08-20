@@ -82,11 +82,11 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
     DatabaseHelper db;
     ImageView dialScoreImage;
-    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,score_update_date,info_title,info_para_one,info_para_two,info_para_three;
+    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,score_update,score_update_date,info_title,info_para_one,info_para_two,info_para_three;
     private Statistics statistics = new Statistics();
     private String fromactivity = null;
     private String toactivity = null;
-    Typeface tf;
+    Typeface tf,tf_bold;
     LinearLayout sexProMainContent,sexProInfoContent;
     private boolean isInfoShown = false;
     @Override
@@ -113,7 +113,8 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-
+        tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         // Custom Action Bar //
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
@@ -135,10 +136,12 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         bot_nav_prep_tv.setTypeface(tf);
         bot_nav_chat_tv = (TextView)findViewById(R.id.bot_nav_chat_tv);
         bot_nav_chat_tv.setTypeface(tf);
+        score_update = (TextView)findViewById(R.id.score_update);
+        score_update.setTypeface(tf);
         score_update_date = (TextView)findViewById(R.id.score_update_date);
-        score_update_date.setTypeface(tf);
+        score_update_date.setTypeface(tf_bold);
         info_title = (TextView)findViewById(R.id.info_title);
-        info_title.setTypeface(tf);
+        info_title.setTypeface(tf_bold);
         info_para_one = (TextView)findViewById(R.id.info_para_one);
         info_para_one.setTypeface(tf);
         info_para_two = (TextView)findViewById(R.id.info_para_two);
@@ -279,9 +282,11 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         String createdAt = LynxManager.getActiveUserBaselineInfo().getCreated_at();
         createdAt = LynxManager.getFormatedDate("yyyy-MM-dd HH:mm:ss",createdAt,"MM/dd/yyyy");
         if(getscore.getElapsedDays()>=90){
-            score_update_date.setText("SCORE UPDATED ON " + createdAt);
+            score_update.setText("SCORE UPDATED ON ");
+            score_update_date.setText(createdAt);
         }else{
-            score_update_date.setText("YOUR SCORE WILL UPDATE IN " + (90 - getscore.getElapsedDays())+" DAYS");
+            score_update.setText("YOUR SCORE WILL UPDATE IN ");
+            score_update_date.setText((90 - getscore.getElapsedDays())+" DAYS");
         }
 
     }

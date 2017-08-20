@@ -52,33 +52,37 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="32dp"
                         android:gravity="center"
+                        android:lineSpacingMultiplier="1.43"
                         android:text="Sex Pro is a new way to help you better understand your sexual health and HIV risk."
                         android:textColor="@color/white"
-                        android:textSize="@dimen/paragraph_text_size" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/textView10"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="32dp"
                         android:gravity="center"
                         android:text="You'll answer a few questions about your behavior over the last 3 months.Your answers will be converted into a score."
                         android:textColor="@color/white"
-                        android:textSize="@dimen/paragraph_text_size" />
+                        android:lineSpacingMultiplier="1.43"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/textView11"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="64dp"
+                        android:layout_marginTop="32dp"
                         android:gravity="center"
+                        android:lineSpacingMultiplier="1.43"
                         android:text="Sex Pro scores range from 1 to 20, with higher scores meaning higher levels of protection. Although a perfect score (20) isn't a guarantee againt HIV infection, it does mean that you are doing a lot to stay protected."
                         android:textColor="@color/white"
-                        android:textSize="@dimen/paragraph_text_size" />
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <Button

@@ -51,18 +51,6 @@
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:background="@color/edittext_bg" />
-
-                    <TextView
-                        android:id="@+id/textview9"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginRight="32dp"
-                        android:gravity="center_vertical"
-                        android:text="Do you have a primary sex partner?"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/reg_tv_textsize" />
                     <TextView
                         android:id="@+id/textview10"
                         android:layout_width="match_parent"
@@ -70,7 +58,9 @@
                         android:layout_marginLeft="32dp"
                         android:layout_marginRight="32dp"
                         android:gravity="center_vertical"
-                        android:text="This is someone whom you may consider a boy/girlfriend, partner, husband, wife, lover, spouse, or significant other."
+                        android:lineSpacingMultiplier="1.31"
+                        android:text="Do you have a primary sex partner?
+This is someone whom you may consider a boy/girlfriend, partner, husband, wife, lover, spouse, or significant other."
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/white"
                         android:textSize="@dimen/reg_tv_textsize" />

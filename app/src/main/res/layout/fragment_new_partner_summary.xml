@@ -246,6 +246,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/encounter_tv_textsize"
                     android:id="@+id/hivStatus"
+                    android:textStyle="bold"
                     android:textColor="@color/white"
                     android:text="HIV Status :"/>
                 <TextView
@@ -276,6 +277,7 @@
                     android:textSize="@dimen/encounter_tv_textsize"
                     android:textColor="@color/white"
                     android:id="@+id/partnerTypeTitle"
+                    android:textStyle="bold"
                     android:text="Partner Type :"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -305,6 +307,7 @@
                     android:textSize="@dimen/encounter_tv_textsize"
                     android:textColor="@color/white"
                     android:id="@+id/partnerNotes"
+                    android:textStyle="bold"
                     android:text="Partner Notes :"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -333,6 +336,7 @@
                     android:text="Overall"
                     android:textSize="@dimen/encounter_tv_textsize"
                     android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:id="@+id/overAll"
                     android:layout_gravity="center_vertical"/>
                 <LinearLayout
@@ -364,6 +368,7 @@
                     android:text="Chemistry"
                     android:layout_weight="1"
                     android:maxWidth="100dp"
+                    android:textStyle="bold"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/newPartnerSumm_rate2"
                     android:textSize="@dimen/encounter_tv_textsize"
@@ -398,6 +403,7 @@
                     android:textColor="@color/white"
                     android:maxWidth="100dp"
                     android:layout_weight="1"
+                    android:textStyle="bold"
                     android:id="@+id/newPartnerSumm_rate3"
                     android:layout_gravity="center_vertical" />
                 <LinearLayout
@@ -428,6 +434,7 @@
                     android:text="Face"
                     android:textSize="@dimen/encounter_tv_textsize"
                     android:maxWidth="100dp"
+                    android:textStyle="bold"
                     android:textColor="@color/white"
                     android:id="@+id/newPartnerSumm_rate4"
                     android:layout_gravity="center_vertical"/>
@@ -461,6 +468,7 @@
                     android:textColor="@color/white"
                     android:id="@+id/newPartnerSumm_rate5"
                     android:maxWidth="100dp"
+                    android:textStyle="bold"
                     android:layout_gravity="center_vertical"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -492,6 +500,7 @@
                     android:textColor="@color/white"
                     android:id="@+id/newPartnerSumm_rate6"
                     android:maxWidth="100dp"
+                    android:textStyle="bold"
                     android:layout_gravity="center_vertical" />
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -520,6 +529,7 @@
                     android:layout_height="wrap_content"
                     android:text="Butt"
                     android:textSize="@dimen/encounter_tv_textsize"
+                    android:textStyle="bold"
                     android:textColor="@color/white"
                     android:id="@+id/newPartnerSumm_rate7"
                     android:maxWidth="100dp"
@@ -553,7 +563,7 @@
                 android:paddingRight="70dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="@dimen/reg_tv_textsize"
+                android:textSize="12sp"
                 android:background="@drawable/border_full_white"
                 android:text="EDIT"
                 android:onClick="showEditDetails"
@@ -561,7 +571,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Save"
+                android:text="Confirm"
                 android:background="@color/encounter_btn_bg"
                 android:textColor="@color/white"
                 android:textStyle="bold"

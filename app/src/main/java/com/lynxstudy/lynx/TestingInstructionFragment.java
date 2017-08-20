@@ -82,7 +82,7 @@ public class TestingInstructionFragment extends Fragment {
             testingInsName.setLayoutParams(params);
             testingInsName.setTypeface(roboto);
             testingInsName.setTextColor(getResources().getColor(R.color.faq_blue));
-            testingInsName.setPadding(40, 10, 10, 10);
+            testingInsName.setPadding(40, 8, 8, 8);
             testingInsName.setTextSize(16);
 
             testingInsRow.addView(testingInsName);
@@ -234,7 +234,7 @@ public class TestingInstructionFragment extends Fragment {
             } else {
                 final String filename = instruction.getPdf_link();
                 instruction_ans_wv.loadDataWithBaseURL("",filename , "text/html", "utf-8", "");
-                instruction_ans_wv.setBackground(getResources().getDrawable(R.drawable.lynx_button));
+                instruction_ans_wv.setBackground(getResources().getDrawable(R.drawable.buttonbluecornered));
                 instruction_ans_wv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

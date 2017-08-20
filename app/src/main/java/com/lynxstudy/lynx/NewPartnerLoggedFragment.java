@@ -31,13 +31,14 @@ public class NewPartnerLoggedFragment extends Fragment {
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         thankyou = (TextView)view.findViewById(R.id.thankyou);
-        thankyou.setTypeface(tf);
+        thankyou.setTypeface(tf_bold);
         encloggedText = (TextView)view.findViewById(R.id.encloggedText);
         encloggedText.setTypeface(tf);
         newPartnerLoggedNext = (Button)view.findViewById(R.id.newPartnerLoggedNext);
-        newPartnerLoggedNext.setTypeface(tf);
+        newPartnerLoggedNext.setTypeface(tf_bold);
 
         return view;
     }

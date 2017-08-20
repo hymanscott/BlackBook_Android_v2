@@ -27,168 +27,186 @@
                 android:id="@+id/reg_alc_baseline_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Baseline Sex Pro Score"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:gravity="center"
+                android:text="Baseline Sex Pro Score"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="24dp"
-                android:layout_marginTop="24dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="24dp"
                 android:background="@color/edittext_bg" />
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
+                    android:id="@+id/no_of_days_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/no_of_days_text"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textSize="@dimen/reg_tv_textsize"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="32dp"
+                    android:lineSpacingMultiplier="1.31"
+                    android:text="On average, how often did you drink alcohol in the past 3 months? "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/white"
-                    android:text="On average, how often did you drink alcohol in the past 3 months? " />
+                    android:textSize="@dimen/reg_tv_textsize" />
+
                 <RadioGroup
                     android:id="@+id/alcoholCalculation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="32dp"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:layout_marginRight="32dp">
+                    android:layout_marginRight="32dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <RadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="5-7 days a week"
-                        android:textSize="14sp"
-                        android:buttonTint="@color/white"
-                        android:textColor="@color/white"
                         android:id="@+id/alcCal_5to7days"
-                        android:checked="true" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/white"
+                        android:checked="true"
+                        android:text="5-7 days a week"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
 
                     <RadioButton
+                        android:id="@+id/alcCal_1to4days"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:buttonTint="@color/white"
                         android:text="1-4 days a week"
-                        android:textSize="14sp"
-                        android:buttonTint="@color/white"
                         android:textColor="@color/white"
-                        android:id="@+id/alcCal_1to4days" />
+                        android:textSize="14sp" />
+
                     <RadioButton
+                        android:id="@+id/alcCal_lessThanOnce"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
                         android:buttonTint="@color/white"
-                        android:textColor="@color/white"
                         android:text="Less than once a week"
-                        android:id="@+id/alcCal_lessThanOnce" />
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
                     <RadioButton
+                        android:id="@+id/alcCal_never"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
                         android:buttonTint="@color/white"
-                        android:textColor="@color/white"
                         android:text="Never"
-                        android:id="@+id/alcCal_never" />
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
                 </RadioGroup>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginBottom="24dp"
-                    android:layout_marginTop="24dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="24dp"
                     android:background="@color/edittext_bg" />
+
                 <TextView
+                    android:id="@+id/drinksTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="About how many drinks did you have on a typical day? "
-                    android:textColor="@color/white"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="32dp"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/drinksTitle"/>
+                    android:lineSpacingMultiplier="1.31"
+                    android:text="About how many drinks did you have on a typical day? "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/white" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:layout_marginLeft="32dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:background="@drawable/border_full_white">
+
                     <EditText
                         android:id="@+id/no_of_drinks"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:ems="4"
-                        android:inputType="number"
-                        android:hint="0"
-                        android:padding="8dp"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:textColorHint="@color/edittext_hint_color"
-                        android:maxLength="2"
-                        android:imeOptions="actionDone"
+                        android:background="@android:color/transparent"
                         android:digits="0123456789"
+                        android:ems="4"
+                        android:hint="0"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:padding="8dp"
                         android:textColor="@color/white"
+                        android:textColorHint="@color/edittext_hint_color"
                         android:textCursorDrawable="@drawable/white_cursor"
                         android:textSize="@dimen/edittext_textsize" />
                 </LinearLayout>
             </LinearLayout>
+
             <TextView
+                android:id="@+id/drinksdefine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:layout_marginTop="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="48dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
-                android:layout_marginBottom="48dp"
-                android:textSize="12sp"
+                android:layout_marginTop="24dp"
+                android:lineSpacingMultiplier="1.58"
                 android:text="One drink is defined as a 12-oz can of beer, a 4-oz glass of wine, a 1.5-oz shot of liquor,or a mixed drink made of 1.5-oz of liquor."
-                android:layout_gravity="center_vertical"
-                android:id="@+id/drinksdefine"/>
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
             <Button
+                android:id="@+id/enc_alcoholCal_nextbtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="NEXT"
-                android:background="@color/btn_blue"
-                android:textColor="@color/white"
-                android:layout_marginTop="@dimen/button_top_margin"
-                android:id="@+id/enc_alcoholCal_nextbtn"
-                android:visibility="gone"
-                android:textSize="@dimen/button_textsize"
                 android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/button_top_margin"
+                android:background="@color/btn_blue"
                 android:onClick="alcohol_calculation_done"
-                android:textStyle="bold" />
+                android:text="NEXT"
+                android:textColor="@color/white"
+                android:textSize="@dimen/button_textsize"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
             <LinearLayout
+                android:id="@+id/reg_alcohol_nav_buttons"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:id="@+id/reg_alcohol_nav_buttons">
+                android:layout_alignParentBottom="true">
+
                 <Button
+                    android:id="@+id/alcohol_cal_nextbtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="NEXT"
-                    android:background="@color/btn_blue"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="@dimen/button_top_margin"
-                    android:id="@+id/alcohol_cal_nextbtn"
-                    android:onClick="onHeavyAlcholNext"
-                    android:textSize="@dimen/button_textsize"
                     android:layout_alignParentBottom="true"
+                    android:layout_marginTop="@dimen/button_top_margin"
+                    android:background="@color/btn_blue"
+                    android:onClick="onHeavyAlcholNext"
+                    android:text="NEXT"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/button_textsize"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>

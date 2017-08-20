@@ -40,9 +40,10 @@ public class NewPartnerAddFragment extends Fragment {
 // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         add_partner_title = (TextView)rootview.findViewById(R.id.add_partner_title);
-        add_partner_title.setTypeface(tf);
+        add_partner_title.setTypeface(tf_bold);
         whoIsYourPartner = (TextView)rootview.findViewById(R.id.whoIsYourPartner);
         whoIsYourPartner.setTypeface(tf);
         partnerGenderTitle = (TextView)rootview.findViewById(R.id.partnerGenderTitle);
@@ -78,7 +79,7 @@ public class NewPartnerAddFragment extends Fragment {
         radio_blackbook_no = (RadioButton)rootview.findViewById(R.id.radio_blackbook_no);
         radio_blackbook_no.setTypeface(tf);
         partner_info_nextbtn = (Button)rootview.findViewById(R.id.partner_info_nextbtn);
-        partner_info_nextbtn.setTypeface(tf);
+        partner_info_nextbtn.setTypeface(tf_bold);
         nick_name= (EditText) rootview.findViewById(R.id.nick_name);
         nick_name.setTypeface(tf);
 

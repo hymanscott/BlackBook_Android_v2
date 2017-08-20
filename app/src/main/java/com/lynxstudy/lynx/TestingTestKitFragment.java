@@ -53,8 +53,10 @@ public class TestingTestKitFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         frag_title = (TextView) view.findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf);
+        frag_title.setTypeface(tf_bold);
         title = (TextView) view.findViewById(R.id.title);
         title.setTypeface(tf);
         oraQuickTestKit = (CheckBox) view.findViewById(R.id.oraQuickTestKit);
@@ -63,7 +65,7 @@ public class TestingTestKitFragment extends Fragment {
         analSwab.setTypeface(tf);
 
         Button confirm_btn = (Button) view.findViewById(R.id.requestHomeKit_confirm);
-        confirm_btn.setTypeface(tf);
+        confirm_btn.setTypeface(tf_bold);
         confirm_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

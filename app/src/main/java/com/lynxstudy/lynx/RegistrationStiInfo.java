@@ -42,8 +42,10 @@ public class RegistrationStiInfo extends Fragment {
             //Type face
             Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                     "fonts/Roboto-Regular.ttf");
+            Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                    "fonts/Roboto-Bold.ttf");
             frag_title = (TextView)rootview.findViewById(R.id.frag_title);
-            frag_title.setTypeface(tf);
+            frag_title.setTypeface(tf_bold);
             textview9 = (TextView)rootview.findViewById(R.id.textview9);
             textview9.setTypeface(tf);
             partner_info_nextbtn = (Button)rootview.findViewById(R.id.partner_info_nextbtn);

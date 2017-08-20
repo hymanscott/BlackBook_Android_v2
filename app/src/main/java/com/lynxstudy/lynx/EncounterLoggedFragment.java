@@ -31,10 +31,12 @@ public class EncounterLoggedFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         newPartnerLoggedNext = (Button)view.findViewById(R.id.newPartnerLoggedNext);
-        newPartnerLoggedNext.setTypeface(tf);
+        newPartnerLoggedNext.setTypeface(tf_bold);
         thankyou = (TextView)view.findViewById(R.id.thankyou);
-        thankyou.setTypeface(tf);
+        thankyou.setTypeface(tf_bold);
         encloggedText = (TextView)view.findViewById(R.id.encloggedText);
         encloggedText.setTypeface(tf);
 

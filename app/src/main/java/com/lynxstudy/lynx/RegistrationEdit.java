@@ -56,9 +56,10 @@ public class RegistrationEdit extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         frag_title = (TextView) view.findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf);
+        frag_title.setTypeface(tf_bold);
         confirm_dob = (EditText) view.findViewById(R.id.confirm_dob);
         confirm_dob.setTypeface(tf);
         tv = (TextView) view.findViewById(R.id.confirm_race);
@@ -194,39 +195,8 @@ public class RegistrationEdit extends Fragment {
             @Override
             public void onClick(View v) {
                 initiatePopUp(items,tv);
-                // TODO Auto-generated method stub
-               /* if(!expanded){
-                    //display all selected values
-                    String selected = "";
-                    int flag = 0;
-                    for (int i = 0; i < items.size(); i++) {
-                        if (checkSelected[i] == true) {
-                            selected += items.get(i);
-                            selected += ", ";
-                            flag = 1;
-                        }
-                    }
-                    if(flag==1)
-                        tv.setText(selected);
-                    expanded =true;
-                }
-                else{
-                    //display shortened representation of selected values
-                    tv.setText(DropDownListAdapter.getSelected());
-                    expanded = false;
-                }*/
             }
         });
-
-        /*//onClickListener to initiate the dropDown list
-
-        createButton.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                initiatePopUp(items,tv);
-            }
-        });*/
     }
 
     /*
@@ -236,7 +206,6 @@ public class RegistrationEdit extends Fragment {
         LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         //get the pop-up window i.e.  drop-down layout
-        //LinearLayout layout = (LinearLayout)inflater.inflate(R.layout.spinner_popup, (ViewGroup)findViewById(R.id.PopUpView));
         LinearLayout layout = (LinearLayout) view1.findViewById(R.id.PopUpView);
 
         //get the view to which drop-down layout is to be anchored
@@ -254,7 +223,6 @@ public class RegistrationEdit extends Fragment {
         pw.setTouchInterceptor(new View.OnTouchListener() {
 
             public boolean onTouch(View v, MotionEvent event) {
-                // TODO Auto-generated method stub
                 if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
                     pw.dismiss();
                     return true;
@@ -263,13 +231,7 @@ public class RegistrationEdit extends Fragment {
             }
         });
 
-        //provide the source layout for drop-down
         pw.setContentView(layout);
-
-       /* //anchor the drop-down to bottom-left corner of 'layout1'
-        if(layout1.getParent()!=null)
-            ((ViewGroup)layout1.getParent()).removeView(layout1); // <- fix*/
-        //pw.showAsDropDown(layout1);
         pw.showAtLocation(layout1, Gravity.CENTER, 0, 0);
 
         //populate the drop-down list

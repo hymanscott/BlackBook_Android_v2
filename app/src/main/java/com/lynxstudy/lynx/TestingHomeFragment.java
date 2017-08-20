@@ -92,7 +92,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
 
 
     }
-    Typeface tf_bold_italic,tf;
+    Typeface tf_bold_italic,tf,tf_bold;
     LinearLayout mainContentLayout,summaryLayout,newTestLayout;
     ImageView hivIcon,gonorrheaIcon,syphilisIcon,chlamydiaIcon;
     TextView teststatus,gonorrheaTitle,syphilisTitle,chlamydiaTitle;
@@ -178,13 +178,14 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         newTestLayout = (LinearLayout)view.findViewById(R.id.newTestLayout);
 
         //Type face
-       tf = Typeface.createFromAsset(getResources().getAssets(),
+        tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-       tf_bold_italic = Typeface.createFromAsset(getResources().getAssets(),
+        tf_bold_italic = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-BoldItalic.ttf");
-
+        tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         Button addNewHIVtest = (Button) view.findViewById(R.id.testing_addNewHIVtest);
-        addNewHIVtest.setTypeface(tf);
+        addNewHIVtest.setTypeface(tf_bold);
         addNewHIVtest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,7 +198,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         });
 
         Button addNewSTItest = (Button) view.findViewById(R.id.testing_addNewSTItest);
-        addNewSTItest.setTypeface(tf);
+        addNewSTItest.setTypeface(tf_bold);
         addNewSTItest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -446,7 +447,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         db= new DatabaseHelper(getActivity());
         title = testname;
         TextView newTest_title = (TextView) view.findViewById(R.id.addNewTestTitle);
-        newTest_title.setTypeface(tf);
+        newTest_title.setTypeface(tf_bold);
         newTest_title.setText("Add New " + title);
         TextView titleText = (TextView) view.findViewById(R.id.titleText);
         titleText.setText("When was your most recent HIV test?");
@@ -567,7 +568,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         final int testing_id = testNameMaster.getTesting_id();
 
         add_new_test_ok = (Button) view.findViewById(R.id.addNewTestOk);
-        add_new_test_ok.setTypeface(tf);
+        add_new_test_ok.setTypeface(tf_bold);
         add_new_test_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -706,7 +707,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         chlamydiaTitle.setTypeface(tf_bold_italic);
 
         TextView testingHistoryTitle = (TextView) view.findViewById(R.id.testingHistoryTitle);
-        testingHistoryTitle.setTypeface(tf);
+        testingHistoryTitle.setTypeface(tf_bold);
         TextView testingHistorydate = (TextView) view.findViewById(R.id.testingHistorydate);
         testingHistorydate.setTypeface(tf);
         TextView hivTestStatus = (TextView) view.findViewById(R.id.hivTestStatus);

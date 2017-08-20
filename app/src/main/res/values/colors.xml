@@ -31,11 +31,11 @@
     <color name="edittext">#F9FAFB</color>
     <color name="btn_blue_start">#80693CDD</color>
     <color name="btn_blue_end">#80683BDD</color>
-    <color name="btn_blue">#4D4AED</color>
+    <color name="btn_blue">#FF4D4AED</color>
     <!-- New Theme Colors -->
     <color name="white">#FFFFFF </color>
     <color name="edittext_hint_color">#80FFFFFF</color>
-    <color name="update_score_bg">#683BDD</color>
+    <color name="update_score_bg">#FF683BDD</color>
     <!-- Encounter Screen Colors -->
     <color name="encounter_bg">#444444</color>
     <color name="encounter_btn_bg">#2E86FF</color>

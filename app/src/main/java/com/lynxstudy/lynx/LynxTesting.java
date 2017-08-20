@@ -47,7 +47,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
     LinearLayout btn_sexpro,btn_diary,btn_prep,btn_chat;
     ImageView viewProfile;
     TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv;
-    Typeface tf;
+    Typeface tf,tf_bold;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +62,8 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         // Click Listners //
         btn_sexpro = (LinearLayout)findViewById(R.id.bot_nav_sexpro);
         btn_diary = (LinearLayout) findViewById(R.id.bot_nav_diary);
@@ -93,40 +95,118 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TextView tab1 = new TextView(LynxTesting.this);
+        final TextView tab1 = new TextView(LynxTesting.this);
         tab1.setText("HISTORY");
         tab1.setTextColor(getResources().getColor(R.color.text_color));
-        tab1.setTypeface(tf);
+        tab1.setTypeface(tf_bold);
         tab1.setTextSize(16);
-        TextView tab2 = new TextView(LynxTesting.this);
+        final TextView tab2 = new TextView(LynxTesting.this);
         tab2.setText("TEST KIT");
         tab2.setTextColor(getResources().getColor(R.color.text_color));
         tab2.setTypeface(tf);
         tab2.setTextSize(16);
-        TextView tab3 = new TextView(LynxTesting.this);
+        final TextView tab3 = new TextView(LynxTesting.this);
         tab3.setText("LOCATIONS");
         tab3.setTextColor(getResources().getColor(R.color.text_color));
         tab3.setTypeface(tf);
         tab3.setTextSize(16);
-        TextView tab4 = new TextView(LynxTesting.this);
+        final TextView tab4 = new TextView(LynxTesting.this);
         tab4.setText("INSTRUCTIONS");
         tab4.setTextColor(getResources().getColor(R.color.text_color));
         tab4.setTypeface(tf);
         tab4.setTextSize(16);
-        TextView tab5 = new TextView(LynxTesting.this);
+        final TextView tab5 = new TextView(LynxTesting.this);
         tab5.setText("CARE");
         tab5.setTextColor(getResources().getColor(R.color.text_color));
         tab5.setTypeface(tf);
         tab5.setTextSize(16);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.getTabAt(0).setCustomView(tab1);
         tabLayout.getTabAt(1).setCustomView(tab2);
         tabLayout.getTabAt(2).setCustomView(tab3);
         tabLayout.getTabAt(3).setCustomView(tab4);
         tabLayout.getTabAt(4).setCustomView(tab5);
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int pos = tab.getPosition();
+                switch (pos){
+                    case 0:
+                        tab1.setTypeface(tf_bold);
+                        tab2.setTypeface(tf);
+                        tab3.setTypeface(tf);
+                        tab4.setTypeface(tf);
+                        tab5.setTypeface(tf);
+                        tab.setCustomView(tab1);
+                        tabLayout.getTabAt(1).setCustomView(tab2);
+                        tabLayout.getTabAt(2).setCustomView(tab3);
+                        tabLayout.getTabAt(3).setCustomView(tab4);
+                        tabLayout.getTabAt(4).setCustomView(tab5);
+                        break;
+                    case 1:
+                        tab1.setTypeface(tf);
+                        tab2.setTypeface(tf_bold);
+                        tab3.setTypeface(tf);
+                        tab4.setTypeface(tf);
+                        tab5.setTypeface(tf);
+                        tabLayout.getTabAt(0).setCustomView(tab1);
+                        tab.setCustomView(tab2);
+                        tabLayout.getTabAt(2).setCustomView(tab3);
+                        tabLayout.getTabAt(3).setCustomView(tab4);
+                        tabLayout.getTabAt(4).setCustomView(tab5);
+                        break;
+                    case 2:
+                        tab1.setTypeface(tf);
+                        tab2.setTypeface(tf);
+                        tab3.setTypeface(tf_bold);
+                        tab4.setTypeface(tf);
+                        tab5.setTypeface(tf);
+                        tabLayout.getTabAt(0).setCustomView(tab1);
+                        tabLayout.getTabAt(1).setCustomView(tab2);
+                        tab.setCustomView(tab3);
+                        tabLayout.getTabAt(3).setCustomView(tab4);
+                        tabLayout.getTabAt(4).setCustomView(tab5);
+                        break;
+                    case 3:
+                        tab1.setTypeface(tf);
+                        tab2.setTypeface(tf);
+                        tab3.setTypeface(tf);
+                        tab4.setTypeface(tf_bold);
+                        tab5.setTypeface(tf);
+                        tabLayout.getTabAt(0).setCustomView(tab1);
+                        tabLayout.getTabAt(1).setCustomView(tab2);
+                        tabLayout.getTabAt(2).setCustomView(tab3);
+                        tab.setCustomView(tab4);
+                        tabLayout.getTabAt(4).setCustomView(tab5);
+                        break;
+                    case 4:
+                        tab1.setTypeface(tf);
+                        tab2.setTypeface(tf);
+                        tab3.setTypeface(tf);
+                        tab4.setTypeface(tf);
+                        tab5.setTypeface(tf_bold);
+                        tabLayout.getTabAt(0).setCustomView(tab1);
+                        tabLayout.getTabAt(1).setCustomView(tab2);
+                        tabLayout.getTabAt(2).setCustomView(tab3);
+                        tabLayout.getTabAt(3).setCustomView(tab4);
+                        tab.setCustomView(tab5);
+                        break;
 
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
 

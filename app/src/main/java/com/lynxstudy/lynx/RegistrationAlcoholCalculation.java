@@ -52,8 +52,10 @@ public class RegistrationAlcoholCalculation extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         reg_alc_baseline_title = (TextView)view.findViewById(R.id.reg_alc_baseline_title);
-        reg_alc_baseline_title.setTypeface(tf);
+        reg_alc_baseline_title.setTypeface(tf_bold);
         no_of_days_text = (TextView)view.findViewById(R.id.no_of_days_text);
         no_of_days_text.setTypeface(tf);
         drinksTitle = (TextView)view.findViewById(R.id.drinksTitle);
@@ -64,8 +66,6 @@ public class RegistrationAlcoholCalculation extends Fragment {
         no_of_drinks.setTypeface(tf);
         alcohol_cal_nextbtn = (Button) view.findViewById(R.id.alcohol_cal_nextbtn);
         alcohol_cal_nextbtn.setTypeface(tf);
-        /*alcohol_cal_revisebtn = (Button) view.findViewById(R.id.alcohol_cal_revisebtn);
-        alcohol_cal_revisebtn.setTypeface(tf);*/
         alcCal_5to7days = (RadioButton) view.findViewById(R.id.alcCal_5to7days);
         alcCal_5to7days.setTypeface(tf);
         alcCal_1to4days = (RadioButton) view.findViewById(R.id.alcCal_1to4days);

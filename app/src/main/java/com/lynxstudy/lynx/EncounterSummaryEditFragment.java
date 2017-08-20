@@ -45,14 +45,16 @@ public class EncounterSummaryEditFragment extends Fragment {
         //Type face
         final Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         newEncounter = (TextView)rootview.findViewById(R.id.newEncounter);
-        newEncounter.setTypeface(tf);
+        newEncounter.setTypeface(tf_bold);
         hivStatus = (TextView)rootview.findViewById(R.id.hivStatus);
         hivStatus.setTypeface(tf);
         rateSex = (TextView)rootview.findViewById(R.id.rateSex);
         rateSex.setTypeface(tf);
         encounter_summary_nickName = (TextView)rootview.findViewById(R.id.encounter_summary_nickName);
-        encounter_summary_nickName.setTypeface(tf);
+        encounter_summary_nickName.setTypeface(tf_bold);
         hivStatusTitle = (TextView)rootview.findViewById(R.id.hivStatusTitle);
         hivStatusTitle.setTypeface(tf);
         encounterNotesTitle = (TextView)rootview.findViewById(R.id.encounterNotesTitle);
@@ -64,7 +66,7 @@ public class EncounterSummaryEditFragment extends Fragment {
         encNotes = (EditText) rootview.findViewById(R.id.encNotes);
         encNotes.setTypeface(tf);
         next = (Button) rootview.findViewById(R.id.next);
-        next.setTypeface(tf);
+        next.setTypeface(tf_bold);
         condomUsedContent = (LinearLayout)rootview.findViewById(R.id.condomUsedContent);
 
         encounter_summary_nickName.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));

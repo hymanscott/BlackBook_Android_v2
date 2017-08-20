@@ -32,10 +32,12 @@ public class EncounterSexReportFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         yes = (Button)rootview.findViewById(R.id.yes);
-        yes.setTypeface(tf);
+        yes.setTypeface(tf_bold);
         no = (Button)rootview.findViewById(R.id.no);
-        no.setTypeface(tf);
+        no.setTypeface(tf_bold);
         encounter_report_title = (TextView)rootview.findViewById(R.id.encounter_report_title);
         encounter_report_title.setTypeface(tf);
         return  rootview;

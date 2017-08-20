@@ -86,129 +86,6 @@
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
-            <!--
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
-                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                     android:minWidth="48dp"
-                     android:minHeight="48dp"
-                    android:src="@drawable/emailicon" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/edittext_bg">
-                    <EditText
-                        android:id="@+id/loginEmail"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rectangle_edittext"
-                        android:backgroundTint="@color/edittext_bg"
-                        android:ems="10"
-                        android:hint="Email Address"
-                        android:layout_gravity="center_vertical"
-                        android:inputType="textEmailAddress"
-                        android:textColor="@color/white"
-                        android:paddingLeft="5dp"
-                        android:textColorHint="@color/white"
-                        android:textSize="16sp"
-                        android:textCursorDrawable="@drawable/white_cursor"/>
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="20dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:background="@drawable/edittext_layout_bg"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/passicon"
-                    android:id="@+id/passicon"
-                    android:layout_gravity="center"/>
-
-                <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/rectangle_edittext"
-                    android:backgroundTint="@color/edittext_bg"
-                    android:ems="10"
-                    android:hint="Password"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    android:textSize="16sp" />
-            </LinearLayout>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="@string/regloginIntroLable"
-                android:textColor="@color/text_color"
-                android:id="@+id/regloginIntroLable"
-                android:layout_margin="10dp"
-                android:gravity="center_vertical|center_horizontal" />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="register"
-                android:onClick="showRegistration"
-                android:background="@drawable/lynx_button"
-                android:textColor="@color/white"
-                android:layout_margin="10dp"
-                android:textStyle="bold"
-                android:id="@+id/registration"
-                android:layout_gravity="center_horizontal"/>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="New Phone? If you have already registered with LYNX on a pervious phone, you can login here."
-                android:id="@+id/textView2"
-                android:textColor="@color/text_color"
-                android:gravity="center_vertical|center_horizontal"
-                android:layout_centerVertical="true"
-                android:layout_margin="10dp" />
-
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:ems="10"
-                android:id="@+id/loginEmail"
-                android:layout_margin="10dp"
-                android:textSize="18sp"
-                android:textColor="@color/text_color"
-                android:hint="Email Address" />
-
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:ems="10"
-                android:id="@+id/loginPassword"
-                android:hint="Password"
-                android:textSize="18sp"
-                android:textColor="@color/text_color"
-                android:layout_margin="10dp" /> -->
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -227,7 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Forgot Password"
+                android:text="Forgot Password?"
                 android:textColor="@color/white"
                 android:layout_marginTop="24dp"
                 android:id="@+id/forgetPassword"

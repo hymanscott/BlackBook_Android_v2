@@ -11,20 +11,22 @@
         android:layout_marginBottom="32dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/encounterlarge" />
+
     <TextView
+        android:id="@+id/thankyou"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="THANK YOU!"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Thank You!"
         android:textColor="@color/white"
-        android:id="@+id/thankyou"
-        android:gravity="center_vertical|center_horizontal" />
+        android:textSize="20sp" />
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/encloggedText"
         android:text="Your new partner was logged."
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textColor="@color/white"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -32,17 +34,17 @@
         android:gravity="center_vertical|center_horizontal" />
 
     <Button
+        android:id="@+id/newPartnerLoggedNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:id="@+id/newPartnerLoggedNext"
-        android:onClick="newPartnerLoggedNext"
+        android:layout_marginTop="24dp"
         android:background="@color/encounter_btn_grey"
+        android:onClick="newPartnerLoggedNext"
+        android:text="Add encounter with this partner"
         android:textColor="@color/encounter_btn_bg"
-        android:textStyle="bold"
-        android:textSize="@dimen/button_textsize"
-        android:text="Add encounter with this partner"/>
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

@@ -55,7 +55,7 @@ public class HomeEncounterFragment extends Fragment {
     LinearLayout encounterListContent;
     RelativeLayout encounterSummaryContent;
     View view;
-    Typeface tf;
+    Typeface tf,tf_bold;
     int back_press_count;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,11 +73,13 @@ public class HomeEncounterFragment extends Fragment {
         //Type face
        tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         Log.v("priPartId", String.valueOf(LynxManager.getActiveUserPrimaryPartner().getPrimarypartner_id()));
         encounterListContent = (LinearLayout) view.findViewById(R.id.encounterListContent);
         encounterSummaryContent = (RelativeLayout) view.findViewById(R.id.encounterSummaryContent);
         Button addNewEncounter = (Button) view.findViewById(R.id.addNewEncounter);
-        addNewEncounter.setTypeface(tf);
+        addNewEncounter.setTypeface(tf_bold);
         addNewEncounter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -290,7 +292,7 @@ public class HomeEncounterFragment extends Fragment {
         TextView nickname = (TextView) view.findViewById(R.id.encList_summary_nickName);
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         nickname.setAllCaps(true);
-        nickname.setTypeface(tf);
+        nickname.setTypeface(tf_bold);
         TextView partnerNotes = (TextView) view.findViewById(R.id.encListSumm_partnerNotes);
         partnerNotes.setText(LynxManager.decryptString(LynxManager.getActivePartnerContact().getPartner_notes()));
         partnerNotes.setTypeface(tf);

@@ -73,7 +73,7 @@ public class TestingInstructionAnswer extends AppCompatActivity {
             } else {
                 final String filename = instruction.getPdf_link();
                 instruction_ans_wv.loadDataWithBaseURL("",filename , "text/html", "utf-8", "");
-                instruction_ans_wv.setBackground(getResources().getDrawable(R.drawable.lynx_button));
+                instruction_ans_wv.setBackground(getResources().getDrawable(R.drawable.buttonbluecornered));
                 instruction_ans_wv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

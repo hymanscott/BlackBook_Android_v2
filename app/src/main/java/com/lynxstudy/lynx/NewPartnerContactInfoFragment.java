@@ -37,10 +37,12 @@ public class NewPartnerContactInfoFragment extends Fragment {
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         contactInfoTitle = (TextView)rootview.findViewById(R.id.contactInfoTitle);
         contactInfoTitle.setTypeface(tf);
         add_partner_title = (TextView)rootview.findViewById(R.id.add_partner_title);
-        add_partner_title.setTypeface(tf);
+        add_partner_title.setTypeface(tf_bold);
         partnerTypeTitle = (TextView)rootview.findViewById(R.id.partnerTypeTitle);
         partnerTypeTitle.setTypeface(tf);
         otherPartnersTitle = (TextView)rootview.findViewById(R.id.otherPartnersTitle);
@@ -48,7 +50,7 @@ public class NewPartnerContactInfoFragment extends Fragment {
         monogamousTitle = (TextView)rootview.findViewById(R.id.monogamousTitle);
         monogamousTitle.setTypeface(tf);
         next = (Button)rootview.findViewById(R.id.next);
-        next.setTypeface(tf);
+        next.setTypeface(tf_bold);
         newPartnerPrimary = (RadioButton)rootview.findViewById(R.id.newPartnerPrimary);
         newPartnerPrimary.setTypeface(tf);
         newPartnerRegular = (RadioButton)rootview.findViewById(R.id.newPartnerRegular);
@@ -73,7 +75,7 @@ public class NewPartnerContactInfoFragment extends Fragment {
         TextView new_partner_nickname = (TextView) rootview.findViewById(R.id.new_partner_nickname);
         new_partner_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         new_partner_nickname.setAllCaps(true);
-        new_partner_nickname.setTypeface(tf);
+        new_partner_nickname.setTypeface(tf_bold);
         EditText newPartner_emailET = (EditText) rootview.findViewById(R.id.newPartnerEmail);
         newPartner_emailET.setTypeface(tf);
         EditText newPartner_phoneET = (EditText) rootview.findViewById(R.id.newPartnerPhone);

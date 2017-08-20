@@ -48,7 +48,7 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
     LinearLayout btn_sexpro,btn_testing,btn_diary,btn_chat;
     ImageView viewProfile;
     TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv;
-    Typeface tf;
+    Typeface tf,tf_bold;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +63,8 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-
+        tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         // Click Listners //
         viewProfile = (ImageView)findViewById(R.id.viewProfile);
         btn_sexpro = (LinearLayout)findViewById(R.id.bot_nav_sexpro);
@@ -97,28 +98,68 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         // Custom tab views //
-        TextView tab1 = new TextView(LynxPrep.this);
+        final TextView tab1 = new TextView(LynxPrep.this);
         tab1.setText("PREP FACTS");
         tab1.setTextColor(getResources().getColor(R.color.text_color));
-        tab1.setTypeface(tf);
+        tab1.setTypeface(tf_bold);
         tab1.setTextSize(16);
-        TextView tab2 = new TextView(LynxPrep.this);
+        final TextView tab2 = new TextView(LynxPrep.this);
         tab2.setText("PREP MAP");
         tab2.setTextColor(getResources().getColor(R.color.text_color));
         tab2.setTypeface(tf);
         tab2.setTextSize(16);
-        TextView tab3 = new TextView(LynxPrep.this);
+        final TextView tab3 = new TextView(LynxPrep.this);
         tab3.setText("PREP VIDEOS");
         tab3.setTextColor(getResources().getColor(R.color.text_color));
         tab3.setTypeface(tf);
         tab3.setTextSize(16);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.getTabAt(0).setCustomView(tab1);
         tabLayout.getTabAt(1).setCustomView(tab2);
         tabLayout.getTabAt(2).setCustomView(tab3);
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int pos = tab.getPosition();
+                switch (pos){
+                    case 0:
+                        tab1.setTypeface(tf_bold);
+                        tab2.setTypeface(tf);
+                        tab3.setTypeface(tf);
+                        tab.setCustomView(tab1);
+                        tabLayout.getTabAt(1).setCustomView(tab2);
+                        tabLayout.getTabAt(2).setCustomView(tab3);
+                        break;
+                    case 1:
+                        tab1.setTypeface(tf);
+                        tab2.setTypeface(tf_bold);
+                        tab3.setTypeface(tf);
+                        tabLayout.getTabAt(0).setCustomView(tab1);
+                        tab.setCustomView(tab2);
+                        tabLayout.getTabAt(2).setCustomView(tab3);
+                        break;
+                    case 2:
+                        tab1.setTypeface(tf);
+                        tab2.setTypeface(tf);
+                        tab3.setTypeface(tf_bold);
+                        tabLayout.getTabAt(0).setCustomView(tab1);
+                        tabLayout.getTabAt(1).setCustomView(tab2);
+                        tab.setCustomView(tab3);
+                }
+            }
 
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
 

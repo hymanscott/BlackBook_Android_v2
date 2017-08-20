@@ -80,8 +80,8 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     private Point p;
     LinearLayout bot_nav;
     TextView fragTitle,profile_name,profile_lastname,updatePhone,updateDOB,updateRace,profile_email,updatePass,updateSecQn,updateSecAnswer,updatePasscode,prepTitle,prepAnswer;
-    TextView diaryTitle,dairyReminderDay,dairyReminderTime,dairyReminderText,testingTitle,testingReminderDay,testingReminderTime,testingReminderText,edit_details,logout;
-    Typeface tf;
+    TextView diaryTitle,dairyReminderDay,dairyReminderTime,dairyReminderText,testingTitle,testingReminderDay,testingReminderTime,testingReminderText,edit_details,logout,prepTitle1,diaryTitle1,testingTitle1;
+    Typeface tf,tf_bold;
     LinearLayout mainContentLayout,editLayout,btn_testing,btn_diary,btn_prep,btn_chat;
     boolean isEditShown = false;
 
@@ -116,9 +116,11 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
 
         fragTitle = (TextView)findViewById(R.id.fragTitle);
-        fragTitle.setTypeface(tf);
+        fragTitle.setTypeface(tf_bold);
         profile_name = (TextView)findViewById(R.id.profile_name);
         profile_name.setTypeface(tf);
         profile_lastname = (TextView)findViewById(R.id.profile_lastname);
@@ -140,11 +142,11 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         updatePasscode = (TextView)findViewById(R.id.updatePasscode);
         updatePasscode.setTypeface(tf);
         prepTitle = (TextView)findViewById(R.id.prepTitle);
-        prepTitle.setTypeface(tf);
+        prepTitle.setTypeface(tf_bold);
         prepAnswer = (TextView)findViewById(R.id.prepAnswer);
         prepAnswer.setTypeface(tf);
         diaryTitle = (TextView)findViewById(R.id.diaryTitle);
-        diaryTitle.setTypeface(tf);
+        diaryTitle.setTypeface(tf_bold);
         dairyReminderDay = (TextView)findViewById(R.id.dairyReminderDay);
         dairyReminderDay.setTypeface(tf);
         dairyReminderTime = (TextView)findViewById(R.id.dairyReminderTime);
@@ -152,7 +154,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         dairyReminderText = (TextView)findViewById(R.id.dairyReminderText);
         dairyReminderText.setTypeface(tf);
         testingTitle = (TextView)findViewById(R.id.testingTitle);
-        testingTitle.setTypeface(tf);
+        testingTitle.setTypeface(tf_bold);
         testingReminderDay = (TextView)findViewById(R.id.testingReminderDay);
         testingReminderDay.setTypeface(tf);
         testingReminderTime = (TextView)findViewById(R.id.testingReminderTime);
@@ -235,7 +237,13 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         mainContentLayout.setVisibility(View.GONE);
         isEditShown = true;
         fragTitle1 = (TextView)findViewById(R.id.fragTitle1);
-        fragTitle1.setTypeface(tf);
+        fragTitle1.setTypeface(tf_bold);
+        prepTitle1 = (TextView)findViewById(R.id.prepTitle1);
+        prepTitle1.setTypeface(tf_bold);
+        diaryTitle1 = (TextView)findViewById(R.id.diaryTitle1);
+        diaryTitle1.setTypeface(tf_bold);
+        testingTitle1 = (TextView)findViewById(R.id.testingTitle1);
+        testingTitle1.setTypeface(tf_bold);
         tv = (TextView) findViewById(R.id.SelectBox);
         tv.setTypeface(tf);
         firstname = (EditText) findViewById(R.id.regFirstName);
@@ -277,7 +285,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         is_prep = (TextView)findViewById(R.id.is_prep);
         is_prep.setTypeface(tf);
         save = (Button)findViewById(R.id.save);
-        save.setTypeface(tf);
+        save.setTypeface(tf_bold);
         testing_notificationText = (EditText)findViewById(R.id.testing_notificationText);
         testing_notificationText.setTypeface(tf);
         testing_day_of_week = (RelativeLayout)findViewById(R.id.testing_day_of_week);

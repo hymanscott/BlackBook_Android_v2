@@ -42,9 +42,10 @@ public class EncounterSummaryFragment extends Fragment {
         //Type face
         final Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         newEncounter = (TextView)rootview.findViewById(R.id.newEncounter);
-        newEncounter.setTypeface(tf);
+        newEncounter.setTypeface(tf_bold);
         hivStatus = (TextView)rootview.findViewById(R.id.hivStatus);
         hivStatus.setTypeface(tf);
         sexRating = (TextView)rootview.findViewById(R.id.sexRating);
@@ -52,7 +53,7 @@ public class EncounterSummaryFragment extends Fragment {
         typeSex = (TextView)rootview.findViewById(R.id.typeSex);
         typeSex.setTypeface(tf);
         next = (Button)rootview.findViewById(R.id.next);
-        next.setTypeface(tf);
+        next.setTypeface(tf_bold);
         partnerNotes = (TextView) rootview.findViewById(R.id.partnerNotes);
         partnerNotes.setTypeface(tf);
         encSumm_partnerNotes = (TextView) rootview.findViewById(R.id.encSumm_partnerNotes);

@@ -298,13 +298,13 @@ public abstract class AbstractPasscodeKeyboardActivity extends AppCompatActivity
             dialog.show();
             Button neg_btn = dialog.getButton(DialogInterface.BUTTON_NEUTRAL);
             if (neg_btn != null){
-                neg_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.lynx_button));
+                neg_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonbluecornered));
                 neg_btn.setTextColor(getResources().getColor(R.color.white));
             }
 
             Button pos_btn = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
             if(pos_btn != null) {
-                pos_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.lynx_button));
+                pos_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonbluecornered));
                 pos_btn.setTextColor(getResources().getColor(R.color.white));
             }
         }

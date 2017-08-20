@@ -50,18 +50,20 @@ public class NewPartnerRatingsFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         next = (Button)rootview.findViewById(R.id.next);
-        next.setTypeface(tf);
+        next.setTypeface(tf_bold);
         rateTitle = (TextView)rootview.findViewById(R.id.rateTitle);
         rateTitle.setTypeface(tf);
         add_partner_title = (TextView)rootview.findViewById(R.id.add_partner_title);
-        add_partner_title.setTypeface(tf);
+        add_partner_title.setTypeface(tf_bold);
         newPartner_rate1 = (TextView)rootview.findViewById(R.id.newPartner_rate1);
         newPartner_rate1.setTypeface(tf);
         TextView newPartner_rating_nickname = (TextView) rootview.findViewById(R.id.newPartner_rating_nickname);
         newPartner_rating_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         newPartner_rating_nickname.setAllCaps(true);
-        newPartner_rating_nickname.setTypeface(tf);
+        newPartner_rating_nickname.setTypeface(tf_bold);
         db = new DatabaseHelper(getActivity().getBaseContext());
         /*List<UserRatingFields> field = db.getAllUserRatingFields(LynxManager.getActiveUser().getUser_id());
         int field_size = field.size();

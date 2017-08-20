@@ -39,21 +39,22 @@ public class EncounterSexTypeFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         // set Nick Name
 
         TextView nickname = (TextView) rootview.findViewById(R.id.enc_sexType_nickName);
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         nickname.setAllCaps(true);
-        nickname.setTypeface(tf);
+        nickname.setTypeface(tf_bold);
         newEncounter = (TextView) rootview.findViewById(R.id.newEncounter);
-        newEncounter.setTypeface(tf);
+        newEncounter.setTypeface(tf_bold);
         rateSex = (TextView) rootview.findViewById(R.id.rateSex);
         rateSex.setTypeface(tf);
         typeSex = (TextView) rootview.findViewById(R.id.typeSex);
         typeSex.setTypeface(tf);
         next = (Button)rootview.findViewById(R.id.next);
-        next.setTypeface(tf);
+        next.setTypeface(tf_bold);
 
         sexTypeLayout = (LinearLayout)rootview.findViewById(R.id.sexTypeLayout);
         String gender = LynxManager.decryptString(LynxManager.getActivePartner().getGender());

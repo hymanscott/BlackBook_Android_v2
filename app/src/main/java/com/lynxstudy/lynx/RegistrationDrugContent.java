@@ -56,8 +56,10 @@ public class RegistrationDrugContent extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         baselineTitle= (TextView) view.findViewById(R.id.frag_title);
-        baselineTitle.setTypeface(tf);
+        baselineTitle.setTypeface(tf_bold);
         drugContentTitle= (TextView) view.findViewById(R.id.drugContentTitle);
         drugContentTitle.setTypeface(tf);
         drugContent_nextbtn= (Button) view.findViewById(R.id.drugContent_nextbtn);

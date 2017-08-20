@@ -49,13 +49,15 @@ public class EncounterEnctimeFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         textView14 = (TextView) rootview.findViewById(R.id.textView14);
-        textView14.setTypeface(tf);
+        textView14.setTypeface(tf_bold);
         textView13 = (TextView) rootview.findViewById(R.id.textView13);
         textView13.setTypeface(tf);
         textView13.setText("Enter date & time of new encounter");
         next = (Button) rootview.findViewById(R.id.next);
-        next.setTypeface(tf);
+        next.setTypeface(tf_bold);
         //Date Picker
         final EditText encdate = (EditText) rootview.findViewById(R.id.encDate);
         final EditText enctime = (EditText) rootview.findViewById(R.id.encTime);

@@ -88,7 +88,9 @@ public class BaselineActivity extends AppCompatActivity {
             //Type face
             Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                     "fonts/Roboto-Regular.ttf");
-            textView8.setTypeface(tf);
+            Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                    "fonts/Roboto-Bold.ttf");
+            textView8.setTypeface(tf_bold);
             textView9.setTypeface(tf);
             textView10.setTypeface(tf);
             textView11.setTypeface(tf);
