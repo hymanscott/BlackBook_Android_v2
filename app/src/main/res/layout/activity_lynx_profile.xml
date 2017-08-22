@@ -299,7 +299,7 @@
                         android:src="@drawable/passcodeiconblue"
                         android:layout_gravity="center"/>
                     <TextView
-                        android:text=""
+                        android:text="****"
                         android:id="@+id/updatePasscode"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"

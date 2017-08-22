@@ -114,7 +114,7 @@ public class EditPartner extends Fragment {
         if(LynxManager.decryptString(partner.getHiv_status()).equals("HIV Positive & Undetectable")){
             undetectable_layout.setVisibility(View.VISIBLE);
             LynxManager.undetectableLayoutHidden = false;
-            Log.v("undetectable Value", LynxManager.decryptString(partner.getUndetectable_for_sixmonth()));
+            //Log.v("undetectable Value", LynxManager.decryptString(partner.getUndetectable_for_sixmonth()));
             setSelectedRadio(rootview, undetect_sixMonth_grp, LynxManager.decryptString(partner.getUndetectable_for_sixmonth()));
         }
 

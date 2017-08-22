@@ -19,6 +19,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -705,9 +706,20 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         profile_name.setText(LynxManager.decryptString(LynxManager.getActiveUser().getFirstname()));
         profile_lastname.setText(LynxManager.decryptString(LynxManager.getActiveUser().getLastname()));
         profile_email.setText(LynxManager.decryptString(LynxManager.getActiveUser().getEmail()));
-        updatePass.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
+        //updatePass.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
+        String pass = LynxManager.decryptString(LynxManager.getActiveUser().getPassword());
+        String asterisk = "";
+        if(pass!=null){
+            for(int i=1;i<=pass.length();i++){
+                asterisk+="*";
+            }
+        }else{
+            asterisk = "******";
+        }
+        updatePass.setText(asterisk);
         updatePhone.setText(LynxManager.decryptString(LynxManager.getActiveUser().getMobile()));
-        updatePasscode.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPasscode()));
+        //updatePasscode.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPasscode()));
+        updatePasscode.setText("****");
         updateSecAnswer.setText(LynxManager.decryptString(LynxManager.getActiveUser().getSecurityanswer()));
         String dob_user = LynxManager.decryptString(LynxManager.getActiveUser().getDob());
         updateDOB.setText(LynxManager.getFormatedDate("dd-MMM-yyyy",dob_user,"MM/dd/yyyy"));
@@ -847,7 +859,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         String races_list = tv.getText().toString();
         String isPrep = is_prep.getText().toString();
 
-        Log.v("updateraces_list",races_list);
+        //Log.v("updateraces_list",races_list);
         boolean invalid_dob = LynxManager.regDateValidation(dob_value);
         if (password.isEmpty()) {
             Toast.makeText(LynxProfile.this,"Enter Password",Toast.LENGTH_SHORT).show();
@@ -875,7 +887,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         } else if(races_list.equals("Race/Ethnicity")){
             Toast.makeText(this,"Please Select Race/Ethnicity",Toast.LENGTH_SHORT).show();
         }else {
-            Log.v("created Date", LynxManager.getActiveUser().getCreated_at());
+            //Log.v("created Date", LynxManager.getActiveUser().getCreated_at());
             dob_value = LynxManager.getFormatedDate("MM/dd/yyyy",dob_value,"dd-MMM-yyyy");
             Users uptUser = new Users(LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(first_name), LynxManager.encryptString(last_name),
                     LynxManager.encryptString(e_mail), LynxManager.encryptString(password), LynxManager.encryptString(phone_number),
@@ -940,7 +952,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         Notification.Builder builder = new Notification.Builder(this);
         Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            builder.setContentTitle("SexPro");
+            builder.setContentTitle("LYNX");
             builder.setContentText(content);
             builder.setAutoCancel(true);
             builder.setSmallIcon(R.mipmap.ic_launcher_round);
@@ -949,7 +961,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
 
         } else {
             // Lollipop specific setColor method goes here.
-            builder.setContentTitle("SexPro");
+            builder.setContentTitle("LYNX");
             builder.setContentText(content);
             builder.setAutoCancel(true);
             builder.setContentIntent(sure);
@@ -985,7 +997,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
                 }
                 min = Integer.parseInt(b[1]);
             }
-            Log.v("NotifTime", String.valueOf(hour)+"----------"+ min);
+            //Log.v("NotifTime", String.valueOf(hour)+"----------"+ min);
             day = LynxManager.decryptString(testingReminder.getNotification_day());
 
         }
@@ -1011,7 +1023,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
                 }
                 drug_use_min = Integer.parseInt(b[1]);
             }
-            Log.v("NotifDrugTime", String.valueOf(drug_use_hour)+"----------"+ drug_use_min);
+            //Log.v("NotifDrugTime", String.valueOf(drug_use_hour)+"----------"+ drug_use_min);
             drug_use_day = LynxManager.decryptString(druguseReminder.getNotification_day());
         }
         scheduleNotification(getSexandEncounterNotification(notes), drug_use_day, drug_use_hour, drug_use_min, 0);// 0 -> DrugUse Reminder Notification ID
@@ -1026,14 +1038,14 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            builder_Encounter.setContentTitle("SexPro");
+            builder_Encounter.setContentTitle("LYNX");
             builder_Encounter.setContentText(content);
             builder_Encounter.setAutoCancel(true);
             builder_Encounter.setSmallIcon(R.mipmap.ic_launcher_round);
             builder_Encounter.setSound(soundUri);
             builder_Encounter.setContentIntent(yes);
         }else{
-            builder_Encounter.setContentTitle("SexPro");
+            builder_Encounter.setContentTitle("LYNX");
             builder_Encounter.setContentText(content);
             builder_Encounter.setAutoCancel(true);
             builder_Encounter.setSmallIcon(R.drawable.ic_silhouette);
@@ -1085,12 +1097,47 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
             calendar.set(Calendar.HOUR_OF_DAY, hour);
             calendar.set(Calendar.MINUTE, min);
             calendar.set(Calendar.SECOND, 0);
-            Log.v("Time", String.valueOf(calendar.getTimeInMillis()));
+            //Log.v("Time", String.valueOf(calendar.getTimeInMillis()));
         }
 
         long futureInMillis = calendar.getTimeInMillis();
-        Log.v("futureInMillis", String.valueOf(futureInMillis));
+        //Log.v("futureInMillis", String.valueOf(futureInMillis));
         AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, futureInMillis, AlarmManager.INTERVAL_DAY * 7, pendingIntent);
+        //alarmManager.set(AlarmManager.RTC_WAKEUP, futureInMillis,pendingIntent);
+        /*setNotificationData();
+        setDataForSimpleNotification();
+        sendNotification();*/
+    }
+
+    /*test*/
+    private NotificationManager notificationManager;
+    private NotificationCompat.Builder notificationBuilder;
+    private String title,text;
+    private void setDataForSimpleNotification() {
+         notificationBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_silhouette)
+                .setContentTitle(title)
+                .setContentText(text);
+    }
+
+    private void setNotificationData() {
+        title = this.getString(R.string.app_name);
+        text = "Hello..This is a Notification Test";
+
+    }
+
+    private void sendNotification() {
+        Intent notificationIntent = new Intent(this, MainActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        notificationBuilder.setContentIntent(contentIntent);
+        Notification notification = notificationBuilder.build();
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+        notification.defaults |= Notification.DEFAULT_SOUND;
+        int notificationId = 199;
+        if (notificationId == Integer.MAX_VALUE - 1)
+            notificationId = 0;
+        notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(notificationId, notification);
     }
 }

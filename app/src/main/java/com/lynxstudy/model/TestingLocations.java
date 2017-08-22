@@ -12,6 +12,9 @@ public class TestingLocations {
     String longitude;
     String url;
     String type;
+    String prep_clinic;
+    String hiv_clinic;
+    String sti_clinic;
     String created_at;
     public TestingLocations() {
     }
@@ -26,7 +29,7 @@ public class TestingLocations {
         this.url = url;
     }
 
-    public TestingLocations(String name, String address,String phone_number, String latitude, String longitude, String url, String type) {
+    public TestingLocations(String name, String address,String phone_number, String latitude, String longitude, String url, String type,String prep_clinic,String hiv_clinic,String sti_clinic) {
         this.name = name;
         this.address = address;
         this.phone_number = phone_number;
@@ -34,6 +37,9 @@ public class TestingLocations {
         this.longitude = longitude;
         this.url = url;
         this.type = type;
+        this.prep_clinic = prep_clinic;
+        this.hiv_clinic = hiv_clinic;
+        this.sti_clinic = sti_clinic;
     }
 
     public String getPhone_number() {
@@ -98,5 +104,29 @@ public class TestingLocations {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getPrep_clinic() {
+        return prep_clinic;
+    }
+
+    public void setPrep_clinic(String prep_clinic) {
+        this.prep_clinic = prep_clinic;
+    }
+
+    public String getHiv_clinic() {
+        return hiv_clinic;
+    }
+
+    public void setHiv_clinic(String hiv_clinic) {
+        this.hiv_clinic = hiv_clinic;
+    }
+
+    public String getSti_clinic() {
+        return sti_clinic;
+    }
+
+    public void setSti_clinic(String sti_clinic) {
+        this.sti_clinic = sti_clinic;
     }
 }

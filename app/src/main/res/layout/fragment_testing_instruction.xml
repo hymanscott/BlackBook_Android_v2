@@ -39,6 +39,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:id="@+id/question"
+            android:visibility="gone"
             android:textColor="@color/colorAccent"
             android:layout_margin="20dp"/>
         <LinearLayout

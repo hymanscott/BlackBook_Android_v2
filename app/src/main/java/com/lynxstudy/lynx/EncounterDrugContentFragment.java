@@ -51,19 +51,32 @@ public class EncounterDrugContentFragment extends Fragment {
         drugContentTitle.setTypeface(tf);
 
         // Hiding Registration Nav button and showing Enc Nav Buttons
-        LinearLayout nav_buttons = (LinearLayout)rootview.findViewById(R.id.reg_nav_buttons);
-        nav_buttons.setVisibility(View.GONE);
+        /*LinearLayout nav_buttons = (LinearLayout)rootview.findViewById(R.id.reg_nav_buttons);
+        nav_buttons.setVisibility(View.GONE);*/
 
-        Button nextButton = (Button)rootview.findViewById(R.id.enc_drugContent_nextbtn);
+        /*Button nextButton = (Button)rootview.findViewById(R.id.enc_drugContent_nextbtn);
         nextButton.setVisibility(View.VISIBLE);
-        nextButton.setTypeface(tf);
+        nextButton.setTypeface(tf);*/
 
         newdb = new DatabaseHelper(rootview.getContext());
         LinearLayout drugs_container = (LinearLayout) rootview.findViewById(R.id.linearLayout_drugs);
         List<DrugMaster> drug = newdb.getAllDrugs();
         LynxManager.selectedDrugs.clear();
         for (int i = 0; i < drug.size(); i++) {
+
+
             DrugMaster array_id = drug.get(i);
+            final String drugName = array_id.getDrugName();
+
+            LayoutInflater chInflater = (getActivity()).getLayoutInflater();
+            View convertView = chInflater.inflate(R.layout.checkbox_row,container,false);
+            CheckBox ch = (CheckBox)convertView.findViewById(R.id.checkbox);
+            //         ch.setOnClickListener(null);
+            ch.setText(drugName);
+            ch.setSelected(false);
+            drugs_container.addView(ch);
+
+            /*DrugMaster array_id = drug.get(i);
             final String drugName = array_id.getDrugName();
 
             final CheckBox ch;
@@ -83,7 +96,7 @@ public class EncounterDrugContentFragment extends Fragment {
                         LynxManager.selectedDrugs.remove(String.valueOf(drugName));
                     }
                 }
-            });
+            });*/
 
 
         }

@@ -694,7 +694,7 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
                     Bitmap resized = ThumbnailUtils.extractThumbnail(thumbnail,400,400);
                     Drawable d =new BitmapDrawable(resized);
                     //Drawable d = new BitmapDrawable(thumbnail);
-                    Log.v("FileComplatePath",file.getAbsolutePath() + fileName);
+                    //Log.v("FileComplatePath",file.getAbsolutePath() + fileName);
                     attachment.setImageDrawable(d);
                     attachment.setVisibility(View.VISIBLE);
                     imagepath = file.getAbsolutePath() + fileName;
@@ -721,7 +721,7 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
                 chlamydiaImageName = imagepath;
                 break;
         }
-        Log.v("ImageName",imagepath);
+        //Log.v("ImageName",imagepath);
     }
     private Uri getTempUri() {
         return Uri.fromFile(getTempFile());
@@ -737,7 +737,7 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
         File mediaFile = new File(outputFile);
         if(!mediaFile.exists()){
 
-            Log.v("Temp Media", mediaFile.getAbsolutePath());
+            //Log.v("Temp Media", mediaFile.getAbsolutePath());
             mediaFile.mkdirs();
         }
 

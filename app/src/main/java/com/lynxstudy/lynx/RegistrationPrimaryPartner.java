@@ -92,9 +92,9 @@ public class RegistrationPrimaryPartner extends Fragment{
 
         db= new DatabaseHelper(getActivity());
         TestingReminder testing_Reminder = db.getTestingReminderByFlag(1);
-        Log.v("Testing Reminder",LynxManager.decryptString(testing_Reminder.getNotification_day())+"--"+LynxManager.decryptString(testing_Reminder.getNotification_time()));
+        //Log.v("Testing Reminder",LynxManager.decryptString(testing_Reminder.getNotification_day())+"--"+LynxManager.decryptString(testing_Reminder.getNotification_time()));
         TestingReminder diary_Reminder = db.getTestingReminderByFlag(0);
-        Log.v("Dairy Reminder",LynxManager.decryptString(diary_Reminder.getNotification_day())+"--"+LynxManager.decryptString(diary_Reminder.getNotification_time()));
+        //Log.v("Dairy Reminder",LynxManager.decryptString(diary_Reminder.getNotification_day())+"--"+LynxManager.decryptString(diary_Reminder.getNotification_time()));
 
         return view;
     }

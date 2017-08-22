@@ -77,7 +77,7 @@ public class EncounterEnctimeFragment extends Fragment {
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-                String myFormat = "dd/MM/yy"; //In which you need put here
+                String myFormat = "MM/dd/yy"; //In which you need put here
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                 /*if(myCalendar.getTimeInMillis()>today.getTimeInMillis()){
                     Toast.makeText(getActivity(),"Invalid Date",Toast.LENGTH_SHORT).show();

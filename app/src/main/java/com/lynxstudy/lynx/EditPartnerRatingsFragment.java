@@ -96,7 +96,7 @@ public class EditPartnerRatingsFragment extends Fragment {
         if(partnerRatingsList != null) {
             for (PartnerRating rating : partnerRatingsList) {
                 rating_values.add(rating.getRating());
-                Log.v("ratings", String.valueOf(rating.getRating()));
+                //Log.v("ratings", String.valueOf(rating.getRating()));
             }
 
             ratingbar_1.setRating(Float.parseFloat(rating_values.get(0)));

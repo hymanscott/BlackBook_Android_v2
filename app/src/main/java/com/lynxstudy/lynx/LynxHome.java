@@ -179,7 +179,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String tokenid = sharedPref.getString("lynxfirebasetokenid",null);
 
-        Log.v("tokenid",tokenid);
+        //Log.v("tokenid",tokenid);
         /*
             * system Information
             * */
@@ -191,7 +191,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             String serviceName = Context.TELEPHONY_SERVICE;
             TelephonyManager m_telephonyManager = (TelephonyManager) getSystemService(serviceName);
             LynxManager.deviceId = m_telephonyManager.getDeviceId();
-            Log.v("deviceId", LynxManager.deviceId);
+            //Log.v("deviceId", LynxManager.deviceId);
 
             JSONObject additional_info = new JSONObject();
             try {
@@ -215,16 +215,47 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     LynxManager.encryptString(device_info), String.valueOf(R.string.statusUpdateNo), true);
             if (db.getCloudMessagingCount() < 1) {
                 db.createCloudMessaging(cloudMessaging);
-                Log.v("Cloud Messagin", "Token created");
+                //Log.v("Cloud Messagin", "Token created");
             } else {
                 CloudMessages old_CM = db.getCloudMessaging();
                 if (!tokenid.equals(LynxManager.decryptString(old_CM.getToken_id()))){
                     db.updateCloudMessaging(cloudMessaging);
-                    Log.v("Cloud Messagin", "Token Updated");
+                    //Log.v("Cloud Messagin", "Token Updated");
                 }
             }
         }
+        if(LynxManager.notificationActions !=null ){
+            switch (LynxManager.notificationActions) {
+                case "TestingAlreadyTested":
+                    LynxManager.goToIntent(LynxHome.this,"testing",LynxHome.this.getClass().getSimpleName());
+                    overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
+                    finish();
+                    break;
+                case "TestingSure":
+                    LynxManager.goToIntent(LynxHome.this,"testing",LynxHome.this.getClass().getSimpleName());
+                    overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
+                    finish();
+                    break;
+                case "TestingLater":
+                    LynxManager.goToIntent(LynxHome.this,"testing",LynxHome.this.getClass().getSimpleName());
+                    overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
+                    finish();
+                    break;
+                case "NewSexReportYes":
+                    Intent diary1 = new Intent(LynxHome.this,EncounterFromNotification.class);
+                    startActivity(diary1);
+                    finish();
+                    break;
+                case "NewSexReportNo":
+                    Intent diary = new Intent(LynxHome.this,EncounterFromNotification.class);
+                    startActivity(diary);
+                    finish();
+                    break;
+                case "PushNotification":
+                    break;
 
+            }
+        }
         ScheduledExecutorService scheduleTaskExecutor = Executors.newScheduledThreadPool(5);
         //Pushing All the Tables to Server
         // This schedule a runnable task every 1 minutes
@@ -280,7 +311,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
     public void onResume() {
         super.onResume();
         // Closing the App if sign out enabled
-        Log.v("SignOut", String.valueOf(LynxManager.signOut));
+        //Log.v("SignOut", String.valueOf(LynxManager.signOut));
         if(LynxManager.signOut){
             finish();
             System.exit(0);
@@ -288,7 +319,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         if (LynxManager.onPause){
             Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);
             startActivity(lockscreen);
-            Log.v("onResumeusername", LynxManager.getActiveUser().getFirstname());
+            //Log.v("onResumeusername", LynxManager.getActiveUser().getFirstname());
         }
         checkForCrashes();
     }
@@ -384,7 +415,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 }
                 min = Integer.parseInt(b[1]);
             }
-            Log.v("NotifTime", String.valueOf(hour)+"----------"+ min);
+            //Log.v("NotifTime", String.valueOf(hour)+"----------"+ min);
             day = LynxManager.decryptString(testingReminder.getNotification_day());
 
         }
@@ -410,7 +441,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 }
                 drug_use_min = Integer.parseInt(b[1]);
             }
-            Log.v("NotifDrugTime", String.valueOf(drug_use_hour)+"----------"+ drug_use_min);
+            //Log.v("NotifDrugTime", String.valueOf(drug_use_hour)+"----------"+ drug_use_min);
             drug_use_day = LynxManager.decryptString(druguseReminder.getNotification_day());
         }
         scheduleNotification(getSexandEncounterNotification(notes), drug_use_day, drug_use_hour, drug_use_min, 0);// 0 -> DrugUse Reminder Notification ID
@@ -425,7 +456,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         Notification.Builder builder = new Notification.Builder(this);
         Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            builder.setContentTitle("SexPro");
+            builder.setContentTitle("LYNX");
             builder.setContentText(content);
             builder.setAutoCancel(true);
             builder.setSmallIcon(R.mipmap.ic_launcher_round);
@@ -434,7 +465,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
 
         } else {
             // Lollipop specific setColor method goes here.
-            builder.setContentTitle("SexPro");
+            builder.setContentTitle("LYNX");
             builder.setContentText(content);
             builder.setAutoCancel(true);
             builder.setContentIntent(sure);
@@ -455,14 +486,14 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            builder_Encounter.setContentTitle("SexPro");
+            builder_Encounter.setContentTitle("LYNX");
             builder_Encounter.setContentText(content);
             builder_Encounter.setAutoCancel(true);
             builder_Encounter.setSmallIcon(R.mipmap.ic_launcher_round);
             builder_Encounter.setSound(soundUri);
             builder_Encounter.setContentIntent(yes);
         }else{
-            builder_Encounter.setContentTitle("SexPro");
+            builder_Encounter.setContentTitle("LYNX");
             builder_Encounter.setContentText(content);
             builder_Encounter.setAutoCancel(true);
             builder_Encounter.setSmallIcon(R.drawable.ic_silhouette);
@@ -514,13 +545,18 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             calendar.set(Calendar.HOUR_OF_DAY, hour);
             calendar.set(Calendar.MINUTE, min);
             calendar.set(Calendar.SECOND, 0);
-            Log.v("Time", String.valueOf(calendar.getTimeInMillis()));
+            //Log.v("Time", String.valueOf(calendar.getTimeInMillis()));
         }
 
         long futureInMillis = calendar.getTimeInMillis();
-        Log.v("futureInMillis", String.valueOf(futureInMillis));
-        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, futureInMillis, AlarmManager.INTERVAL_DAY * 7, pendingIntent);
+        //Log.v("futureInMillis", String.valueOf(futureInMillis));
+        Calendar calendarN = Calendar.getInstance();
+        long currentInMillis = calendarN.getTimeInMillis();
+        if(currentInMillis<=futureInMillis){
+            AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, futureInMillis, AlarmManager.INTERVAL_DAY * 7, pendingIntent);
+            //Log.v("Alarm", "Triggered");
+        }
     }
     private void pushDataToServer() {
         // User

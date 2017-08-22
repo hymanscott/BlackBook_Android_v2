@@ -66,7 +66,7 @@ public class LynxManager {
     public static String encRateofSex;
     public static int selectedPartnerID;
     public static int selectedEncounterID;
-    public static int releaseMode = 0; //0 - Development, 1 - Internal Release , 2 - Client Release
+    public static int releaseMode = 2; //0 - Development, 1 - Internal Release , 2 - Client Release
     /* Config Variables for Nearest Testing Locations */
     public static int minMarker = 2;   // Minimum number of Markers to be Displayed
     public static int maxMarker = 10;  // Maximum number of Markers to be Displayed
@@ -95,10 +95,10 @@ public class LynxManager {
 
     //static Context context;
     //private static String baseURL  =   "http://dev.chipware.in/lynx/";
-    private static String baseURL  =   "https://dev.chipware.in/LynxPortal/";
-    private static String testImageBaseUrl = "https://dev.chipware.in/LynxPortal/testimages/";
-    /*private static String baseURL  =   "https://lynxstudy.com/";
-    private static String testImageBaseUrl = "https://lynxstudy.com/testimages/";*/
+    /*private static String baseURL  =   "https://dev.chipware.in/LynxPortal/";
+    private static String testImageBaseUrl = "https://dev.chipware.in/LynxPortal/testimages/";*/
+    private static String baseURL  =   "https://lynxstudy.com/";
+    private static String testImageBaseUrl = "https://lynxstudy.com/testimages/";
     private LynxManager() {
     }
 
@@ -341,9 +341,11 @@ public class LynxManager {
         SimpleDateFormat srcDf = new SimpleDateFormat(current_format);
 
         try {
-            Date date = srcDf.parse(mydate);
-            SimpleDateFormat destDf = new SimpleDateFormat(new_format);
-            mydate = destDf.format(date);
+            if(mydate!=null){
+                Date date = srcDf.parse(mydate);
+                SimpleDateFormat destDf = new SimpleDateFormat(new_format);
+                mydate = destDf.format(date);
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         } catch (java.text.ParseException e) {
@@ -456,7 +458,7 @@ public class LynxManager {
     private static Matcher matcher;
     //date validation
     public static boolean dateValidation(String date){
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy");
+        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yy");
         String Cur_date = df.format(new Date());
         Date d1 = null,d2=null;
         try {
@@ -557,7 +559,8 @@ public class LynxManager {
     public static Calendar setNotificatonDay(int DAY_OF_WEEK) {
         Calendar cal = Calendar.getInstance();
         if (cal.get(Calendar.DAY_OF_WEEK) == DAY_OF_WEEK) {
-            cal.add(Calendar.DAY_OF_WEEK, 7);
+            //cal.add(Calendar.DAY_OF_WEEK, 7);
+            cal.add(Calendar.DAY_OF_WEEK, 0);
             return cal;
         }
         while (cal.get(Calendar.DAY_OF_WEEK) != DAY_OF_WEEK) {

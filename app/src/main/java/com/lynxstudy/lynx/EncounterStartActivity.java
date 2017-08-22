@@ -50,10 +50,13 @@ public class EncounterStartActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
 
         if (this.getIntent().getExtras() !=null) {
-            drug_frag = getIntent().getExtras().getBoolean("FromNotification");
+            drug_frag = getIntent().getBooleanExtra("fromNotification",false);
         }
         if (savedInstanceState == null) {
-            if(drug_frag){
+            getSupportFragmentManager().beginTransaction()
+                    .add(android.R.id.content, new EncounterEnctimeFragment())
+                    .commit();
+            /*if(drug_frag){
                 getSupportFragmentManager().beginTransaction()
                         .add(android.R.id.content, new EncounterFromNotificationFragment())
                         .commit();
@@ -63,7 +66,7 @@ public class EncounterStartActivity extends AppCompatActivity {
                         .add(android.R.id.content, new EncounterEnctimeFragment())
                         .commit();
                 //finish();
-            }
+            }*/
         }
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
@@ -240,8 +243,8 @@ public class EncounterStartActivity extends AppCompatActivity {
         }else if(!LynxManager.timeValidation(enctime.getText().toString())){
             Toast.makeText(this, "Invalid Time", Toast.LENGTH_LONG).show();
         }else{
-            String encounter_datetime = LynxManager.getFormatedDate("dd/MM/yy hh:mm a", encdate.getText().toString() + " " + enctime.getText().toString(), "yyyy-MM-dd HH:mm:ss");
-            Log.v("encounter datetime",encounter_datetime);
+            String encounter_datetime = LynxManager.getFormatedDate("MM/dd/yy hh:mm a", encdate.getText().toString() + " " + enctime.getText().toString(), "yyyy-MM-dd HH:mm:ss");
+            //Log.v("encounter datetime",encounter_datetime);
             LynxManager.activeEncounter.setDatetime(LynxManager.encryptString(encounter_datetime));
             EncounterChoosePartnerFragment fragEncChoosePartner = new EncounterChoosePartnerFragment();
             pushFragments("Encounter", fragEncChoosePartner, true);
@@ -306,7 +309,7 @@ public class EncounterStartActivity extends AppCompatActivity {
         EncounterNotesFragment fragEncNotes = new EncounterNotesFragment();
         RatingBar rate_of_sex = (RatingBar) findViewById(R.id.sexType_RateTheSex);
 
-        Log.v("Rate of sex", String.valueOf(rate_of_sex.getRating()));
+        //Log.v("Rate of sex", String.valueOf(rate_of_sex.getRating()));
         LynxManager.encRateofSex = String.valueOf(rate_of_sex.getRating());
 
         LynxManager.activeEncounter.setRate_the_sex(LynxManager.encryptString(String.valueOf(rate_of_sex.getRating())));
@@ -461,10 +464,10 @@ public class EncounterStartActivity extends AppCompatActivity {
         LynxManager.activeEncounter.setIs_possible_sex_tomorrow(LynxManager.encryptString("0"));
         int encounterID = db.createEncounter(LynxManager.activeEncounter);
         for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
-            Log.v("condomUseText",encSexType.getSex_type()+encSexType.getCondom_use());
+            //Log.v("condomUseText",encSexType.getSex_type()+encSexType.getCondom_use());
             encSexType.setEncounter_id(encounterID);
             db.createEncounterSexType(encSexType);
-            Log.v("Encounter Created", "Encounter ID : " + encounterID);
+            //Log.v("Encounter Created", "Encounter ID : " + encounterID);
         }
         // Clear Condomuse list//
         LynxManager.activeEncCondomUsed.clear();
@@ -490,7 +493,7 @@ public class EncounterStartActivity extends AppCompatActivity {
         return true;
     }
     public boolean onSexReportNo(View view) {
-        if(LynxManager.notificationActions !=null){
+        if(drug_frag){
             /*encounter_drug_report fragEncounterDrugReport = new encounter_drug_report();
             pushFragments("encounter", fragEncounterDrugReport, true);*/
             /*Drug Report question screen removed*/
@@ -511,6 +514,10 @@ public class EncounterStartActivity extends AppCompatActivity {
         finish();
         return true;
     }
+    public boolean no_drug_content(View view) {
+        finish();
+        return true;
+    }
     public boolean showencounter_alcohol_calculation(View view) {
         EncounterDrugCalculationFragment fragNewEncounterDrugCal = new EncounterDrugCalculationFragment();
         boolean isAlcoholSelected = false;
@@ -526,7 +533,7 @@ public class EncounterStartActivity extends AppCompatActivity {
                 LynxManager.curDurgUseID = -1;
             }
 
-            Log.v("Drug Info Next", drugName + " - " + drugName.equals(searchString));
+            ////Log.v("Drug Info Next", drugName + " - " + drugName.equals(searchString));
             LynxManager.setActiveUserDrugUse(userDrugUse);
         }
 
@@ -548,8 +555,7 @@ public class EncounterStartActivity extends AppCompatActivity {
 
         // is_baseline --> No
         if(alcCountPerDay.getText().toString().isEmpty()){
-            alcCountPerDay.setError("Enter how many drinks you had on a typical day");
-            alcCountPerDay.requestFocus();
+            Toast.makeText(EncounterStartActivity.this,"Please enter how many drinks you had on a typical day",Toast.LENGTH_SHORT).show();
         }else {
             UserAlcoholUse userAlcoholUse = new UserAlcoholUse(LynxManager.curDurgUseID, LynxManager.getActiveUser().getUser_id(),
                     LynxManager.encryptString(alcDaysCountPerWeek.getText().toString()), LynxManager.encryptString(alcCountPerDay.getText().toString()), LynxManager.encryptString("No"), String.valueOf(R.string.statusUpdateNo), true);

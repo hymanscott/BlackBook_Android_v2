@@ -209,7 +209,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             int page_id = getArguments().getInt(ARG_SECTION_NUMBER);
-            Log.v("page_id ", String.valueOf(page_id));
+            //Log.v("page_id ", String.valueOf(page_id));
             View rootView = inflater.inflate(R.layout.fragment_lynx_diary, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
@@ -231,7 +231,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            /*Log.v("page_id ", String.valueOf(position));
+            /*//Log.v("page_id ", String.valueOf(position));
             return PlaceholderFragment.newInstance(position + 1);*/
             switch (position) {
                 case 0:
@@ -301,7 +301,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
     public void onResume() {
         super.onResume();
         // Closing the App if sign out enabled
-        Log.v("SignOut", String.valueOf(LynxManager.signOut));
+        //Log.v("SignOut", String.valueOf(LynxManager.signOut));
         if(LynxManager.signOut){
             finish();
             System.exit(0);
@@ -309,7 +309,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         if (LynxManager.onPause){
             Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);
             startActivity(lockscreen);
-            Log.v("onResumeusername", LynxManager.getActiveUser().getFirstname());
+            //Log.v("onResumeusername", LynxManager.getActiveUser().getFirstname());
         }
     }
     int onPause_count =0;

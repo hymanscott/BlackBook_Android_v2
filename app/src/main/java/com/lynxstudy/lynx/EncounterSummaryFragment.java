@@ -85,7 +85,7 @@ public class EncounterSummaryFragment extends Fragment {
 
         LinearLayout sexTypeLayout = (LinearLayout)rootview.findViewById(R.id.sexTypeLayout);
         String gender = LynxManager.decryptString(LynxManager.getActivePartner().getGender());
-        Log.v("Gender",gender);
+        //Log.v("Gender",gender);
         View sextypeView;
         switch (gender){
             case "Woman":
@@ -195,12 +195,14 @@ public class EncounterSummaryFragment extends Fragment {
                     }
                     break;
                 case "I fingered her":
+                case "I fingered him":
                     ToggleButton sexType_iFingered = (ToggleButton)rootview.findViewById(R.id.sexType_iFingered);
                     sexType_iFingered.setSelected(true);
                     sexType_iFingered.setClickable(false);
                     sexType_iFingered.setTextColor(Color.parseColor("#ffffff"));
                     break;
                 case "I went down on her":
+                case "I went down on him":
                     ToggleButton sexType_iWentDown = (ToggleButton)rootview.findViewById(R.id.sexType_iWentDown);
                     sexType_iWentDown.setSelected(true);
                     sexType_iWentDown.setClickable(false);

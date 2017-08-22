@@ -225,7 +225,7 @@ public class LynxPrepMapFragment extends Fragment implements GoogleApiClient.Con
             Double latitude=mylocation.getLatitude();
             Double longitude=mylocation.getLongitude();
             //Or Do whatever you want with your location
-            Log.v("LocationChanged",latitude+"--"+longitude);
+            //Log.v("LocationChanged",latitude+"--"+longitude);
             LatLng latlng = new LatLng(mylocation.getLatitude(), mylocation.getLongitude());// This methods gets the users current longitude and latitude.
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));//Moves the camera to users current longitude and latitude
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, (float) 7.6));//Animates camera and zooms to preferred state on the user's current location.

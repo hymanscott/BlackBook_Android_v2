@@ -159,7 +159,12 @@ public class LynxPrepFactsFragment extends Fragment {
         PrepInformation prepInformation = db.getPrepInformationById(id);
         qn.setText(prepInformation.getPrep_info_question());
         qn.setAllCaps(true);
-        if (prepInformation.getPrep_info_question().equals("Getting on PrEP")) {
+        final WebView prepInfoAnswer = new WebView(getActivity());
+        prepInfoAnswer.loadDataWithBaseURL("",prepInformation.getPrep_info_answer() , "text/html", "utf-8", "");
+        prepInfoAnswer.setPadding(20, 10, 20, 10);
+        parentLayout.addView(prepInfoAnswer, new TableLayout.LayoutParams(
+                TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));
+        /*if (prepInformation.getPrep_info_question().equals("Getting on PrEP")) {
             final WebView prepInfoAnswer = new WebView(getActivity());
             prepInfoAnswer.loadDataWithBaseURL("",prepInformation.getPrep_info_answer() , "text/html", "utf-8", "");
             prepInfoAnswer.setPadding(20, 10, 20, 10);
@@ -180,7 +185,7 @@ public class LynxPrepFactsFragment extends Fragment {
 
             parentLayout.addView(prepInfoAnswer, new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));
-        }
+        }*/
     }
 
     public void reloadFragment() {

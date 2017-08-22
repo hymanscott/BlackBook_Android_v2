@@ -39,7 +39,7 @@ public class EncounterDrugCalculationFragment extends Fragment {
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
-        View rootview = inflater.inflate(R.layout.fragment_registration_alcohol_calculation, container, false);
+        View rootview = inflater.inflate(R.layout.fragment_enc_alcohol_cal, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
@@ -49,8 +49,6 @@ public class EncounterDrugCalculationFragment extends Fragment {
         drinksdefine.setTypeface(tf);
         no_of_drinks = (EditText) rootview.findViewById(R.id.no_of_drinks);
         no_of_drinks.setTypeface(tf);
-        alcohol_cal_nextbtn = (Button) rootview.findViewById(R.id.alcohol_cal_nextbtn);
-        alcohol_cal_nextbtn.setTypeface(tf);
         /*alcohol_cal_revisebtn = (Button) rootview.findViewById(R.id.alcohol_cal_revisebtn);
         alcohol_cal_revisebtn.setTypeface(tf);*/
         alcCal_5to7days = (RadioButton) rootview.findViewById(R.id.alcCal_5to7days);
@@ -68,11 +66,6 @@ public class EncounterDrugCalculationFragment extends Fragment {
         TextView no_of_days_text= (TextView)rootview.findViewById(R.id.no_of_days_text);
         no_of_days_text.setText("How many days did you drink alcohol this week?");
         no_of_days_text.setTypeface(tf);
-
-
-        // Hiding Registration Nav button and showing Enc Nav Buttons
-        LinearLayout nav_buttons = (LinearLayout)rootview.findViewById(R.id.reg_alcohol_nav_buttons);
-        nav_buttons.setVisibility(View.GONE);
 
         Button nextButton = (Button)rootview.findViewById(R.id.enc_alcoholCal_nextbtn);
         nextButton.setVisibility(View.VISIBLE);

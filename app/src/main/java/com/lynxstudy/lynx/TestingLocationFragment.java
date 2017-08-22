@@ -139,7 +139,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                 googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
                     @Override
                     public boolean onMyLocationButtonClick() {
-                        Log.v("onMyLocationButtonClick","yes");
+                        //Log.v("onMyLocationButtonClick","yes");
                         String filter = null;
                         if(!filterSpinner.getSelectedItem().toString().equals("Filters"))
                             filter = filterSpinner.getSelectedItem().toString();
@@ -216,7 +216,6 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                     String filter=null;
                     if(!filterSpinner.getSelectedItem().toString().equals("Filters"))
                         filter = filterSpinner.getSelectedItem().toString();
-
                     showFilteredMarker(getLatLngFromZip(zipcode.getText().toString()),filter,milesSpinner.getSelectedItem().toString());
                 }
             }
@@ -304,7 +303,8 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                 if(filter==null || filter.equals("null")){
                     googleMap.addMarker(getMarkerIcon(locationsDistance.getType(),marker));
                     bounds.include(new LatLng(locationsDistance.getLatitude(), locationsDistance.getLongitude()));
-                }else if(filter.equals(locationsDistance.getType())){
+                //}else if(filter.equals(locationsDistance.getType())){
+                }else {
                     /*switch (filter){
                         case "PrEP":
                             marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.prepmarker));
@@ -369,7 +369,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                 marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.cityiconblue));
                 break;
             default:
-                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker));
+                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.cityiconblue));
         }
         return marker;
     }
@@ -422,7 +422,6 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
             Double latitude=mylocation.getLatitude();
             Double longitude=mylocation.getLongitude();
             //Or Do whatever you want with your location
-            Log.v("LocationChanged",latitude+"--"+longitude);
         }
         /**/
         LatLng latlng = new LatLng(mylocation.getLatitude(), mylocation.getLongitude());// This methods gets the users current longitude and latitude.
@@ -482,7 +481,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
         MarkerOptions marker_yourLoc = new MarkerOptions().position(marker.getPosition()).draggable(true);
         marker_yourLoc.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker));
         googleMap.addMarker(marker_yourLoc);
-        Log.v("MarkerLocation",marker.getPosition().latitude+"--"+marker.getPosition().longitude);
+        //Log.v("MarkerLocation",marker.getPosition().latitude+"--"+marker.getPosition().longitude);
         Location currentlocation = new Location("ss");
         currentlocation.setLatitude(marker.getPosition().latitude);
         currentlocation.setLongitude(marker.getPosition().longitude);
@@ -618,13 +617,33 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
 
             // converting into miles (1m = 0.000621371 mi)
             int distance_inMiles = (int) (distance_inMeters * 0.000621371);
-
             if(type==null){
                 LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(),location.getType());
                 Locations_DistanceArray.add(location_distance);
-            }else if(type.equals(location.getType())){
-                LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(),location.getType());
-                Locations_DistanceArray.add(location_distance);
+            }else{
+                switch (type){
+                    case "PrEP":
+                        if(location.getPrep_clinic().equals("Yes")){
+                            LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(),location.getType());
+                            Locations_DistanceArray.add(location_distance);
+                        }
+                        break;
+                    case "HIV Testing":
+                        if(location.getHiv_clinic().equals("Yes")){
+                            LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(),location.getType());
+                            Locations_DistanceArray.add(location_distance);
+                        }
+                        break;
+                    case "STI Testing":
+                        if(location.getSti_clinic().equals("Yes")){
+                            LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(),location.getType());
+                            Locations_DistanceArray.add(location_distance);
+                        }
+                        break;
+                    default:
+                        LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(),location.getType());
+                        Locations_DistanceArray.add(location_distance);
+                }
             }
         }
 

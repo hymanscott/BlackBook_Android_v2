@@ -135,13 +135,16 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                 Button negative_btn = (Button) popupView.findViewById(R.id.alertNegativeButton);
                 Button netural_btn = (Button)popupView.findViewById(R.id.alertNeturalButton);
 
-                title.setText("Sex Pro");
+                title.setText("LYNX");
                 message.setText("It's time for your test!");
                 positive_btn.setText("Later");
+                positive_btn.setTextSize(12);
                 negative_btn.setText("Sure");
+                negative_btn.setTextSize(12);
                 netural_btn.setVisibility(View.VISIBLE);
                 netural_btn.setText("Already Tested");
-
+                netural_btn.setTextSize(12);
+                netural_btn.setPadding(10,0,10,0);
                 positive_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -219,7 +222,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
 
 
         List<TestingHistory> histories = db.getAllTestingHistories();
-        Log.v("TestingHistoryCount", String.valueOf(db.getTestingHistoryCount()));
+        //Log.v("TestingHistoryCount", String.valueOf(db.getTestingHistoryCount()));
         /*
         *true = Descending order
         * false = ascending order
@@ -228,7 +231,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         int j = 0;
         for (TestingHistory history : histories) {
             TestNameMaster name = db.getTestingNamebyID(history.getTesting_id());
-            Log.v("Date & ID",history.getTesting_history_id()+LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MMM d, yyyy"));
+            //Log.v("Date & ID",history.getTesting_history_id()+LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MMM d, yyyy"));
 
             if(name.getTestName().equals("HIV Test")) {
                 TableRow tr = new TableRow(getActivity());
@@ -260,7 +263,6 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                         if(!historyInfoAttachment.equals("")){
                             String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
                             File mediaFile = new File(imgDir+historyInfoAttachment);
-                            Log.v("OrgPath",imgDir+historyInfoAttachment);
                             if(mediaFile.exists()){
                                 Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfoAttachment);
                                 int h = 50; // height in pixels
@@ -327,7 +329,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             int w = 50; // width in pixels
                             Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
                             testimage.setImageBitmap(scaled);
-                            Log.v("ImagepathExists",imgDir+historyInfoAttachment);
+                            //Log.v("ImagepathExists",imgDir+historyInfoAttachment);
                         }else{
                             //  ***********set url from server*********** //
                             testimage.setImageResource(R.drawable.photocamera);
@@ -617,7 +619,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             TestingHistoryInfo historyInfo = new TestingHistoryInfo(testingHistoryid , LynxManager.getActiveUser().getUser_id(),sti_count,test_status,LynxManager.encryptString(name),String.valueOf(R.string.statusUpdateNo),true);
                             int historyInfo_id = db.createTestingHistoryInfo(historyInfo);
                             uploadMultipart(full_path,name); // fullpath,imagename
-                            Log.v("UploadedFilepath",full_path);
+                            //Log.v("UploadedFilepath",full_path);
                         }
                     }else{
                         String path = hivImageName.substring(hivImageName.lastIndexOf("/") + 1);
@@ -625,7 +627,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                         TestingHistoryInfo historyInfo = new TestingHistoryInfo(testingHistoryid , LynxManager.getActiveUser().getUser_id(),0,test_status,LynxManager.encryptString(path),String.valueOf(R.string.statusUpdateNo),true);
                         int historyInfo_id = db.createTestingHistoryInfo(historyInfo);
                         uploadMultipart(hivImageName,path); // fullpath,imagename
-                        Log.v("UploadedFilepath",hivImageName);
+                        //Log.v("UploadedFilepath",hivImageName);
                     }
                     Toast.makeText(getActivity(), "New "+ title +" Added", Toast.LENGTH_SHORT).show();
                     mainContentLayout.setVisibility(View.VISIBLE);
@@ -737,7 +739,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         String test_name = (db.getTestingNamebyID(testingHistory.getTesting_id())).getTestName();
         testingHistoryTitle.setText(test_name);
         testingHistoryTitle.setTextColor(getResources().getColor(R.color.colorAccent));
-        String test_date = LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(testingHistory.getTesting_date()),"dd-MMM-yyyy");
+        String test_date = LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(testingHistory.getTesting_date()),"MM/dd/yyyy");
         testingHistorydate.setText(test_date);
         if(test_name.equals("HIV Test")){
             std_list_parentLayout.setVisibility(View.GONE);
@@ -758,7 +760,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                 if(!historyInfoAttachment.equals("")){
                     final String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
                     final File mediaFile = new File(imgDir+historyInfoAttachment);
-                    Log.v("OrgPath",imgDir+historyInfoAttachment);
+                    //Log.v("OrgPath",imgDir+historyInfoAttachment);
                     if(mediaFile.exists()){
                         Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfoAttachment);
                         int h = 200; // height in pixels
@@ -905,7 +907,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         startActivity(intent);
     }
     public void reloadFragment() {
-        Log.v("Fragment Reload", "Reloaded");
+        //Log.v("Fragment Reload", "Reloaded");
 
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
@@ -1213,7 +1215,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     Bitmap resized = ThumbnailUtils.extractThumbnail(thumbnail,400,400);
                     Drawable d =new BitmapDrawable(resized);
                     //Drawable d = new BitmapDrawable(thumbnail);
-                    Log.v("FileComplatePath",file.getAbsolutePath() + fileName);
+                    //Log.v("FileComplatePath",file.getAbsolutePath() + fileName);
                     attachment.setImageDrawable(d);
                     attachment.setVisibility(View.VISIBLE);
                     imagepath = file.getAbsolutePath() + fileName;
@@ -1240,7 +1242,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                 chlamydiaImageName = imagepath;
                 break;
         }
-        Log.v("ImageName",imagepath);
+        //Log.v("ImageName",imagepath);
     }
     private Uri getTempUri() {
         return Uri.fromFile(getTempFile());
@@ -1256,7 +1258,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         File mediaFile = new File(outputFile);
         if(!mediaFile.exists()){
 
-            Log.v("Temp Media", mediaFile.getAbsolutePath());
+            //Log.v("Temp Media", mediaFile.getAbsolutePath());
             mediaFile.mkdirs();
         }
 

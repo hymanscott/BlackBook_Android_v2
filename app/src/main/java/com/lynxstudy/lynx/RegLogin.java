@@ -95,13 +95,40 @@ public class RegLogin extends AppCompatActivity {
         // Initialize Database //
         initializeDatabase();
         AppLockManager.getInstance().enableDefaultAppLockIfAvailable(this);
+        if (this.getIntent().getExtras() !=null) {
+            String action = getIntent().getExtras().getString("action");
+            if(action!=null)
+                switch (action) {
+                    case "TestingAlreadyTested":
+                        LynxManager.notificationActions = "TestingAlreadyTested";
+                        break;
+                    case "TestingSure":
+                        LynxManager.notificationActions = "TestingSure";
+                        break;
+                    case "TestingLater":
+                        LynxManager.notificationActions = "TestingLater";
+                        break;
+                    case "NewSexReportYes":
+                        LynxManager.notificationActions = "NewSexReportYes";
+                        break;
+                    case "NewSexReportNo":
+                        LynxManager.notificationActions = "NewSexReportNo";
+                        break;
+                    case "PushNotification":
+                        LynxManager.notificationActions = "PushNotification";
+                        break;
+                    default:
+                        LynxManager.notificationActions = null;
+                }
+        }
+
         int user_count = db.getUsersCount();
-        Log.v("UserCount", String.valueOf(user_count));
+        //Log.v("UserCount", String.valueOf(user_count));
         if (user_count > 0) {
             int userBaselineInfoCount = db.getUserBaselineInfoCount();
             List<Users> allUsers = db.getAllUsers();
             LynxManager.setActiveUser(allUsers.get(0));
-            Log.v("userBaselineInfoCount", String.valueOf(userBaselineInfoCount));
+            //Log.v("userBaselineInfoCount", String.valueOf(userBaselineInfoCount));
             if (userBaselineInfoCount == 0) {
 
                 if (savedInstanceState == null) {
@@ -154,76 +181,95 @@ public class RegLogin extends AppCompatActivity {
         List<TestingLocations> testingLocations = new ArrayList<TestingLocations>();
 
         TestingLocations testingLocation1 = new TestingLocations("AIDS Healthcare Foundation Oakland Wellness Center", "238 E 18th St, Oakland, CA 94606, United States","510-251-8671",
-                "37.8003832", "-122.2528517", " ", "PrEP");
+                "37.8003832", "-122.2528517", " ", "type","","","");
 
         TestingLocations testingLocation2 = new TestingLocations("Berkeley Free Clinic", "2339 Durant Ave, Berkeley, CA 94704, United States","510-548-2570",
-                "37.8677161", "-122.2618111", "http://www.berkeleyfreeclinic.org/pages/gmhc","PrEP");
+                "37.8677161", "-122.2618111", "http://www.berkeleyfreeclinic.org/pages/gmhc","type","","","");
 
         TestingLocations testingLocation3 = new TestingLocations("Native American Health Center Incorporated NAHC of Oakland ", "2950 International Blvd , Oakland, CA 94601" ,"415-621-4371",
-                "37.7790324", "-122.2282187", "http://www.nativehealth.org/content/circle-healing-hiv-and-hcv-services","PrEP");
+                "37.7790324", "-122.2282187", "http://www.nativehealth.org/content/circle-healing-hiv-and-hcv-services","type","","","");
 
         TestingLocations testingLocation4 = new TestingLocations("San Francisco City Clinic", "356 7th Street, San Francisco, CA 94103","415-487-5500",
-                "37.7759146", "-122.407104", "http://www.sfcityclinic.org/","PrEP");
+                "37.7759146", "-122.407104", "http://www.sfcityclinic.org/","type","","","");
 
         TestingLocations testingLocation5 = new TestingLocations("Alameda County Medical Center Highland Adult Immunology Clinic ",
-                "1411 E 31st St 7th Floor, Oakland, CA 94602","510-437-4373", "37.7986299", "-122.231627", " ","PrEP");
+                "1411 E 31st St 7th Floor, Oakland, CA 94602","510-437-4373", "37.7986299", "-122.231627", " ","type","","","");
 
         TestingLocations testingLocation6 = new TestingLocations("Ann Chandler Public Health Center", "830 University Avenue, Berkeley, CA 94710","510-981-5350",
-                "37.8678272", "-122.2972235", "http://www.ci.berkeley.ca.us/Ann_Chandler_Public_Health_Center/","HIV Testing");
+                "37.8678272", "-122.2972235", "http://www.ci.berkeley.ca.us/Ann_Chandler_Public_Health_Center/","type","","","");
 
         TestingLocations testingLocation7 = new TestingLocations(" Planned Parenthood ", "1682 7th Street , Oakland, CA 94607","510-300-3800",
-                "37.806617", "-122.300454", "	","HIV Testing");
+                "37.806617", "-122.300454", "	","type","","","");
 
         TestingLocations testingLocation8 = new TestingLocations("Planned Parenthood", "7200 Bancroft Ave. , Oakland, CA 94605","510-300-3800",
-                "37.7673194", "-122.1779008", "","HIV Testing");
+                "37.7673194", "-122.1779008", "","type","","","");
 
         TestingLocations testingLocation9 = new TestingLocations("Planned Parenthood", "1032 A Street , Hayward, CA 94541","510-300-3800",
-                "37.6743445", "-122.0831806", "","HIV Testing");
+                "37.6743445", "-122.0831806", "","type","","","");
 
         TestingLocations testingLocation10 = new TestingLocations("AIDS Project of the East Bay ", "1320 Webster St, Oakland, CA 94612" ,"510-663-7979 x122",
-                "37.802962", "-122.2687084", "http://www.apeb.org/programs.htm#well","HIV Testing");
+                "37.802962", "-122.2687084", "http://www.apeb.org/programs.htm#well","type","","","");
 
         TestingLocations testingLocation11 = new TestingLocations("Asian Health Services Asian Medical Center ", "818 Webster St, Oakland, CA 94607","510-986-6830",
-                "37.7993669", "-122.270941", "http://www.asianhealthservices.org/handler.php?p=services-HIVAIDS","STI Testing");
+                "37.7993669", "-122.270941", "http://www.asianhealthservices.org/handler.php?p=services-HIVAIDS","type","","","");
 
         TestingLocations testingLocation12 = new TestingLocations("Alameda County Medical Center Eastmont Wellness Center ", "6955 Foothill Blvd Suite 200, Oakland, CA 94605" ,"510-567-5700",
-                "37.7680904", "-122.1760889", "http://www.eastmontahs.org/","STI Testing");
+                "37.7680904", "-122.1760889", "http://www.eastmontahs.org/","type","","","");
 
         TestingLocations testingLocation13 = new TestingLocations("Planned Parenthood Shasta Pacific El Cerrito Health Center ", "320 El Cerrito Plaza, El Cerrito, CA 94530","510-527-5806",
-                "37.8996547", "-122.2998653", "","STI Testing");
+                "37.8996547", "-122.2998653", "","type","","","");
 
         TestingLocations testingLocation14 = new TestingLocations("Asian and Pacific Islander Wellness Center", "730 Polk St, 4th Floor, San Francisco, CA 94109","415-292-3400 x368",
-                "37.7837216", "-122.4191438", "http://www.apiwellness.org/wellnessclinic.html","STI Testing");
+                "37.7837216", "-122.4191438", "http://www.apiwellness.org/wellnessclinic.html","type","","","");
 
         TestingLocations testingLocation15 = new TestingLocations("Mission Neighborhood Health Center ", "1663 Mission Street, Suite 603, San Francisco, CA 94013","415-240-4104",
-                "37.7712065", "-122.4192045", "http://www.mnhc.org/community_programs/latino-wellness-center/","STI Testing");
+                "37.7712065", "-122.4192045", "http://www.mnhc.org/community_programs/latino-wellness-center/","type","","","");
 
-        TestingLocations testingLocation16 = new TestingLocations("Magnet", "4122 18th St, San Francisco, CA 94114","415-581-1600", "37.7609663", "-122.4356606", "http://www.magnetsf.org/","PrEP");
+        TestingLocations testingLocation16 = new TestingLocations("Magnet", "4122 18th St, San Francisco, CA 94114","415-581-1600", "37.7609663", "-122.4356606", "http://www.magnetsf.org/","type","","","");
 
         TestingLocations testingLocation17 = new TestingLocations(" UCSF Alliance Health Project", "1930 Market St, San Francisco, CA 94102","415-502-8378",
-                "37.7705078", "-122.4257072", "http://www.ucsf-ahp.org/hiv/hcat/","PrEP");
+                "37.7705078", "-122.4257072", "http://www.ucsf-ahp.org/hiv/hcat/","type","","","");
 
         TestingLocations testingLocation18 = new TestingLocations("Marin County STD Clinic", "920 Grand Ave, San Rafael, CA","415-499-6944", "37.9717107",
-                "-122.5184603", "https://www.marinhhs.org/sexually-transmitted-disease-std-services","PrEP");
+                "-122.5184603", "https://www.marinhhs.org/sexually-transmitted-disease-std-services","type","","","");
 
         TestingLocations testingLocation19 = new TestingLocations("Concord Health Center", "3052 Willow Pass Road, Clinic D, Concord, CA 94519", "1-800-479-9664",
-                "37.980602", "-122.0210839", "http://cchealth.org/std/","HIV Testing");
+                "37.980602", "-122.0210839", "http://cchealth.org/std/","type","","","");
 
         TestingLocations testingLocation20 = new TestingLocations("Pittsburg Health Center", "2311 Loveridge Road, East Clinic, Pittsburg, CA 94565","1-800-479-9664",
-                "38.0067923", "-121.8695384", "http://cchealth.org/std/","HIV Testing");
+                "38.0067923", "-121.8695384", "http://cchealth.org/std/","type","","","");
 
         TestingLocations testingLocation21 = new TestingLocations("West County Health Center", "13601 San Pablo Ave, San Pablo, CA  94806","1-800-479-9664",
-                "37.9557666", "-122.3381267", "http://cchealth.org/std/","HIV Testing");
+                "37.9557666", "-122.3381267", "http://cchealth.org/std/","type","","","");
 
         TestingLocations testingLocation22 = new TestingLocations("Planned Parenthood", "2907 El Camino Real, Redwood City, CA 94061","650-503-7810",
-                "37.4692778", "-122.2112942", "","STI Testing");
+                "37.4692778", "-122.2112942", "","type","","","");
 
         TestingLocations testingLocation23 = new TestingLocations("Planned Parenthood", "225 San Antonio Rd, Mountain View, CA 94040","650-948-0807",
-                "37.4059219", "-122.1102896", "","STI Testing");
+                "37.4059219", "-122.1102896", "","type","","","");
 
         TestingLocations testingLocation24 = new TestingLocations("Billy DeFrank LGBT Community Center of Silicon Valley", "938 The Alameda, San Jose, CA 95126","408-293-3040",
-                "37.3313637", "-121.9080087", "http://www.defrankcenter.org/","STI Testing");
+                "37.3313637", "-121.9080087", "http://www.defrankcenter.org/","type","","","");
 
+        TestingLocations testingLocation25 = new TestingLocations("USF Ybor Youth Clinic", "1315 E 7th Ave, Suite 104, Tampa, FL 33604","813-396-9021","28.0126094", "-82.5109048", "","type","Yes","Yes","Yes");
+
+        TestingLocations testingLocation26 = new TestingLocations("USF Children's Medical Services", "13101 Bruce B Downs, Tampa, FL 33612","813-259-8800","28.0662929", "-82.4273804", "","type","Yes","Yes","Yes");
+
+        TestingLocations testingLocation27 = new TestingLocations("Johns Hopkins All Children's Hospital Main Campus Outpatient Care Center (OCC)", "601 5th Street South, St. Petersburg, FL 33701","813-25-8800","27.763857", "-82.6426565", "","type","Yes","Yes","Yes");
+
+        TestingLocations testingLocation28 = new TestingLocations("Florida Department of Health", "1105 E Kennedy Blvd, Tampa, FL 33602","813-307-8064","27.9498074", "-82.4529869", "","type","No","Yes","Yes");
+
+        TestingLocations testingLocation29 = new TestingLocations("Midtown Medical Center", "6919 N Dale Mabry Hwy, Suite 300, Tampa, FL 33614","813-935-3221","28.012131", "-82.506597", "","type","Yes","Yes","Yes");
+
+        TestingLocations testingLocation30 = new TestingLocations("Metro Health Wellness & Community", "1315 East 7th Avenue, Tampa, FL 33605","813-232-3808","27.960111", "-82.4470239", "","type","Yes","Yes","Yes");
+
+        TestingLocations testingLocation31 = new TestingLocations("Metro Health Wellness & Community", "3251 3rd Avenue N, Suite 125, St. Petersburg, FL 33713","727-321-3854","27.7754479", "-82.6796657", "","type","Yes","Yes","Yes");
+
+        TestingLocations testingLocation32 = new TestingLocations("Joel B. Rose, DO", "6101 Webb Road, Suite 207, Tampa, FL 33615","813-882-3331","28.0036589", "-82.5765709", "","type","No","Yes","Yes");
+
+        TestingLocations testingLocation33 = new TestingLocations("Bilma Vega, MD", "2349 Sunset Point Road, Suite 405, Clearwater, FL 33765","727-216-6193","27.9894724", "-82.742538", "","type","Yes","Yes","Yes");
+
+        TestingLocations testingLocation34 = new TestingLocations("Love the Golden Rule, Inc", "721 Dr. MLK Jr St S, St. Petersburg, FL 33705","727-228-1650","27.762505", "-82.6490846", "","type","Yes","Yes","Yes");
 
         testingLocations.add(testingLocation1);
         testingLocations.add(testingLocation2);
@@ -249,15 +295,25 @@ public class RegLogin extends AppCompatActivity {
         testingLocations.add(testingLocation22);
         testingLocations.add(testingLocation23);
         testingLocations.add(testingLocation24);
+        testingLocations.add(testingLocation25);
+        testingLocations.add(testingLocation26);
+        testingLocations.add(testingLocation27);
+        testingLocations.add(testingLocation28);
+        testingLocations.add(testingLocation29);
+        testingLocations.add(testingLocation30);
+        testingLocations.add(testingLocation31);
+        testingLocations.add(testingLocation32);
+        testingLocations.add(testingLocation33);
+        testingLocations.add(testingLocation34);
 
         //PrEP information Entries
         List<PrepInformation> prepInformationList = new ArrayList<PrepInformation>();
 
-        PrepInformation prepinformation1 = new PrepInformation("What is PrEP?", "<p style='color:#444444;font-size:12pt;'>Pre-Exposure Prophylaxis (PrEP) is a daily pill (Truvada) that protects HIV-negative people from HIV infection. Several large clinical trials with HIV negative men and women have shown daily use of PrEP can prevent new infections.   In 2012 the U.S. Food and Drug Administration approved PrEP for people at risk for HIV</p>");
-        PrepInformation prepinformation2 = new PrepInformation("Getting on PrEP", "<p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;' src='file:///android_asset/prep_infographic.png' width=\"90%\" /></p>");
-        PrepInformation prepinformation3 = new PrepInformation("How does PrEP work?", "<p style='color:#444444;font-size:12pt;'>PrEP uses two anti-HIV medications and is started BEFORE potential HIV exposure, then taken daily for as long as you believe that you are at risk for HIV.   Taken daily, PrEP can give you very high levels of protection - over 90%.  </p>");
-        PrepInformation prepinformation4 = new PrepInformation("Is PrEP safe?", "<table style='color:#444444;font-size:12pt;'><tr><td>Truvada as PrEP has been shown to be safe, although it has some mild and usually short-lived side effects. <br /><br /></td></tr><tr><td ><div style='text-align:left'>&#8226; About 1 in 10 people in PrEP studies reported nausea, stomach pain, or weight loss during the first few weeks of taking Truvada.<br/><br/></div></td></tr><tr><td><div style='text-align:left'>&#8226;About 1 in 200 people had a temporary decrease in kidney function that returned to normal when they stopped taking PrEP. As a safety precaution, your provider will monitor your kidney function using blood tests.<br/><br/></div></td></tr><tr><td><div style='text-align:left'>&#8226;Truvada may reduce bone density, generally by a small amount; however, these changes have not been seen to cause broken bones.</div></td></tr></table>");
-        PrepInformation prepinformation5 = new PrepInformation("Where can I get PrEP?", "<table style='color:#444444;font-size:12pt;'><tr><td>Talk to your doctor about PrEP. If you don’t have a doctor, or your doctor does not know about PrEP, please give us a call at <a href='tel:14153853973'>415&minus;385&minus;3973</a>. Most people are able to get PrEP at low or no cost even without insurance.<br /><br /></td></tr><tr><td>To find providers near you who are knowledgeable about PrEP, visit <a href='https://www.hiveonline.org/prep-directory'>https://www.hiveonline.org/prep-directory</a> or <a href='https://www.pleaseprepme.org'>Please PrEP Me</a>.<br/><br /></td></tr><tr><td >If you have insurance, you can also find a list of providers who are knowledgeable about PrEP here.<br/> http://www.pleaseprepme.org/ Or, use the PrEP Map to find a location near you. <br /><br /></td></tr></table>");
+        PrepInformation prepinformation1 = new PrepInformation("What is PrEP?", "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto\"></head><body><p style='font-size:20px;margin-top:32px;margin-left:16px;margin-right:16px;color:#2E86EF;font-family:Roboto, sans-serif;'>What is PrEP?</p><p style='color:#444444;font-size:14px;margin:16px 16px 0px 16px;font-family:Roboto, sans-serif;'>Pre-Exposure Prophylaxis (PrEP) is a daily pill (Truvada) that protects HIV-negative people from HIV infection. Several large clinical trials with HIV negative men and women have shown daily use of PrEP can prevent new infections. In 2012 the U.S. Food and Drug Administration approved PrEP for people at risk for HIV.</p></body></html>");
+        PrepInformation prepinformation2 = new PrepInformation("Getting on PrEP", "<p style='font-size:20px;margin-top:32px;margin-left:16px;margin-right:16px;color:#2E86EF'>Getting on PrEP?</p><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;' src='file:///android_asset/prep_infographic.png' width=\"90%\" /></p>");
+        PrepInformation prepinformation3 = new PrepInformation("How does PrEP work?", "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto\"></head><body><p style='font-size:20px;margin-top:32px;margin-left:16px;margin-right:16px;color:#2E86EF;font-family:Roboto, sans-serif;'>How does PrEP work?</p><p style='color:#444444;font-size:14px;margin:16px 16px 0px 16px;font-family:Roboto, sans-serif;'>PrEP uses two anti-HIV medications and is started BEFORE potential HIV exposure, then taken daily for as long as you believe that you are at risk for HIV.   Taken daily, PrEP can give you very high levels of protection - over 90%.</p></body></html>");
+        PrepInformation prepinformation4 = new PrepInformation("Is PrEP safe?", "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto\"></head><body><p style='font-size:20px;margin-top:32px;margin-left:16px;margin-right:16px;color:#2E86EF;font-family:Roboto, sans-serif;'>Is PrEP safe?</p><table style='color:#444444;font-size:14px;margin:16px 16px 0px 16px;font-family:Roboto, sans-serif;'><tr><td>Truvada as PrEP has been shown to be safe, although it has some mild and usually short-lived side effects. <br /><br /></td></tr><tr><td ><div style='text-align:left'>&#8226; About 1 in 10 people in PrEP studies reported nausea, stomach pain, or weight loss during the first few weeks of taking Truvada.<br/><br/></div></td></tr><tr><td><div style='text-align:left'>&#8226; About 1 in 200 people had a temporary decrease in kidney function that returned to normal when they stopped taking PrEP. As a safety precaution, your provider will monitor your kidney function using blood tests.<br/><br/></div></td></tr><tr><td><div style='text-align:left'>&#8226; Truvada may reduce bone density, generally by a small amount; however, these changes have not been seen to cause broken bones.</div></td></tr></table></body></html>");
+        PrepInformation prepinformation5 = new PrepInformation("Where can I get PrEP?", "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto\"></head><body><p style='font-size:20px;margin-top:32px;margin-left:16px;margin-right:16px;color:#2E86EF;font-family:Roboto, sans-serif;'>Where can I get PrEP?</p><table style='color:#444444;font-size:14px;margin:16px 16px 0px 16px;font-family:Roboto, sans-serif;'><tr><td>Talk to your doctor about PrEP. If you don’t have a doctor, or your doctor does not know about PrEP, please give us a call at <a style='color:#2E86EF;text-decoration:none' href='tel:14153276425'>415&minus;327&minus;6425</a>. Most people are able to get PrEP at low or no cost even without insurance.<br /><br /></td></tr><tr><td>To find providers near you who are knowledgeable about PrEP, visit <a style='color:#2E86EF;text-decoration:none' href=\"https://www.hiveonline.org/prep-directory\">https://www.hiveonline.org/prep-directory</a> or Please <a href=\"https://www.pleaseprepme.org\" style='color:#2E86EF;text-decoration:none'>PrEP Me.</a><br/><br /></td></tr><tr><td >If you have insurance, you can also find a list of providers who are knowledgeable about PrEP here.<a style='color:#2E86EF;text-decoration:none' href='http://www.pleaseprepme.org/' >http://www.pleaseprepme.org/</a> Or, use the PrEP Map to find a location near you. <br /><br /></td></tr></table></body></html>");
 
         prepInformationList.add(prepinformation1);
         prepInformationList.add(prepinformation2);
@@ -269,8 +325,8 @@ public class RegLogin extends AppCompatActivity {
 
         // testing_instruction (testing_id,question,textAnswer,videoAnswer,pdfAnswer,)
         TestingInstructions instruction1 = new TestingInstructions(0,"OraQuick Instructional video", "","https://www.youtube.com/watch?v=010yO9iQYOc","");
-        TestingInstructions instruction2 = new TestingInstructions(0,"Anal swab Instructions", "<table cellpadding='5' style='font-size: 12pt;color:#444444;'><tr><td colspan='2'><i>Please carefully read the directions below before using the penile swab. Sample collection should not be painful or cause bleeding. If you experience either of these problems, please call us as soon as possible [study phone number]</i></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab1.jpg' width='100%' /></p></td><td><p style='text-align:left'><b>Getting started:</b><br/><br/>Step 1: Wash your hands with soap and water.<br /><br />Step 2: Either squat down on the toilet or lift one leg on the toilet, ledge, or chair.<br/><br/></p></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align:text-top;' src='file:///android_asset/analswab2.jpg' width='100%' /></p></td><td> <p style='text-align:left'><b>Collecting the anal swab sample:</b><br /><br />Step 3: Open the swab. Twist off the cap and pull the swab out of the container.<br /><br />DO NOT throw away the plastic holder.<br /><br />Step 4: Step 4: Lift one cheek for easy access to your anus.<br/><br/></p></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align:text-top;' src='file:///android_asset/analswab4.jpg' width='100%' /></p></td><td> <p style='text-align:left'>Step 5: Making sure not to touch the soft tip of the swab, insert the swab 1.5 inches into your anus.</td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align:text-top;' src='file:///android_asset/analswab5.jpg' width='100%' /></p></td><td> <p style='text-align:left'>Step 6:The swab should be dry.DO NOT use water or lube while collecting the swab.<br /><br />Step 7: Rotate the swab in a circular motion for 5 to 10 seconds.</p></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab6.jpg' width='100%'  /></p></td><td> <p style='text-align:left'>Step 8: Gently remove the swab.<br /><br />Step 9: Gently remove the swab, turning it in a circle as you pull it out.</p></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align:text-top;' src='file:///android_asset/analswab3.jpg' width='100%' /></p></td><td> <p style='text-align:left'>Step 10: Place the swab back into the plastic holder.   Close it tightly to prevent leakage.<br /><br />  Step 11: Wash your hands with soap and water.<br /><br /><b>Mailing the swab:</b><br /><br/>Step 12:  Place the closed tub into the red plastic zip-lock bag. Seal the bag.<br /><br />Step 13: Place the sealed back into the return mailer, seal the envelope and drop in any mailbox within 72 hours of collecting the sample.<br /></p></td></tr></table>","","");
-        TestingInstructions instruction3 = new TestingInstructions(0,"Penile swab Instructions", "<table cellpadding='5' style='font-size: 12pt;color: #444444;'><tr><td colspan='2'><i>Please carefully read the directions below before using the penile swab. Sample collection should not be painful or cause bleeding. If you experience either of these problems, please call us as soon as possible [study phone number]</i></td></tr><tr><td colspan='2'><p style='color:#2E86FF;'><b>DO NOT pee for 2 hours before the sample collection</b></p></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab1.jpg' width='100%' /></p></td><td><p style='text-align:left'><b>Getting started:</b><br/><br/>Step 1:  Wash your hands with soap and water.<br/><br/></p></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab2.jpg' width='100%' /></p></td><td> <p style='text-align:left'><b>Collecting the penile swab sample:</b></br><br/>Step 2:Open the swab. Twist off the cap and pull the swab out of the container.<br/><br/>DO NOT throw away the plastic holder <br/><br/></p></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab7.jpg' width='100%' /></p></td><td> <p style='text-align:left'>Step 3:  If needed, gently pull back your foreskin.<br/><br/>Making sure not to touch the soft tip of the swab, place the swab on the opening of your penis (the pee hole).</p><p style='text-align:left'>Step 4:  Gently roll the swab completely around the opening of your penis to get the best sample.</p>DO NOT stick the swab inside the opening of your penis.<br/><br/></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab3.jpg' width='100%' /></p></td><td> <p style='text-align:left'>Step 5:  Place the swab back into the plastic holder. Close it tightly to prevent leakage.<br/><br/>Step 6: Wash your hands with soap and water.<br/><br/><b>Mailing the swab:</b><br/><br/>Step 7:  Place the close tube into the red plastic zip lock bag. Seal the bag.<br/><br/>Step 8:Place the sealed bag into the return mailer, seal the envelope and drop in any mailbox within 72 hours of collecting the sample<br/></p></td></tr></table>","","");
+        TestingInstructions instruction2 = new TestingInstructions(0,"Anal swab Instructions", "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto\"></head><body><p style='font-size:20px;margin:16px 16px 0px 16px;color:#2E86EF;font-family:Roboto, sans-serif;'><b>Anal swab Instructions?</b></p><p style='font-size:14px;margin:16px 16px 0px 16px;font-family:Roboto, sans-serif;'><i>Please carefully read the directions below before using the penile swab. Sample collection should not be painful or cause bleeding. If you experience either of these problems, please call us as soon as possible <a href='tel:14153276425'>415&minus;327&minus;6425</a></i></p><table cellpadding='5' style='font-size: 14px;color:#444444;margin:16px 16px 0px 16px;font-family:Roboto, sans-serif;'><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab1.jpg' width='100%' /></p></td><td><p style='text-align:left;'><b style='font-size:16px;'>Getting started:</b><br/><br/>Step 1: Wash your hands with soap and water.<br /><br />Step 2: Either squat down on the toilet or lift one leg on the toilet, ledge, or chair.<br/><br/></p></td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align:text-top;' src='file:///android_asset/analswab2.jpg' width='100%' /></p></td><td> <p style='text-align:left;'><b style='font-size:16px;'>Collecting the anal swab sample:</b><br /><br />Step 3: Open the swab. Twist off the cap and pull the swab out of the container.<br /><br />DO NOT throw away the plastic holder.<br /><br />Step 4: Step 4: Lift one cheek for easy access to your anus.<br/><br/></p></td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center;'><img style='margin-right:5px;margin-bottom:5px;vertical-align:text-top;' src='file:///android_asset/analswab4.jpg' width='100%' /></p></td><td style='text-align:center;vertical-align:top;'> <p style='text-align:left'>Step 5: Making sure not to touch the soft tip of the swab, insert the swab 1.5 inches into your anus.</td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center;'><img style='margin-right:5px;margin-bottom:5px;vertical-align:text-top;' src='file:///android_asset/analswab5.jpg' width='100%' /></p></td><td> <p style='text-align:left;'>Step 6:The swab should be dry.DO NOT use water or lube while collecting the swab.<br /><br />Step 7: Rotate the swab in a circular motion for 5 to 10 seconds.</p></td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center;'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab6.jpg' width='100%'  /></p></td><td> <p style='text-align:left;'>Step 8: Gently remove the swab.<br /><br />Step 9: Gently remove the swab, turning it in a circle as you pull it out.</p></td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align:text-top;' src='file:///android_asset/analswab3.jpg' width='100%' /></p></td><td> <p style='text-align:left'>Step 10: Place the swab back into the plastic holder.   Close it tightly to prevent leakage.<br /><br />  Step 11: Wash your hands with soap and water.<br /><br /><b style='font-size:16px;'>Mailing the swab:</b><br /><br/>Step 12:  Place the closed tub into the red plastic zip-lock bag. Seal the bag.<br /><br />Step 13: Place the sealed back into the return mailer, seal the envelope and drop in any mailbox within 72 hours of collecting the sample.<br /></p></td></tr></table></body></html>","","");
+        TestingInstructions instruction3 = new TestingInstructions(0,"Penile swab Instructions", "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto\"></head><body><p style='font-size:20px;margin:32px 16px 0px 16px;color:#2E86EF;font-family:Roboto, sans-serif;'><b>Penile swab Instructions</b></p><p style='font-size:14px;margin:16px 16px 0px 16px;font-family:Roboto, sans-serif;'><i>Please carefully read the directions below before using the penile swab. Sample collection should not be painful or cause bleeding. If you experience either of these problems, please call us as soon as possible [study phone number]</i></p><p style='color:#2E86FF;margin:32px 16px 0px 16px;font-size:14px;font-family:Roboto, sans-serif;'><b>DO NOT pee for 2 hours before the sample collection</b></p><table cellpadding='5' style='font-size:14px;color: #444444;margin:16px 16px 0px 16px;font-family:Roboto, sans-serif;'><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab1.jpg' width='100%' /></p></td><td style='text-align:center;vertical-align:top;'><p style='text-align:left;'><b style='font-size:16px;'>Getting started:</b><br/><br/>Step 1:  Wash your hands with soap and water.<br/><br/></p></td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab2.jpg' width='100%' /></p></td><td> <p style='text-align:left;'><b style='font-size:16px;'>Collecting the penile swab sample:</b></br><br/>Step 2:Open the swab. Twist off the cap and pull the swab out of the container.<br/><br/>DO NOT throw away the plastic holder <br/><br/></p></td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab7.jpg' width='100%' /></p></td><td> <p style='text-align:left;'>Step 3:  If needed, gently pull back your foreskin.<br/><br/>Making sure not to touch the soft tip of the swab, place the swab on the opening of your penis (the pee hole).</p><p style='text-align:left;'>Step 4:  Gently roll the swab completely around the opening of your penis to get the best sample.</p>DO NOT stick the swab inside the opening of your penis.<br/><br/></td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab3.jpg' width='100%' /></p></td><td> <p style='text-align:left;'>Step 5:  Place the swab back into the plastic holder. Close it tightly to prevent leakage.<br/><br/>Step 6: Wash your hands with soap and water.<br/><br/><b style='font-size:16px;'>Mailing the swab:</b><br/><br/>Step 7:  Place the close tube into the red plastic zip lock bag. Seal the bag.<br/><br/>Step 8:Place the sealed bag into the return mailer, seal the envelope and drop in any mailbox within 72 hours of collecting the sample<br/></p></td></tr></table></body></html>","","");
 
         //if pdf instruction required
         /*TestingInstructions instruction4 = new TestingInstructions(0,"PDF instruction","","","phastt.pdf");
@@ -1122,9 +1178,9 @@ public class RegLogin extends AppCompatActivity {
                             db.updateUserBaselineCreatedDate(user_baseline_object.getString("created_at"),createBaselineID);
                             userBaselineInfo.setBaseline_id(createBaselineID);
                             userBaselineInfo.setCreated_at(db.getUserBaselineCreatedAtByUserId(LynxManager.getActiveUser().getUser_id()));
-                            Log.v("BaselineCreatedDate",userBaselineInfo.getCreated_at());
+                            //Log.v("BaselineCreatedDate",userBaselineInfo.getCreated_at());
                             LynxManager.setActiveUserBaselineInfo(userBaselineInfo);
-                            Log.v("BaselineCreatedDate",LynxManager.getActiveUserBaselineInfo().getCreated_at());
+                            //Log.v("BaselineCreatedDate",LynxManager.getActiveUserBaselineInfo().getCreated_at());
 
                         }
 
@@ -1147,7 +1203,7 @@ public class RegLogin extends AppCompatActivity {
                             userPrimaryPartner.setPrimarypartner_id(primaryPartnerID);
                             userPrimaryPartner.setCreated_at(db.getPriPartnerCreatedAtbyID(primaryPartnerID));
                             LynxManager.setActiveUserPrimaryPartner(userPrimaryPartner);
-                            Log.v("Login : ","PrimaryPartner Created");
+                            //Log.v("Login : ","PrimaryPartner Created");
                         }
 
                         // Encounter Sex Info
@@ -1188,7 +1244,7 @@ public class RegLogin extends AppCompatActivity {
                         JSONArray testingReqInfo = parentObject.getJSONArray("HomeTestingRequest");
                         for(int n = 0; n <testingReqInfo.length(); n++) {
                             JSONObject testingReqObject = testingReqInfo.getJSONObject(n);
-                            //Log.v("jsonTestingReqInfo", testingReqObject.getString(""));
+                            ////Log.v("jsonTestingReqInfo", testingReqObject.getString(""));
                             HomeTestingRequest testingRequest = new HomeTestingRequest(LynxManager.getActiveUser().getUser_id(),
                                     testingReqObject.getInt("testing_id"),
                                     LynxManager.encryptString(testingReqObject.getString("address")),
@@ -1349,10 +1405,21 @@ public class RegLogin extends AppCompatActivity {
                             }
                         }*/
 
-                        Intent home = new Intent(RegLogin.this, LynxHome.class);
-                        home.putExtra("fromactivity",RegLogin.this.getClass().getSimpleName());
-                        startActivity(home);
-                        finish();
+                        //Log.v("userBaselineArray", String.valueOf(userBaselineArray.length()));
+                        if(testingRemindersInfo.length()==0){
+                            Intent home = new Intent(RegLogin.this, RemindersActivity.class);
+                            startActivity(home);
+                            finish();
+                        }else if(userBaselineArray.length()==0){
+                            Intent home = new Intent(RegLogin.this, BaselineActivity.class);
+                            startActivity(home);
+                            finish();
+                        }else{
+                            Intent home = new Intent(RegLogin.this, LynxHome.class);
+                            home.putExtra("fromactivity",RegLogin.this.getClass().getSimpleName());
+                            startActivity(home);
+                            finish();
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

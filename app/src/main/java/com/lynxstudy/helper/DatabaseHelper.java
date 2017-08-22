@@ -273,6 +273,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_TESTING_LOCATION_LONGITUDE = "longitude";
     private static final String KEY_TESTING_LOCATION_URL = "url";
     private static final String KEY_TESTING_LOCATION_TYPE = "type";
+    private static final String KEY_TESTING_LOCATION_PREP = "prep_clinic";
+    private static final String KEY_TESTING_LOCATION_HIV = "hiv_clinic";
+    private static final String KEY_TESTING_LOCATION_STI = "sti_clinic";
 
     //PREP information column names
     private static final String KEY_PREP_INFO_ID = "prep_information_id";
@@ -433,6 +436,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + TABLE_TESTING_LOCATION + "(" + KEY_TESTING_LOCATION_ID + " INTEGER PRIMARY KEY," + KEY_TESTING_LOCATION_NAME + " TEXT,"
             + KEY_TESTING_LOCATION_ADDRESS + " TEXT," + KEY_TESTING_LOCATION_PHONE + " TEXT," + KEY_TESTING_LOCATION_LATITUDE + " TEXT,"
             + KEY_TESTING_LOCATION_LONGITUDE + " TEXT," + KEY_TESTING_LOCATION_URL + " TEXT," + KEY_TESTING_LOCATION_TYPE + " TEXT,"
+            + KEY_TESTING_LOCATION_PREP + " TEXT," + KEY_TESTING_LOCATION_HIV + " TEXT," + KEY_TESTING_LOCATION_STI + " TEXT,"
             + KEY_CREATED_AT + " DATETIME" + ")";
 
     private static final String CREATE_TABLE_TESTING_INSTRUCTION = "CREATE TABLE "
@@ -5224,6 +5228,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_TESTING_LOCATION_LONGITUDE, testingLocations.getLongitude());
         values.put(KEY_TESTING_LOCATION_URL, testingLocations.getUrl());
         values.put(KEY_TESTING_LOCATION_TYPE,testingLocations.getType());
+        values.put(KEY_TESTING_LOCATION_PREP,testingLocations.getPrep_clinic());
+        values.put(KEY_TESTING_LOCATION_HIV,testingLocations.getHiv_clinic());
+        values.put(KEY_TESTING_LOCATION_STI,testingLocations.getSti_clinic());
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
@@ -5258,7 +5265,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         testingLocations.setLongitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LONGITUDE)));
         testingLocations.setUrl(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_URL)));
         testingLocations.setType(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_TYPE)));
-
+        testingLocations.setPrep_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_PREP)));
+        testingLocations.setHiv_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_HIV)));
+        testingLocations.setSti_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_STI)));
         return testingLocations;
     }
 
@@ -5287,7 +5296,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 testingLocations.setLongitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LONGITUDE)));
                 testingLocations.setUrl(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_URL)));
                 testingLocations.setType(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_TYPE)));
-
+                testingLocations.setPrep_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_PREP)));
+                testingLocations.setHiv_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_HIV)));
+                testingLocations.setSti_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_STI)));
                 // adding to TESTING LOCATION list
                 testingLocationsList.add(testingLocations);
             } while (c.moveToNext());
@@ -5320,6 +5331,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 testingLocations.setLongitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LONGITUDE)));
                 testingLocations.setUrl(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_URL)));
                 testingLocations.setType(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_TYPE)));
+                testingLocations.setPrep_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_PREP)));
+                testingLocations.setHiv_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_HIV)));
+                testingLocations.setSti_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_STI)));
 
                 // adding to TESTING LOCATION list
                 testingLocationsList.add(testingLocations);
@@ -5359,6 +5373,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_TESTING_LOCATION_LONGITUDE, testingLocations.getLongitude());
         values.put(KEY_TESTING_LOCATION_URL, testingLocations.getUrl());
         values.put(KEY_TESTING_LOCATION_TYPE, testingLocations.getType());
+        values.put(KEY_TESTING_LOCATION_PREP,testingLocations.getPrep_clinic());
+        values.put(KEY_TESTING_LOCATION_HIV,testingLocations.getHiv_clinic());
+        values.put(KEY_TESTING_LOCATION_STI,testingLocations.getSti_clinic());
         values.put(KEY_CREATED_AT, getDateTime());
 
         // updating row

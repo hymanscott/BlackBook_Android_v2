@@ -36,13 +36,15 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
+    <!--
     <receiver android:name=".AlarmReceiver" />
     <receiver android:name=".AlarmRestoreOnBoot">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED" />
         </intent-filter>
     </receiver>
-    <!--<application android:name="android.support.multidex.MultiDexApplication"-->
+    -->
+    <!-- <application android:name="android.support.multidex.MultiDexApplication" -->
     <application
         android:name=".lynxApplication"
         android:allowBackup="true"
@@ -152,8 +154,11 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
-        <!--Hockey APP Integration-->
-        <meta-data android:name="net.hockeyapp.android.appIdentifier" android:value="${HOCKEYAPP_APP_ID}" />
+        <!-- Hockey APP Integration -->
+        <meta-data
+            android:name="net.hockeyapp.android.appIdentifier"
+            android:value="${HOCKEYAPP_APP_ID}" />
+
         <activity
             android:name=".AddNewTest"
             android:screenOrientation="portrait"
@@ -192,7 +197,18 @@
         <activity
             android:name=".LynxProfileEdit"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".LynxHome"></activity>
+        <activity android:name=".LynxHome" />
+
+        <receiver android:name=".AlarmReceiver" />
+        <receiver android:name=".AlarmRestoreOnBoot">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".EncounterFromNotification"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

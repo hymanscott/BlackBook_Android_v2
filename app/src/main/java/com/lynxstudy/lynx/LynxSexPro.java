@@ -107,8 +107,8 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         // Printing Recent Actions //
         List<Statistics> statisticsList= db.getAllStatistics();
         for(Statistics recentStat:statisticsList) {
-            Log.v("RecentStatStart",recentStat.getFrom_activity() + "->" +recentStat.getActivity() +" at " + recentStat.getStarttime());
-            Log.v("RecentStatEnd", "Ended at" + recentStat.getEndtime() +" moved to " + recentStat.getTo_activity() + " with action " + recentStat.getAction());
+            //Log.v("RecentStatStart",recentStat.getFrom_activity() + "->" +recentStat.getActivity() +" at " + recentStat.getStarttime());
+            //Log.v("RecentStatEnd", "Ended at" + recentStat.getEndtime() +" moved to " + recentStat.getTo_activity() + " with action " + recentStat.getAction());
         }
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
@@ -338,7 +338,7 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
     public void onResume() {
         super.onResume();
         // Closing the App if sign out enabled
-        Log.v("SignOut", String.valueOf(LynxManager.signOut));
+        //Log.v("SignOut", String.valueOf(LynxManager.signOut));
         if(LynxManager.signOut){
             finish();
             System.exit(0);
@@ -346,7 +346,7 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         if (LynxManager.onPause){
             Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);
             startActivity(lockscreen);
-            Log.v("onResumeusername", LynxManager.getActiveUser().getFirstname());
+            //Log.v("onResumeusername", LynxManager.getActiveUser().getFirstname());
         }
         statistics.setStarttime(LynxManager.getDateTime());
     }
@@ -354,7 +354,7 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onPause(){
         super.onPause();
-        Log.v("statOnPause",LynxManager.getDateTime());
+        //Log.v("statOnPause",LynxManager.getDateTime());
     }
 
     @Override
@@ -364,7 +364,7 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         statistics.setAction("Activity Stoped");
         statistics.setTo_activity(toactivity);
         db.createStatistics(statistics);
-        Log.v("statOnStop",LynxManager.getDateTime());
+        //Log.v("statOnStop",LynxManager.getDateTime());
     }
 
     @Override

@@ -213,7 +213,7 @@ public class EncounterNewPartner extends AppCompatActivity {
                 partUndetectable = "";
             }
             // Adding new partner details into phast manager
-            Log.v("UndetectableFor6Months", partUndetectable);
+            //Log.v("UndetectableFor6Months", partUndetectable);
             Partners new_partner = new Partners(LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(nickName),LynxManager.encryptString(gender), LynxManager.encryptString(hiv_status),
                     LynxManager.encryptString(partUndetectable), LynxManager.encryptString(is_listed),String.valueOf(R.string.statusUpdateNo),true);
             LynxManager.setActivePartner(new_partner);
@@ -357,7 +357,7 @@ public class EncounterNewPartner extends AppCompatActivity {
         LynxManager.partnerRatingFields.clear();
         LynxManager.setPartnerRatingValues(rating_values);
         LynxManager.setPartnerRatingFields(rating_fields);
-        Log.v("SETPhas-Rating Values", Arrays.toString(rating_values.toArray()));
+        //Log.v("SETPhas-Rating Values", Arrays.toString(rating_values.toArray()));
 
         LynxManager.setPartnerRatingIds(rating_field_id);
         LynxManager.activePartnerRating.clear();
@@ -569,7 +569,7 @@ public class EncounterNewPartner extends AppCompatActivity {
             int partner_rating_ID = db.createPartnerRating(partnerRating);
             LynxManager.getActivePartnerRating().get(i++).setPartner_rating_id(partner_rating_ID);
 
-            Log.v("Adding Partner", partner_ID + "  " + partner_rating_ID + " " + i);
+            //Log.v("Adding Partner", partner_ID + "  " + partner_rating_ID + " " + i);
         }
 
         EncounterChoosePartnerFragment choosePartner = new EncounterChoosePartnerFragment();

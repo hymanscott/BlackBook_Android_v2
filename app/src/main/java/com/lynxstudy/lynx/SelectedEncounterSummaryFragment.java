@@ -188,6 +188,7 @@ public class SelectedEncounterSummaryFragment extends Fragment {
                         sexType_iFingered.setTextColor(Color.parseColor("#ffffff"));
                         break;
                     case "I went down on her":
+                    case "I went down on him":					
                         ToggleButton sexType_iWentDown = (ToggleButton)rootview.findViewById(R.id.sexType_iWentDown);
                         sexType_iWentDown.setSelected(true);
                         sexType_iWentDown.setClickable(false);

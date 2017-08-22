@@ -323,7 +323,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
             for (PartnerRating rating : partnerRatingsList) {
                 rating_values.add(rating.getRating());
                 rating_fields.add(rating.getRating_field());
-                Log.v("ratings", String.valueOf(rating.getRating()));
+                //Log.v("ratings", String.valueOf(rating.getRating()));
             }
             overAll.setText(rating_fields.get(0));
             newPartnerSumm_rate2.setText(rating_fields.get(1));
@@ -688,7 +688,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         for (PartnerRating rating : partnerRatingsList) {
             rating_values.add(rating.getRating());
             rating_fields.add(rating.getRating_field());
-            Log.v("ratings", String.valueOf(rating.getRating()));
+            //Log.v("ratings", String.valueOf(rating.getRating()));
         }
         db= new DatabaseHelper(getActivity());
         db = new DatabaseHelper(getActivity().getBaseContext());

@@ -84,7 +84,7 @@ public class EncounterCondomuseFragment extends Fragment {
 
         for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
             String sexTypeText = LynxManager.decryptString(encSexType.getSex_type());
-            Log.v("sexTypeText",sexTypeText);
+            //Log.v("sexTypeText",sexTypeText);
             switch (sexTypeText) {
                 case "I sucked him":
                     whenIsucked.setText("When I sucked him:");

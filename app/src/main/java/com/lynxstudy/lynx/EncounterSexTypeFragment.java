@@ -58,7 +58,7 @@ public class EncounterSexTypeFragment extends Fragment {
 
         sexTypeLayout = (LinearLayout)rootview.findViewById(R.id.sexTypeLayout);
         String gender = LynxManager.decryptString(LynxManager.getActivePartner().getGender());
-        Log.v("Gender",gender);
+        //Log.v("Gender",gender);
         View sextypeView;
         switch (gender){
             case "Woman":
