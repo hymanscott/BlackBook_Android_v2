@@ -34,7 +34,7 @@ public class RegistrationSexproScore extends Fragment {
     DatabaseHelper db;
     TextView score_message;
     Button sexpro_score_close;
-    ImageView dialScoreImage;
+    /*ImageView dialScoreImage;*/
     Typeface tf;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,7 +49,7 @@ public class RegistrationSexproScore extends Fragment {
         score_message = (TextView)rootview.findViewById(R.id.score_message);
         score_message.setTypeface(tf);
 
-        dialScoreImage = (ImageView)rootview.findViewById(R.id.dialScoreImage);
+        /*dialScoreImage = (ImageView)rootview.findViewById(R.id.dialScoreImage);*/
 
         calculateSexProScore getscore = new calculateSexProScore(getActivity());
         float current_score = (float) getscore.getUnAdjustedScore();
@@ -67,7 +67,7 @@ public class RegistrationSexproScore extends Fragment {
             score_message.setText("Daily PrEP can raise your score to " +  String.valueOf(score) +
                     " & add an extra layer of protection.");
         }
-        switch (score){
+        /*switch (score){
             case 1:
                 dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_1));
                 break;
@@ -131,7 +131,7 @@ public class RegistrationSexproScore extends Fragment {
             default:
                 dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_1));
                 break;
-        }
+        }*/
         final ImageView btn = (ImageView)rootview.findViewById(R.id.information);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

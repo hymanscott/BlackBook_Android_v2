@@ -18,10 +18,6 @@
     <color name="light_gray">#E5E5E5</color>
     <color name="gray">#CCC</color>
 
-    <!-- From Phastt -->
-    <color name="button_gray">#666666</color>
-    <color name="black">#000</color>
-
     <!-- Grdient Colors -->
     <color name="top_right">#693CDD</color>
     <color name="bottom">#2196F3</color>
@@ -56,4 +52,7 @@
 
     <!--Lynx Home -->
     <color name="lynx_home_white">#CCFFFFFF</color>
+
+    <!--Bottom Navigations-->
+    <color name="bot_nav_bg">#FFD5D5D5</color>
 </resources>

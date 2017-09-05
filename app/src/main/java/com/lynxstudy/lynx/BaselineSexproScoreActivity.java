@@ -6,12 +6,15 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lynxstudy.helper.DatabaseHelper;
@@ -57,23 +60,47 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
         dialScoreImage = (ImageView)findViewById(R.id.dialScoreImage);
         infolayout = (LinearLayout)findViewById(R.id.infolayout);
         main_content= (LinearLayout)findViewById(R.id.main_content);
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        int width = (int) ((metrics.widthPixels / metrics.density) * 1.3);
+        int height = (int) ((metrics.widthPixels / metrics.density) * 1.3);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width,height);
+        FrameLayout dial_layout = (FrameLayout)findViewById(R.id.myscore_framelayout);
+        dial_layout.setLayoutParams(params);
+
         calculateSexProScore getscore = new calculateSexProScore(BaselineSexproScoreActivity.this);
         float current_score = (float) getscore.getUnAdjustedScore();
         if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
             current_score = (float) getscore.getAdjustedScore();
         }
+        int adjustedScore = Math.round((float) getscore.getAdjustedScore());
+        int unAdjustedScore = Math.round((float) getscore.getUnAdjustedScore());
         int score = Math.round(current_score);
         db =new DatabaseHelper(BaselineSexproScoreActivity.this);
         db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), score, String.valueOf(R.string.statusUpdateNo));
         reg_sexPro_score_value.setText(" " + score);
+        final ImageView dial_imgview = (ImageView)findViewById(R.id.imageView);
         if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
+            float angle;
+            if((adjustedScore-1)>=17){
+                angle = (int) ((adjustedScore-1) * 13.76);
+            }else{
+                angle = (int) ((adjustedScore-1) * 13.86);
+            }
+            dial_imgview.setRotation(angle);
             score_message.setText("Daily PrEP raised your score from " +  String.valueOf(score) +
                     " & added an extra layer of protection.");
         }else{
+            float angle;
+            if((unAdjustedScore-1)>=17){
+                angle = (int) ((unAdjustedScore-1) * 13.76);
+            }else{
+                angle = (int) ((unAdjustedScore-1) * 13.86);
+            }
+            dial_imgview.setRotation(angle);
             score_message.setText("Daily PrEP can raise your score to " +  String.valueOf(score) +
                     " & add an extra layer of protection.");
         }
-        switch (score){
+        /*switch (score){
             case 1:
                 dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_1));
                 break;
@@ -137,7 +164,7 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
             default:
                 dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_1));
                 break;
-        }
+        }*/
         final ImageView btn = (ImageView)findViewById(R.id.information);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

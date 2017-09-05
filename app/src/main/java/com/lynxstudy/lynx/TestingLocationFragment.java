@@ -105,13 +105,14 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
 
         mMapView.onResume(); // needed to get the map to display immediately
         // Moving MyLocation Button to bottom //
-        View btnMyLocation = ((View) mMapView.findViewById(1).getParent()).findViewById(2);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(80,80); // size of button in dp
-        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
-        params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
-        params.setMargins(0, 0, 15, 15);
-        btnMyLocation.setLayoutParams(params);
-
+        if(mMapView.findViewById(1) != null){
+            View btnMyLocation = ((View) mMapView.findViewById(1).getParent()).findViewById(2);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(80,80); // size of button in dp
+            params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+            params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+            params.setMargins(0, 0, 15, 15);
+            btnMyLocation.setLayoutParams(params);
+        }
         mlocManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         try {
@@ -177,8 +178,8 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                 }
                 if(position!=0)
                     filter = filterSpinner.getSelectedItem().toString();
-
-                showFilteredMarker(searchLatLng,filter,milesSpinner.getSelectedItem().toString());
+                if(googleMap !=null)
+                    showFilteredMarker(searchLatLng,filter,milesSpinner.getSelectedItem().toString());
             }
 
             @Override
@@ -199,7 +200,8 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                     filter = filterSpinner.getSelectedItem().toString();
                 if(!zipcode.getText().toString().isEmpty())
                     searchLatLng = getLatLngFromZip(zipcode.getText().toString());
-                showFilteredMarker(searchLatLng,filter,milesSpinner.getSelectedItem().toString());
+                if(googleMap !=null)
+                    showFilteredMarker(searchLatLng,filter,milesSpinner.getSelectedItem().toString());
             }
 
             @Override
@@ -216,7 +218,8 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                     String filter=null;
                     if(!filterSpinner.getSelectedItem().toString().equals("Filters"))
                         filter = filterSpinner.getSelectedItem().toString();
-                    showFilteredMarker(getLatLngFromZip(zipcode.getText().toString()),filter,milesSpinner.getSelectedItem().toString());
+                    if(googleMap !=null)
+                        showFilteredMarker(getLatLngFromZip(zipcode.getText().toString()),filter,milesSpinner.getSelectedItem().toString());
                 }
             }
         });
@@ -648,63 +651,65 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
         }
 
         //custom info window
-        googleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-            @Override
-            public View getInfoWindow(Marker marker) {
-                return null;
-            }
-
-            @Override
-            public View getInfoContents(Marker marker) {
-
-
-                // Getting view from the layout file info_window_layout
-                View v = getLayoutInflater(Bundle.EMPTY).inflate(R.layout.info_window, null);
-
-                // Getting the position from the marker
-                LatLng latLng = marker.getPosition();
-
-                TextView tv_title = (TextView) v.findViewById(R.id.infoWindow_Title);
-                TextView tv_address = (TextView) v.findViewById(R.id.infoWindow_Address);
-                TextView tv_phone = (TextView) v.findViewById(R.id.infoWindow_Phone);
-                TextView tv_url = (TextView) v.findViewById(R.id.infoWindow_url);
-                TextView tv_distance = (TextView) v.findViewById(R.id.infoWindow_distance);
-
-                if (marker.getTitle() != null) {
-                    int id = Integer.parseInt(marker.getTitle());
-                    TestingLocations testingLocations = db.getTestingLocationbyID(id);
-                    tv_title.setText(testingLocations.getName());
-                    tv_address.setText(testingLocations.getAddress());
-                    tv_phone.setText("Phone:" + testingLocations.getPhone_number());
-                    if (testingLocations.getUrl().isEmpty()) {
-                        tv_url.setVisibility(View.GONE);
-                    }
-                    tv_url.setText(testingLocations.getUrl());
-                    tv_distance.setText(marker.getSnippet());
-                } else {
-                    //tv_address.setText("Long press the marker to drag and find the nearest Testing Location");
+        if(googleMap!=null) {
+            googleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+                @Override
+                public View getInfoWindow(Marker marker) {
                     return null;
                 }
-                // Returning the view containing InfoWindow contents
 
-                return v;
+                @Override
+                public View getInfoContents(Marker marker) {
 
-            }
-        });
-        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-            @Override
-            public void onInfoWindowClick(Marker marker) {
-                int id = Integer.parseInt(marker.getTitle());
-                TestingLocations testingLocations = db.getTestingLocationbyID(id);
 
-                try {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(testingLocations.getUrl()));
-                    startActivity(browserIntent);
-                } catch (ActivityNotFoundException e) {
-                    e.printStackTrace();
+                    // Getting view from the layout file info_window_layout
+                    View v = getLayoutInflater(Bundle.EMPTY).inflate(R.layout.info_window, null);
+
+                    // Getting the position from the marker
+                    LatLng latLng = marker.getPosition();
+
+                    TextView tv_title = (TextView) v.findViewById(R.id.infoWindow_Title);
+                    TextView tv_address = (TextView) v.findViewById(R.id.infoWindow_Address);
+                    TextView tv_phone = (TextView) v.findViewById(R.id.infoWindow_Phone);
+                    TextView tv_url = (TextView) v.findViewById(R.id.infoWindow_url);
+                    TextView tv_distance = (TextView) v.findViewById(R.id.infoWindow_distance);
+
+                    if (marker.getTitle() != null) {
+                        int id = Integer.parseInt(marker.getTitle());
+                        TestingLocations testingLocations = db.getTestingLocationbyID(id);
+                        tv_title.setText(testingLocations.getName());
+                        tv_address.setText(testingLocations.getAddress());
+                        tv_phone.setText("Phone:" + testingLocations.getPhone_number());
+                        if (testingLocations.getUrl().isEmpty()) {
+                            tv_url.setVisibility(View.GONE);
+                        }
+                        tv_url.setText(testingLocations.getUrl());
+                        tv_distance.setText(marker.getSnippet());
+                    } else {
+                        //tv_address.setText("Long press the marker to drag and find the nearest Testing Location");
+                        return null;
+                    }
+                    // Returning the view containing InfoWindow contents
+
+                    return v;
+
                 }
-            }
-        });
+            });
+            googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                @Override
+                public void onInfoWindowClick(Marker marker) {
+                    int id = Integer.parseInt(marker.getTitle());
+                    TestingLocations testingLocations = db.getTestingLocationbyID(id);
+
+                    try {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(testingLocations.getUrl()));
+                        startActivity(browserIntent);
+                    } catch (ActivityNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
 
     }
 }

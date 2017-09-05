@@ -124,19 +124,15 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <ImageView
-                            android:id="@+id/dialScoreImage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/dial_1" />
+
 
                         <FrameLayout
                             android:id="@+id/myscore_framelayout"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_below="@+id/dialScoreImage"
                             android:background="@drawable/sexprodial"
-                            android:gravity="center"
-                            android:visibility="gone">
+                            android:gravity="center">
 
                             <ImageView
                                 android:id="@+id/imageView"
@@ -242,7 +238,7 @@
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             android:layout_alignParentBottom="true"
-            android:background="@color/starBG"
+            android:background="@color/bot_nav_bg"
             android:orientation="horizontal"
             android:weightSum="1">
 

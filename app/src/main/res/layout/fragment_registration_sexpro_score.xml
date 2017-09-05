@@ -79,19 +79,19 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <ImageView
+                    <!--<ImageView
                         android:id="@+id/dialScoreImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:src="@drawable/dial_1" />
-
+-->
                     <FrameLayout
                         android:id="@+id/myscore_framelayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/sexprodial"
-                        android:gravity="center"
-                        android:visibility="gone">
+                        android:gravity="center">
 
                         <ImageView
                             android:id="@+id/imageView"

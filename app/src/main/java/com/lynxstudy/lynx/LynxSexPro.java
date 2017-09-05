@@ -81,7 +81,6 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
 
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
     DatabaseHelper db;
-    ImageView dialScoreImage;
     TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,score_update,score_update_date,info_title,info_para_one,info_para_two,info_para_three;
     private Statistics statistics = new Statistics();
     private String fromactivity = null;
@@ -188,7 +187,6 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         dial_layout.setLayoutParams(params);
 
         final ImageView dial_imgview = (ImageView)findViewById(R.id.imageView);
-        dialScoreImage = (ImageView)findViewById(R.id.dialScoreImage);
         int score;
         Button current_score_tv = (Button) findViewById(R.id.textProgress_id1_toplabel);
         current_score_tv.setTypeface(tf);
@@ -199,84 +197,28 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         int unAdjustedScore = Math.round((float) getscore.getUnAdjustedScore());
         if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
             current_score_tv.setText("YOUR SEX PRO SCORE IS "+String.valueOf(adjustedScore));
-            float angle = (int) ((adjustedScore-1) * 13.6);
+            /*float angle = (int) ((adjustedScore-1) * 13.86);*/
+            float angle;
+            if((adjustedScore-1)>=17){
+                angle = (int) ((adjustedScore-1) * 13.76);
+            }else{
+                angle = (int) ((adjustedScore-1) * 13.86);
+            }
             dial_imgview.setRotation(angle);
             current_score_text.setText("Daily PrEP raised your score from " +  String.valueOf(unAdjustedScore) +
                     " & added an extra layer of protection.");
-            score = adjustedScore;
         }else{
             current_score_tv.setText("YOUR SEX PRO SCORE IS "+String.valueOf(unAdjustedScore));
-            float angle = (int) ((unAdjustedScore-1) * 13.6);
+            float angle;
+            if((unAdjustedScore-1)>=17){
+                angle = (int) ((unAdjustedScore-1) * 13.76);
+            }else{
+                angle = (int) ((unAdjustedScore-1) * 13.86);
+            }
+
             dial_imgview.setRotation(angle);
             current_score_text.setText("Daily PrEP can raise your score to " +  String.valueOf(adjustedScore) +
                     " & add an extra layer of protection.");
-            score = unAdjustedScore;
-        }
-
-        switch (score){
-            case 1:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_1));
-                break;
-            case 2:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_2));
-                break;
-            case 3:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_3));
-                break;
-            case 4:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_4));
-                break;
-            case 5:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_5));
-                break;
-            case 6:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_6));
-                break;
-            case 7:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_7));
-                break;
-            case 8:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_8));
-                break;
-            case 9:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_9));
-                break;
-            case 10:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_10));
-                break;
-            case 11:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_11));
-                break;
-            case 12:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_12));
-                break;
-            case 13:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_13));
-                break;
-            case 14:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_14));
-                break;
-            case 15:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_15));
-                break;
-            case 16:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_16));
-                break;
-            case 17:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_17));
-                break;
-            case 18:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_18));
-                break;
-            case 19:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_19));
-                break;
-            case 20:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_20));
-                break;
-            default:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_1));
-                break;
         }
         // Score Update Date //
         String createdAt = LynxManager.getActiveUserBaselineInfo().getCreated_at();

@@ -739,7 +739,7 @@ public class RegLogin extends AppCompatActivity {
         }else if (confirm_race.getText().toString().isEmpty()) {
             Toast.makeText(RegLogin.this,"Please enter all the required fields",Toast.LENGTH_SHORT).show();
         }else{
-            RegistrationBaselineIntro regPrimaryPartner = new RegistrationBaselineIntro();
+            /*RegistrationBaselineIntro regPrimaryPartner = new RegistrationBaselineIntro();*/
             Users user = LynxManager.getActiveUser();
             Gson gson = new Gson();
             user.setStatus_encrypt(true);

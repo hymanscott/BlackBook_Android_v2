@@ -28,7 +28,6 @@ import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.lynx.R;
-import com.lynxstudy.lynx.TestingInstructionAnswer;
 import com.lynxstudy.model.TestingInstructions;
 
 import java.io.File;

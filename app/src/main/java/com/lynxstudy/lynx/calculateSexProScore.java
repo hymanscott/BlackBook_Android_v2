@@ -383,7 +383,7 @@ public class calculateSexProScore {
         String botCondomUse =   LynxManager.decryptString(baselineInfo.getBottom_condom_use_percent());
         botCondomUse        =   botCondomUse.replaceAll("\\s+","");
         /*botCondomUse        =   botCondomUse.length()==3?botCondomUse.substring(0,2):(botCondomUse.substring(0,1));*/
-        botCondomUse        =   botCondomUse.substring(0, topCondomUse.length() - 1);
+        botCondomUse        =   botCondomUse.substring(0, botCondomUse.length() - 1);
         NIAS_POS_UNK    =   Integer.parseInt(LynxManager.decryptString(baselineInfo.getNo_of_times_top_hivposs()));
         PPIAS_POS_UNK   =   Integer.parseInt(topCondomUse) * 0.01;
         NRAS_POS_UNK    =   Integer.parseInt(LynxManager.decryptString(baselineInfo.getNo_of_times_bot_hivposs()));
