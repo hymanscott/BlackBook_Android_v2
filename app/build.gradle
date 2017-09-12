@@ -7,8 +7,8 @@ android {
         applicationId "com.lynxstudy.lynx"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 2
-        versionName '1.4'
+        versionCode 3
+        versionName '1.5'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         manifestPlaceholders = [HOCKEYAPP_APP_ID: "6ab13309fc744956a8571662d0675a9f"]

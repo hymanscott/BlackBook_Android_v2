@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -15,15 +16,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -88,6 +92,9 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
     ImageView search;
     EditText zipcode;
     Spinner filterSpinner,milesSpinner;
+    private BottomSheetBehavior mBottomSheetBehavior;
+    Typeface tf;
+    TextView infoWindow_Title,infoWindow_Address,infoWindow_Phone,infoWindow_url,infoWindow_distance,infoWindow_url_title,infoWindow_hours_title,infoWindow_hours,infoWindow_ins_title,infoWindow_insurance,infoWindow_ages_title,infoWindow_ages;
     public TestingLocationFragment() {
         // Required empty public constructor
     }
@@ -102,7 +109,9 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
         db = new DatabaseHelper(getActivity());
         mMapView = (MapView) view.findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
-
+        //Type face
+        tf = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Regular.ttf");
         mMapView.onResume(); // needed to get the map to display immediately
         // Moving MyLocation Button to bottom //
         if(mMapView.findViewById(1) != null){
@@ -120,6 +129,49 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
         } catch (Exception e) {
             e.printStackTrace();
         }
+        /*Bottom Sheet*/
+        View bottomSheet = view.findViewById( R.id.bottom_sheet );
+        infoWindow_Title = (TextView)view.findViewById(R.id.infoWindow_Title);
+        infoWindow_Title.setTypeface(tf);
+        infoWindow_Address = (TextView)view.findViewById(R.id.infoWindow_Address);
+        infoWindow_Address.setTypeface(tf);
+        infoWindow_Phone = (TextView)view.findViewById(R.id.infoWindow_Phone);
+        infoWindow_Phone.setTypeface(tf);
+        infoWindow_url = (TextView)view.findViewById(R.id.infoWindow_url);
+        infoWindow_url.setTypeface(tf);
+        infoWindow_distance = (TextView)view.findViewById(R.id.infoWindow_distance);
+        infoWindow_distance.setTypeface(tf);
+        infoWindow_url_title = (TextView)view.findViewById(R.id.infoWindow_url_title);
+        infoWindow_url_title.setTypeface(tf);
+        infoWindow_hours_title = (TextView)view.findViewById(R.id.infoWindow_hours_title);
+        infoWindow_hours_title.setTypeface(tf);
+        infoWindow_hours = (TextView)view.findViewById(R.id.infoWindow_hours);
+        infoWindow_hours.setTypeface(tf);
+        infoWindow_ins_title = (TextView)view.findViewById(R.id.infoWindow_ins_title);
+        infoWindow_ins_title.setTypeface(tf);
+        infoWindow_insurance = (TextView)view.findViewById(R.id.infoWindow_insurance);
+        infoWindow_insurance.setTypeface(tf);
+        infoWindow_ages_title = (TextView)view.findViewById(R.id.infoWindow_ages_title);
+        infoWindow_ages_title.setTypeface(tf);
+        infoWindow_ages = (TextView)view.findViewById(R.id.infoWindow_ages);
+        infoWindow_ages.setTypeface(tf);
+
+        mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN); // Hiding Bottom Sheet by default
+        mBottomSheetBehavior.setPeekHeight(0);
+        mBottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(View bottomSheet, int newState) {
+                if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
+                    mBottomSheetBehavior.setPeekHeight(0);
+                }
+            }
+
+            @Override
+            public void onSlide(View bottomSheet, float slideOffset) {
+            }
+        });
+
         mMapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap mMap) {
@@ -151,14 +203,40 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                         return false;
                     }
                 });
+                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                    @Override
+                    public void onMapClick(LatLng latLng) {
+                        mBottomSheetBehavior.setPeekHeight(0);
+                    }
+                });
+                googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        if (marker.getTitle() != null) {
+                            int id = Integer.parseInt(marker.getTitle());
+                            TestingLocations testingLocations = db.getTestingLocationbyID(id);
+                            infoWindow_Title.setText(testingLocations.getName());
+                            infoWindow_Address.setText(testingLocations.getAddress());
+                            infoWindow_Phone.setText("Phone:" + testingLocations.getPhone_number());
+                            if (testingLocations.getUrl().isEmpty()) {
+                                infoWindow_url.setVisibility(View.GONE);
+                            }else{
+                                infoWindow_url.setVisibility(View.VISIBLE);
+                                infoWindow_url.setText(testingLocations.getUrl());
+                            }
+                            infoWindow_hours.setText(Html.fromHtml(testingLocations.getOperation_hours()));
+                            infoWindow_insurance.setText(testingLocations.getInsurance());
+                            infoWindow_ages.setText(testingLocations.getAges());
+                            /*Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(testingLocations.getUrl()));
+                            startActivity(browserIntent);*/
+                            infoWindow_distance.setText(marker.getSnippet());
 
-                /*// For dropping a marker at a point on the Map
-                LatLng sydney = new LatLng(12.968123, 77.654530);
-                googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker Title").snippet("Marker Description"));
-
-                // For zooming automatically to the location of the marker
-                CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom(12).build();
-                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));*/
+                            mBottomSheetBehavior.setPeekHeight(200);
+                            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        }
+                        return true;
+                    }
+                });
             }
         });
 
@@ -240,8 +318,6 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                 if (addresses != null && !addresses.isEmpty()) {
                     Address address = addresses.get(0);
                     // Use the address as needed
-               /* String message = String.format("Latitude: %f, Longitude: %f",
-                        address.getLatitude(), address.getLongitude());*/
                     latLng = new LatLng(address.getLatitude(), address.getLongitude());
                 } else {
                     // Display appropriate message when Geocoder services are not available
@@ -261,8 +337,6 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                     List<LatLng> ll = new ArrayList<LatLng>(addresses.size()); // A list to save the coordinates if they are available
                     for(Address a : addresses){
                         if(a.hasLatitude() && a.hasLongitude()){
-                        /*String message = String.format("Latitude: %f, Longitude: %f",
-                                a.getLatitude(), a.getLongitude());*/
                             latLng = new LatLng(a.getLatitude(), a.getLongitude());
                         }
                     }
@@ -308,20 +382,6 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                     bounds.include(new LatLng(locationsDistance.getLatitude(), locationsDistance.getLongitude()));
                 //}else if(filter.equals(locationsDistance.getType())){
                 }else {
-                    /*switch (filter){
-                        case "PrEP":
-                            marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.prepmarker));
-                            break;
-                        case "HIV Testing":
-                            marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.hivmarker));
-                            break;
-                        case "STI Testing":
-                            marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.stimarker));
-                            break;
-                        default:
-                            marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker));
-                    }*/
-
                     googleMap.addMarker(getMarkerIcon(filter,marker));
                     bounds.include(new LatLng(locationsDistance.getLatitude(), locationsDistance.getLongitude()));
                 }
@@ -338,19 +398,6 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
             for (LocationsDistance locationsDistance : Locations_DistanceArray) {
                 LatLng latlng = new LatLng(locationsDistance.getLatitude(), locationsDistance.getLongitude());
                 MarkerOptions marker = new MarkerOptions().position(latlng).title(String.valueOf(locationsDistance.getLocation_distance_id())).snippet("Distance in Miles : " + locationsDistance.getDistance());
-                /*switch (locationsDistance.getType()){
-                    case "PrEP":
-                        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.prepmarker));
-                        break;
-                    case "HIV Testing":
-                        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.hivmarker));
-                        break;
-                    case "STI Testing":
-                        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.stimarker));
-                        break;
-                    default:
-                        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_marker));
-                }*/
                 googleMap.addMarker(getMarkerIcon(locationsDistance.getType(),marker));
                 bounds.include(new LatLng(locationsDistance.getLatitude(), locationsDistance.getLongitude()));
                 // Move Camera to very first location //
@@ -361,19 +408,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
         }
     }
     public MarkerOptions getMarkerIcon(String filter,MarkerOptions marker){
-        switch (filter){
-            case "PrEP":
-                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.cityiconblue));
-                break;
-            case "HIV Testing":
-                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.cityiconblue));
-                break;
-            case "STI Testing":
-                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.cityiconblue));
-                break;
-            default:
-                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.cityiconblue));
-        }
+        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.cityiconblue));
         return marker;
     }
     @Override
@@ -651,7 +686,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
         }
 
         //custom info window
-        if(googleMap!=null) {
+        /*if(googleMap!=null) {
             googleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
                 @Override
                 public View getInfoWindow(Marker marker) {
@@ -709,7 +744,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                     }
                 }
             });
-        }
+        }*/
 
     }
 }

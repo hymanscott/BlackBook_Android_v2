@@ -19,4 +19,6 @@
     <dimen name="encounter_radio_btn_textsize">14sp</dimen>
     <dimen name="toggle_btn_textsize">16sp</dimen>
     <dimen name="toggle_btn_height">40dp</dimen>
+    <dimen name="info_window_title_size">20sp</dimen>
+    <dimen name="info_window_text_size">16sp</dimen>
 </resources>

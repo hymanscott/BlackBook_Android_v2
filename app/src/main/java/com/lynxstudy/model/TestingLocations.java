@@ -15,6 +15,9 @@ public class TestingLocations {
     String prep_clinic;
     String hiv_clinic;
     String sti_clinic;
+    String operation_hours;
+    String insurance;
+    String ages;
     String created_at;
     public TestingLocations() {
     }
@@ -29,7 +32,7 @@ public class TestingLocations {
         this.url = url;
     }
 
-    public TestingLocations(String name, String address,String phone_number, String latitude, String longitude, String url, String type,String prep_clinic,String hiv_clinic,String sti_clinic) {
+    public TestingLocations(String name, String address,String phone_number, String latitude, String longitude, String url, String type,String prep_clinic,String hiv_clinic,String sti_clinic,String operation_hours,String insurance,String ages) {
         this.name = name;
         this.address = address;
         this.phone_number = phone_number;
@@ -40,6 +43,9 @@ public class TestingLocations {
         this.prep_clinic = prep_clinic;
         this.hiv_clinic = hiv_clinic;
         this.sti_clinic = sti_clinic;
+        this.operation_hours = operation_hours;
+        this.insurance = insurance;
+        this.ages = ages;
     }
 
     public String getPhone_number() {
@@ -128,5 +134,29 @@ public class TestingLocations {
 
     public void setSti_clinic(String sti_clinic) {
         this.sti_clinic = sti_clinic;
+    }
+
+    public String getOperation_hours() {
+        return operation_hours;
+    }
+
+    public void setOperation_hours(String operation_hours) {
+        this.operation_hours = operation_hours;
+    }
+
+    public String getInsurance() {
+        return insurance;
+    }
+
+    public void setInsurance(String insurance) {
+        this.insurance = insurance;
+    }
+
+    public String getAges() {
+        return ages;
+    }
+
+    public void setAges(String ages) {
+        this.ages = ages;
     }
 }

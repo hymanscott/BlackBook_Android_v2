@@ -53,7 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
     private static final String DATABASE_NAME = "phasttDB";
@@ -276,6 +276,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_TESTING_LOCATION_PREP = "prep_clinic";
     private static final String KEY_TESTING_LOCATION_HIV = "hiv_clinic";
     private static final String KEY_TESTING_LOCATION_STI = "sti_clinic";
+    private static final String KEY_TESTING_LOCATION_OPERATION_HOURS = "operation_hours";
+    private static final String KEY_TESTING_LOCATION_INSURANCE = "insurance";
+    private static final String KEY_TESTING_LOCATION_AGES = "ages";
 
     //PREP information column names
     private static final String KEY_PREP_INFO_ID = "prep_information_id";
@@ -437,6 +440,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_TESTING_LOCATION_ADDRESS + " TEXT," + KEY_TESTING_LOCATION_PHONE + " TEXT," + KEY_TESTING_LOCATION_LATITUDE + " TEXT,"
             + KEY_TESTING_LOCATION_LONGITUDE + " TEXT," + KEY_TESTING_LOCATION_URL + " TEXT," + KEY_TESTING_LOCATION_TYPE + " TEXT,"
             + KEY_TESTING_LOCATION_PREP + " TEXT," + KEY_TESTING_LOCATION_HIV + " TEXT," + KEY_TESTING_LOCATION_STI + " TEXT,"
+            + KEY_TESTING_LOCATION_OPERATION_HOURS + " TEXT," + KEY_TESTING_LOCATION_INSURANCE + " TEXT," + KEY_TESTING_LOCATION_AGES + " TEXT,"
             + KEY_CREATED_AT + " DATETIME" + ")";
 
     private static final String CREATE_TABLE_TESTING_INSTRUCTION = "CREATE TABLE "
@@ -539,9 +543,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STATISTICS);
         // create new tables
         onCreate(db);
+        Log.v("Database upgrade","Executed");
     }
 
-
+    public void alterTable() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("ALTER TABLE " + TABLE_PARTNERS + " ADD COLUMN " + KEY_PARTNER_IDLE + " INTEGER DEFAULT 0");
+    }
 
     /**
      * Get all table Details from teh sqlite_master table in Db.
@@ -701,6 +709,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
+        if (c!=null) {
         if (c.moveToFirst()) {
             do {
                 Users user = new Users();
@@ -726,6 +735,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 // adding to Users list
                 users.add(user);
             } while (c.moveToNext());
+        }
         }
 
         return users;
@@ -852,6 +862,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
+        if (c!=null) {
         if (c.moveToFirst()) {
             do {
                 Users user = new Users();
@@ -877,6 +888,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 // adding to Users list
                 users_list.add(user);
             } while (c.moveToNext());
+        }
         }
 
         return users_list;
@@ -1019,20 +1031,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return user;
     }
-
     /**
-     * getting all User Baseline Info
+     * getting User Baseline Info count
      */
-    public List<User_baseline_info> getAllUserBaselineInfo() {
-        List<User_baseline_info> users = new ArrayList<User_baseline_info>();
-        String selectQuery = "SELECT  * FROM " + TABLE_USER_BASE_INFO;
+    public int getUserBaselineInfoCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_USER_BASE_INFO;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
 
-        Log.e(LOG, selectQuery);
+        int count = cursor.getCount();
+        cursor.close();
+
+        // return count
+        return count;
+    }
+    /**
+     * Getting Users Baseline Infoby status update
+     */
+
+    public List<User_baseline_info> getAllUserBaselineInfoByStatus(String status){
+        List<User_baseline_info> users = new ArrayList<User_baseline_info>();
 
         SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_USER_BASE_INFO + " WHERE " + KEY_STATUS_UPDATE + " = '" + status + "'";
+
+        Log.e(LOG, selectQuery);
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
+        if (c!=null) {
         if (c.moveToFirst()) {
             do {
                 User_baseline_info user = new User_baseline_info();
@@ -1053,123 +1081,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 users.add(user);
             } while (c.moveToNext());
         }
-
-        return users;
-    }
-
-
-    /**
-     * getting User Baseline Info count
-     */
-    public int getUserBaselineInfoCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_USER_BASE_INFO;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * Updating a User Baseline Info by id
-     */
-    public int updateUserBaselinebyID(User_baseline_info user) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_BASE_USERID, user.getUser_id());
-        values.put(KEY_BASE_HIVNEG_COUNT, user.getHiv_negative_count());
-        values.put(KEY_BASE_HIVPOS_COUNT, user.getHiv_positive_count());
-        values.put(KEY_BASE_HIVUNK_COUNT, user.getHiv_unknown_count());
-        values.put(KEY_BASE_TOP_HIVPOS_COUNT, user.getNo_of_times_top_hivposs());
-        values.put(KEY_BASE_TOPCONDOMUSE_COUNT, user.getTop_condom_use_percent());
-        values.put(KEY_BASE_BOT_HIVPOS_COUNT, user.getNo_of_times_bot_hivposs());
-        values.put(KEY_BASE_BOTCONDOMUSE_COUNT, user.getBottom_condom_use_percent());
-        values.put(KEY_BASE_IS_PRIM_PARTNER, user.getIs_primary_partner());
-
-
-        // updating row
-        return db.update(TABLE_USER_BASE_INFO, values, KEY_BASE_ID + " = ?",
-                new String[]{String.valueOf(user.getBaseline_id())});
-    }
-
-
-    /**
-     * Updating a User Baseline Info by user_id
-     */
-    public int updateUserBaselinebyUserID(User_baseline_info user) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_BASE_USERID, user.getUser_id());
-        values.put(KEY_BASE_HIVNEG_COUNT, user.getHiv_negative_count());
-        values.put(KEY_BASE_HIVPOS_COUNT, user.getHiv_positive_count());
-        values.put(KEY_BASE_HIVUNK_COUNT, user.getHiv_unknown_count());
-        values.put(KEY_BASE_TOP_HIVPOS_COUNT, user.getNo_of_times_top_hivposs());
-        values.put(KEY_BASE_TOPCONDOMUSE_COUNT, user.getTop_condom_use_percent());
-        values.put(KEY_BASE_BOT_HIVPOS_COUNT, user.getNo_of_times_bot_hivposs());
-        values.put(KEY_BASE_BOTCONDOMUSE_COUNT, user.getBottom_condom_use_percent());
-        values.put(KEY_BASE_IS_PRIM_PARTNER, user.getIs_primary_partner());
-        values.put(KEY_STATUS_UPDATE, user.getStatus_update());
-
-        // updating row
-        return db.update(TABLE_USER_BASE_INFO, values, KEY_BASE_USERID + " = ?",
-                new String[]{String.valueOf(user.getUser_id())});
-    }
-
-    /**
-     * Deleting a User Baseline Info
-     */
-    public void deleteUserBaselineInfoByUserID(int user_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_USER_BASE_INFO, KEY_BASE_USERID + " = ?",
-                new String[]{String.valueOf(user_id)});
-    }
-
-
-    public void deleteUserBaselineInfoByID(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_USER_BASE_INFO, KEY_BASE_ID + " = ?",
-                new String[]{String.valueOf(id)});
-    }
-
-    /**
-     * Getting Users Baseline Infoby status update
-     */
-
-    public List<User_baseline_info> getAllUserBaselineInfoByStatus(String status){
-        List<User_baseline_info> users = new ArrayList<User_baseline_info>();
-
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String selectQuery = "SELECT  * FROM " + TABLE_USER_BASE_INFO + " WHERE " + KEY_STATUS_UPDATE + " = '" + status + "'";
-
-        Log.e(LOG, selectQuery);
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                User_baseline_info user = new User_baseline_info();
-                user.setBaseline_id(c.getInt(c.getColumnIndex(KEY_BASE_ID)));
-                user.setUser_id(c.getInt(c.getColumnIndex(KEY_BASE_USERID)));
-                user.setHiv_negative_count(c.getString(c.getColumnIndex(KEY_BASE_HIVNEG_COUNT)));
-                user.setHiv_positive_count(c.getString(c.getColumnIndex(KEY_BASE_HIVPOS_COUNT)));
-                user.setHiv_unknown_count(c.getString(c.getColumnIndex(KEY_BASE_HIVUNK_COUNT)));
-                user.setNo_of_times_top_hivposs(c.getString(c.getColumnIndex(KEY_BASE_TOP_HIVPOS_COUNT)));
-                user.setTop_condom_use_percent(c.getString(c.getColumnIndex(KEY_BASE_TOPCONDOMUSE_COUNT)));
-                user.setNo_of_times_bot_hivposs(c.getString(c.getColumnIndex(KEY_BASE_BOT_HIVPOS_COUNT)));
-                user.setBottom_condom_use_percent(c.getString(c.getColumnIndex(KEY_BASE_BOTCONDOMUSE_COUNT)));
-                user.setIs_primary_partner(c.getString(c.getColumnIndex(KEY_BASE_IS_PRIM_PARTNER)));
-                user.setSexpro_score(c.getInt(c.getColumnIndex(KEY_BASE_SEXPRO_SCORE)));
-                user.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
-                // adding to Users list
-                users.add(user);
-            } while (c.moveToNext());
         }
 
         return users;
@@ -1308,6 +1219,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
+        if (c!=null) {
         if (c.moveToFirst()) {
             do {
                 DrugMaster drug = new DrugMaster();
@@ -1318,6 +1230,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 // adding to Users list
                 drugs.add(drug);
             } while (c.moveToNext());
+        }
         }
 
         return drugs;
@@ -1337,30 +1250,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // return count
         return count;
-    }
-
-    /**
-     * Updating a Drug Master by id
-     */
-    public int updateDrugMaster(DrugMaster drug) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_DRUG_NAME, drug.getDrugName());
-        // updating row
-        return db.update(TABLE_DRUG_MASTER, values, KEY_DRUG_ID + " = ?",
-                new String[]{String.valueOf(drug.getDrug_id())});
-    }
-
-
-    /**
-     * Deleting a Drug Master Entry
-     */
-
-    public void deleteDrugMasterByID(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_DRUG_MASTER, KEY_DRUG_ID + " = ?",
-                new String[]{String.valueOf(id)});
     }
 
 
@@ -1442,6 +1331,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
+        if (c!=null) {
         if (c.moveToFirst()) {
             do {
                 STIMaster drug = new STIMaster();
@@ -1453,50 +1343,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 drugs.add(drug);
             } while (c.moveToNext());
         }
+        }
 
         return drugs;
     }
-
-
-    /**
-     * getting Drug Entries count
-     */
-    public int getSTIsCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_STI_MASTER;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * Updating a STI Master by id
-     */
-    public int updateSTIMaster(STIMaster drug) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_STI_NAME, drug.getstiName());
-        // updating row
-        return db.update(TABLE_STI_MASTER, values, KEY_STI_ID + " = ?",
-                new String[]{String.valueOf(drug.getSti_id())});
-    }
-
-    /**
-     * Deleting a STI Master Entry
-     */
-
-    public void deleteSTIMasterByID(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_STI_MASTER, KEY_STI_ID + " = ?",
-                new String[]{String.valueOf(id)});
-    }
-
-
     // ------------------------ "User PRIMARY PARTNER " table methods ----------------//
 
     /**
@@ -1605,57 +1455,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return createdAt;
     }
     /**
-     * getting all Primary Partners
-     */
-    public List<UserPrimaryPartner> getAllPrimaryPartners() {
-        List<UserPrimaryPartner> Partners = new ArrayList<UserPrimaryPartner>();
-        String selectQuery = "SELECT  * FROM " + TABLE_USER_PRIMARY_PARTNER;
-
-        Log.e(LOG, selectQuery);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                UserPrimaryPartner partner = new UserPrimaryPartner();
-                partner.setPrimarypartner_id(c.getInt(c.getColumnIndex(KEY_PRIPARTNER_ID)));
-                partner.setUser_id(c.getInt(c.getColumnIndex(KEY_PRIPARTNER_USERID)));
-                partner.setName(c.getString(c.getColumnIndex(KEY_PRIPARTNER_NAME)));
-                partner.setGender(c.getString(c.getColumnIndex(KEY_PRIPARTNER_GENDER)));
-                partner.setHiv_status(c.getString(c.getColumnIndex(KEY_PRIPARTNER_HIVSTATUS)));
-                partner.setUndetectable_for_sixmonth(c.getString(c.getColumnIndex(KEY_PRIPARTNER_UNDETECTABLE)));
-                partner.setRelationship_period(c.getString(c.getColumnIndex(KEY_PRIPARTNER_RELATIONSHIP_PERIOD)));
-                partner.setPartner_have_other_partners(c.getString(c.getColumnIndex(KEY_PRIPARTNER_OTHERPARTNER)));
-                partner.setIs_added_to_blackbook(c.getString(c.getColumnIndex(KEY_PRIPARTNER_ISADDED)));
-                partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
-                // adding to Users list
-                Partners.add(partner);
-            } while (c.moveToNext());
-        }
-
-        return Partners;
-    }
-
-
-    /**
-     * getting Primary Partners count
-     */
-    public int getPrimaryPartnersCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_USER_PRIMARY_PARTNER;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
      * Updating a Primary Partner by id
      */
     public int updatePrimaryPartner(UserPrimaryPartner partner) {
@@ -1674,49 +1473,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.update(TABLE_USER_PRIMARY_PARTNER, values, KEY_PRIPARTNER_ID + " = ?",
                 new String[]{String.valueOf(partner.getPrimarypartner_id())});
     }
-
-    /**
-     * Updating a Primary Partner by Userid
-     */
-    public int updatePrimaryPartnerbyUserID(UserPrimaryPartner partner) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_PRIPARTNER_USERID, partner.getUser_id());
-        values.put(KEY_PRIPARTNER_NAME, partner.getName());
-        values.put(KEY_PRIPARTNER_GENDER, partner.getGender());
-        values.put(KEY_PRIPARTNER_HIVSTATUS, partner.getHiv_status());
-        values.put(KEY_PRIPARTNER_UNDETECTABLE, partner.getUndetectable_for_sixmonth());
-        values.put(KEY_PRIPARTNER_RELATIONSHIP_PERIOD, partner.getRelationship_period());
-        values.put(KEY_PRIPARTNER_OTHERPARTNER, partner.getPartner_have_other_partners());
-        values.put(KEY_STATUS_UPDATE,partner.getStatus_update());
-        values.put(KEY_PRIPARTNER_ISADDED, partner.getIs_added_to_blackbook());
-        // updating row
-        return db.update(TABLE_USER_PRIMARY_PARTNER, values, KEY_PRIPARTNER_USERID + " = ?",
-                new String[]{String.valueOf(partner.getUser_id())});
-    }
-
-    /**
-     * Deleting a Primary Partner Entry
-     */
-
-    public void deletePrimaryPartnerByID(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_USER_PRIMARY_PARTNER, KEY_PRIPARTNER_ID + " = ?",
-                new String[]{String.valueOf(id)});
-    }
-
-
-    /**
-     * Deleting a Primary Partner Entry by User ID
-     */
-
-    public void deletePrimaryPartnerByUserID(int user_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_USER_PRIMARY_PARTNER, KEY_PRIPARTNER_USERID + " = ?",
-                new String[]{String.valueOf(user_id)});
-    }
-
     /**
      * getting all Primary Partners By status update
      */
@@ -1730,6 +1486,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
+        if (c!=null) {
         if (c.moveToFirst()) {
             do {
                 UserPrimaryPartner partner = new UserPrimaryPartner();
@@ -1747,6 +1504,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 // adding to Users list
                 Partners.add(partner);
             } while (c.moveToNext());
+        }
         }
 
         return Partners;
@@ -1846,35 +1604,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * get single  Partner by User id
-     */
-    public Partners getPartnerbyUserID(int user_id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String selectQuery = "SELECT  * FROM " + TABLE_PARTNERS + " WHERE "
-                + KEY_PARTNER_USERID + " = " + user_id;
-
-        Log.e(LOG, selectQuery);
-
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        if (c != null)
-            c.moveToFirst();
-
-        Partners partner = new Partners();
-        partner.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNER_ID)));
-        partner.setUser_id(c.getInt(c.getColumnIndex(KEY_PARTNER_USERID)));
-        partner.setNickname(c.getString(c.getColumnIndex(KEY_PARTNER_NICKNAME)));
-        partner.setGender(c.getString(c.getColumnIndex(KEY_PARTNER_GENDER)));
-        partner.setHiv_status(c.getString(c.getColumnIndex(KEY_PARTNER_HIVSTATUS)));
-        partner.setUndetectable_for_sixmonth(c.getString(c.getColumnIndex(KEY_PARTNER_UNDETECTABLE)));
-        partner.setIs_added_to_partners(c.getString(c.getColumnIndex(KEY_PARTNER_ADDEDTOLIST)));
-        partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-        partner.setPartner_idle(c.getInt(c.getColumnIndex(KEY_PARTNER_IDLE)));
-        return partner;
-    }
-
-    /**
      * getting all  Partners
      */
     public List<Partners> getAllPartners() {
@@ -1887,6 +1616,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
+        if (c!=null) {
         if (c.moveToFirst()) {
             do {
                 Partners partner = new Partners();
@@ -1903,6 +1633,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 // adding to Users list
                 Partners.add(partner);
             } while (c.moveToNext());
+        }
         }
 
         return Partners;
@@ -1922,6 +1653,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
+        if (c!=null) {
         if (c.moveToFirst()) {
             do {
                 Partners partner = new Partners();
@@ -1939,42 +1671,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Partners.add(partner);
             } while (c.moveToNext());
         }
+        }
 
         return Partners;
-    }
-
-    /**
-     * getting  Partners count
-     */
-    public int getPartnersCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_PARTNERS;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * Updating a Partner by id
-     */
-    public int updatePartner(Partners partner) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_PARTNER_USERID, partner.getUser_id());
-        values.put(KEY_PARTNER_NICKNAME, partner.getNickname());
-        values.put(KEY_PARTNER_GENDER, partner.getGender());
-        values.put(KEY_PARTNER_HIVSTATUS, partner.getHiv_status());
-        values.put(KEY_PARTNER_UNDETECTABLE,partner.getUndetectable_for_sixmonth());
-        values.put(KEY_STATUS_UPDATE,partner.getStatus_update());
-        values.put(KEY_PARTNER_ADDEDTOLIST, partner.getIs_added_to_partners());
-        // updating row
-        return db.update(TABLE_PARTNERS, values, KEY_PARTNER_ID + " = ?",
-                new String[]{String.valueOf(partner.getPartner_id())});
     }
     // Update partner from new summary screen layout //
     public int updatePartnerFromSummary(Partners partner) {
@@ -1990,55 +1689,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(partner.getPartner_id())});
     }
     /**
-     * Updating a Primary Partner by Userid
-     */
-    public int updatePartnerbyUserID(Partners partner) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_PARTNER_USERID, partner.getUser_id());
-        values.put(KEY_PARTNER_NICKNAME, partner.getNickname());
-        values.put(KEY_PARTNER_GENDER, partner.getGender());
-        values.put(KEY_PARTNER_HIVSTATUS, partner.getHiv_status());
-        values.put(KEY_PARTNER_UNDETECTABLE,partner.getUndetectable_for_sixmonth());
-        values.put(KEY_STATUS_UPDATE,partner.getStatus_update());
-        values.put(KEY_PARTNER_ADDEDTOLIST, partner.getIs_added_to_partners());
-        values.put(KEY_PARTNER_IDLE,partner.getPartner_idle());
-        // updating row
-        return db.update(TABLE_PARTNERS, values, KEY_PARTNER_USERID + " = ?",
-                new String[]{String.valueOf(partner.getUser_id())});
-    }
-
-    public int updatePartnerIdle(int id,int idle){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(KEY_PARTNER_IDLE, idle);
-        return db.update(TABLE_PARTNERS, values, KEY_PARTNER_ID + " = ?",
-                new String[]{String.valueOf(id)});
-    }
-
-    /**
-     * Deleting a Primary Partner Entry
-     */
-
-    public void deletePartnerByID(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_PARTNERS, KEY_PARTNER_ID + " = ?",
-                new String[]{String.valueOf(id)});
-    }
-
-
-    /**
-     * Deleting a Primary Partner Entry by User ID
-     */
-
-    public void deletePartnerByUserID(int user_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_PARTNERS, KEY_PARTNER_USERID + " = ?",
-                new String[]{String.valueOf(user_id)});
-    }
-
-    /**
      * getting all  Partners by Status
      */
     public List<Partners> getAllPartnersByStatus(String status) {
@@ -2051,6 +1701,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
+        if (c!=null) {
         if (c.moveToFirst()) {
             do {
                 Partners partner = new Partners();
@@ -2068,6 +1719,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 // adding to Users list
                 Partners.add(partner);
             } while (c.moveToNext());
+        }
         }
 
         return Partners;
@@ -2110,31 +1762,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * get single Drug Use by Id
-     */
-    public UserDrugUse getDrugUserbyID(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String selectQuery = "SELECT  * FROM " + TABLE_USER_DRUGUSE + " WHERE "
-                + KEY_DRUGUSE_ID + " = " + id;
-
-        Log.e(LOG, selectQuery);
-
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        if (c != null)
-            c.moveToFirst();
-
-        UserDrugUse drugUse = new UserDrugUse();
-        drugUse.setDruguse_id(c.getInt(c.getColumnIndex(KEY_DRUGUSE_ID)));
-        drugUse.setDrug_id(c.getInt(c.getColumnIndex(KEY_DRUGUSE_DRUGID)));
-        drugUse.setUser_id(c.getInt(c.getColumnIndex(KEY_DRUGUSE_USERID)));
-        drugUse.setIs_baseline(c.getString(c.getColumnIndex(KEY_DRUGUSE_ISBASELINE)));
-        drugUse.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-        return drugUse;
-    }
-
-    /**
      * get all  Drug Use by User id
      */
     public List<UserDrugUse> getDrugUsesbyUserID(int user_id) {
@@ -2154,6 +1781,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
+        if (c!=null) {
         if (c.moveToFirst()) {
             do {
                 UserDrugUse drugUse = new UserDrugUse();
@@ -2168,74 +1796,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 drugUses.add(drugUse);
             } while (c.moveToNext());
         }
-
-        return drugUses;
-
-    }
-
-    /**
-     * getting all  Drug Uses
-     */
-    public List<UserDrugUse> getAllDrugUser() {
-        List<UserDrugUse> drugUses = new ArrayList<UserDrugUse>();
-        String selectQuery = "SELECT  * FROM " + TABLE_USER_DRUGUSE;
-
-        Log.e(LOG, selectQuery);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                UserDrugUse drugUse = new UserDrugUse();
-                drugUse.setDruguse_id(c.getInt(c.getColumnIndex(KEY_DRUGUSE_ID)));
-                drugUse.setDrug_id(c.getInt(c.getColumnIndex(KEY_DRUGUSE_DRUGID)));
-                drugUse.setUser_id(c.getInt(c.getColumnIndex(KEY_DRUGUSE_USERID)));
-                drugUse.setIs_baseline(c.getString(c.getColumnIndex(KEY_DRUGUSE_ISBASELINE)));
-                drugUse.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
-
-                // adding to Users list
-                drugUses.add(drugUse);
-            } while (c.moveToNext());
         }
 
         return drugUses;
+
     }
-
-
-    /**
-     * getting All DrugUse count
-     */
-    public int getDrugUseCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_USER_DRUGUSE;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * getting  DrugUse count by User ID
-     */
-    public int getDrugUseCountbyUserid(int user_id) {
-        String countQuery = "SELECT  * FROM " + TABLE_USER_DRUGUSE + " WHERE "
-                + KEY_DRUGUSE_USERID + " = " + user_id;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
     /**
      * getting all  Drug Uses
      */
@@ -2388,69 +1953,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * getting all STI Diags
-     */
-    public List<UserSTIDiag> getAllSTIDiags() {
-        List<UserSTIDiag> stiDiags = new ArrayList<UserSTIDiag>();
-        String selectQuery = "SELECT  * FROM " + TABLE_USER_STIDIAG;
-
-        Log.e(LOG, selectQuery);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                UserSTIDiag stiDiag = new UserSTIDiag();
-                stiDiag.setSti_diag_id(c.getInt(c.getColumnIndex(KEY_STIDIAG_ID)));
-                stiDiag.setSti_id(c.getInt(c.getColumnIndex(KEY_STIDIAG_STIID)));
-                stiDiag.setUser_id(c.getInt(c.getColumnIndex(KEY_STIDIAG_USERID)));
-                stiDiag.setIs_baseline(c.getString(c.getColumnIndex(KEY_STIDIAG_ISBASELINE)));
-                stiDiag.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
-
-                // adding to Users list
-                stiDiags.add(stiDiag);
-            } while (c.moveToNext());
-        }
-
-        return stiDiags;
-    }
-
-
-    /**
-     * getting All STI Diag count
-     */
-    public int getSTIDiagCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_USER_STIDIAG;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * getting  DrugUse count by User ID
-     */
-    public int getSTIDiagCountbyUserid(int user_id) {
-        String countQuery = "SELECT  * FROM " + TABLE_USER_STIDIAG + " WHERE "
-                + KEY_STIDIAG_USERID + " = " + user_id;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
      * getting all STI Diags  by status
      */
     public List<UserSTIDiag> getAllSTIDiagsByStatus(String status) {
@@ -2547,48 +2049,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * get all  Alcohol Use by User id
-     */
-    public List<UserAlcoholUse> getAlcoholUsebyUserID(int drugUseID) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String selectQuery = "SELECT  * FROM " + TABLE_USER_ALCHOHOLUSE + " WHERE "
-                + KEY_ALCOUSE_DRUGUSEID + " = " + drugUseID;
-
-        Log.e(LOG, selectQuery);
-
-        List<UserAlcoholUse> alcoholUses = new ArrayList<UserAlcoholUse>();
-
-
-        Log.e(LOG, selectQuery);
-
-
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-
-                UserAlcoholUse alcoholUse = new UserAlcoholUse();
-                alcoholUse.setAlcohol_use_id(c.getInt(c.getColumnIndex(KEY_ALCOUSE_ID)));
-                alcoholUse.setUser_id(c.getInt(c.getColumnIndex(KEY_ALCOUSE_USERID)));
-                alcoholUse.setDrugusage_id(c.getInt(c.getColumnIndex(KEY_ALCOUSE_DRUGUSEID)));
-                alcoholUse.setNo_alcohol_in_week(c.getString(c.getColumnIndex(KEY_ALCOUSE_WEEKCOUNT)));
-                alcoholUse.setNo_alcohol_in_day(c.getString(c.getColumnIndex(KEY_ALCOUSE_DAYCOUNT)));
-                alcoholUse.setIs_baseline(c.getString(c.getColumnIndex(KEY_ALCOUSE_ISBASELINE)));
-                alcoholUse.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
-                alcoholUse.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
-                // adding to Users list
-                alcoholUses.add(alcoholUse);
-            } while (c.moveToNext());
-        }
-
-        return alcoholUses;
-
-    }
-
-    /**
      * get single  Alcohol Use by  Baseline
      */
     public UserAlcoholUse getAlcoholUsebyBaseline(String is_Baseline) {
@@ -2657,38 +2117,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return alcoholUses;
-    }
-
-
-    /**
-     * getting All Alcohol Use count
-     */
-    public int getAlcoholUseCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_USER_ALCHOHOLUSE;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * getting  Alcohol Use count by User ID
-     */
-    public int getAlcoholUseCountbyUserid(int user_id) {
-        String countQuery = "SELECT  * FROM " + TABLE_USER_ALCHOHOLUSE + " WHERE "
-                + KEY_ALCOUSE_DRUGUSEID + " = " + user_id;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
     }
 
     /**
@@ -2782,35 +2210,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return partnerContact_id;
     }
 
-    /**
-     * Update a Partner Contact
-     */
-    public int updatePartnerContact(PartnerContact partnerContact) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_PARTNERCONTACT_PARTNER_ID, partnerContact.getPartner_id());
-        values.put(KEY_PARTNERCONTACT_USERID, partnerContact.getUser_id());
-        values.put(KEY_PARTNER_NAME, partnerContact.getName());
-        values.put(KEY_PARTNER_ADDRESS, partnerContact.getAddress());
-        values.put(KEY_PARTNER_CITY, partnerContact.getCity());
-        values.put(KEY_PARTNER_STATE, partnerContact.getState());
-        values.put(KEY_PARTNER_ZIP, partnerContact.getZip());
-        values.put(KEY_PARTNER_PHONE, partnerContact.getPhone());
-        values.put(KEY_PARTNER_EMAIL, partnerContact.getEmail());
-        values.put(KEY_PARTNER_METAT, partnerContact.getMet_at());
-        values.put(KEY_PARTNER_HANDLE, partnerContact.getHandle());
-        values.put(KEY_PARTNER_TYPE, partnerContact.getPartner_type());
-        values.put(KEY_PARTNER_NOTES, partnerContact.getPartner_notes());
-        values.put(KEY_PARTNER_OTHERPARTNER, partnerContact.getPartner_have_other_partners());
-        values.put(KEY_PARTNER_RELATIONSHIP_PERIOD, partnerContact.getRelationship_period());
-        values.put(KEY_STATUS_UPDATE, partnerContact.getStatus_update());
-        values.put(KEY_CREATED_AT, getDateTime());
-
-        // updating row
-        return db.update(TABLE_PARTNER_CONTACT, values, KEY_PARTNERCONTACT_PARTNER_ID + " = ?",
-                new String[]{String.valueOf(partnerContact.getPartner_id())});
-    }
     // Update Partner Conatct from New Summary Screen //
     public int updatePartnerContactFromSummary(PartnerContact partnerContact) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -2912,72 +2311,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
     /**
-     * get Partner Contact Count
-     */
-    public int getPartnerContactCount() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String countQuery = "SELECT  * FROM " + TABLE_PARTNER_CONTACT;
-
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * get all  PartnerContact
-     */
-    public List<PartnerContact> getAllPartnerContact() {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String selectQuery = "SELECT  * FROM " + TABLE_PARTNER_CONTACT ;
-
-        Log.e(LOG, selectQuery);
-
-        List<PartnerContact> Partner_contact_list = new ArrayList<PartnerContact>();
-
-
-        Log.e(LOG, selectQuery);
-
-
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-
-                PartnerContact partnerContact = new PartnerContact();
-                partnerContact.setPartner_contact_id(c.getInt(c.getColumnIndex(KEY_PARTNER_CONTACT_ID)));
-                partnerContact.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNERCONTACT_PARTNER_ID)));
-                partnerContact.setUser_id(c.getInt(c.getColumnIndex(KEY_PARTNERCONTACT_USERID)));
-                partnerContact.setName(c.getString(c.getColumnIndex(KEY_PARTNER_NAME)));
-                partnerContact.setAddress(c.getString(c.getColumnIndex(KEY_PARTNER_ADDRESS)));
-                partnerContact.setCity(c.getString(c.getColumnIndex(KEY_PARTNER_CITY)));
-                partnerContact.setState(c.getString(c.getColumnIndex(KEY_PARTNER_STATE)));
-                partnerContact.setZip(c.getString(c.getColumnIndex(KEY_PARTNER_ZIP)));
-                partnerContact.setPhone(c.getString(c.getColumnIndex(KEY_PARTNER_PHONE)));
-                partnerContact.setEmail(c.getString(c.getColumnIndex(KEY_PARTNER_EMAIL)));
-                partnerContact.setMet_at(c.getString(c.getColumnIndex(KEY_PARTNER_METAT)));
-                partnerContact.setHandle(c.getString(c.getColumnIndex(KEY_PARTNER_HANDLE)));
-                partnerContact.setPartner_type(c.getString(c.getColumnIndex(KEY_PARTNER_TYPE)));
-                partnerContact.setPartner_notes(c.getString(c.getColumnIndex(KEY_PARTNER_NOTES)));
-                partnerContact.setPartner_have_other_partners(c.getString(c.getColumnIndex(KEY_PARTNER_OTHERPARTNER)));
-                partnerContact.setRelationship_period(c.getString(c.getColumnIndex(KEY_PARTNER_RELATIONSHIP_PERIOD)));
-                partnerContact.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
-                // adding to PartnerContact list
-                Partner_contact_list.add(partnerContact);
-            } while (c.moveToNext());
-        }
-
-        return Partner_contact_list;
-
-    }
-
-    /**
      * get all  PartnerContact by status
      */
     public List<PartnerContact> getAllPartnerContactbyStatus(String status) {
@@ -3064,32 +2397,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return ratingfield_id;
     }
 
-    /**
-     * get single User Rating Fields by  Id
-     */
-    public UserRatingFields getUserRatingFieldbyID(int urfID) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String selectQuery = "SELECT  * FROM " + TABLE_USER_RATINGFIELDS + " WHERE "
-                + KEY_RATINGFIELD_ID + " = " + urfID;
-
-        Log.e(LOG, selectQuery);
-
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        if (c != null)
-            c.moveToFirst();
-
-        UserRatingFields sti = new UserRatingFields();
-        sti.setUser_ratingfield_id(c.getInt(c.getColumnIndex(KEY_RATINGFIELD_ID)));
-        sti.setUser_id(c.getInt(c.getColumnIndex(KEY_RATINGFIELD_USERID)));
-        sti.setName(c.getString(c.getColumnIndex(KEY_RATINGFIELD_NAME)));
-        sti.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
-        sti.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-        return sti;
-    }
-
-
 
     /**
      * getting all User Rating Fields
@@ -3120,48 +2427,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return utrs;
-    }
-
-
-    /**
-     * getting User Rating Fields count
-     */
-
-    public int getUserRatingFieldsCount() {
-
-        String countQuery = "SELECT  * FROM " + TABLE_USER_RATINGFIELDS;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * Updating a User Rating Fields by id
-     */
-    public int updateUserRatingFields(UserRatingFields urf) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_RATINGFIELD_NAME, urf.getName());
-        values.put(KEY_STATUS_UPDATE, urf.getStatus_update());
-        // updating row
-        return db.update(TABLE_USER_RATINGFIELDS, values, KEY_RATINGFIELD_ID + " = ? AND " + KEY_RATINGFIELD_USERID + " = ?",
-                new String[]{String.valueOf(urf.getUser_ratingfield_id()),String.valueOf(urf.getUser_id())});
-    }
-
-    /**
-     * Deleting a User Rating Fields
-     */
-
-    public void deleteUserRatingFieldByID(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_USER_RATINGFIELDS, KEY_RATINGFIELD_ID + " = ?",
-                new String[]{String.valueOf(id)});
     }
 
     /**
@@ -3283,76 +2548,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return testNameMaster;
     }
 
-    /**
-     * getting all Testing Name Master
-     */
-    public List<TestNameMaster> getAllTestingNames() {
-        List<TestNameMaster> testNameMasters = new ArrayList<TestNameMaster>();
-        String selectQuery = "SELECT  * FROM " + TABLE_TESTINGNAME_MASTER;
-
-        Log.e(LOG, selectQuery);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                TestNameMaster testNameMaster = new TestNameMaster();
-                testNameMaster.setTesting_id(c.getInt(c.getColumnIndex(KEY_TESTING_ID)));
-                testNameMaster.setTestName(c.getString(c.getColumnIndex(KEY_TESTING_NAME)));
-                testNameMaster.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
-
-                // adding to Users list
-                testNameMasters.add(testNameMaster);
-            } while (c.moveToNext());
-        }
-
-        return testNameMasters;
-    }
-
-
-    /**
-     * getting Testing Names Entries count
-     */
-    public int getTesingNameCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_TESTINGNAME_MASTER;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * Updating a Testing Name Master by id
-     */
-    public int updateTestingNameMaster(TestNameMaster testNameMaster) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_TESTING_NAME, testNameMaster.getTestName());
-        // updating row
-        return db.update(TABLE_TESTINGNAME_MASTER, values, KEY_TESTING_ID + " = ?",
-                new String[]{String.valueOf(testNameMaster.getTesting_id())});
-    }
-
-
-    /**
-     * Deleting a Testing name Master Entry
-     */
-
-    public void deleteTestingNameMasterByID(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_TESTINGNAME_MASTER, KEY_TESTING_ID + " = ?",
-                new String[]{String.valueOf(id)});
-    }
-
-
     // ------------------------ "PARTNER Rating" table methods ----------------//
 
     /**
@@ -3379,33 +2574,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return partner_rating_id;
     }
-
-    /**
-     * get single  Partner Rating by Id
-     */
-    public PartnerRating getPartnerRatingbyID(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "SELECT  * FROM " + TABLE_PARTNER_RATINGS + " WHERE "
-                + KEY_PARTNERRATING_ID + " = " + id;
-
-        Log.e(LOG, selectQuery);
-
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        if (c != null)
-            c.moveToFirst();
-
-        PartnerRating partner = new PartnerRating();
-        partner.setPartner_rating_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_ID)));
-        partner.setUser_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_USERID)));
-        partner.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_PARTNERID)));
-        partner.setUser_rating_field_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_RATINGFIELDID)));
-        partner.setRating(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATING)));
-        partner.setRating_field(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATINGFIELD)));
-        partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-        return partner;
-    }
-
     /**
      * get single  Partner Rating by Partner Id
      */
@@ -3475,75 +2643,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return null;
     }
-
-    /**
-     * getting all  Partners Ratings by user_id
-     */
-    public List<PartnerRating> getAllPartnerRatingsbyUserid(int user_id) {
-        List<PartnerRating> Partners = new ArrayList<PartnerRating>();
-        String selectQuery = "SELECT  * FROM " + TABLE_PARTNER_RATINGS + "WHERE "+ KEY_PARTNERRATING_USERID + " = "+ user_id;
-
-        Log.e(LOG, selectQuery);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                PartnerRating partner = new PartnerRating();
-                partner.setPartner_rating_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_ID)));
-                partner.setUser_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_USERID)));
-                partner.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_PARTNERID)));
-                partner.setUser_rating_field_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_RATINGFIELDID)));
-                partner.setRating(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATING)));
-                partner.setRating_field(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATINGFIELD)));
-                partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
-                // adding to Users list
-                Partners.add(partner);
-            } while (c.moveToNext());
-        }
-
-        return Partners;
-    }
-
-
-    /**
-     * getting  Partner Ratings count
-     */
-    public int getPartnerRatingsCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_PARTNER_RATINGS;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * Updating a Partner Ratings by id
-     */
-    public int updatePartnerRatings(PartnerRating partner) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_PARTNERRATING_USERID, partner.getUser_id());
-        values.put(KEY_PARTNERRATING_PARTNERID, partner.getPartner_id());
-        values.put(KEY_PARTNERRATING_RATINGFIELDID, partner.getUser_rating_field_id());
-        values.put(KEY_STATUS_UPDATE,partner.getStatus_update());
-        values.put(KEY_PARTNERRATING_RATING, partner.getRating());
-        values.put(KEY_PARTNERRATING_RATINGFIELD, partner.getRating_field());
-        values.put(KEY_STATUS_UPDATE, partner.getStatus_update());
-
-        // updating row
-        return db.update(TABLE_PARTNER_RATINGS, values, KEY_PARTNERRATING_ID + " = ?",
-                new String[]{String.valueOf(partner.getPartner_rating_id())});
-    }
-
     /**
      * Updating a Partner Rating by Partnerid and RatingField ID
      */
@@ -3559,27 +2658,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // updating row
         return db.update(TABLE_PARTNER_RATINGS, values, KEY_PARTNERRATING_PARTNERID + " = ? AND " + KEY_PARTNERRATING_RATINGFIELDID + " = ?",
                 new String[]{String.valueOf(partner.getPartner_id()),String.valueOf(partner.getUser_rating_field_id())});
-    }
-
-    /**
-     * Deleting a  Partner Rating Entry
-     */
-
-    public void deletePartnerRatingByID(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_PARTNER_RATINGS, KEY_PARTNERRATING_ID + " = ?",
-                new String[]{String.valueOf(id)});
-    }
-
-
-    /**
-     * Deleting a  Partner Rating Entry by User ID 
-     */
-
-    public void deletePartnerRatingByUserID(int user_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_PARTNER_RATINGS, KEY_PRIPARTNER_USERID + " = ?",
-                new String[]{String.valueOf(user_id)});
     }
 
     /**
@@ -3752,109 +2830,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * getting all Encounters by User id
-     */
-    public List<Encounter> getAllEncounters(int user_id) {
-        List<Encounter> encounters = new ArrayList<Encounter>();
-        String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER + " WHERE " + KEY_ENCOUNTER_USERID + " = "+ user_id;
-
-        Log.e(LOG, selectQuery);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                Encounter encounter = new Encounter();
-                encounter.setEncounter_id(c.getInt(c.getColumnIndex(KEY_ENCOUNTER_ID)));
-                encounter.setEncounter_user_id(c.getInt(c.getColumnIndex(KEY_ENCOUNTER_USERID)));
-                encounter.setDatetime((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DATE))));
-                encounter.setEncounter_partner_id(c.getInt(c.getColumnIndex(KEY_ENCOUNTER_PARTNERID)));
-                encounter.setRate_the_sex(c.getString(c.getColumnIndex(KEY_ENCOUNTER_SEXRATING)));
-                encounter.setIs_drug_used((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISDRUGUSED))));
-                encounter.setEncounter_notes((c.getString(c.getColumnIndex(KEY_ENCOUNTER_NOTES))));
-                encounter.setIs_possible_sex_tomorrow((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISSEX_TOMORROW))));
-
-                encounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
-                // adding to Users list
-                encounters.add(encounter);
-            } while (c.moveToNext());
-        }
-
-        return encounters;
-    }
-
-
-    /**
-     * getting All Encounters count
-     */
-    public int getEncounterCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * getting All Encounters count by User id
-     */
-    public int getEncounterCount(int user_id) {
-        String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER+ " WHERE " + KEY_ENCOUNTER_USERID + " = "+ user_id;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * Updating a Encounter
-     */
-    public int updateEncounter(Encounter encounter) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_ENCOUNTER_USERID, encounter.getEncounter_user_id());
-        values.put(KEY_ENCOUNTER_DATE, encounter.getDatetime());
-        values.put(KEY_ENCOUNTER_PARTNERID, encounter.getEncounter_partner_id());
-        values.put(KEY_ENCOUNTER_SEXRATING, encounter.getRate_the_sex());
-        values.put(KEY_ENCOUNTER_ISDRUGUSED, encounter.getIs_drug_used());
-        values.put(KEY_ENCOUNTER_NOTES, encounter.getEncounter_notes());
-        values.put(KEY_ENCOUNTER_ISSEX_TOMORROW, encounter.getIs_possible_sex_tomorrow());
-        values.put(KEY_STATUS_UPDATE, encounter.getStatus_update());
-
-        // updating row
-        return db.update(TABLE_ENCOUNTER, values, KEY_ENCOUNTER_ID + " = ?",
-                new String[]{String.valueOf(encounter.getEncounter_id())});
-    }
-
-    /**
-     * Deleting a Encounter
-     */
-    public void deleteEncounter(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_ENCOUNTER, KEY_ENCOUNTER_ID + " = ?",
-                new String[]{String.valueOf(id)});
-    }
-
-
-    public void deleteEncounterbyUserid(int user_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_ENCOUNTER, KEY_ENCOUNTER_USERID + " = ?",
-                new String[]{String.valueOf(user_id)});
-    }
-
-    /**
      * getting all Encounters by Status
      */
     public List<Encounter> getAllEncountersByStatus(String status) {
@@ -3927,67 +2902,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return encounter_sexType_id;
     }
-
-    /**
-     * get single Encounter Sex Type by Id
-     */
-    public EncounterSexType getEncounterSexbyID(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE + " WHERE "
-                + KEY_ENCSEXTYPE_ID + " = " + id;
-
-        Log.e(LOG, selectQuery);
-
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        if (c != null)
-            c.moveToFirst();
-
-        EncounterSexType encounterSexType = new EncounterSexType();
-        encounterSexType.setEncounter_sex_type_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_ID)));
-        encounterSexType.setEncounter_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_ENCOUNTERID)));
-        encounterSexType.setUser_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_USERID)));
-        encounterSexType.setSex_type(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_SEXTYPE)));
-        encounterSexType.setCondom_use(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_CONDOMUSE)));
-        encounterSexType.setNote(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_NOTE)));
-        encounterSexType.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-        return encounterSexType;
-    }
-
-
-    /**
-     * getting all Encounter Sex Type
-     */
-    public List<EncounterSexType> getAllEncounterSexTypes() {
-        List<EncounterSexType> encounterSexTypes = new ArrayList<EncounterSexType>();
-        String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE;
-
-        Log.e(LOG, selectQuery);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                EncounterSexType encounterSexType = new EncounterSexType();
-                encounterSexType.setEncounter_sex_type_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_ID)));
-                encounterSexType.setEncounter_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_ENCOUNTERID)));
-                encounterSexType.setUser_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_USERID)));
-                encounterSexType.setSex_type(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_SEXTYPE)));
-                encounterSexType.setCondom_use(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_CONDOMUSE)));
-                encounterSexType.setNote(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_NOTE)));
-                encounterSexType.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
-                // adding to Users list
-                encounterSexTypes.add(encounterSexType);
-            } while (c.moveToNext());
-        }
-
-        return encounterSexTypes;
-    }
-
     /**
      * getting all Encounter Sex Type by Encounter_id
      */
@@ -4018,75 +2932,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return encounterSexTypes;
-    }
-
-
-    /**
-     * getting  Encounter Sex Type  Entries count
-     */
-    public int getEncounterSexTypeCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * getting  Encounter Sex Type  Entries count by Encounter id
-     */
-    public int getEncounterSexTypeCount(int encounter_id) {
-        String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE+ " WHERE " + KEY_ENCSEXTYPE_ENCOUNTERID + " = " +encounter_id;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-    /**
-     * Updating a  Encounter Sex Type  by id
-     */
-    public int updateEncounterSextype(EncounterSexType encounterSexType) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_ENCSEXTYPE_ENCOUNTERID, encounterSexType.getEncounter_id());
-        values.put(KEY_ENCSEXTYPE_USERID, encounterSexType.getUser_id());
-        values.put(KEY_ENCSEXTYPE_SEXTYPE, encounterSexType.getSex_type());
-        values.put(KEY_ENCSEXTYPE_CONDOMUSE,encounterSexType.getCondom_use());
-        values.put(KEY_ENCSEXTYPE_NOTE, encounterSexType.getNote());
-        values.put(KEY_STATUS_UPDATE, encounterSexType.getStatus_update());
-        // updating row
-        return db.update(TABLE_ENCOUNTER_SEXTYPE, values, KEY_ENCSEXTYPE_ID + " = ?",
-                new String[]{String.valueOf(encounterSexType.getEncounter_sex_type_id())});
-    }
-
-
-    /**
-     * Deleting a  Encounter Sex Type  Entry
-     */
-
-    public void deleteEncounterSexTypeByID(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_ENCOUNTER_SEXTYPE, KEY_ENCSEXTYPE_ID + " = ?",
-                new String[]{String.valueOf(id)});
-    }
-
-    /**
-     * Deleting all  Encounter Sex Type  Entry by Encounter id
-     */
-
-    public void deleteEncounterSexTypeByEncounterID(int encounter_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_ENCOUNTER_SEXTYPE, KEY_ENCSEXTYPE_ENCOUNTERID + " = ?",
-                new String[]{String.valueOf(encounter_id)});
     }
 
     /**
@@ -4174,34 +3019,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * get single TESTING REMINDER
-     */
-    public TestingReminder getTestingReminder(int testingReminder_id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String selectQuery = "SELECT  * FROM " + TABLE_TESTING_REMINDER + " WHERE "
-                + KEY_TESTING_REMINDER_ID + " = " + testingReminder_id;
-
-        Log.e(LOG, selectQuery);
-
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        if (c != null)
-            c.moveToFirst();
-
-        TestingReminder testingReminder = new TestingReminder();
-        testingReminder.setTesting_reminder_id(c.getInt(c.getColumnIndex(KEY_TESTING_REMINDER_ID)));
-        testingReminder.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_REMINDER_USERID)));
-        testingReminder.setNotification_day((c.getString(c.getColumnIndex(KEY_TESTING_REMINDER_DAY))));
-        testingReminder.setNotification_time((c.getString(c.getColumnIndex(KEY_TESTING_REMINDER_TIME))));
-        testingReminder.setReminder_flag(c.getInt(c.getColumnIndex(KEY_TESTING_REMINDER_FLAG)));
-        testingReminder.setReminder_notes(c.getString(c.getColumnIndex(KEY_TESTING_REMINDER_NOTES)));
-        testingReminder.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
-        return testingReminder;
-    }
-
-    /**
      * getting Testing Reminder by REMINDER_FLAG
      */
     public TestingReminder getTestingReminderByFlag(int reminder_flag) {
@@ -4230,87 +3047,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return null;
     }
-    /**
-     * getting all Testing Reminder by User id
-     */
-    public List<TestingReminder> getAllTestingReminder(int user_id) {
-        List<TestingReminder> testingReminders = new ArrayList<TestingReminder>();
-        String selectQuery = "SELECT  * FROM " + TABLE_TESTING_REMINDER + " WHERE " + KEY_TESTING_REMINDER_USERID + " = "+ user_id;
 
-        Log.e(LOG, selectQuery);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                TestingReminder testingReminder = new TestingReminder();
-                testingReminder.setTesting_reminder_id(c.getInt(c.getColumnIndex(KEY_TESTING_REMINDER_ID)));
-                testingReminder.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_REMINDER_USERID)));
-                testingReminder.setNotification_day((c.getString(c.getColumnIndex(KEY_TESTING_REMINDER_DAY))));
-                testingReminder.setNotification_time((c.getString(c.getColumnIndex(KEY_TESTING_REMINDER_TIME))));
-                testingReminder.setReminder_flag(c.getInt(c.getColumnIndex(KEY_TESTING_REMINDER_FLAG)));
-                testingReminder.setReminder_notes(c.getString(c.getColumnIndex(KEY_TESTING_REMINDER_NOTES)));
-                testingReminder.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
-                // adding to Users list
-                testingReminders.add(testingReminder);
-            } while (c.moveToNext());
-        }
-
-        return testingReminders;
-    }
-
-
-    /**
-     * getting All Testing Reminder count
-     */
-    public int getTestingReminderCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_TESTING_REMINDER;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * getting All Testing Reminder count by User id
-     */
-    public int getTestingReminderCount(int user_id) {
-        String countQuery = "SELECT  * FROM " + TABLE_TESTING_REMINDER+ " WHERE " + KEY_TESTING_REMINDER_USERID + " = "+ user_id;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * Updating a Testing Reminder
-     */
-    public int updateTestingReminder(TestingReminder testingReminder) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_TESTING_REMINDER_USERID, testingReminder.getUser_id());
-        values.put(KEY_TESTING_REMINDER_DAY, testingReminder.getNotification_day());
-        values.put(KEY_TESTING_REMINDER_TIME, testingReminder.getNotification_time());
-        values.put(KEY_TESTING_REMINDER_FLAG, testingReminder.getReminder_flag());
-        values.put(KEY_TESTING_REMINDER_NOTES, testingReminder.getReminder_notes());
-        values.put(KEY_STATUS_UPDATE, testingReminder.getStatus_update());
-
-        // updating row
-        return db.update(TABLE_TESTING_REMINDER, values, KEY_TESTING_REMINDER_ID + " = ?",
-                new String[]{String.valueOf(testingReminder.getTesting_reminder_id())});
-    }
 
     /**
      * Updating a Testing Reminder
@@ -4329,22 +3066,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // updating row
         return db.update(TABLE_TESTING_REMINDER, values, KEY_TESTING_REMINDER_FLAG + " = ? AND " + KEY_TESTING_REMINDER_USERID + " = ?",
                 new String[]{String.valueOf(testingReminder.getReminder_flag()),String.valueOf(testingReminder.getUser_id())});
-    }
-
-    /**
-     * Deleting a Testing Reminder
-     */
-    public void deleteTestingReminder(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_TESTING_REMINDER, KEY_TESTING_REMINDER_ID + " = ?",
-                new String[]{String.valueOf(id)});
-    }
-
-
-    public void deleteTestingReminderbyUserid(int user_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_TESTING_REMINDER, KEY_TESTING_REMINDER_USERID + " = ?",
-                new String[]{String.valueOf(user_id)});
     }
 
     /**
@@ -4394,152 +3115,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(id)});
     }
 
-// ------------------------ "HOME TESTING" table methods ----------------//
-
-    /**
-     * Creating a HOME TESTING
-
-    public int createHomeTesting(HomeTesting homeTesting) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_HOME_TESTING_TESTINGID, homeTesting.getTesting_id());
-        values.put(KEY_HOME_TESTING_NAME, homeTesting.getName());
-        values.put(KEY_HOME_TESTING_VIDEOLINK, homeTesting.getVideo_link());
-        values.put(KEY_HOME_TESTING_PDFLINK, homeTesting.getPdf_link());
-        values.put(KEY_STATUS_UPDATE,homeTesting.getStatus_update());
-        values.put(KEY_CREATED_AT, getDateTime());
-
-        // insert row
-        int home_testing_id = (int) db.insert(TABLE_HOME_TESTING, null, values);
-
-
-        return home_testing_id;
-    }*/
-
-    /**
-     * get single HOME TESTING
-
-    public HomeTesting getHomeTesting(int homeTesting_id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String selectQuery = "SELECT  * FROM " + TABLE_HOME_TESTING + " WHERE "
-                + KEY_ID + " = " + homeTesting_id;
-
-        Log.e(LOG, selectQuery);
-
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        if (c != null)
-            c.moveToFirst();
-
-        HomeTesting homeTesting = new HomeTesting();
-        homeTesting.setId(c.getInt(c.getColumnIndex(KEY_ID)));
-        homeTesting.setTesting_id(c.getInt(c.getColumnIndex(KEY_HOME_TESTING_TESTINGID)));
-        homeTesting.setName(c.getString(c.getColumnIndex(KEY_HOME_TESTING_NAME)));
-        homeTesting.setVideo_link(c.getString(c.getColumnIndex(KEY_HOME_TESTING_VIDEOLINK)));
-        homeTesting.setPdf_link(c.getString(c.getColumnIndex(KEY_HOME_TESTING_PDFLINK)));
-        homeTesting.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
-        return homeTesting;
-    }*/
-
-    /**
-     * getting all HOME Testing by testing id
-
-    public List<HomeTesting> getAllHomeTesting(int testing_id) {
-        List<HomeTesting> homeTestings = new ArrayList<HomeTesting>();
-        String selectQuery = "SELECT  * FROM " + TABLE_HOME_TESTING + " WHERE " + KEY_HOME_TESTING_TESTINGID + " = "+ testing_id;
-
-        Log.e(LOG, selectQuery);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                HomeTesting homeTesting = new HomeTesting();
-                homeTesting.setId(c.getInt(c.getColumnIndex(KEY_ID)));
-                homeTesting.setTesting_id(c.getInt(c.getColumnIndex(KEY_HOME_TESTING_TESTINGID)));
-                homeTesting.setName(c.getString(c.getColumnIndex(KEY_HOME_TESTING_NAME)));
-                homeTesting.setVideo_link(c.getString(c.getColumnIndex(KEY_HOME_TESTING_VIDEOLINK)));
-                homeTesting.setPdf_link(c.getString(c.getColumnIndex(KEY_HOME_TESTING_PDFLINK)));
-                homeTesting.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
-                // adding to Users list
-                homeTestings.add(homeTesting);
-            } while (c.moveToNext());
-        }
-
-        return homeTestings;
-    }*/
-
-
-    /**
-     * getting All Home Testing count
-
-    public int getHomeTestingCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_HOME_TESTING;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }*/
-
-    /**
-     * getting All Home Testing count by testing id
-
-    public int getHomeTestingCount(int testing_id) {
-        String countQuery = "SELECT  * FROM " + TABLE_HOME_TESTING+ " WHERE " + KEY_HOME_TESTING_TESTINGID + " = "+ testing_id;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }*/
-
-    /**
-     * Updating a Home Testing
-
-    public int updateHomeTesting(HomeTesting homeTesting) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_HOME_TESTING_TESTINGID, homeTesting.getTesting_id());
-        values.put(KEY_HOME_TESTING_NAME, homeTesting.getVideo_link());
-        values.put(KEY_HOME_TESTING_VIDEOLINK, homeTesting.getVideo_link());
-        values.put(KEY_HOME_TESTING_PDFLINK, homeTesting.getTesting_id());
-        values.put(KEY_STATUS_UPDATE,homeTesting.getStatus_update());
-
-        // updating row
-        return db.update(TABLE_HOME_TESTING, values, KEY_ID + " = ?",
-                new String[]{String.valueOf(homeTesting.getId())});
-    } */
-
-    /**
-     * Deleting a Home Testing
-
-    public void deleteHomeTesting(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_HOME_TESTING, KEY_ID + " = ?",
-                new String[]{String.valueOf(id)});
-    }
-
-
-    public void deleteHomeTestingbyTestingid(int testing_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_HOME_TESTING, KEY_HOME_TESTING_TESTINGID + " = ?",
-                new String[]{String.valueOf(testing_id)});
-    }
-     */
     // ------------------------ "TESTING HISTORY" table methods ----------------//
 
     /**
@@ -4619,104 +3194,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * getting all Testing History by Testing Id
-     */
-    public List<TestingHistory> getAllTestingHistory(int testing_id) {
-        List<TestingHistory> testingHistories = new ArrayList<TestingHistory>();
-        String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY + " WHERE " + KEY_TESTING_HISTORY_TESTINGID + " = " +testing_id;
-
-        Log.e(LOG, selectQuery);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                TestingHistory testHistory = new TestingHistory();
-                testHistory.setTesting_history_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_ID)));
-                testHistory.setTesting_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_TESTINGID)));
-                testHistory.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_USERID)));
-                testHistory.setTesting_date(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_TESTINGDATE)));
-                testHistory.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
-                // adding to Users list
-                testingHistories.add(testHistory);
-            } while (c.moveToNext());
-        }
-
-        return testingHistories;
-    }
-
-
-    /**
-     * getting  Testing History Entries count
-     */
-    public int getTestingHistoryCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * getting  Testing History  Entries count by Testing id
-     */
-    public int getTestingHistoryCountByID(int testing_id) {
-        String countQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY+ " WHERE " + KEY_TESTING_HISTORY_TESTINGID + " = " +testing_id;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * Updating a  Testing History  by id
-     */
-    public int updateTestingHistory(TestingHistory testingHistory) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_TESTING_HISTORY_TESTINGID, testingHistory.getTesting_id());
-        values.put(KEY_TESTING_HISTORY_USERID, testingHistory.getUser_id());
-        values.put(KEY_TESTING_HISTORY_TESTINGDATE, testingHistory.getTesting_date());
-        values.put(KEY_STATUS_UPDATE, testingHistory.getStatus_update());
-        // updating row
-        return db.update(TABLE_TESTING_HISTORY, values, KEY_TESTING_HISTORY_ID + " = ?",
-                new String[]{String.valueOf(testingHistory.getTesting_history_id())});
-    }
-
-
-    /**
-     * Deleting a Testing History Entry
-     */
-
-    public void deleteTestingHistoryByID(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_TESTING_HISTORY, KEY_TESTING_HISTORY_ID + " = ?",
-                new String[]{String.valueOf(id)});
-    }
-
-    /**
-     * Deleting all Testing History Entry by Testing id
-     */
-
-    public void deleteTestingHistoryByTestingID(int testing_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_TESTING_HISTORY, KEY_TESTING_HISTORY_TESTINGID + " = ?",
-                new String[]{String.valueOf(testing_id)});
-    }
-
-    /**
      * getting all Testing History by status
      */
     public List<TestingHistory> getAllTestingHistoryByStatus(String status) {
@@ -4783,65 +3260,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return test_status_id;
     }
 
-    /**
-     * get single TESTING HISTORY INFO by Id
-     */
-    public TestingHistoryInfo getTestingHistoryInfobyID(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY_INFO + " WHERE "
-                + KEY_TESTING_HISTORY_INFO_ID + " = " + id;
-
-        Log.e(LOG, selectQuery);
-
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        if (c != null)
-            c.moveToFirst();
-
-        TestingHistoryInfo testingHistoryInfo = new TestingHistoryInfo();
-        testingHistoryInfo.setTesting_history_info_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_ID)));
-        testingHistoryInfo.setTesting_history_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_HISTORYID)));
-        testingHistoryInfo.setSti_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_STIID)));
-        testingHistoryInfo.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_USERID)));
-        testingHistoryInfo.setTest_status(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_STATUS)));
-        testingHistoryInfo.setAttachment(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_ATTACHMENT)));
-        testingHistoryInfo.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-        return testingHistoryInfo;
-    }
-
-
-    /**
-     * getting all TESTING HISTORY INFO
-     */
-    public List<TestingHistoryInfo> getAllTestingHistoryInfo() {
-        List<TestingHistoryInfo> testingHistoryInfoList = new ArrayList<TestingHistoryInfo>();
-        String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY_INFO;
-
-        Log.e(LOG, selectQuery);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                TestingHistoryInfo testingHistoryInfo = new TestingHistoryInfo();
-                testingHistoryInfo.setTesting_history_info_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_ID)));
-                testingHistoryInfo.setTesting_history_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_HISTORYID)));
-                testingHistoryInfo.setSti_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_STIID)));
-                testingHistoryInfo.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_USERID)));
-                testingHistoryInfo.setTest_status(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_STATUS)));
-                testingHistoryInfo.setAttachment(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_ATTACHMENT)));
-                testingHistoryInfo.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
-                // adding to testingHistoryInfo list
-                testingHistoryInfoList.add(testingHistoryInfo);
-            } while (c.moveToNext());
-        }
-
-        return testingHistoryInfoList;
-    }
 
     /**
      * getting all TESTING HISTORY INFO by testingHistory Id
@@ -4873,58 +3291,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return testingHistoryInfoList;
-    }
-
-
-    /**
-     * getting  TESTING HISTORY INFO Entries count
-     */
-    public int getTestingHistoryInfoCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY_INFO;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * getting  TESTING HISTORY INFO  Entries count by Testing history id
-     */
-    public int getTestingHistoryInfoCountByHistoryID(int testingHistory_id) {
-        String countQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY_INFO + " WHERE " + KEY_TESTING_HISTORY_INFO_HISTORYID + " = " +testingHistory_id;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-
-    /**
-     * Deleting a TESTING HISTORY INFO Entry
-     */
-
-    public void deleteTestingHistoryInfoByID(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_TESTING_HISTORY_INFO, KEY_TESTING_HISTORY_INFO_ID + " = ?",
-                new String[]{String.valueOf(id)});
-    }
-
-    /**
-     * Deleting all TESTING HISTORY INFO Entry by Testing history id
-     */
-
-    public void deleteTestingHistoryInfoByHistoryID(int testingHistory_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_TESTING_HISTORY_INFO, KEY_TESTING_HISTORY_TESTINGID + " = ?",
-                new String[]{String.valueOf(testingHistory_id)});
     }
 
     /**
@@ -5000,173 +3366,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * get single Testing REQUEST by Id
-     */
-    public HomeTestingRequest getHomeTestingREQUESTbyID(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String selectQuery = "SELECT  * FROM " + TABLE_HOME_TESTING_REQUEST + " WHERE "
-                + KEY_TESTING_REQUEST_ID + " = " + id;
-
-        Log.e(LOG, selectQuery);
-
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        if (c != null)
-            c.moveToFirst();
-
-        HomeTestingRequest homeTestingRequest = new HomeTestingRequest();
-        homeTestingRequest.setHome_testing_request_id(c.getInt(c.getColumnIndex(KEY_TESTING_REQUEST_ID)));
-        homeTestingRequest.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_REQUEST_USERID)));
-        homeTestingRequest.setTesting_id(c.getInt(c.getColumnIndex(KEY_TESTING_REQUEST_TESTINGID)));
-        homeTestingRequest.setAddress(c.getString(c.getColumnIndex(KEY_TESTING_REQUEST_ADDRESS)));
-        homeTestingRequest.setCity(c.getString(c.getColumnIndex(KEY_TESTING_REQUEST_CITY)));
-        homeTestingRequest.setState(c.getString(c.getColumnIndex(KEY_TESTING_REQUEST_STATE)));
-        homeTestingRequest.setZip(c.getString(c.getColumnIndex(KEY_TESTING_REQUEST_ZIP)));
-        homeTestingRequest.setDatetime(c.getString(c.getColumnIndex(KEY_TESTING_REQUEST_DATETIME)));
-        return homeTestingRequest;
-    }
-
-
-    /**
-     * getting all Testing REQUEST
-     */
-    public List<HomeTestingRequest> getAllHomeTestingRequests() {
-        List<HomeTestingRequest> homeTestingRequests = new ArrayList<HomeTestingRequest>();
-        String selectQuery = "SELECT  * FROM " + TABLE_HOME_TESTING_REQUEST;
-
-        Log.e(LOG, selectQuery);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                HomeTestingRequest homeTestingRequest = new HomeTestingRequest();
-                homeTestingRequest.setHome_testing_request_id(c.getInt(c.getColumnIndex(KEY_TESTING_REQUEST_ID)));
-                homeTestingRequest.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_REQUEST_USERID)));
-                homeTestingRequest.setTesting_id(c.getInt(c.getColumnIndex(KEY_TESTING_REQUEST_TESTINGID)));
-                homeTestingRequest.setAddress(c.getString(c.getColumnIndex(KEY_TESTING_REQUEST_ADDRESS)));
-                homeTestingRequest.setCity(c.getString(c.getColumnIndex(KEY_TESTING_REQUEST_CITY)));
-                homeTestingRequest.setState(c.getString(c.getColumnIndex(KEY_TESTING_REQUEST_STATE)));
-                homeTestingRequest.setZip(c.getString(c.getColumnIndex(KEY_TESTING_REQUEST_ZIP)));
-                homeTestingRequest.setDatetime(c.getString(c.getColumnIndex(KEY_TESTING_REQUEST_DATETIME)));
-
-                // adding to Users list
-                homeTestingRequests.add(homeTestingRequest);
-            } while (c.moveToNext());
-        }
-
-        return homeTestingRequests;
-    }
-
-    /**
-     * getting all Testing REQUEST by Testing Id
-     */
-    public List<HomeTestingRequest> getAllHomeTestingRequest(int testing_id) {
-        List<HomeTestingRequest> homeTestingRequests = new ArrayList<HomeTestingRequest>();
-        String selectQuery = "SELECT  * FROM " + TABLE_HOME_TESTING_REQUEST + " WHERE " + KEY_TESTING_REQUEST_TESTINGID + " = " +testing_id;
-
-        Log.e(LOG, selectQuery);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                HomeTestingRequest homeTestingRequest = new HomeTestingRequest();
-                homeTestingRequest.setHome_testing_request_id(c.getInt(c.getColumnIndex(KEY_TESTING_REQUEST_ID)));
-                homeTestingRequest.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_REQUEST_USERID)));
-                homeTestingRequest.setTesting_id(c.getInt(c.getColumnIndex(KEY_TESTING_REQUEST_TESTINGID)));
-                homeTestingRequest.setAddress(c.getString(c.getColumnIndex(KEY_TESTING_REQUEST_ADDRESS)));
-                homeTestingRequest.setCity(c.getString(c.getColumnIndex(KEY_TESTING_REQUEST_CITY)));
-                homeTestingRequest.setState(c.getString(c.getColumnIndex(KEY_TESTING_REQUEST_STATE)));
-                homeTestingRequest.setZip(c.getString(c.getColumnIndex(KEY_TESTING_REQUEST_ZIP)));
-                homeTestingRequest.setDatetime(c.getString(c.getColumnIndex(KEY_TESTING_REQUEST_DATETIME)));
-
-                // adding to Users list
-                homeTestingRequests.add(homeTestingRequest);
-            } while (c.moveToNext());
-        }
-
-        return homeTestingRequests;
-    }
-
-
-    /**
-     * getting  Testing REQUEST Entries count
-     */
-    public int getHomeTestingRequestCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_HOME_TESTING_REQUEST;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * getting  Testing REQUEST  Entries count by Testing id
-     */
-    public int getHomeTestingRequestCountByID(int testing_id) {
-        String countQuery = "SELECT  * FROM " + TABLE_HOME_TESTING_REQUEST+ " WHERE " + KEY_TESTING_REQUEST_TESTINGID + " = " +testing_id;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-    /**
-     * Updating a  Testing REQUEST  by id
-     */
-    public int updateHomeTestingRequest(HomeTestingRequest homeTestingRequest) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_TESTING_REQUEST_USERID, homeTestingRequest.getUser_id());
-        values.put(KEY_TESTING_REQUEST_TESTINGID, homeTestingRequest.getTesting_id());
-        values.put(KEY_TESTING_REQUEST_ADDRESS, homeTestingRequest.getAddress());
-        values.put(KEY_TESTING_REQUEST_CITY, homeTestingRequest.getCity());
-        values.put(KEY_TESTING_REQUEST_STATE, homeTestingRequest.getState());
-        values.put(KEY_TESTING_REQUEST_ZIP, homeTestingRequest.getZip());
-        values.put(KEY_TESTING_REQUEST_DATETIME, homeTestingRequest.getDatetime());
-        values.put(KEY_STATUS_UPDATE,homeTestingRequest.getStatus_update());
-        values.put(KEY_CREATED_AT, getDateTime());
-        // updating row
-        return db.update(TABLE_HOME_TESTING_REQUEST, values, KEY_TESTING_REQUEST_ID + " = ?",
-                new String[]{String.valueOf(homeTestingRequest.getHome_testing_request_id())});
-    }
-
-
-    /**
-     * Deleting a Testing REQUEST Entry
-     */
-
-    public void deleteHomeTestingRequestByID(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_HOME_TESTING_REQUEST, KEY_TESTING_REQUEST_ID + " = ?",
-                new String[]{String.valueOf(id)});
-    }
-
-    /**
-     * Deleting all Testing REQUEST Entry by testing id
-     */
-
-    public void deleteHomeTestingRequestByTestingID(int testing_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_HOME_TESTING_REQUEST, KEY_TESTING_REQUEST_TESTINGID + " = ?",
-                new String[]{String.valueOf(testing_id)});
-    }
-
-    /**
      * getting all Testing REQUEST by Status
      */
     public List<HomeTestingRequest> getAllHomeTestingRequestByStatus(String status) {
@@ -5231,6 +3430,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_TESTING_LOCATION_PREP,testingLocations.getPrep_clinic());
         values.put(KEY_TESTING_LOCATION_HIV,testingLocations.getHiv_clinic());
         values.put(KEY_TESTING_LOCATION_STI,testingLocations.getSti_clinic());
+        values.put(KEY_TESTING_LOCATION_OPERATION_HOURS,testingLocations.getOperation_hours());
+        values.put(KEY_TESTING_LOCATION_INSURANCE,testingLocations.getInsurance());
+        values.put(KEY_TESTING_LOCATION_AGES,testingLocations.getAges());
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
@@ -5268,6 +3470,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         testingLocations.setPrep_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_PREP)));
         testingLocations.setHiv_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_HIV)));
         testingLocations.setSti_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_STI)));
+        testingLocations.setOperation_hours(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_OPERATION_HOURS)));
+        testingLocations.setInsurance(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_INSURANCE)));
+        testingLocations.setAges(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_AGES)));
         return testingLocations;
     }
 
@@ -5285,115 +3490,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                TestingLocations testingLocations = new TestingLocations();
-                testingLocations.setTesting_location_id(c.getInt(c.getColumnIndex(KEY_TESTING_LOCATION_ID)));
-                testingLocations.setName(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_NAME)));
-                testingLocations.setAddress(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_ADDRESS)));
-                testingLocations.setPhone_number(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_PHONE)));
-                testingLocations.setLatitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LATITUDE)));
-                testingLocations.setLongitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LONGITUDE)));
-                testingLocations.setUrl(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_URL)));
-                testingLocations.setType(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_TYPE)));
-                testingLocations.setPrep_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_PREP)));
-                testingLocations.setHiv_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_HIV)));
-                testingLocations.setSti_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_STI)));
-                // adding to TESTING LOCATION list
-                testingLocationsList.add(testingLocations);
-            } while (c.moveToNext());
+        if(c!=null){
+            if (c.moveToFirst()) {
+                do {
+                    TestingLocations testingLocations = new TestingLocations();
+                    testingLocations.setTesting_location_id(c.getInt(c.getColumnIndex(KEY_TESTING_LOCATION_ID)));
+                    testingLocations.setName(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_NAME)));
+                    testingLocations.setAddress(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_ADDRESS)));
+                    testingLocations.setPhone_number(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_PHONE)));
+                    testingLocations.setLatitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LATITUDE)));
+                    testingLocations.setLongitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LONGITUDE)));
+                    testingLocations.setUrl(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_URL)));
+                    testingLocations.setType(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_TYPE)));
+                    testingLocations.setPrep_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_PREP)));
+                    testingLocations.setHiv_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_HIV)));
+                    testingLocations.setSti_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_STI)));
+                    testingLocations.setOperation_hours(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_OPERATION_HOURS)));
+                    testingLocations.setInsurance(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_INSURANCE)));
+                    testingLocations.setAges(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_AGES)));
+                    // adding to TESTING LOCATION list
+                    testingLocationsList.add(testingLocations);
+                } while (c.moveToNext());
+            }
         }
 
         return testingLocationsList;
     }
-
-    /**
-     * getting all Testing LOCATION by Name
-     */
-    public List<TestingLocations> getAllTestingLocations(String name) {
-        List<TestingLocations> testingLocationsList = new ArrayList<TestingLocations>();
-        String selectQuery = "SELECT  * FROM " + TABLE_TESTING_LOCATION + " WHERE " + KEY_TESTING_LOCATION_NAME + " = " +name;
-
-        Log.e(LOG, selectQuery);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                TestingLocations testingLocations = new TestingLocations();
-                testingLocations.setTesting_location_id(c.getInt(c.getColumnIndex(KEY_TESTING_LOCATION_ID)));
-                testingLocations.setName(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_NAME)));
-                testingLocations.setAddress(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_ADDRESS)));
-                testingLocations.setPhone_number(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_PHONE)));
-                testingLocations.setLatitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LATITUDE)));
-                testingLocations.setLongitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LONGITUDE)));
-                testingLocations.setUrl(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_URL)));
-                testingLocations.setType(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_TYPE)));
-                testingLocations.setPrep_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_PREP)));
-                testingLocations.setHiv_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_HIV)));
-                testingLocations.setSti_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_STI)));
-
-                // adding to TESTING LOCATION list
-                testingLocationsList.add(testingLocations);
-            } while (c.moveToNext());
-        }
-
-        return testingLocationsList;
-    }
-
-
-    /**
-     * getting  Testing LOCATION Entries count
-     */
-    public int getTestingLocationsCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_TESTING_LOCATION;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-        int count = cursor.getCount();
-        cursor.close();
-
-        // return count
-        return count;
-    }
-
-    /**
-     * Updating a  Testing Location  by id
-     */
-    public int updateTestingLocation(TestingLocations testingLocations) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_TESTING_LOCATION_NAME, testingLocations.getName());
-        values.put(KEY_TESTING_LOCATION_ADDRESS, testingLocations.getAddress());
-        values.put(KEY_TESTING_LOCATION_PHONE,testingLocations.getPhone_number());
-        values.put(KEY_TESTING_LOCATION_LATITUDE, testingLocations.getLatitude());
-        values.put(KEY_TESTING_LOCATION_LONGITUDE, testingLocations.getLongitude());
-        values.put(KEY_TESTING_LOCATION_URL, testingLocations.getUrl());
-        values.put(KEY_TESTING_LOCATION_TYPE, testingLocations.getType());
-        values.put(KEY_TESTING_LOCATION_PREP,testingLocations.getPrep_clinic());
-        values.put(KEY_TESTING_LOCATION_HIV,testingLocations.getHiv_clinic());
-        values.put(KEY_TESTING_LOCATION_STI,testingLocations.getSti_clinic());
-        values.put(KEY_CREATED_AT, getDateTime());
-
-        // updating row
-        return db.update(TABLE_TESTING_LOCATION, values, KEY_TESTING_LOCATION_ID + " = ?",
-                new String[]{String.valueOf(testingLocations.getTesting_location_id())});
-    }
-
-
-    /**
-     * Deleting a Testing LOCATION Entry
-     */
-
-    public void deleteTestingLocationByID(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_TESTING_LOCATION, KEY_TESTING_LOCATION_ID + " = ?",
-                new String[]{String.valueOf(id)});
-    }
-
 
     // ------------------------ " PREP INFORMATION" table methods ----------------//
 
@@ -5543,105 +3665,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
          testinginstruction.setPdf_link(c.getString(c.getColumnIndex(KEY_TESTING_INSTRUCTION_PDFLINK)));
 
      return testinginstruction;
-     }
-
-    /**
-     * getting all TESTING INSTRUCTION by testing id
-     */
-     public List<TestingInstructions> getAllTestingInstructions(int testing_id) {
-         SQLiteDatabase db = this.getReadableDatabase();
-         List<TestingInstructions> testinginstruction_list = new ArrayList<TestingInstructions>();
-     String selectQuery = "SELECT  * FROM " + TABLE_TESTING_INSTRUCTION + " WHERE " + KEY_TESTING_INSTRUCTION_TESTINGID + " = " + testing_id;
-
-     Log.e(LOG, selectQuery);
-
-
-     android.database.Cursor c = db.rawQuery(selectQuery, null);
-
-     // looping through all rows and adding to list
-     if (c.moveToFirst()) {
-     do {
-         TestingInstructions testinginstruction = new TestingInstructions();
-         testinginstruction.setTesting_instruction_id(c.getInt(c.getColumnIndex(KEY_TESTING_INSTRUCTION_ID)));
-         testinginstruction.setTesting_id(c.getInt(c.getColumnIndex(KEY_TESTING_INSTRUCTION_TESTINGID)));
-         testinginstruction.setQuestion(c.getString(c.getColumnIndex(KEY_TESTING_INSTRUCTION_QUESTION)));
-         testinginstruction.setAnswer(c.getString(c.getColumnIndex(KEY_TESTING_INSTRUCTION_ANSWER)));
-         testinginstruction.setVideo_link(c.getString(c.getColumnIndex(KEY_TESTING_INSTRUCTION_VIDEOLINK)));
-         testinginstruction.setPdf_link(c.getString(c.getColumnIndex(KEY_TESTING_INSTRUCTION_PDFLINK)));
-
-         // adding to TESTING LOCATION list
-         testinginstruction_list.add(testinginstruction);
-     } while (c.moveToNext());
-     }
-
-     return testinginstruction_list;
-     }
-
-
-    /**
-     * getting All TESTING INSTRUCTION count
-     */
-     public int getTestingInstructionsCount() {
-         SQLiteDatabase db = this.getReadableDatabase();
-     String countQuery = "SELECT  * FROM " + TABLE_TESTING_INSTRUCTION;
-
-     android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-     int count = cursor.getCount();
-     cursor.close();
-
-     // return count
-     return count;
-     }
-
-    /**
-     * getting All Home Testing count by testing id
-     */
-     public int getTestingInstructionsCount(int testing_id) {
-         SQLiteDatabase db = this.getReadableDatabase();
-     String countQuery = "SELECT  * FROM " + TABLE_TESTING_INSTRUCTION+ " WHERE " + KEY_TESTING_INSTRUCTION_TESTINGID + " = " + testing_id;
-
-     android.database.Cursor cursor = db.rawQuery(countQuery, null);
-
-     int count = cursor.getCount();
-     cursor.close();
-
-     // return count
-     return count;
-     }
-
-    /**
-     * Updating a TESTING INSTRUCTION
-     */
-     public int updateTestingInstructions(TestingInstructions testinginstruction) {
-     SQLiteDatabase db = this.getWritableDatabase();
-
-     ContentValues values = new ContentValues();
-         values.put(KEY_TESTING_INSTRUCTION_TESTINGID,testinginstruction.getTesting_id());
-         values.put(KEY_TESTING_INSTRUCTION_QUESTION, testinginstruction.getQuestion());
-         values.put(KEY_TESTING_INSTRUCTION_ANSWER, testinginstruction.getAnswer());
-         values.put(KEY_TESTING_INSTRUCTION_VIDEOLINK, testinginstruction.getVideo_link());
-         values.put(KEY_TESTING_INSTRUCTION_PDFLINK, testinginstruction.getPdf_link());
-
-     // updating row
-     return db.update(TABLE_TESTING_INSTRUCTION, values, KEY_TESTING_INSTRUCTION_ID + " = ?",
-     new String[]{String.valueOf(testinginstruction.getTesting_instruction_id())});
-     }
-
-    /**
-     * Deleting a TESTING INSTRUCTION
-     */
-     public void deleteTestingInstructions(int id) {
-     SQLiteDatabase db = this.getWritableDatabase();
-     db.delete(TABLE_TESTING_INSTRUCTION, KEY_TESTING_INSTRUCTION_ID + " = ?",
-     new String[]{String.valueOf(id)});
-     }
-
-
-     public void deleteTestingInstructionsbyTestingid(int testing_id) {
-     SQLiteDatabase db = this.getWritableDatabase();
-     db.delete(TABLE_TESTING_INSTRUCTION, KEY_TESTING_INSTRUCTION_TESTINGID + " = ?",
-     new String[]{String.valueOf(testing_id)});
      }
 
     // ------------------------ "Cloud Messaging" table methods ----------------//
