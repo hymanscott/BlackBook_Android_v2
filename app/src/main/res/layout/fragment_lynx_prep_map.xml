@@ -100,7 +100,7 @@
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="380dp"
         android:clipToPadding="true"
         android:background="@color/white"
         app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
@@ -111,15 +111,27 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/infoWindow_Title"
-                android:layout_width="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/faq_blue"
-                android:text="Title"
-                android:textSize="@dimen/info_window_title_size"
-                android:layout_height="wrap_content" />
-
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+                <TextView
+                    android:id="@+id/infoWindow_Title"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/faq_blue"
+                    android:text="Title"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@+id/swipe_arrow"
+                    android:textSize="@dimen/info_window_title_size"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/swipe_arrow"
+                    android:src="@drawable/swipe_up"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
             <TextView
                 android:id="@+id/infoWindow_Address"
                 android:layout_marginTop="8dp"
@@ -147,7 +159,7 @@
                     android:textColor="@color/text_color"
                     android:text="Website: "
                     android:textSize="@dimen/info_window_text_size"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/infoWindow_url"
@@ -169,7 +181,7 @@
                     android:textColor="@color/text_color"
                     android:text="Operation Hours: "
                     android:textSize="@dimen/info_window_text_size"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/infoWindow_hours"
@@ -186,16 +198,16 @@
                 android:orientation="horizontal">
                 <TextView
                     android:id="@+id/infoWindow_ins_title"
-                    android:layout_marginTop="10dp"
                     android:textColor="@color/text_color"
+                    android:layout_marginTop="10dp"
                     android:text="Insurance: "
                     android:textSize="@dimen/info_window_text_size"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/infoWindow_insurance"
-                    android:layout_marginTop="10dp"
                     android:textColor="@color/text_color"
+                    android:layout_marginTop="10dp"
                     android:text="-"
                     android:textSize="@dimen/info_window_text_size"
                     android:layout_width="wrap_content"
@@ -211,7 +223,7 @@
                     android:textColor="@color/text_color"
                     android:text="Ages: "
                     android:textSize="@dimen/info_window_text_size"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/infoWindow_ages"
@@ -229,7 +241,8 @@
                 android:text="distance"
                 android:textSize="@dimen/info_window_text_size"
                 android:textColor="@color/text_color"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"/>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

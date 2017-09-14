@@ -87,8 +87,13 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
                 angle = (int) ((adjustedScore-1) * 13.86);
             }
             dial_imgview.setRotation(angle);
-            score_message.setText("Daily PrEP raised your score from " +  String.valueOf(score) +
-                    " & added an extra layer of protection.");
+            String message ="";
+            if(adjustedScore>=17){
+                message = "You’re taking good care of your sexual health. You should take PrEP daily to further reduce your risk.";
+            }else{
+                message = "You’re still at high risk for HIV because you reported not taking PrEP daily. You should take PrEP daily to be protected.";
+            }
+            score_message.setText(message);
         }else{
             float angle;
             if((unAdjustedScore-1)>=17){
@@ -97,8 +102,15 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
                 angle = (int) ((unAdjustedScore-1) * 13.86);
             }
             dial_imgview.setRotation(angle);
-            score_message.setText("Daily PrEP can raise your score to " +  String.valueOf(score) +
-                    " & add an extra layer of protection.");
+            String message ="";
+            if(unAdjustedScore == 1){
+                message = "Your HIV risk is extremely high.  Talk with us about how PrEP can reduce your risk.";
+            }else if(unAdjustedScore>=2 && unAdjustedScore <=16){
+                message = "You’re at high risk for HIV. Talk with us about how PrEP can reduce your risk.";
+            }else if(unAdjustedScore>=17 && unAdjustedScore <=20){
+                message = "You’re taking good care to lower your HIV risk. PrEP may add additional protection.";
+            }
+            score_message.setText(message);
         }
         /*switch (score){
             case 1:

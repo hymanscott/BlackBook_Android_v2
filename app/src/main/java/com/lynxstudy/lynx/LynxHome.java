@@ -58,6 +58,9 @@ import net.hockeyapp.android.UpdateManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.PiwikApplication;
+import org.piwik.sdk.extra.TrackHelper;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -78,6 +81,10 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lynx_home);
+
+        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+        TrackHelper.track().screen("/LynxHome").title("Home").with(tracker);
+
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
@@ -142,6 +149,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             @Override
             public void onClick(View v) {
                 Toast.makeText(LynxHome.this,"Activity",Toast.LENGTH_SHORT).show();
+                //TrackHelper.track().screens(getApplication()).with(((lynxApplication) getApplication()).getTracker());
             }
         });
         badges.setOnClickListener(new View.OnClickListener() {

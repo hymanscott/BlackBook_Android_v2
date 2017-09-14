@@ -8,6 +8,9 @@ import android.content.SharedPreferences;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
+import org.piwik.sdk.Piwik;
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.TrackerConfig;
 import java.util.List;
 
 /**
@@ -15,6 +18,14 @@ import java.util.List;
  */
 
 public class lynxApplication extends MultiDexApplication {
+
+    private Tracker tracker;
+
+    public synchronized Tracker getTracker(){
+        if(tracker==null)
+            tracker = Piwik.getInstance(this).newTracker(new TrackerConfig("https://dev.chipware.in/analytics/piwik.php", 2,"LYNX"));
+        return tracker;
+    }
 
     public boolean getAppStatus() {
         boolean status = getSharedPreferences("PASSCODE", 0).getBoolean("IN_APP", false);

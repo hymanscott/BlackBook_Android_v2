@@ -89,7 +89,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
             "STI Testing"};
     String[] miles = {"10 miles", "20 miles", "50 miles",
             "100 miles"};
-    ImageView search;
+    ImageView search,swipe_arrow;
     EditText zipcode;
     Spinner filterSpinner,milesSpinner;
     private BottomSheetBehavior mBottomSheetBehavior;
@@ -131,6 +131,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
         }
         /*Bottom Sheet*/
         View bottomSheet = view.findViewById( R.id.bottom_sheet );
+        final ImageView swipe_arrow = (ImageView) view.findViewById( R.id.swipe_arrow);
         infoWindow_Title = (TextView)view.findViewById(R.id.infoWindow_Title);
         infoWindow_Title.setTypeface(tf);
         infoWindow_Address = (TextView)view.findViewById(R.id.infoWindow_Address);
@@ -164,6 +165,11 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
             public void onStateChanged(View bottomSheet, int newState) {
                 if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
                     mBottomSheetBehavior.setPeekHeight(0);
+                    swipe_arrow.setImageDrawable(getResources().getDrawable(R.drawable.swipe_up));
+                }else if(newState == BottomSheetBehavior.STATE_DRAGGING){
+                    swipe_arrow.setImageDrawable(getResources().getDrawable(R.drawable.swipe_up));
+                }else if(newState == BottomSheetBehavior.STATE_EXPANDED){
+                    swipe_arrow.setImageDrawable(getResources().getDrawable(R.drawable.swipe_down));
                 }
             }
 

@@ -3,79 +3,24 @@ package com.lynxstudy.lynx;
 import android.*;
 import android.Manifest;
 import android.app.ActionBar;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.app.usage.UsageStats;
-import android.app.usage.UsageStatsManager;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.graphics.BitmapFactory;
-import android.graphics.Shader;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.preference.PreferenceManager;
-import android.provider.Settings;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.telephony.TelephonyManager;
 import android.text.format.DateFormat;
 import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
 import com.lynxstudy.helper.DatabaseHelper;
-import com.lynxstudy.model.CloudMessages;
-import com.lynxstudy.model.Encounter;
-import com.lynxstudy.model.EncounterSexType;
-import com.lynxstudy.model.HomeTestingRequest;
-import com.lynxstudy.model.PartnerContact;
-import com.lynxstudy.model.PartnerRating;
-import com.lynxstudy.model.Partners;
 import com.lynxstudy.model.Statistics;
-import com.lynxstudy.model.TestingHistory;
-import com.lynxstudy.model.TestingHistoryInfo;
-import com.lynxstudy.model.TestingReminder;
-import com.lynxstudy.model.UserAlcoholUse;
-import com.lynxstudy.model.UserDrugUse;
-import com.lynxstudy.model.UserPrimaryPartner;
-import com.lynxstudy.model.UserRatingFields;
-import com.lynxstudy.model.UserSTIDiag;
-import com.lynxstudy.model.User_baseline_info;
-import com.lynxstudy.model.Users;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class LynxSexPro extends AppCompatActivity implements View.OnClickListener{
 
@@ -119,10 +64,6 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
-        /*Toolbar parent =(Toolbar) cView.getParent();
-        //parent.setPadding(0,0,0,0);//for tab otherwise give space in tab
-        parent.setContentInsetsAbsolute(0,0);
-        parent.setBackgroundResource(R.drawable.actionbar_bg);*/
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
 
         bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
@@ -204,9 +145,14 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
             }else{
                 angle = (int) ((adjustedScore-1) * 13.86);
             }
+            String message ="";
+            if(adjustedScore>=17){
+                message = "You’re taking good care of your sexual health. You should take PrEP daily to further reduce your risk.";
+            }else{
+                message = "You’re still at high risk for HIV because you reported not taking PrEP daily. You should take PrEP daily to be protected.";
+            }
             dial_imgview.setRotation(angle);
-            current_score_text.setText("Daily PrEP raised your score from " +  String.valueOf(unAdjustedScore) +
-                    " & added an extra layer of protection.");
+            current_score_text.setText(message);
         }else{
             current_score_tv.setText("YOUR SEX PRO SCORE IS "+String.valueOf(unAdjustedScore));
             float angle;
@@ -215,10 +161,16 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
             }else{
                 angle = (int) ((unAdjustedScore-1) * 13.86);
             }
-
+            String message ="";
+            if(unAdjustedScore == 1){
+                message = "Your HIV risk is extremely high.  Talk with us about how PrEP can reduce your risk.";
+            }else if(unAdjustedScore>=2 && unAdjustedScore <=16){
+                message = "You’re at high risk for HIV. Talk with us about how PrEP can reduce your risk.";
+            }else if(unAdjustedScore>=17 && unAdjustedScore <=20){
+                message = "You’re taking good care to lower your HIV risk. PrEP may add additional protection.";
+            }
             dial_imgview.setRotation(angle);
-            current_score_text.setText("Daily PrEP can raise your score to " +  String.valueOf(adjustedScore) +
-                    " & add an extra layer of protection.");
+            current_score_text.setText(message);
         }
         // Score Update Date //
         String createdAt = LynxManager.getActiveUserBaselineInfo().getCreated_at();
