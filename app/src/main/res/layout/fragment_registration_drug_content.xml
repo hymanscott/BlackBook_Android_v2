@@ -60,7 +60,7 @@
                         android:layout_marginRight="32dp"
                         android:gravity="center_vertical"
                         android:lineSpacingMultiplier="1.31"
-                        android:text="Have you used any of the following in the past 3 months?"
+                        android:text="Have you used any of the following at all during the past three months?"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/white"
                         android:textSize="@dimen/reg_tv_textsize" />

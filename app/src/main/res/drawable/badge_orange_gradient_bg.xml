@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rotate
+    android:fromDegrees="0"
+    android:toDegrees="180"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <shape
+        android:shape="rectangle">
+        <gradient
+            android:angle="90"
+            android:centerColor="#FFF89436"
+            android:endColor="#FFF76B1C"
+            android:startColor="#FFFAD961"
+            android:type="linear" />
+        <!--<gradient
+            android:angle="180"
+            android:centerColor="#FFF89436"
+            android:endColor="#FFF76B1C"
+            android:startColor="#FFFAD961"
+            android:type="linear" />
+        <size
+            android:height="560dp"
+            android:width="360dp" />-->
+    </shape>
+</rotate>

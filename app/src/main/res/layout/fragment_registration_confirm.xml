@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingTop="30dp"
-                android:text="Confirm your account details"
+                android:text="This all checks out, right?"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textStyle="bold"

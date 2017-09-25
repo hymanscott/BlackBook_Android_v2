@@ -8,7 +8,7 @@
     <string name="set_time_of_day">Set time of day</string>
     <!-- Passcode Strings-->
     <string name="passcode_manage">Manage passcode</string>
-    <string name="passcode_enter_passcode">Enter your passcode</string>
+    <string name="passcode_enter_passcode">Hit us with your passcode.</string>
     <string name="passcode_enter_old_passcode">Enter your old passcode</string>
     <string name="passcode_re_enter_passcode">Re-enter your passcode</string>
     <string name="passcode_change_passcode">Change passcode</string>
@@ -27,7 +27,7 @@
 
     <!-- Registration -->
     <string name="reg_score_summary">This is a relative score and higher numbers mean higher levels of protection. Even with a perfect 20 (strongest protection), you could still become HIV infected. But it means that you are doing a lot to stay protected. Your score is based on the last three months but we know it’s sometimes hard to remember back that far; so, your score will be updated automatically based on your LYNX entries.</string>
-    <string name="forget_pass_intro">Enter your Email address and you\'ll receive an email with a new password.</string>
+    <string name="forget_pass_intro">Enter your email address and we’ll send you a new password.</string>
     <string-array name="security_questions">
         <item>What was the name of your first pet</item>
         <item>What is your mother\'s maiden name</item>

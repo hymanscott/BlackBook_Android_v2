@@ -58,6 +58,7 @@ import net.hockeyapp.android.UpdateManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.piwik.sdk.TrackMe;
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.PiwikApplication;
 import org.piwik.sdk.extra.TrackHelper;
@@ -83,7 +84,14 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.activity_lynx_home);
 
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
-        TrackHelper.track().screen("/LynxHome").title("Home").with(tracker);
+        String piwikID = tracker.getUserId();
+        //TrackHelper.track().screen("/LynxHome").title("Home").dimension(1,LynxManager.getActiveUser().getEmail()).with(tracker);
+        //TrackHelper.track().screen("/LynxHome").title("Home").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).with(tracker);
+        TrackHelper.track().screen("/LynxHome").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,piwikID).with(tracker);
+        Log.v("PiwikUserID",tracker.getUserId());
+        Log.v("PiwikUserNAME",tracker.getName());
+        Log.v("PiwikVisitorID",tracker.getVisitorId());
+        Log.v("PiwikAPIUrl", String.valueOf(tracker.getAPIUrl()));
 
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
@@ -155,7 +163,10 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         badges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LynxHome.this,"Badges",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(LynxHome.this,"Badges",Toast.LENGTH_SHORT).show();
+                Intent badges = new Intent(LynxHome.this,LynxBadges.class);
+                startActivity(badges);
+                finish();
             }
         });
         topFive.setOnClickListener(new View.OnClickListener() {

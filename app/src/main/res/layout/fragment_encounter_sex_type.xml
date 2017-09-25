@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textColor="@color/white"
-                android:text="Rate the sex"
+                android:text="How was the sex?"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="24dp"
                 android:id="@+id/rateSex"
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:textColor="@color/white"
-                    android:text="Type of sex"
+                    android:text="What did y’all do?"
                     android:layout_margin="10dp"
                     android:id="@+id/typeSex"
                     android:gravity="center_vertical|center_horizontal" />

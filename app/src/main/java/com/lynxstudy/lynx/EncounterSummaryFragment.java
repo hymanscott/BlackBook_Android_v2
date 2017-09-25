@@ -220,7 +220,7 @@ public class EncounterSummaryFragment extends Fragment {
                            condomUsedContent.removeAllViews();
                            if(LynxManager.activeEncCondomUsed.size()>0){
                                for (String str : LynxManager.activeEncCondomUsed){
-                                   TextView tv = new TextView(getActivity());
+                                   TextView tv = new TextView(getContext());
                                    tv.setTypeface(tf);
                                    tv.setText("When "+str);
                                    tv.setPadding(0,0,0,16);

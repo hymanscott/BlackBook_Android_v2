@@ -21,6 +21,8 @@ import com.lynxstudy.model.UserSTIDiag;
 import com.lynxstudy.model.User_baseline_info;
 import com.lynxstudy.model.Users;
 
+import java.util.Objects;
+
 /**
  * Created by Hari on 2017-04-13.
  */
@@ -33,7 +35,9 @@ public class PasscodeUnlockActivity extends AbstractPasscodeKeyboardActivity {
 
     @Override
     public void onBackPressed() {
-        AppLockManager.getInstance().getCurrentAppLock().forcePasswordLock();
+        if(AppLockManager.getInstance().getCurrentAppLock()!=null){
+            AppLockManager.getInstance().getCurrentAppLock().forcePasswordLock();
+        }
         Intent i = new Intent();
         i.setAction(Intent.ACTION_MAIN);
         i.addCategory(Intent.CATEGORY_HOME);
@@ -46,7 +50,7 @@ public class PasscodeUnlockActivity extends AbstractPasscodeKeyboardActivity {
         String passLock = pinCodeField1.getText().toString() + pinCodeField2.getText().toString() +
                 pinCodeField3.getText().toString() + pinCodeField4.getText();
         Log.v("PassLock",passLock);
-        if (AppLockManager.getInstance().getCurrentAppLock().verifyPassword(passLock)) {
+        if (!passLock.equals("") && !passLock.isEmpty() && AppLockManager.getInstance().getCurrentAppLock().verifyPassword(passLock)) {
             setResult(RESULT_OK);
             db= new DatabaseHelper(getApplicationContext());
 

@@ -53,7 +53,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/encounter_tv_textsize"
                 android:textColor="@color/white"
-                android:text="What is their contact info?"
+                android:text="What is their contact info?
+(enter as much or as little of you’d like)"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:id="@+id/contactInfoTitle"
@@ -248,7 +249,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Partner type"
+                android:text="What kind of partner are they to you?"
                 android:textSize="@dimen/encounter_tv_textsize"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
@@ -273,6 +274,14 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/white"
+                    android:text="Friends with benefits"
+                    android:id="@+id/newPartnerFriends" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="Regular"
                     android:textSize="@dimen/encounter_radio_btn_textsize"
                     android:textColor="@color/white"
@@ -290,19 +299,11 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="NSA"
+                    android:text="One-night stand"
                     android:textSize="@dimen/encounter_radio_btn_textsize"
                     android:textColor="@color/white"
                     android:buttonTint="@color/white"
                     android:id="@+id/newPartnerNSA" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/encounter_radio_btn_textsize"
-                    android:textColor="@color/white"
-                    android:buttonTint="@color/white"
-                    android:text="Friends with benefits"
-                    android:id="@+id/newPartnerFriends" />
             </RadioGroup>
             <LinearLayout
                 android:layout_width="fill_parent"

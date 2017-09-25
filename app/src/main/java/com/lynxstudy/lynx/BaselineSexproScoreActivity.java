@@ -28,7 +28,7 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
     DatabaseHelper db;
     TextView score_message,reg_sexPro_score_label,reg_sexPro_score_value,info_title,info_para_one,info_para_two,info_para_three;
     Button sexpro_score_close;
-    ImageView dialScoreImage;
+    /*ImageView dialScoreImage;*/
     LinearLayout infolayout,main_content;
     boolean isInfoShown = false;
     Typeface tf;
@@ -57,7 +57,7 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
         info_para_two.setTypeface(tf);
         info_para_three = (TextView)findViewById(R.id.info_para_three);
         info_para_three.setTypeface(tf);
-        dialScoreImage = (ImageView)findViewById(R.id.dialScoreImage);
+        /*dialScoreImage = (ImageView)findViewById(R.id.dialScoreImage);*/
         infolayout = (LinearLayout)findViewById(R.id.infolayout);
         main_content= (LinearLayout)findViewById(R.id.main_content);
         DisplayMetrics metrics = getResources().getDisplayMetrics();

@@ -17,7 +17,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical|center_horizontal"
-        android:text="Thank You!"
+        android:text="Thanks for the info!"
         android:textColor="@color/white"
         android:textSize="20sp" />
 
@@ -25,7 +25,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/encloggedText"
-        android:text="Your new partner was logged."
+        android:text="Your diary has been updated."
         android:textSize="16sp"
         android:textColor="@color/white"
         android:layout_marginTop="@dimen/activity_vertical_margin"

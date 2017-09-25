@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="3dp"
+    android:paddingRight="3dp"
+    android:background="@drawable/border_bottom">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/badgeImage"
+        android:src="@mipmap/ic_launcher_round"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:contentDescription="LYNX Badge" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/badgeImage"
+        android:layout_marginLeft="24dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:lineSpacingMultiplier="1.50"
+            android:text="High Five"
+            android:textSize="16sp"
+            android:textColor="@color/text_color"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:lineSpacingMultiplier="2"
+            android:layout_marginTop="4dp"
+            android:text="Entered first encounter"
+            android:textSize="12sp"
+            android:textColor="@color/badge_sub_text_color"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:lineSpacingMultiplier="2"
+            android:layout_marginTop="4dp"
+            android:text="Earned 1 time"
+            android:textSize="12sp"
+            android:textColor="@color/badge_sub_text_color"/>
+    </LinearLayout>
+</RelativeLayout>

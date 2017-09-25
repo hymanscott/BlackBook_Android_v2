@@ -130,7 +130,6 @@
                             android:id="@+id/myscore_framelayout"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/dialScoreImage"
                             android:background="@drawable/sexprodial"
                             android:gravity="center">
 

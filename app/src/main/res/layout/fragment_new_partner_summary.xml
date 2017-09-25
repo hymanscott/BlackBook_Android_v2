@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="New Partner Summary"
+                android:text="New Partner Profile"
                 android:layout_gravity="center_horizontal"
                 android:id="@+id/add_partner_title"
                 android:textColor="@color/white"/>

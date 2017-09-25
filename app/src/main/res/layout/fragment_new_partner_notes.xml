@@ -75,7 +75,7 @@
                             android:ems="10"
                             android:inputType="textMultiLine"
                             android:textColorHint="@color/edittext_hint_color"
-                            android:hint="Add notes about this partner"
+                            android:hint="Enter anything else you want to note or remember."
                             android:textColor="@color/white"
                             android:imeOptions="actionDone"
                             android:background="@drawable/rectangle_edittext"

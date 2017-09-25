@@ -60,7 +60,7 @@
                         android:gravity="center_vertical"
                         android:lineSpacingMultiplier="1.31"
                         android:text="Do you have a primary sex partner?
-This is someone whom you may consider a boy/girlfriend, partner, husband, wife, lover, spouse, or significant other."
+This is someone you consider a boy/girlfriend, partner, husband, wife, spouse, lover, significant other, or boo."
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/white"
                         android:textSize="@dimen/reg_tv_textsize" />

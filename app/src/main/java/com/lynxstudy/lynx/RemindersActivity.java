@@ -142,7 +142,7 @@ public class RemindersActivity extends AppCompatActivity {
             Toast.makeText(RemindersActivity.this,"Please select time",Toast.LENGTH_SHORT).show();
         }else{
             if(reminderTest_notes.isEmpty()){
-                reminderTest_notes = "It's time for your test!";
+                reminderTest_notes = "Set your own reminder text";
             }
             TestingReminder testingReminder = new TestingReminder(LynxManager.getActiveUser().getUser_id(),1, LynxManager.encryptString(day_of_week),
                     LynxManager.encryptString(lynxRemainderTime.getText().toString()), LynxManager.encryptString(reminderTest_notes), String.valueOf(R.string.statusUpdateNo), true);
@@ -171,7 +171,7 @@ public class RemindersActivity extends AppCompatActivity {
             Toast.makeText(RemindersActivity.this,"Please select time",Toast.LENGTH_SHORT).show();
         }else {
             if (druguseHistory_notes.isEmpty()) {
-                druguseHistory_notes = "Do you have anything to report this week?";
+                druguseHistory_notes = "Set your own reminder text";
             }
             TestingReminder testingReminder1 = new TestingReminder(LynxManager.getActiveUser().getUser_id(),0, LynxManager.encryptString(day_of_week),
                     LynxManager.encryptString(lynxTestingTime.getText().toString()), LynxManager.encryptString(druguseHistory_notes), String.valueOf(R.string.statusUpdateNo), true);

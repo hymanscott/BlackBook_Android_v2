@@ -35,7 +35,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Register a new account"
+                    android:text="Register your new account"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="20sp"
