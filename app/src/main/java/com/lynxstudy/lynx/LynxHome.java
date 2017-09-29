@@ -46,6 +46,7 @@ import com.lynxstudy.model.TestingHistory;
 import com.lynxstudy.model.TestingHistoryInfo;
 import com.lynxstudy.model.TestingReminder;
 import com.lynxstudy.model.UserAlcoholUse;
+import com.lynxstudy.model.UserBadges;
 import com.lynxstudy.model.UserDrugUse;
 import com.lynxstudy.model.UserPrimaryPartner;
 import com.lynxstudy.model.UserRatingFields;
@@ -291,6 +292,22 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         }, 0, 1, TimeUnit.MINUTES);
         callNotification();
         checkForUpdates();
+
+        // Show If Badges Available //
+        List<UserBadges> userBadgesList = db.getAllUserBadgesByShownStatus(0);
+        int i=0;
+        for (UserBadges userBadges: userBadgesList) {
+            if(i==0){
+                Intent badgeScreen =  new Intent(LynxHome.this,BadgeScreenActivity.class);
+                badgeScreen.putExtra("badge_id",userBadges.getBadge_id());
+                badgeScreen.putExtra("isAlert","Yes");
+                startActivity(badgeScreen);
+                db.updateUserBadgeByShownStatus(userBadges.getUser_badge_id(),1);
+            }
+            i++;
+        }
+
+        Log.v("UserBadgesCount", String.valueOf(db.getEncountersCount()));
     }
 
     @Override

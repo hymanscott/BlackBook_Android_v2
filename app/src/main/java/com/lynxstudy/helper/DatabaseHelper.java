@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.ChatMessage;
 import com.lynxstudy.model.CloudMessages;
 import com.lynxstudy.model.DrugMaster;
@@ -29,6 +30,7 @@ import com.lynxstudy.model.TestingInstructions;
 import com.lynxstudy.model.TestingLocations;
 import com.lynxstudy.model.TestingReminder;
 import com.lynxstudy.model.UserAlcoholUse;
+import com.lynxstudy.model.UserBadges;
 import com.lynxstudy.model.UserDrugUse;
 import com.lynxstudy.model.UserPrimaryPartner;
 import com.lynxstudy.model.UserRatingFields;
@@ -53,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     // Database Name
     private static final String DATABASE_NAME = "phasttDB";
@@ -65,6 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_USERS = "Users";
     private static final String TABLE_USER_BASE_INFO = "User_baseline_info";
     private static final String TABLE_DRUG_MASTER = "DrugMaster";
+    private static final String TABLE_BADGES_MASTER = "BadgeMaster";
     private static final String TABLE_STI_MASTER = "STIMaster";
     private static final String TABLE_USER_PRIMARY_PARTNER = "UserPrimaryPartner";
     private static final String TABLE_PARTNERS = "Partners";
@@ -88,6 +91,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_VIDEOS = "Videos";
     private static final String TABLE_CHAT_MESSAGES = "ChatMessages";
     private static final String TABLE_STATISTICS = "Statistics";
+    private static final String TABLE_USER_BADGES = "UserBadges";
 
     // Common column names
     private static final String KEY_CREATED_AT = "created_at";
@@ -130,6 +134,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // DRUG Master Table - Column Names
     private static final String KEY_DRUG_ID = "drug_id";
     private static final String KEY_DRUG_NAME = "drugName";
+
+    // Badges Master Table - Column Names //
+    private static final String KEY_BADGE_ID = "badge_id";
+    private static final String KEY_BADGE_NAME = "badge_name";
+    private static final String KEY_BADGE_DESCRIPTION = "badge_description";
+    private static final String KEY_BADGE_NOTES = "badge_notes";
+    private static final String KEY_BADGE_ICON = "badge_icon";
+    private static final String KEY_BADGE_ACTIVITY = "badge_activity";
 
     // STI Master Table - Column Names
     private static final String KEY_STI_ID = "sti_id";
@@ -219,6 +231,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_ENCOUNTER_PARTNERID = "partner_id";
     private static final String KEY_ENCOUNTER_SEXRATING = "rate_the_sex";
     private static final String KEY_ENCOUNTER_ISDRUGUSED = "is_drug_used";
+    private static final String KEY_ENCOUNTER_DID_YOU_CUM = "you_cum";
+    private static final String KEY_ENCOUNTER_DID_YOUR_PARTNER_CUM = "your_partner_cum";
     private static final String KEY_ENCOUNTER_NOTES = "encounter_notes";
     private static final String KEY_ENCOUNTER_ISSEX_TOMORROW = "is_possible_sex_tomorrow";
 
@@ -308,6 +322,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_VIDEO_URL = "video_url";
     private static final String KEY_VIDEO_IMAGE_URL = "video_image_url";
     private static final String KEY_VIDEO_PRIORITY = "video_priority";
+    private static final String KEY_VIDEO_ISWATCHED = "video_watched";
 
     //Chat Messages Column Names //
 
@@ -325,6 +340,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_STATISTICS_ACTION = "action";
     private static final String KEY_STATISTICS_START_TIME = "starttime";
     private static final String KEY_STATISTICS_END_TIME = "endtime";
+
+    // User Badges Column Names //
+
+    private static final String KEY_USER_BADGE_ID = "id";
+    private static final String KEY_USER_BADGE_BADGEID = "badge_id";
+    private static final String KEY_USER_BADGE_ISSHOWN = "is_shown";
+    private static final String KEY_USER_BADGE_NOTES = "badge_notes";
+
 
     // Table Create Statements
     // Users table create statement
@@ -348,6 +371,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_DRUG_MASTER = "CREATE TABLE "
             + TABLE_DRUG_MASTER + "(" + KEY_DRUG_ID + " INTEGER PRIMARY KEY," + KEY_DRUG_NAME
+            + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
+
+    private static final String CREATE_TABLE_BADGES_MASTER= "CREATE TABLE "
+            + TABLE_BADGES_MASTER + "(" + KEY_BADGE_ID + " INTEGER PRIMARY KEY," + KEY_BADGE_NAME
+            + " TEXT,"+ KEY_BADGE_DESCRIPTION + " TEXT,"+ " TEXT,"+ KEY_BADGE_NOTES + " TEXT,"+ KEY_BADGE_ICON + " TEXT,"+ KEY_BADGE_ACTIVITY
             + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
 
     private static final String CREATE_TABLE_STI_MASTER = "CREATE TABLE "
@@ -407,8 +435,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_ENCOUNTER = "CREATE TABLE "
             + TABLE_ENCOUNTER + "(" + KEY_ENCOUNTER_ID + " INTEGER PRIMARY KEY," + KEY_ENCOUNTER_USERID + " INTEGER," + KEY_ENCOUNTER_DATE
             + " TEXT," + KEY_ENCOUNTER_PARTNERID + " INTEGER," + KEY_ENCOUNTER_SEXRATING + " TEXT," + KEY_ENCOUNTER_ISDRUGUSED
-            + " TEXT," + KEY_ENCOUNTER_NOTES + " TEXT," + KEY_ENCOUNTER_ISSEX_TOMORROW + " TEXT," +
-            KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
+            + " TEXT," + KEY_ENCOUNTER_NOTES + " TEXT," + KEY_ENCOUNTER_DID_YOU_CUM + " TEXT,"+ KEY_ENCOUNTER_DID_YOUR_PARTNER_CUM
+            + " TEXT," + KEY_ENCOUNTER_ISSEX_TOMORROW + " TEXT," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
 
 
     private static final String CREATE_TABLE_ENCOUNTER_SEXTYPE = "CREATE TABLE "
@@ -460,7 +488,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_VIDEOS = "CREATE TABLE " + TABLE_VIDEOS + "("+
             KEY_VIDEO_ID + " INTEGER PRIMARY KEY," + KEY_VIDEO_NAME+ " TEXT," + KEY_VIDEO_DESCRIPTION + " TEXT," +
-            KEY_VIDEO_URL + " TEXT,"+ KEY_VIDEO_IMAGE_URL + " TEXT," + KEY_VIDEO_PRIORITY + " INTEGER,"  + KEY_CREATED_AT + " DATETIME"+")";
+            KEY_VIDEO_URL + " TEXT,"+ KEY_VIDEO_IMAGE_URL + " TEXT," + KEY_VIDEO_PRIORITY + " INTEGER,"+ KEY_VIDEO_ISWATCHED + " INTEGER,"  + KEY_CREATED_AT + " DATETIME"+")";
 
     private static final String CREATE_TABLE_CHAT_MESSAGES = "CREATE TABLE " + TABLE_CHAT_MESSAGES + "(" +
             KEY_CHAT_MESSAGE_ID + " INTEGER PRIMARY KEY," + KEY_CHAT_MESSAGE + " TEXT," + KEY_CHAT_MESSAGE_SENDER + " TEXT," +
@@ -471,6 +499,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             KEY_STATISTICS_ID + " INTEGER PRIMARY KEY," + KEY_STATISTICS_ACTIVITY + " TEXT," + KEY_STATISTICS_FROM_ACTIVITY + " TEXT," +
             KEY_STATISTICS_TO_ACTIVITY + " TEXT," + KEY_STATISTICS_ACTION + " TEXT," + KEY_STATISTICS_START_TIME + " TEXT," +
             KEY_STATISTICS_END_TIME + " TEXT," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
+
+    private static final String CREATE_TABLE_USER_BADGES = "CREATE TABLE "
+            + TABLE_USER_BADGES + "(" + KEY_USER_BADGE_ID + " INTEGER PRIMARY KEY," + KEY_USERS_ID + " INTEGER,"
+            + KEY_USER_BADGE_BADGEID + " INTEGER,"+ KEY_USER_BADGE_ISSHOWN + " INTEGER,"+ KEY_USER_BADGE_NOTES + " TEXT,"
+            + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -486,6 +519,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_TABLE_USER_BASE_INFO);
         db.execSQL(CREATE_TABLE_DRUG_MASTER);
+        db.execSQL(CREATE_TABLE_BADGES_MASTER);
         db.execSQL(CREATE_TABLE_STI_MASTER);
         db.execSQL(CREATE_TABLE_USER_PRIMARY_PARTNER);
         db.execSQL(CREATE_TABLE_PARTNERS);
@@ -509,6 +543,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_VIDEOS);
         db.execSQL(CREATE_TABLE_CHAT_MESSAGES);
         db.execSQL(CREATE_TABLE_STATISTICS);
+        db.execSQL(CREATE_TABLE_USER_BADGES);
 
     }
 
@@ -518,6 +553,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_BASE_INFO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DRUG_MASTER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BADGES_MASTER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STI_MASTER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_PRIMARY_PARTNER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PARTNERS);
@@ -541,6 +577,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_VIDEOS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CHAT_MESSAGES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STATISTICS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_BADGES);
         // create new tables
         onCreate(db);
         Log.v("Database upgrade","Executed");
@@ -579,6 +616,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_USERS, null, null);
         db.delete(TABLE_USER_BASE_INFO, null, null);
         db.delete(TABLE_DRUG_MASTER, null, null);
+        db.delete(TABLE_BADGES_MASTER, null, null);
         db.delete(TABLE_STI_MASTER, null, null);
         db.delete(TABLE_USER_PRIMARY_PARTNER, null, null);
         db.delete(TABLE_PARTNERS, null, null);
@@ -602,6 +640,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_VIDEOS, null, null);
         db.delete(TABLE_CHAT_MESSAGES, null, null);
         db.delete(TABLE_STATISTICS, null, null);
+        db.delete(TABLE_USER_BADGES, null, null);
     }
 
     // ------------------------ "Users" table methods ----------------//
@@ -1251,8 +1290,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // return count
         return count;
     }
-
-
     // ------------------------ "User STI Master" table methods ----------------//
 
     /**
@@ -2725,6 +2762,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_ENCOUNTER_SEXRATING, encounter.getRate_the_sex());
         values.put(KEY_ENCOUNTER_ISDRUGUSED, encounter.getIs_drug_used());
         values.put(KEY_ENCOUNTER_NOTES, encounter.getEncounter_notes());
+        values.put(KEY_ENCOUNTER_DID_YOU_CUM, encounter.getDid_you_cum());
+        values.put(KEY_ENCOUNTER_DID_YOUR_PARTNER_CUM, encounter.getDid_your_partner_cum());
         values.put(KEY_ENCOUNTER_ISSEX_TOMORROW, encounter.getIs_possible_sex_tomorrow());
         values.put(KEY_STATUS_UPDATE, encounter.getStatus_update());
         values.put(KEY_CREATED_AT, getDateTime());
@@ -2750,6 +2789,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_ENCOUNTER_SEXRATING, encounter.getRate_the_sex());
         values.put(KEY_ENCOUNTER_ISDRUGUSED, encounter.getIs_drug_used());
         values.put(KEY_ENCOUNTER_NOTES, encounter.getEncounter_notes());
+        values.put(KEY_ENCOUNTER_DID_YOU_CUM, encounter.getDid_you_cum());
+        values.put(KEY_ENCOUNTER_DID_YOUR_PARTNER_CUM, encounter.getDid_your_partner_cum());
         values.put(KEY_ENCOUNTER_ISSEX_TOMORROW, encounter.getIs_possible_sex_tomorrow());
         values.put(KEY_STATUS_UPDATE, encounter.getStatus_update());
         values.put(KEY_CREATED_AT, getDateTime());
@@ -2786,6 +2827,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         encounter.setRate_the_sex(c.getString(c.getColumnIndex(KEY_ENCOUNTER_SEXRATING)));
         encounter.setIs_drug_used((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISDRUGUSED))));
         encounter.setEncounter_notes((c.getString(c.getColumnIndex(KEY_ENCOUNTER_NOTES))));
+        encounter.setDid_you_cum((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DID_YOU_CUM))));
+        encounter.setDid_your_partner_cum((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DID_YOUR_PARTNER_CUM))));
         encounter.setIs_possible_sex_tomorrow((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISSEX_TOMORROW))));
 
         encounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
@@ -2817,6 +2860,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounter.setRate_the_sex(c.getString(c.getColumnIndex(KEY_ENCOUNTER_SEXRATING)));
                 encounter.setIs_drug_used((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISDRUGUSED))));
                 encounter.setEncounter_notes((c.getString(c.getColumnIndex(KEY_ENCOUNTER_NOTES))));
+                encounter.setDid_you_cum((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DID_YOU_CUM))));
+                encounter.setDid_your_partner_cum((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DID_YOUR_PARTNER_CUM))));
                 encounter.setIs_possible_sex_tomorrow((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISSEX_TOMORROW))));
 
                 encounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
@@ -2852,6 +2897,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounter.setRate_the_sex(c.getString(c.getColumnIndex(KEY_ENCOUNTER_SEXRATING)));
                 encounter.setIs_drug_used((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISDRUGUSED))));
                 encounter.setEncounter_notes((c.getString(c.getColumnIndex(KEY_ENCOUNTER_NOTES))));
+                encounter.setDid_you_cum((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DID_YOU_CUM))));
+                encounter.setDid_your_partner_cum((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DID_YOUR_PARTNER_CUM))));
                 encounter.setIs_possible_sex_tomorrow((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISSEX_TOMORROW))));
 
                 encounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
@@ -2877,6 +2924,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // updating row
         return db.update(TABLE_ENCOUNTER, values, KEY_ENCOUNTER_ID + " = ?",
                 new String[]{String.valueOf(id)});
+    }
+
+    /**
+     * getting Statistics count
+     */
+    public int getEncountersCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
     }
 
 // ------------------------ "Encounter Sex Type" table methods ----------------//
@@ -3234,6 +3293,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // updating row
         return db.update(TABLE_TESTING_HISTORY, values, KEY_TESTING_HISTORY_ID + " = ?",
                 new String[]{String.valueOf(id)});
+    }
+
+    /**
+     * getting Statistics count
+     */
+    public int getTestingHistoriesCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
     }
 
     // ------------------------ "TESTING HISTORY INFO" table methods ----------------//
@@ -3779,6 +3850,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_VIDEO_URL, video.getVideo_url());
         values.put(KEY_VIDEO_IMAGE_URL, video.getVideo_image_url());
         values.put(KEY_VIDEO_PRIORITY, video.getPriority());
+        values.put(KEY_VIDEO_ISWATCHED, video.getIs_watched());
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
@@ -3795,11 +3867,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_VIDEO_URL, video.getVideo_url());
         values.put(KEY_VIDEO_IMAGE_URL, video.getVideo_image_url());
         values.put(KEY_VIDEO_PRIORITY, video.getPriority());
+        values.put(KEY_VIDEO_ISWATCHED, video.getIs_watched());
         values.put(KEY_CREATED_AT, getDateTime());
 
         // updating row
         return db.update(TABLE_VIDEOS, values, KEY_VIDEO_ID + " = ?",
                 new String[]{String.valueOf(video.getVideo_id())});
+    }
+    /*
+    * Update Videos*/
+    public int setVideoWatched(int video_id,int status) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_VIDEO_ISWATCHED, status);
+
+        // updating row
+        return db.update(TABLE_VIDEOS, values, KEY_VIDEO_ID + " = ?",
+                new String[]{String.valueOf(video_id)});
     }
     /**
      * getting all VIDEOS
@@ -3818,6 +3903,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 video.setVideo_url(c.getString(c.getColumnIndex(KEY_VIDEO_URL)));
                 video.setVideo_image_url(c.getString(c.getColumnIndex(KEY_VIDEO_IMAGE_URL)));
                 video.setPriority(c.getInt(c.getColumnIndex(KEY_VIDEO_PRIORITY)));
+                video.setIs_watched(c.getInt(c.getColumnIndex(KEY_VIDEO_ISWATCHED)));
                 videosList.add(video);
             } while (c.moveToNext());
         }
@@ -3843,6 +3929,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             video.setVideo_url(c.getString(c.getColumnIndex(KEY_VIDEO_URL)));
             video.setVideo_image_url(c.getString(c.getColumnIndex(KEY_VIDEO_IMAGE_URL)));
             video.setPriority(c.getInt(c.getColumnIndex(KEY_VIDEO_PRIORITY)));
+            video.setIs_watched(c.getInt(c.getColumnIndex(KEY_VIDEO_ISWATCHED)));
             return video;
         }else{
             return null;
@@ -3854,6 +3941,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     public int getVideosCount() {
         String countQuery = "SELECT  * FROM " + TABLE_VIDEOS;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+    /**
+     * getting Videos count
+     */
+    public int getWatchedVideosCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_VIDEOS + " WHERE " + KEY_VIDEO_ISWATCHED + " = 1";
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();
@@ -3969,6 +4067,347 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     public int getStatisticsCount() {
         String countQuery = "SELECT  * FROM " + TABLE_STATISTICS;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+    // ------------------------ "BADGES  Master" table methods ----------------//
+
+    /**
+     * Creating a BADGES Master
+     */
+    public int createBadgesMaster(BadgesMaster badgesMaster) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_BADGE_ID, badgesMaster.getBadge_id());
+        values.put(KEY_BADGE_NAME, badgesMaster.getBadge_name());
+        values.put(KEY_BADGE_DESCRIPTION, badgesMaster.getBadge_description());
+        values.put(KEY_BADGE_NOTES, badgesMaster.getBadge_notes());
+        values.put(KEY_BADGE_ICON, badgesMaster.getBadge_icon());
+        values.put(KEY_BADGE_ACTIVITY, badgesMaster.getBadge_activity());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        return (int) db.insert(TABLE_BADGES_MASTER, null, values);
+
+    }
+
+    /**
+     * get single BADGES Master by Id
+     */
+    public BadgesMaster getBadgesMasterByID(int id) {
+        SQLiteDatabase db =  this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_BADGES_MASTER + " WHERE "
+                + KEY_BADGE_ID+ " = " + id;
+
+        Log.e(LOG, selectQuery);
+
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        BadgesMaster badgesMaster = new BadgesMaster();
+        badgesMaster.setBadge_id(c.getInt(c.getColumnIndex(KEY_BADGE_ID)));
+        badgesMaster.setBadge_name(c.getString(c.getColumnIndex(KEY_BADGE_NAME)));
+        badgesMaster.setBadge_description(c.getString(c.getColumnIndex(KEY_BADGE_DESCRIPTION)));
+        badgesMaster.setBadge_notes(c.getString(c.getColumnIndex(KEY_BADGE_NOTES)));
+        badgesMaster.setBadge_icon(c.getString(c.getColumnIndex(KEY_BADGE_ICON)));
+        badgesMaster.setBadge_activity(c.getString(c.getColumnIndex(KEY_BADGE_ACTIVITY)));
+        badgesMaster.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+        return badgesMaster;
+    }
+    /**
+     * get single BADGES Master by Id
+     */
+    public BadgesMaster getBadgesMasterByName(String name) {
+        SQLiteDatabase db =  this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_BADGES_MASTER + " WHERE "
+                + KEY_BADGE_NAME+ " = '" + name + "'";
+
+        Log.e(LOG, selectQuery);
+
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        BadgesMaster badgesMaster = new BadgesMaster();
+        badgesMaster.setBadge_id(c.getInt(c.getColumnIndex(KEY_BADGE_ID)));
+        badgesMaster.setBadge_name(c.getString(c.getColumnIndex(KEY_BADGE_NAME)));
+        badgesMaster.setBadge_description(c.getString(c.getColumnIndex(KEY_BADGE_DESCRIPTION)));
+        badgesMaster.setBadge_notes(c.getString(c.getColumnIndex(KEY_BADGE_NOTES)));
+        badgesMaster.setBadge_icon(c.getString(c.getColumnIndex(KEY_BADGE_ICON)));
+        badgesMaster.setBadge_activity(c.getString(c.getColumnIndex(KEY_BADGE_ACTIVITY)));
+        badgesMaster.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+        return badgesMaster;
+    }
+
+    /**
+     * getting all BADGES Master
+     */
+    public List<BadgesMaster> getAllBadgesMaster() {
+        List<BadgesMaster> badgesMasterList = new ArrayList<BadgesMaster>();
+        String selectQuery = "SELECT  * FROM " + TABLE_BADGES_MASTER;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c!=null) {
+            if (c.moveToFirst()) {
+                do {
+                    BadgesMaster badgesMaster = new BadgesMaster();
+                    badgesMaster.setBadge_id(c.getInt(c.getColumnIndex(KEY_BADGE_ID)));
+                    badgesMaster.setBadge_name(c.getString(c.getColumnIndex(KEY_BADGE_NAME)));
+                    badgesMaster.setBadge_description(c.getString(c.getColumnIndex(KEY_BADGE_DESCRIPTION)));
+                    badgesMaster.setBadge_notes(c.getString(c.getColumnIndex(KEY_BADGE_NOTES)));
+                    badgesMaster.setBadge_icon(c.getString(c.getColumnIndex(KEY_BADGE_ICON)));
+                    badgesMaster.setBadge_activity(c.getString(c.getColumnIndex(KEY_BADGE_ACTIVITY)));
+                    badgesMaster.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                    // adding to Users list
+                    badgesMasterList.add(badgesMaster);
+                } while (c.moveToNext());
+            }
+        }
+
+        return badgesMasterList;
+    }
+
+    /**
+     * getting BADGES Master Entries count
+     */
+    public int getBadgesMasterCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_BADGES_MASTER;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+
+        int count = cursor.getCount();
+        cursor.close();
+
+        // return count
+        return count;
+    }
+
+    // ------------------------ "User Badges" table methods ----------------//
+
+    /**
+     * Creating a  User Badges
+     */
+    public int createUserBadge(UserBadges userBadge) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_USER_BADGE_BADGEID, userBadge.getBadge_id());
+        values.put(KEY_USER_BADGE_NOTES, userBadge.getBadge_notes());
+        values.put(KEY_USERS_ID, userBadge.getUser_id());
+        values.put(KEY_USER_BADGE_ISSHOWN, userBadge.getIs_shown());
+        values.put(KEY_STATUS_UPDATE, userBadge.getStatus_update());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        return (int) db.insert(TABLE_USER_BADGES, null, values);
+    }
+
+    /**
+     * get all  User Badges by User id
+     */
+    public List<UserBadges> getAllUserBadgesByUserID(int user_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE "
+                + KEY_USERS_ID + " = " + user_id;
+
+        Log.e(LOG, selectQuery);
+
+        List<UserBadges> userBadgesList = new ArrayList<UserBadges>();
+
+
+        Log.e(LOG, selectQuery);
+
+
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c!=null) {
+            if (c.moveToFirst()) {
+                do {
+                    UserBadges userBadge = new UserBadges();
+                    userBadge.setUser_badge_id(c.getInt(c.getColumnIndex(KEY_USER_BADGE_ID)));
+                    userBadge.setBadge_id(c.getInt(c.getColumnIndex(KEY_USER_BADGE_BADGEID)));
+                    userBadge.setUser_id(c.getInt(c.getColumnIndex(KEY_USERS_ID)));
+                    userBadge.setIs_shown(c.getInt(c.getColumnIndex(KEY_USER_BADGE_ISSHOWN)));
+                    userBadge.setBadge_notes(c.getString(c.getColumnIndex(KEY_USER_BADGE_NOTES)));
+                    userBadge.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+                    userBadge.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+
+                    // adding to Users list
+                    userBadgesList.add(userBadge);
+                } while (c.moveToNext());
+            }
+        }
+
+        return userBadgesList;
+
+    }
+    /**
+     * getting all  User Badges
+     */
+    public List<UserBadges> getAllUserBadgesByStatus(String status) {
+        List<UserBadges> userBadgesList = new ArrayList<UserBadges>();
+        String selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE " + KEY_STATUS_UPDATE + " = '" + status + "'";
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                UserBadges userBadge = new UserBadges();
+                userBadge.setUser_badge_id(c.getInt(c.getColumnIndex(KEY_USER_BADGE_ID)));
+                userBadge.setBadge_id(c.getInt(c.getColumnIndex(KEY_USER_BADGE_BADGEID)));
+                userBadge.setUser_id(c.getInt(c.getColumnIndex(KEY_USERS_ID)));
+                userBadge.setIs_shown(c.getInt(c.getColumnIndex(KEY_USER_BADGE_ISSHOWN)));
+                userBadge.setBadge_notes(c.getString(c.getColumnIndex(KEY_USER_BADGE_NOTES)));
+                userBadge.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+                userBadge.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+
+                // adding to Users list
+                userBadgesList.add(userBadge);
+            } while (c.moveToNext());
+        }
+
+        return userBadgesList;
+    }
+    /**
+     * getting all  User Badges
+     */
+    public List<UserBadges> getAllUserBadgesByShownStatus(int status) {
+        List<UserBadges> userBadgesList = new ArrayList<UserBadges>();
+        String selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE " + KEY_USER_BADGE_ISSHOWN + " = " + status;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                UserBadges userBadge = new UserBadges();
+                userBadge.setUser_badge_id(c.getInt(c.getColumnIndex(KEY_USER_BADGE_ID)));
+                userBadge.setBadge_id(c.getInt(c.getColumnIndex(KEY_USER_BADGE_BADGEID)));
+                userBadge.setUser_id(c.getInt(c.getColumnIndex(KEY_USERS_ID)));
+                userBadge.setIs_shown(c.getInt(c.getColumnIndex(KEY_USER_BADGE_ISSHOWN)));
+                userBadge.setBadge_notes(c.getString(c.getColumnIndex(KEY_USER_BADGE_NOTES)));
+                userBadge.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+                userBadge.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+
+                // adding to Users list
+                userBadgesList.add(userBadge);
+            } while (c.moveToNext());
+        }
+
+        return userBadgesList;
+    }
+    /**
+     * getting all  User Badges
+     */
+    public List<UserBadges> getAllUserBadgesByTypeAndShownStatus(String type , int status) {
+        List<UserBadges> userBadgesList = new ArrayList<UserBadges>();
+        String selectQuery;
+        switch (type){
+            case "Encounter":
+                selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE "+ KEY_USER_BADGE_BADGEID + " IN ( 2,3 )" + " AND " + KEY_USER_BADGE_ISSHOWN + " = " + status;
+                break;
+            case "Testing":
+                selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE " + KEY_USER_BADGE_BADGEID + " IN ( 5 )" + " AND "  + KEY_USER_BADGE_ISSHOWN + " = " + status;
+                break;
+            default:
+                selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE " + KEY_USER_BADGE_ISSHOWN + " = " + status;
+        }
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                UserBadges userBadge = new UserBadges();
+                userBadge.setUser_badge_id(c.getInt(c.getColumnIndex(KEY_USER_BADGE_ID)));
+                userBadge.setBadge_id(c.getInt(c.getColumnIndex(KEY_USER_BADGE_BADGEID)));
+                userBadge.setUser_id(c.getInt(c.getColumnIndex(KEY_USERS_ID)));
+                userBadge.setIs_shown(c.getInt(c.getColumnIndex(KEY_USER_BADGE_ISSHOWN)));
+                userBadge.setBadge_notes(c.getString(c.getColumnIndex(KEY_USER_BADGE_NOTES)));
+                userBadge.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+                userBadge.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+
+                // adding to Users list
+                userBadgesList.add(userBadge);
+            } while (c.moveToNext());
+        }
+
+        return userBadgesList;
+    }
+    /**
+     * Updating a User Badges by status
+     */
+    public int updateUserBadgeByStatus(int id,String status) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_STATUS_UPDATE,status);
+        // updating row
+        return db.update(TABLE_USER_BADGES, values, KEY_USER_BADGE_ID + " = ?",
+                new String[]{String.valueOf(id)});
+    }
+    /**
+     * Updating a User Badges by status
+     */
+    public int updateUserBadgeByShownStatus(int id,int status) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_USER_BADGE_ISSHOWN,status);
+        // updating row
+        return db.update(TABLE_USER_BADGES, values, KEY_USER_BADGE_ID + " = ?",
+                new String[]{String.valueOf(id)});
+    }
+
+    /**
+     * getting UserBadges count
+     */
+    public int getUserBadgesCountByBadgeID(int badge_id) {
+        String countQuery = "SELECT  * FROM " + TABLE_USER_BADGES+ " WHERE "
+                + KEY_USER_BADGE_BADGEID + " = " + badge_id;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+    /**
+     * getting UserBadges count
+     */
+    public int getUserBadgesCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_USER_BADGES;
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();

@@ -124,8 +124,6 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-
-
                         <FrameLayout
                             android:id="@+id/myscore_framelayout"
                             android:layout_width="wrap_content"
@@ -140,7 +138,16 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginBottom="10dp"
                                 android:src="@drawable/sexpro_needle" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/scoreImage"
+                                android:src="@drawable/score_one"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginBottom="20dp"/>
                         </FrameLayout>
+
                     </RelativeLayout>
 
                     <TextView

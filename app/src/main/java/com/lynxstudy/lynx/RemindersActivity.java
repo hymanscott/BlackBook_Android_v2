@@ -182,11 +182,16 @@ public class RemindersActivity extends AppCompatActivity {
             else {
                 db.createTestingReminder(testingReminder1);
             }
-
-            Intent baselineActivity = new Intent(RemindersActivity.this,BaselineActivity.class);
-            startActivity(baselineActivity);
-            finish();
+            RemindersLogged remindersLogged = new RemindersLogged();
+            pushFragments("Home", remindersLogged, true);
         }
+        return true;
+    }
+
+    public boolean loggedNext(View view){
+        Intent baselineActivity = new Intent(RemindersActivity.this,BaselineActivity.class);
+        startActivity(baselineActivity);
+        finish();
         return true;
     }
 }

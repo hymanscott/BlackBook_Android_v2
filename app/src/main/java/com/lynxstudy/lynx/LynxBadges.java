@@ -5,16 +5,28 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.BadgesMaster;
+import com.lynxstudy.model.UserBadges;
+
+import java.util.List;
 
 public class LynxBadges extends AppCompatActivity implements View.OnClickListener {
 
     Typeface tf;
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
     TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,pageTitle;
+    TableLayout badgesTable;
+    DatabaseHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +64,67 @@ public class LynxBadges extends AppCompatActivity implements View.OnClickListene
 
         pageTitle = (TextView)findViewById(R.id.pageTitle);
         pageTitle.setTypeface(tf);
-        pageTitle.setText(getEmojiByUnicode(0x1F497));//0x2764
+        badgesTable = (TableLayout)findViewById(R.id.badgesTable);
+        //pageTitle.setText(getEmojiByUnicode(0x1F497));//0x2764
+
+        // Loading Badges list //
+        db = new DatabaseHelper(LynxBadges.this);
+        List<BadgesMaster> badgesMasterList = db.getAllBadgesMaster();
+        for (BadgesMaster badgesMaster : badgesMasterList) {
+            TableRow badgeRow = new TableRow(LynxBadges.this);
+            View v = LayoutInflater.from(LynxBadges.this).inflate(R.layout.badge_row, badgeRow, false);
+            ImageView badgeImage = (ImageView)v.findViewById(R.id.badgeImage);
+            TextView rowBadgeName = (TextView)v.findViewById(R.id.rowBadgeName);
+            rowBadgeName.setTypeface(tf);
+            TextView rowBadgeDescription = (TextView)v.findViewById(R.id.rowBadgeDescription);
+            rowBadgeDescription.setTypeface(tf);
+            TextView rowBadgeEarnedTimes = (TextView)v.findViewById(R.id.rowBadgeEarnedTimes);
+            rowBadgeEarnedTimes.setTypeface(tf);
+            int noOfCount = db.getUserBadgesCountByBadgeID(badgesMaster.getBadge_id());
+
+            rowBadgeName.setText(badgesMaster.getBadge_name());
+            rowBadgeDescription.setText(badgesMaster.getBadge_description());
+            rowBadgeEarnedTimes.setText("Earned " + noOfCount +" time");
+            switch (badgesMaster.getBadge_icon()){
+                case "high_five_small":
+                    badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.high_five_small));
+                    break;
+                case "testing_small":
+                    badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.testing_small));
+                    break;
+                case "healthy_heart_small":
+                    badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.healthy_heart_small));
+                    break;
+                case "silver_screen_small":
+                    badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.silver_screen_small));
+                    break;
+                default:
+                    badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.lynx_small));
+            }
+            if(noOfCount>0){
+                v.setClickable(true);
+                v.setFocusable(true);
+                v.setId(badgesMaster.getBadge_id());
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        for (int i = 0; i < badgesTable.getChildCount(); i++) {
+                            View row = badgesTable.getChildAt(i);
+                            if (row == view) {
+                                Intent badgeScreen = new Intent(LynxBadges.this,BadgeScreenActivity.class);
+                                badgeScreen.putExtra("badge_id",row.getId());
+                                badgeScreen.putExtra("isAlert","No");
+                                startActivity(badgeScreen);
+                            }
+                        }
+                    }
+                });
+
+                badgesTable.addView(v);
+            }
+
+        }
     }
 
     @Override

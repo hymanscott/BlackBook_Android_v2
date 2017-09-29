@@ -21,6 +21,8 @@ public class Encounter {
     int partner_id;
     String rate_the_sex;
     String is_drug_used;
+    String did_you_cum;
+    String did_your_partner_cum;
     String encounter_notes;
     String is_possible_sex_tomorrow;
     String status_update;
@@ -41,13 +43,15 @@ public class Encounter {
         this.status_update = status_update;
         this.status_encrypt = status_encrypt;
     }
-    public Encounter(int encounter_id,int user_id, String datetime, int partner_id, String rate_the_sex, String is_drug_used, String encounter_notes, String is_possible_sex_tomorrow,String status_update,boolean status_encrypt) {
+    public Encounter(int encounter_id,int user_id, String datetime, int partner_id, String rate_the_sex, String is_drug_used, String did_you_cum,String did_your_partner_cum,String encounter_notes, String is_possible_sex_tomorrow,String status_update,boolean status_encrypt) {
         this.encounter_id=encounter_id;
         this.user_id = user_id;
         this.datetime = datetime;
         this.partner_id = partner_id;
         this.rate_the_sex = rate_the_sex;
         this.is_drug_used = is_drug_used;
+        this.did_you_cum = did_you_cum;
+        this.did_your_partner_cum = did_your_partner_cum;
         this.encounter_notes = encounter_notes;
         this.is_possible_sex_tomorrow = is_possible_sex_tomorrow;
         this.status_update = status_update;
@@ -100,6 +104,22 @@ public class Encounter {
 
     public void setIs_drug_used(String is_drug_used) {
         this.is_drug_used = is_drug_used;
+    }
+
+    public String getDid_you_cum() {
+        return did_you_cum;
+    }
+
+    public void setDid_you_cum(String did_you_cum) {
+        this.did_you_cum = did_you_cum;
+    }
+
+    public String getDid_your_partner_cum() {
+        return did_your_partner_cum;
+    }
+
+    public void setDid_your_partner_cum(String did_your_partner_cum) {
+        this.did_your_partner_cum = did_your_partner_cum;
     }
 
     public String getEncounter_notes() {

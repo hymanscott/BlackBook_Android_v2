@@ -18,6 +18,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.BadgesMaster;
+import com.lynxstudy.model.UserBadges;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -112,71 +114,12 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
             }
             score_message.setText(message);
         }
-        /*switch (score){
-            case 1:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_1));
-                break;
-            case 2:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_2));
-                break;
-            case 3:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_3));
-                break;
-            case 4:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_4));
-                break;
-            case 5:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_5));
-                break;
-            case 6:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_6));
-                break;
-            case 7:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_7));
-                break;
-            case 8:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_8));
-                break;
-            case 9:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_9));
-                break;
-            case 10:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_10));
-                break;
-            case 11:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_11));
-                break;
-            case 12:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_12));
-                break;
-            case 13:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_13));
-                break;
-            case 14:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_14));
-                break;
-            case 15:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_15));
-                break;
-            case 16:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_16));
-                break;
-            case 17:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_17));
-                break;
-            case 18:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_18));
-                break;
-            case 19:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_19));
-                break;
-            case 20:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_20));
-                break;
-            default:
-                dialScoreImage.setImageDrawable(getResources().getDrawable(R.drawable.dial_1));
-                break;
-        }*/
+        // Adding User Badge : LYNX Badge //
+        BadgesMaster lynx_badge = db.getBadgesMasterByName("LYNX");
+        int shown = 0;
+        UserBadges lynxBadge = new UserBadges(lynx_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,lynx_badge.getBadge_notes(),getResources().getString(R.string.statusUpdateNo));
+        db.createUserBadge(lynxBadge);
+
         final ImageView btn = (ImageView)findViewById(R.id.information);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

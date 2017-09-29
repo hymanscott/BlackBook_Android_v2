@@ -28,12 +28,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.DrugMaster;
 import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
 import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.UserAlcoholUse;
+import com.lynxstudy.model.UserBadges;
 import com.lynxstudy.model.UserDrugUse;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -306,7 +310,7 @@ public class EncounterStartActivity extends AppCompatActivity {
 
     public boolean onSexTypeNext(View view) {
         EncounterCondomuseFragment fragSextypeCondomuse = new EncounterCondomuseFragment();
-        EncounterNotesFragment fragEncNotes = new EncounterNotesFragment();
+        EncounterEjaculationFragment fragEncEjaculation = new EncounterEjaculationFragment();
         RatingBar rate_of_sex = (RatingBar) findViewById(R.id.sexType_RateTheSex);
 
         //Log.v("Rate of sex", String.valueOf(rate_of_sex.getRating()));
@@ -327,7 +331,7 @@ public class EncounterStartActivity extends AppCompatActivity {
                     return true;
                 }
             }
-            pushFragments("Encounter", fragEncNotes, true);
+            pushFragments("Encounter", fragEncEjaculation, true);
 
         }
 
@@ -373,8 +377,21 @@ public class EncounterStartActivity extends AppCompatActivity {
                     break;
             }
         }
+        EncounterEjaculationFragment fragEncEjaculation = new EncounterEjaculationFragment();
+        pushFragments("Encounter", fragEncEjaculation, true);
+        return true;
+    }
+
+    public boolean onEjaculationNext(View view) {
+        RadioGroup youCumGroup = (RadioGroup) findViewById(R.id.radio_you_cum);
+        RadioButton you_cum_btn = (RadioButton) findViewById(youCumGroup.getCheckedRadioButtonId());
+        RadioGroup yourPartnerCumGroup = (RadioGroup) findViewById(R.id.radio_your_partner_cum);
+        RadioButton your_partner_cum_btn = (RadioButton) findViewById(yourPartnerCumGroup.getCheckedRadioButtonId());
+        LynxManager.activeEncounter.setDid_you_cum(LynxManager.encryptString(you_cum_btn.getText().toString()));
+        LynxManager.activeEncounter.setDid_your_partner_cum(LynxManager.encryptString(your_partner_cum_btn.getText().toString()));
         EncounterNotesFragment fragEncNotes = new EncounterNotesFragment();
-        pushFragments("Encounter", fragEncNotes, true);
+        pushFragments("encounter", fragEncNotes, true);
+
         return true;
     }
 
@@ -456,6 +473,10 @@ public class EncounterStartActivity extends AppCompatActivity {
         LynxManager.encRateofSex = String.valueOf(sexType_RateTheSex.getRating());
         String encNotes = String.valueOf(((EditText) findViewById(R.id.encNotes)).getText());
         LynxManager.activeEncounter.setEncounter_notes(LynxManager.encryptString(encNotes));
+        TextView didYouCum = (TextView)findViewById(R.id.didYouCum);
+        TextView didYourPartnerCum = (TextView)findViewById(R.id.didYourPartnerCum);
+        LynxManager.activeEncounter.setDid_you_cum(LynxManager.encryptString(didYouCum.getText().toString()));
+        LynxManager.activeEncounter.setDid_your_partner_cum(LynxManager.encryptString(didYourPartnerCum.getText().toString()));
         popFragment();
         return true;
     }
@@ -468,6 +489,19 @@ public class EncounterStartActivity extends AppCompatActivity {
             encSexType.setEncounter_id(encounterID);
             db.createEncounterSexType(encSexType);
             //Log.v("Encounter Created", "Encounter ID : " + encounterID);
+        }
+        if(db.getEncountersCount()==1){
+            // Adding User Badge : High Five Badge //
+            BadgesMaster highfive_badge = db.getBadgesMasterByName("High Five");
+            int shown = 0;
+            UserBadges lynxBadge = new UserBadges(highfive_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,highfive_badge.getBadge_notes(),getResources().getString(R.string.statusUpdateNo));
+            db.createUserBadge(lynxBadge);
+        }else if(db.getEncountersCount()==3){
+            // Adding User Badge : Healthy Heart Badge //
+            BadgesMaster healthy_badge = db.getBadgesMasterByName("Healthy Heart");
+            int shown = 0;
+            UserBadges lynxBadge = new UserBadges(healthy_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,healthy_badge.getBadge_notes(),getResources().getString(R.string.statusUpdateNo));
+            db.createUserBadge(lynxBadge);
         }
         // Clear Condomuse list//
         LynxManager.activeEncCondomUsed.clear();

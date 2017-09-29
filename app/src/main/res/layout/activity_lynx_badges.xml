@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="com.lynxstudy.lynx.LynxBadges">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -37,8 +38,8 @@
                         android:textColor="@color/profile_title_text_color"
                         android:textSize="20sp"
                         android:lineSpacingMultiplier="1.40"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginBottom="32dp"
                         android:layout_marginLeft="3dp"/>
                     <View
                         android:layout_width="match_parent"

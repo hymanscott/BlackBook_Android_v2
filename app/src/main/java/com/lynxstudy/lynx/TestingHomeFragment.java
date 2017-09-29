@@ -48,10 +48,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.STIMaster;
 import com.lynxstudy.model.TestNameMaster;
 import com.lynxstudy.model.TestingHistory;
 import com.lynxstudy.model.TestingHistoryInfo;
+import com.lynxstudy.model.UserBadges;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
@@ -637,7 +639,21 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     isNewTestShown = false;
                     reloadFragment();
                     LynxManager.isRefreshRequired = true;
+                    // Adding User Badge : Testing 1-2-3 Badge //
+                    BadgesMaster test_badge = db.getBadgesMasterByName("Testing 1-2-3");
+                    int shown = 1; // Triggering Badge Immediately so shown==1 //
+                    UserBadges lynxBadge = new UserBadges(test_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,test_badge.getBadge_notes(),getResources().getString(R.string.statusUpdateNo));
+                    db.createUserBadge(lynxBadge);
+
+                    // Trigger Badge //
+                    Intent badgeScreen =  new Intent(getActivity(),BadgeScreenActivity.class);
+                    badgeScreen.putExtra("badge_id",test_badge.getBadge_id());
+                    badgeScreen.putExtra("isAlert","Yes");
+                    startActivity(badgeScreen);
                 }
+
+
+
             }
         });
 

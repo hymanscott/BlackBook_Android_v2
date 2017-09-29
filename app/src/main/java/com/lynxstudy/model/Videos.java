@@ -11,16 +11,18 @@ public class Videos {
     String video_url;
     String video_image_url;
     int priority;
+    int is_watched;
     String created_at;
 
     public Videos(){
 
     }
-    public Videos(String name, String description, String video_url, String video_image_url, int priority) {
+    public Videos(String name, String description, String video_url, String video_image_url, int priority,int is_watched) {
         this.name = name;
         this.description = description;
         this.video_url = video_url;
         this.video_image_url = video_image_url;
+        this.is_watched = is_watched;
         this.priority = priority;
     }
 
@@ -70,5 +72,13 @@ public class Videos {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public int getIs_watched() {
+        return is_watched;
+    }
+
+    public void setIs_watched(int is_watched) {
+        this.is_watched = is_watched;
     }
 }

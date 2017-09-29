@@ -13,6 +13,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -29,6 +30,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.BadgesMaster;
+import com.lynxstudy.model.UserBadges;
 import com.lynxstudy.model.User_baseline_info;
 import com.lynxstudy.model.Videos;
 
@@ -48,7 +51,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LynxPrepVideosFragment extends Fragment {
+public class LynxPrepVideosFragment extends Fragment implements View.OnTouchListener{
     DatabaseHelper db;
     public LynxPrepVideosFragment() {
     }
@@ -70,7 +73,6 @@ public class LynxPrepVideosFragment extends Fragment {
         LynxManager.PrepVideos.add("https://www.youtube.com/embed/5CQCcxV385Y");
         LynxManager.PrepVideos.add("https://www.youtube.com/embed/cEE0OCJpP6w");
         LynxManager.PrepVideos.add("https://www.youtube.com/embed/dRmxyh1TTkE");*/
-
         //TYpe face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
@@ -117,7 +119,18 @@ public class LynxPrepVideosFragment extends Fragment {
         LinearLayout.LayoutParams params =new LinearLayout.LayoutParams(width,height);
         params.setMargins(24,0,24,16);
         mWebView.setLayoutParams(params);
-
+        mWebView.setOnTouchListener(this);
+        /*mWebView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int videoid = (int) mWebView.getTag();
+                if(videoid !=0){
+                    db.setVideoWatched(videoid);
+                    mWebView.setOnTouchListener(null);
+                }
+                return false;
+            }
+        });*/
         if(db.getVideosCount()==0){
             getVideosFromServer();
             Videos video1 = new Videos();
@@ -126,6 +139,7 @@ public class LynxPrepVideosFragment extends Fragment {
             video1.setPriority(1);
             video1.setVideo_url("https://www.youtube.com/embed/vHPh46gRPvc");
             video1.setVideo_image_url("https://img.youtube.com/vi/vHPh46gRPvc/mqdefault.jpg");
+            video1.setIs_watched(1);
             embedCurrentVideo(mWebView,CurrentVideoTitle,CurrentVideoDescription,video1);
         }else{
             setVideoListData();
@@ -182,6 +196,8 @@ public class LynxPrepVideosFragment extends Fragment {
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         mWebView.loadData(YouTubeVideoEmbedCode, "text/html", "utf-8");
+        mWebView.setTag(video.getVideo_id());
+        mWebView.setOnTouchListener(this);
         title.setText(video.getName());
         description.setText(video.getDescription());
     }
@@ -244,8 +260,31 @@ public class LynxPrepVideosFragment extends Fragment {
         }else{
             new videosListOnline(login_query_string).execute();
         }
-        setVideoListData();
     }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        int videoid = (int) mWebView.getTag();
+        if(videoid !=0){
+            db.setVideoWatched(videoid,1);
+            mWebView.setOnTouchListener(null);
+            BadgesMaster badge = db.getBadgesMasterByName("Silver Screen");
+            if(db.getWatchedVideosCount()==4 && db.getUserBadgesCountByBadgeID(badge.getBadge_id())==0){
+                // Adding User Badge : Silver Screen Badge //
+                int shown = 1; // Triggering Badge Immediately so shown==1 //
+                UserBadges lynxBadge = new UserBadges(badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,badge.getBadge_notes(),getResources().getString(R.string.statusUpdateNo));
+                db.createUserBadge(lynxBadge);
+
+                // Trigger Badge //
+                Intent badgeScreen =  new Intent(getActivity(),BadgeScreenActivity.class);
+                badgeScreen.putExtra("badge_id",badge.getBadge_id());
+                badgeScreen.putExtra("isAlert","Yes");
+                startActivity(badgeScreen);
+            }
+        }
+        return false;
+    }
+
     private class DownloadImagesTask extends AsyncTask<ImageView, Void, Bitmap> {
 
         ImageView imageView = null;
@@ -347,10 +386,12 @@ public class LynxPrepVideosFragment extends Fragment {
                             video4.setPriority(childObj.getInt("priority"));
                             video4.setVideo_url(childObj.getString("video_url"));
                             video4.setVideo_image_url(childObj.getString("video_image_url"));
+                            video4.setIs_watched(0);
                             db.createVideos(video4);
 
                         }
                     }
+                    reloadFragment();
                     // looping through All Contacts
                 } catch (JSONException e) {
                     e.printStackTrace();

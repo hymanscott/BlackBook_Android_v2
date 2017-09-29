@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_bg_gradient">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:src="@drawable/userlarge" />
+                <TextView
+                    android:id="@+id/frag_title"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Thank you!"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/log_para_one"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Great! You’re almost done."
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="32dp"
+                    android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/log_para_two"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:lineSpacingMultiplier="1.43"
+                    android:text="Now we need to calculate your baseline
+Sex Pro score. It will just take a few minutes and then you’ll be on your way!"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="32dp"
+                    android:textSize="14sp" />
+                </LinearLayout>
+            <Button
+                android:id="@+id/loggedNext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/button_top_margin"
+                android:background="@color/btn_blue"
+                android:onClick="loggedNext"
+                android:text="START SEX PRO"
+                android:textColor="@color/white"
+                android:textSize="@dimen/button_textsize"
+                android:textStyle="bold" />
+            </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

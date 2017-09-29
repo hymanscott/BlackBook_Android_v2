@@ -1,5 +1,7 @@
 package com.lynxstudy.lynx;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -22,6 +25,7 @@ import android.widget.ToggleButton;
 import com.lynxstudy.model.EncounterSexType;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -31,7 +35,7 @@ import java.util.List;
 public class EncounterSummaryEditFragment extends Fragment {
     public EncounterSummaryEditFragment() {
     }
-    TextView newEncounter,encounter_summary_nickName,rateSex,hivStatusTitle,hivStatus,encounterNotesTitle,typeSex,condomUsed;
+    TextView newEncounter,encounter_summary_nickName,rateSex,hivStatusTitle,hivStatus,encounterNotesTitle,typeSex,condomUsed,didYouCumTitle,didYouCum,didYourPartnerCumTitle,didYourPartnerCum;
     EditText encNotes;
     RatingBar sexType_RateTheSex;
     Button next;
@@ -63,6 +67,14 @@ public class EncounterSummaryEditFragment extends Fragment {
         typeSex.setTypeface(tf);
         condomUsed = (TextView)rootview.findViewById(R.id.condomUsed);
         condomUsed.setTypeface(tf);
+        didYouCumTitle = (TextView)rootview.findViewById(R.id.didYouCumTitle);
+        didYouCumTitle.setTypeface(tf);
+        didYouCum = (TextView)rootview.findViewById(R.id.didYouCum);
+        didYouCum.setTypeface(tf);
+        didYourPartnerCumTitle = (TextView)rootview.findViewById(R.id.didYourPartnerCumTitle);
+        didYourPartnerCumTitle.setTypeface(tf);
+        didYourPartnerCum = (TextView)rootview.findViewById(R.id.didYourPartnerCum);
+        didYourPartnerCum.setTypeface(tf);
         encNotes = (EditText) rootview.findViewById(R.id.encNotes);
         encNotes.setTypeface(tf);
         next = (Button) rootview.findViewById(R.id.next);
@@ -73,6 +85,8 @@ public class EncounterSummaryEditFragment extends Fragment {
         encounter_summary_nickName.setAllCaps(true);
 
         encNotes.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getEncounter_notes()));
+        didYouCum.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getDid_you_cum()));
+        didYourPartnerCum.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getDid_your_partner_cum()));
 
         sexType_RateTheSex = (RatingBar) rootview.findViewById(R.id.sexType_RateTheSex);
         sexType_RateTheSex.setRating(Float.parseFloat(LynxManager.encRateofSex));
@@ -472,6 +486,69 @@ public class EncounterSummaryEditFragment extends Fragment {
                         }
                     }
                 }, 500);
+
+        // didYouCum Layout //
+        final List<String> yes_no_idk= Arrays.asList(getResources().getStringArray(R.array.yes_no_idk));
+        LinearLayout didYouCumParent= (LinearLayout)rootview.findViewById(R.id.didYouCumParent);
+        final ArrayAdapter<String> adapterDidYouCum = new ArrayAdapter<String>(getActivity(),
+                R.layout.spinner_row_white, R.id.txtView, yes_no_idk);
+        didYouCum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterDidYouCum, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                didYouCum.setText(yes_no_idk.get(which).toString());
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+        didYouCumParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterDidYouCum, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                didYouCum.setText(yes_no_idk.get(which).toString());
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+        // didYouCum Layout //
+        final List<String> yes_no_idk1= Arrays.asList(getResources().getStringArray(R.array.yes_no_idk));
+        LinearLayout didYourPartnerCumParent= (LinearLayout)rootview.findViewById(R.id.didYourPartnerCumParent);
+        final ArrayAdapter<String> adapterDidYourPartnerCum = new ArrayAdapter<String>(getActivity(),
+                R.layout.spinner_row_white, R.id.txtView, yes_no_idk1);
+        didYourPartnerCum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterDidYourPartnerCum, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                didYourPartnerCum.setText(yes_no_idk1.get(which).toString());
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+        didYourPartnerCumParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterDidYourPartnerCum, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                didYourPartnerCum.setText(yes_no_idk1.get(which).toString());
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
 
         return rootview;
     }

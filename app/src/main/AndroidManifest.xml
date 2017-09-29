@@ -189,8 +189,12 @@
             android:name=".EncounterFromNotification"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LynxBadges"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".LynxBadges"
+            android:screenOrientation="portrait" />
+        <activity android:name=".BadgeScreenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

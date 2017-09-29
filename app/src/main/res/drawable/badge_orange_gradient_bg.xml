@@ -6,19 +6,20 @@
     <shape
         android:shape="rectangle">
         <gradient
-            android:angle="90"
-            android:centerColor="#FFF89436"
-            android:endColor="#FFF76B1C"
-            android:startColor="#FFFAD961"
-            android:type="linear" />
+            android:type="linear"
+            android:centerX="50%"
+            android:startColor="#FFF76B1C"
+            android:centerColor="#FFf89436"
+            android:endColor="#FFfad961"
+            android:angle="270"/>
         <!--<gradient
             android:angle="180"
             android:centerColor="#FFF89436"
             android:endColor="#FFF76B1C"
             android:startColor="#FFFAD961"
-            android:type="linear" />
+            android:type="linear" />-->
         <size
             android:height="560dp"
-            android:width="360dp" />-->
+            android:width="360dp" />
     </shape>
 </rotate>

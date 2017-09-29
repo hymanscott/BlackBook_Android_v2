@@ -40,23 +40,28 @@
                         android:id="@+id/row_one">
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:orientation="vertical"
                             android:gravity="center"
                             android:id="@+id/sexpro"
                             android:layout_marginRight="@dimen/activity_horizontal_margin_half"
-                            android:background="@drawable/purple_home_full">
+                            android:background="@drawable/grey_home_full">
+
                             <ImageView
+                                android:id="@+id/imageView6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/sex_pro_home"/>
+                                android:src="@drawable/sexpro_home_new" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Sex Pro"
                                 android:textSize="20sp"
                                 android:id="@+id/sexproTitle"
+                                android:layout_marginTop="10dp"
+                                android:layout_gravity="center|bottom"
                                 android:textColor="@color/lynx_home_white"/>
                         </LinearLayout>
 
@@ -65,7 +70,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin_half"
                             android:layout_weight="1"
-                            android:background="@drawable/purple_home_full"
+                            android:background="@drawable/grey_home_full"
                             android:gravity="center"
                             android:id="@+id/activity"
                             android:orientation="vertical">
@@ -73,13 +78,14 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/calendar_home" />
+                                android:src="@drawable/calendar_home_new" />
 
                             <TextView
                                 android:id="@+id/activityTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Activity"
+                                android:layout_marginTop="10dp"
                                 android:textColor="@color/lynx_home_white"
                                 android:textSize="20sp" />
                         </LinearLayout>
@@ -100,16 +106,17 @@
                             android:gravity="center"
                             android:id="@+id/badges"
                             android:layout_marginRight="@dimen/activity_horizontal_margin_half"
-                            android:background="@drawable/orange_home_full">
+                            android:background="@drawable/grey_home_full">
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/badges_home"/>
+                                android:src="@drawable/badges_home_new"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Badges"
                                 android:textSize="20sp"
+                                android:layout_marginTop="10dp"
                                 android:id="@+id/badgesTitle"
                                 android:textColor="@color/lynx_home_white"/>
                         </LinearLayout>
@@ -121,16 +128,17 @@
                             android:gravity="center"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin_half"
                             android:id="@+id/topFive"
-                            android:background="@drawable/orange_home_full">
+                            android:background="@drawable/grey_home_full">
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/top_five_home"/>
+                                android:src="@drawable/top_five_home_new"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Top Five"
                                 android:textSize="20sp"
+                                android:layout_marginTop="10dp"
                                 android:id="@+id/topFiveTitle"
                                 android:textColor="@color/lynx_home_white"/>
                         </LinearLayout>
@@ -152,16 +160,17 @@
                             android:gravity="center"
                             android:id="@+id/trends"
                             android:layout_marginRight="@dimen/activity_horizontal_margin_half"
-                            android:background="@drawable/orange_home_half">
+                            android:background="@drawable/grey_home_half">
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/trends_home"/>
+                                android:src="@drawable/trends_home_new"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Trends"
                                 android:textSize="20sp"
+                                android:layout_marginLeft="10dp"
                                 android:id="@+id/trendsTitle"
                                 android:textColor="@color/lynx_home_white"/>
                         </LinearLayout>
@@ -173,16 +182,17 @@
                             android:gravity="center"
                             android:id="@+id/insights"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin_half"
-                            android:background="@drawable/orange_home_half">
+                            android:background="@drawable/grey_home_half">
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/insights_home"/>
+                                android:src="@drawable/insights_home_new"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Insights"
                                 android:textSize="20sp"
+                                android:layout_marginLeft="10dp"
                                 android:id="@+id/insightsTitle"
                                 android:textColor="@color/lynx_home_white"/>
                         </LinearLayout>

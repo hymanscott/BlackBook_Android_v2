@@ -34,6 +34,11 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.UserBadges;
+
+import java.util.List;
+
 public class LynxDiary extends AppCompatActivity implements View.OnClickListener {
 
     /**
@@ -54,6 +59,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
     TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv;
     ImageView viewProfile;
     Typeface tf,tf_bold;
+    DatabaseHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,6 +161,20 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
 
             }
         });
+        db = new DatabaseHelper(LynxDiary.this);
+        // Show If Encounter Badges Available //
+        List<UserBadges> userBadgesList = db.getAllUserBadgesByTypeAndShownStatus("Encounter",0);
+        int i=0;
+        for (UserBadges userBadges: userBadgesList) {
+            if(i==0){
+                Intent badgeScreen =  new Intent(LynxDiary.this,BadgeScreenActivity.class);
+                badgeScreen.putExtra("badge_id",userBadges.getBadge_id());
+                badgeScreen.putExtra("isAlert","Yes");
+                startActivity(badgeScreen);
+                db.updateUserBadgeByShownStatus(userBadges.getUser_badge_id(),1);
+            }
+            i++;
+        }
     }
 
 
