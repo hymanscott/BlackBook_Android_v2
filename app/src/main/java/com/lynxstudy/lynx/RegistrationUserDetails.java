@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -93,6 +96,9 @@ public class RegistrationUserDetails extends Fragment {
             pass.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
             reppass.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
         }
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Onboarding/Credentials").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return view;
     }
 }

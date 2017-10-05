@@ -66,6 +66,9 @@ import com.lynxstudy.model.UserSTIDiag;
 import com.lynxstudy.model.User_baseline_info;
 import com.lynxstudy.model.Users;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -233,6 +236,9 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         btn_prep.setOnClickListener(this);
         btn_chat.setOnClickListener(this);
         viewProfile.setOnClickListener(this);
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxprofile").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
     @Override
     public void onBackPressed() {
@@ -260,6 +266,10 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         return versionName;
     }
     private void setEditLayout() {
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxprofileedit").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+
         editLayout.setVisibility(View.VISIBLE);
         mainContentLayout.setVisibility(View.GONE);
         isEditShown = true;

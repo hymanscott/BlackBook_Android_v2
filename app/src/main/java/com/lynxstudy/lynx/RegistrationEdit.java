@@ -25,6 +25,9 @@ import android.widget.TextView;
 
 import com.lynxstudy.helper.SpinnerDropDownAdapter;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -163,7 +166,9 @@ public class RegistrationEdit extends Fragment {
                         }).create().show();
             }
         });
-
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Onboarding/Confirmationedit").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return view;
     }
     /*

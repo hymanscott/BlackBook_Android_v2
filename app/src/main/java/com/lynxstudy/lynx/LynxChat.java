@@ -41,6 +41,8 @@ import com.lynxstudy.model.Videos;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -162,6 +164,9 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                 }
             }
         });
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxchat").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
 
     private void addChatData(){

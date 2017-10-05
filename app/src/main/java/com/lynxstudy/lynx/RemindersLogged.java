@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 /**
  * Created by Hari on 2017-09-29.
  */
@@ -37,7 +40,9 @@ public class RemindersLogged  extends Fragment {
         log_para_two.setTypeface(tf);
         log_para_one = (TextView)rootview.findViewById(R.id.log_para_one);
         log_para_one.setTypeface(tf);
-
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Reminders/Logged").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return rootview;
     }
 }

@@ -20,6 +20,9 @@ import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.Partners;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -161,6 +164,9 @@ public class EncounterChoosePartnerFragment extends Fragment {
                 j++;
             }
         }
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Encounter/Choosepartner").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return rootview;
     }
 

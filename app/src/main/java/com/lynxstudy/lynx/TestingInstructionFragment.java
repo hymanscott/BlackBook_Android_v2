@@ -30,6 +30,9 @@ import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.lynx.R;
 import com.lynxstudy.model.TestingInstructions;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -141,6 +144,9 @@ public class TestingInstructionFragment extends Fragment {
                 return false;
             }
         } );
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxtesting/Instructions").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return view;
     }
 

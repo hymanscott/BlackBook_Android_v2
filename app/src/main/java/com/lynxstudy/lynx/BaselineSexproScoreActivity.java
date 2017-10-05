@@ -21,6 +21,9 @@ import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.UserBadges;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -212,6 +215,9 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
 
             }
         });
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+        TrackHelper.track().screen("/Baseline/Sexproscore").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
     /*public void showPopup(View anchorView,Point p) {
 

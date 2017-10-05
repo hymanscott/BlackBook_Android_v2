@@ -68,6 +68,8 @@ import com.lynxstudy.model.Videos;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -175,6 +177,10 @@ public class RegLogin extends AppCompatActivity {
         title.setTypeface(tf);
         viewProfile.setVisibility(View.GONE);*/
         checkForUpdates();
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+        TrackHelper.track().screen("/Onboarding").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+
     }
     private void initializeDatabase() {
         db = new DatabaseHelper(this);
@@ -889,6 +895,9 @@ public class RegLogin extends AppCompatActivity {
             Bitmap icon = BitmapFactory.decodeResource(getActivity().getResources(),
                     R.drawable.passicon);
             passicon.setImageBitmap(crop(icon));*/
+            // Piwik Analytics //
+            Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+            TrackHelper.track().screen("/Login").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
             return view;
         }
 

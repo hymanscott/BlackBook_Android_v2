@@ -18,6 +18,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.Statistics;
+
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -249,6 +253,9 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
                 scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_twenty));
                 break;
         }
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxhome/Sexpro").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
     private String getDate(long time) {
         Calendar cal = Calendar.getInstance(Locale.US);

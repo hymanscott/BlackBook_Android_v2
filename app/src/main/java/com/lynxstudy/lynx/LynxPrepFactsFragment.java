@@ -23,6 +23,9 @@ import android.widget.TextView;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.PrepInformation;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.util.List;
 
 
@@ -142,6 +145,9 @@ public class LynxPrepFactsFragment extends Fragment {
                 return false;
             }
         } );
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxprep/Facts").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return rootview;
     }
 

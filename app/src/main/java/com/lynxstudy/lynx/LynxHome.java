@@ -89,7 +89,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         String piwikID = tracker.getUserId();
         //TrackHelper.track().screen("/LynxHome").title("Home").dimension(1,LynxManager.getActiveUser().getEmail()).with(tracker);
         //TrackHelper.track().screen("/LynxHome").title("Home").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).with(tracker);
-        TrackHelper.track().screen("/LynxHome").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,piwikID).with(tracker);
+        TrackHelper.track().screen("/Lynxhome").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,piwikID).with(tracker);
         Log.v("PiwikUserID",tracker.getUserId());
         Log.v("PiwikUserNAME",tracker.getName());
         Log.v("PiwikVisitorID",tracker.getVisitorId());

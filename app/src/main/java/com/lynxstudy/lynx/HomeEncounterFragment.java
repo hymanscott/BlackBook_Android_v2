@@ -35,6 +35,9 @@ import com.lynxstudy.model.EncounterSexType;
 import com.lynxstudy.model.Partners;
 import com.lynxstudy.model.Users;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -233,6 +236,9 @@ public class HomeEncounterFragment extends Fragment {
                 return false;
             }
         } );
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxdiary/History").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return view;
     }
 

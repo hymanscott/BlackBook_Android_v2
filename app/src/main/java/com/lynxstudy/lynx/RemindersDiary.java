@@ -20,6 +20,9 @@ import android.widget.TimePicker;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.TestingReminder;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
@@ -122,7 +125,9 @@ public class RemindersDiary extends Fragment {
             time.setTextColor(getResources().getColor(R.color.white));
             notificationText.setText(LynxManager.decryptString(testing_Reminder1.getReminder_notes()));
         }
-
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Reminders/Diary").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return rootview;
     }
     public void timepickerPopup(final TextView timepicker){

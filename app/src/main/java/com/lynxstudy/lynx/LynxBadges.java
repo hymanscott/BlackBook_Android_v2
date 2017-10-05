@@ -18,6 +18,9 @@ import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.UserBadges;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.util.List;
 
 public class LynxBadges extends AppCompatActivity implements View.OnClickListener {
@@ -125,6 +128,9 @@ public class LynxBadges extends AppCompatActivity implements View.OnClickListene
             }
 
         }
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxhome/Badges").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
 
     @Override

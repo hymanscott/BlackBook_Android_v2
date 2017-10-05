@@ -41,6 +41,8 @@ import net.hockeyapp.android.UpdateManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -63,6 +65,8 @@ public class BaselineActivity extends AppCompatActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+        TrackHelper.track().screen("/Baseline").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         checkForUpdates();
     }
 
@@ -95,6 +99,9 @@ public class BaselineActivity extends AppCompatActivity {
             textView10.setTypeface(tf);
             textView11.setTypeface(tf);
             next.setTypeface(tf_bold);
+            // Piwik Analytics //
+            Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+            TrackHelper.track().screen("/Baseline/Introduction").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
             return view;
         }
     }

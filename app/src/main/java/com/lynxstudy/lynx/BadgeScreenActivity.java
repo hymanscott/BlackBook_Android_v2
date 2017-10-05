@@ -15,6 +15,9 @@ import android.widget.TextView;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.BadgesMaster;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 public class BadgeScreenActivity extends AppCompatActivity {
 
     DatabaseHelper db;
@@ -99,7 +102,9 @@ public class BadgeScreenActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxhome/Badgesummary").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
     @Override
     public void onBackPressed() {

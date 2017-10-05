@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 /**
  * Created by Hari on 2017-06-20.
  */
@@ -114,6 +117,9 @@ public class RegistrationTimesBottom extends Fragment implements SeekBar.OnSeekB
                                       }
                                   },
                 500);
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Baseline/Timesbottom").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return view;
     }
 

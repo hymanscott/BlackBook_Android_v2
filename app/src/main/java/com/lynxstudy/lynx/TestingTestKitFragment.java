@@ -25,6 +25,8 @@ import com.lynxstudy.model.HomeTestingRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -91,6 +93,9 @@ public class TestingTestKitFragment extends Fragment {
 
             }
         });
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxtesting/Testkit").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return view;
     }
     public void request_home_kit(final View view) {

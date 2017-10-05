@@ -62,6 +62,9 @@ import com.lynxstudy.lynx.R;
 import com.lynxstudy.model.LocationsDistance;
 import com.lynxstudy.model.TestingLocations;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -308,6 +311,9 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
             }
         });
 
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxtesting/Locations").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return view;
     }
 

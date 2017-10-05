@@ -24,6 +24,9 @@ import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.lynx.R;
 import com.lynxstudy.model.TestingReminder;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -45,6 +48,9 @@ public class RemindersActivity extends AppCompatActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+        TrackHelper.track().screen("/Reminders").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
     /**
      * A placeholder fragment containing a simple view.

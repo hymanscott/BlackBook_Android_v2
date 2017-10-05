@@ -33,6 +33,9 @@ import android.widget.Toast;
 
 import com.lynxstudy.helper.SpinnerDropDownAdapter;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -290,6 +293,9 @@ public class RegistrationFragment  extends Fragment implements DatePickerDialog.
                 tv.setTextColor(getResources().getColor(R.color.white));
             }
         }
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Onboarding/Demographics").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return view;
     }
     @Override

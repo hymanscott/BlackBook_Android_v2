@@ -38,6 +38,8 @@ import com.lynxstudy.model.Videos;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
 
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -147,7 +149,9 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
             embedCurrentVideo(mWebView,CurrentVideoTitle,CurrentVideoDescription,videosList.get(0));
             currentVideoId=videosList.get(0).getVideo_id();
         }
-
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxprep/Videos").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return rootview;
     }
     private void setVideoListData(){
@@ -165,8 +169,9 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
             RelativeLayout.LayoutParams params =new RelativeLayout.LayoutParams(thumbnailwidth,(thumbnailwidth/4)*3);
             ImageView thumnail = (ImageView)v.findViewById(R.id.thumnail);
             //thumnail.setLayoutParams(params);
-            new DownloadImagesTask(videos.getVideo_image_url()).execute(thumnail);
-
+            if(LynxManager.haveNetworkConnection(getActivity())) {
+                new DownloadImagesTask(videos.getVideo_image_url()).execute(thumnail);
+            }
             v.setId(videos.getVideo_id());
             v.setClickable(true);
             v.setFocusable(true);
@@ -215,7 +220,9 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
         RelativeLayout.LayoutParams params =new RelativeLayout.LayoutParams(thumbnailwidth,(thumbnailwidth/4)*3);
         ImageView thumnail = (ImageView)view.findViewById(R.id.thumnail);
         //thumnail.setLayoutParams(params);
-        new DownloadImagesTask(videos.getVideo_image_url()).execute(thumnail);
+        if(LynxManager.haveNetworkConnection(getActivity())){
+            new DownloadImagesTask(videos.getVideo_image_url()).execute(thumnail);
+        }
         view.setId(videos.getVideo_id());
         view.setClickable(true);
         view.setFocusable(true);

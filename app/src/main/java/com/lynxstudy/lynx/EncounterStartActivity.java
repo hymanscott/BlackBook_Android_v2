@@ -37,6 +37,8 @@ import com.lynxstudy.model.UserAlcoholUse;
 import com.lynxstudy.model.UserBadges;
 import com.lynxstudy.model.UserDrugUse;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
 import org.w3c.dom.Text;
 
 import java.util.List;
@@ -91,6 +93,9 @@ public class EncounterStartActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });*/
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+        TrackHelper.track().screen("/Encounter/Start").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
 
 

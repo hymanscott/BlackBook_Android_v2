@@ -24,6 +24,9 @@ import android.widget.ToggleButton;
 
 import com.lynxstudy.model.EncounterSexType;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -575,6 +578,9 @@ public class EncounterSummaryEditFragment extends Fragment {
             }
         });
 
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Encounter/Summaryedit").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return rootview;
     }
 }

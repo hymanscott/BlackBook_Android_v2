@@ -21,6 +21,9 @@ import android.widget.ToggleButton;
 import com.google.android.gms.vision.text.Line;
 import com.lynxstudy.model.EncounterSexType;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -289,6 +292,10 @@ public class EncounterSummaryFragment extends Fragment {
                            }
                     }
                 }, 500);
+
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Encounter/Summary").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return rootview;
     }
 }

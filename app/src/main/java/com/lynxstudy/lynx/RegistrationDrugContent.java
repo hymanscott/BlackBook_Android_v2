@@ -21,6 +21,9 @@ import android.widget.TextView;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.DrugMaster;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -127,6 +130,9 @@ public class RegistrationDrugContent extends Fragment {
                                   },
                 200);
 
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Baseline/Drugs").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return view;
     }
 }

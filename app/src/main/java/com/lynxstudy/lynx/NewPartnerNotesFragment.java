@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,7 +50,9 @@ public class NewPartnerNotesFragment extends Fragment {
         partnerNotes.setTypeface(tf);
         next = (Button) rootview.findViewById(R.id.next);
         next.setTypeface(tf_bold);
-
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Encounter/Newpartnernotes").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return rootview;
     }
 
