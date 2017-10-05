@@ -35,7 +35,7 @@ public class RegistrationSexproScore extends Fragment {
     TextView score_message;
     Button sexpro_score_close;
     /*ImageView dialScoreImage;*/
-    Typeface tf;
+    Typeface tf,tf_bold;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,8 +44,10 @@ public class RegistrationSexproScore extends Fragment {
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         sexpro_score_close = (Button)rootview.findViewById(R.id.sexpro_score_close);
-        sexpro_score_close.setTypeface(tf);
+        sexpro_score_close.setTypeface(tf_bold);
         score_message = (TextView)rootview.findViewById(R.id.score_message);
         score_message.setTypeface(tf);
 

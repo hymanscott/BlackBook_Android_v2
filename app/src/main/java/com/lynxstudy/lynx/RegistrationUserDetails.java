@@ -40,7 +40,7 @@ public class RegistrationUserDetails extends Fragment {
         frag_title.setTypeface(tf_bold);
 
         regBtnNext = (Button) view.findViewById(R.id.regAuthNext);
-        regBtnNext.setTypeface(tf);
+        regBtnNext.setTypeface(tf_bold);
         //email validation
         final EditText email = (EditText) view.findViewById(R.id.regEmail);
         email.setTypeface(tf);

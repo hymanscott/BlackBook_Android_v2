@@ -152,7 +152,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="24dp"
                             android:gravity="center_horizontal"
-                            android:text="This is a red light/green light deal.  The closer your needle gets to the green or further into the green it gets, the higher your levels of HIV protection. Green is good and a red score can always become a green score."
+                            android:text="Your Sex Pro score is based on the last three months of your diary entries."
                             android:textColor="@color/text_color"
                             android:lineSpacingMultiplier="1.31"
                             android:textSize="16sp" />
@@ -163,7 +163,7 @@
                             android:layout_marginLeft="24dp"
                             android:layout_marginRight="24dp"
                             android:gravity="center_horizontal"
-                            android:text="But even a perfect score of 20 (strongest protection rating) doesn’t mean you can’t get HIV.  It does mean that you are lowering your risk by protecting yourself!"
+                            android:text="This is a red light/green light deal.  The closer your needle gets to the green or further into the green it gets, the higher your levels of HIV protection. Green is good and a red score can always become a green score."
                             android:textColor="@color/text_color"
                             android:lineSpacingMultiplier="1.31"
                             android:textSize="16sp" />
@@ -173,8 +173,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="24dp"
                             android:gravity="center_horizontal"
-                            android:text=""
-                            android:visibility="gone"
+                            android:text="But even a perfect score of 20 (strongest protection rating) doesn’t mean you can’t get HIV.  It does mean that you are lowering your risk by protecting yourself!"
                             android:textColor="@color/text_color"
                             android:lineSpacingMultiplier="1.31"
                             android:textSize="16sp" />

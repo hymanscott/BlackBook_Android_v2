@@ -40,7 +40,7 @@ public class RegistrationHavePriPartner extends Fragment {
         textview10.setTypeface(tf);
         PSP_Yes.setTypeface(tf);
         PSP_No.setTypeface(tf);
-        regAuthNext.setTypeface(tf);
+        regAuthNext.setTypeface(tf_bold);
 
         // Set Back Values //
         if(LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getIs_primary_partner())!=null){

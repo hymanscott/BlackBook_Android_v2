@@ -44,6 +44,8 @@ public class RegistrationSummary extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         textview1 = (TextView) view.findViewById(R.id.textview1);
         textview1.setTypeface(tf);
         textview2 = (TextView) view.findViewById(R.id.textview2);
@@ -83,7 +85,7 @@ public class RegistrationSummary extends Fragment {
         diagTitle = (TextView) view.findViewById(R.id.diagTitle);
         diagTitle.setTypeface(tf);
         partner_info_nextbtn = (Button) view.findViewById(R.id.partner_info_nextbtn);
-        partner_info_nextbtn.setTypeface(tf);
+        partner_info_nextbtn.setTypeface(tf_bold);
         /*partner_info_revisebtn = (Button) view.findViewById(R.id.partner_info_revisebtn);
         partner_info_revisebtn.setTypeface(tf);*/
 

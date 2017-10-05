@@ -56,7 +56,7 @@ public class RegistrationTimesTop extends Fragment implements SeekBar.OnSeekBarC
         progress_minvalue2.setTypeface(tf);
         progress_maxvalue2.setTypeface(tf);
         editText.setTypeface(tf);
-        regAuthNext.setTypeface(tf);
+        regAuthNext.setTypeface(tf_bold);
 
         // Seek Bar codes
         final int stepSize =10;

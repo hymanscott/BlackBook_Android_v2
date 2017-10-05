@@ -17,7 +17,7 @@ import android.widget.TextView;
 public class ForgetPassword extends Fragment {
     public ForgetPassword() {
     }
-    TextView bannerText;
+    TextView bannerText,bannerSubText;
     Button btn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,6 +31,8 @@ public class ForgetPassword extends Fragment {
         EditText reqNewPassEmail = (EditText)view.findViewById(R.id.reqNewPassEmail);
         bannerText = (TextView)view.findViewById(R.id.bannerText);
         bannerText.setTypeface(tf);
+        bannerSubText = (TextView)view.findViewById(R.id.bannerSubText);
+        bannerSubText.setTypeface(tf);
         btn = (Button)view.findViewById(R.id.btn);
         btn.setTypeface(tf);
 

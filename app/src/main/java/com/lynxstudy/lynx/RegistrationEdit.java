@@ -81,7 +81,7 @@ public class RegistrationEdit extends Fragment {
         c_passcode = (EditText) view.findViewById(R.id.c_passcode);
         c_passcode.setTypeface(tf);
         save = (Button) view.findViewById(R.id.save);
-        save.setTypeface(tf);
+        save.setTypeface(tf_bold);
         layout1 = (RelativeLayout)view.findViewById(R.id.relativeLayout1);
 
         final Calendar myCalendar = Calendar.getInstance();

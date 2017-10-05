@@ -92,7 +92,7 @@ public class RegistrationPartnerInfo extends Fragment {
         nick_name = (EditText) view.findViewById(R.id.nick_name);
         nick_name.setTypeface(tf);
         partner_info_nextbtn = (Button) view.findViewById(R.id.partner_info_nextbtn);
-        partner_info_nextbtn.setTypeface(tf);
+        partner_info_nextbtn.setTypeface(tf_bold);
         /*partner_info_revisebtn = (Button) view.findViewById(R.id.partner_info_revisebtn);
         partner_info_revisebtn.setTypeface(tf);*/
 

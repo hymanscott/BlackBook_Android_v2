@@ -56,6 +56,7 @@ import com.lynxstudy.model.TestingInstructions;
 import com.lynxstudy.model.TestingLocations;
 import com.lynxstudy.model.TestingReminder;
 import com.lynxstudy.model.UserAlcoholUse;
+import com.lynxstudy.model.UserBadges;
 import com.lynxstudy.model.UserDrugUse;
 import com.lynxstudy.model.UserPrimaryPartner;
 import com.lynxstudy.model.UserRatingFields;
@@ -1422,6 +1423,16 @@ public class RegLogin extends AppCompatActivity {
                                 db.updateVideos(video);
                             }
                         }*/
+                        //UserBadges
+                        JSONArray userBadges_info = parentObject.getJSONArray("UserBadge");
+                        for(int n = 0; n <userBadges_info.length(); n++) {
+                            JSONObject userBadgesInfoObject = userBadges_info.getJSONObject(n);
+                            UserBadges userBadge = new UserBadges(userBadgesInfoObject.getInt("badge_id"), LynxManager.getActiveUser().getUser_id(),
+                                    userBadgesInfoObject.getInt("is_shown"), userBadgesInfoObject.getString("notes"),
+                                    String.valueOf(R.string.statusUpdateYes));
+                            userBadge.setCreated_at(userBadgesInfoObject.getString("created_at"));
+                            int id = db.createUserBadgeWithDate(userBadge);
+                        }
 
                         //Log.v("userBaselineArray", String.valueOf(userBaselineArray.length()));
                         if(testingRemindersInfo.length()==0){

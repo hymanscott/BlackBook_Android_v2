@@ -5,13 +5,13 @@ package com.lynxstudy.model;
  */
 
 public class UserBadges {
-    int user_badge_id;
-    int badge_id;
-    int user_id;
-    int is_shown;
-    String badge_notes;
-    String status_update;
-    String created_at;
+    private int user_badge_id;
+    private int badge_id;
+    private int user_id;
+    private int is_shown;
+    private String notes;
+    private String status_update;
+    private String created_at;
 
     public UserBadges() {
     }
@@ -20,7 +20,7 @@ public class UserBadges {
         this.badge_id = badge_id;
         this.user_id = user_id;
         this.is_shown = is_shown;
-        this.badge_notes = badge_notes;
+        this.notes = badge_notes;
         this.status_update = status_update;
     }
 
@@ -57,11 +57,11 @@ public class UserBadges {
     }
 
     public String getBadge_notes() {
-        return badge_notes;
+        return notes;
     }
 
     public void setBadge_notes(String badge_notes) {
-        this.badge_notes = badge_notes;
+        this.notes = badge_notes;
     }
 
     public String getStatus_update() {

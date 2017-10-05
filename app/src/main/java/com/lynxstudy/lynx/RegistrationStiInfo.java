@@ -49,7 +49,7 @@ public class RegistrationStiInfo extends Fragment {
             textview9 = (TextView)rootview.findViewById(R.id.textview9);
             textview9.setTypeface(tf);
             partner_info_nextbtn = (Button)rootview.findViewById(R.id.partner_info_nextbtn);
-            partner_info_nextbtn.setTypeface(tf);
+            partner_info_nextbtn.setTypeface(tf_bold);
 
             newdb = new DatabaseHelper(getActivity());
             LinearLayout drugs_container = (LinearLayout) rootview.findViewById(R.id.linearLayout_drugs);
@@ -64,6 +64,7 @@ public class RegistrationStiInfo extends Fragment {
                 View convertView = chInflater.inflate(R.layout.checkbox_row,container,false);
                 CheckBox ch = (CheckBox)convertView.findViewById(R.id.checkbox);
                 ch.setText(stiName);
+                ch.setTypeface(tf);
                 drugs_container.addView(ch);
                 ch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 

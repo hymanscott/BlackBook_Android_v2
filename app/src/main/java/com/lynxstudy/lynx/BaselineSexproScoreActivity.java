@@ -81,8 +81,10 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
         db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), score, String.valueOf(R.string.statusUpdateNo));
         reg_sexPro_score_value.setText(" " + score);
         final ImageView dial_imgview = (ImageView)findViewById(R.id.imageView);
+        int final_score;
         if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
             float angle;
+            final_score = adjustedScore;
             if((adjustedScore-1)>=17){
                 angle = (int) ((adjustedScore-1) * 13.76);
             }else{
@@ -98,6 +100,7 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
             score_message.setText(message);
         }else{
             float angle;
+            final_score = unAdjustedScore;
             if((unAdjustedScore-1)>=17){
                 angle = (int) ((unAdjustedScore-1) * 13.76);
             }else{
@@ -114,10 +117,75 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
             }
             score_message.setText(message);
         }
+        ImageView scoreImage = (ImageView)findViewById(R.id.scoreImage);
+        // Score Bottom Image //
+        switch (final_score){
+            case 1:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_one));
+                break;
+            case 2:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_two));
+                break;
+            case 3:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_three));
+                break;
+            case 4:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_four));
+                break;
+            case 5:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_five));
+                break;
+            case 6:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_six));
+                break;
+            case 7:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_seven));
+                break;
+            case 8:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_eight));
+                break;
+            case 9:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_nine));
+                break;
+            case 10:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_ten));
+                break;
+            case 11:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_eleven));
+                break;
+            case 12:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_twelve));
+                break;
+            case 13:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_thirteen));
+                break;
+            case 14:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_fourteen));
+                break;
+            case 15:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_fifteen));
+                break;
+            case 16:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_sixteen));
+                break;
+            case 17:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_seventeen));
+                break;
+            case 18:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_eighteen));
+                break;
+            case 19:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_nineteen));
+                break;
+            case 20:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_twenty));
+                break;
+        }
+
         // Adding User Badge : LYNX Badge //
         BadgesMaster lynx_badge = db.getBadgesMasterByName("LYNX");
         int shown = 0;
-        UserBadges lynxBadge = new UserBadges(lynx_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,lynx_badge.getBadge_notes(),getResources().getString(R.string.statusUpdateNo));
+        UserBadges lynxBadge = new UserBadges(lynx_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,lynx_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
         db.createUserBadge(lynxBadge);
 
         final ImageView btn = (ImageView)findViewById(R.id.information);

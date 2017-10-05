@@ -4216,6 +4216,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // insert row
         return (int) db.insert(TABLE_USER_BADGES, null, values);
     }
+    public int createUserBadgeWithDate(UserBadges userBadge) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_USER_BADGE_BADGEID, userBadge.getBadge_id());
+        values.put(KEY_USER_BADGE_NOTES, userBadge.getBadge_notes());
+        values.put(KEY_USERS_ID, userBadge.getUser_id());
+        values.put(KEY_USER_BADGE_ISSHOWN, userBadge.getIs_shown());
+        values.put(KEY_STATUS_UPDATE, userBadge.getStatus_update());
+        values.put(KEY_CREATED_AT, userBadge.getCreated_at());
+
+        // insert row
+        return (int) db.insert(TABLE_USER_BADGES, null, values);
+    }
 
     /**
      * get all  User Badges by User id

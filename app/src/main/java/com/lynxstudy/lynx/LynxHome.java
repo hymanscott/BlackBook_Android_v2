@@ -35,6 +35,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.CloudMessages;
 import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
@@ -276,6 +277,11 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
 
             }
         }
+        Log.v("allUserBadgesCount", String.valueOf(db.getUserBadgesCount()));
+        List<UserBadges> nonUpdateduserBadgesList =  db.getAllUserBadgesByUserID(LynxManager.getActiveUser().getUser_id());
+        for (UserBadges userBadge:nonUpdateduserBadgesList) {
+            Log.v("UserBadgesSta",userBadge.getBadge_id()+"--"+userBadge.getUser_badge_id()+"--"+userBadge.getIs_shown()+"--"+userBadge.getStatus_update());
+        }
         ScheduledExecutorService scheduleTaskExecutor = Executors.newScheduledThreadPool(5);
         //Pushing All the Tables to Server
         // This schedule a runnable task every 1 minutes
@@ -293,6 +299,15 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         callNotification();
         checkForUpdates();
 
+        // Add OnBoarding Badge for already registered users //
+        Log.v("OnboardingBadge", String.valueOf(db.getUserBadgesCountByBadgeID(1)));
+        if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("LYNX").getBadge_id())==0){
+            // Adding User Badge : LYNX Badge //
+            BadgesMaster lynx_badge = db.getBadgesMasterByName("LYNX");
+            int shown = 0;
+            UserBadges lynxBadge = new UserBadges(lynx_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,lynx_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+            db.createUserBadge(lynxBadge);
+        }
         // Show If Badges Available //
         List<UserBadges> userBadgesList = db.getAllUserBadgesByShownStatus(0);
         int i=0;
@@ -306,8 +321,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             }
             i++;
         }
-
-        Log.v("UserBadgesCount", String.valueOf(db.getEncountersCount()));
     }
 
     @Override
@@ -761,6 +774,14 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             String json_cm = gson_cm.toJson(cm);
             String cmQueryString = LynxManager.getQueryString(json_cm);
             new cloudMessagingOnline(cmQueryString).execute();
+        }
+        //UserBadges
+        List<UserBadges> nonUpdateduserBadgesList =  db.getAllUserBadgesByStatus(String.valueOf(R.string.statusUpdateNo));
+        for(UserBadges userBadge : nonUpdateduserBadgesList){
+            Gson gson_userBadge = new Gson();
+            String json_userBadge = gson_userBadge.toJson(userBadge);
+            String get_query_string = LynxManager.getQueryString(json_userBadge);
+            new userBadgesOnline(get_query_string).execute();
         }
     }
 
@@ -1778,5 +1799,63 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             }
         }
 
+    }
+
+    /**
+     * Async task class to get json by making HTTP call
+     *
+     * User Badges
+     */
+
+    private class userBadgesOnline extends AsyncTask<Void, Void, Void> {
+
+        String userBadgesResult;
+        String jsonObj;
+
+
+        userBadgesOnline(String jsonObj) {
+            this.jsonObj = jsonObj;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            ServiceHandler sh = new ServiceHandler();
+            String jsonAlcoholUseStr = null;
+            try {
+                jsonAlcoholUseStr = sh.makeServiceCall(LynxManager.getBaseURL() + "UserBadges/add?hashkey="+ LynxManager.stringToHashcode(jsonObj + LynxManager.hashKey)+"&timestamp="+ URLEncoder.encode(LynxManager.getDateTime(), "UTF-8"), jsonObj);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            Log.d("Response: ", ">UserBadges " + jsonAlcoholUseStr);
+            userBadgesResult = jsonAlcoholUseStr;
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            if (userBadgesResult != null) {
+                try {
+                    JSONObject jsonObj = new JSONObject(userBadgesResult);
+                    boolean is_error = jsonObj.getBoolean("is_error");
+                    if (is_error) {
+                        Log.d("Response: ", "> UserBadgesError. " + jsonObj.getString("message"));
+                    } else {
+
+                        int id = Integer.parseInt(jsonObj.getString("id"));
+                        db.updateUserBadgeByStatus(id, String.valueOf(R.string.statusUpdateYes));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Log.e("ServiceHandler", "Couldn't get any data from the url");
+            }
+        }
     }
 }

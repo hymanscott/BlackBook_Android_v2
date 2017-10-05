@@ -59,7 +59,7 @@ public class RegistrationConfirmFragment extends Fragment {
         edit_details = (TextView)view.findViewById(R.id.edit_details);
         edit_details.setTypeface(tf);
         reg_confirmbtn = (Button)view.findViewById(R.id.reg_confirmbtn);
-        reg_confirmbtn.setTypeface(tf);
+        reg_confirmbtn.setTypeface(tf_bold);
 
         confirm_firstname.setText(LynxManager.decryptString(LynxManager.getActiveUser().getFirstname()));
         confirm_lastname.setText(LynxManager.decryptString(LynxManager.getActiveUser().getLastname()));

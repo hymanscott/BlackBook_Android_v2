@@ -90,6 +90,7 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         info_para_three.setTypeface(tf);
         sexProMainContent = (LinearLayout)findViewById(R.id.sexProMainContent);
         sexProInfoContent = (LinearLayout)findViewById(R.id.sexProInfoContent);
+        ImageView scoreImage = (ImageView)findViewById(R.id.scoreImage);
         ImageView infoIcon = (ImageView)findViewById(R.id.infoIcon);
         infoIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,8 +137,10 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         calculateSexProScore getscore = new calculateSexProScore(LynxSexPro.this);
         int adjustedScore = Math.round((float) getscore.getAdjustedScore());
         int unAdjustedScore = Math.round((float) getscore.getUnAdjustedScore());
+        int final_score = 1;
         if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
-            current_score_tv.setText("YOUR SEX PRO SCORE IS "+String.valueOf(adjustedScore));
+            current_score_tv.setText("CURRENT SEX PRO SCORE:  "+String.valueOf(adjustedScore));
+            final_score = adjustedScore;
             /*float angle = (int) ((adjustedScore-1) * 13.86);*/
             float angle;
             if((adjustedScore-1)>=17){
@@ -154,7 +157,8 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
             dial_imgview.setRotation(angle);
             current_score_text.setText(message);
         }else{
-            current_score_tv.setText("YOUR SEX PRO SCORE IS "+String.valueOf(unAdjustedScore));
+            current_score_tv.setText("CURRENT SEX PRO SCORE:  "+String.valueOf(unAdjustedScore));
+            final_score = unAdjustedScore;
             float angle;
             if((unAdjustedScore-1)>=17){
                 angle = (int) ((unAdjustedScore-1) * 13.76);
@@ -182,7 +186,69 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
             score_update.setText("YOUR SCORE WILL UPDATE IN ");
             score_update_date.setText((90 - getscore.getElapsedDays())+" DAYS");
         }
-
+        // Score Bottom Image //
+        switch (final_score){
+            case 1:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_one));
+                break;
+            case 2:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_two));
+                break;
+            case 3:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_three));
+                break;
+            case 4:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_four));
+                break;
+            case 5:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_five));
+                break;
+            case 6:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_six));
+                break;
+            case 7:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_seven));
+                break;
+            case 8:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_eight));
+                break;
+            case 9:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_nine));
+                break;
+            case 10:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_ten));
+                break;
+            case 11:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_eleven));
+                break;
+            case 12:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_twelve));
+                break;
+            case 13:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_thirteen));
+                break;
+            case 14:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_fourteen));
+                break;
+            case 15:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_fifteen));
+                break;
+            case 16:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_sixteen));
+                break;
+            case 17:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_seventeen));
+                break;
+            case 18:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_eighteen));
+                break;
+            case 19:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_nineteen));
+                break;
+            case 20:
+                scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_twenty));
+                break;
+        }
     }
     private String getDate(long time) {
         Calendar cal = Calendar.getInstance(Locale.US);

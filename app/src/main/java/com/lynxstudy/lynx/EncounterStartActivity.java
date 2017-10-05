@@ -494,13 +494,13 @@ public class EncounterStartActivity extends AppCompatActivity {
             // Adding User Badge : High Five Badge //
             BadgesMaster highfive_badge = db.getBadgesMasterByName("High Five");
             int shown = 0;
-            UserBadges lynxBadge = new UserBadges(highfive_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,highfive_badge.getBadge_notes(),getResources().getString(R.string.statusUpdateNo));
+            UserBadges lynxBadge = new UserBadges(highfive_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,highfive_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
             db.createUserBadge(lynxBadge);
         }else if(db.getEncountersCount()==3){
             // Adding User Badge : Healthy Heart Badge //
             BadgesMaster healthy_badge = db.getBadgesMasterByName("Healthy Heart");
             int shown = 0;
-            UserBadges lynxBadge = new UserBadges(healthy_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,healthy_badge.getBadge_notes(),getResources().getString(R.string.statusUpdateNo));
+            UserBadges lynxBadge = new UserBadges(healthy_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,healthy_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
             db.createUserBadge(lynxBadge);
         }
         // Clear Condomuse list//

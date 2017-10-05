@@ -228,8 +228,8 @@
     <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="@dimen/toggle_btn_height"
-        android:textOn="Kissing/making out"
-        android:textOff="Kissing/making out"
+        android:textOn="We kissed/made out"
+        android:textOff="We kissed/made out"
         android:textColor="@color/colorAccent"
         android:layout_gravity="center"
         android:textAlignment="gravity"
@@ -252,6 +252,22 @@
         android:padding="10dp"
         android:layout_weight="1"
         android:textSize="12sp"
+        android:gravity="center_horizontal|center_vertical"
+        android:background="@drawable/toggle_button"/>
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/toggle_btn_height"
+        android:textOn="He fingered me"
+        android:textOff="He fingered me"
+        android:textColor="@color/colorAccent"
+        android:id="@+id/sexType_heFingered"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:textAlignment="gravity"
+        android:visibility="gone"
+        android:layout_weight="1"
+        android:textSize="12sp"
+        android:padding="10dp"
         android:gravity="center_horizontal|center_vertical"
         android:background="@drawable/toggle_button"/>
 </LinearLayout>

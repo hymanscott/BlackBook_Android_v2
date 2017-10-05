@@ -272,7 +272,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="When I fucked her:"
+                                android:text="When we fucked :"
                                 android:textSize="@dimen/encounter_tv_textsize"
                                 android:id="@+id/whenIfucked"
                                 android:textColor="@color/white"

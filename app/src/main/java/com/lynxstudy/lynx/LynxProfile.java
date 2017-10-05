@@ -12,6 +12,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
@@ -81,12 +82,12 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     private Point p;
     LinearLayout bot_nav;
     TextView fragTitle,profile_name,profile_lastname,updatePhone,updateDOB,updateRace,profile_email,updatePass,updateSecQn,updateSecAnswer,updatePasscode,prepTitle,prepAnswer;
-    TextView diaryTitle,dairyReminderDay,dairyReminderTime,dairyReminderText,testingTitle,testingReminderDay,testingReminderTime,testingReminderText,edit_details,logout,prepTitle1,diaryTitle1,testingTitle1;
+    TextView diaryTitle,dairyReminderDay,dairyReminderTime,dairyReminderText,testingTitle,testingReminderDay,testingReminderTime,testingReminderText,edit_details,logout,prepTitle1,diaryTitle1,testingTitle1,app_version;
     Typeface tf,tf_bold;
     LinearLayout mainContentLayout,editLayout,btn_testing,btn_diary,btn_prep,btn_chat;
     boolean isEditShown = false;
 
-    TextView fragTitle1,tv,sec_qn,time,day,testing_time,testing_day,is_prep;
+    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,fragTitle1,tv,sec_qn,time,day,testing_time,testing_day,is_prep;
     EditText phonenumber,firstname,lastname,dob,email,reppass,pass,sec_ans,newPasscode,notificationText,testing_notificationText;
     ImageView createButton;
     RelativeLayout race_layout,sec_qn_parent,testing_day_of_week,testing_time_of_day,day_of_week,time_of_day;
@@ -122,6 +123,16 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
 
         fragTitle = (TextView)findViewById(R.id.fragTitle);
         fragTitle.setTypeface(tf_bold);
+        bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
+        bot_nav_sexpro_tv.setTypeface(tf);
+        bot_nav_diary_tv = (TextView)findViewById(R.id.bot_nav_diary_tv);
+        bot_nav_diary_tv.setTypeface(tf);
+        bot_nav_testing_tv = (TextView)findViewById(R.id.bot_nav_testing_tv);
+        bot_nav_testing_tv.setTypeface(tf);
+        bot_nav_prep_tv = (TextView)findViewById(R.id.bot_nav_prep_tv);
+        bot_nav_prep_tv.setTypeface(tf);
+        bot_nav_chat_tv = (TextView)findViewById(R.id.bot_nav_chat_tv);
+        bot_nav_chat_tv.setTypeface(tf);
         profile_name = (TextView)findViewById(R.id.profile_name);
         profile_name.setTypeface(tf);
         profile_lastname = (TextView)findViewById(R.id.profile_lastname);
@@ -166,6 +177,9 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         edit_details.setTypeface(tf);
         logout = (TextView)findViewById(R.id.logout);
         logout.setTypeface(tf);
+        app_version = (TextView)findViewById(R.id.app_version);
+        app_version.setTypeface(tf);
+        app_version.setText("(LYNX version " + getVersion()+")");
         mainContentLayout = (LinearLayout) findViewById(R.id.mainContentLayout);
         editLayout = (LinearLayout) findViewById(R.id.editLayout);
 
@@ -232,6 +246,18 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
             overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
             finish();
         }
+    }
+    public String getVersion() {
+        String versionName = "Version not found";
+
+        try {
+            versionName = this.getPackageManager().getPackageInfo(this.getPackageName(), 0).versionName;
+            Log.i("Version", "Version Name: " + versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            // TODO Auto-generated catch block
+            Log.e("Version", "Exception Version Name: " + e.getLocalizedMessage());
+        }
+        return versionName;
     }
     private void setEditLayout() {
         editLayout.setVisibility(View.VISIBLE);

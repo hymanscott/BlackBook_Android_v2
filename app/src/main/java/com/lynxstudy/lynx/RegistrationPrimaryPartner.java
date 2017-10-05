@@ -74,7 +74,7 @@ public class RegistrationPrimaryPartner extends Fragment{
         unknownPartners = (EditText)view.findViewById(R.id.unknownPartners);
         unknownPartners.setTypeface(tf);
         primary_partner_nextbtn = (Button) view.findViewById(R.id.primary_partner_nextbtn);
-        primary_partner_nextbtn.setTypeface(tf);
+        primary_partner_nextbtn.setTypeface(tf_bold);
 
         List<String> number_of_partners = new ArrayList<>();
         for (int i = 1; i < 10000; i++) {

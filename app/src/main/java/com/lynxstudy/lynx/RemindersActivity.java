@@ -77,7 +77,7 @@ public class RemindersActivity extends AppCompatActivity {
             intro_third_paragraph = (TextView)view.findViewById(R.id.intro_third_paragraph);
             intro_third_paragraph.setTypeface(tf);
             reminderIntroNext = (Button)view.findViewById(R.id.reminderIntroNext);
-            reminderIntroNext.setTypeface(tf);
+            reminderIntroNext.setTypeface(tf_bold);
 
             return view;
         }

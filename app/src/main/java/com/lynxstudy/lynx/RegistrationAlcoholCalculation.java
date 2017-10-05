@@ -65,7 +65,7 @@ public class RegistrationAlcoholCalculation extends Fragment {
         no_of_drinks = (EditText) view.findViewById(R.id.no_of_drinks);
         no_of_drinks.setTypeface(tf);
         alcohol_cal_nextbtn = (Button) view.findViewById(R.id.alcohol_cal_nextbtn);
-        alcohol_cal_nextbtn.setTypeface(tf);
+        alcohol_cal_nextbtn.setTypeface(tf_bold);
         alcCal_5to7days = (RadioButton) view.findViewById(R.id.alcCal_5to7days);
         alcCal_5to7days.setTypeface(tf);
         alcCal_1to4days = (RadioButton) view.findViewById(R.id.alcCal_1to4days);

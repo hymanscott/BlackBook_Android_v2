@@ -37,14 +37,16 @@
                         android:background="@color/update_score_bg"
                         android:orientation="horizontal"
                         android:weightSum="1">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:layout_weight="0.9"
                             android:gravity="center_horizontal"
+                            android:orientation="horizontal"
                             android:paddingBottom="16dp"
-                            android:paddingTop="16dp"
-                            android:layout_weight="0.9">
+                            android:paddingTop="16dp">
+
                             <TextView
                                 android:id="@+id/score_update"
                                 android:layout_width="wrap_content"
@@ -52,14 +54,15 @@
                                 android:text="Your Score will update in"
                                 android:textColor="@color/white"
                                 android:textSize="14sp" />
+
                             <TextView
                                 android:id="@+id/score_update_date"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text=" 90 days"
-                                android:textStyle="bold"
                                 android:textColor="@color/white"
-                                android:textSize="16sp" />
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
                         </LinearLayout>
 
                         <ImageView
@@ -138,14 +141,15 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginBottom="10dp"
                                 android:src="@drawable/sexpro_needle" />
+
                             <ImageView
+                                android:id="@+id/scoreImage"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/scoreImage"
-                                android:src="@drawable/score_one"
-                                android:layout_gravity="bottom|center_horizontal"
                                 android:layout_centerHorizontal="true"
-                                android:layout_marginBottom="20dp"/>
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:layout_marginBottom="20dp"
+                                android:src="@drawable/score_one" />
                         </FrameLayout>
 
                     </RelativeLayout>
@@ -159,8 +163,8 @@
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:lineSpacingMultiplier="1.31"
                         android:gravity="center_horizontal"
+                        android:lineSpacingMultiplier="1.31"
                         android:text="Score Description"
                         android:textColor="@color/text_color"
                         android:textSize="16sp" />
@@ -220,9 +224,9 @@
                         android:layout_marginLeft="24dp"
                         android:layout_marginRight="24dp"
                         android:gravity="center_horizontal"
-                        android:text="The higher your score and the closer your needle gets to the green means higher levels of HIV protection."
-                        android:textColor="@color/text_color"
                         android:lineSpacingMultiplier="1.31"
+                        android:text="This is a red light/green light deal.  The closer your needle gets to the green or further into the green it gets, the higher your levels of HIV protection. Green is good and a red score can always become a green score."
+                        android:textColor="@color/text_color"
                         android:textSize="16sp" />
 
                     <TextView
@@ -231,9 +235,9 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="24dp"
                         android:gravity="center_horizontal"
-                        android:text="Even with a perfect score of 20 (strongest protection), you could still become HIV infected. But it means you’re doing a lot to stay protected!"
-                        android:textColor="@color/text_color"
                         android:lineSpacingMultiplier="1.31"
+                        android:text="But even a perfect score of 20 (strongest protection rating) doesn’t mean you can’t get HIV.  It does mean that you are lowering your risk by protecting yourself!"
+                        android:textColor="@color/text_color"
                         android:textSize="16sp" />
                 </LinearLayout>
             </ScrollView>
@@ -270,8 +274,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Home"
-                    android:textSize="14sp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout

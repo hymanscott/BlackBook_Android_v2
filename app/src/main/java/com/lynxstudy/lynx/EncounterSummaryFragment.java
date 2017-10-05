@@ -31,7 +31,7 @@ public class EncounterSummaryFragment extends Fragment {
 
     public EncounterSummaryFragment() {
     }
-    TextView newEncounter,partner,hivStatus,typeSex,sexRating,partnerNotes,encSumm_partnerNotes,condomUsed,did_you_cum_title,did_you_cum,did_your_partner_cum_title,did_your_partner_cum;
+    TextView newEncounter,partner,hivStatus,edit_details,typeSex,sexRating,partnerNotes,encSumm_partnerNotes,condomUsed,did_you_cum_title,did_you_cum,did_your_partner_cum_title,did_your_partner_cum;
     Button next;
     LinearLayout condomUsedContent;
     @Override
@@ -68,6 +68,8 @@ public class EncounterSummaryFragment extends Fragment {
         did_your_partner_cum_title.setTypeface(tf);
         did_your_partner_cum = (TextView) rootview.findViewById(R.id.did_your_partner_cum);
         did_your_partner_cum.setTypeface(tf);
+        edit_details = (TextView) rootview.findViewById(R.id.edit_details);
+        edit_details.setTypeface(tf);
         condomUsedContent = (LinearLayout)rootview.findViewById(R.id.condomUsedContent);
 
         // Set NickName
@@ -111,15 +113,41 @@ public class EncounterSummaryFragment extends Fragment {
                 break;
         }
         sexTypeLayout.addView(sextypeView);
-
+        final ToggleButton btn_sexType_kissing = (ToggleButton) rootview.findViewById(R.id.sexType_kissing);
+        btn_sexType_kissing.setTypeface(tf);
+        final ToggleButton btn_sexType_iSucked = (ToggleButton) rootview.findViewById(R.id.sexType_iSucked);
+        btn_sexType_iSucked.setTypeface(tf);
+        final ToggleButton btn_sexType_heSucked = (ToggleButton) rootview.findViewById(R.id.sexType_heSucked);
+        btn_sexType_heSucked.setTypeface(tf);
+        final ToggleButton btn_sexType_iTopped = (ToggleButton) rootview.findViewById(R.id.sexType_iTopped);
+        btn_sexType_iTopped.setTypeface(tf);
+        final ToggleButton btn_sexType_iBottomed = (ToggleButton) rootview.findViewById(R.id.sexType_iBottomed);
+        btn_sexType_iBottomed .setTypeface(tf);
+        final ToggleButton btn_sexType_iJerked = (ToggleButton) rootview.findViewById(R.id.sexType_iJerked);
+        btn_sexType_iJerked.setTypeface(tf);
+        final ToggleButton btn_sexType_heJerked = (ToggleButton) rootview.findViewById(R.id.sexType_heJerked);
+        btn_sexType_heJerked.setTypeface(tf);
+        final ToggleButton btn_sexType_iRimmed = (ToggleButton) rootview.findViewById(R.id.sexType_iRimmed);
+        btn_sexType_iRimmed.setTypeface(tf);
+        final ToggleButton btn_sexType_heRimmed = (ToggleButton) rootview.findViewById(R.id.sexType_heRimmed);
+        btn_sexType_heRimmed.setTypeface(tf);
+        final ToggleButton btn_sexType_iWentDown = (ToggleButton) rootview.findViewById(R.id.sexType_iWentDown);
+        btn_sexType_iWentDown.setTypeface(tf);
+        final ToggleButton btn_sexType_iFucked = (ToggleButton) rootview.findViewById(R.id.sexType_iFucked);
+        btn_sexType_iFucked.setTypeface(tf);
+        final ToggleButton btn_sexType_iFingered = (ToggleButton) rootview.findViewById(R.id.sexType_iFingered);
+        btn_sexType_iFingered.setTypeface(tf);
+        final ToggleButton btn_sexType_heFingered = (ToggleButton) rootview.findViewById(R.id.sexType_heFingered);
+        btn_sexType_heFingered.setTypeface(tf);
 
         for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
             switch (LynxManager.decryptString(encSexType.getSex_type())) {
-                case "Kissing/making out":
+                case "We kissed/made out":
                     ToggleButton sexType_kissing = (ToggleButton) rootview.findViewById(R.id.sexType_kissing);
                     sexType_kissing.setSelected(true);
                     sexType_kissing.setClickable(false);
                     sexType_kissing.setTextColor(Color.parseColor("#ffffff"));
+                    sexType_kissing.setTypeface(tf);
                     break;
                 case "I sucked him":
                 case "I sucked her":
@@ -127,6 +155,7 @@ public class EncounterSummaryFragment extends Fragment {
                     sexType_iSucked.setSelected(true);
                     sexType_iSucked.setClickable(false);
                     sexType_iSucked.setTextColor(Color.parseColor("#ffffff"));
+                    sexType_iSucked.setTypeface(tf);
                     if(encSexType.getCondom_use().equals("Condom used")&& !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                         LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                     }
@@ -140,12 +169,14 @@ public class EncounterSummaryFragment extends Fragment {
                     sexType_heSucked.setSelected(true);
                     sexType_heSucked.setClickable(false);
                     sexType_heSucked.setTextColor(Color.parseColor("#ffffff"));
+                    sexType_heSucked.setTypeface(tf);
                     break;
                 case "I bottomed":
                     ToggleButton sexType_iBottomed = (ToggleButton)rootview.findViewById(R.id.sexType_iBottomed);
                     sexType_iBottomed.setSelected(true);
                     sexType_iBottomed.setClickable(false);
                     sexType_iBottomed.setTextColor(Color.parseColor("#ffffff"));
+                    sexType_iBottomed.setTypeface(tf);
                     if(encSexType.getCondom_use().equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                         LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                     }
@@ -158,6 +189,7 @@ public class EncounterSummaryFragment extends Fragment {
                     sexType_iTopped.setSelected(true);
                     sexType_iTopped.setClickable(false);
                     sexType_iTopped.setTextColor(Color.parseColor("#ffffff"));
+                    sexType_iTopped.setTypeface(tf);
                     if(encSexType.getCondom_use().equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                         LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                     }
@@ -172,6 +204,7 @@ public class EncounterSummaryFragment extends Fragment {
                     sexType_iJerked.setSelected(true);
                     sexType_iJerked.setClickable(false);
                     sexType_iJerked.setTextColor(Color.parseColor("#ffffff"));
+                    sexType_iJerked.setTypeface(tf);
                     break;
                 case "He jerked me":
                 case "She jerked me":
@@ -179,6 +212,7 @@ public class EncounterSummaryFragment extends Fragment {
                     sexType_heJerked.setSelected(true);
                     sexType_heJerked.setClickable(false);
                     sexType_heJerked.setTextColor(Color.parseColor("#ffffff"));
+                    sexType_heJerked.setTypeface(tf);
                     break;
                 case "I rimmed him":
                 case "I rimmed her":
@@ -186,6 +220,7 @@ public class EncounterSummaryFragment extends Fragment {
                     sexType_iRimmed.setSelected(true);
                     sexType_iRimmed.setClickable(false);
                     sexType_iRimmed.setTextColor(Color.parseColor("#ffffff"));
+                    sexType_iRimmed.setTypeface(tf);
                     break;
                 case "He rimmed me":
                 case "She rimmed me":
@@ -193,12 +228,15 @@ public class EncounterSummaryFragment extends Fragment {
                     sexType_heRimmed.setSelected(true);
                     sexType_heRimmed.setClickable(false);
                     sexType_heRimmed.setTextColor(Color.parseColor("#ffffff"));
+                    sexType_heRimmed.setTypeface(tf);
                     break;
                 case "I fucked her":
+                case "We fucked":
                     ToggleButton sexType_iFucked = (ToggleButton)rootview.findViewById(R.id.sexType_iFucked);
                     sexType_iFucked.setSelected(true);
                     sexType_iFucked.setClickable(false);
                     sexType_iFucked.setTextColor(Color.parseColor("#ffffff"));
+                    sexType_iFucked.setTypeface(tf);
                     if(encSexType.getCondom_use().equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                         LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                     }
@@ -209,6 +247,14 @@ public class EncounterSummaryFragment extends Fragment {
                     sexType_iFingered.setSelected(true);
                     sexType_iFingered.setClickable(false);
                     sexType_iFingered.setTextColor(Color.parseColor("#ffffff"));
+                    sexType_iFingered.setTypeface(tf);
+                    break;
+                case "He fingered me":
+                    ToggleButton sexType_heFingered = (ToggleButton)rootview.findViewById(R.id.sexType_heFingered);
+                    sexType_heFingered.setSelected(true);
+                    sexType_heFingered.setClickable(false);
+                    sexType_heFingered.setTextColor(Color.parseColor("#ffffff"));
+                    sexType_heFingered.setTypeface(tf);
                     break;
                 case "I went down on her":
                 case "I went down on him":
@@ -216,6 +262,7 @@ public class EncounterSummaryFragment extends Fragment {
                     sexType_iWentDown.setSelected(true);
                     sexType_iWentDown.setClickable(false);
                     sexType_iWentDown.setTextColor(Color.parseColor("#ffffff"));
+                    sexType_iWentDown.setTypeface(tf);
                     break;
 
             }

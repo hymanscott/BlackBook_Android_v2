@@ -94,7 +94,7 @@ public class BaselineActivity extends AppCompatActivity {
             textView9.setTypeface(tf);
             textView10.setTypeface(tf);
             textView11.setTypeface(tf);
-            next.setTypeface(tf);
+            next.setTypeface(tf_bold);
             return view;
         }
     }

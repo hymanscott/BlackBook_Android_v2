@@ -272,7 +272,7 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
             if(db.getWatchedVideosCount()==4 && db.getUserBadgesCountByBadgeID(badge.getBadge_id())==0){
                 // Adding User Badge : Silver Screen Badge //
                 int shown = 1; // Triggering Badge Immediately so shown==1 //
-                UserBadges lynxBadge = new UserBadges(badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,badge.getBadge_notes(),getResources().getString(R.string.statusUpdateNo));
+                UserBadges lynxBadge = new UserBadges(badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
                 db.createUserBadge(lynxBadge);
 
                 // Trigger Badge //

@@ -55,7 +55,7 @@ public class RegistrationSecurityDetails extends Fragment{
         newPasscode = (EditText) view.findViewById(R.id.newPasscode);
         newPasscode.setTypeface(tf);
         next = (Button) view.findViewById(R.id.next);
-        next.setTypeface(tf);
+        next.setTypeface(tf_bold);
 
         /*String[] secQuestions = getResources().getStringArray(R.array.security_questions);
         Spinner spinner = (Spinner) view.findViewById(R.id.regSecQuestion);

@@ -218,7 +218,7 @@
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="I don't know"
+                            android:text="I don't know/unsure"
                             android:textColor="@color/white"
                             android:buttonTint="@color/white"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
@@ -297,7 +297,7 @@
                             android:textColor="@color/white"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
                             android:buttonTint="@color/white"
-                            android:text="I don't know"
+                            android:text="I don't know/unsure"
                             android:checked="true"
                             android:id="@+id/radio_undetectable_iDontKnow" />
                     </RadioGroup>

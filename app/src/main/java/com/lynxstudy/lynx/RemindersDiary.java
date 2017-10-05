@@ -59,7 +59,7 @@ public class RemindersDiary extends Fragment {
         notificationText = (EditText)rootview.findViewById(R.id.notificationText);
         notificationText.setTypeface(tf);
         diaryReminderSave = (Button)rootview.findViewById(R.id.diaryReminderSave);
-        diaryReminderSave.setTypeface(tf);
+        diaryReminderSave.setTypeface(tf_bold);
 
         day_of_week = (RelativeLayout)rootview.findViewById(R.id.day_of_week);
         time_of_day = (RelativeLayout)rootview.findViewById(R.id.time_of_day);

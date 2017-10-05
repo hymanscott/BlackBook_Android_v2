@@ -63,7 +63,7 @@ public class RegistrationDrugContent extends Fragment {
         drugContentTitle= (TextView) view.findViewById(R.id.drugContentTitle);
         drugContentTitle.setTypeface(tf);
         drugContent_nextbtn= (Button) view.findViewById(R.id.drugContent_nextbtn);
-        drugContent_nextbtn.setTypeface(tf);
+        drugContent_nextbtn.setTypeface(tf_bold);
 
         newdb = new DatabaseHelper(view.getContext());
         final LinearLayout drugs_container = (LinearLayout) view.findViewById(R.id.linearLayout_drugs);
@@ -79,6 +79,7 @@ public class RegistrationDrugContent extends Fragment {
             LayoutInflater chInflater = (getActivity()).getLayoutInflater();
             View convertView = chInflater.inflate(R.layout.checkbox_row,container,false);
             CheckBox ch = (CheckBox)convertView.findViewById(R.id.checkbox);
+            ch.setTypeface(tf);
    //         ch.setOnClickListener(null);
             ch.setText(drugName);
             ch.setSelected(false);
