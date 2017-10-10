@@ -1775,6 +1775,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(id)});
     }
 
+    /**
+     * getting Partners count by Gender
+     */
+    public int getPartnersCountByGender(String gender) {
+        String countQuery = "SELECT  * FROM " + TABLE_PARTNERS + " WHERE " + KEY_PARTNER_GENDER + " = '"+LynxManager.encryptString(gender)+"'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+    /**
+     * getting Partners count
+     */
+    public int getPartnersCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_PARTNERS;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
 
     // ------------------------ "User Drug User " table methods ----------------//
 
@@ -2411,7 +2433,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.update(TABLE_PARTNER_CONTACT, values, KEY_PARTNER_CONTACT_ID + " = ?",
                 new String[]{String.valueOf(id)});
     }
-
+    /**
+     * getting Partners count by Gender
+     */
+    public int getPartnersContactCountByType(String type) {
+        String countQuery = "SELECT  * FROM " + TABLE_PARTNER_CONTACT + " WHERE " + KEY_PARTNER_TYPE + " = '"+LynxManager.encryptString(type)+"'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+    /**
+     * getting Partners count
+     */
+    public int getPartnersContactCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_PARTNER_CONTACT;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
 
     // ------------------------ "User Rating Fields" table methods ----------------//
 
@@ -2927,7 +2970,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * getting Statistics count
+     * getting Encounter count
      */
     public int getEncountersCount() {
         String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER;
@@ -3038,7 +3081,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.update(TABLE_ENCOUNTER_SEXTYPE, values, KEY_ENCSEXTYPE_ID + " = ?",
                 new String[]{String.valueOf(id)});
     }
-
+    /**
+     * getting Encounter Sex Type count by Name
+     */
+    public int getAllEncounterSexTypeCountByName(String type) {
+        String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE + " WHERE " + KEY_ENCSEXTYPE_SEXTYPE + " = '"+LynxManager.encryptString(type)+"'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
 
 
     /**

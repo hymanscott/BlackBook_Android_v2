@@ -55,4 +55,11 @@
 
     <!--Bottom Navigations-->
     <color name="bot_nav_bg">#FFD5D5D5</color>
+
+    <!--Chart Colors-->
+    <color name="chart_blue">#FF2E86FF</color>
+    <color name="chart_green">#FF81D427</color>
+    <color name="chart_orange">#FFF16A38</color>
+    <color name="chart_purple">#FFC73BC0</color>
+    <color name="chart_grey">#FF979797</color>
 </resources>

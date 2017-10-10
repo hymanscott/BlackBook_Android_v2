@@ -180,7 +180,9 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         trends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LynxHome.this,"Trends",Toast.LENGTH_SHORT).show();
+                Intent trends = new Intent(LynxHome.this,LynxTrends.class);
+                startActivity(trends);
+                finish();
             }
         });
         insights.setOnClickListener(new View.OnClickListener() {
