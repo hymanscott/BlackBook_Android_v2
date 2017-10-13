@@ -323,7 +323,7 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
     public void onBackPressed() {
         // do something on back.
         if (onPause_count > 0) {
-            final View popupView = getLayoutInflater().inflate(R.layout.popup_alert_dialog_template, null);
+            /*final View popupView = getLayoutInflater().inflate(R.layout.popup_alert_dialog_template, null);
             final PopupWindow signOut = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
             TextView title = (TextView)popupView.findViewById(R.id.alertTitle);
             TextView message = (TextView)popupView.findViewById(R.id.alertMessage);
@@ -353,8 +353,10 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
 
             // If you need the PopupWindow to dismiss when when touched outside
             signOut.setBackgroundDrawable(new ColorDrawable());
-            signOut.showAtLocation(popupView, Gravity.CENTER,0,0);
-
+            signOut.showAtLocation(popupView, Gravity.CENTER,0,0);*/
+            LynxManager.goToIntent(LynxPrep.this,"home",LynxPrep.this.getClass().getSimpleName());
+            overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
+            finish();
         }
         else{
             Toast.makeText(this,"Press Back one more time to exit",Toast.LENGTH_SHORT).show();

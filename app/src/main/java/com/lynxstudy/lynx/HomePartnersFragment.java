@@ -66,6 +66,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
     View rootview;
     Typeface tf,tf_bold;
     int back_press_count;
+    private Tracker tracker;
     public HomePartnersFragment() {
         // Required empty public constructor
     }
@@ -211,7 +212,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
             }
         } );
         // Piwik Analytics //
-        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
         TrackHelper.track().screen("/Lynxdiary/Partners").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return rootview;
     }
@@ -395,7 +396,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         isEditShown = true;
         summaryLayout.setVisibility(View.GONE);
         isSummaryShown = false;
-        Partners partner = db.getPartnerbyID(partner_id);
+        final Partners partner = db.getPartnerbyID(partner_id);
         PartnerContact partnerContact = db.getPartnerContactbyPartnerID(partner_id);
 
         next = (Button) rootview.findViewById(R.id.next);
@@ -863,6 +864,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                     db.updatePartnerFromSummary(updatedPartner);
                     updatedPartnerContact.setStatus_update(String.valueOf(R.string.statusUpdateNo));
                     db.updatePartnerContactFromSummary(updatedPartnerContact);
+                    TrackHelper.track().event("Partner","Update").name(LynxManager.decryptString(partner.getNickname())+"Updated").with(tracker);
                     // update data and hide layout here///
                     editLayout.setVisibility(View.GONE);
                     isEditShown = false;

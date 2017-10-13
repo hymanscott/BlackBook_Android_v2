@@ -80,16 +80,18 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
     DatabaseHelper db;
     private static final int READ_PHONE_STATE = 101;
     private static final int READ_WRITE_PERMISSION = 100;
+    private Tracker tracker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lynx_home);
 
-        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+        tracker = ((lynxApplication) getApplication()).getTracker();
         String piwikID = tracker.getUserId();
         //TrackHelper.track().screen("/LynxHome").title("Home").dimension(1,LynxManager.getActiveUser().getEmail()).with(tracker);
         //TrackHelper.track().screen("/LynxHome").title("Home").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).with(tracker);
-        TrackHelper.track().screen("/Lynxhome").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,piwikID).with(tracker);
+        //TrackHelper.track().screen("/Lynxhome").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,piwikID).with(tracker);
+        TrackHelper.track().visitVariables(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).visitVariables(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).screen("/Lynxhome").dimension(1,piwikID).with(tracker);
         Log.v("PiwikUserID",tracker.getUserId());
         Log.v("PiwikUserNAME",tracker.getName());
         Log.v("PiwikVisitorID",tracker.getVisitorId());
@@ -150,6 +152,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         sexpro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TrackHelper.track().event("Home Category","Click").name("Sex pro").with(tracker);
                 Intent sexpro = new Intent(LynxHome.this,LynxSexPro.class);
                 startActivity(sexpro);
                 finish();
@@ -159,27 +162,30 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             @Override
             public void onClick(View v) {
                 Toast.makeText(LynxHome.this,"Activity",Toast.LENGTH_SHORT).show();
-                //TrackHelper.track().screens(getApplication()).with(((lynxApplication) getApplication()).getTracker());
+                TrackHelper.track().event("Home Category","Click").name("Activity").with(tracker);
             }
         });
         badges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(LynxHome.this,"Badges",Toast.LENGTH_SHORT).show();
+                TrackHelper.track().event("Home Category","Click").name("Badges").with(tracker);
                 Intent badges = new Intent(LynxHome.this,LynxBadges.class);
                 startActivity(badges);
                 finish();
+                TrackHelper.track().goal(1).with(tracker);
             }
         });
         topFive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(LynxHome.this,"Top Five",Toast.LENGTH_SHORT).show();
+                TrackHelper.track().event("Home Category","Click").name("Top Five").value(1f).with(tracker);
             }
         });
         trends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TrackHelper.track().event("Home Category","Click").name("Trends").with(tracker);
                 Intent trends = new Intent(LynxHome.this,LynxTrends.class);
                 startActivity(trends);
                 finish();
@@ -189,6 +195,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             @Override
             public void onClick(View v) {
                 Toast.makeText(LynxHome.this,"Insights",Toast.LENGTH_SHORT).show();
+                TrackHelper.track().event("Home Category","Click").name("Insights").with(tracker);
             }
         });
         db = new DatabaseHelper(this);
@@ -330,26 +337,31 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         switch (v.getId()) {
 
             case R.id.bot_nav_testing:
+                TrackHelper.track().event("Navigation","Click").name("Testing").with(tracker);
                 LynxManager.goToIntent(LynxHome.this,"testing",LynxHome.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
             case R.id.bot_nav_diary:
+                TrackHelper.track().event("Navigation","Click").name("Diary").with(tracker);
                 LynxManager.goToIntent(LynxHome.this,"diary",LynxHome.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
             case R.id.bot_nav_prep:
+                TrackHelper.track().event("Navigation","Click").name("PrEP").with(tracker);
                 LynxManager.goToIntent(LynxHome.this,"prep",LynxHome.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
             case R.id.bot_nav_chat:
+                TrackHelper.track().event("Navigation","Click").name("Chat").with(tracker);
                 LynxManager.goToIntent(LynxHome.this,"chat",LynxHome.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
             case R.id.viewProfile:
+                TrackHelper.track().event("Navigation","Click").name("Profile").with(tracker);
                 Intent profile = new Intent(LynxHome.this,LynxProfile.class);
                 startActivity(profile);
                 finish();

@@ -32,6 +32,9 @@ import android.widget.Toast;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.UserBadges;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.util.List;
 
 public class LynxTesting extends AppCompatActivity implements View.OnClickListener {
@@ -54,6 +57,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
     TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv;
     Typeface tf,tf_bold;
     DatabaseHelper db;
+    private Tracker tracker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +68,8 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
         params.setScrollFlags(0);
         toolbar.setLayoutParams(params);
-
+        tracker = ((lynxApplication) getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxtesting").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
@@ -350,26 +355,31 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()) {
 
             case R.id.bot_nav_sexpro:
+                TrackHelper.track().event("Navigation","Click").name("Sex Pro").with(tracker);
                 LynxManager.goToIntent(LynxTesting.this,"home",LynxTesting.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
             case R.id.bot_nav_diary:
+                TrackHelper.track().event("Navigation","Click").name("Diary").with(tracker);
                 LynxManager.goToIntent(LynxTesting.this,"diary",LynxTesting.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
             case R.id.bot_nav_prep:
+                TrackHelper.track().event("Navigation","Click").name("PrEP").with(tracker);
                 LynxManager.goToIntent(LynxTesting.this,"prep",LynxTesting.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
             case R.id.bot_nav_chat:
+                TrackHelper.track().event("Navigation","Click").name("Chat").with(tracker);
                 LynxManager.goToIntent(LynxTesting.this,"chat",LynxTesting.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
             case R.id.viewProfile:
+                TrackHelper.track().event("Navigation","Click").name("Profile").with(tracker);
                 Intent profile = new Intent(LynxTesting.this,LynxProfile.class);
                 startActivity(profile);
                 finish();
@@ -400,7 +410,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
     public void onBackPressed() {
         // do something on back.
         if (onPause_count > 0) {
-            final View popupView = getLayoutInflater().inflate(R.layout.popup_alert_dialog_template, null);
+            /*final View popupView = getLayoutInflater().inflate(R.layout.popup_alert_dialog_template, null);
             final PopupWindow signOut = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
             TextView title = (TextView)popupView.findViewById(R.id.alertTitle);
             TextView message = (TextView)popupView.findViewById(R.id.alertMessage);
@@ -430,7 +440,10 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
 
             // If you need the PopupWindow to dismiss when when touched outside
             signOut.setBackgroundDrawable(new ColorDrawable());
-            signOut.showAtLocation(popupView, Gravity.CENTER,0,0);
+            signOut.showAtLocation(popupView, Gravity.CENTER,0,0);*/
+            LynxManager.goToIntent(LynxTesting.this,"home",LynxTesting.this.getClass().getSimpleName());
+            overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
+            finish();
         }
         else{
             Toast.makeText(this,"Press Back one more time to exit",Toast.LENGTH_SHORT).show();

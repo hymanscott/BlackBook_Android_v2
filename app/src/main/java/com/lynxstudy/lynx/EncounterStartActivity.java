@@ -47,6 +47,7 @@ public class EncounterStartActivity extends AppCompatActivity {
 
     DatabaseHelper db;
     boolean drug_frag = false;
+    private Tracker tracker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,7 +95,7 @@ public class EncounterStartActivity extends AppCompatActivity {
             }
         });*/
         // Piwik Analytics //
-        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+        tracker = ((lynxApplication) getApplication()).getTracker();
         TrackHelper.track().screen("/Encounter/Start").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
 
@@ -489,6 +490,7 @@ public class EncounterStartActivity extends AppCompatActivity {
         LynxManager.activeEncounter.setIs_drug_used(LynxManager.encryptString("0"));
         LynxManager.activeEncounter.setIs_possible_sex_tomorrow(LynxManager.encryptString("0"));
         int encounterID = db.createEncounter(LynxManager.activeEncounter);
+        TrackHelper.track().event("Encounter","Add").name("New Encounter Added").with(tracker);
         for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
             //Log.v("condomUseText",encSexType.getSex_type()+encSexType.getCondom_use());
             encSexType.setEncounter_id(encounterID);

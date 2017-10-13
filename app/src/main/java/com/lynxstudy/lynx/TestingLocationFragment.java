@@ -96,6 +96,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
     EditText zipcode;
     Spinner filterSpinner,milesSpinner;
     private BottomSheetBehavior mBottomSheetBehavior;
+    private Tracker tracker;
     Typeface tf;
     TextView infoWindow_Title,infoWindow_Address,infoWindow_Phone,infoWindow_url,infoWindow_distance,infoWindow_url_title,infoWindow_hours_title,infoWindow_hours,infoWindow_ins_title,infoWindow_insurance,infoWindow_ages_title,infoWindow_ages;
     public TestingLocationFragment() {
@@ -112,6 +113,9 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
         db = new DatabaseHelper(getActivity());
         mMapView = (MapView) view.findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
+        // Piwik Analytics //
+        tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxtesting/Locations").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
@@ -224,6 +228,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                         if (marker.getTitle() != null) {
                             int id = Integer.parseInt(marker.getTitle());
                             TestingLocations testingLocations = db.getTestingLocationbyID(id);
+                            TrackHelper.track().event("Testing Location Marker","Click").name(testingLocations.getName()).with(tracker);
                             infoWindow_Title.setText(testingLocations.getName());
                             infoWindow_Address.setText(testingLocations.getAddress());
                             infoWindow_Phone.setText("Phone:" + testingLocations.getPhone_number());
@@ -310,10 +315,6 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                 }
             }
         });
-
-        // Piwik Analytics //
-        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
-        TrackHelper.track().screen("/Lynxtesting/Locations").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return view;
     }
 

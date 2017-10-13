@@ -137,6 +137,7 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
         mChart.setViewPortOffsets(0f, 0f, 0f, 0f);
         /*Disbale Pinch Zooming*/
         mChart.setScaleEnabled(false);
+        mChart.getXAxis().setXOffset(-350);
         /*Data Set*/
         BarDataSet set1;
         ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
@@ -146,14 +147,14 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
         int transmen= (db.getPartnersCountByGender("Woman")/total_partners)*100;
         int transwomen = (db.getPartnersCountByGender("Trans woman")/total_partners)*100;
 
-        /*yVals1.add(new BarEntry(
-                1,
-                new float[]{20, 10, 30, 40},
-                null));*/
         yVals1.add(new BarEntry(
                 1,
-                new float[]{men,transmen, women, transwomen},
+                new float[]{60, 15, 15, 10},
                 null));
+        /*yVals1.add(new BarEntry(
+                1,
+                new float[]{men,transmen, women, transwomen},
+                null));*/
         if (mChart.getData() != null &&
                 mChart.getData().getDataSetCount() > 0) {
             set1 = (BarDataSet) mChart.getData().getDataSetByIndex(0);
@@ -197,6 +198,7 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
         l1.setFormToTextSpace(4f);
         l1.setXEntrySpace(10f);
         l1.setTypeface(tf);
+        l1.setWordWrapEnabled(true);
 
         /*Disable Axis Values*/
         partnerTypesChart.getAxisLeft().setDrawLabels(false);
@@ -221,7 +223,7 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
         partnerTypesChart.setViewPortOffsets(0f, 0f, 0f, 0f);
         /*Disbale Pinch Zooming*/
         partnerTypesChart.setScaleEnabled(false);
-
+        partnerTypesChart.getXAxis().setXOffset(-350);
         /*Data Set*/
         BarDataSet set;
         ArrayList<BarEntry> yVals = new ArrayList<BarEntry>();
@@ -233,14 +235,14 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
         int hookup = (db.getPartnersContactCountByType("Hook-up")/total_contacts)*100;
         int onenight = (db.getPartnersContactCountByType("One-night stand")/total_contacts)*100;
 
-        /*yVals.add(new BarEntry(
-                1,
-                new float[]{10,20, 35, 15, 20},
-                null));*/
         yVals.add(new BarEntry(
                 1,
-                new float[]{primary,friends, regular, hookup, onenight},
+                new float[]{35,30, 10, 20, 5},
                 null));
+        /*yVals.add(new BarEntry(
+                1,
+                new float[]{primary,friends, regular, hookup, onenight},
+                null));*/
 
         if (partnerTypesChart.getData() != null &&
                 partnerTypesChart.getData().getDataSetCount() > 0) {
@@ -252,7 +254,7 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
             set = new BarDataSet(yVals, " ");
             set.setDrawIcons(false);
             set.setColors(getColors("PartnerTypes"));
-            set.setStackLabels(new String[]{"Primary", "Friends", "Regular","Hook-up","NSA"});
+            set.setStackLabels(new String[]{"Primary", "Friends with benefits", "Regular","Hook-up","NSA"});
             set.setValueTextSize(12);
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
@@ -371,7 +373,7 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
 
     @Override
     public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-        String val = (int) value+" %";
+        String val = (int) value+"%";
         if(value>0)
             return val;
         else

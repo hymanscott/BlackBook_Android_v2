@@ -121,6 +121,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
     private boolean isNewTestShown = false;
     int back_press_count = 0;
     private View view;
+    private  Tracker tracker;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -128,6 +129,9 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         view = inflater.inflate(R.layout.fragment_testing_home, container, false);
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        // Piwik Analytics //
+        tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxtesting/History").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         final int height = (int) ((displaymetrics.heightPixels)*0.7);
         final int width = (int) ((displaymetrics.widthPixels)*0.9);
         if(LynxManager.notificationActions !=null ){
@@ -201,6 +205,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                 /*Intent addtest = new Intent(getActivity(),AddNewTest.class);
                 addtest.putExtra("testname","HIV Test");
                 startActivityForResult(addtest,111);*/
+                TrackHelper.track().event("Navigation","Click").name("Add New HIV Test").with(tracker);
                 setNewTestContent("HIV Test");
             }
         });
@@ -214,6 +219,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                 /*Intent addtest = new Intent(getActivity(),AddNewTest.class);
                 addtest.putExtra("testname","STD Test");
                 startActivityForResult(addtest,111);*/
+                TrackHelper.track().event("Navigation","Click").name("Add New STD Test").with(tracker);
                 setNewTestContent("STD Test");
             }
         });
@@ -398,10 +404,6 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                 return false;
             }
         } );
-
-        // Piwik Analytics //
-        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
-        TrackHelper.track().screen("/Lynxtesting/History").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return view;
     }
 
@@ -642,6 +644,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                         //Log.v("UploadedFilepath",hivImageName);
                     }
                     Toast.makeText(getActivity(), "New "+ title +" Added", Toast.LENGTH_SHORT).show();
+                    TrackHelper.track().event("Testing 1-2-3","Add").name("New "+ title +" Added").with(tracker);
                     mainContentLayout.setVisibility(View.VISIBLE);
                     newTestLayout.setVisibility(View.GONE);
                     summaryLayout.setVisibility(View.GONE);

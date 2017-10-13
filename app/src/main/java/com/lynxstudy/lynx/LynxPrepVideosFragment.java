@@ -65,6 +65,7 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
     int currentVideoId;
     WebView mWebView;
     int thumbnailwidth;
+    private Tracker tracker;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,6 +76,9 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
         LynxManager.PrepVideos.add("https://www.youtube.com/embed/5CQCcxV385Y");
         LynxManager.PrepVideos.add("https://www.youtube.com/embed/cEE0OCJpP6w");
         LynxManager.PrepVideos.add("https://www.youtube.com/embed/dRmxyh1TTkE");*/
+        // Piwik Analytics //
+        tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxprep/Videos").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         //TYpe face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
@@ -149,9 +153,6 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
             embedCurrentVideo(mWebView,CurrentVideoTitle,CurrentVideoDescription,videosList.get(0));
             currentVideoId=videosList.get(0).getVideo_id();
         }
-        // Piwik Analytics //
-        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
-        TrackHelper.track().screen("/Lynxprep/Videos").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return rootview;
     }
     private void setVideoListData(){
@@ -205,6 +206,7 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
         mWebView.setOnTouchListener(this);
         title.setText(video.getName());
         description.setText(video.getDescription());
+        TrackHelper.track().event("PrEP Videos","View").name(video.getName()).with(tracker);
     }
     public void videoRowClick(final View v){
         // Moving Existing video below //

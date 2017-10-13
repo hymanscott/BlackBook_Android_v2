@@ -60,6 +60,7 @@ public class HomeEncounterFragment extends Fragment {
     View view;
     Typeface tf,tf_bold;
     int back_press_count;
+    private Tracker tracker;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +74,9 @@ public class HomeEncounterFragment extends Fragment {
         Display display = getActivity().getWindowManager().getDefaultDisplay();
         width = display.getWidth();
         height = display.getHeight();
+        // Piwik Analytics //
+        tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxdiary/History").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         //Type face
        tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
@@ -86,6 +90,7 @@ public class HomeEncounterFragment extends Fragment {
         addNewEncounter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+                TrackHelper.track().event("Navigation","Click").name("Add New Encounter").with(tracker);
                 Intent home = new Intent(getActivity(), EncounterStartActivity.class);
                 home.putExtra("fromNotification",false);
                 startActivityForResult(home, 100);
@@ -236,9 +241,6 @@ public class HomeEncounterFragment extends Fragment {
                 return false;
             }
         } );
-        // Piwik Analytics //
-        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
-        TrackHelper.track().screen("/Lynxdiary/History").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return view;
     }
 

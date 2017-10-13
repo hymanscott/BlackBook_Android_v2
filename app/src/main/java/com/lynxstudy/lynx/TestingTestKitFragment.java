@@ -46,7 +46,7 @@ public class TestingTestKitFragment extends Fragment {
     }
     TextView frag_title,title;
     CheckBox oraQuickTestKit,analSwab,penileSwab;
-
+    private Tracker tracker;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -94,7 +94,7 @@ public class TestingTestKitFragment extends Fragment {
             }
         });
         // Piwik Analytics //
-        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
         TrackHelper.track().screen("/Lynxtesting/Testkit").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return view;
     }
@@ -160,7 +160,7 @@ public class TestingTestKitFragment extends Fragment {
                 }
 
                 String query_string = LynxManager.getQueryString(testKitObj.toString());
-
+                TrackHelper.track().event("Test Kit","Add").name("Requested a Home Test Kit").with(tracker);
                 new requestTestKit(query_string).execute();
                 popupWindow.dismiss();
             }

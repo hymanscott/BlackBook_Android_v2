@@ -40,6 +40,7 @@ public class LynxPrepFactsFragment extends Fragment {
     LinearLayout mainContentLayout,answerLayout;
     private boolean isAnswerShown = false;
     int back_press_count;
+    private Tracker tracker;
     public LynxPrepFactsFragment() {
     }
 
@@ -146,7 +147,7 @@ public class LynxPrepFactsFragment extends Fragment {
             }
         } );
         // Piwik Analytics //
-        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
         TrackHelper.track().screen("/Lynxprep/Facts").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return rootview;
     }
@@ -166,6 +167,7 @@ public class LynxPrepFactsFragment extends Fragment {
         qn.setText(prepInformation.getPrep_info_question());
         qn.setAllCaps(true);
         final WebView prepInfoAnswer = new WebView(getActivity());
+        TrackHelper.track().event("PrEP Facts","View").name(prepInformation.getPrep_info_question()).with(tracker);
         prepInfoAnswer.loadDataWithBaseURL("",prepInformation.getPrep_info_answer() , "text/html", "utf-8", "");
         prepInfoAnswer.setPadding(20, 10, 20, 10);
         parentLayout.addView(prepInfoAnswer, new TableLayout.LayoutParams(

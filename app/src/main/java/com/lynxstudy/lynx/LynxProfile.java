@@ -99,6 +99,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     View view1;
     Button save;
     RelativeLayout prep_parent;
+    private Tracker tracker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -186,6 +187,10 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         mainContentLayout = (LinearLayout) findViewById(R.id.mainContentLayout);
         editLayout = (LinearLayout) findViewById(R.id.editLayout);
 
+        // Piwik Analytics //
+        tracker = ((lynxApplication) getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxprofile").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+
         db = new DatabaseHelper(LynxProfile.this);
         setSelected();
         /*upt_secQuestions = getResources().getStringArray(R.array.security_questions);
@@ -217,6 +222,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
                 startActivity(updateprofile);
                 finish();*/
                 setEditLayout();
+                TrackHelper.track().event("Navigation","Click").name("Profile Edit").with(tracker);
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {
@@ -236,9 +242,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         btn_prep.setOnClickListener(this);
         btn_chat.setOnClickListener(this);
         viewProfile.setOnClickListener(this);
-        // Piwik Analytics //
-        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
-        TrackHelper.track().screen("/Lynxprofile").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
     @Override
     public void onBackPressed() {
@@ -792,21 +795,25 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()) {
 
             case R.id.bot_nav_testing:
+                TrackHelper.track().event("Navigation","Click").name("Testing").with(tracker);
                 LynxManager.goToIntent(LynxProfile.this,"testing",LynxProfile.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
             case R.id.bot_nav_diary:
+                TrackHelper.track().event("Navigation","Click").name("Diary").with(tracker);
                 LynxManager.goToIntent(LynxProfile.this,"diary",LynxProfile.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
             case R.id.bot_nav_prep:
+                TrackHelper.track().event("Navigation","Click").name("PrEP").with(tracker);
                 LynxManager.goToIntent(LynxProfile.this,"prep",LynxProfile.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
             case R.id.bot_nav_chat:
+                TrackHelper.track().event("Navigation","Click").name("Chat").with(tracker);
                 LynxManager.goToIntent(LynxProfile.this,"chat",LynxProfile.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
@@ -967,6 +974,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
             callNotification();
 
             Toast.makeText(this, "User Profile Updated", Toast.LENGTH_SHORT).show();
+            TrackHelper.track().event("Profile","Update").name("User Profile Updated").with(tracker);
             /*Intent profile = new Intent(LynxProfileEdit.this,LynxProfile.class);
             startActivity(profile);
             finish();*/

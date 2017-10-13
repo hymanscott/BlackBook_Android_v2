@@ -58,10 +58,10 @@
     </string-array>
     <string-array name="partner_type">
         <item>Primary / Main partner</item>
+        <item>Friends with benefits</item>
         <item>Regular</item>
         <item>Hook-up</item>
-        <item>NSA</item>
-        <item>Friends with benefits</item>
+        <item>One-night stand</item>
     </string-array>
     <string-array name="monogamous_relationship">
         <item>Less than 6 months</item>
