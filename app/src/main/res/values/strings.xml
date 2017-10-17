@@ -57,7 +57,7 @@
         <item>HIV Positive and Undetectable</item>
     </string-array>
     <string-array name="partner_type">
-        <item>Primary / Main partner</item>
+        <item>Primary</item>
         <item>Friends with benefits</item>
         <item>Regular</item>
         <item>Hook-up</item>

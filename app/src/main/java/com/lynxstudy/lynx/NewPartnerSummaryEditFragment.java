@@ -151,7 +151,7 @@ public class NewPartnerSummaryEditFragment extends Fragment{
                 }
             }
         });
-        if(LynxManager.decryptString(LynxManager.getActivePartnerContact().getPartner_type()).equals("Primary / Main partner")){
+        if(LynxManager.decryptString(LynxManager.getActivePartnerContact().getPartner_type()).equals("Primary")){
             otherPartnerLayout.setVisibility(View.VISIBLE);
             otherPartner.setText(LynxManager.decryptString(LynxManager.getActivePartnerContact().getPartner_have_other_partners()));
             if(LynxManager.decryptString(LynxManager.getActivePartnerContact().getPartner_have_other_partners()).equals("No")){
@@ -252,7 +252,7 @@ public class NewPartnerSummaryEditFragment extends Fragment{
                             public void onClick(DialogInterface dialog, int which) {
                                 String text = partner_type_list.get(which).toString();
                                 partnerType.setText(text);
-                                if(text.equals("Primary / Main partner")){
+                                if(text.equals("Primary")){
                                     otherPartnerLayout.setVisibility(View.VISIBLE);
                                 }else{
                                     otherPartnerLayout.setVisibility(View.GONE);
@@ -272,7 +272,7 @@ public class NewPartnerSummaryEditFragment extends Fragment{
                             public void onClick(DialogInterface dialog, int which) {
                                 String text = partner_type_list.get(which).toString();
                                 partnerType.setText(text);
-                                if(text.equals("Primary / Main partner")){
+                                if(text.equals("Primary")){
                                     otherPartnerLayout.setVisibility(View.VISIBLE);
                                 }else{
                                     otherPartnerLayout.setVisibility(View.GONE);

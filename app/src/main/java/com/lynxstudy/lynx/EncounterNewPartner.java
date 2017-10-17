@@ -448,7 +448,7 @@ public class EncounterNewPartner extends AppCompatActivity {
         LynxManager.getActivePartnerContact().setMet_at(LynxManager.encryptString(metat.getText().toString()));
         LynxManager.getActivePartnerContact().setHandle(LynxManager.encryptString(handle.getText().toString()));
         String selectedPartnerType = partnerType.getText().toString();
-        if(selectedPartnerType.equals("Primary / Main partner")){
+        if(selectedPartnerType.equals("Primary")){
             String selectedOtherPartner = otherPartner.getText().toString();
             LynxManager.getActivePartnerContact().setPartner_have_other_partners(LynxManager.encryptString(selectedOtherPartner));
             if(selectedOtherPartner.equals("No")){
@@ -554,7 +554,7 @@ public class EncounterNewPartner extends AppCompatActivity {
         // Adding To primary partner table
 
         String partner_trpe = LynxManager.decryptString(LynxManager.getActivePartnerContact().getPartner_type());
-        if(partner_trpe.equals("Primary / Main partner")){
+        if(partner_trpe.equals("Primary")){
             UserPrimaryPartner priPartner = new UserPrimaryPartner(LynxManager.getActiveUserPrimaryPartner().getPrimarypartner_id(),
                     LynxManager.getActiveUser().getUser_id(),active_partner_contact.getName(),
                     "", LynxManager.getActivePartner().getHiv_status(), LynxManager.getActivePartner().getUndetectable_for_sixmonth(),

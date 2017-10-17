@@ -470,7 +470,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         partnerType.setText(LynxManager.decryptString(partnerContact.getPartner_type()));
         partnerType.setTypeface(tf);
 
-        if(LynxManager.decryptString(partnerContact.getPartner_type()).equals("Primary / Main partner")){
+        if(LynxManager.decryptString(partnerContact.getPartner_type()).equals("Primary")){
             otherPartnerLayout.setVisibility(View.VISIBLE);
             otherPartner.setText(LynxManager.decryptString(partnerContact.getPartner_have_other_partners()));
             if(LynxManager.decryptString(partnerContact.getPartner_have_other_partners()).equals("No")){
@@ -584,7 +584,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                             public void onClick(DialogInterface dialog, int which) {
                                 String text = partner_type_list.get(which).toString();
                                 partnerType.setText(text);
-                                if(text.equals("Primary / Main partner")){
+                                if(text.equals("Primary")){
                                     otherPartnerLayout.setVisibility(View.VISIBLE);
                                 }else{
                                     otherPartnerLayout.setVisibility(View.GONE);
@@ -604,7 +604,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                             public void onClick(DialogInterface dialog, int which) {
                                 String text = partner_type_list.get(which).toString();
                                 partnerType.setText(text);
-                                if(text.equals("Primary / Main partner")){
+                                if(text.equals("Primary")){
                                     otherPartnerLayout.setVisibility(View.VISIBLE);
                                 }else{
                                     otherPartnerLayout.setVisibility(View.GONE);
@@ -813,7 +813,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                     updatedPartnerContact.setPartner_have_other_partners(LynxManager.encryptString(""));
                     updatedPartnerContact.setRelationship_period(LynxManager.encryptString(""));
                     String selectedPartnerType = partnerType.getText().toString();
-                    if(selectedPartnerType.equals("Primary / Main partner")){
+                    if(selectedPartnerType.equals("Primary")){
                         String selectedOtherPartner = otherPartner.getText().toString();
                         updatedPartnerContact.setPartner_have_other_partners(LynxManager.encryptString(selectedOtherPartner));
                         if(selectedOtherPartner.equals("No")){

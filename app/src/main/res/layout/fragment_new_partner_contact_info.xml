@@ -269,7 +269,7 @@
                     android:textSize="@dimen/encounter_radio_btn_textsize"
                     android:textColor="@color/white"
                     android:buttonTint="@color/white"
-                    android:text="Primary / Main partner"
+                    android:text="Primary"
                     android:id="@+id/newPartnerPrimary" />
                 <RadioButton
                     android:layout_width="wrap_content"

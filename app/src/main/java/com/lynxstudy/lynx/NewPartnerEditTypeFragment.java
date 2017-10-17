@@ -72,7 +72,7 @@ public class NewPartnerEditTypeFragment extends Fragment {
                 int selectedPartnerType = radioGrp_partnerType.getCheckedRadioButtonId();
                 RadioButton partnerType_btn = (RadioButton) rootview.findViewById(selectedPartnerType);
                 String partnerType = partnerType_btn.getText().toString();
-                if (partnerType.equals("Primary / Main partner")){
+                if (partnerType.equals("Primary")){
                     partnerHaveOtherPartner_layout.setVisibility(View.VISIBLE);
                     LynxManager.partnerHaveOtherPartnerLayoutHidden = false;
                 }
@@ -105,7 +105,7 @@ public class NewPartnerEditTypeFragment extends Fragment {
 
         if(LynxManager.decryptString(LynxManager.getActivePartnerContact().getPartner_type())!=null){
             switch (LynxManager.decryptString(LynxManager.getActivePartnerContact().getPartner_type())){
-                case "Primary / Main partner":
+                case "Primary":
                     radioGrp_partnerType.check(newPartnerPrimary.getId());
                     partnerHaveOtherPartner_layout.setVisibility(View.VISIBLE);
                     LynxManager.partnerHaveOtherPartnerLayoutHidden = false;

@@ -103,12 +103,12 @@ public class EditPartnerContactInfoFragment extends Fragment {
             setSelectedRadio(rootview, newPartnerType_grp, partnerType);
             // partnerHaveOtherPartnerLayoutHidden is false if partner is PP
             RadioGroup ppop_grp = (RadioGroup) rootview.findViewById(R.id.radio_partner);
-            if(partnerType.equals("Primary / Main partner")){
+            if(partnerType.equals("Primary")){
                 partnerHaveOtherPartner_layout.setVisibility(View.VISIBLE);
                 LynxManager.partnerHaveOtherPartnerLayoutHidden = false;
                 setSelectedRadio(rootview, ppop_grp, LynxManager.decryptString(partnerContact.getPartner_have_other_partners()));
             }
-            if(partnerType.equals("Primary / Main partner")&& LynxManager.decryptString(partnerContact.getPartner_have_other_partners()).equals("No")){
+            if(partnerType.equals("Primary")&& LynxManager.decryptString(partnerContact.getPartner_have_other_partners()).equals("No")){
                 partnerRelationship_layout.setVisibility(View.VISIBLE);
                 LynxManager.partnerRelationshipLayoutHidden = false;
             }
@@ -120,7 +120,7 @@ public class EditPartnerContactInfoFragment extends Fragment {
                 int selectedPartnerType = radioGrp_partnerType.getCheckedRadioButtonId();
                 RadioButton partnerType_btn = (RadioButton) rootview.findViewById(selectedPartnerType);
                 String partnerType = partnerType_btn.getText().toString();
-                if (partnerType.equals("Primary / Main partner")){
+                if (partnerType.equals("Primary")){
                     partnerHaveOtherPartner_layout.setVisibility(View.VISIBLE);
                     LynxManager.partnerHaveOtherPartnerLayoutHidden = false;
                 }

@@ -7,12 +7,14 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="@color/white"
 tools:context="com.lynxstudy.lynx.LynxBadges">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true">
+
         <LinearLayout
             android:id="@+id/badgesMainContent"
             android:layout_width="match_parent"
@@ -28,462 +30,742 @@ tools:context="com.lynxstudy.lynx.LynxBadges">
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
                         android:layout_marginBottom="16dp"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="24dp"
                         android:orientation="horizontal">
+
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/trends_home_new"/>
+                            android:src="@drawable/trends_home_new" />
+
                         <TextView
+                            android:id="@+id/pageTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/pageTitle"
+                            android:layout_marginLeft="16dp"
+                            android:lineSpacingMultiplier="1.40"
                             android:text="Your Trends"
                             android:textColor="@color/profile_title_text_color"
                             android:textSize="20sp"
-                            android:lineSpacingMultiplier="1.40"
-                            android:layout_marginLeft="16dp"/>
+                            android:textStyle="bold" />
                     </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:background="@color/grey_border"/>
+                        android:background="@color/grey_border" />
+
                     <TextView
+                        android:id="@+id/partnersChartTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
                         android:layout_marginBottom="10dp"
-                        android:text="Your partners"
-                        android:textColor="@color/text_color"
-                        android:textSize="16sp"
-                        android:id="@+id/partnersChartTitle"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:lineSpacingMultiplier="1.50"/>
+                        android:layout_marginTop="24dp"
+                        android:lineSpacingMultiplier="1.50"
+                        android:text="Your Partners"
+                        android:textColor="@color/text_color"
+                        android:textSize="16sp"
+                        android:textStyle="italic|bold" />
+
                     <com.github.mikephil.charting.charts.HorizontalBarChart
                         android:id="@+id/chart1"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_marginBottom="8dp"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/activity_horizontal_margin"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:layout_width="@dimen/legendColorWidthHeight"
+                                    android:layout_height="@dimen/legendColorWidthHeight"
+                                    android:background="@color/chart_blue"
+                                    android:gravity="end"
+                                    android:text=" " />
+
+                                <TextView
+                                    android:id="@+id/legendMen"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="8dp"
+                                    android:gravity="end"
+                                    android:text="MEN"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:layout_width="@dimen/legendColorWidthHeight"
+                                    android:layout_height="@dimen/legendColorWidthHeight"
+                                    android:background="@color/chart_green"
+                                    android:gravity="end"
+                                    android:text=" " />
+
+                                <TextView
+                                    android:id="@+id/legendTransMen"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="8dp"
+                                    android:gravity="end"
+                                    android:text="TRANS MEN"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:layout_width="@dimen/legendColorWidthHeight"
+                                    android:layout_height="@dimen/legendColorWidthHeight"
+                                    android:background="@color/chart_orange"
+                                    android:gravity="end"
+                                    android:text=" " />
+
+                                <TextView
+                                    android:id="@+id/legendWomen"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="8dp"
+                                    android:gravity="end"
+                                    android:text="WOMEN"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="@dimen/legendColorWidthHeight"
+                                android:layout_height="@dimen/legendColorWidthHeight"
+                                android:background="@color/chart_purple"
+                                android:gravity="end"
+                                android:text=" " />
+
+                            <TextView
+                                android:id="@+id/legendTransWomen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:text="TRANS WOMEN"
+                                android:textColor="@color/text_color"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/PartnersTrend"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/menPercentage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.6"
+                                android:background="@color/chart_blue"
+                                android:gravity="center"
+                                android:text="60%"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/transMenPercentage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.15"
+                                android:background="@color/chart_green"
+                                android:gravity="center"
+                                android:text="15%"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/womenPercentage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.15"
+                                android:background="@color/chart_orange"
+                                android:gravity="center"
+                                android:text="15%"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/transWomenPercentage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.1"
+                                android:background="@color/chart_purple"
+                                android:gravity="center"
+                                android:text="10%"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:background="@color/grey_border"/>
-                <TextView
+                        android:layout_marginTop="24dp"
+                        android:background="@color/grey_border" />
+
+                    <TextView
+                        android:id="@+id/partnerTypeChartTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
                         android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="24dp"
+                        android:lineSpacingMultiplier="1.50"
                         android:text="Partners Types"
                         android:textColor="@color/text_color"
                         android:textSize="16sp"
-                        android:id="@+id/partnerTypeChartTitle"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:lineSpacingMultiplier="1.50"/>
+                        android:textStyle="italic|bold" />
+
                     <com.github.mikephil.charting.charts.HorizontalBarChart
                         android:id="@+id/partnerTypes"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:layout_marginBottom="8dp"/>
+                        android:layout_marginBottom="8dp"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/activity_horizontal_margin"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:layout_width="@dimen/legendColorWidthHeight"
+                                    android:layout_height="@dimen/legendColorWidthHeight"
+                                    android:background="@color/chart_blue"
+                                    android:gravity="end"
+                                    android:text=" " />
+
+                                <TextView
+                                    android:id="@+id/legendPrimary"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="8dp"
+                                    android:gravity="end"
+                                    android:text="PRIMARY"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:layout_width="@dimen/legendColorWidthHeight"
+                                    android:layout_height="@dimen/legendColorWidthHeight"
+                                    android:background="@color/chart_orange"
+                                    android:gravity="end"
+                                    android:text=" " />
+
+                                <TextView
+                                    android:id="@+id/legendRegular"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="8dp"
+                                    android:gravity="end"
+                                    android:text="REGULAR"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:layout_width="@dimen/legendColorWidthHeight"
+                                    android:layout_height="@dimen/legendColorWidthHeight"
+                                    android:background="@color/chart_grey"
+                                    android:gravity="end"
+                                    android:text=" " />
+
+                                <TextView
+                                    android:id="@+id/legendHookUp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="8dp"
+                                    android:gravity="end"
+                                    android:text="HOOK-UP"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:layout_width="@dimen/legendColorWidthHeight"
+                                    android:layout_height="@dimen/legendColorWidthHeight"
+                                    android:background="@color/chart_purple"
+                                    android:gravity="end"
+                                    android:text=" " />
+
+                                <TextView
+                                    android:id="@+id/legendOneNightStand"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="8dp"
+                                    android:text="ONE NIGHT STAND"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:layout_width="@dimen/legendColorWidthHeight"
+                                    android:layout_height="@dimen/legendColorWidthHeight"
+                                    android:background="@color/chart_green"
+                                    android:gravity="end"
+                                    android:text=" " />
+
+                                <TextView
+                                    android:id="@+id/legendFriends"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="8dp"
+                                    android:text="FRIENDS WITH BENEFITS"
+                                    android:textColor="@color/text_color"
+                                    android:textSize="14sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/PartnerTypeTrend"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/primaryPercentage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="56dp"
+                                android:layout_weight="0.35"
+                                android:background="@color/chart_blue"
+                                android:gravity="center"
+                                android:text="35%"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/regularPercentage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="56dp"
+                                android:layout_weight="0.3"
+                                android:background="@color/chart_orange"
+                                android:gravity="center"
+                                android:text="30%"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/hookupPercentage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="56dp"
+                                android:layout_weight="0.1"
+                                android:background="@color/chart_grey"
+                                android:gravity="center"
+                                android:text="10%"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/NSAPercentage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="56dp"
+                                android:layout_weight="0.2"
+                                android:background="@color/chart_purple"
+                                android:gravity="center"
+                                android:text="20%"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:id="@+id/friendsPercentage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="56dp"
+                                android:layout_weight="0.05"
+                                android:background="@color/chart_green"
+                                android:gravity="center"
+                                android:text="5%"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:layout_marginBottom="24dp"
-                        android:background="@color/grey_border"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/demo"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:weightSum="1">
+                        android:layout_marginTop="24dp"
+                        android:background="@color/grey_border" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="56dp"
-                            android:text="60%"
-                            android:gravity="center"
-                            android:textSize="18sp"
-                            android:layout_weight="0.6"
-                            android:background="@color/chart_blue"
-                            android:textColor="@color/white"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="56dp"
-                            android:text="15%"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            android:layout_weight="0.15"
-                            android:textSize="18sp"
-                            android:background="@color/chart_green"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="56dp"
-                            android:text="15%"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            android:layout_weight="0.15"
-                            android:textSize="18sp"
-                            android:background="@color/chart_orange"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="56dp"
-                            android:text="10%"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            android:layout_weight="0.1"
-                            android:textSize="18sp"
-                            android:background="@color/chart_purple"/>
-                    </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical">
-                            <TextView
-                                android:layout_width="10dp"
-                                android:layout_height="10dp"
-                                android:text=" "
-                                android:background="@color/chart_blue"
-                                android:gravity="end"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Men"
-                                android:layout_marginLeft="8dp"
-                                android:textColor="@color/text_color"
-                                android:gravity="end"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                            android:gravity="center_vertical">
-                            <TextView
-                                android:layout_width="10dp"
-                                android:layout_height="10dp"
-                                android:text=" "
-                                android:background="@color/chart_green"
-                                android:gravity="end"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Trans Men"
-                                android:layout_marginLeft="8dp"
-                                android:textColor="@color/text_color"
-                                android:gravity="end"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                            android:gravity="center_vertical">
-                            <TextView
-                                android:layout_width="10dp"
-                                android:layout_height="10dp"
-                                android:text=" "
-                                android:background="@color/chart_orange"
-                                android:gravity="end"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Women"
-                                android:layout_marginLeft="8dp"
-                                android:textColor="@color/text_color"
-                                android:gravity="end"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                            android:gravity="center_vertical">
-                            <TextView
-                                android:layout_width="10dp"
-                                android:layout_height="10dp"
-                                android:text=" "
-                                android:background="@color/chart_purple"
-                                android:gravity="end"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Trans women"
-                                android:layout_marginLeft="8dp"
-                                android:textColor="@color/text_color"
-                                />
-                        </LinearLayout>
+                        android:orientation="horizontal">
 
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin">
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
+
                             <me.tankery.lib.circularseekbar.CircularSeekBar
                                 android:layout_width="110dp"
                                 android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                android:layout_centerVertical="true"
-                                android:layout_centerHorizontal="true"
-                                app:cs_negative_enabled="false"
-                                app:cs_circle_style="round"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
                                 app:cs_circle_stroke_width="1dp"
-                                app:cs_progress="100"
+                                app:cs_circle_style="round"
                                 app:cs_disable_pointer="true"
-                                app:cs_circle_color = "@color/profile_edittext_hint"
-                                app:cs_circle_progress_color = "@color/profile_title_text_color"/>
-                            <me.tankery.lib.circularseekbar.CircularSeekBar
-                                android:layout_width="120dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                android:layout_centerVertical="true"
-                                android:layout_centerHorizontal="true"
                                 app:cs_negative_enabled="false"
-                                app:cs_circle_style="square"
-                                app:cs_circle_stroke_width="10dp"
-                                app:cs_progress="50"
+                                app:cs_progress="100" />
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
                                 android:id="@+id/exclusive_bottom"
-                                app:cs_disable_pointer="true"
-                                app:cs_circle_color = "@android:color/transparent"
-                                app:cs_circle_progress_color = "@color/profile_title_text_color"/>
-                            <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="120dp"
                                 android:layout_height="wrap_content"
-                                android:text="50%"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
+                                app:cs_circle_stroke_width="10dp"
+                                app:cs_circle_style="square"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="0" />
+
+                            <TextView
                                 android:id="@+id/bottom_progress"
-                                android:textColor="@color/profile_title_text_color"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"/>
+                                android:layout_centerVertical="true"
+                                android:text="0%"
+                                android:textColor="@color/profile_title_text_color"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
                         </RelativeLayout>
+
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="of the time you are exclusively a bottom."
-                            android:textSize="16sp"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                            android:lineSpacingMultiplier="1.25"
                             android:id="@+id/bottom_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:lineSpacingMultiplier="1.25"
+                            android:text="of the time you are exclusively a bottom."
                             android:textColor="@color/text_color"
-                            android:layout_gravity="center_vertical"/>
+                            android:textSize="16sp"
+                            android:textStyle="italic|bold" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="32dp"
-                        android:orientation="horizontal"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin">
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="32dp"
+                        android:orientation="horizontal">
+
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
+
                             <me.tankery.lib.circularseekbar.CircularSeekBar
                                 android:layout_width="110dp"
                                 android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                android:layout_centerVertical="true"
-                                android:layout_centerHorizontal="true"
-                                app:cs_negative_enabled="false"
-                                app:cs_circle_style="round"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
                                 app:cs_circle_stroke_width="1dp"
-                                app:cs_progress="100"
+                                app:cs_circle_style="round"
                                 app:cs_disable_pointer="true"
-                                app:cs_circle_color = "@color/profile_edittext_hint"
-                                app:cs_circle_progress_color = "@color/profile_title_text_color"/>
-                            <me.tankery.lib.circularseekbar.CircularSeekBar
-                                android:layout_width="120dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                android:layout_centerVertical="true"
-                                android:layout_centerHorizontal="true"
                                 app:cs_negative_enabled="false"
-                                app:cs_circle_style="square"
-                                app:cs_circle_stroke_width="10dp"
-                                app:cs_progress="50"
+                                app:cs_progress="100" />
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
                                 android:id="@+id/exclusive_top"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
+                                app:cs_circle_stroke_width="10dp"
+                                app:cs_circle_style="square"
                                 app:cs_disable_pointer="true"
-                                app:cs_circle_color = "@android:color/transparent"
-                                app:cs_circle_progress_color = "@color/profile_title_text_color"/>
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="0" />
+
                             <TextView
+                                android:id="@+id/top_progress"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="50%"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:id="@+id/top_progress"
-                                android:textColor="@color/profile_title_text_color"
                                 android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"/>
+                                android:layout_centerVertical="true"
+                                android:text="0%"
+                                android:textColor="@color/profile_title_text_color"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
                         </RelativeLayout>
+
                         <TextView
+                            android:id="@+id/top_description"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="of the time you are exclusively a top."
-                            android:textSize="16sp"
+                            android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:lineSpacingMultiplier="1.25"
-                            android:id="@+id/top_description"
+                            android:text="of the time you are exclusively a top."
                             android:textColor="@color/text_color"
-                            android:layout_gravity="center_vertical"/>
+                            android:textSize="16sp"
+                            android:textStyle="italic|bold" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="32dp"
-                        android:orientation="horizontal"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin">
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="32dp"
+                        android:orientation="horizontal">
+
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
+
                             <me.tankery.lib.circularseekbar.CircularSeekBar
                                 android:layout_width="110dp"
                                 android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                android:layout_centerVertical="true"
-                                android:layout_centerHorizontal="true"
-                                app:cs_negative_enabled="false"
-                                app:cs_circle_style="round"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
                                 app:cs_circle_stroke_width="1dp"
-                                app:cs_progress="100"
+                                app:cs_circle_style="round"
                                 app:cs_disable_pointer="true"
-                                app:cs_circle_color = "@color/profile_edittext_hint"
-                                app:cs_circle_progress_color = "@color/profile_title_text_color"/>
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
                             <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:id="@+id/versatile"
                                 android:layout_width="120dp"
                                 android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                android:layout_centerVertical="true"
-                                android:layout_centerHorizontal="true"
-                                app:cs_negative_enabled="false"
-                                app:cs_circle_style="square"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
                                 app:cs_circle_stroke_width="10dp"
-                                app:cs_progress="25"
-                                android:id="@+id/versatile"
+                                app:cs_circle_style="square"
                                 app:cs_disable_pointer="true"
-                                app:cs_circle_color = "@android:color/transparent"
-                                app:cs_circle_progress_color = "@color/profile_title_text_color"/>
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="0" />
+
                             <TextView
+                                android:id="@+id/versatile_progress"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="50%"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:id="@+id/versatile_progress"
-                                android:textColor="@color/profile_title_text_color"
                                 android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"/>
+                                android:layout_centerVertical="true"
+                                android:text="0%"
+                                android:textColor="@color/profile_title_text_color"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
                         </RelativeLayout>
+
                         <TextView
+                            android:id="@+id/versatile_description"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="of the time you are versatile."
-                            android:textSize="16sp"
+                            android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:lineSpacingMultiplier="1.25"
-                            android:id="@+id/versatile_description"
+                            android:text="of the time you are versatile."
                             android:textColor="@color/text_color"
-                            android:layout_gravity="center_vertical"/>
+                            android:textSize="16sp"
+                            android:textStyle="italic|bold" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="32dp"
-                        android:orientation="horizontal"
                         android:layout_marginBottom="48dp"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin">
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="32dp"
+                        android:orientation="horizontal">
+
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
+
                             <me.tankery.lib.circularseekbar.CircularSeekBar
                                 android:layout_width="110dp"
                                 android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                android:layout_centerVertical="true"
-                                android:layout_centerHorizontal="true"
-                                app:cs_negative_enabled="false"
-                                app:cs_circle_style="round"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
                                 app:cs_circle_stroke_width="1dp"
-                                app:cs_progress="100"
+                                app:cs_circle_style="round"
                                 app:cs_disable_pointer="true"
-                                app:cs_circle_color = "@color/profile_edittext_hint"
-                                app:cs_circle_progress_color = "@color/profile_title_text_color"/>
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
                             <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:id="@+id/condom_use"
                                 android:layout_width="120dp"
                                 android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                android:layout_centerVertical="true"
-                                android:layout_centerHorizontal="true"
-                                app:cs_negative_enabled="false"
-                                app:cs_circle_style="square"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
                                 app:cs_circle_stroke_width="10dp"
-                                app:cs_progress="15"
-                                android:id="@+id/condom_use"
+                                app:cs_circle_style="square"
                                 app:cs_disable_pointer="true"
-                                app:cs_circle_color = "@android:color/transparent"
-                                app:cs_circle_progress_color = "@color/profile_title_text_color"/>
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="0" />
+
                             <TextView
+                                android:id="@+id/condom_use_progress"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="50%"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:id="@+id/condom_use_progress"
-                                android:textColor="@color/profile_title_text_color"
                                 android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"/>
+                                android:layout_centerVertical="true"
+                                android:text="0%"
+                                android:textColor="@color/profile_title_text_color"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
                         </RelativeLayout>
+
                         <TextView
+                            android:id="@+id/condom_use_description"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="of the time you use a condom during sex."
-                            android:textSize="16sp"
+                            android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:lineSpacingMultiplier="1.25"
-                            android:id="@+id/condom_use_description"
+                            android:text="of the time you use a condom during sex."
                             android:textColor="@color/text_color"
-                            android:layout_gravity="center_vertical"/>
+                            android:textSize="16sp"
+                            android:textStyle="italic|bold" />
                     </LinearLayout>
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/bot_nav"
             android:layout_width="match_parent"
@@ -515,8 +797,8 @@ tools:context="com.lynxstudy.lynx.LynxBadges">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Home"
-                    android:textSize="14sp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
