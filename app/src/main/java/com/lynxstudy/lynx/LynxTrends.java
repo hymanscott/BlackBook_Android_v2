@@ -35,12 +35,14 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.google.android.gms.internal.fa;
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.EncounterSexType;
 import com.lynxstudy.model.Partners;
 
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import me.tankery.lib.circularseekbar.CircularSeekBar;
 
@@ -464,9 +466,28 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
         TextView condom_use_description = (TextView)findViewById(R.id.condom_use_description);
         condom_use_description.setTypeface(tf_bold_italic);
         CircularSeekBar condom_use = (CircularSeekBar)findViewById(R.id.condom_use);
-
-        Log.v("topCount", String.valueOf(db.getAllEncounterSexTypeCountByName("I topped")));
-        Log.v("EncounterCount", String.valueOf(db.getEncountersCount()));
+        List<EncounterSexType> encounterSexTypes = db.getCondomUsageEncounterSexTypes();
+        int condomusagecount = 0;
+        for (EncounterSexType encounterSexType:encounterSexTypes) {
+            Log.v("Condom text",encounterSexType.getCondom_use());
+            Log.v("Condom textdec",LynxManager.decryptString(encounterSexType.getCondom_use()));
+            if(encounterSexType.getCondom_use().equals("Condom used"))
+                condomusagecount++;
+        }
+        float condomusage_percent = 0;
+        if(encounterSexTypes.size()>0){
+            condomusage_percent =(float)condomusagecount/encounterSexTypes.size();
+        }
+        int condomusage_value = (int) (condomusage_percent*100);
+        if(top_progress_value>0){
+            condom_use.setVisibility(View.VISIBLE);
+            condom_use.setProgress(condomusage_value);
+        }else{
+            condom_use.setVisibility(View.GONE);
+        }
+        top_progress.setText(condomusage_value + "%");
+        Log.v("topCount", String.valueOf(condomusagecount));
+        Log.v("CoomdomEntriesCount", String.valueOf(encounterSexTypes.size()));
 
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();

@@ -55,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
 
     // Database Name
     private static final String DATABASE_NAME = "phasttDB";
@@ -714,7 +714,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         user.setIs_prep((c.getString(c.getColumnIndex(KEY_USERS_PREP))));
         user.setCreatedAt(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
         user.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
-
+        c.close();
         return user;
     }
 
@@ -733,6 +733,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null)
             c.moveToFirst();
         String created = c.getString(c.getColumnIndex(KEY_CREATED_AT));
+        c.close();
         return created;
     }
     /**
@@ -776,7 +777,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (c.moveToNext());
         }
         }
-
+        c.close();
         return users;
     }
 
@@ -929,7 +930,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (c.moveToNext());
         }
         }
-
+        c.close();
         return users_list;
     }
 
@@ -1015,7 +1016,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         user.setSexpro_score(c.getInt(c.getColumnIndex(KEY_BASE_SEXPRO_SCORE)));
         user.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
-
+        c.close();
         return user;
     }
 
@@ -1034,6 +1035,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null)
             c.moveToFirst();
         String createdAt = c.getString(c.getColumnIndex(KEY_CREATED_AT));
+        c.close();
         return createdAt;
     }
 
@@ -1067,7 +1069,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         user.setSexpro_score(c.getInt(c.getColumnIndex(KEY_BASE_SEXPRO_SCORE)));
         user.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
-
+        c.close();
         return user;
     }
     /**
@@ -1121,7 +1123,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (c.moveToNext());
         }
         }
-
+        c.close();
         return users;
     }
 
@@ -1194,7 +1196,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             c.moveToFirst();
             return c.getString(c.getColumnIndex(KEY_DRUG_NAME));
         }
-
+        c.close();
         return "";
     }
     /**
@@ -1217,6 +1219,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         drug.setDrug_id(c.getInt(c.getColumnIndex(KEY_DRUG_ID)));
         drug.setDrugName(c.getString(c.getColumnIndex(KEY_DRUG_NAME)));
         drug.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+        c.close();
         return drug;
     }
 
@@ -1242,6 +1245,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         drug.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
         Log.e(LOG, drug.getDrugName());
+        c.close();
         return drug;
     }
 
@@ -1271,7 +1275,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (c.moveToNext());
         }
         }
-
+        c.close();
         return drugs;
     }
 
@@ -1329,6 +1333,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sti.setSti_id(c.getInt(c.getColumnIndex(KEY_STI_ID)));
         sti.setstiName(c.getString(c.getColumnIndex(KEY_STI_NAME)));
         sti.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+        c.close();
         return sti;
     }
 
@@ -1352,6 +1357,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sti.setSti_id(c.getInt(c.getColumnIndex(KEY_STI_ID)));
         sti.setstiName(c.getString(c.getColumnIndex(KEY_STI_NAME)));
         sti.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+        c.close();
         return sti;
     }
 
@@ -1381,7 +1387,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (c.moveToNext());
         }
         }
-
+        c.close();
         return drugs;
     }
     // ------------------------ "User PRIMARY PARTNER " table methods ----------------//
@@ -1438,6 +1444,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         partner.setPartner_have_other_partners(c.getString(c.getColumnIndex(KEY_PRIPARTNER_OTHERPARTNER)));
         partner.setIs_added_to_blackbook(c.getString(c.getColumnIndex(KEY_PRIPARTNER_ISADDED)));
         partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+        c.close();
         return partner;
     }
 
@@ -1470,6 +1477,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
             return partner;
         }
+        c.close();
         return null;
     }
 
@@ -1489,6 +1497,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null)
             c.moveToFirst();
         String createdAt = c.getString(c.getColumnIndex(KEY_CREATED_AT));
+        c.close();
         return createdAt;
     }
     /**
@@ -1543,7 +1552,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (c.moveToNext());
         }
         }
-
+        c.close();
         return Partners;
     }
 
@@ -1637,6 +1646,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         partner.setIs_added_to_partners(c.getString(c.getColumnIndex(KEY_PARTNER_ADDEDTOLIST)));
         partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
         partner.setPartner_idle(c.getInt(c.getColumnIndex(KEY_PARTNER_IDLE)));
+
+        c.close();
         return partner;
     }
 
@@ -1672,7 +1683,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (c.moveToNext());
         }
         }
-
+        c.close();
         return Partners;
     }
 
@@ -1709,7 +1720,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (c.moveToNext());
         }
         }
-
+        c.close();
         return Partners;
     }
     // Update partner from new summary screen layout //
@@ -1758,7 +1769,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (c.moveToNext());
         }
         }
-
+        c.close();
         return Partners;
     }
     /**
@@ -1856,7 +1867,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (c.moveToNext());
         }
         }
-
+        c.close();
         return drugUses;
 
     }
@@ -1887,7 +1898,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 drugUses.add(drugUse);
             } while (c.moveToNext());
         }
-
+        c.close();
         return drugUses;
     }
 
@@ -1953,6 +1964,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         stiDiag.setUser_id(c.getInt(c.getColumnIndex(KEY_STIDIAG_USERID)));
         stiDiag.setIs_baseline(c.getString(c.getColumnIndex(KEY_STIDIAG_ISBASELINE)));
         stiDiag.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+        c.close();
         return stiDiag;
     }
 
@@ -1969,6 +1981,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null)
             c.moveToFirst();
         String createdAt= c.getString(c.getColumnIndex(KEY_CREATED_AT));
+        c.close();
         return createdAt;
     }
 
@@ -2006,7 +2019,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 stiDiags.add(stiDiag);
             } while (c.moveToNext());
         }
-
+        c.close();
         return stiDiags;
 
     }
@@ -2037,7 +2050,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 stiDiags.add(stiDiag);
             } while (c.moveToNext());
         }
-
+        c.close();
         return stiDiags;
     }
 
@@ -2104,6 +2117,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         alcoholUse.setIs_baseline(c.getString(c.getColumnIndex(KEY_ALCOUSE_ISBASELINE)));
         alcoholUse.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
         alcoholUse.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+        c.close();
         return alcoholUse;
     }
 
@@ -2140,7 +2154,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             alcoholUse.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
             return alcoholUse;
         }
-
+        c.close();
         return null;
 
     }
@@ -2174,7 +2188,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 alcoholUses.add(alcoholUse);
             } while (c.moveToNext());
         }
-
+        c.close();
         return alcoholUses;
     }
 
@@ -2215,7 +2229,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 alcoholUses.add(alcoholUse);
             } while (c.moveToNext());
         }
-
+        c.close();
         return alcoholUses;
 
     }
@@ -2327,6 +2341,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             partnerContact.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
             return partnerContact;
         }
+        c.close();
         return null;
     }
 
@@ -2366,6 +2381,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             partnerContact.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
             return partnerContact;
         }
+        c.close();
         return null;
 
     }
@@ -2415,7 +2431,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Partner_contact_list.add(partnerContact);
             } while (c.moveToNext());
         }
-
+        c.close();
         return Partner_contact_list;
 
     }
@@ -2505,7 +2521,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 utrs.add(urt);
             } while (c.moveToNext());
         }
-
+        c.close();
         return utrs;
     }
 
@@ -2542,6 +2558,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (c.moveToNext());
 
         }
+        c.close();
         return rating_field_list;
     }
 
@@ -2599,6 +2616,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         testNameMaster.setTesting_id(c.getInt(c.getColumnIndex(KEY_TESTING_ID)));
         testNameMaster.setTestName(c.getString(c.getColumnIndex(KEY_TESTING_NAME)));
         testNameMaster.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+        c.close();
         return testNameMaster;
     }
 
@@ -2623,7 +2642,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         testNameMaster.setTestName(c.getString(c.getColumnIndex(KEY_TESTING_NAME)));
         testNameMaster.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
-
+        c.close();
         Log.e(LOG, testNameMaster.getTestName());
         return testNameMaster;
     }
@@ -2684,6 +2703,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
             return partner;
         }
+        c.close();
         return null;
     }
     /**
@@ -2721,6 +2741,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
             return Partners;
         }
+        c.close();
         return null;
     }
     /**
@@ -2770,6 +2791,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 PartnerRatings.add(partner);
             } while (c.moveToNext());
         }
+        c.close();
         return PartnerRatings;
     }
 
@@ -2875,7 +2897,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         encounter.setIs_possible_sex_tomorrow((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISSEX_TOMORROW))));
 
         encounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
+        c.close();
         return encounter;
     }
 
@@ -2913,7 +2935,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounters.add(encounter);
             } while (c.moveToNext());
         }
-
+        c.close();
         return encounters;
     }
 
@@ -2950,7 +2972,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounters.add(encounter);
             } while (c.moveToNext());
         }
-
+        c.close();
         return encounters;
     }
 
@@ -3032,7 +3054,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounterSexTypes.add(encounterSexType);
             } while (c.moveToNext());
         }
-
+        c.close();
         return encounterSexTypes;
     }
 
@@ -3064,7 +3086,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounterSexTypes.add(encounterSexType);
             } while (c.moveToNext());
         }
-
+        c.close();
         return encounterSexTypes;
     }
 
@@ -3093,6 +3115,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
+    /**
+      *Get all condom usage EncounterSexTypes
+      */
+
+    public List<EncounterSexType> getCondomUsageEncounterSexTypes(){
+        String itop = "I topped";
+        String ibot = "I bottomed";
+        String isuckhim = "I sucked him";
+        String isuckher = "I sucked her";
+        String wefuck = "We fucked";
+        String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE + " WHERE " + KEY_ENCSEXTYPE_SEXTYPE + " IN ( '"+ LynxManager.encryptString(itop)+"', '"+LynxManager.encryptString(ibot)
+                +"', '"+LynxManager.encryptString(isuckher)+"', '"+LynxManager.encryptString(isuckhim)+"', '"+LynxManager.encryptString(wefuck) + "' )";
+        String cond_used = "Condom used";
+        String cond_part_used = "Condom used part of the time";
+        String cond_not_used = "Condom not used";
+        //String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE + " WHERE " + KEY_ENCSEXTYPE_CONDOMUSE + " IN ( 'Condom used','Condom used part of the time','Condom not used')";
+
+        List<EncounterSexType> encounterSexTypes = new ArrayList<EncounterSexType>();
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                EncounterSexType encounterSexType = new EncounterSexType();
+                encounterSexType.setEncounter_sex_type_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_ID)));
+                encounterSexType.setEncounter_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_ENCOUNTERID)));
+                encounterSexType.setUser_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_USERID)));
+                encounterSexType.setSex_type(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_SEXTYPE)));
+                encounterSexType.setCondom_use(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_CONDOMUSE)));
+                encounterSexType.setNote(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_NOTE)));
+                encounterSexType.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // adding to Users list
+                encounterSexTypes.add(encounterSexType);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return encounterSexTypes;
+    }
 
     /**
      * get datetime
@@ -3157,6 +3221,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             return testingReminder;
         }
+        c.close();
         return null;
     }
 
@@ -3208,7 +3273,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 testingReminders.add(testingReminder);
             } while (c.moveToNext());
         }
-
+        c.close();
         return testingReminders;
     }
 
@@ -3271,6 +3336,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         testingHistory.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_USERID)));
         testingHistory.setTesting_date(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_TESTINGDATE)));
         testingHistory.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+        c.close();
         return testingHistory;
     }
 
@@ -3301,7 +3367,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 testingHistories.add(testHistory);
             } while (c.moveToNext());
         }
-
+        c.close();
         return testingHistories;
     }
 
@@ -3331,7 +3397,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 testingHistories.add(testHistory);
             } while (c.moveToNext());
         }
-
+        c.close();
         return testingHistories;
     }
 
@@ -3413,7 +3479,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 testingHistoryInfoList.add(testingHistoryInfo);
             } while (c.moveToNext());
         }
-
+        c.close();
         return testingHistoryInfoList;
     }
 
@@ -3445,7 +3511,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 testingHistoryInfoList.add(testingHistoryInfo);
             } while (c.moveToNext());
         }
-
+        c.close();
         return testingHistoryInfoList;
     }
 
@@ -3518,7 +3584,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 homeTestingRequests.add(homeTestingRequest);
             } while (c.moveToNext());
         }
-
+        c.close();
         return homeTestingRequests;
     }
     /**
@@ -3597,6 +3663,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         testingLocations.setOperation_hours(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_OPERATION_HOURS)));
         testingLocations.setInsurance(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_INSURANCE)));
         testingLocations.setAges(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_AGES)));
+        c.close();
         return testingLocations;
     }
 
@@ -3637,7 +3704,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 } while (c.moveToNext());
             }
         }
-
+        c.close();
         return testingLocationsList;
     }
 
@@ -3684,7 +3751,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 prep_information_list.add(prepinformation);
             } while (c.moveToNext());
         }
-
+        c.close();
         return prep_information_list;
     }
 
@@ -3706,7 +3773,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         prep.setPrep_info_answer(c.getString(c.getColumnIndex(KEY_PREP_INFO_ANSWER)));
         prep.setPrep_info_question(c.getString(c.getColumnIndex(KEY_PREP_INFO_QUESTION)));
 
-
+        c.close();
         return prep;
     }
 
@@ -3761,7 +3828,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 testinginstruction_list.add(testinginstruction);
             } while (c.moveToNext());
         }
-
+        c.close();
         return testinginstruction_list;
     }
     /**
@@ -3787,7 +3854,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
          testinginstruction.setAnswer(c.getString(c.getColumnIndex(KEY_TESTING_INSTRUCTION_ANSWER)));
          testinginstruction.setVideo_link(c.getString(c.getColumnIndex(KEY_TESTING_INSTRUCTION_VIDEOLINK)));
          testinginstruction.setPdf_link(c.getString(c.getColumnIndex(KEY_TESTING_INSTRUCTION_PDFLINK)));
-
+         c.close();
      return testinginstruction;
      }
 
@@ -3839,7 +3906,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cloudMessaging.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
 
             return cloudMessaging;
-        }
+        }c.close();
         return null;
     }
 
@@ -3960,6 +4027,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 videosList.add(video);
             } while (c.moveToNext());
         }
+        c.close();
         return videosList;
     }
 
@@ -3983,8 +4051,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             video.setVideo_image_url(c.getString(c.getColumnIndex(KEY_VIDEO_IMAGE_URL)));
             video.setPriority(c.getInt(c.getColumnIndex(KEY_VIDEO_PRIORITY)));
             video.setIs_watched(c.getInt(c.getColumnIndex(KEY_VIDEO_ISWATCHED)));
+            c.close();
             return video;
         }else{
+            c.close();
             return null;
         }
     }
@@ -4051,6 +4121,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 messageList.add(message);
             } while (c.moveToNext());
         }
+        c.close();
         return messageList;
     }
 
@@ -4172,6 +4243,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         badgesMaster.setBadge_icon(c.getString(c.getColumnIndex(KEY_BADGE_ICON)));
         badgesMaster.setBadge_activity(c.getString(c.getColumnIndex(KEY_BADGE_ACTIVITY)));
         badgesMaster.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+        c.close();
         return badgesMaster;
     }
     /**
@@ -4198,6 +4270,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         badgesMaster.setBadge_icon(c.getString(c.getColumnIndex(KEY_BADGE_ICON)));
         badgesMaster.setBadge_activity(c.getString(c.getColumnIndex(KEY_BADGE_ACTIVITY)));
         badgesMaster.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+        c.close();
         return badgesMaster;
     }
 
@@ -4231,7 +4304,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 } while (c.moveToNext());
             }
         }
-
+        c.close();
         return badgesMasterList;
     }
 
@@ -4322,7 +4395,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 } while (c.moveToNext());
             }
         }
-
+        c.close();
         return userBadgesList;
 
     }
@@ -4355,7 +4428,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 userBadgesList.add(userBadge);
             } while (c.moveToNext());
         }
-
+        c.close();
         return userBadgesList;
     }
     /**
@@ -4387,7 +4460,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 userBadgesList.add(userBadge);
             } while (c.moveToNext());
         }
-
+        c.close();
         return userBadgesList;
     }
     /**
@@ -4428,7 +4501,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 userBadgesList.add(userBadge);
             } while (c.moveToNext());
         }
-
+        c.close();
         return userBadgesList;
     }
     /**

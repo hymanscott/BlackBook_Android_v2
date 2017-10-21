@@ -186,9 +186,10 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             @Override
             public void onClick(View v) {
                 TrackHelper.track().event("Home Category","Click").name("Trends").with(tracker);
-                Intent trends = new Intent(LynxHome.this,LynxTrends.class);
+                Toast.makeText(LynxHome.this,"Trends",Toast.LENGTH_SHORT).show();
+                /*Intent trends = new Intent(LynxHome.this,LynxTrends.class);
                 startActivity(trends);
-                finish();
+                finish();*/
             }
         });
         insights.setOnClickListener(new View.OnClickListener() {
