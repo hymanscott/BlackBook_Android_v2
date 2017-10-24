@@ -22,5 +22,5 @@
     <dimen name="info_window_title_size">20sp</dimen>
     <dimen name="info_window_text_size">16sp</dimen>
 
-    <dimen name="legendColorWidthHeight">10sp</dimen>
+    <dimen name="legendColorWidthHeight">10dp</dimen>
 </resources>

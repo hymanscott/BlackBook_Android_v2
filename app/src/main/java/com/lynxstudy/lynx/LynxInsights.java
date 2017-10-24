@@ -9,20 +9,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SeekBar;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -31,11 +25,10 @@ import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.ViewPortHandler;
-import com.google.android.gms.internal.fa;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.EncounterSexType;
+import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.Partners;
 
 import org.piwik.sdk.Tracker;
@@ -46,13 +39,13 @@ import java.util.List;
 
 import me.tankery.lib.circularseekbar.CircularSeekBar;
 
-public class LynxTrends extends AppCompatActivity implements OnChartValueSelectedListener, IValueFormatter,View.OnClickListener {
+public class LynxInsights extends AppCompatActivity implements OnChartValueSelectedListener, IValueFormatter,View.OnClickListener {
 
-    Typeface tf,tf_bold,tf_bold_italic;
+    Typeface tf,tf_bold,tf_italic,tf_bold_italic;
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
-    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,pageTitle,partnerTypeChartTitle,partnersChartTitle;
-    TextView legendMen,legendTransMen,legendWomen,legendTransWomen,legendPrimary,legendRegular,legendHookUp,legendOneNightStand,legendFriends;
-    TextView menPercentage,transMenPercentage,womenPercentage,transWomenPercentage,primaryPercentage,regularPercentage,hookupPercentage,NSAPercentage,friendsPercentage;
+    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,pageTitle,partnerTypeChartTitle,partnerHivChartTitle,partnersChartTitle,titleStats;
+    TextView legendMen,legendTransMen,legendWomen,legendTransWomen,legendPrimary,legendRegular,legendHookUp,legendOneNightStand,legendFriends,legendNegative,legendNegPrep,legendUnsure,legendPositive,legendUndectable;
+    TextView menPercentage,transMenPercentage,womenPercentage,transWomenPercentage,primaryPercentage,regularPercentage,hookupPercentage,NSAPercentage,friendsPercentage,negativePercentage,negPrepPercentage,unsurePercentage,positivePercentage,undectablePercentage;
     DatabaseHelper db;
 
     private HorizontalBarChart mChart,partnerTypesChart;
@@ -60,13 +53,15 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_lynx_trends);
-        db = new DatabaseHelper(LynxTrends.this);
+        setContentView(R.layout.activity_lynx_insights);
+        db = new DatabaseHelper(LynxInsights.this);
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
+        tf_italic = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Italic.ttf");
         tf_bold_italic = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-BoldItalic.ttf");
         // Custom Action Bar //
@@ -100,8 +95,15 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
         pageTitle.setTypeface(tf_bold);
         partnerTypeChartTitle = (TextView)findViewById(R.id.partnerTypeChartTitle);
         partnerTypeChartTitle.setTypeface(tf_bold_italic);
+        partnerHivChartTitle = (TextView)findViewById(R.id.partnerHivChartTitle);
+        partnerHivChartTitle.setTypeface(tf_bold_italic);
         partnersChartTitle = (TextView)findViewById(R.id.partnersChartTitle);
         partnersChartTitle.setTypeface(tf_bold_italic);
+        titleStats = (TextView)findViewById(R.id.titleStats);
+        titleStats.setTypeface(tf_italic);
+        int encounters = db.getEncountersCount();
+        int partners = db.getPartnersCount();
+        titleStats.setText("For "+encounters+" encounters with "+partners+" partners: ");
         /*Chart UI Fields*/
         legendMen = (TextView)findViewById(R.id.legendMen);
         legendMen.setTypeface(tf);
@@ -121,6 +123,16 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
         legendOneNightStand.setTypeface(tf);
         legendFriends = (TextView)findViewById(R.id.legendFriends);
         legendFriends.setTypeface(tf);
+        legendNegative = (TextView)findViewById(R.id.legendNegative);
+        legendNegative.setTypeface(tf);
+        legendNegPrep = (TextView)findViewById(R.id.legendNegPrep);
+        legendNegPrep.setTypeface(tf);
+        legendUnsure = (TextView)findViewById(R.id.legendUnsure);
+        legendUnsure.setTypeface(tf);
+        legendPositive = (TextView)findViewById(R.id.legendPositive);
+        legendPositive.setTypeface(tf);
+        legendUndectable = (TextView)findViewById(R.id.legendUndectable);
+        legendUndectable.setTypeface(tf);
 
         menPercentage = (TextView)findViewById(R.id.menPercentage);
         menPercentage.setTypeface(tf);
@@ -140,6 +152,16 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
         NSAPercentage.setTypeface(tf);
         friendsPercentage = (TextView)findViewById(R.id.friendsPercentage);
         friendsPercentage.setTypeface(tf);
+        negativePercentage = (TextView)findViewById(R.id.negativePercentage);
+        negativePercentage.setTypeface(tf);
+        negPrepPercentage = (TextView)findViewById(R.id.negPrepPercentage);
+        negPrepPercentage.setTypeface(tf);
+        unsurePercentage = (TextView)findViewById(R.id.unsurePercentage);
+        unsurePercentage.setTypeface(tf);
+        positivePercentage = (TextView)findViewById(R.id.positivePercentage);
+        positivePercentage.setTypeface(tf);
+        undectablePercentage = (TextView)findViewById(R.id.undectablePercentage);
+        undectablePercentage.setTypeface(tf);
 
         /*Layout Chart*/
 
@@ -415,8 +437,101 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
         partnerTypesChart.setFitBars(true);
         partnerTypesChart.invalidate();
 
+        /*Partner Hiv Status Chart*/
+        float negative = (float)db.getPartnersCountByHivStatus("HIV Negative")/db.getPartnersCount();
+        float negprep = (float)db.getPartnersCountByHivStatus("HIV Negative & on PrEP")/db.getPartnersCount();
+        float positive = (float)db.getPartnersCountByHivStatus("HIV Positive")/db.getPartnersCount();
+        float undetectable = (float)db.getPartnersCountByHivStatus("HIV Positive & Undetectable")/db.getPartnersCount();
+        float unsure = (float)db.getPartnersCountByHivStatus("I don't know/unsure")/db.getPartnersCount();
+        /*Layout Chart*/
+        LinearLayout PartnerHivTrend = (LinearLayout)findViewById(R.id.PartnerHivTrend);
+        if(negative ==0) {
+            negativePercentage.setVisibility(View.GONE);
+        }
+        else {
+            TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,negative);
+            negativePercentage.setLayoutParams(params);
+            negativePercentage.setGravity(Gravity.CENTER);
+            negative = negative*100;
+            negativePercentage.setText(((int) negative)+"%");
+        }
+
+        if(negprep ==0) {
+            negPrepPercentage.setVisibility(View.GONE);
+        }
+        else {
+            TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,negprep);
+            negPrepPercentage.setLayoutParams(params);
+            negPrepPercentage.setGravity(Gravity.CENTER);
+            negprep = negprep*100;
+            negPrepPercentage.setText(((int) negprep)+"%");
+        }
+
+        if(positive ==0) {
+            positivePercentage.setVisibility(View.GONE);
+        }
+        else {
+            TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,positive);
+            positivePercentage.setLayoutParams(params);
+            positivePercentage.setGravity(Gravity.CENTER);
+            positive = positive*100;
+            positivePercentage.setText(((int) positive)+"%");
+        }
+
+        if(undetectable ==0) {
+            undectablePercentage.setVisibility(View.GONE);
+        }
+        else {
+            TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,undetectable);
+            undectablePercentage.setLayoutParams(params);
+            undectablePercentage.setGravity(Gravity.CENTER);
+            undetectable = undetectable*100;
+            undectablePercentage.setText(((int) undetectable)+"%");
+        }
+
+        if(unsure ==0) {
+            unsurePercentage.setVisibility(View.GONE);
+        }
+        else {
+            TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,unsure);
+            unsurePercentage.setLayoutParams(params);
+            unsurePercentage.setGravity(Gravity.CENTER);
+            unsure = unsure*100;
+            unsurePercentage.setText(((int) unsure)+"%");
+        }
+        PartnerHivTrend.setWeightSum(1);
+        /*Layout Chart*/
+
+        /*Partners HIV Stats*/
+        TextView fiveStarPartnersCount = (TextView)findViewById(R.id.fiveStarPartnersCount);
+        fiveStarPartnersCount.setTypeface(tf_bold);
+        fiveStarPartnersCount.setText(String.valueOf(db.getFiveStarPartnersCount()));
+        TextView positivePartnersCount = (TextView)findViewById(R.id.positivePartnersCount);
+        positivePartnersCount.setTypeface(tf_bold);
+        positivePartnersCount.setText(String.valueOf(db.getPartnersCountByHivStatus("HIV Positive")));
+        TextView negativePartnersCount = (TextView)findViewById(R.id.negativePartnersCount);
+        negativePartnersCount.setTypeface(tf_bold);
+        negativePartnersCount.setText(String.valueOf(db.getPartnersCountByHivStatus("HIV Negative")));
+        TextView unknownPartnersCount = (TextView)findViewById(R.id.unknownPartnersCount);
+        unknownPartnersCount.setTypeface(tf_bold);
+        unknownPartnersCount.setText(String.valueOf(db.getPartnersCountByHivStatus("I don't know/unsure")));
+        TextView repeatedPartnersCount = (TextView)findViewById(R.id.repeatedPartnersCount);
+        repeatedPartnersCount.setTypeface(tf_bold);
+        repeatedPartnersCount.setText(String.valueOf(db.getMoreEncountersForPartnerCount()));
+
+        TextView fiveStarPartners = (TextView)findViewById(R.id.fiveStarPartners);
+        fiveStarPartners.setTypeface(tf_italic);
+        TextView postivePartners = (TextView)findViewById(R.id.postivePartners);
+        postivePartners.setTypeface(tf_italic);
+        TextView negativePartners = (TextView)findViewById(R.id.negativePartners);
+        negativePartners.setTypeface(tf_italic);
+        TextView unknownPartners = (TextView)findViewById(R.id.unknownPartners);
+        unknownPartners.setTypeface(tf_italic);
+        TextView repeatedPartners = (TextView)findViewById(R.id.repeatedPartners);
+        repeatedPartners.setTypeface(tf_italic);
+
         /*Exclusivily Bottom Seekbar*/
-        TextView bottom_progress = (TextView)findViewById(R.id.bottom_progress);
+       /* TextView bottom_progress = (TextView)findViewById(R.id.bottom_progress);
         bottom_progress.setTypeface(tf_bold);
         TextView bottom_description = (TextView)findViewById(R.id.bottom_description);
         bottom_description.setTypeface(tf_bold_italic);
@@ -432,10 +547,10 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
         }else{
             exclusive_bottom.setVisibility(View.GONE);
         }
-        bottom_progress.setText(progress + "%");
+        bottom_progress.setText(progress + "%");*/
 
         /*Exclusivily  Top Seekbar*/
-        TextView top_progress = (TextView)findViewById(R.id.top_progress);
+        /*TextView top_progress = (TextView)findViewById(R.id.top_progress);
         top_progress.setTypeface(tf_bold);
         TextView top_description = (TextView)findViewById(R.id.top_description);
         top_description.setTypeface(tf_bold_italic);
@@ -451,17 +566,17 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
         }else{
             exclusive_top.setVisibility(View.GONE);
         }
-        top_progress.setText(top_progress_value + "%");
+        top_progress.setText(top_progress_value + "%");*/
 
         /*versatile Seekbar*/
-        TextView versatile_progress = (TextView)findViewById(R.id.versatile_progress);
+        /*TextView versatile_progress = (TextView)findViewById(R.id.versatile_progress);
         versatile_progress.setTypeface(tf_bold);
         TextView versatile_description = (TextView)findViewById(R.id.versatile_description);
         versatile_description.setTypeface(tf_bold_italic);
-        CircularSeekBar versatile = (CircularSeekBar)findViewById(R.id.versatile);
+        CircularSeekBar versatile = (CircularSeekBar)findViewById(R.id.versatile);*/
 
         /*Condom use Seekbar*/
-        TextView condom_use_progress = (TextView)findViewById(R.id.condom_use_progress);
+        /*TextView condom_use_progress = (TextView)findViewById(R.id.condom_use_progress);
         condom_use_progress.setTypeface(tf_bold);
         TextView condom_use_description = (TextView)findViewById(R.id.condom_use_description);
         condom_use_description.setTypeface(tf_bold_italic);
@@ -469,8 +584,6 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
         List<EncounterSexType> encounterSexTypes = db.getCondomUsageEncounterSexTypes();
         int condomusagecount = 0;
         for (EncounterSexType encounterSexType:encounterSexTypes) {
-            Log.v("Condom text",encounterSexType.getCondom_use());
-            Log.v("Condom textdec",LynxManager.decryptString(encounterSexType.getCondom_use()));
             if(encounterSexType.getCondom_use().equals("Condom used"))
                 condomusagecount++;
         }
@@ -485,9 +598,7 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
         }else{
             condom_use.setVisibility(View.GONE);
         }
-        top_progress.setText(condomusage_value + "%");
-        Log.v("topCount", String.valueOf(condomusagecount));
-        Log.v("CoomdomEntriesCount", String.valueOf(encounterSexTypes.size()));
+        top_progress.setText(condomusage_value + "%");*/
 
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
@@ -537,7 +648,7 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
     public void onBackPressed() {
         // do something on back.
 
-        Intent home = new Intent(LynxTrends.this,LynxHome.class);
+        Intent home = new Intent(LynxInsights.this,LynxHome.class);
         startActivity(home);
         finish();
     }
@@ -556,27 +667,27 @@ public class LynxTrends extends AppCompatActivity implements OnChartValueSelecte
         switch (v.getId()) {
 
             case R.id.bot_nav_testing:
-                LynxManager.goToIntent(LynxTrends.this,"testing",LynxTrends.this.getClass().getSimpleName());
+                LynxManager.goToIntent(LynxInsights.this,"testing",LynxInsights.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
             case R.id.bot_nav_diary:
-                LynxManager.goToIntent(LynxTrends.this,"diary",LynxTrends.this.getClass().getSimpleName());
+                LynxManager.goToIntent(LynxInsights.this,"diary",LynxInsights.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
             case R.id.bot_nav_prep:
-                LynxManager.goToIntent(LynxTrends.this,"prep",LynxTrends.this.getClass().getSimpleName());
+                LynxManager.goToIntent(LynxInsights.this,"prep",LynxInsights.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
             case R.id.bot_nav_chat:
-                LynxManager.goToIntent(LynxTrends.this,"chat",LynxTrends.this.getClass().getSimpleName());
+                LynxManager.goToIntent(LynxInsights.this,"chat",LynxInsights.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
             case R.id.viewProfile:
-                Intent profile = new Intent(LynxTrends.this,LynxProfile.class);
+                Intent profile = new Intent(LynxInsights.this,LynxProfile.class);
                 startActivity(profile);
                 finish();
                 break;

@@ -177,8 +177,9 @@
         <activity
             android:name=".LynxProfileEdit"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".LynxHome"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".LynxHome"
+            android:screenOrientation="portrait" />
 
         <receiver android:name=".AlarmReceiver" />
         <receiver android:name=".AlarmRestoreOnBoot">
@@ -198,8 +199,10 @@
             android:name=".BadgeScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LynxTrends"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".LynxInsights"
+            android:screenOrientation="portrait" />
+        <activity android:name=".LynxCalendar"></activity>
     </application>
 
 </manifest>

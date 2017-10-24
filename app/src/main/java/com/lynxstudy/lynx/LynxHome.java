@@ -1,6 +1,5 @@
 package com.lynxstudy.lynx;
 
-import android.*;
 import android.app.ActionBar;
 import android.app.AlarmManager;
 import android.app.Notification;
@@ -60,9 +59,7 @@ import net.hockeyapp.android.UpdateManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.piwik.sdk.TrackMe;
 import org.piwik.sdk.Tracker;
-import org.piwik.sdk.extra.PiwikApplication;
 import org.piwik.sdk.extra.TrackHelper;
 
 import java.io.UnsupportedEncodingException;
@@ -161,8 +158,10 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LynxHome.this,"Activity",Toast.LENGTH_SHORT).show();
                 TrackHelper.track().event("Home Category","Click").name("Activity").with(tracker);
+                Intent sexpro = new Intent(LynxHome.this,LynxCalendar.class);
+                startActivity(sexpro);
+                finish();
             }
         });
         badges.setOnClickListener(new View.OnClickListener() {
@@ -187,15 +186,14 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             public void onClick(View v) {
                 TrackHelper.track().event("Home Category","Click").name("Trends").with(tracker);
                 Toast.makeText(LynxHome.this,"Trends",Toast.LENGTH_SHORT).show();
-                /*Intent trends = new Intent(LynxHome.this,LynxTrends.class);
-                startActivity(trends);
-                finish();*/
             }
         });
         insights.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LynxHome.this,"Insights",Toast.LENGTH_SHORT).show();
+                Intent insights = new Intent(LynxHome.this,LynxInsights.class);
+                startActivity(insights);
+                finish();
                 TrackHelper.track().event("Home Category","Click").name("Insights").with(tracker);
             }
         });

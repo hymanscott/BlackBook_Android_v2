@@ -46,6 +46,7 @@ dependencies {
     compile 'org.piwik.sdk:piwik-sdk:2.0.0'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     compile 'me.tankery.lib:circularSeekBar:1.1.4'
+    compile 'com.roomorama:caldroid:3.0.1'
     testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'

@@ -1798,6 +1798,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
     /**
+     * getting Partners count by Gender
+     */
+    public int getPartnersCountByHivStatus(String status) {
+        String countQuery = "SELECT  * FROM " + TABLE_PARTNERS + " WHERE " + KEY_PARTNER_HIVSTATUS + " = '"+LynxManager.encryptString(status)+"'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+    /**
      * getting Partners count
      */
     public int getPartnersCount() {
@@ -2744,6 +2755,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.close();
         return null;
     }
+    public List<PartnerRating> getPartnerRatingbyRatingFieldID(int partner_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<PartnerRating> Partners = new ArrayList<PartnerRating>();
+
+        System.out.println("Single Partnerrating " + partner_id);
+
+        String selectQuery = "SELECT  * FROM " + TABLE_PARTNER_RATINGS + " WHERE "
+                + KEY_PARTNERRATING_RATINGFIELDID + " = " + partner_id;
+
+        Log.e(LOG, selectQuery);
+
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c != null && c.getCount()>0) {
+            if (c.moveToFirst()) {
+                do {
+
+                    PartnerRating partner = new PartnerRating();
+                    partner.setPartner_rating_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_ID)));
+                    partner.setUser_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_USERID)));
+                    partner.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_PARTNERID)));
+                    partner.setUser_rating_field_id(c.getInt(c.getColumnIndex(KEY_PARTNERRATING_RATINGFIELDID)));
+                    partner.setRating(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATING)));
+                    partner.setRating_field(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATINGFIELD)));
+                    partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+                    Partners.add(partner);
+                } while (c.moveToNext());
+            }
+            return Partners;
+        }
+        c.close();
+        return null;
+    }
+
     /**
      * Updating a Partner Rating by Partnerid and RatingField ID
      */
@@ -2810,7 +2856,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(id)});
     }
 
-
+    /**
+     * getting Five Star partners
+     */
+    public int getFiveStarPartnersCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_PARTNER_RATINGS + " WHERE " + KEY_PARTNERRATING_RATINGFIELDID+ " = 1 AND " + KEY_PARTNERRATING_RATING + " = '5.0'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
 
     // ------------------------ "ENCOUNTER" table methods ----------------//
 
@@ -2996,6 +3052,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     public int getEncountersCount() {
         String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+    /**
+     * getting more than one Encounter count for partner
+     */
+    public int getMoreEncountersForPartnerCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER + " GROUP BY " + KEY_ENCOUNTER_PARTNERID + " HAVING COUNT(" + KEY_ENCOUNTER_PARTNERID +")>1";
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();

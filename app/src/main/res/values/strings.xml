@@ -52,7 +52,7 @@
     <string-array name="hiv_status_list">
         <item>HIV Negative</item>
         <item>HIV Negative and on PrEP</item>
-        <item>I don\'t know</item>
+        <item>I don\'t know/unsure</item>
         <item>HIV Positive</item>
         <item>HIV Positive and Undetectable</item>
     </string-array>
