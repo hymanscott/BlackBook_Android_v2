@@ -864,7 +864,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                     db.updatePartnerFromSummary(updatedPartner);
                     updatedPartnerContact.setStatus_update(String.valueOf(R.string.statusUpdateNo));
                     db.updatePartnerContactFromSummary(updatedPartnerContact);
-                    TrackHelper.track().event("Partner","Update").name(LynxManager.decryptString(partner.getNickname())+"Updated").with(tracker);
+                    TrackHelper.track().event("Partner","Update").name(LynxManager.decryptString(partner.getNickname())+" Updated").with(tracker);
                     // update data and hide layout here///
                     editLayout.setVisibility(View.GONE);
                     isEditShown = false;

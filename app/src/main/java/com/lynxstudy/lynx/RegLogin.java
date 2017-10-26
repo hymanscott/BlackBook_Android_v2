@@ -1241,7 +1241,7 @@ public class RegLogin extends AppCompatActivity {
                             EncounterSexType encSexType = new EncounterSexType(encounterSexobject.getInt("encounter_id"),
                                     encounterSexobject.getInt("user_id"),
                                     LynxManager.encryptString(encounterSexobject.getString("sex_type")) ,
-                                    LynxManager.encryptString(encounterSexobject.getString("condom_use")),
+                                    encounterSexobject.getString("condom_use"),
                                     LynxManager.encryptString(encounterSexobject.getString("note")),
                                     String.valueOf(R.string.statusUpdateYes), true);
                             int encSexID = db.createEncounterSexType(encSexType);

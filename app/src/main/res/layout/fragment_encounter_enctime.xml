@@ -43,7 +43,7 @@
                     android:textSize="@dimen/encounter_tv_textsize"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:text="Enter date and time of new encounter"
+                    android:text="Enter date of new encounter"
                     android:layout_marginTop="32dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -91,6 +91,7 @@
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:visibility="invisible"
                     android:background="@color/edittext_bg"
                     android:orientation="horizontal"
                     android:padding="@dimen/edittext_padding">

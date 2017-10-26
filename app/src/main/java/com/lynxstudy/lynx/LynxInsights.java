@@ -530,79 +530,9 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
         TextView repeatedPartners = (TextView)findViewById(R.id.repeatedPartners);
         repeatedPartners.setTypeface(tf_italic);
 
-        /*Exclusivily Bottom Seekbar*/
-       /* TextView bottom_progress = (TextView)findViewById(R.id.bottom_progress);
-        bottom_progress.setTypeface(tf_bold);
-        TextView bottom_description = (TextView)findViewById(R.id.bottom_description);
-        bottom_description.setTypeface(tf_bold_italic);
-        CircularSeekBar exclusive_bottom = (CircularSeekBar)findViewById(R.id.exclusive_bottom);
-        float bottom_percent = 0;
-        if(db.getEncountersCount()>0){
-            bottom_percent =(float)db.getAllEncounterSexTypeCountByName("I bottomed")/db.getEncountersCount();
-        }
-        int progress = (int) (bottom_percent *100);
-        if(progress>0){
-            exclusive_bottom.setVisibility(View.VISIBLE);
-            exclusive_bottom.setProgress(progress);
-        }else{
-            exclusive_bottom.setVisibility(View.GONE);
-        }
-        bottom_progress.setText(progress + "%");*/
-
-        /*Exclusivily  Top Seekbar*/
-        /*TextView top_progress = (TextView)findViewById(R.id.top_progress);
-        top_progress.setTypeface(tf_bold);
-        TextView top_description = (TextView)findViewById(R.id.top_description);
-        top_description.setTypeface(tf_bold_italic);
-        CircularSeekBar exclusive_top = (CircularSeekBar)findViewById(R.id.exclusive_top);
-        float top_percent = 0;
-        if(db.getEncountersCount()>0){
-            top_percent =(float)db.getAllEncounterSexTypeCountByName("I topped")/db.getEncountersCount();
-        }
-        int top_progress_value = (int) (top_percent*100);
-        if(top_progress_value>0){
-            exclusive_top.setVisibility(View.VISIBLE);
-            exclusive_top.setProgress(top_progress_value);
-        }else{
-            exclusive_top.setVisibility(View.GONE);
-        }
-        top_progress.setText(top_progress_value + "%");*/
-
-        /*versatile Seekbar*/
-        /*TextView versatile_progress = (TextView)findViewById(R.id.versatile_progress);
-        versatile_progress.setTypeface(tf_bold);
-        TextView versatile_description = (TextView)findViewById(R.id.versatile_description);
-        versatile_description.setTypeface(tf_bold_italic);
-        CircularSeekBar versatile = (CircularSeekBar)findViewById(R.id.versatile);*/
-
-        /*Condom use Seekbar*/
-        /*TextView condom_use_progress = (TextView)findViewById(R.id.condom_use_progress);
-        condom_use_progress.setTypeface(tf_bold);
-        TextView condom_use_description = (TextView)findViewById(R.id.condom_use_description);
-        condom_use_description.setTypeface(tf_bold_italic);
-        CircularSeekBar condom_use = (CircularSeekBar)findViewById(R.id.condom_use);
-        List<EncounterSexType> encounterSexTypes = db.getCondomUsageEncounterSexTypes();
-        int condomusagecount = 0;
-        for (EncounterSexType encounterSexType:encounterSexTypes) {
-            if(encounterSexType.getCondom_use().equals("Condom used"))
-                condomusagecount++;
-        }
-        float condomusage_percent = 0;
-        if(encounterSexTypes.size()>0){
-            condomusage_percent =(float)condomusagecount/encounterSexTypes.size();
-        }
-        int condomusage_value = (int) (condomusage_percent*100);
-        if(top_progress_value>0){
-            condom_use.setVisibility(View.VISIBLE);
-            condom_use.setProgress(condomusage_value);
-        }else{
-            condom_use.setVisibility(View.GONE);
-        }
-        top_progress.setText(condomusage_value + "%");*/
-
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
-        TrackHelper.track().screen("/Lynxhome/Trends").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+        TrackHelper.track().screen("/Lynxhome/Insights").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
 
     @Override

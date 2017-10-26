@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.lynxstudy.lynx.LynxSexTrends">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:id="@+id/trendsMainContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="?android:attr/actionBarSize">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="24dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/trends_home_new" />
+
+                        <TextView
+                            android:id="@+id/pageTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:lineSpacingMultiplier="1.40"
+                            android:text="Your Sex Trends"
+                            android:textColor="@color/profile_title_text_color"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:background="@color/grey_border" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="40dp"
+                        android:id="@+id/titleStats"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:text="For [xx] encounters with [xx] partners: "
+                        android:textSize="15sp"
+                        android:textStyle="italic"
+                        android:textColor="@color/text_color"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:id="@+id/exclusive_bottom"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
+                                app:cs_circle_stroke_width="10dp"
+                                app:cs_circle_style="square"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="0" />
+
+                            <TextView
+                                android:id="@+id/bottom_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="0%"
+                                android:textColor="@color/profile_title_text_color"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/bottom_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="16dp"
+                            android:lineSpacingMultiplier="1.25"
+                            android:text="of the time you are exclusively a bottom."
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_marginTop="32dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:id="@+id/exclusive_top"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
+                                app:cs_circle_stroke_width="10dp"
+                                app:cs_circle_style="square"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="0" />
+
+                            <TextView
+                                android:id="@+id/top_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="0%"
+                                android:textColor="@color/profile_title_text_color"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/top_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="16dp"
+                            android:lineSpacingMultiplier="1.25"
+                            android:text="of the time you are exclusively a top."
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_marginTop="32dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:id="@+id/versatile"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
+                                app:cs_circle_stroke_width="10dp"
+                                app:cs_circle_style="square"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="0" />
+
+                            <TextView
+                                android:id="@+id/versatile_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="0%"
+                                android:textColor="@color/profile_title_text_color"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/versatile_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="16dp"
+                            android:lineSpacingMultiplier="1.25"
+                            android:text="of the time you are versatile."
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_marginTop="32dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:id="@+id/condom_use"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
+                                app:cs_circle_stroke_width="10dp"
+                                app:cs_circle_style="square"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="0" />
+
+                            <TextView
+                                android:id="@+id/condom_use_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="0%"
+                                android:textColor="@color/profile_title_text_color"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/condom_use_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="16dp"
+                            android:lineSpacingMultiplier="1.25"
+                            android:text="of the time you use a condom during sex."
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_marginTop="32dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:id="@+id/condom_bottom"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
+                                app:cs_circle_stroke_width="10dp"
+                                app:cs_circle_style="square"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="0" />
+
+                            <TextView
+                                android:id="@+id/condom_bottom_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="0%"
+                                android:textColor="@color/profile_title_text_color"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/condom_bottom_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="16dp"
+                            android:lineSpacingMultiplier="1.25"
+                            android:text="of the time you use a condom as a bottom."
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_marginTop="32dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:id="@+id/condom_top"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/profile_title_text_color"
+                                app:cs_circle_stroke_width="10dp"
+                                app:cs_circle_style="square"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="0" />
+
+                            <TextView
+                                android:id="@+id/condom_top_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="0%"
+                                android:textColor="@color/profile_title_text_color"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/condom_top_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="16dp"
+                            android:lineSpacingMultiplier="1.25"
+                            android:text="of the time you use a condom as a top."
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginBottom="32dp"
+                        android:background="@color/grey_border" />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bot_nav"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_alignParentBottom="true"
+            android:background="@color/bot_nav_bg"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:id="@+id/bot_nav_sexpro"
+                android:layout_width="wrap_content"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_weight="0.2"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
+
+                <ImageView
+                    android:id="@+id/bot_nav_sexpro_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/nav_icon_home_white" />
+
+                <TextView
+                    android:id="@+id/bot_nav_sexpro_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Home"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bot_nav_diary"
+                android:layout_width="wrap_content"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
+
+                <ImageView
+                    android:id="@+id/bot_nav_diary_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/nav_icon_diary" />
+
+                <TextView
+                    android:id="@+id/bot_nav_diary_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Diary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bot_nav_testing"
+                android:layout_width="wrap_content"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
+
+                <ImageView
+                    android:id="@+id/bot_nav_testing_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/nav_icon_testing" />
+
+                <TextView
+                    android:id="@+id/bot_nav_testing_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Testing" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bot_nav_prep"
+                android:layout_width="wrap_content"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
+
+                <ImageView
+                    android:id="@+id/bot_nav_prep_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/nav_icon_prep" />
+
+                <TextView
+                    android:id="@+id/bot_nav_prep_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PrEP" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bot_nav_chat"
+                android:layout_width="wrap_content"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
+
+                <ImageView
+                    android:id="@+id/bot_nav_chat_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/nav_icon_chat" />
+
+                <TextView
+                    android:id="@+id/bot_nav_chat_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chat" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

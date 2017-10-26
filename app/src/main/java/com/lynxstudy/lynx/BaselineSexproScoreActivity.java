@@ -31,7 +31,7 @@ import java.util.Date;
 public class BaselineSexproScoreActivity extends AppCompatActivity {
 
     DatabaseHelper db;
-    TextView score_message,reg_sexPro_score_label,reg_sexPro_score_value,info_title,info_para_one,info_para_two,info_para_three;
+    TextView score_message,reg_sexPro_score_label,reg_sexPro_score_value,info_title,info_para_one,info_para_two,info_para_three,infoLink;
     Button sexpro_score_close;
     /*ImageView dialScoreImage;*/
     LinearLayout infolayout,main_content;
@@ -62,6 +62,8 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
         info_para_two.setTypeface(tf);
         info_para_three = (TextView)findViewById(R.id.info_para_three);
         info_para_three.setTypeface(tf);
+        infoLink = (TextView)findViewById(R.id.infoLink);
+        infoLink.setTypeface(tf_bold);
         /*dialScoreImage = (ImageView)findViewById(R.id.dialScoreImage);*/
         infolayout = (LinearLayout)findViewById(R.id.infolayout);
         main_content= (LinearLayout)findViewById(R.id.main_content);
@@ -192,7 +194,7 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
         db.createUserBadge(lynxBadge);
 
         final ImageView btn = (ImageView)findViewById(R.id.information);
-        btn.setOnClickListener(new View.OnClickListener() {
+        infoLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                /* int[] location = new int[2];

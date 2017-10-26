@@ -30,7 +30,7 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
 
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
     DatabaseHelper db;
-    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,score_update,score_update_date,info_title,info_para_one,info_para_two,info_para_three;
+    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,score_update,score_update_date,info_title,info_para_one,info_para_two,info_para_three,infoLink;
     private Statistics statistics = new Statistics();
     private String fromactivity = null;
     private String toactivity = null;
@@ -92,11 +92,13 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         info_para_two.setTypeface(tf);
         info_para_three = (TextView)findViewById(R.id.info_para_three);
         info_para_three.setTypeface(tf);
+        infoLink = (TextView)findViewById(R.id.infoLink);
+        infoLink.setTypeface(tf_bold);
         sexProMainContent = (LinearLayout)findViewById(R.id.sexProMainContent);
         sexProInfoContent = (LinearLayout)findViewById(R.id.sexProInfoContent);
         ImageView scoreImage = (ImageView)findViewById(R.id.scoreImage);
         ImageView infoIcon = (ImageView)findViewById(R.id.infoIcon);
-        infoIcon.setOnClickListener(new View.OnClickListener() {
+        infoLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!isInfoShown){

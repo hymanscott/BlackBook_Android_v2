@@ -72,7 +72,7 @@ import java.util.concurrent.TimeUnit;
 
 public class LynxHome extends AppCompatActivity implements View.OnClickListener {
     TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,sexproTitle,activityTitle,badgesTitle,topFiveTitle,trendsTitle,insightsTitle;
-    Typeface tf;
+    Typeface tf,tf_bold;
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat,sexpro,activity,badges,topFive,trends,insights;
     DatabaseHelper db;
     private static final int READ_PHONE_STATE = 101;
@@ -97,7 +97,8 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-
+        tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         // Custom Action Bar //
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
@@ -116,17 +117,17 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         bot_nav_chat_tv = (TextView)findViewById(R.id.bot_nav_chat_tv);
         bot_nav_chat_tv.setTypeface(tf);
         sexproTitle = (TextView)findViewById(R.id.sexproTitle);
-        sexproTitle.setTypeface(tf);
+        sexproTitle.setTypeface(tf_bold);
         activityTitle = (TextView)findViewById(R.id.activityTitle);
-        activityTitle.setTypeface(tf);
+        activityTitle.setTypeface(tf_bold);
         badgesTitle = (TextView)findViewById(R.id.badgesTitle);
-        badgesTitle.setTypeface(tf);
+        badgesTitle.setTypeface(tf_bold);
         topFiveTitle = (TextView)findViewById(R.id.topFiveTitle);
-        topFiveTitle.setTypeface(tf);
+        topFiveTitle.setTypeface(tf_bold);
         trendsTitle = (TextView)findViewById(R.id.trendsTitle);
-        trendsTitle.setTypeface(tf);
+        trendsTitle.setTypeface(tf_bold);
         insightsTitle = (TextView)findViewById(R.id.insightsTitle);
-        insightsTitle.setTypeface(tf);
+        insightsTitle.setTypeface(tf_bold);
         // Click Listners //
         btn_testing = (LinearLayout)findViewById(R.id.bot_nav_testing);
         btn_diary = (LinearLayout) findViewById(R.id.bot_nav_diary);
@@ -171,7 +172,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 Intent badges = new Intent(LynxHome.this,LynxBadges.class);
                 startActivity(badges);
                 finish();
-                TrackHelper.track().goal(1).with(tracker);
+                /*TrackHelper.track().goal(1).with(tracker);*/
             }
         });
         topFive.setOnClickListener(new View.OnClickListener() {
@@ -185,16 +186,18 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             @Override
             public void onClick(View v) {
                 TrackHelper.track().event("Home Category","Click").name("Trends").with(tracker);
-                Toast.makeText(LynxHome.this,"Trends",Toast.LENGTH_SHORT).show();
+                Intent trends = new Intent(LynxHome.this,LynxSexTrends.class);
+                startActivity(trends);
+                finish();
             }
         });
         insights.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TrackHelper.track().event("Home Category","Click").name("Insights").with(tracker);
                 Intent insights = new Intent(LynxHome.this,LynxInsights.class);
                 startActivity(insights);
                 finish();
-                TrackHelper.track().event("Home Category","Click").name("Insights").with(tracker);
             }
         });
         db = new DatabaseHelper(this);

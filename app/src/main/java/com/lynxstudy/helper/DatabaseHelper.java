@@ -3096,6 +3096,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * getting all Encounter Sex Type by Encounter_id
      */
+    public List<EncounterSexType> getAllEncounterSexTypes() {
+        List<EncounterSexType> encounterSexTypes = new ArrayList<EncounterSexType>();
+        String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE;// + " GROUP BY " + KEY_ENCSEXTYPE_ENCOUNTERID;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                EncounterSexType encounterSexType = new EncounterSexType();
+                encounterSexType.setEncounter_sex_type_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_ID)));
+                encounterSexType.setEncounter_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_ENCOUNTERID)));
+                encounterSexType.setUser_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_USERID)));
+                encounterSexType.setSex_type(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_SEXTYPE)));
+                encounterSexType.setCondom_use(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_CONDOMUSE)));
+                encounterSexType.setNote(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_NOTE)));
+                encounterSexType.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // adding to Users list
+                encounterSexTypes.add(encounterSexType);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return encounterSexTypes;
+    }
+    /**
+     * getting all Encounter Sex Type by Encounter_id
+     */
     public List<EncounterSexType> getAllEncounterSexTypes(int encounter_id) {
         List<EncounterSexType> encounterSexTypes = new ArrayList<EncounterSexType>();
         String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE + " WHERE " + KEY_ENCSEXTYPE_ENCOUNTERID + " = " +encounter_id;
@@ -3180,6 +3211,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int count = cursor.getCount();
         cursor.close();
         return count;
+    }
+    /**
+     * getting Encounter Sex Type count by Name
+     */
+    public List<EncounterSexType> getAllEncounterSexTypesByName(String type) {
+        String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE + " WHERE " + KEY_ENCSEXTYPE_SEXTYPE + " = '"+LynxManager.encryptString(type)+"'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(countQuery, null);
+        // looping through all rows and adding to list
+        List<EncounterSexType> encounterSexTypes = new ArrayList<EncounterSexType>();
+        if (c.moveToFirst()) {
+            do {
+                EncounterSexType encounterSexType = new EncounterSexType();
+                encounterSexType.setEncounter_sex_type_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_ID)));
+                encounterSexType.setEncounter_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_ENCOUNTERID)));
+                encounterSexType.setUser_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_USERID)));
+                encounterSexType.setSex_type(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_SEXTYPE)));
+                encounterSexType.setCondom_use(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_CONDOMUSE)));
+                encounterSexType.setNote(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_NOTE)));
+                encounterSexType.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // adding to Users list
+                encounterSexTypes.add(encounterSexType);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return encounterSexTypes;
     }
 
     /**

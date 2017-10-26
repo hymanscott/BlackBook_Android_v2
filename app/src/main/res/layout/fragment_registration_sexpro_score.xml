@@ -24,93 +24,109 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin">
-                <LinearLayout
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:padding="@dimen/edittext_padding"
-                    android:gravity="center_horizontal"
-                    android:background="@color/update_score_bg">
-                    <TextView
-                        android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/reg_tv_textsize"
-                        android:textColor="@color/white"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:text="CURRENT SEX PRO SCORE:"
-                        android:id="@+id/reg_sexPro_score_label"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:textColor="@color/white"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:text=" 10"
-                        android:id="@+id/reg_sexPro_score_value"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/reg_tv_textsize"
-                    android:textColor="@color/update_score_bg"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:lineSpacingMultiplier="1.31"
-                    android:text="Trigger message depending on score will go here"
-                    android:id="@+id/score_message"
-                    android:gravity="center_horizontal"
-                    android:layout_margin="10dp" />
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:id="@+id/information"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:src="@drawable/information" />
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="fill_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <!--<ImageView
-                        android:id="@+id/dialScoreImage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        android:src="@drawable/dial_1" />
--->
-                    <FrameLayout
-                        android:id="@+id/myscore_framelayout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/sexprodial"
-                        android:gravity="center">
-
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:padding="@dimen/edittext_padding"
+                            android:gravity="center_horizontal"
+                            android:background="@color/update_score_bg">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/reg_tv_textsize"
+                                android:textColor="@color/white"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:text="CURRENT SEX PRO SCORE:"
+                                android:id="@+id/reg_sexPro_score_label"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="20sp"
+                                android:textColor="@color/white"
+                                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                                android:text=" 10"
+                                android:id="@+id/reg_sexPro_score_value"
+                                android:textStyle="bold"/>
+                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/reg_tv_textsize"
+                            android:textColor="@color/update_score_bg"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:lineSpacingMultiplier="1.31"
+                            android:text="Trigger message depending on score will go here"
+                            android:id="@+id/score_message"
+                            android:gravity="center_horizontal"
+                            android:layout_margin="10dp" />
                         <ImageView
-                            android:id="@+id/imageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:id="@+id/information"
+                            android:visibility="gone"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:src="@drawable/information" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="fill_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <FrameLayout
+                                android:id="@+id/myscore_framelayout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/sexprodial"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:id="@+id/imageView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="10dp"
+                                    android:src="@drawable/sexpro_needle" />
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/scoreImage"
+                                    android:src="@drawable/score_one"
+                                    android:layout_gravity="bottom|center_horizontal"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginBottom="20dp"/>
+                            </FrameLayout>
+                        </RelativeLayout>
+                        <TextView
+                            android:id="@+id/infoLink"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginBottom="10dp"
-                            android:src="@drawable/sexpro_needle" />
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/scoreImage"
-                            android:src="@drawable/score_one"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="20dp"/>
-                    </FrameLayout>
-                </RelativeLayout>
+                            android:layout_margin="@dimen/activity_horizontal_margin"
+                            android:gravity="center_horizontal"
+                            android:lineSpacingMultiplier="1.5"
+                            android:text="What does my score mean?"
+                            android:textColor="@color/chart_blue"
+                            android:textSize="14sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+            </ScrollView>
+
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -180,6 +196,7 @@
                     </LinearLayout>
                 </ScrollView>
             </LinearLayout>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
