@@ -202,8 +202,9 @@
         <activity
             android:name=".LynxInsights"
             android:screenOrientation="portrait" />
-        <activity android:name=".LynxCalendar" />
-        <activity android:name=".LynxSexTrends"></activity>
+        <activity android:name=".LynxCalendar" android:screenOrientation="portrait"/>
+        <activity android:name=".LynxSexTrends" android:screenOrientation="portrait"/>
+        <activity android:name=".LynxTopFive" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
