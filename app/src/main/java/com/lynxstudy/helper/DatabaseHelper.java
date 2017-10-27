@@ -3070,6 +3070,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
+    /**
+     * getting Five Star partners
+     */
+    public int getFiveStarEncountersCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER + " WHERE " + KEY_ENCOUNTER_SEXRATING + " = '"+LynxManager.encryptString("5.0")+"'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
 // ------------------------ "Encounter Sex Type" table methods ----------------//
 
     /**
@@ -3200,6 +3211,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // updating row
         return db.update(TABLE_ENCOUNTER_SEXTYPE, values, KEY_ENCSEXTYPE_ID + " = ?",
                 new String[]{String.valueOf(id)});
+    }
+    /**
+     * getting Encounter Sex Type count by Name and Encounter ID
+     */
+    public int getEncSexTypeCountByEncIDandName(int id, String type) {
+        String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE + " WHERE " + KEY_ENCSEXTYPE_SEXTYPE + " = '"+LynxManager.encryptString(type)+"' AND " + KEY_ENCSEXTYPE_ENCOUNTERID + " = " + id;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
     }
     /**
      * getting Encounter Sex Type count by Name

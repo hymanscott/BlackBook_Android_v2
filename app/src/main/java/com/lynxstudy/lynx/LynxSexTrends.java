@@ -14,10 +14,13 @@ import android.widget.TextView;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
+import com.lynxstudy.model.Partners;
 
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -130,6 +133,27 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         TextView versatile_description = (TextView)findViewById(R.id.versatile_description);
         versatile_description.setTypeface(tf_italic);
         CircularSeekBar versatile = (CircularSeekBar)findViewById(R.id.versatile);
+        int versatileCount = 0;
+        for(Encounter encounter: db.getAllEncounters()){
+            int topcount = db.getEncSexTypeCountByEncIDandName(encounter.getEncounter_id(),"I topped");
+            int bottomcount = db.getEncSexTypeCountByEncIDandName(encounter.getEncounter_id(),"I bottomed");
+            if(topcount>0 && bottomcount>0){
+                versatileCount++;
+            }
+            Log.v("Versatile",encounter.getEncounter_id()+", Top=" + topcount + ", bottom=" +bottomcount+", VersatileCount ="+versatileCount);
+        }
+        float versatile_percent =0;
+        int versatile_value =0;
+        if(versatileCount>0){
+            versatile_percent =(float)versatileCount/db.getEncountersCount();
+            versatile_value = (int) (versatile_percent*100);
+            versatile.setVisibility(View.VISIBLE);
+            versatile.setProgress(versatile_value);
+        }else{
+            versatile.setVisibility(View.GONE);
+        }
+        Log.v("Ver",versatile_percent +" " + versatile_value);
+        versatile_progress.setText(versatile_value + "%");
 
         /*Condom use Seekbar*/
         TextView condom_use_progress = (TextView)findViewById(R.id.condom_use_progress);
@@ -208,6 +232,40 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         }
         condom_top_progress.setText(condomtopusage_value + "%");
 
+        TextView fiveStarEncounters = (TextView)findViewById(R.id.fiveStarEncounters);
+        fiveStarEncounters.setTypeface(tf_italic);
+        TextView bottomPartners = (TextView)findViewById(R.id.bottomPartners);
+        bottomPartners.setTypeface(tf_italic);
+        TextView topPartners = (TextView)findViewById(R.id.topPartners);
+        topPartners.setTypeface(tf_italic);
+
+        TextView fiveStarEncountersCount= (TextView)findViewById(R.id.fiveStarEncountersCount);
+        fiveStarEncountersCount.setText(String.valueOf(db.getFiveStarEncountersCount()));
+
+        TextView bottomPartnersCount = (TextView)findViewById(R.id.bottomPartnersCount);
+        TextView topPartnersCount = (TextView)findViewById(R.id.topPartnersCount);
+        int topPeopleCount = 0;
+        int bottomPeopleCount = 0;
+        for (Partners partner:db.getAllPartners()){
+            int topCount = 0;
+            int bottomCount = 0;
+            for (Encounter encounter:db.getAllEncounters()){
+                if (encounter.getEncounter_partner_id()==partner.getPartner_id()){
+                    if(db.getEncSexTypeCountByEncIDandName(encounter.getEncounter_id(),"I topped")>0)
+                        topCount++;
+                    if(db.getEncSexTypeCountByEncIDandName(encounter.getEncounter_id(),"I bottomed")>0)
+                        bottomCount++;
+                }
+            }
+            if(topCount>0){
+                topPeopleCount++;
+            }
+            if(bottomCount>0){
+                bottomPeopleCount++;
+            }
+        }
+        bottomPartnersCount.setText(String.valueOf(bottomPeopleCount));
+        topPartnersCount.setText(String.valueOf(topPeopleCount));
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
         TrackHelper.track().screen("/Lynxhome/Trends").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);

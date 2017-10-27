@@ -490,6 +490,105 @@
                         android:layout_marginTop="32dp"
                         android:layout_marginBottom="32dp"
                         android:background="@color/grey_border" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_marginBottom="32dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/fiveStarEncountersCount"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:background="@drawable/insights_blue_circle"/>
+
+                        <TextView
+                            android:id="@+id/fiveStarEncounters"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:lineSpacingMultiplier="1.25"
+                            android:text="number of times you had a 5 star encounter"
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_marginBottom="32dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/bottomPartnersCount"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:background="@drawable/insights_blue_circle"/>
+
+                        <TextView
+                            android:id="@+id/bottomPartners"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:lineSpacingMultiplier="1.25"
+                            android:text="number of people you had anal sex with as a bottom"
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_marginBottom="32dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/topPartnersCount"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:background="@drawable/insights_blue_circle"/>
+
+                        <TextView
+                            android:id="@+id/topPartners"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:lineSpacingMultiplier="1.25"
+                            android:text="number of people you had anal sex with as a top"
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
