@@ -289,7 +289,7 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
                     ImageView rate_image = (ImageView)v.findViewById(R.id.rate_image);
                     name.setText(LynxManager.decryptString(partner.getNickname()));
                     name.setTypeface(tf);
-                    rate_image.setImageDrawable(getResources().getDrawable(R.drawable.nav_icon_diary));
+                    rate_image.setImageDrawable(getResources().getDrawable(R.drawable.calendardiaryblue));
                     v.setId(encounter.getEncounter_id());
                     v.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -310,7 +310,7 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
                 ImageView rate_image = (ImageView)v.findViewById(R.id.rate_image);
                 name.setText(LynxManager.decryptString(testname.getTestName()));
                 name.setTypeface(tf);
-                rate_image.setImageDrawable(getResources().getDrawable(R.drawable.nav_icon_testing));
+                rate_image.setImageDrawable(getResources().getDrawable(R.drawable.calendartestingblue));
                 v.setId(testingHistory.getTesting_history_id());
                 v.setOnClickListener(new View.OnClickListener() {
                     @Override
