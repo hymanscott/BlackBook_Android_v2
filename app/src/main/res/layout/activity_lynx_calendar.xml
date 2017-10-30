@@ -7,54 +7,693 @@
     android:background="@color/white"
     android:orientation="vertical"
     tools:context="com.lynxstudy.lynx.LynxCalendar">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/calendarLayout"
-        android:background="@drawable/border_bottom">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
         <LinearLayout
-            android:id="@+id/calendar1"
+            android:id="@+id/calendarMainContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/calendar_bottom"
-            android:orientation="vertical">
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:background="#E6FFFFFF"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:orientation="vertical"
-        android:id="@+id/eventsLayout">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/selectedDateTitle"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
-            android:textSize="16sp"
-            android:text="Sunday April 16"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/bannerText"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:textSize="16sp"
-            android:text="No activities logged"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/eventsList">
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true">
 
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="?android:attr/actionBarSize">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/calendar1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/calendar_bottom"
+                        android:orientation="vertical">
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:background="#E6FFFFFF"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:orientation="vertical"
+                        android:id="@+id/eventsLayout">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/selectedDateTitle"
+                            android:layout_marginTop="24dp"
+                            android:textColor="@color/text_color"
+                            android:layout_marginBottom="24dp"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:text="Sunday April 16"/>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/grey_border" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/no_activity_logged"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:textSize="16sp"
+                            android:visibility="gone"
+                            android:text="No activities logged"/>
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:orientation="vertical"
+                            android:id="@+id/eventsList">
+
+                        </TableLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
         </LinearLayout>
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/encounterSummaryContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:visibility="gone">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="?android:attr/actionBarSize">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/encList_summary_nickName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="32dp"
+                        android:layout_marginTop="32dp"
+                        android:background="@color/banner_name_bg"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:text="NICK NAME"
+                        android:padding="5dp"
+                        android:textColor="@color/encounter_btn_bg"
+                        android:textStyle="bold"
+                        android:textSize="18sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:orientation="vertical">
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/banner_name_bg"
+                            android:layout_marginBottom="16dp" />
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Sex Rating :"
+                                android:textSize="@dimen/encounter_tv_textsize"
+                                android:textColor="@color/text_color"
+                                android:id="@+id/sexRating"
+                                android:layout_gravity="center_vertical|left"/>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:layout_weight="1">
+                                <RatingBar
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/encListSumm_sexRating"
+                                    android:stepSize="0.5"
+                                    android:rating="1.0"
+                                    android:scaleX="0.8"
+                                    android:scaleY="0.8"
+                                    android:isIndicator="true"
+                                    style="?android:attr/ratingBarStyle"
+                                    android:layout_gravity="center_horizontal|center_vertical|left"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/banner_name_bg"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="24dp" />
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+                            <TextView
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/encounter_tv_textsize"
+                                android:textColor="@color/text_color"
+                                android:text="HIV Status:"
+                                android:id="@+id/hivStatus"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="@color/text_color"
+                                android:id="@+id/encListSumm_hivStatus"
+                                android:text="x"/>
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/banner_name_bg"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginBottom="24dp" />
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/encounter_tv_textsize"
+                                android:textColor="@color/text_color"
+                                android:text="Encounter Notes:"
+                                android:id="@+id/partner"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:id="@+id/encListSumm_partnerNotes"
+                                android:textSize="14sp"
+                                android:textColor="@color/text_color"
+                                android:text="x" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/banner_name_bg"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginBottom="24dp" />
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/encounter_tv_textsize"
+                            android:textColor="@color/text_color"
+                            android:id="@+id/typeSex"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:layout_marginBottom="16dp"
+                            android:text="Type of Sex:"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:id="@+id/sexTypeLayout">
+                            <!--Encounter Sex Types-->
+
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/banner_name_bg"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginBottom="8dp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/condomUsedLayout"
+                            android:layout_marginBottom="40dp"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_margin="16dp">
+
+                                <TextView
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/encounter_tv_textsize"
+                                    android:textColor="@color/text_color"
+                                    android:text="Condom Used :"
+                                    android:id="@+id/condomUsed"/>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:id="@+id/condomUsedContent">
+
+                                </LinearLayout>
+                            </LinearLayout>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/banner_name_bg"/>
+                        </LinearLayout>
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Back"
+                            android:layout_marginLeft="30dp"
+                            android:visibility="gone"
+                            android:layout_marginTop="20dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="@drawable/lynx_button"
+                            android:textColor="@color/white"
+                            android:layout_marginRight="30dp"
+                            android:onClick="close"
+                            android:textStyle="bold"
+                            android:gravity="center_vertical|center_horizontal" />
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/testSummaryContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:visibility="gone">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="?android:attr/actionBarSize">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/testingHistoryTitle"
+                        android:textSize="20sp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="24dp"
+                        android:textColor="@color/profile_title_text_color"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:text="HIV Test"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/edittext_padding">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/calendariconblue" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/testingHistorydate"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_weight="1"
+                            android:text="date" />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/grey_border"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/hivLayout"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:id="@+id/hivIcon"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:src="@drawable/didnt_test"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:textColor="@color/text_color"
+                            android:layout_gravity="center"
+                            android:id="@+id/hivTestStatus"
+                            android:text="Test result not reported" />
+                        <FrameLayout
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:id="@+id/hivTestImage"
+                            android:background="@drawable/image_container"
+                            android:layout_marginTop="@dimen/activity_vertical_margin"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:layout_alignParentRight="true">
+                            <ImageView
+                                android:id="@+id/hivAttachment"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/photocamera"
+                                android:layout_gravity="center"
+                                android:scaleType="centerCrop" />
+                        </FrameLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/std_list_parentLayout"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_color"
+                            android:textStyle="bold|italic"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:id="@+id/gonorrheaTitle"
+                            android:text="Gonorrhea:" />
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/gonorrheaLayout"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:id="@+id/gonorrheaIcon"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:src="@drawable/didnt_test"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                                android:textColor="@color/text_color"
+                                android:layout_gravity="center"
+                                android:id="@+id/gonorrheaStatus"
+                                android:text="Test result not reported" />
+                            <FrameLayout
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:id="@+id/gonorrheaImage"
+                                android:background="@drawable/image_container"
+                                android:layout_marginTop="@dimen/activity_vertical_margin"
+                                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                                android:layout_alignParentRight="true">
+                                <ImageView
+                                    android:id="@+id/gonorrheaAttachment"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/photocamera"
+                                    android:layout_gravity="center"
+                                    android:scaleType="centerCrop" />
+                            </FrameLayout>
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/grey_border"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginBottom="24dp"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_color"
+                            android:textStyle="bold|italic"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:id="@+id/syphilisTitle"
+                            android:text="Syphilis:"/>
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/syphilisLayout"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:id="@+id/syphilisIcon"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:src="@drawable/didnt_test"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                                android:textColor="@color/text_color"
+                                android:layout_gravity="center"
+                                android:id="@+id/syphilisStatus"
+                                android:text="Test result not reported" />
+                            <FrameLayout
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:id="@+id/syphilisImage"
+                                android:background="@drawable/image_container"
+                                android:layout_marginTop="@dimen/activity_vertical_margin"
+                                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                                android:layout_alignParentRight="true">
+                                <ImageView
+                                    android:id="@+id/syphilisAttachment"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/photocamera"
+                                    android:layout_gravity="center"
+                                    android:scaleType="centerCrop" />
+                            </FrameLayout>
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/grey_border"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginBottom="24dp"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_color"
+                            android:textStyle="bold|italic"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:id="@+id/chlamydiaTitle"
+                            android:text="Chlamydia:"/>
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/chlamydiaLayout"
+                            android:layout_marginBottom="40dp"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:id="@+id/chlamydiaIcon"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:src="@drawable/didnt_test"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                                android:textColor="@color/text_color"
+                                android:layout_gravity="center"
+                                android:id="@+id/chlamydiaStatus"
+                                android:text="Test result not reported" />
+                            <FrameLayout
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
+                                android:id="@+id/chlamydiaImage"
+                                android:background="@drawable/image_container"
+                                android:layout_marginTop="@dimen/activity_vertical_margin"
+                                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                                android:layout_alignParentRight="true">
+                                <ImageView
+                                    android:id="@+id/chlamydiaAttachment"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/photocamera"
+                                    android:layout_gravity="center"
+                                    android:scaleType="centerCrop" />
+                            </FrameLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/bot_nav"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_alignParentBottom="true"
+            android:background="@color/bot_nav_bg"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:id="@+id/bot_nav_sexpro"
+                android:layout_width="wrap_content"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_weight="0.2"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
+
+                <ImageView
+                    android:id="@+id/bot_nav_sexpro_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/nav_icon_home_white" />
+
+                <TextView
+                    android:id="@+id/bot_nav_sexpro_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Home"
+                    android:textSize="14sp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bot_nav_diary"
+                android:layout_width="wrap_content"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
+
+                <ImageView
+                    android:id="@+id/bot_nav_diary_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/nav_icon_diary" />
+
+                <TextView
+                    android:id="@+id/bot_nav_diary_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Diary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bot_nav_testing"
+                android:layout_width="wrap_content"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
+
+                <ImageView
+                    android:id="@+id/bot_nav_testing_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/nav_icon_testing" />
+
+                <TextView
+                    android:id="@+id/bot_nav_testing_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Testing" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bot_nav_prep"
+                android:layout_width="wrap_content"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
+
+                <ImageView
+                    android:id="@+id/bot_nav_prep_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/nav_icon_prep" />
+
+                <TextView
+                    android:id="@+id/bot_nav_prep_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PrEP" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bot_nav_chat"
+                android:layout_width="wrap_content"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
+
+                <ImageView
+                    android:id="@+id/bot_nav_chat_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/nav_icon_chat" />
+
+                <TextView
+                    android:id="@+id/bot_nav_chat_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chat" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

@@ -178,8 +178,10 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         topFive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LynxHome.this,"Top Five",Toast.LENGTH_SHORT).show();
                 TrackHelper.track().event("Home Category","Click").name("Top Five").value(1f).with(tracker);
+                Intent five = new Intent(LynxHome.this,LynxTopFive.class);
+                startActivity(five);
+                finish();
             }
         });
         trends.setOnClickListener(new View.OnClickListener() {

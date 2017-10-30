@@ -1,7 +1,11 @@
 package com.lynxstudy.model;
 
+import com.lynxstudy.lynx.LynxManager;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Comparator;
 
 /**
  * Created by safiq on 26/06/15.
@@ -90,6 +94,16 @@ public class PartnerRating {
 
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
+    }
+
+    public static class comparePartnerRating implements Comparator<PartnerRating> {
+        public comparePartnerRating() {
+        }
+
+        @Override
+        public int compare(PartnerRating rating1, PartnerRating rating2) {
+            return rating2.getRating().compareToIgnoreCase(rating1.getRating());
+        }
     }
 
     public JSONObject getJson(){

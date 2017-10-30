@@ -55,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
 
     // Database Name
     private static final String DATABASE_NAME = "phasttDB";
@@ -2755,14 +2755,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.close();
         return null;
     }
-    public List<PartnerRating> getPartnerRatingbyRatingFieldID(int partner_id) {
+    public List<PartnerRating> getPartnerRatingbyRatingFieldID(int field_id) {
         SQLiteDatabase db = this.getReadableDatabase();
         List<PartnerRating> Partners = new ArrayList<PartnerRating>();
 
-        System.out.println("Single Partnerrating " + partner_id);
-
         String selectQuery = "SELECT  * FROM " + TABLE_PARTNER_RATINGS + " WHERE "
-                + KEY_PARTNERRATING_RATINGFIELDID + " = " + partner_id;
+                + KEY_PARTNERRATING_RATINGFIELDID + " = " + field_id;
 
         Log.e(LOG, selectQuery);
 
@@ -3031,7 +3029,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.close();
         return encounters;
     }
+    /**
+     * getting all Encounters by Date
+     */
+    public List<Encounter> getAllEncountersByDate(String date) {
+        List<Encounter> encounters = new ArrayList<Encounter>();
+        String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER + " WHERE " + KEY_ENCOUNTER_DATE + " LIKE '"+ LynxManager.encryptString(date) + "'";
 
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                Encounter encounter = new Encounter();
+                encounter.setEncounter_id(c.getInt(c.getColumnIndex(KEY_ENCOUNTER_ID)));
+                encounter.setEncounter_user_id(c.getInt(c.getColumnIndex(KEY_ENCOUNTER_USERID)));
+                encounter.setDatetime((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DATE))));
+                encounter.setEncounter_partner_id(c.getInt(c.getColumnIndex(KEY_ENCOUNTER_PARTNERID)));
+                encounter.setRate_the_sex(c.getString(c.getColumnIndex(KEY_ENCOUNTER_SEXRATING)));
+                encounter.setIs_drug_used((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISDRUGUSED))));
+                encounter.setEncounter_notes((c.getString(c.getColumnIndex(KEY_ENCOUNTER_NOTES))));
+                encounter.setDid_you_cum((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DID_YOU_CUM))));
+                encounter.setDid_your_partner_cum((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DID_YOUR_PARTNER_CUM))));
+                encounter.setIs_possible_sex_tomorrow((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISSEX_TOMORROW))));
+
+                encounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // adding to Users list
+                encounters.add(encounter);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return encounters;
+    }
     /**
      * Updating a Encounters by Status
      */
@@ -3524,6 +3557,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<TestingHistory> getAllTestingHistoryByStatus(String status) {
         List<TestingHistory> testingHistories = new ArrayList<TestingHistory>();
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY + " WHERE " + KEY_STATUS_UPDATE + " = '" + status + "'";
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                TestingHistory testHistory = new TestingHistory();
+                testHistory.setTesting_history_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_ID)));
+                testHistory.setTesting_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_TESTINGID)));
+                testHistory.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_USERID)));
+                testHistory.setTesting_date(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_TESTINGDATE)));
+                testHistory.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // adding to Users list
+                testingHistories.add(testHistory);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return testingHistories;
+    }
+
+    /**
+     * getting all Testing History by status
+     */
+    public List<TestingHistory> getAllTestingHistoriesByDate(String date) {
+        List<TestingHistory> testingHistories = new ArrayList<TestingHistory>();
+        String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY + " WHERE " + KEY_TESTING_HISTORY_TESTINGDATE + " = '" + LynxManager.encryptString(date) + "'";
 
         Log.e(LOG, selectQuery);
 

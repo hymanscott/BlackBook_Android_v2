@@ -201,6 +201,15 @@ public class Encounter {
             return mod*date0.compareTo(date1);
         }
     }
+    public static class compareEncounterRate implements Comparator<Encounter>{
+        public compareEncounterRate() {
+        }
+
+        @Override
+        public int compare(Encounter encounter1, Encounter encounter2) {
+            return LynxManager.decryptString(encounter2.getRate_the_sex()).compareToIgnoreCase(LynxManager.decryptString(encounter1.getRate_the_sex()));
+        }
+    }
     public JSONObject getJson(){
 
         JSONObject enc_jsonObj = new JSONObject();

@@ -529,6 +529,7 @@ public class RegLogin extends AppCompatActivity {
         try {
             loginOBJ.put("email",loginEmail);
             loginOBJ.put("password",loginPassword);
+            loginOBJ.put("badge_in","badge_in");
         } catch (JSONException e) {
             e.printStackTrace();
         }
