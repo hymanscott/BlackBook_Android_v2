@@ -1390,6 +1390,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.close();
         return drugs;
     }
+
+    /**
+     * getting STIs count
+     */
+    public int getSTIsCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_STI_MASTER;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+
     // ------------------------ "User PRIMARY PARTNER " table methods ----------------//
 
     /**

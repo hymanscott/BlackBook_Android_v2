@@ -285,7 +285,6 @@
                             android:background="@drawable/lynx_button"
                             android:textColor="@color/white"
                             android:layout_marginRight="30dp"
-                            android:onClick="close"
                             android:textStyle="bold"
                             android:gravity="center_vertical|center_horizontal" />
                     </LinearLayout>

@@ -25,7 +25,7 @@ import java.util.List;
 
 public class LynxTopFive extends AppCompatActivity implements View.OnClickListener{
 
-    Typeface tf,tf_bold;
+    Typeface tf,tf_bold,tf_bold_italic;
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
     TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,top_five_title_partner,top_five_title_enc;
     TableLayout topFiveEncounterList,topFivePartnerList;
@@ -40,6 +40,8 @@ public class LynxTopFive extends AppCompatActivity implements View.OnClickListen
                 "fonts/Roboto-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
+        tf_bold_italic = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-BoldItalic.ttf");
         // Custom Action Bar //
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
@@ -68,9 +70,9 @@ public class LynxTopFive extends AppCompatActivity implements View.OnClickListen
         viewProfile.setOnClickListener(this);
 
         top_five_title_partner = (TextView)findViewById(R.id.top_five_title_partner);
-        top_five_title_partner.setTypeface(tf_bold);
+        top_five_title_partner.setTypeface(tf_bold_italic);
         top_five_title_enc = (TextView)findViewById(R.id.top_five_title_enc);
-        top_five_title_enc.setTypeface(tf_bold);
+        top_five_title_enc.setTypeface(tf_bold_italic);
 
         db = new DatabaseHelper(LynxTopFive.this);
         /*Top Five Encounters*/
@@ -89,7 +91,7 @@ public class LynxTopFive extends AppCompatActivity implements View.OnClickListen
 
             name.setText(LynxManager.decryptString(partner.getNickname()));
 
-            switch (partnerRating.getRating()){
+            switch (LynxManager.decryptString(encounter.getRate_the_sex())){
                 case "5.0":
                     rate_image.setImageDrawable(getResources().getDrawable(R.drawable.encounter_rate_five));
                     break;
