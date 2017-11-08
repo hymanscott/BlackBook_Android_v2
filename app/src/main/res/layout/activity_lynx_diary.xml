@@ -68,7 +68,8 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_alignParentBottom="true"
         android:id="@+id/bot_nav"
         android:layout_gravity="bottom"
         android:background="@color/starBG"
@@ -80,7 +81,6 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:id="@+id/bot_nav_sexpro"
-            android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:orientation="vertical">
 
@@ -102,7 +102,6 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:id="@+id/bot_nav_diary"
-            android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:background="@color/colorAccent"
             android:orientation="vertical">
@@ -127,7 +126,6 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:id="@+id/bot_nav_testing"
-            android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:orientation="vertical">
 
@@ -150,7 +148,6 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:id="@+id/bot_nav_prep"
-            android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:orientation="vertical">
 
@@ -173,7 +170,6 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:id="@+id/bot_nav_chat"
-            android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:orientation="vertical">
 

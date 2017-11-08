@@ -426,7 +426,7 @@ tools:context="com.lynxstudy.lynx.LynxBadges">
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="4dp"
-                                    android:gravity="end"
+                                    android:gravity="start"
                                     android:text="REGULAR"
                                     android:textColor="@color/text_color"
                                     android:textSize="12sp" />
@@ -911,7 +911,6 @@ tools:context="com.lynxstudy.lynx.LynxBadges">
                 android:background="@color/colorAccent"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
                 android:paddingTop="5dp">
 
                 <ImageView
@@ -936,7 +935,6 @@ tools:context="com.lynxstudy.lynx.LynxBadges">
                 android:layout_weight="0.2"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
                 android:paddingTop="5dp">
 
                 <ImageView
@@ -959,7 +957,6 @@ tools:context="com.lynxstudy.lynx.LynxBadges">
                 android:layout_weight="0.2"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
                 android:paddingTop="5dp">
 
                 <ImageView
@@ -982,7 +979,6 @@ tools:context="com.lynxstudy.lynx.LynxBadges">
                 android:layout_weight="0.2"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
                 android:paddingTop="5dp">
 
                 <ImageView
@@ -1005,7 +1001,6 @@ tools:context="com.lynxstudy.lynx.LynxBadges">
                 android:layout_weight="0.2"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
                 android:paddingTop="5dp">
 
                 <ImageView

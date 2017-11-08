@@ -408,7 +408,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
                 }
             }
         });
-        reppass.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        /*reppass.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
@@ -417,7 +417,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
                     }
                 }
             }
-        });
+        });*/
 
         final List<String> secQuestions = Arrays.asList(getResources().getStringArray(R.array.security_questions));
 
@@ -907,13 +907,13 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         if (password.isEmpty()) {
             Toast.makeText(LynxProfile.this,"Enter Password",Toast.LENGTH_SHORT).show();
             pass.requestFocus();
-        } else if(rep_password.isEmpty()){
+        }/* else if(rep_password.isEmpty()){
             Toast.makeText(LynxProfile.this,"Please enter your current password",Toast.LENGTH_SHORT).show();
             reppass.requestFocus();
         }else if (!rep_password.equals(password)) {
             Toast.makeText(LynxProfile.this,"Password Mismatching",Toast.LENGTH_SHORT).show();
             reppass.requestFocus();
-        } else if (phone_number.isEmpty()) {
+        }*/ else if (phone_number.isEmpty()) {
             Toast.makeText(LynxProfile.this,"Enter a valid Phone Number",Toast.LENGTH_SHORT).show();
             phonenumber.requestFocus();
         } else if (pass_code.isEmpty()) {
@@ -1154,7 +1154,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         sendNotification();*/
     }
 
-    /*test*/
+    /*bottom_navigation*/
     private NotificationManager notificationManager;
     private NotificationCompat.Builder notificationBuilder;
     private String title,text;

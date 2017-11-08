@@ -197,7 +197,7 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
         newTest_title.setTypeface(ty);
         newTest_title.setText("Add New " + title);
         TextView titleText = (TextView) findViewById(R.id.titleText);
-        titleText.setText("When was your most recent HIV test?");
+        titleText.setText("When was your most recent HIV bottom_navigation?");
         LinearLayout std_layout = (LinearLayout)findViewById(R.id.std_layout);
         RadioGroup hivTestStatus = (RadioGroup)findViewById(R.id.hivTestStatus);
         LinearLayout hivTestStatusTitle = (LinearLayout)findViewById(R.id.hivTestStatusTitle);
@@ -207,7 +207,7 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
             hivTestStatus.setVisibility(View.GONE);
             hivTestStatusTitle.setVisibility(View.GONE);
             hivTestStatusRadio.setVisibility(View.GONE);
-            titleText.setText("When was your most recent STD test?");
+            titleText.setText("When was your most recent STD bottom_navigation?");
         }
 
         final EditText newTestDate = (EditText) findViewById(R.id.addNewTestDate);

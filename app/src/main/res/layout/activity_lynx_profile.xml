@@ -869,6 +869,7 @@
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="3dp"
+                    android:visibility="gone"
                     android:background="@color/profile_edittext_bg"
                     android:orientation="horizontal"
                     android:padding="@dimen/edittext_padding">
@@ -1369,7 +1370,6 @@
             android:background="@color/colorAccent"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingBottom="5dp"
             android:paddingTop="5dp">
 
             <ImageView
@@ -1393,7 +1393,6 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingBottom="5dp"
             android:paddingTop="5dp">
 
             <ImageView
@@ -1416,7 +1415,6 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingBottom="5dp"
             android:paddingTop="5dp">
 
             <ImageView
@@ -1439,7 +1437,6 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingBottom="5dp"
             android:paddingTop="5dp">
 
             <ImageView
@@ -1462,7 +1459,6 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingBottom="5dp"
             android:paddingTop="5dp">
 
             <ImageView

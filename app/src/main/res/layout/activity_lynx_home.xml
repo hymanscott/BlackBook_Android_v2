@@ -288,7 +288,6 @@
                 android:background="@color/colorAccent"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
                 android:paddingTop="5dp">
 
                 <ImageView
@@ -312,7 +311,6 @@
                 android:layout_weight="0.2"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
                 android:paddingTop="5dp">
 
                 <ImageView
@@ -335,7 +333,6 @@
                 android:layout_weight="0.2"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
                 android:paddingTop="5dp">
 
                 <ImageView
@@ -358,7 +355,6 @@
                 android:layout_weight="0.2"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
                 android:paddingTop="5dp">
 
                 <ImageView
@@ -381,7 +377,6 @@
                 android:layout_weight="0.2"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
                 android:paddingTop="5dp">
 
                 <ImageView

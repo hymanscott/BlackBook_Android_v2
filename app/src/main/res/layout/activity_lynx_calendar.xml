@@ -575,7 +575,6 @@
             android:background="@color/bot_nav_bg"
             android:orientation="horizontal"
             android:weightSum="1">
-
             <LinearLayout
                 android:id="@+id/bot_nav_sexpro"
                 android:layout_width="wrap_content"
@@ -584,7 +583,6 @@
                 android:background="@color/colorAccent"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
                 android:paddingTop="5dp">
 
                 <ImageView
@@ -609,7 +607,6 @@
                 android:layout_weight="0.2"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
                 android:paddingTop="5dp">
 
                 <ImageView
@@ -632,7 +629,6 @@
                 android:layout_weight="0.2"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
                 android:paddingTop="5dp">
 
                 <ImageView
@@ -655,7 +651,6 @@
                 android:layout_weight="0.2"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
                 android:paddingTop="5dp">
 
                 <ImageView
@@ -678,7 +673,6 @@
                 android:layout_weight="0.2"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="5dp"
                 android:paddingTop="5dp">
 
                 <ImageView

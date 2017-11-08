@@ -9,7 +9,7 @@ android {
         targetSdkVersion 25
         versionCode 8
         versionName '1.8.1'
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "android.support.bottom_navigation.runner.AndroidJUnitRunner"
         multiDexEnabled true
         manifestPlaceholders = [HOCKEYAPP_APP_ID: "6ab13309fc744956a8571662d0675a9f"]
     }

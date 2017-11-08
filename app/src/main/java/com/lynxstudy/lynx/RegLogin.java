@@ -348,7 +348,7 @@ public class RegLogin extends AppCompatActivity {
         BadgesMaster badgesMaster2 = new BadgesMaster(2,"High Five","Entered first encounter","Yay!  Shout out to the first timers.  Congrants on completing Entry #1.","high_five_small","Encounter");
         BadgesMaster badgesMaster3 = new BadgesMaster(3,"Healthy Heart","Entered 3 encounters","Humping keeps your hearth thumping. Hopefully the third time was a charm!","healthy_heart_small","Encounter");
         BadgesMaster badgesMaster4 = new BadgesMaster(4,"Silver Screen","Watched all 4 videos","Someone likes being an expert.  Congrats on watching the entire video series.","silver_screen_small","PrEP");
-        BadgesMaster badgesMaster5 = new BadgesMaster(5,"Testing 1-2-3","Entered an HIV or STD test","You don't have to pat yourself on the back for taking your test.  We'll do it for you!","testing_small","Testing");
+        BadgesMaster badgesMaster5 = new BadgesMaster(5,"Testing 1-2-3","Entered an HIV or STD bottom_navigation","You don't have to pat yourself on the back for taking your bottom_navigation.  We'll do it for you!","testing_small","Testing");
 
         List<BadgesMaster> badgesMasterList = new ArrayList<BadgesMaster>();
         badgesMasterList.add(badgesMaster1);

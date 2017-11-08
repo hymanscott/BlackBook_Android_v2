@@ -145,7 +145,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                 Button netural_btn = (Button)popupView.findViewById(R.id.alertNeturalButton);
 
                 title.setText("LYNX");
-                message.setText("It's time for your test!");
+                message.setText("It's time for your bottom_navigation!");
                 positive_btn.setText("Later");
                 positive_btn.setTextSize(12);
                 negative_btn.setText("Sure");
@@ -466,7 +466,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         newTest_title.setTypeface(tf_bold);
         newTest_title.setText("Add New " + title);
         TextView titleText = (TextView) view.findViewById(R.id.titleText);
-        titleText.setText("When was your most recent HIV test?");
+        titleText.setText("When was your most recent HIV bottom_navigation?");
         LinearLayout std_layout = (LinearLayout)view.findViewById(R.id.std_layout);
         RadioGroup hivTestStatus = (RadioGroup)view.findViewById(R.id.newhivTestStatus);
         LinearLayout hivTestStatusTitle = (LinearLayout)view.findViewById(R.id.hivTestStatusTitle);
@@ -476,14 +476,14 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
             hivTestStatus.setVisibility(View.GONE);
             hivTestStatusTitle.setVisibility(View.GONE);
             hivTestStatusRadio.setVisibility(View.GONE);
-            titleText.setText("When was your most recent STD test?");
+            titleText.setText("When was your most recent STD bottom_navigation?");
             addNewTestDate.setText("");
         }else{
             std_layout.setVisibility(View.GONE);
             hivTestStatus.setVisibility(View.VISIBLE);
             hivTestStatusTitle.setVisibility(View.VISIBLE);
             hivTestStatusRadio.setVisibility(View.VISIBLE);
-            titleText.setText("When was your most recent HIV test?");
+            titleText.setText("When was your most recent HIV bottom_navigation?");
             addNewTestDate.setText("");
         }
 
@@ -815,113 +815,115 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
             std_list_parentLayout.setVisibility(View.VISIBLE);
             List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(testingHistoryID);
             for (final TestingHistoryInfo historyInfo : testinghistoryInfoList) {
-                STIMaster stiName = db.getSTIbyID(historyInfo.getSti_id());
-                if(stiName.getstiName().equals("Gonorrhea")){
-                    if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
-                        gonorrheaStatus.setText("Positive");
-                        gonorrheaIcon.setImageDrawable(getResources().getDrawable(R.drawable.pos_test));
-                    }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
-                        gonorrheaStatus.setText("Negative");
-                        gonorrheaIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
-                    }else{
-                        gonorrheaStatus.setText("Didn't Test");
-                        gonorrheaIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
-                    }
-                    String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
-                    if(!historyInfoAttachment.equals("")){
-                        final String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
-                        final File mediaFile = new File(imgDir+historyInfoAttachment);
-                        if(mediaFile.exists()){
-                            Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfoAttachment);
-                            int h = 200; // height in pixels
-                            int w = 200; // width in pixels
-                            Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
-                            gonorrheaAttachment.setImageBitmap(scaled);
-                        }else{
-                            //  ***********set url from server*********** //
+                if (historyInfo.getSti_id() != 0) {
+                    STIMaster stiName = db.getSTIbyID(historyInfo.getSti_id());
+                    if (stiName.getstiName().equals("Gonorrhea")) {
+                        if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
+                            gonorrheaStatus.setText("Positive");
+                            gonorrheaIcon.setImageDrawable(getResources().getDrawable(R.drawable.pos_test));
+                        } else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
+                            gonorrheaStatus.setText("Negative");
+                            gonorrheaIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
+                        } else {
+                            gonorrheaStatus.setText("Didn't Test");
+                            gonorrheaIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
+                        }
+                        String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
+                        if (!historyInfoAttachment.equals("")) {
+                            final String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
+                            final File mediaFile = new File(imgDir + historyInfoAttachment);
+                            if (mediaFile.exists()) {
+                                Bitmap bmp = BitmapFactory.decodeFile(imgDir + historyInfoAttachment);
+                                int h = 200; // height in pixels
+                                int w = 200; // width in pixels
+                                Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
+                                gonorrheaAttachment.setImageBitmap(scaled);
+                            } else {
+                                //  ***********set url from server*********** //
+                                gonorrheaAttachment.setImageResource(R.drawable.photocamera);
+                                new DownloadImagesTask(LynxManager.getTestImageBaseUrl() + historyInfoAttachment).execute(gonorrheaAttachment);
+                            }
+                            gonorrheaAttachment.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    showImageIntent(mediaFile);
+                                }
+                            });
+                        } else {
+                            //gonorrheaAttachment.setVisibility(View.GONE);
                             gonorrheaAttachment.setImageResource(R.drawable.photocamera);
-                            new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(gonorrheaAttachment);
                         }
-                        gonorrheaAttachment.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                showImageIntent(mediaFile);
-                            }
-                        });
-                    }else {
-                        //gonorrheaAttachment.setVisibility(View.GONE);
-                        gonorrheaAttachment.setImageResource(R.drawable.photocamera);
-                    }
 
-                }else if (stiName.getstiName().equals("Syphilis")){
-                    if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
-                        syphilisStatus.setText("Positive");
-                        syphilisIcon.setImageDrawable(getResources().getDrawable(R.drawable.pos_test));
-                    }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
-                        syphilisStatus.setText("Negative");
-                        syphilisIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
-                    }else{
-                        syphilisStatus.setText("Didn't Test");
-                        syphilisIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
-                    }
-                    String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
-                    if(!historyInfoAttachment.equals("")){
-                        final String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
-                        final File mediaFile = new File(imgDir+historyInfoAttachment);
-                        if(mediaFile.exists()){
-                            Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfoAttachment);
-                            int h = 200; // height in pixels
-                            int w = 200; // width in pixels
-                            Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
-                            syphilisAttachment.setImageBitmap(scaled);
-                        }else{
+                    } else if (stiName.getstiName().equals("Syphilis")) {
+                        if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
+                            syphilisStatus.setText("Positive");
+                            syphilisIcon.setImageDrawable(getResources().getDrawable(R.drawable.pos_test));
+                        } else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
+                            syphilisStatus.setText("Negative");
+                            syphilisIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
+                        } else {
+                            syphilisStatus.setText("Didn't Test");
+                            syphilisIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
+                        }
+                        String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
+                        if (!historyInfoAttachment.equals("")) {
+                            final String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
+                            final File mediaFile = new File(imgDir + historyInfoAttachment);
+                            if (mediaFile.exists()) {
+                                Bitmap bmp = BitmapFactory.decodeFile(imgDir + historyInfoAttachment);
+                                int h = 200; // height in pixels
+                                int w = 200; // width in pixels
+                                Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
+                                syphilisAttachment.setImageBitmap(scaled);
+                            } else {
+                                syphilisAttachment.setImageResource(R.drawable.photocamera);
+                                new DownloadImagesTask(LynxManager.getTestImageBaseUrl() + historyInfoAttachment).execute(syphilisAttachment);
+                            }
+                            syphilisAttachment.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    showImageIntent(mediaFile);
+                                }
+                            });
+                        } else {
+                            // syphilisAttachment.setVisibility(View.GONE);
                             syphilisAttachment.setImageResource(R.drawable.photocamera);
-                            new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(syphilisAttachment);
                         }
-                        syphilisAttachment.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                showImageIntent(mediaFile);
+                    } else if (stiName.getstiName().equals("Chlamydia")) {
+                        if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
+                            chlamydiaStatus.setText("Positive");
+                            chlamydiaIcon.setImageDrawable(getResources().getDrawable(R.drawable.pos_test));
+                        } else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
+                            chlamydiaStatus.setText("Negative");
+                            chlamydiaIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
+                        } else {
+                            chlamydiaStatus.setText("Didn't Test");
+                            chlamydiaIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
+                        }
+                        String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
+                        if (!historyInfoAttachment.equals("")) {
+                            final String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
+                            final File mediaFile = new File(imgDir + historyInfoAttachment);
+                            if (mediaFile.exists()) {
+                                Bitmap bmp = BitmapFactory.decodeFile(imgDir + historyInfoAttachment);
+                                int h = 200; // height in pixels
+                                int w = 200; // width in pixels
+                                Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
+                                chlamydiaAttachment.setImageBitmap(scaled);
+                            } else {
+                                chlamydiaAttachment.setImageResource(R.drawable.photocamera);
+                                new DownloadImagesTask(LynxManager.getTestImageBaseUrl() + historyInfoAttachment).execute(chlamydiaAttachment);
                             }
-                        });
-                    }else {
-                        // syphilisAttachment.setVisibility(View.GONE);
-                        syphilisAttachment.setImageResource(R.drawable.photocamera);
-                    }
-                }else if (stiName.getstiName().equals("Chlamydia")){
-                    if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
-                        chlamydiaStatus.setText("Positive");
-                        chlamydiaIcon.setImageDrawable(getResources().getDrawable(R.drawable.pos_test));
-                    }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
-                        chlamydiaStatus.setText("Negative");
-                        chlamydiaIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
-                    }else{
-                        chlamydiaStatus.setText("Didn't Test");
-                        chlamydiaIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
-                    }
-                    String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
-                    if(!historyInfoAttachment.equals("")){
-                        final String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
-                        final File mediaFile = new File(imgDir+historyInfoAttachment);
-                        if(mediaFile.exists()){
-                            Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfoAttachment);
-                            int h = 200; // height in pixels
-                            int w = 200; // width in pixels
-                            Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
-                            chlamydiaAttachment.setImageBitmap(scaled);
-                        }else{
+                            chlamydiaAttachment.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    showImageIntent(mediaFile);
+                                }
+                            });
+                        } else {
+                            //chlamydiaAttachment.setVisibility(View.GONE);
                             chlamydiaAttachment.setImageResource(R.drawable.photocamera);
-                            new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(chlamydiaAttachment);
                         }
-                        chlamydiaAttachment.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                showImageIntent(mediaFile);
-                            }
-                        });
-                    }else {
-                        //chlamydiaAttachment.setVisibility(View.GONE);
-                        chlamydiaAttachment.setImageResource(R.drawable.photocamera);
                     }
                 }
             }

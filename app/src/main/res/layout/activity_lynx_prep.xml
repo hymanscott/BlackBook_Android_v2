@@ -82,7 +82,6 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:id="@+id/bot_nav_sexpro"
-            android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:orientation="vertical">
 
@@ -104,7 +103,6 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:id="@+id/bot_nav_diary"
-            android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:orientation="vertical">
 
@@ -127,7 +125,6 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:id="@+id/bot_nav_testing"
-            android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:orientation="vertical">
 
@@ -150,7 +147,6 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:id="@+id/bot_nav_prep"
-            android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:background="@color/colorAccent"
             android:orientation="vertical">
@@ -175,7 +171,6 @@
             android:layout_weight="0.2"
             android:gravity="center"
             android:id="@+id/bot_nav_chat"
-            android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:orientation="vertical">
             <ImageView

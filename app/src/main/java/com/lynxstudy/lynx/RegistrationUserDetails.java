@@ -88,7 +88,7 @@ public class RegistrationUserDetails extends Fragment {
             }
         });
         if(LynxManager.releaseMode==0){
-            email.setText("test@lynx.com");
+            email.setText("bottom_navigation@lynx.com");
             pass.setText("qwerty");
             reppass.setText("qwerty");
         }else{
