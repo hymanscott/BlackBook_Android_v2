@@ -71,20 +71,12 @@ public class LynxPrepFactsFragment extends Fragment {
         int j = 0;
         for (final PrepInformation prepInformation : prepInformationList) {
             TableRow prepRow = new TableRow(getActivity());
-            prepRow.setPadding(0, 30, 10, 30);
-
-            TextView prep_name = new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);
-            TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f);
-
-            prep_name.setText(prepInformation.getPrep_info_question());
-            prep_name.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
-            prep_name.setLayoutParams(params);
-            prep_name.setTypeface(tf);
-            prep_name.setTextColor(getResources().getColor(R.color.faq_blue));
-            prep_name.setPadding(40, 10, 10, 10);
-            prep_name.setTextSize(16);
-
-            prepRow.addView(prep_name);
+            LayoutInflater chInflater = (getActivity()).getLayoutInflater();
+            View question_view = chInflater.inflate(R.layout.testing_instruction_row,prepRow,false);
+            TextView textview = (TextView)question_view.findViewById(R.id.textview);
+            textview.setTypeface(tf);
+            textview.setText(prepInformation.getPrep_info_question());
+            prepRow.addView(question_view);
             prepRow.setBackground(getResources().getDrawable(R.drawable.bottom_border_faq));
 
             prepRow.setClickable(true);

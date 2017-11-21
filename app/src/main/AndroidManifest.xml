@@ -48,7 +48,7 @@
     <!-- <application android:name="android.support.multidex.MultiDexApplication"
     android:name="com.lynxstudy.lynx.lynxApplication"-->
     <application
-        android:name="lynxApplication"
+        android:name=".lynxApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"

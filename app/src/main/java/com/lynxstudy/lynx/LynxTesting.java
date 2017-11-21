@@ -105,6 +105,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setCurrentItem(0,true);
 
         final TextView tab1 = new TextView(LynxTesting.this);
         tab1.setText("HISTORY");

@@ -75,20 +75,13 @@ public class TestingInstructionFragment extends Fragment {
         int j = 0;
         for (final TestingInstructions testingInstructions : testing_instruction_list) {
             TableRow testingInsRow = new TableRow(getActivity());
-            testingInsRow.setPadding(0, 30, 10, 30);
-
-            TextView testingInsName = new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);
-            TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f);
-
-            testingInsName.setText(testingInstructions.getQuestion());
-            testingInsName.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
-            testingInsName.setLayoutParams(params);
-            testingInsName.setTypeface(roboto);
-            testingInsName.setTextColor(getResources().getColor(R.color.faq_blue));
-            testingInsName.setPadding(40, 8, 8, 8);
-            testingInsName.setTextSize(16);
-
-            testingInsRow.addView(testingInsName);
+            testingInsRow.setPadding(0, 0, 10, 0);
+            LayoutInflater chInflater = (getActivity()).getLayoutInflater();
+            View question_view = chInflater.inflate(R.layout.testing_instruction_row,testingInsRow,false);
+            TextView textview = (TextView)question_view.findViewById(R.id.textview);
+            textview.setTypeface(roboto);
+            textview.setText(testingInstructions.getQuestion());
+            testingInsRow.addView(question_view);
             testingInsRow.setBackground(getResources().getDrawable(R.drawable.bottom_border_faq));
 
             testingInsRow.setClickable(true);
