@@ -54,108 +54,140 @@
                             android:textColor="@color/encounter_btn_bg"
                             android:background="@color/banner_name_bg"
                             android:gravity="center_vertical|center_horizontal" />
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Did you cum inside your partner?"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/encounter_tv_textsize"
-                            android:layout_marginRight="24dp"
-                            android:layout_marginLeft="24dp"
-                            android:id="@+id/youCumTitle"
-                            android:gravity="center_vertical"/>
-                        <RadioGroup
-                            android:id="@+id/radio_you_cum"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="24dp"
-                            android:layout_marginLeft="24dp"
-                            android:layout_marginTop="@dimen/activity_vertical_margin">
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Yes"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/encounter_radio_btn_textsize"
-                                android:checked="true"
-                                android:buttonTint="@color/white"
-                                android:id="@+id/radio_you_cum_yes" />
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="No"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/encounter_radio_btn_textsize"
-                                android:buttonTint="@color/white"
-                                android:id="@+id/radio_you_cum_no" />
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/encounter_radio_btn_textsize"
-                                android:buttonTint="@color/white"
-                                android:text="I don't know"
-                                android:id="@+id/radio_you_cum_iDontKnow" />
-                        </RadioGroup>
-                        <View
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/edittext_bg"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            android:layout_marginTop="24dp"
-                            android:layout_marginBottom="24dp" />
-                        <TextView
-                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="Did your partner cum inside you?"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/encounter_tv_textsize"
-                            android:layout_marginRight="24dp"
-                            android:layout_marginLeft="24dp"
-                            android:id="@+id/yourPartnerCumTitle"
-                            android:gravity="center_vertical"/>
-                        <RadioGroup
-                            android:id="@+id/radio_your_partner_cum"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="24dp"
-                            android:layout_marginLeft="24dp"
-                            android:layout_marginTop="@dimen/activity_vertical_margin">
-                            <RadioButton
+                            android:id="@+id/didYouCumLayout"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Did you cum inside your partner?"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/encounter_tv_textsize"
+                                android:layout_marginRight="24dp"
+                                android:layout_marginLeft="24dp"
+                                android:id="@+id/youCumTitle"
+                                android:gravity="center_vertical"/>
+                            <RadioGroup
+                                android:id="@+id/radio_you_cum"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Yes"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/encounter_radio_btn_textsize"
-                                android:checked="true"
-                                android:buttonTint="@color/white"
-                                android:id="@+id/radio_your_partner_cum_yes" />
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="No"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/encounter_radio_btn_textsize"
-                                android:buttonTint="@color/white"
-                                android:id="@+id/radio_your_partner_cum_no" />
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/encounter_radio_btn_textsize"
-                                android:buttonTint="@color/white"
-                                android:text="I don't know"
-                                android:id="@+id/radio_your_partner_cum_iDontKnow" />
-                        </RadioGroup>
-                        <View
+                                android:layout_marginRight="24dp"
+                                android:layout_marginLeft="24dp"
+                                android:paddingLeft="8dp"
+                                android:layout_marginTop="@dimen/activity_vertical_margin">
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Yes"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:buttonTint="@color/white"
+                                    android:button="@drawable/radiobutton_white"
+                                    android:paddingLeft="12dp"
+                                    android:id="@+id/radio_you_cum_yes" />
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="No"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:buttonTint="@color/white"
+                                    android:button="@drawable/radiobutton_white"
+                                    android:paddingLeft="12dp"
+                                    android:layout_marginTop="12dp"
+                                    android:id="@+id/radio_you_cum_no" />
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:buttonTint="@color/white"
+                                    android:button="@drawable/radiobutton_white"
+                                    android:paddingLeft="12dp"
+                                    android:layout_marginTop="12dp"
+                                    android:text="I don't know"
+                                    android:checked="true"
+                                    android:id="@+id/radio_you_cum_iDontKnow" />
+                            </RadioGroup>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/edittext_bg"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                                android:layout_marginTop="24dp"
+                                android:layout_marginBottom="24dp" />
+                        </LinearLayout>
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/edittext_bg"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            android:layout_marginTop="24dp"
-                            android:layout_marginBottom="48dp" />
+                            android:layout_height="wrap_content"
+                            android:id="@+id/didYourPartnerCumLayout"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Did your partner cum inside you?"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/encounter_tv_textsize"
+                                android:layout_marginRight="24dp"
+                                android:layout_marginLeft="24dp"
+                                android:id="@+id/yourPartnerCumTitle"
+                                android:gravity="center_vertical"/>
+                            <RadioGroup
+                                android:id="@+id/radio_your_partner_cum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="24dp"
+                                android:layout_marginLeft="24dp"
+                                android:paddingLeft="8dp"
+                                android:layout_marginTop="@dimen/activity_vertical_margin">
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Yes"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:buttonTint="@color/white"
+                                    android:button="@drawable/radiobutton_white"
+                                    android:paddingLeft="12dp"
+                                    android:id="@+id/radio_your_partner_cum_yes" />
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="No"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:buttonTint="@color/white"
+                                    android:button="@drawable/radiobutton_white"
+                                    android:paddingLeft="12dp"
+                                    android:layout_marginTop="12dp"
+                                    android:id="@+id/radio_your_partner_cum_no" />
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:buttonTint="@color/white"
+                                    android:button="@drawable/radiobutton_white"
+                                    android:paddingLeft="12dp"
+                                    android:layout_marginTop="12dp"
+                                    android:text="I don't know"
+                                    android:checked="true"
+                                    android:id="@+id/radio_your_partner_cum_iDontKnow" />
+                            </RadioGroup>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/edittext_bg"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                                android:layout_marginTop="24dp"
+                                android:layout_marginBottom="48dp" />
+                        </LinearLayout>
                     </LinearLayout>
                 </ScrollView>
             </LinearLayout>

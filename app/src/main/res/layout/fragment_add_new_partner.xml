@@ -129,6 +129,7 @@
                         android:id="@+id/radio_gender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
                         android:layout_marginTop="@dimen/activity_vertical_margin">
 
                         <RadioButton
@@ -138,6 +139,8 @@
                             android:textColor="@color/white"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
                             android:buttonTint="@color/white"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
                             android:id="@+id/radio_gender_man" />
 
                         <RadioButton
@@ -146,6 +149,9 @@
                             android:text="Woman"
                             android:textColor="@color/white"
                             android:buttonTint="@color/white"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
+                            android:layout_marginTop="12dp"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
                             android:id="@+id/radio_gender_woman" />
                         <RadioButton
@@ -154,6 +160,9 @@
                             android:text="Trans woman"
                             android:textColor="@color/white"
                             android:buttonTint="@color/white"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
+                            android:layout_marginTop="12dp"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
                             android:id="@+id/radio_gender_transwoman" />
                         <RadioButton
@@ -162,6 +171,9 @@
                             android:text="Trans man"
                             android:textColor="@color/white"
                             android:buttonTint="@color/white"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
+                            android:layout_marginTop="12dp"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
                             android:checked="true"
                             android:id="@+id/radio_gender_transman" />
@@ -196,6 +208,7 @@
                         android:id="@+id/radio_hivstatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
                         android:layout_marginTop="@dimen/activity_vertical_margin">
 
                         <RadioButton
@@ -205,6 +218,8 @@
                             android:textColor="@color/white"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
                             android:buttonTint="@color/white"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
                             android:id="@+id/radio_hiv_neg" />
 
                         <RadioButton
@@ -213,6 +228,9 @@
                             android:text="HIV Negative and On PrEP"
                             android:textColor="@color/white"
                             android:buttonTint="@color/white"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
+                            android:layout_marginTop="12dp"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
                             android:id="@+id/radio_hiv_prep" />
                         <RadioButton
@@ -221,6 +239,9 @@
                             android:text="I don't know/unsure"
                             android:textColor="@color/white"
                             android:buttonTint="@color/white"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
+                            android:layout_marginTop="12dp"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
                             android:checked="true"
                             android:id="@+id/radio_hiv_idk" />
@@ -230,12 +251,18 @@
                             android:text="HIV Positive"
                             android:textColor="@color/white"
                             android:buttonTint="@color/white"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
+                            android:layout_marginTop="12dp"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
                             android:id="@+id/radio_hiv_pos" />
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:textColor="@color/white"
                             android:buttonTint="@color/white"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
+                            android:layout_marginTop="12dp"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
                             android:layout_height="wrap_content"
                             android:text="HIV Positive and Undetectable"
@@ -274,6 +301,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="24dp"
                         android:layout_marginLeft="24dp"
+                        android:paddingLeft="8dp"
                         android:layout_marginTop="@dimen/activity_vertical_margin">
                         <RadioButton
                             android:layout_width="wrap_content"
@@ -282,6 +310,8 @@
                             android:textColor="@color/white"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
                             android:buttonTint="@color/white"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
                             android:id="@+id/radio_undetectable_yes" />
                         <RadioButton
                             android:layout_width="wrap_content"
@@ -290,6 +320,9 @@
                             android:textColor="@color/white"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
                             android:buttonTint="@color/white"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
+                            android:layout_marginTop="12dp"
                             android:id="@+id/radio_undetectable_no" />
                         <RadioButton
                             android:layout_width="wrap_content"
@@ -297,6 +330,9 @@
                             android:textColor="@color/white"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
                             android:buttonTint="@color/white"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
+                            android:layout_marginTop="12dp"
                             android:text="I don't know/unsure"
                             android:checked="true"
                             android:id="@+id/radio_undetectable_iDontKnow" />
@@ -321,7 +357,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="Add to SexPro:"
+                        android:text="Add to Diary?"
                         android:textColor="@color/white"
                         android:textSize="@dimen/encounter_tv_textsize"
                         android:id="@+id/addToSexPro"
@@ -331,6 +367,7 @@
                         android:id="@+id/radio_is_listed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
                         android:layout_marginTop="@dimen/activity_vertical_margin">
 
                         <RadioButton
@@ -339,6 +376,8 @@
                             android:text="Yes"
                             android:textColor="@color/white"
                             android:buttonTint="@color/white"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
                             android:checked="true"
                             android:id="@+id/radio_blackbook_yes"/>
@@ -348,6 +387,9 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/white"
                             android:buttonTint="@color/white"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
+                            android:layout_marginTop="12dp"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
                             android:text="No"
                             android:id="@+id/radio_blackbook_no" />
@@ -366,42 +408,6 @@
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:onClick="onAddNewPartnerNext" />
-            <!--<LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp">
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Next"
-                        android:id="@+id/partner_info_nextbtn"
-                        android:layout_gravity="right"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/lynx_button"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:onClick="onAddNewPartnerNext"
-                        />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Revise"
-                        android:id="@+id/partner_info_revisebtn"
-                        android:layout_gravity="left"
-                        android:visibility="gone"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentLeft="true"
-                        android:background="@drawable/lynx_button"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:onClick="onAddNewPartnerPrev"
-                        />
-                </RelativeLayout>
-            </LinearLayout>-->
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -145,7 +145,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                 Button netural_btn = (Button)popupView.findViewById(R.id.alertNeturalButton);
 
                 title.setText("LYNX");
-                message.setText("It's time for your bottom_navigation!");
+                message.setText("It's time for your test!");
                 positive_btn.setText("Later");
                 positive_btn.setTextSize(12);
                 negative_btn.setText("Sure");
@@ -466,7 +466,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         newTest_title.setTypeface(tf_bold);
         newTest_title.setText("Add New " + title);
         TextView titleText = (TextView) view.findViewById(R.id.titleText);
-        titleText.setText("When was your most recent HIV bottom_navigation?");
+        titleText.setText("When was your most recent HIV test?");
         LinearLayout std_layout = (LinearLayout)view.findViewById(R.id.std_layout);
         RadioGroup hivTestStatus = (RadioGroup)view.findViewById(R.id.newhivTestStatus);
         LinearLayout hivTestStatusTitle = (LinearLayout)view.findViewById(R.id.hivTestStatusTitle);
@@ -476,14 +476,14 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
             hivTestStatus.setVisibility(View.GONE);
             hivTestStatusTitle.setVisibility(View.GONE);
             hivTestStatusRadio.setVisibility(View.GONE);
-            titleText.setText("When was your most recent STD bottom_navigation?");
+            titleText.setText("When was your most recent STD test?");
             addNewTestDate.setText("");
         }else{
             std_layout.setVisibility(View.GONE);
             hivTestStatus.setVisibility(View.VISIBLE);
             hivTestStatusTitle.setVisibility(View.VISIBLE);
             hivTestStatusRadio.setVisibility(View.VISIBLE);
-            titleText.setText("When was your most recent HIV bottom_navigation?");
+            titleText.setText("When was your most recent HIV test?");
             addNewTestDate.setText("");
         }
 
@@ -711,9 +711,9 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         }
     }
     public void testRowClick(View v){
-        /*((TextView) v.findViewById(R.id.date)).setTextColor(getResources().getColor(R.color.colorAccent));
-        ((TextView) v.findViewById(R.id.testname)).setTextColor(getResources().getColor(R.color.colorAccent));
-        ((TextView) v.findViewById(R.id.teststatus)).setTextColor(getResources().getColor(R.color.colorAccent));
+        /*((TextView) v.findViewById(R.id.date)).setTextColor(getResources().getColor(R.color.colorPrimary));
+        ((TextView) v.findViewById(R.id.testname)).setTextColor(getResources().getColor(R.color.colorPrimary));
+        ((TextView) v.findViewById(R.id.teststatus)).setTextColor(getResources().getColor(R.color.colorPrimary));
         Intent testSumm = new Intent(getActivity(),TestSummary.class);
         testSumm.putExtra("testingHistoryID",v.getId());
         startActivityForResult(testSumm, 001);*/
@@ -764,7 +764,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         TestingHistory testingHistory = db.getTestingHistorybyID(testingHistoryID);
         String test_name = (db.getTestingNamebyID(testingHistory.getTesting_id())).getTestName();
         testingHistoryTitle.setText(test_name);
-        testingHistoryTitle.setTextColor(getResources().getColor(R.color.colorAccent));
+        testingHistoryTitle.setTextColor(getResources().getColor(R.color.colorPrimary));
         String test_date = LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(testingHistory.getTesting_date()),"MM/dd/yyyy");
         testingHistorydate.setText(test_date);
         if(test_name.equals("HIV Test")){

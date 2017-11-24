@@ -49,6 +49,12 @@
         <item>No</item>
         <item>I don\'t know</item>
     </string-array>
+    <string-array name="gender_list">
+        <item>Man</item>
+        <item>Woman</item>
+        <item>Trans woman</item>
+        <item>Trans man</item>
+    </string-array>
     <string-array name="hiv_status_list">
         <item>HIV Negative</item>
         <item>HIV Negative and on PrEP</item>
@@ -67,12 +73,12 @@
         <item>Less than 6 months</item>
         <item>6 months or more</item>
     </string-array>
-    <string-array name="gender_list">
+    <!--<string-array name="gender_list">
         <item>Male</item>
         <item>Female</item>
         <item>Trans woman</item>
         <item>Trans man</item>
-    </string-array>
+    </string-array>-->
     <string-array name="races_list">
         <item>Black</item>
         <item>Latino</item>

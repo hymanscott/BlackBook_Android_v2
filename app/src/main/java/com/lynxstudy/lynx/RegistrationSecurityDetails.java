@@ -124,7 +124,7 @@ public class RegistrationSecurityDetails extends Fragment{
         });
 
         if(LynxManager.releaseMode==0){
-            sec_ans.setText("bottom_navigation");
+            sec_ans.setText("test");
             newPasscode.setText("1234");
         }else{
             sec_ans.setText(LynxManager.decryptString(LynxManager.getActiveUser().getSecurityanswer()));

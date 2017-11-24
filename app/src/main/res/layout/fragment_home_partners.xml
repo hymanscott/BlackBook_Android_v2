@@ -256,6 +256,35 @@
                         android:layout_width="145dp"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/encounter_tv_textsize"
+                        android:id="@+id/partnerGender"
+                        android:textColor="@color/text_color"
+                        android:text="Gender :"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/selectedPartner_gender"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_color"
+                        android:text="x"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/border_grey"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="145dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/encounter_tv_textsize"
                         android:id="@+id/hivStatus"
                         android:textColor="@color/text_color"
                         android:text="HIV Status :"/>
@@ -981,7 +1010,7 @@
                         android:textSize="@dimen/encounter_tv_textsize"
                         android:textColor="@color/text_color"
                         android:id="@+id/otherPartnerTitle"
-                        android:paddingBottom="5dp"
+                        android:padding="@dimen/edittext_padding"
                         android:text="Do they have other partners?"/>
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -1031,7 +1060,7 @@
                         android:textSize="@dimen/encounter_tv_textsize"
                         android:textColor="@color/text_color"
                         android:id="@+id/monogamousTitle"
-                        android:paddingBottom="5dp"
+                        android:padding="@dimen/edittext_padding"
                         android:text="How long have been with this partner in a mutually monogamous relationship?"/>
                     <RelativeLayout
                         android:layout_width="wrap_content"

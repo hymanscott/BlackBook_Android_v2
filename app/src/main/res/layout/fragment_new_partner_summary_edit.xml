@@ -267,10 +267,59 @@
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/encounter_tv_textsize"
+                    android:id="@+id/partnerGender"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Gender :"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/partnerGender"
+                    android:id="@+id/partnerGenderParent"
+                    android:layout_alignParentRight="true">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/newPartnerSumm_gender"
+                        android:textSize="14sp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_toLeftOf="@+id/dropDownIcon1"
+                        android:clickable="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/white"
+                        android:text="x"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/dropDownIcon1"
+                        android:src="@drawable/dropdownicon"/>
+                </RelativeLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@drawable/rectangle_bg"
+                android:layout_marginBottom="2dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/encounter_tv_textsize"
                     android:id="@+id/hivStatus"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:text="HIV Status :"/>
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -364,6 +413,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/encounter_tv_textsize"
                     android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:id="@+id/partnerTypeTitle"
                     android:text="Partner Type :"/>
                 <RelativeLayout
@@ -507,6 +557,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/encounter_tv_textsize"
                     android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:id="@+id/partnerNotes"
                     android:text="Partner Notes :"/>
 
@@ -540,6 +591,7 @@
                     android:paddingLeft="8dp"
                     android:textColor="@color/white"
                     android:id="@+id/overAll"
+                    android:textStyle="bold"
                     android:layout_gravity="center_vertical"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -570,6 +622,7 @@
                     android:layout_weight="1"
                     android:maxWidth="100dp"
                     android:paddingLeft="8dp"
+                    android:textStyle="bold"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/newPartnerSumm_rate2"
                     android:textSize="@dimen/encounter_tv_textsize"
@@ -599,6 +652,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Personality"
+                    android:textStyle="bold"
                     android:textSize="@dimen/encounter_tv_textsize"
                     android:textColor="@color/white"
                     android:maxWidth="100dp"
@@ -635,6 +689,7 @@
                     android:layout_gravity="center_vertical"
                     android:maxWidth="100dp"
                     android:text="Face"
+                    android:textStyle="bold"
                     android:paddingLeft="8dp"
                     android:textColor="@color/white"
                     android:textSize="@dimen/encounter_tv_textsize" />
@@ -673,6 +728,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Body"
+                        android:textStyle="bold"
                         android:hint="Body"
                         android:imeOptions="actionNext"
                         android:textColor="@color/white"
@@ -719,6 +775,7 @@
                         android:layout_height="wrap_content"
                         android:text="Cock"
                         android:hint="Cock"
+                        android:textStyle="bold"
                         android:imeOptions="actionNext"
                         android:textColor="@color/white"
                         android:textColorHint="@color/edittext_hint_color"
@@ -763,6 +820,7 @@
                         android:layout_height="wrap_content"
                         android:text="Butt"
                         android:hint="Butt"
+                        android:textStyle="bold"
                         android:imeOptions="actionNext"
                         android:textColor="@color/white"
                         android:textColorHint="@color/edittext_hint_color"

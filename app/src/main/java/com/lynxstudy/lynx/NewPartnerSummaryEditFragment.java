@@ -40,10 +40,10 @@ public class NewPartnerSummaryEditFragment extends Fragment{
     public NewPartnerSummaryEditFragment() {
     }
     DatabaseHelper db;
-    TextView add_partner_title,hivStatus,partnerTypeTitle,partnerNotes,overAll,undetectableAns,undetectableQn,otherPartnerTitle,otherPartner,monogamous;
+    TextView add_partner_title,hivStatus,partnerTypeTitle,partnerNotes,overAll,undetectableAns,undetectableQn,otherPartnerTitle,otherPartner,monogamous,partnerGender;
     Button next;
     View rootview;
-    RelativeLayout undetectableLayout,undetectableAnsParent,hivStatusParent,partnerTypeParent,monogamousParent,otherPartnerParent;
+    RelativeLayout undetectableLayout,undetectableAnsParent,hivStatusParent,partnerTypeParent,monogamousParent,otherPartnerParent,partnerGenderParent;
     LinearLayout monogamousLayout,otherPartnerLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,6 +65,8 @@ public class NewPartnerSummaryEditFragment extends Fragment{
         next.setTypeface(tf_bold);
         hivStatus = (TextView) rootview.findViewById(R.id.hivStatus);
         hivStatus.setTypeface(tf_bold);
+        partnerGender = (TextView) rootview.findViewById(R.id.partnerGender);
+        partnerGender.setTypeface(tf_bold);
         partnerTypeTitle = (TextView) rootview.findViewById(R.id.partnerTypeTitle);
         partnerTypeTitle.setTypeface(tf_bold);
         partnerNotes = (TextView) rootview.findViewById(R.id.partnerNotes);
@@ -78,6 +80,7 @@ public class NewPartnerSummaryEditFragment extends Fragment{
         otherPartnerParent = (RelativeLayout) rootview.findViewById(R.id.otherPartnerParent);
         undetectableLayout = (RelativeLayout)rootview.findViewById(R.id.undetectableLayout);
         undetectableAnsParent = (RelativeLayout)rootview.findViewById(R.id.undetectableAnsParent);
+        partnerGenderParent = (RelativeLayout)rootview.findViewById(R.id.partnerGenderParent);
         hivStatusParent = (RelativeLayout)rootview.findViewById(R.id.hivStatusParent);
         partnerTypeParent = (RelativeLayout)rootview.findViewById(R.id.partnerTypeParent);
         monogamousParent = (RelativeLayout)rootview.findViewById(R.id.monogamousParent);
@@ -97,6 +100,7 @@ public class NewPartnerSummaryEditFragment extends Fragment{
         new_partner_Summ_nickname.setAllCaps(true);
         new_partner_Summ_nickname.setTypeface(tf_bold);
         EditText nickName = (EditText) rootview.findViewById(R.id.newPartnerSumm_nickName);
+        final TextView gender = (TextView) rootview.findViewById(R.id.newPartnerSumm_gender);
         final TextView hivStatus = (TextView) rootview.findViewById(R.id.newPartnerSumm_hivStatus);
         final EditText email = (EditText) rootview.findViewById(R.id.newPartnerSumm_email);
         final EditText phone = (EditText) rootview.findViewById(R.id.newPartnerSumm_phone);
@@ -108,6 +112,8 @@ public class NewPartnerSummaryEditFragment extends Fragment{
 
         nickName.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         nickName.setTypeface(tf);
+        gender.setText(LynxManager.decryptString(LynxManager.getActivePartner().getGender()));
+        gender.setTypeface(tf);
         hivStatus.setText(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()));
         hivStatus.setTypeface(tf);
         if(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()).equals("HIV Positive & Undetectable")){
@@ -165,6 +171,39 @@ public class NewPartnerSummaryEditFragment extends Fragment{
         }
         partnerNotes.setText(LynxManager.decryptString(LynxManager.getActivePartnerContact().getPartner_notes()));
         partnerNotes.setTypeface(tf);
+
+        // Gender CHANGE //
+        final List<String> gender_list= Arrays.asList(getResources().getStringArray(R.array.gender_list));
+        final ArrayAdapter<String> adapterGender = new ArrayAdapter<String>(getActivity(),
+                R.layout.spinner_row_white, R.id.txtView, gender_list);
+        gender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterGender, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                String text = gender_list.get(which).toString();
+                                gender.setText(text);
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+        partnerGenderParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterGender, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                String text = gender_list.get(which).toString();
+                                gender.setText(text);
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
 
         // HIV STATUS CHANGE //
         final List<String> hiv_status_list= Arrays.asList(getResources().getStringArray(R.array.hiv_status_list));
@@ -412,38 +451,38 @@ public class NewPartnerSummaryEditFragment extends Fragment{
         rating6.setRating(Float.parseFloat(rating_values.get(5)));
         rating7.setRating(Float.parseFloat(rating_values.get(6)));
         LayerDrawable stars1 = (LayerDrawable) rating1.getProgressDrawable();
-        stars1.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars1.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars1.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars1.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars1.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars2 = (LayerDrawable) rating2.getProgressDrawable();
-        stars2.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars2.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars2.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars2.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars2.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars3 = (LayerDrawable) rating3.getProgressDrawable();
-        stars3.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars3.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars3.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars3.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars3.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars4 = (LayerDrawable) rating4.getProgressDrawable();
-        stars4.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars4.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars4.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars4.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars4.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars5 = (LayerDrawable) rating5.getProgressDrawable();
-        stars5.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars5.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars5.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars5.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars5.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars6 = (LayerDrawable) rating6.getProgressDrawable();
-        stars6.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars6.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars6.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars6.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars6.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars7 = (LayerDrawable) rating7.getProgressDrawable();
-        stars7.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars7.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars7.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars7.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars7.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();

@@ -348,7 +348,7 @@ public class RegLogin extends AppCompatActivity {
         BadgesMaster badgesMaster2 = new BadgesMaster(2,"High Five","Entered first encounter","Yay!  Shout out to the first timers.  Congrants on completing Entry #1.","high_five_small","Encounter");
         BadgesMaster badgesMaster3 = new BadgesMaster(3,"Healthy Heart","Entered 3 encounters","Humping keeps your hearth thumping. Hopefully the third time was a charm!","healthy_heart_small","Encounter");
         BadgesMaster badgesMaster4 = new BadgesMaster(4,"Silver Screen","Watched all 4 videos","Someone likes being an expert.  Congrats on watching the entire video series.","silver_screen_small","PrEP");
-        BadgesMaster badgesMaster5 = new BadgesMaster(5,"Testing 1-2-3","Entered an HIV or STD bottom_navigation","You don't have to pat yourself on the back for taking your bottom_navigation.  We'll do it for you!","testing_small","Testing");
+        BadgesMaster badgesMaster5 = new BadgesMaster(5,"Testing 1-2-3","Entered an HIV or STD test","You don't have to pat yourself on the back for taking your test.  We'll do it for you!","testing_small","Testing");
 
         List<BadgesMaster> badgesMasterList = new ArrayList<BadgesMaster>();
         badgesMasterList.add(badgesMaster1);
@@ -1053,7 +1053,7 @@ public class RegLogin extends AppCompatActivity {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", "> " + jsonStr);
+            //Log.d("Response: ", "> " + jsonStr);
             registrationResult = jsonStr;
             return null;
         }
@@ -1074,7 +1074,7 @@ public class RegLogin extends AppCompatActivity {
                     boolean is_error = jsonObj.getBoolean("is_error");
                     Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
                     if (is_error) {
-                        Log.d("Response: ", "> Registration Failed. " + jsonObj.getString("message"));
+                        //Log.d("Response: ", "> Registration Failed. " + jsonObj.getString("message"));
                     } else {
                         LynxManager.getActiveUser().setStatus_update(String.valueOf(R.string.statusUpdateYes));
                         int user_local_id = db.createuser(LynxManager.getActiveUser());
@@ -1140,7 +1140,7 @@ public class RegLogin extends AppCompatActivity {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">loginResult " + jsonStr);
+            //Log.d("Response: ", ">loginResult " + jsonStr);
             loginResult = jsonStr;
             pDialog.setProgress(100);
             // Dismiss the progress dialog
@@ -1159,7 +1159,7 @@ public class RegLogin extends AppCompatActivity {
                     boolean is_error = jsonObj.getBoolean("is_error");
                     Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
                     if (is_error) {
-                        Log.d("Response: ", "> login Failed. " + jsonObj.getString("message"));
+                        //Log.d("Response: ", "> login Failed. " + jsonObj.getString("message"));
                     } else {
 
                         // Getting User
@@ -1510,7 +1510,7 @@ public class RegLogin extends AppCompatActivity {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response:requestTestKit", jsonNewPassStr);
+            //Log.d("Response:requestTestKit", jsonNewPassStr);
             reqNewPassResult = jsonNewPassStr;
 
             return null;
@@ -1537,7 +1537,7 @@ public class RegLogin extends AppCompatActivity {
                     boolean is_error = jsonobj.getBoolean("is_error");
                     //Toast.makeText(getApplication().getBaseContext(), " " + jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
                     if (is_error) {
-                        Log.d("Response: ", "> requestTestKit. " + jsonobj.getString("message"));
+                        //Log.d("Response: ", "> requestTestKit. " + jsonobj.getString("message"));
                         Toast.makeText(getApplication(),jsonobj.getString("message"),Toast.LENGTH_LONG).show();
 
                     } else {

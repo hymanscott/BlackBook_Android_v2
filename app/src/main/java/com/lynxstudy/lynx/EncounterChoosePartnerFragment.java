@@ -123,9 +123,9 @@ public class EncounterChoosePartnerFragment extends Fragment {
                     partner_Rating_Bar.setScaleY(rating_bar_scale);
 
                     LayerDrawable stars = (LayerDrawable) partner_Rating_Bar.getProgressDrawable();
-                    stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+                    stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
                     stars.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_IN);
-                    stars.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+                    stars.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
 
 
                     /*partnerRow.addView(partner_date);*/
@@ -144,8 +144,8 @@ public class EncounterChoosePartnerFragment extends Fragment {
                                 View row = partnerTable.getChildAt(i);
                                 if (row == view) {
                                     row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
-                                    /*((TextView) ((TableRow) partnerTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.colorAccent));
-                                    ((TextView) ((TableRow) partnerTable.getChildAt(i)).getChildAt(1)).setTextColor(getResources().getColor(R.color.colorAccent));*/
+                                    /*((TextView) ((TableRow) partnerTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.colorPrimary));
+                                    ((TextView) ((TableRow) partnerTable.getChildAt(i)).getChildAt(1)).setTextColor(getResources().getColor(R.color.colorPrimary));*/
                                     LynxManager.selectedPartnerID = row.getId();
                                     ((EncounterStartActivity )  getActivity()).onChooseEncPartner() ;
                                 } else {

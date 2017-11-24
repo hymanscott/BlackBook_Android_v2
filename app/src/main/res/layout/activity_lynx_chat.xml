@@ -180,7 +180,7 @@
                 android:layout_weight="0.2"
                 android:gravity="center"
                 android:id="@+id/bot_nav_chat"
-                android:background="@color/colorAccent"
+                android:background="@color/colorPrimary"
                 android:paddingTop="5dp"
                 android:orientation="vertical">
 

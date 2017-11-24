@@ -103,6 +103,7 @@ public class EncounterCondomuseFragment extends Fragment {
                     layout_whenItopped.setVisibility(View.VISIBLE);
                     break;
                 case "I fucked her":
+                case "We fucked":
                     LinearLayout layout_whenIfucked = (LinearLayout) rootview.findViewById(R.id.whenIfucked_layout);
                     layout_whenIfucked.setVisibility(View.VISIBLE);
                     break;

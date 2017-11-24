@@ -363,7 +363,7 @@
                     android:layout_marginBottom="24dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:textColor="@color/colorAccent"  />
+                    android:textColor="@color/colorPrimary"  />
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -441,6 +441,7 @@
                         android:layout_width="wrap_content"
                         android:layout_marginTop="24dp"
                         android:layout_alignParentLeft="true"
+                        android:paddingLeft="8dp"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:layout_height="wrap_content">
@@ -450,6 +451,8 @@
                             android:textSize="14sp"
                             android:textColor="@color/profile_text_color"
                             android:buttonTint="@color/profile_text_color"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
                             android:text="No"
                             android:checked="true"
                             android:id="@+id/hivTestNo"/>
@@ -459,7 +462,9 @@
                             android:textSize="14sp"
                             android:textColor="@color/profile_text_color"
                             android:buttonTint="@color/profile_text_color"
-                            android:layout_marginTop="4dp"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
+                            android:layout_marginTop="12dp"
                             android:text="Yes"
                             android:id="@+id/hivTestYes" />
                         <RadioButton
@@ -467,9 +472,11 @@
                             android:layout_height="wrap_content"
                             android:text="I Didn't test"
                             android:textSize="14sp"
-                            android:layout_marginTop="4dp"
                             android:textColor="@color/profile_text_color"
                             android:buttonTint="@color/profile_text_color"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
+                            android:layout_marginTop="12dp"
                             android:id="@+id/hivTestDidntTest" />
                     </RadioGroup>
                     <FrameLayout
@@ -527,6 +534,7 @@
                             android:id="@+id/gonorrhea"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
                             android:layout_alignParentLeft="true">
                             <RadioButton
                                 android:layout_width="wrap_content"
@@ -535,6 +543,8 @@
                                 android:textColor="@color/profile_text_color"
                                 android:checked="true"
                                 android:buttonTint="@color/profile_text_color"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
                                 android:text="No"
                                 android:layout_marginTop="4dp"
                                 android:id="@+id/gonorrheaNo"/>
@@ -545,15 +555,19 @@
                                 android:textColor="@color/profile_text_color"
                                 android:text="Yes"
                                 android:buttonTint="@color/profile_text_color"
-                                android:layout_marginTop="4dp"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
+                                android:layout_marginTop="12dp"
                                 android:id="@+id/gonorrheaYes" />
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="I Didn't test"
                                 android:textSize="14sp"
-                                android:layout_marginTop="4dp"
                                 android:buttonTint="@color/profile_text_color"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
+                                android:layout_marginTop="12dp"
                                 android:textColor="@color/profile_text_color"
                                 android:id="@+id/gonorrheaDidntTest" />
                         </RadioGroup>
@@ -596,6 +610,7 @@
                             android:id="@+id/syphilis"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
                             android:layout_alignParentLeft="true">
                             <RadioButton
                                 android:layout_width="wrap_content"
@@ -603,6 +618,8 @@
                                 android:textSize="14sp"
                                 android:textColor="@color/profile_text_color"
                                 android:buttonTint="@color/profile_text_color"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
                                 android:text="No"
                                 android:checked="true"
                                 android:layout_marginTop="4dp"
@@ -612,8 +629,10 @@
                                 android:layout_height="wrap_content"
                                 android:text="Yes"
                                 android:textSize="14sp"
-                                android:layout_marginTop="4dp"
                                 android:buttonTint="@color/profile_text_color"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
+                                android:layout_marginTop="12dp"
                                 android:textColor="@color/profile_text_color"
                                 android:id="@+id/syphilisYes" />
                             <RadioButton
@@ -621,8 +640,10 @@
                                 android:layout_height="wrap_content"
                                 android:text="I Didn't test"
                                 android:textSize="14sp"
-                                android:layout_marginTop="4dp"
                                 android:buttonTint="@color/profile_text_color"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
+                                android:layout_marginTop="12dp"
                                 android:textColor="@color/profile_text_color"
                                 android:id="@+id/syphilisDidntTest" />
                         </RadioGroup>
@@ -665,6 +686,7 @@
                             android:id="@+id/chlamydia"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="8dp"
                             android:layout_alignParentLeft="true">
                             <RadioButton
                                 android:layout_width="wrap_content"
@@ -674,6 +696,8 @@
                                 android:checked="true"
                                 android:layout_marginTop="4dp"
                                 android:buttonTint="@color/profile_text_color"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
                                 android:textColor="@color/profile_text_color"
                                 android:id="@+id/chlamydiaNo"/>
                             <RadioButton
@@ -682,16 +706,20 @@
                                 android:text="Yes"
                                 android:textSize="14sp"
                                 android:buttonTint="@color/profile_text_color"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
+                                android:layout_marginTop="12dp"
                                 android:textColor="@color/profile_text_color"
-                                android:id="@+id/chlamydiaYes"
-                                android:layout_marginTop="4dp"/>
+                                android:id="@+id/chlamydiaYes"/>
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="I Didn't test"
                                 android:textSize="14sp"
                                 android:buttonTint="@color/profile_text_color"
-                                android:layout_marginTop="4dp"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
+                                android:layout_marginTop="12dp"
                                 android:textColor="@color/profile_text_color"
                                 android:id="@+id/chlamydiaDidntTest" />
                         </RadioGroup>

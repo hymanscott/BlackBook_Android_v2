@@ -95,9 +95,9 @@ public class EncounterSummaryEditFragment extends Fragment {
         sexType_RateTheSex.setRating(Float.parseFloat(LynxManager.encRateofSex));
 
         LayerDrawable stars5 = (LayerDrawable) sexType_RateTheSex.getProgressDrawable();
-        stars5.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);// On State color
+        stars5.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);// On State color
         stars5.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP);// Off State color
-        stars5.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);// Stroke (On State Stars Only)
+        stars5.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);// Stroke (On State Stars Only)
 
         hivStatus.setText(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()));
         hivStatus.setTypeface(tf);
@@ -190,7 +190,7 @@ public class EncounterSummaryEditFragment extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_kissing);
-                    btn_sexType_kissing.setTextColor(getResources().getColor(R.color.colorAccent));
+                    btn_sexType_kissing.setTextColor(getResources().getColor(R.color.colorPrimary));
                 }
             }
         });
@@ -208,7 +208,7 @@ public class EncounterSummaryEditFragment extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iSucked);
-                    btn_sexType_iSucked.setTextColor(getResources().getColor(R.color.colorAccent));
+                    btn_sexType_iSucked.setTextColor(getResources().getColor(R.color.colorPrimary));
                 }
             }
         });
@@ -226,7 +226,7 @@ public class EncounterSummaryEditFragment extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_heSucked);
-                    btn_sexType_heSucked.setTextColor(getResources().getColor(R.color.colorAccent));
+                    btn_sexType_heSucked.setTextColor(getResources().getColor(R.color.colorPrimary));
                 }
             }
         });
@@ -244,7 +244,7 @@ public class EncounterSummaryEditFragment extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iTopped);
-                    btn_sexType_iTopped.setTextColor(getResources().getColor(R.color.colorAccent));
+                    btn_sexType_iTopped.setTextColor(getResources().getColor(R.color.colorPrimary));
                 }
             }
         });
@@ -262,7 +262,7 @@ public class EncounterSummaryEditFragment extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iBottomed);
-                    btn_sexType_iBottomed.setTextColor(getResources().getColor(R.color.colorAccent));
+                    btn_sexType_iBottomed.setTextColor(getResources().getColor(R.color.colorPrimary));
                 }
             }
         });
@@ -280,7 +280,7 @@ public class EncounterSummaryEditFragment extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iJerked);
-                    btn_sexType_iJerked.setTextColor(getResources().getColor(R.color.colorAccent));
+                    btn_sexType_iJerked.setTextColor(getResources().getColor(R.color.colorPrimary));
                 }
             }
         });
@@ -298,7 +298,7 @@ public class EncounterSummaryEditFragment extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_heJerked);
-                    btn_sexType_heJerked.setTextColor(getResources().getColor(R.color.colorAccent));
+                    btn_sexType_heJerked.setTextColor(getResources().getColor(R.color.colorPrimary));
                 }
             }
         });
@@ -316,7 +316,7 @@ public class EncounterSummaryEditFragment extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iRimmed);
-                    btn_sexType_iRimmed.setTextColor(getResources().getColor(R.color.colorAccent));
+                    btn_sexType_iRimmed.setTextColor(getResources().getColor(R.color.colorPrimary));
                 }
             }
         });
@@ -333,7 +333,7 @@ public class EncounterSummaryEditFragment extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_heRimmed);
-                    btn_sexType_heRimmed.setTextColor(getResources().getColor(R.color.colorAccent));
+                    btn_sexType_heRimmed.setTextColor(getResources().getColor(R.color.colorPrimary));
                 }
             }
         });
@@ -349,7 +349,7 @@ public class EncounterSummaryEditFragment extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iWentDown);
-                    btn_sexType_iWentDown.setTextColor(getResources().getColor(R.color.colorAccent));
+                    btn_sexType_iWentDown.setTextColor(getResources().getColor(R.color.colorPrimary));
                 }
             }
         });
@@ -365,7 +365,7 @@ public class EncounterSummaryEditFragment extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iFucked);
-                    btn_sexType_iFucked.setTextColor(getResources().getColor(R.color.colorAccent));
+                    btn_sexType_iFucked.setTextColor(getResources().getColor(R.color.colorPrimary));
                 }
             }
         });
@@ -381,7 +381,7 @@ public class EncounterSummaryEditFragment extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iFingered);
-                    btn_sexType_iFingered.setTextColor(getResources().getColor(R.color.colorAccent));
+                    btn_sexType_iFingered.setTextColor(getResources().getColor(R.color.colorPrimary));
                 }
             }
         });
@@ -397,7 +397,7 @@ public class EncounterSummaryEditFragment extends Fragment {
                     // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_heFingered);
-                    btn_sexType_heFingered.setTextColor(getResources().getColor(R.color.colorAccent));
+                    btn_sexType_heFingered.setTextColor(getResources().getColor(R.color.colorPrimary));
                 }
             }
         });
@@ -504,7 +504,7 @@ public class EncounterSummaryEditFragment extends Fragment {
                                 /*LinearLayout ll = new LinearLayout(getActivity());
                                 ll.addView(tv);
                                 ll.setPadding(0,0,0,5);
-                                ll.setBackgroundColor(getResources().getColor(R.color.colorAccent));*/
+                                ll.setBackgroundColor(getResources().getColor(R.color.colorPrimary));*/
                                 tv.setLayoutParams(params);
                                 condomUsedContent.addView(tv);
                             }

@@ -4,4 +4,8 @@
     android:buttonTint="@color/white"
     android:textColor="@color/white"
     android:id="@+id/checkbox"
+    android:button="@drawable/checkbox_white"
+    android:paddingLeft="12dp"
+    android:layout_marginLeft="8dp"
+    android:textSize="@dimen/encounter_radio_btn_textsize"
     xmlns:android="http://schemas.android.com/apk/res/android" />

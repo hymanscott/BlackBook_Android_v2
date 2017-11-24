@@ -98,7 +98,7 @@ public class LynxPrepFactsFragment extends Fragment {
                             setAnswerLayout(row.getId());
 
                         } else {
-                            ((TextView) ((TableRow) prepTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.faq_blue));
+                            //((TextView) ((TableRow) prepTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.faq_blue));
                             row.setBackground(getResources().getDrawable(R.drawable.bottom_border_faq));
                         }
                     }

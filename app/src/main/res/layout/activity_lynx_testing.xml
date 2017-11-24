@@ -125,7 +125,7 @@
             android:gravity="center"
             android:id="@+id/bot_nav_testing"
             android:paddingTop="5dp"
-            android:background="@color/colorAccent"
+            android:background="@color/colorPrimary"
             android:orientation="vertical">
 
             <ImageView

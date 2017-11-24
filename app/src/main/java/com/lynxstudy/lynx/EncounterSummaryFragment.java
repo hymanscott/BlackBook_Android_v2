@@ -36,7 +36,7 @@ public class EncounterSummaryFragment extends Fragment {
     }
     TextView newEncounter,partner,hivStatus,edit_details,typeSex,sexRating,partnerNotes,encSumm_partnerNotes,condomUsed,did_you_cum_title,did_you_cum,did_your_partner_cum_title,did_your_partner_cum;
     Button next;
-    LinearLayout condomUsedContent;
+    LinearLayout condomUsedContent,didYouCumParent,didYourPartnerCumParent;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,6 +74,8 @@ public class EncounterSummaryFragment extends Fragment {
         edit_details = (TextView) rootview.findViewById(R.id.edit_details);
         edit_details.setTypeface(tf);
         condomUsedContent = (LinearLayout)rootview.findViewById(R.id.condomUsedContent);
+        didYouCumParent = (LinearLayout)rootview.findViewById(R.id.didYouCumParent);
+        didYourPartnerCumParent = (LinearLayout)rootview.findViewById(R.id.didYourPartnerCumParent);
 
         // Set NickName
         TextView nickname = (TextView) rootview.findViewById(R.id.encounter_summary_nickName);
@@ -82,16 +84,25 @@ public class EncounterSummaryFragment extends Fragment {
         nickname.setTypeface(tf);
 
         encSumm_partnerNotes.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getEncounter_notes()));
-        did_you_cum.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getDid_you_cum()));
-        did_your_partner_cum.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getDid_your_partner_cum()));
+        String you_cum = LynxManager.decryptString(LynxManager.getActiveEncounter().getDid_you_cum());
+        did_you_cum.setText(you_cum);
+        Log.v("you_cum","you_cum="+you_cum);
+        if(you_cum==null){
+            didYouCumParent.setVisibility(View.GONE);
+        }
+        String your_partner_cum = LynxManager.decryptString(LynxManager.getActiveEncounter().getDid_your_partner_cum());
+        did_your_partner_cum.setText(your_partner_cum);
+        if(your_partner_cum==null){
+            didYourPartnerCumParent.setVisibility(View.GONE);
+        }
         final RatingBar sexRating = (RatingBar) rootview.findViewById(R.id.encSumm_sexRating);
         sexRating.setRating(Float.parseFloat(LynxManager.encRateofSex));
 
 
         LayerDrawable stars5 = (LayerDrawable) sexRating.getProgressDrawable();
-        stars5.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);// On State color
+        stars5.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);// On State color
         stars5.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP);// Off State color
-        stars5.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);// Stroke (On State Stars Only)
+        stars5.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);// Stroke (On State Stars Only)
 
         TextView hivStatus = (TextView) rootview.findViewById(R.id.encSumm_hivStatus);
         hivStatus.setText(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()));

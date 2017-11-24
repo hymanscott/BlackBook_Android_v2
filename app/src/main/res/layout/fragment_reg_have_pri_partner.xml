@@ -70,6 +70,7 @@ This is someone you consider a boy/girlfriend, partner, husband, wife, spouse, l
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp"
                         android:layout_marginRight="32dp"
+                        android:paddingLeft="8dp"
                         android:layout_marginTop="16dp">
 
                         <RadioButton
@@ -79,8 +80,10 @@ This is someone you consider a boy/girlfriend, partner, husband, wife, spouse, l
                             android:checked="true"
                             android:text="Yes"
                             android:buttonTint="@color/white"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
                             android:textColor="@color/white"
-                            android:textSize="18sp" />
+                            android:textSize="@dimen/encounter_radio_btn_textsize" />
 
                         <RadioButton
                             android:id="@+id/PSP_No"
@@ -88,8 +91,11 @@ This is someone you consider a boy/girlfriend, partner, husband, wife, spouse, l
                             android:layout_height="wrap_content"
                             android:text="No"
                             android:buttonTint="@color/white"
+                            android:button="@drawable/radiobutton_white"
+                            android:paddingLeft="12dp"
+                            android:layout_marginTop="12dp"
                             android:textColor="@color/white"
-                            android:textSize="18sp" />
+                            android:textSize="@dimen/encounter_radio_btn_textsize" />
                     </RadioGroup>
                 </LinearLayout>
                 <LinearLayout

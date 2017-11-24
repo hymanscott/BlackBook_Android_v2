@@ -387,8 +387,8 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
 
 
         LayerDrawable stars1 = (LayerDrawable) sexRating1.getProgressDrawable();
-        stars1.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars1.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars1.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars1.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars1.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
 
@@ -633,7 +633,7 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
         TestingHistory testingHistory = db.getTestingHistorybyID(testingHistoryID);
         String test_name = (db.getTestingNamebyID(testingHistory.getTesting_id())).getTestName();
         testingHistoryTitle.setText(test_name);
-        testingHistoryTitle.setTextColor(getResources().getColor(R.color.colorAccent));
+        testingHistoryTitle.setTextColor(getResources().getColor(R.color.colorPrimary));
         String test_date = LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(testingHistory.getTesting_date()),"MM/dd/yyyy");
         testingHistorydate.setText(test_date);
         if(test_name.equals("HIV Test")){

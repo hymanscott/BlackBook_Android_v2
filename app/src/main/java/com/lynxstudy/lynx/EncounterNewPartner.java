@@ -425,6 +425,7 @@ public class EncounterNewPartner extends AppCompatActivity {
     public boolean backToPartnerSummary(View view){
         EditText nickName = (EditText)findViewById(R.id.newPartnerSumm_nickName);
         TextView hivStatus = (TextView)findViewById(R.id.newPartnerSumm_hivStatus);
+        TextView gender = (TextView)findViewById(R.id.newPartnerSumm_gender);
         TextView undetectableAns = (TextView)findViewById(R.id.undetectableAns);
         EditText email = (EditText)findViewById(R.id.newPartnerSumm_email);
         EditText phone = (EditText)findViewById(R.id.newPartnerSumm_phone);
@@ -437,6 +438,7 @@ public class EncounterNewPartner extends AppCompatActivity {
         EditText partnerNotes = (EditText)findViewById(R.id.newPartnerSumm_partnerNotes);
         LynxManager.getActivePartner().setNickname(LynxManager.encryptString(nickName.getText().toString()));
         String selectedHIVstatus= hivStatus.getText().toString();
+        String selectedGender= gender.getText().toString();
         if(selectedHIVstatus.equals("HIV Positive and Undetectable")){
             selectedHIVstatus = "HIV Positive & Undetectable";
             LynxManager.getActivePartner().setUndetectable_for_sixmonth(LynxManager.encryptString(undetectableAns.getText().toString()));
@@ -444,6 +446,7 @@ public class EncounterNewPartner extends AppCompatActivity {
             selectedHIVstatus = "HIV Negative & on PrEP";
         }
         LynxManager.getActivePartner().setHiv_status(LynxManager.encryptString(selectedHIVstatus));
+        LynxManager.getActivePartner().setGender(LynxManager.encryptString(selectedGender));
         LynxManager.getActivePartnerContact().setCity(LynxManager.encryptString(city_neighbor.getText().toString()));
         LynxManager.getActivePartnerContact().setMet_at(LynxManager.encryptString(metat.getText().toString()));
         LynxManager.getActivePartnerContact().setHandle(LynxManager.encryptString(handle.getText().toString()));

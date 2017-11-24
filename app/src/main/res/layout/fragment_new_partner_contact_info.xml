@@ -3,62 +3,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/encounter_bg">
+
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:fillViewport="false"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:fillViewport="false">
+
         <LinearLayout
             android:layout_width="fill_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="24dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="32dp"
                 android:src="@drawable/encounterlarge" />
+
             <TextView
+                android:id="@+id/add_partner_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:gravity="center_vertical|center_horizontal"
                 android:text="@string/AddPartnerTitle"
                 android:textColor="@color/white"
-                android:id="@+id/add_partner_title"
-                android:gravity="center_vertical|center_horizontal" />
+                android:textSize="20sp" />
+
             <TextView
+                android:id="@+id/new_partner_nickname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nick name"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:textSize="18sp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:textColor="@color/encounter_btn_bg"
                 android:background="@color/banner_name_bg"
                 android:gravity="center_vertical|center_horizontal"
-                android:id="@+id/new_partner_nickname" />
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Nick name"
+                android:textColor="@color/encounter_btn_bg"
+                android:textSize="18sp" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/edittext_bg"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="24dp" />
+                android:layout_marginTop="24dp"
+                android:background="@color/edittext_bg" />
+
             <TextView
+                android:id="@+id/contactInfoTitle"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/encounter_tv_textsize"
-                android:textColor="@color/white"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="24dp"
+                android:gravity="center_vertical|center_horizontal"
                 android:text="What is their contact info?
 (enter as much or as little of you’d like)"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"
-                android:id="@+id/contactInfoTitle"
-                android:gravity="center_vertical|center_horizontal" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/encounter_tv_textsize" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -85,15 +93,16 @@
                     android:backgroundTint="@color/edittext_bg"
                     android:ems="10"
                     android:hint="Email Address"
+                    android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"
                     android:paddingBottom="5dp"
                     android:paddingTop="5dp"
-                    android:imeOptions="actionNext"
                     android:textColor="@color/white"
                     android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,16 +129,17 @@
                     android:backgroundTint="@color/edittext_bg"
                     android:ems="10"
                     android:hint="Mobile phone number"
-                    android:inputType="phone"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:windowSoftInputMode="adjustPan"
-                    android:textColor="@color/white"
                     android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:textColor="@color/white"
                     android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
-                    android:textSize="@dimen/edittext_textsize" />
+                    android:textSize="@dimen/edittext_textsize"
+                    android:windowSoftInputMode="adjustPan" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -156,16 +166,17 @@
                     android:backgroundTint="@color/edittext_bg"
                     android:ems="10"
                     android:hint="City/Neighborhood"
-                    android:inputType="textPostalAddress"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:windowSoftInputMode="adjustPan"
-                    android:textColor="@color/white"
                     android:imeOptions="actionNext"
+                    android:inputType="textPostalAddress"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:textColor="@color/white"
                     android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
-                    android:textSize="@dimen/edittext_textsize" />
+                    android:textSize="@dimen/edittext_textsize"
+                    android:windowSoftInputMode="adjustPan" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -192,16 +203,17 @@
                     android:backgroundTint="@color/edittext_bg"
                     android:ems="10"
                     android:hint="Met on/at"
-                    android:inputType="text"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:windowSoftInputMode="adjustPan"
-                    android:textColor="@color/white"
                     android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:textColor="@color/white"
                     android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
-                    android:textSize="@dimen/edittext_textsize" />
+                    android:textSize="@dimen/edittext_textsize"
+                    android:windowSoftInputMode="adjustPan" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -228,106 +240,132 @@
                     android:backgroundTint="@color/edittext_bg"
                     android:ems="10"
                     android:hint="Social Media"
-                    android:inputType="text"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:windowSoftInputMode="adjustPan"
-                    android:textColor="@color/white"
                     android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:textColor="@color/white"
                     android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
-                    android:textSize="@dimen/edittext_textsize" />
+                    android:textSize="@dimen/edittext_textsize"
+                    android:windowSoftInputMode="adjustPan" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/edittext_bg"
+                android:layout_marginBottom="24dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp" />
+                android:background="@color/edittext_bg" />
+
             <TextView
+                android:id="@+id/partnerTypeTitle"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="What kind of partner are they to you?"
-                android:textSize="@dimen/encounter_tv_textsize"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
-                android:id="@+id/partnerTypeTitle"
-                android:textColor="@color/white" />
+                android:text="What kind of partner are they to you?"
+                android:textColor="@color/white"
+                android:textSize="@dimen/encounter_tv_textsize" />
+
             <RadioGroup
+                android:id="@+id/newPartnerType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/newPartnerType"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
+                android:paddingLeft="8dp"
                 android:layout_marginTop="@dimen/activity_vertical_margin">
 
                 <RadioButton
+                    android:id="@+id/newPartnerPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/encounter_radio_btn_textsize"
-                    android:textColor="@color/white"
                     android:buttonTint="@color/white"
+                    android:button="@drawable/radiobutton_white"
+                    android:paddingLeft="12dp"
                     android:text="Primary"
-                    android:id="@+id/newPartnerPrimary" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/encounter_radio_btn_textsize" />
+
                 <RadioButton
+                    android:id="@+id/newPartnerFriends"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/encounter_radio_btn_textsize"
-                    android:textColor="@color/white"
                     android:buttonTint="@color/white"
+                    android:button="@drawable/radiobutton_white"
+                    android:paddingLeft="12dp"
+                    android:layout_marginTop="12dp"
                     android:text="Friends with benefits"
-                    android:id="@+id/newPartnerFriends" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/encounter_radio_btn_textsize" />
+
                 <RadioButton
+                    android:id="@+id/newPartnerRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/white"
+                    android:button="@drawable/radiobutton_white"
+                    android:paddingLeft="12dp"
+                    android:layout_marginTop="12dp"
                     android:text="Regular"
-                    android:textSize="@dimen/encounter_radio_btn_textsize"
                     android:textColor="@color/white"
-                    android:buttonTint="@color/white"
-                    android:id="@+id/newPartnerRegular" />
+                    android:textSize="@dimen/encounter_radio_btn_textsize" />
+
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hook-up"
                     android:id="@+id/newPartnerCasual"
-                    android:textSize="@dimen/encounter_radio_btn_textsize"
-                    android:textColor="@color/white"
-                    android:buttonTint="@color/white"
-                    android:checked="true" />
-                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="One-night stand"
-                    android:textSize="@dimen/encounter_radio_btn_textsize"
-                    android:textColor="@color/white"
                     android:buttonTint="@color/white"
-                    android:id="@+id/newPartnerNSA" />
+                    android:button="@drawable/radiobutton_white"
+                    android:paddingLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:checked="true"
+                    android:text="Hook-up"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/encounter_radio_btn_textsize" />
+
+                <RadioButton
+                    android:id="@+id/newPartnerNSA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/white"
+                    android:button="@drawable/radiobutton_white"
+                    android:paddingLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:text="One-night stand"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/encounter_radio_btn_textsize" />
             </RadioGroup>
+
             <LinearLayout
+                android:id="@+id/partnerHaveOtherPartner_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone"
-                android:id="@+id/partnerHaveOtherPartner_layout">
+                android:visibility="gone">
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/edittext_bg"
+                    android:layout_marginBottom="24dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="24dp"
-                    android:layout_marginBottom="24dp" />
+                    android:background="@color/edittext_bg" />
+
                 <TextView
+                    android:id="@+id/otherPartnersTitle"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Do they have other partners ?"
-                    android:textSize="@dimen/encounter_tv_textsize"
-                    android:textColor="@color/white"
-                    android:id="@+id/otherPartnersTitle"
                     android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"/>
+                    android:layout_marginRight="24dp"
+                    android:text="Do they have other partners ?"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/encounter_tv_textsize" />
+
                 <RadioGroup
                     android:id="@+id/radio_partner"
                     android:layout_width="wrap_content"
@@ -337,50 +375,60 @@
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <RadioButton
+                        android:id="@+id/radio_partner_yes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Yes"
-                        android:textSize="@dimen/encounter_radio_btn_textsize"
-                        android:textColor="@color/white"
                         android:buttonTint="@color/white"
+                        android:button="@drawable/radiobutton_white"
+                        android:paddingLeft="12dp"
+                        android:layout_marginTop="12dp"
                         android:checked="true"
-                        android:id="@+id/radio_partner_yes" />
+                        android:text="Yes"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/encounter_radio_btn_textsize" />
 
                     <RadioButton
+                        android:id="@+id/radio_partner_no"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="No"
-                        android:textSize="@dimen/encounter_radio_btn_textsize"
-                        android:textColor="@color/white"
                         android:buttonTint="@color/white"
-                        android:id="@+id/radio_partner_no" />
+                        android:button="@drawable/radiobutton_white"
+                        android:paddingLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="No"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/encounter_radio_btn_textsize" />
 
                 </RadioGroup>
             </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/partnerRelationshipPeriodLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/partnerRelationshipPeriodLayout"
-                android:visibility="gone"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/edittext_bg"
+                    android:layout_marginBottom="24dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="24dp"
-                    android:layout_marginBottom="24dp" />
+                    android:background="@color/edittext_bg" />
+
                 <TextView
+                    android:id="@+id/monogamousTitle"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="How long have you been with this partner in a mutually monogamous relationship? "
-                    android:textSize="@dimen/encounter_tv_textsize"
-                    android:textColor="@color/white"
                     android:layout_marginLeft="24dp"
                     android:layout_marginRight="24dp"
-                    android:id="@+id/monogamousTitle"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    android:text="How long have you been with this partner in a mutually monogamous relationship? "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/encounter_tv_textsize" />
+
                 <RadioGroup
                     android:id="@+id/radio_relationshipPeriod"
                     android:layout_width="wrap_content"
@@ -390,37 +438,44 @@
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
                     <RadioButton
+                        android:id="@+id/radio_lessThanSixMonths"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Less than 6 months"
-                        android:textSize="@dimen/encounter_radio_btn_textsize"
-                        android:textColor="@color/white"
                         android:buttonTint="@color/white"
+                        android:button="@drawable/radiobutton_white"
+                        android:paddingLeft="12dp"
+                        android:layout_marginTop="12dp"
                         android:checked="true"
-                        android:id="@+id/radio_lessThanSixMonths" />
+                        android:text="Less than 6 months"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/encounter_radio_btn_textsize" />
 
                     <RadioButton
+                        android:id="@+id/radio_moreThanSixMonths"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="6 months or more"
-                        android:textSize="@dimen/encounter_radio_btn_textsize"
-                        android:textColor="@color/white"
                         android:buttonTint="@color/white"
-                        android:id="@+id/radio_moreThanSixMonths" />
+                        android:button="@drawable/radiobutton_white"
+                        android:paddingLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="6 months or more"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/encounter_radio_btn_textsize" />
 
                 </RadioGroup>
             </LinearLayout>
+
             <Button
+                android:id="@+id/next"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Next"
                 android:layout_gravity="right"
-                android:background="@drawable/lynx_button"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:id="@+id/next"
                 android:layout_marginTop="40dp"
-                android:onClick="onContactInfoNext" />
+                android:background="@drawable/lynx_button"
+                android:onClick="onContactInfoNext"
+                android:text="Next"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

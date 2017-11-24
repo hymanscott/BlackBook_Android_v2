@@ -59,7 +59,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
     LinearLayout summaryLayout,mainContentLayout,editLayout;
     private boolean isSummaryShown = false;
     private boolean isEditShown = false;
-    TextView add_partner_title,edithivStatus,partnerTypeTitle,partnerNotes,editoverAll,undetectableAns,undetectableQn,otherPartnerTitle,otherPartner,monogamous;
+    TextView add_partner_title,edithivStatus,partnerTypeTitle,partnerNotes,editoverAll,undetectableAns,monogamousTitle,undetectableQn,otherPartnerTitle,otherPartner,monogamous,partnerGender,selectedPartner_gender;
     Button next;
     RelativeLayout undetectableLayout,undetectableAnsParent,hivStatusParent,partnerTypeParent,monogamousParent,otherPartnerParent;
     LinearLayout monogamousLayout,otherPartnerLayout;
@@ -133,9 +133,9 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                 partner_Rating_Bar.setScaleX(rating_bar_scale);
                 partner_Rating_Bar.setScaleY(rating_bar_scale);
                 LayerDrawable stars4 = (LayerDrawable) partner_Rating_Bar.getProgressDrawable();
-                stars4.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+                stars4.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
                 stars4.getDrawable(0).setColorFilter(getResources().getColor(R.color.lighter_line), PorterDuff.Mode.SRC_ATOP);
-                stars4.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+                stars4.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
 
                 partnerRow.addView(partner_Name);
                 partnerRow.addView(partner_Rating_Bar);
@@ -151,10 +151,10 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                             if (row == view) {
 
                                 /*row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
-                                ((TextView) ((TableRow) partnerTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.colorAccent));
+                                ((TextView) ((TableRow) partnerTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.colorPrimary));
                                 RatingBar r = ((RatingBar) ((TableRow)partnerTable.getChildAt(i)).getChildAt(1));
                                 LayerDrawable stars = (LayerDrawable) r.getProgressDrawable();
-                                stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);*/
+                                stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);*/
 
                                 /*Intent selectedPartnerSumm = new Intent(getActivity(), SelectedPartnerActivity.class);
                                 LynxManager.selectedPartnerID = row.getId();
@@ -165,7 +165,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                                 /*((TextView) ((TableRow) partnerTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#444444"));
                                 RatingBar r = ((RatingBar) ((TableRow)partnerTable.getChildAt(i)).getChildAt(1));
                                 LayerDrawable stars = (LayerDrawable) r.getProgressDrawable();
-                                stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);*/
+                                stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);*/
                                 row.setBackground(getResources().getDrawable(R.drawable.border_bottom));
                             }
                         }
@@ -245,6 +245,8 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         summaryLayout.setVisibility(View.VISIBLE);
         mainContentLayout.setVisibility(View.GONE);
         isSummaryShown = true;
+        partnerGender = (TextView) rootview.findViewById(R.id.partnerGender);
+        partnerGender.setTypeface(tf_bold);
         hivStatus = (TextView) rootview.findViewById(R.id.hivStatus);
         hivStatus.setTypeface(tf_bold);
         typePartner = (TextView) rootview.findViewById(R.id.typePartner);
@@ -260,6 +262,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         TextView edit_details = (TextView) rootview.findViewById(R.id.edit_details);
 
         TextView hivStatus = (TextView) rootview.findViewById(R.id.selectedPartner_hivStatus);
+        TextView gender = (TextView) rootview.findViewById(R.id.selectedPartner_gender);
         TextView email = (TextView) rootview.findViewById(R.id.selectedPartner_email);
         TextView phone = (TextView) rootview.findViewById(R.id.selectedPartner_phone);
         TextView city_neighbor = (TextView) rootview.findViewById(R.id.selectedPartner_address);
@@ -288,6 +291,8 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         edit_details.setTypeface(tf);
         hivStatus.setText(LynxManager.decryptString(partner.getHiv_status()));
         hivStatus.setTypeface(tf);
+        gender.setText(LynxManager.decryptString(partner.getGender()));
+        gender.setTypeface(tf);
         email.setTypeface(tf);
         phone.setTypeface(tf);
         city_neighbor.setTypeface(tf);
@@ -349,38 +354,38 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         }
 
         LayerDrawable stars1 = (LayerDrawable) rating1.getProgressDrawable();
-        stars1.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars1.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars1.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars1.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars1.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars2 = (LayerDrawable) rating2.getProgressDrawable();
-        stars2.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars2.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars2.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars2.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars2.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars3 = (LayerDrawable) rating3.getProgressDrawable();
-        stars3.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars3.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars3.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars3.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars3.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars4 = (LayerDrawable) rating4.getProgressDrawable();
-        stars4.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars4.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars4.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars4.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars4.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars5 = (LayerDrawable) rating5.getProgressDrawable();
-        stars5.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars5.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars5.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars5.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars5.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars6 = (LayerDrawable) rating6.getProgressDrawable();
-        stars6.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars6.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars6.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars6.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars6.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars7 = (LayerDrawable) rating7.getProgressDrawable();
-        stars7.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars7.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars7.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars7.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars7.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         edit_details.setOnClickListener(new View.OnClickListener() {
@@ -420,9 +425,11 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         undetectableAns= (TextView) rootview.findViewById(R.id.undetectableAns);
         undetectableAns.setTypeface(tf);
         undetectableQn= (TextView) rootview.findViewById(R.id.undetectableQn);
-        undetectableQn.setTypeface(tf);
+        undetectableQn.setTypeface(tf_bold);
+        monogamousTitle= (TextView) rootview.findViewById(R.id.monogamousTitle);
+        monogamousTitle.setTypeface(tf_bold);
         otherPartnerTitle = (TextView) rootview.findViewById(R.id.otherPartnerTitle);
-        otherPartnerTitle.setTypeface(tf);
+        otherPartnerTitle.setTypeface(tf_bold);
         otherPartner = (TextView) rootview.findViewById(R.id.otherPartner);
         otherPartner.setTypeface(tf);
         monogamous = (TextView) rootview.findViewById(R.id.monogamous);
@@ -740,38 +747,38 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         rating6.setRating(Float.parseFloat(rating_values.get(5)));
         rating7.setRating(Float.parseFloat(rating_values.get(6)));
         LayerDrawable stars1 = (LayerDrawable) rating1.getProgressDrawable();
-        stars1.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars1.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars1.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars1.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars1.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars2 = (LayerDrawable) rating2.getProgressDrawable();
-        stars2.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars2.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars2.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars2.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars2.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars3 = (LayerDrawable) rating3.getProgressDrawable();
-        stars3.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars3.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars3.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars3.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars3.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars4 = (LayerDrawable) rating4.getProgressDrawable();
-        stars4.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars4.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars4.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars4.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars4.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars5 = (LayerDrawable) rating5.getProgressDrawable();
-        stars5.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars5.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars5.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars5.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars5.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars6 = (LayerDrawable) rating6.getProgressDrawable();
-        stars6.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars6.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars6.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars6.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars6.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         LayerDrawable stars7 = (LayerDrawable) rating7.getProgressDrawable();
-        stars7.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
-        stars7.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars7.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        stars7.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars7.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
         next.setOnClickListener(new View.OnClickListener() {

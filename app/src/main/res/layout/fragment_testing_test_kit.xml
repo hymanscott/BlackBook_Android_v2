@@ -53,6 +53,9 @@
                     android:textSize="14sp"
                     android:textColor="@color/text_color"
                     android:checked="true"
+                    android:button="@drawable/checkbox_black"
+                    android:paddingLeft="12dp"
+                    android:layout_marginLeft="8dp"
                     android:buttonTint="@color/profile_text_color"
                     android:layout_centerHorizontal="true" />
                 <CheckBox
@@ -63,6 +66,10 @@
                     android:textSize="14sp"
                     android:textColor="@color/text_color"
                     android:buttonTint="@color/profile_text_color"
+                    android:button="@drawable/checkbox_black"
+                    android:paddingLeft="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="12dp"
                     android:checked="true"
                     android:layout_centerHorizontal="true" />
             </LinearLayout>
