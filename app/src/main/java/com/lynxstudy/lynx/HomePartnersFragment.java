@@ -117,7 +117,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                 partner_Name.setTypeface(tf);
                 partner_Name.setTextColor(getResources().getColor(R.color.text_color));
                 partner_Name.setTextSize(16);
-                partner_Name.setPadding(10, 10, 10, 10);
+                partner_Name.setPadding(10, 15, 10, 15);
                 int partner_id = partner.getPartner_id();
                 PartnerRating partnerRating = db.getPartnerRatingbyPartnerID(partner_id, 1);
 

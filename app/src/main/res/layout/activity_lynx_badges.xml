@@ -39,7 +39,17 @@
                         android:textSize="20sp"
                         android:lineSpacingMultiplier="1.40"
                         android:layout_marginTop="32dp"
-                        android:layout_marginBottom="32dp"
+                        android:layout_marginLeft="3dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pageSubTitle"
+                        android:text="You've earned xx of 19 badges"
+                        android:textColor="#767676"
+                        android:textSize="12sp"
+                        android:lineSpacingMultiplier="1.40"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="23dp"
                         android:layout_marginLeft="3dp"/>
                     <View
                         android:layout_width="match_parent"

@@ -4777,6 +4777,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return count;
     }
+    /**
+     * getting UserBadges count
+     */
+    public int getDistinctUserBadgesCount() {
+        String countQuery = "SELECT  DISTINCT " + KEY_USER_BADGE_BADGEID+ " FROM " + TABLE_USER_BADGES;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
 
 }
 

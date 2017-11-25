@@ -87,9 +87,11 @@ public class NewPartnerSummaryEditFragment extends Fragment{
         undetectableAns= (TextView) rootview.findViewById(R.id.undetectableAns);
         undetectableAns.setTypeface(tf);
         undetectableQn= (TextView) rootview.findViewById(R.id.undetectableQn);
-        undetectableQn.setTypeface(tf);
+        undetectableQn.setTypeface(tf_bold);
         otherPartnerTitle = (TextView) rootview.findViewById(R.id.otherPartnerTitle);
-        otherPartnerTitle.setTypeface(tf);
+        otherPartnerTitle.setTypeface(tf_bold);
+        TextView monogamousTitle = (TextView) rootview.findViewById(R.id.monogamousTitle);
+        monogamousTitle.setTypeface(tf_bold);
         otherPartner = (TextView) rootview.findViewById(R.id.otherPartner);
         otherPartner.setTypeface(tf);
         monogamous = (TextView) rootview.findViewById(R.id.monogamous);

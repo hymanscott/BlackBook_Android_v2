@@ -147,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="Number whose HIV status you don't know for sure?"
+                android:text="Number whose HIV status you don't know for sure:"
                 android:textColor="@color/white"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"

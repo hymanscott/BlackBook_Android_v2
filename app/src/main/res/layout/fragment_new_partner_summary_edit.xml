@@ -722,7 +722,8 @@
                     android:layout_weight="1"
                     android:minWidth="100dp"
                     android:layout_gravity="center_vertical"
-                    android:padding="@dimen/edittext_padding"
+                    android:paddingTop="@dimen/edittext_padding"
+                    android:paddingBottom="@dimen/edittext_padding"
                     android:background="@color/edittext_bg">
                     <EditText
                         android:layout_width="wrap_content"
@@ -736,6 +737,8 @@
                         android:textCursorDrawable="@drawable/white_cursor"
                         android:textSize="@dimen/edittext_textsize"
                         android:id="@+id/newPartnerSumm_rate5"
+                        android:padding="@dimen/edittext_padding"
+                        android:background="@android:color/transparent"
                         android:backgroundTint="@android:color/transparent"
                         android:maxWidth="100dp"
                         android:layout_gravity="center_vertical"/>
@@ -768,7 +771,8 @@
                     android:layout_weight="1"
                     android:minWidth="100dp"
                     android:layout_gravity="center_vertical"
-                    android:padding="@dimen/edittext_padding"
+                    android:paddingTop="@dimen/edittext_padding"
+                    android:paddingBottom="@dimen/edittext_padding"
                     android:background="@color/edittext_bg">
                     <EditText
                         android:layout_width="wrap_content"
@@ -782,6 +786,8 @@
                         android:textCursorDrawable="@drawable/white_cursor"
                         android:textSize="@dimen/edittext_textsize"
                         android:id="@+id/newPartnerSumm_rate6"
+                        android:padding="@dimen/edittext_padding"
+                        android:background="@android:color/transparent"
                         android:backgroundTint="@android:color/transparent"
                         android:maxWidth="100dp"
                         android:layout_gravity="center_vertical"/>
@@ -813,7 +819,8 @@
                     android:layout_weight="1"
                     android:minWidth="100dp"
                     android:layout_gravity="center_vertical"
-                    android:padding="@dimen/edittext_padding"
+                    android:paddingTop="@dimen/edittext_padding"
+                    android:paddingBottom="@dimen/edittext_padding"
                     android:background="@color/edittext_bg">
                     <EditText
                         android:layout_width="wrap_content"
@@ -827,6 +834,8 @@
                         android:textCursorDrawable="@drawable/white_cursor"
                         android:textSize="@dimen/edittext_textsize"
                         android:id="@+id/newPartnerSumm_rate7"
+                        android:padding="@dimen/edittext_padding"
+                        android:background="@android:color/transparent"
                         android:backgroundTint="@android:color/transparent"
                         android:maxWidth="100dp"
                         android:layout_gravity="center_vertical"/>

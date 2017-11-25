@@ -27,7 +27,7 @@ public class LynxBadges extends AppCompatActivity implements View.OnClickListene
 
     Typeface tf;
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
-    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,pageTitle;
+    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,pageTitle,pageSubTitle;
     TableLayout badgesTable;
     DatabaseHelper db;
     @Override
@@ -67,11 +67,14 @@ public class LynxBadges extends AppCompatActivity implements View.OnClickListene
 
         pageTitle = (TextView)findViewById(R.id.pageTitle);
         pageTitle.setTypeface(tf);
+        pageSubTitle = (TextView)findViewById(R.id.pageSubTitle);
+        pageSubTitle.setTypeface(tf);
         badgesTable = (TableLayout)findViewById(R.id.badgesTable);
-        //pageTitle.setText(getEmojiByUnicode(0x1F497));//0x2764
+        //pageTitle.setText(getEmojiByUnicode(0x1F497));//0x276
 
-        // Loading Badges list //
         db = new DatabaseHelper(LynxBadges.this);
+        pageSubTitle.setText("You've earned "+db.getDistinctUserBadgesCount()+ " of "+ db.getBadgesMasterCount()+" badges");
+        // Loading Badges list //
         List<BadgesMaster> badgesMasterList = db.getAllBadgesMaster();
         for (BadgesMaster badgesMaster : badgesMasterList) {
             TableRow badgeRow = new TableRow(LynxBadges.this);

@@ -1284,6 +1284,7 @@
                             android:textCursorDrawable="@drawable/profile_edittext_cursor"
                             android:textSize="@dimen/edittext_textsize"
                             android:id="@+id/newPartnerSumm_rate5"
+                            android:background="@android:color/transparent"
                             android:backgroundTint="@android:color/transparent"
                             android:maxWidth="75dp"
                             android:layout_gravity="center_vertical"/>
@@ -1329,6 +1330,7 @@
                             android:textCursorDrawable="@drawable/profile_edittext_cursor"
                             android:textSize="@dimen/edittext_textsize"
                             android:id="@+id/newPartnerSumm_rate6"
+                            android:background="@android:color/transparent"
                             android:backgroundTint="@android:color/transparent"
                             android:maxWidth="75dp"
                             android:layout_gravity="center_vertical"/>
@@ -1373,6 +1375,7 @@
                             android:textCursorDrawable="@drawable/profile_edittext_cursor"
                             android:textSize="@dimen/edittext_textsize"
                             android:id="@+id/newPartnerSumm_rate7"
+                            android:background="@android:color/transparent"
                             android:backgroundTint="@android:color/transparent"
                             android:maxWidth="75dp"
                             android:layout_gravity="center_vertical"/>

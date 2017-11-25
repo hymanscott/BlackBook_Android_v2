@@ -498,7 +498,7 @@ public class RegLogin extends AppCompatActivity {
         matcher = pattern.matcher(email);
 
         if (email.isEmpty() || !matcher.matches()) {
-            emailFld.setError("Enter a valid Email");
+            Toast.makeText(this, "Enter a valid Email", Toast.LENGTH_LONG).show();
             emailFld.requestFocus();
         }
         else {
@@ -578,6 +578,8 @@ public class RegLogin extends AppCompatActivity {
             Toast.makeText(RegLogin.this,"Invalid Date",Toast.LENGTH_SHORT).show();
         }else if(phone_number.isEmpty()){
             Toast.makeText(RegLogin.this,"Please enter mobile number",Toast.LENGTH_SHORT).show();
+        }else if(phone_number.length()<10 || phone_number.length()>12){
+            Toast.makeText(RegLogin.this,"Please enter valid mobile number",Toast.LENGTH_SHORT).show();
         } else if(races_list.equals("Race/Ethnicity")){
             Toast.makeText(this,"Please Select Race/Ethnicity",Toast.LENGTH_SHORT).show();
         }else{

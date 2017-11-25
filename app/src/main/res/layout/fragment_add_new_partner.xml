@@ -197,7 +197,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="New Partner HIV Status:"
+                        android:text="New Partner HIV Status?"
                         android:layout_marginTop="10dp"
                         android:textColor="@color/white"
                         android:textSize="@dimen/encounter_tv_textsize"

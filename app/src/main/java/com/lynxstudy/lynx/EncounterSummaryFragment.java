@@ -86,15 +86,14 @@ public class EncounterSummaryFragment extends Fragment {
         encSumm_partnerNotes.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getEncounter_notes()));
         String you_cum = LynxManager.decryptString(LynxManager.getActiveEncounter().getDid_you_cum());
         did_you_cum.setText(you_cum);
-        Log.v("you_cum","you_cum="+you_cum);
-        if(you_cum==null){
+       /* if(you_cum==null){
             didYouCumParent.setVisibility(View.GONE);
-        }
+        }*/
         String your_partner_cum = LynxManager.decryptString(LynxManager.getActiveEncounter().getDid_your_partner_cum());
         did_your_partner_cum.setText(your_partner_cum);
-        if(your_partner_cum==null){
+        /*if(your_partner_cum==null){
             didYourPartnerCumParent.setVisibility(View.GONE);
-        }
+        }*/
         final RatingBar sexRating = (RatingBar) rootview.findViewById(R.id.encSumm_sexRating);
         sexRating.setRating(Float.parseFloat(LynxManager.encRateofSex));
 
@@ -173,6 +172,7 @@ public class EncounterSummaryFragment extends Fragment {
                     if(encSexType.getCondom_use().equals("Condom used")&& !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                         LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                     }
+                    didYourPartnerCumParent.setVisibility(View.VISIBLE);
                     /*TextView isucked_txt = (TextView) rootview.findViewById(R.id.encSumm_iSucked_condomuse);
                     isucked_txt.setVisibility(View.VISIBLE);
                     isucked_txt.setText("When I sucked him, " + encSexType.getCondom_use() + " \n Did Come in my mouth :" + encSexType.getNote());*/
@@ -194,6 +194,7 @@ public class EncounterSummaryFragment extends Fragment {
                     if(encSexType.getCondom_use().equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                         LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                     }
+                    didYourPartnerCumParent.setVisibility(View.VISIBLE);
                     /*TextView iBottomed_txt = (TextView) rootview.findViewById(R.id.encSumm_iBottomed_condomuse);
                     iBottomed_txt.setVisibility(View.VISIBLE);
                     iBottomed_txt.setText("When I Bottomed, " + encSexType.getCondom_use() + " \n Did Come in me :" + encSexType.getNote());*/
@@ -207,6 +208,7 @@ public class EncounterSummaryFragment extends Fragment {
                     if(encSexType.getCondom_use().equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                         LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                     }
+                    didYouCumParent.setVisibility(View.VISIBLE);
                     /*TextView iTopped_txt = (TextView) rootview.findViewById(R.id.encSumm_iTopped_condomuse);
                     iTopped_txt.setVisibility(View.VISIBLE);
                     iTopped_txt.setText("When I Topped him, " + encSexType.getCondom_use());*/
@@ -290,7 +292,7 @@ public class EncounterSummaryFragment extends Fragment {
                            condomUsedContent.removeAllViews();
                            if(LynxManager.activeEncCondomUsed.size()>0){
                                for (String str : LynxManager.activeEncCondomUsed){
-                                   TextView tv = new TextView(getContext());
+                                   TextView tv = new TextView(getActivity());
                                    tv.setTypeface(tf);
                                    tv.setText("When "+str);
                                    tv.setPadding(0,0,0,16);
