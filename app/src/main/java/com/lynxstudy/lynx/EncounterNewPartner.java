@@ -316,59 +316,62 @@ public class EncounterNewPartner extends AppCompatActivity {
         TextView ratingField4 = (TextView)findViewById(R.id.newPartner_rate4);
         String ratingFieldValue4 = ratingField4.getText().toString();
         EditText ratingField5 = (EditText)findViewById(R.id.newPartner_rate5);
-        String ratingFieldValue5 = ratingField5.getText().toString();
+        String ratingFieldValue5 = ratingField5.getText().toString().trim();
         EditText ratingField6 = (EditText)findViewById(R.id.newPartner_rate6);
-        String ratingFieldValue6 = ratingField6.getText().toString();
+        String ratingFieldValue6 = ratingField6.getText().toString().trim();
         EditText ratingField7 = (EditText)findViewById(R.id.newPartner_rate7);
-        String ratingFieldValue7 = ratingField7.getText().toString();
+        String ratingFieldValue7 = ratingField7.getText().toString().trim();
+        if(ratingFieldValue5.equals("")||ratingFieldValue6.equals("")||ratingFieldValue7.equals("")){
+            Toast.makeText(EncounterNewPartner.this,"Please enter all rating fields",Toast.LENGTH_SHORT).show();
+        }else {
+            RatingBar ratingBar1 = (RatingBar) findViewById(R.id.ratingBar1);
+            String ratingValue1 = String.valueOf((ratingBar1.getRating()));
+            RatingBar ratingBar2 = (RatingBar) findViewById(R.id.ratingBar2);
+            String ratingValue2 = String.valueOf((ratingBar2.getRating()));
+            RatingBar ratingBar3 = (RatingBar) findViewById(R.id.ratingBar3);
+            String ratingValue3 = String.valueOf((ratingBar3.getRating()));
+            RatingBar ratingBar4 = (RatingBar) findViewById(R.id.ratingBar4);
+            String ratingValue4 = String.valueOf((ratingBar4.getRating()));
+            RatingBar ratingBar5 = (RatingBar) findViewById(R.id.ratingBar5);
+            String ratingValue5 = String.valueOf((ratingBar5.getRating()));
+            RatingBar ratingBar6 = (RatingBar) findViewById(R.id.ratingBar6);
+            String ratingValue6 = String.valueOf((ratingBar6.getRating()));
+            RatingBar ratingBar7 = (RatingBar) findViewById(R.id.ratingBar7);
+            String ratingValue7 = String.valueOf((ratingBar7.getRating()));
+            List<String> rating_values = new ArrayList<String>();
+            rating_values.add(ratingValue1);
+            rating_values.add(ratingValue2);
+            rating_values.add(ratingValue3);
+            rating_values.add(ratingValue4);
+            rating_values.add(ratingValue5);
+            rating_values.add(ratingValue6);
+            rating_values.add(ratingValue7);
+            List<String> rating_fields = new ArrayList<String>();
+            rating_fields.add(ratingFieldValue1);
+            rating_fields.add(ratingFieldValue2);
+            rating_fields.add(ratingFieldValue3);
+            rating_fields.add(ratingFieldValue4);
+            rating_fields.add(ratingFieldValue5);
+            rating_fields.add(ratingFieldValue6);
+            rating_fields.add(ratingFieldValue7);
 
-        RatingBar ratingBar1 = (RatingBar) findViewById(R.id.ratingBar1);
-        String ratingValue1 = String.valueOf((ratingBar1.getRating()));
-        RatingBar ratingBar2 = (RatingBar) findViewById(R.id.ratingBar2);
-        String ratingValue2 = String.valueOf((ratingBar2.getRating()));
-        RatingBar ratingBar3 = (RatingBar) findViewById(R.id.ratingBar3);
-        String ratingValue3 = String.valueOf((ratingBar3.getRating()));
-        RatingBar ratingBar4 = (RatingBar) findViewById(R.id.ratingBar4);
-        String ratingValue4 = String.valueOf((ratingBar4.getRating()));
-        RatingBar ratingBar5 = (RatingBar) findViewById(R.id.ratingBar5);
-        String ratingValue5 = String.valueOf((ratingBar5.getRating()));
-        RatingBar ratingBar6 = (RatingBar) findViewById(R.id.ratingBar6);
-        String ratingValue6 = String.valueOf((ratingBar6.getRating()));
-        RatingBar ratingBar7 = (RatingBar) findViewById(R.id.ratingBar7);
-        String ratingValue7 = String.valueOf((ratingBar7.getRating()));
-        List<String> rating_values = new ArrayList<String>();
-        rating_values.add(ratingValue1);
-        rating_values.add(ratingValue2);
-        rating_values.add(ratingValue3);
-        rating_values.add(ratingValue4);
-        rating_values.add(ratingValue5);
-        rating_values.add(ratingValue6);
-        rating_values.add(ratingValue7);
-        List<String> rating_fields = new ArrayList<String>();
-        rating_fields.add(ratingFieldValue1);
-        rating_fields.add(ratingFieldValue2);
-        rating_fields.add(ratingFieldValue3);
-        rating_fields.add(ratingFieldValue4);
-        rating_fields.add(ratingFieldValue5);
-        rating_fields.add(ratingFieldValue6);
-        rating_fields.add(ratingFieldValue7);
+            LynxManager.partnerRatingValues.clear();
+            LynxManager.partnerRatingFields.clear();
+            LynxManager.setPartnerRatingValues(rating_values);
+            LynxManager.setPartnerRatingFields(rating_fields);
+            //Log.v("SETPhas-Rating Values", Arrays.toString(rating_values.toArray()));
 
-        LynxManager.partnerRatingValues.clear();
-        LynxManager.partnerRatingFields.clear();
-        LynxManager.setPartnerRatingValues(rating_values);
-        LynxManager.setPartnerRatingFields(rating_fields);
-        //Log.v("SETPhas-Rating Values", Arrays.toString(rating_values.toArray()));
-
-        LynxManager.setPartnerRatingIds(rating_field_id);
-        LynxManager.activePartnerRating.clear();
-        for (Integer field_id : rating_field_id) {
-            System.out.println("FIELD ID"+field_id);
-            System.out.println(rating_values.get(field_id - 1));
-            PartnerRating partner_rating = new PartnerRating(LynxManager.getActiveUser().getUser_id(), LynxManager.getActivePartner().getPartner_id(),
-                    field_id, String.valueOf(rating_values.get(field_id - 1)),rating_fields.get(field_id - 1), String.valueOf(R.string.statusUpdateNo));
-            LynxManager.setActivePartnerRating(partner_rating);
+            LynxManager.setPartnerRatingIds(rating_field_id);
+            LynxManager.activePartnerRating.clear();
+            for (Integer field_id : rating_field_id) {
+            /*System.out.println("FIELD ID"+field_id);
+            System.out.println(rating_values.get(field_id - 1));*/
+                PartnerRating partner_rating = new PartnerRating(LynxManager.getActiveUser().getUser_id(), LynxManager.getActivePartner().getPartner_id(),
+                        field_id, String.valueOf(rating_values.get(field_id - 1)), rating_fields.get(field_id - 1), String.valueOf(R.string.statusUpdateNo));
+                LynxManager.setActivePartnerRating(partner_rating);
+            }
+            pushFragments("Encounter", fragPartnerSummary, true);
         }
-        pushFragments("Encounter", fragPartnerSummary, true);
         return true;
 
     }
@@ -439,11 +442,11 @@ public class EncounterNewPartner extends AppCompatActivity {
         LynxManager.getActivePartner().setNickname(LynxManager.encryptString(nickName.getText().toString()));
         String selectedHIVstatus= hivStatus.getText().toString();
         String selectedGender= gender.getText().toString();
-        if(selectedHIVstatus.equals("HIV Positive and Undetectable")){
-            selectedHIVstatus = "HIV Positive & Undetectable";
+        if(selectedHIVstatus.equals("HIV positive and undetectable")){
+            selectedHIVstatus = "HIV positive & undetectable";
             LynxManager.getActivePartner().setUndetectable_for_sixmonth(LynxManager.encryptString(undetectableAns.getText().toString()));
-        }else if(selectedHIVstatus.equals("HIV Negative and on PrEP")){
-            selectedHIVstatus = "HIV Negative & on PrEP";
+        }else if(selectedHIVstatus.equals("HIV negative and on PrEP")){
+            selectedHIVstatus = "HIV negative & on PrEP";
         }
         LynxManager.getActivePartner().setHiv_status(LynxManager.encryptString(selectedHIVstatus));
         LynxManager.getActivePartner().setGender(LynxManager.encryptString(selectedGender));
@@ -536,6 +539,8 @@ public class EncounterNewPartner extends AppCompatActivity {
             Toast.makeText(EncounterNewPartner.this,"Please enter valid email",Toast.LENGTH_SHORT).show();
         }else if(newPartner_phone.length()!= 0 && (newPartner_phone.length()<10 || newPartner_phone.length()>11)){
             Toast.makeText(EncounterNewPartner.this,"Please enter valid mobile number",Toast.LENGTH_SHORT).show();
+        }else if(ratingFieldValue5.trim().equals("")||ratingFieldValue6.trim().equals("")||ratingFieldValue7.trim().equals("")){
+            Toast.makeText(EncounterNewPartner.this,"Please enter all rating fields",Toast.LENGTH_SHORT).show();
         }else{
             LynxManager.getActivePartnerContact().setEmail(LynxManager.encryptString(newPartnerEmail));
             LynxManager.getActivePartnerContact().setPhone(LynxManager.encryptString(newPartner_phone));

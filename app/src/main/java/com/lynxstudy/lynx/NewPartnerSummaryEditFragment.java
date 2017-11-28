@@ -118,7 +118,7 @@ public class NewPartnerSummaryEditFragment extends Fragment{
         gender.setTypeface(tf);
         hivStatus.setText(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()));
         hivStatus.setTypeface(tf);
-        if(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()).equals("HIV Positive & Undetectable")){
+        if(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()).equals("HIV Positive & Undetectable") || LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()).equals("HIV positive & undetectable")){
             undetectableLayout.setVisibility(View.VISIBLE);
             undetectableAns.setText(LynxManager.decryptString(LynxManager.getActivePartner().getUndetectable_for_sixmonth()));
         }
@@ -220,7 +220,7 @@ public class NewPartnerSummaryEditFragment extends Fragment{
                             public void onClick(DialogInterface dialog, int which) {
                                 String text = hiv_status_list.get(which).toString();
                                 hivStatus.setText(text);
-                                if(text.equals("HIV Positive and Undetectable")){
+                                if(text.equals("HIV positive and undetectable")){
                                     undetectableLayout.setVisibility(View.VISIBLE);
                                 }else{
                                     undetectableLayout.setVisibility(View.GONE);
@@ -239,7 +239,7 @@ public class NewPartnerSummaryEditFragment extends Fragment{
                             public void onClick(DialogInterface dialog, int which) {
                                 String text = hiv_status_list.get(which).toString();
                                 hivStatus.setText(text);
-                                if(text.equals("HIV Positive and Undetectable")){
+                                if(text.equals("HIV positive and undetectable")){
                                     undetectableLayout.setVisibility(View.VISIBLE);
                                 }else{
                                     undetectableLayout.setVisibility(View.GONE);

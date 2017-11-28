@@ -153,6 +153,8 @@ public class calculateSexProScore {
             switch (LynxManager.decryptString(primaryPartner.getHiv_status())){
                 case "HIV Negative":
                 case "HIV Positive":
+				case "HIV negative":
+                case "HIV positive":
                     PP      =   1;
                     break;
                 default:
@@ -184,7 +186,7 @@ public class calculateSexProScore {
         String hiv_status = LynxManager.decryptString(primaryPartner.getHiv_status());
 
         if(LynxManager.decryptString(primaryPartner.getHiv_status())!=null) {
-            if (hiv_status.equals("HIV positive & Undetectable")) {
+            if (hiv_status.equals("HIV positive & Undetectable")||hiv_status.equals("HIV positive & undetectable")) {
                 PPUVL = 1;
             } else {
                 PPUVL = 0;
@@ -216,13 +218,13 @@ public class calculateSexProScore {
         if(elapsedDays >=90){
             for(Partners partner : db.getAllPartners()){
                 String partner_hiv_status = LynxManager.decryptString(partner.getHiv_status());
-                if(partner_hiv_status.equals("HIV Negative")|| partner_hiv_status.equals("HIV Negative & on PrEP")){
+                if(partner_hiv_status.equals("HIV Negative") || partner_hiv_status.equals("HIV negative")|| partner_hiv_status.equals("HIV Negative & on PrEP") || partner_hiv_status.equals("HIV negative & on PrEP")){
                     hiv_negativePeople += 1 ;
                 }
-                if(partner_hiv_status.equals("HIV Positive")|| partner_hiv_status.equals("HIV Positive & Undetectable")){
+                if(partner_hiv_status.equals("HIV Positive") || partner_hiv_status.equals("HIV positive") || partner_hiv_status.equals("HIV Positive & Undetectable") || partner_hiv_status.equals("HIV positive & undetectable")){
                     hiv_positivePeople += 1 ;
                 }
-                if(partner_hiv_status.equals("I don't know")){
+                if(partner_hiv_status.equals("I don't know") || partner_hiv_status.equals("I don't know/unsure")){
                     hiv_unknownPeople += 1 ;
                 }
             }

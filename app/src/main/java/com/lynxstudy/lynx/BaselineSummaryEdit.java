@@ -200,7 +200,7 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
         primary_sex_partner = (RadioGroup)view.findViewById(R.id.primary_sex_partner);
 
         radio_hiv_prep.setText(Html.fromHtml("HIV negative & on PrEP"));
-        radio_hiv_und.setText(Html.fromHtml("HIV positive & Undetectable"));
+        radio_hiv_und.setText(Html.fromHtml("HIV positive & undetectable"));
 
         db = new DatabaseHelper(getActivity());
 
@@ -415,7 +415,7 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
                 int selectedId = radioGrp_hivstatus.getCheckedRadioButtonId();
                 RadioButton rd_btn = (RadioButton) view.findViewById(selectedId);
                 String btn_text = rd_btn.getText().toString();
-                if (btn_text.equals("HIV positive & Undetectable")){
+                if (btn_text.equals("HIV positive & undetectable")){
                     undetectable_layout.setVisibility(View.VISIBLE);
                     LynxManager.undetectableLayoutHidden = false;
                 }
@@ -440,18 +440,22 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
         if(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getHiv_status())!=null){
             switch (LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getHiv_status())){
                 case "HIV Negative":
+				case "HIV negative":
                     radioGrp_hivstatus.check(radio_hiv_neg.getId());
                     break;
                 case "HIV negative & on PrEP":
                     radioGrp_hivstatus.check(radio_hiv_prep.getId());
                     break;
                 case "I don't know":
+				case "I don't know/unsure":
                     radioGrp_hivstatus.check(radio_hiv_idk.getId());
                     break;
                 case "HIV Positive":
+				case "HIV positive":
                     radioGrp_hivstatus.check(radio_hiv_pos.getId());
                     break;
                 case "HIV positive & Undetectable":
+				case "HIV positive & undetectable":
                     radioGrp_hivstatus.check(radio_hiv_und.getId());
                     undetectable_layout.setVisibility(View.VISIBLE);
                     LynxManager.undetectableLayoutHidden = false;

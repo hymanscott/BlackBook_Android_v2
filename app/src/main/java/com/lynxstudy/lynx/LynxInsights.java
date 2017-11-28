@@ -438,10 +438,14 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
         partnerTypesChart.invalidate();
 
         /*Partner Hiv Status Chart*/
-        float negative = (float)db.getPartnersCountByHivStatus("HIV Negative")/db.getPartnersCount();
-        float negprep = (float)db.getPartnersCountByHivStatus("HIV Negative & on PrEP")/db.getPartnersCount();
-        float positive = (float)db.getPartnersCountByHivStatus("HIV Positive")/db.getPartnersCount();
-        float undetectable = (float)db.getPartnersCountByHivStatus("HIV Positive & Undetectable")/db.getPartnersCount();
+        int negDBCount = db.getPartnersCountByHivStatus("HIV Negative")+ db.getPartnersCountByHivStatus("HIV negative");
+        float negative = (float)negDBCount/db.getPartnersCount();
+        int negprepDBCount = db.getPartnersCountByHivStatus("HIV Negative & on PrEP")+db.getPartnersCountByHivStatus("HIV negative & on PrEP");
+        float negprep = (float)negprepDBCount/db.getPartnersCount();
+        int posDBCount = db.getPartnersCountByHivStatus("HIV Positive") + db.getPartnersCountByHivStatus("HIV positive");
+        float positive = (float)posDBCount/db.getPartnersCount();
+        int undetectableDBCount = db.getPartnersCountByHivStatus("HIV Positive & Undetectable") + db.getPartnersCountByHivStatus("HIV positive & undetectable");
+        float undetectable = (float)undetectableDBCount/db.getPartnersCount();
         float unsure = (float)db.getPartnersCountByHivStatus("I don't know/unsure")/db.getPartnersCount();
         /*Layout Chart*/
         LinearLayout PartnerHivTrend = (LinearLayout)findViewById(R.id.PartnerHivTrend);
@@ -508,10 +512,11 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
         fiveStarPartnersCount.setText(String.valueOf(db.getFiveStarPartnersCount()));
         TextView positivePartnersCount = (TextView)findViewById(R.id.positivePartnersCount);
         positivePartnersCount.setTypeface(tf_bold);
-        positivePartnersCount.setText(String.valueOf(db.getPartnersCountByHivStatus("HIV Positive")));
+
+        positivePartnersCount.setText(String.valueOf(posDBCount));
         TextView negativePartnersCount = (TextView)findViewById(R.id.negativePartnersCount);
         negativePartnersCount.setTypeface(tf_bold);
-        negativePartnersCount.setText(String.valueOf(db.getPartnersCountByHivStatus("HIV Negative")));
+        negativePartnersCount.setText(String.valueOf(negDBCount));
         TextView unknownPartnersCount = (TextView)findViewById(R.id.unknownPartnersCount);
         unknownPartnersCount.setTypeface(tf_bold);
         unknownPartnersCount.setText(String.valueOf(db.getPartnersCountByHivStatus("I don't know/unsure")));

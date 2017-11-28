@@ -460,7 +460,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         nickName.setTypeface(tf);
         hivStatusAns.setText(LynxManager.decryptString(partner.getHiv_status()));
         hivStatusAns.setTypeface(tf);
-        if(LynxManager.decryptString(partner.getHiv_status()).equals("HIV Positive & Undetectable")){
+        if(LynxManager.decryptString(partner.getHiv_status()).equals("HIV Positive & Undetectable") || LynxManager.decryptString(partner.getHiv_status()).equals("HIV positive & undetectable")){
             undetectableLayout.setVisibility(View.VISIBLE);
             undetectableAns.setText(LynxManager.decryptString(partner.getUndetectable_for_sixmonth()));
         }
@@ -518,7 +518,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                             public void onClick(DialogInterface dialog, int which) {
                                 String text = hiv_status_list.get(which).toString();
                                 hivStatusAns.setText(text);
-                                if(text.equals("HIV Positive and Undetectable")){
+                                if(text.equals("HIV positive and undetectable")){
                                     undetectableLayout.setVisibility(View.VISIBLE);
                                 }else{
                                     undetectableLayout.setVisibility(View.GONE);
@@ -537,7 +537,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                             public void onClick(DialogInterface dialog, int which) {
                                 String text = hiv_status_list.get(which).toString();
                                 hivStatusAns.setText(text);
-                                if(text.equals("HIV Positive and Undetectable")){
+                                if(text.equals("HIV positive and undetectable")){
                                     undetectableLayout.setVisibility(View.VISIBLE);
                                 }else{
                                     undetectableLayout.setVisibility(View.GONE);
@@ -795,6 +795,8 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                     Toast.makeText(getActivity(),"Please enter valid email",Toast.LENGTH_SHORT).show();
                 }else if(newPartner_phone.length()!= 0 && (newPartner_phone.length()<10 || newPartner_phone.length()>11)){
                     Toast.makeText(getActivity(),"Please enter valid mobile number",Toast.LENGTH_SHORT).show();
+                }if(newPartnerSumm_rate5.getText().toString().trim().equals("") || newPartnerSumm_rate6.getText().toString().trim().equals("") || newPartnerSumm_rate7.getText().toString().trim().equals("")){
+                    Toast.makeText(getActivity(),"Please enter all rating fields",Toast.LENGTH_SHORT).show();
                 }else{
                     Partners updatedPartner = new Partners();
                     updatedPartner.setPartner_id(partner_id);
@@ -809,11 +811,11 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                     updatedPartnerContact.setPartner_notes(LynxManager.encryptString(partnerNotes.getText().toString()));
                     String selectedHIVstatus= hivStatusAns.getText().toString();
                     updatedPartner.setUndetectable_for_sixmonth(LynxManager.encryptString(""));
-                    if(selectedHIVstatus.equals("HIV Positive and Undetectable")){
-                        selectedHIVstatus = "HIV Positive & Undetectable";
+                    if(selectedHIVstatus.equals("HIV positive and undetectable")){
+                        selectedHIVstatus = "HIV positive & undetectable";
                         updatedPartner.setUndetectable_for_sixmonth(LynxManager.encryptString(undetectableAns.getText().toString()));
-                    }else if(selectedHIVstatus.equals("HIV Negative and on PrEP")){
-                        selectedHIVstatus = "HIV Negative & on PrEP";
+                    }else if(selectedHIVstatus.equals("HIV negative and on PrEP")){
+                        selectedHIVstatus = "HIV negative & on PrEP";
                     }
                     updatedPartner.setHiv_status(LynxManager.encryptString(selectedHIVstatus));
 

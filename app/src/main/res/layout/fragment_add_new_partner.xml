@@ -214,7 +214,7 @@
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="HIV Negative"
+                            android:text="HIV negative"
                             android:textColor="@color/white"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
                             android:buttonTint="@color/white"
@@ -225,7 +225,7 @@
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="HIV Negative and On PrEP"
+                            android:text="HIV negative and on PrEP"
                             android:textColor="@color/white"
                             android:buttonTint="@color/white"
                             android:button="@drawable/radiobutton_white"
@@ -248,7 +248,7 @@
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="HIV Positive"
+                            android:text="HIV positive"
                             android:textColor="@color/white"
                             android:buttonTint="@color/white"
                             android:button="@drawable/radiobutton_white"
@@ -265,7 +265,7 @@
                             android:layout_marginTop="12dp"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
                             android:layout_height="wrap_content"
-                            android:text="HIV Positive and Undetectable"
+                            android:text="HIV positive and undetectable"
                             android:id="@+id/radio_hiv_und" />
                     </RadioGroup>
 

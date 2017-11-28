@@ -90,10 +90,10 @@ public class EditPartner extends Fragment {
         add_partner_title.setVisibility(View.GONE);
         whoIsYourPartner.setVisibility(View.GONE);
         RadioButton hivNegPrep = (RadioButton)rootview.findViewById(R.id.radio_hiv_prep);
-        hivNegPrep.setText(Html.fromHtml("HIV Negative & on PrEP"));
+        hivNegPrep.setText(Html.fromHtml("HIV negative & on PrEP"));
         hivNegPrep.setTypeface(tf);
         RadioButton hivPosUnd = (RadioButton)rootview.findViewById(R.id.radio_hiv_und);
-        hivPosUnd.setText(Html.fromHtml("HIV Positive & Undetectable"));
+        hivPosUnd.setText(Html.fromHtml("HIV positive & undetectable"));
         hivPosUnd.setTypeface(tf);
         LynxManager.undetectableLayoutHidden = true;//By default
         EditText nick_name = (EditText)rootview.findViewById(R.id.nick_name);
@@ -111,7 +111,7 @@ public class EditPartner extends Fragment {
         final RadioGroup undetect_sixMonth_grp = (RadioGroup)rootview.findViewById(R.id.radio_undetectable);
         /*undetectable for past 6 months layout*/
         final LinearLayout undetectable_layout = (LinearLayout)rootview.findViewById(R.id.linearLayout_undetectable);
-        if(LynxManager.decryptString(partner.getHiv_status()).equals("HIV Positive & Undetectable")){
+        if(LynxManager.decryptString(partner.getHiv_status()).equals("HIV Positive & Undetectable") || LynxManager.decryptString(partner.getHiv_status()).equals("HIV positive & undetectable")){
             undetectable_layout.setVisibility(View.VISIBLE);
             LynxManager.undetectableLayoutHidden = false;
             //Log.v("undetectable Value", LynxManager.decryptString(partner.getUndetectable_for_sixmonth()));
@@ -124,7 +124,7 @@ public class EditPartner extends Fragment {
                 int selectedId = hiv_status_grp.getCheckedRadioButtonId();
                 RadioButton rd_btn = (RadioButton) rootview.findViewById(selectedId);
                 String btn_text = rd_btn.getText().toString();
-                if (btn_text.equals("HIV Positive & Undetectable")) {
+                if (btn_text.equals("HIV positive & undetectable")) {
                     undetectable_layout.setVisibility(View.VISIBLE);
                     LynxManager.undetectableLayoutHidden = false;
                 } else {

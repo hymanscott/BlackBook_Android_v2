@@ -58,7 +58,7 @@
                             <TextView
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
-                                android:text="New Partner HIV Status:"
+                                android:text="New Partner HIV Status?"
                                 android:layout_marginTop="10dp"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/encounter_tv_textsize"
@@ -74,7 +74,7 @@
                                 <RadioButton
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="HIV Negative"
+                                    android:text="HIV negative"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/encounter_radio_btn_textsize"
                                     android:buttonTint="@color/white"
@@ -83,7 +83,7 @@
                                 <RadioButton
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="HIV Negative and On PrEP"
+                                    android:text="HIV negative and on PrEP"
                                     android:textColor="@color/white"
                                     android:buttonTint="@color/white"
                                     android:textSize="@dimen/encounter_radio_btn_textsize"
@@ -91,7 +91,7 @@
                                 <RadioButton
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="I don't know"
+                                    android:text="I don't know/unsure"
                                     android:textColor="@color/white"
                                     android:buttonTint="@color/white"
                                     android:textSize="@dimen/encounter_radio_btn_textsize"
@@ -100,7 +100,7 @@
                                 <RadioButton
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="HIV Positive"
+                                    android:text="HIV positive"
                                     android:textColor="@color/white"
                                     android:buttonTint="@color/white"
                                     android:textSize="@dimen/encounter_radio_btn_textsize"
@@ -111,7 +111,7 @@
                                     android:buttonTint="@color/white"
                                     android:textSize="@dimen/encounter_radio_btn_textsize"
                                     android:layout_height="wrap_content"
-                                    android:text="HIV Positive and Undetectable"
+                                    android:text="HIV positive and undetectable"
                                     android:id="@+id/radio_hiv_und" />
                             </RadioGroup>
 

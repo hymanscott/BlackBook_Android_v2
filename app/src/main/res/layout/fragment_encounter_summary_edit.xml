@@ -102,7 +102,7 @@
                     android:id="@+id/hivStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="HIV Positive and Undetectable"
+                    android:text="HIV positive and undetectable"
                     android:textColor="@color/white"
                     android:textSize="14sp" />
             </LinearLayout>
