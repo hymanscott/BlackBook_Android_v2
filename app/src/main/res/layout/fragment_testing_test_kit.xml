@@ -48,7 +48,7 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="HIV Test Kit"
+                    android:text="Gonorrhea"
                     android:id="@+id/oraQuickTestKit"
                     android:textSize="14sp"
                     android:textColor="@color/text_color"
@@ -61,8 +61,22 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="STI Test Kit"
+                    android:text="Syphilis"
                     android:id="@+id/analSwab"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_color"
+                    android:buttonTint="@color/profile_text_color"
+                    android:button="@drawable/checkbox_black"
+                    android:paddingLeft="12dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="12dp"
+                    android:checked="true"
+                    android:layout_centerHorizontal="true" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chlamydia"
+                    android:id="@+id/chlamydia"
                     android:textSize="14sp"
                     android:textColor="@color/text_color"
                     android:buttonTint="@color/profile_text_color"

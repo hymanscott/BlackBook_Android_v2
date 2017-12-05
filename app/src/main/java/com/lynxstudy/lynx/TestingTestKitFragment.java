@@ -45,7 +45,7 @@ public class TestingTestKitFragment extends Fragment {
         // Required empty public constructor
     }
     TextView frag_title,title;
-    CheckBox oraQuickTestKit,analSwab,penileSwab;
+    CheckBox oraQuickTestKit,analSwab,chlamydia;
     private Tracker tracker;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,6 +65,8 @@ public class TestingTestKitFragment extends Fragment {
         oraQuickTestKit.setTypeface(tf);
         analSwab = (CheckBox) view.findViewById(R.id.analSwab);
         analSwab.setTypeface(tf);
+        chlamydia = (CheckBox) view.findViewById(R.id.chlamydia);
+        chlamydia.setTypeface(tf);
         Log.v("TestKit Oncreate","Executed");
         Button confirm_btn = (Button) view.findViewById(R.id.requestHomeKit_confirm);
         confirm_btn.setTypeface(tf_bold);

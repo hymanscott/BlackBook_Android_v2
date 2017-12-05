@@ -118,7 +118,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="What is your partners gender?"
+                        android:text="What is your partner's gender?"
                         android:layout_marginTop="10dp"
                         android:textColor="@color/white"
                         android:textSize="@dimen/encounter_tv_textsize"
@@ -288,7 +288,7 @@
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="Have they been undetectable for at least 6 months?"
+                        android:text="Are they undetectable for at least 6 months?"
                         android:textColor="@color/white"
                         android:textSize="@dimen/encounter_tv_textsize"
                         android:layout_marginRight="24dp"

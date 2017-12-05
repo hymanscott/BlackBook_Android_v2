@@ -398,6 +398,17 @@
                         android:text="No"
                         android:textColor="@color/white"
                         android:textSize="@dimen/encounter_radio_btn_textsize" />
+                    <RadioButton
+                        android:id="@+id/radio_partner_unsure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/white"
+                        android:button="@drawable/radiobutton_white"
+                        android:paddingLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="I don’t know/unsure"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/encounter_radio_btn_textsize" />
 
                 </RadioGroup>
             </LinearLayout>

@@ -489,8 +489,7 @@
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Body"
-                        android:hint="Body"
+                        android:hint="Add choice"
                         android:imeOptions="actionNext"
                         android:textColor="@color/white"
                         android:textColorHint="@color/edittext_hint_color"
@@ -533,8 +532,7 @@
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cock"
-                        android:hint="Cock"
+                        android:hint="Add choice"
                         android:imeOptions="actionNext"
                         android:textColor="@color/white"
                         android:textColorHint="@color/edittext_hint_color"
@@ -577,8 +575,7 @@
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Butt"
-                        android:hint="Butt"
+                        android:hint="Add choice"
                         android:imeOptions="actionNext"
                         android:textColor="@color/white"
                         android:textColorHint="@color/edittext_hint_color"

@@ -10,7 +10,9 @@
     <color name="lighter_line">#d5d5d5</color>
     <color name="shadow_white">#FAFAFA</color>
     <color name="green">#14ab34</color>
-    <color name="button_red">#ff5d55</color>
+    <color name="button_red">#DB4437</color>
+    <color name="chat_row_name">#800D0925</color>
+    <color name="chat_row_text">#FF343434</color>
 
     <color name="text_color">#FF444444</color>
     <color name="starBG">#D6D6D6</color>

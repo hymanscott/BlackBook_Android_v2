@@ -325,7 +325,7 @@ public class NewPartnerSummaryEditFragment extends Fragment{
             }
         });
         // Other Partner Type Change //
-        final List<String> yes_no= Arrays.asList(getResources().getStringArray(R.array.yes_no));
+        final List<String> yes_no= Arrays.asList(getResources().getStringArray(R.array.yes_no_idk));
         final ArrayAdapter<String> adapterOtherPartner = new ArrayAdapter<String>(getActivity(),
                 R.layout.spinner_row_white, R.id.txtView, yes_no);
         otherPartner.setOnClickListener(new View.OnClickListener() {

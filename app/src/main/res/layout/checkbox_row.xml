@@ -6,6 +6,8 @@
     android:id="@+id/checkbox"
     android:button="@drawable/checkbox_white"
     android:paddingLeft="12dp"
+    android:paddingBottom="7dp"
+    android:paddingTop="7dp"
     android:layout_marginLeft="8dp"
     android:layout_marginBottom="8dp"
     android:textSize="@dimen/encounter_radio_btn_textsize"

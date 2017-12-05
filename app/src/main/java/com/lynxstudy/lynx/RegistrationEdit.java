@@ -182,7 +182,7 @@ public class RegistrationEdit extends Fragment {
         items.add("Asian/Pacific Islander");
         items.add("Native American");
         items.add("White");
-        items.add("Others");
+        items.add("Other");
 
         checkSelected = new boolean[items.size()];
         //initialize all values of list to 'unselected' initially

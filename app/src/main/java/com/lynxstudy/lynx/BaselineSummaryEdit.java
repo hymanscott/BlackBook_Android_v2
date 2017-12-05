@@ -40,7 +40,7 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
     EditText negativePartners,positivePartners,unknownPartners,editText,editText1,nick_name,no_of_drinks;
     RadioButton PSP_Yes,PSP_No,radio_hiv_neg,radio_hiv_prep,radio_hiv_und,radio_hiv_idk,radio_hiv_pos,radio_undetectable_yes,radio_undetectable_no,radio_undetectable_iDontKnow;
     RadioButton alcCal_5to7days,alcCal_1to4days,alcCal_lessThanOnce,alcCal_never;
-    RadioButton radio_partner_yes,radio_partner_no,radio_lessThanSixMonths,radio_moreThanSixMonths,radio_blackbook_yes,radio_blackbook_no;
+    RadioButton radio_partner_yes,radio_partner_unsure,radio_partner_no,radio_lessThanSixMonths,radio_moreThanSixMonths,radio_blackbook_yes,radio_blackbook_no;
     DatabaseHelper db;
     private SeekBar seek_barone,seek_bartwo;
     LinearLayout partnerInfoLayout,undetectable_layout,relationshipPeriod_layout;
@@ -121,6 +121,8 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
         radio_undetectable_iDontKnow.setTypeface(tf);
         radio_partner_yes = (RadioButton)view.findViewById(R.id.radio_partner_yes);
         radio_partner_yes.setTypeface(tf);
+        radio_partner_unsure = (RadioButton)view.findViewById(R.id.radio_partner_unsure);
+        radio_partner_unsure.setTypeface(tf);
         radio_partner_no = (RadioButton)view.findViewById(R.id.radio_partner_no);
         radio_partner_no.setTypeface(tf);
         radio_lessThanSixMonths = (RadioButton)view.findViewById(R.id.radio_lessThanSixMonths);
@@ -481,6 +483,11 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
                 case "Yes":
                     /*radio_partner_yes.setSelected(true);*/
                     radioGrp_partner.check(radio_partner_yes.getId());
+                    relationshipPeriod_layout.setVisibility(View.GONE);
+                    LynxManager.relationShipLayoutHidden = true;
+                    break;
+                case "I don’t know/unsure":
+                    radioGrp_partner.check(radio_partner_unsure.getId());
                     relationshipPeriod_layout.setVisibility(View.GONE);
                     LynxManager.relationShipLayoutHidden = true;
                     break;

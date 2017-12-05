@@ -1,71 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:padding="20dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="14dp"
     android:layout_height="wrap_content">
-    <android.support.v7.widget.CardView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:elevation="12dp"
-        android:id="@+id/view2"
-        app:cardCornerRadius="20dp"
-        android:layout_centerHorizontal="true"
-        android:innerRadius="0dp"
-        android:shape="ring"
-        android:thicknessRatio="1.9">
-        <ImageView
-            android:layout_height="40dp"
-            android:layout_width="40dp"
-            android:id="@+id/profilePicture"
-            android:src="@drawable/testimage"
-            android:scaleType="fitCenter"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true">
-        </ImageView>
-    </android.support.v7.widget.CardView>
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="269dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="15dp">
+        android:layout_gravity="right"
+        android:id="@+id/container"
+        android:orientation="vertical">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:weightSum="1"
-            android:layout_gravity="top"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/darker_line"
-                android:layout_weight="0.5"
-                android:id="@+id/name"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="FEB 22, 9:31 AM"
-                android:gravity="end"
-                android:minWidth="100dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/darker_line"
-                android:layout_weight="0.5"
-                android:id="@+id/date"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
+            android:paddingTop="6dp"
+            android:layout_gravity="right"
+            android:paddingBottom="8dp"
+            android:background="@drawable/chat_bubble_grey"
+            android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/message"
-                android:textColor="@color/text_color"
-                android:text="Hi Rafa. If you need anything don't hesitate to use the chat feature to contact us. We're always here for you."
+                android:textColor="@color/chat_row_text"
+                android:text="You should have received your test result by now. Let me look and see what I can find."
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
         </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lynx Study, Sep 11, 3:38 PM"
+            android:textColor="@color/chat_row_name"
+            android:textSize="11sp"
+            android:layout_weight="0.5"
+            android:gravity="left"
+            android:layout_gravity="right"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:paddingLeft="14dp"
+            android:id="@+id/date"/>
     </LinearLayout>
 </LinearLayout>

@@ -48,7 +48,7 @@
     <!-- <application android:name="android.support.multidex.MultiDexApplication"
     android:name="com.lynxstudy.lynx.lynxApplication"-->
     <application
-        android:name="com.lynxstudy.lynx.lynxApplication"
+        android:name=".lynxApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
@@ -108,10 +108,12 @@
         <activity
             android:name=".EncounterStartActivity"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EncounterNewPartner"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <service android:name="com.lynxstudy.helper.MyFirebaseMessagingService">

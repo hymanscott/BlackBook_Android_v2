@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/reg_tv_textsize"
                     android:textColor="@color/white"
-                    android:text="In the past three months, have you been diagnosed with any of the following sexually transmitted infections (STDs)?"
+                    android:text="In the past 3 months, have you been diagnosed with any of the following sexually transmitted infections (STDs)?"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="32dp"
                     android:lineSpacingMultiplier="1.31"

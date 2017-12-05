@@ -16,7 +16,7 @@
     </item>
     <item android:state_pressed="true" android:color="@color/colorPrimary">
         <shape android:shape="rectangle">
-            <solid android:color="@color/blue_boxes"/>
+            <solid android:color="@color/faq_blue"/>
             <corners android:radius="2dp"/>
             <padding
                 android:left="15dp"
@@ -24,7 +24,7 @@
                 android:right="15dp"
                 android:bottom="10dp"
                 />
-            <stroke android:width=".3dp" android:color="@color/blue_boxes"/>
+            <stroke android:width=".3dp" android:color="@color/faq_blue"/>
         </shape>
     </item>
     <item>

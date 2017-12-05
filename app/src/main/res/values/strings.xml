@@ -47,7 +47,7 @@
     <string-array name="yes_no_idk">
         <item>Yes</item>
         <item>No</item>
-        <item>I don\'t know</item>
+        <item>I don\'t know/unsure</item>
     </string-array>
     <string-array name="gender_list">
         <item>Man</item>
@@ -128,4 +128,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="select_race">Race/Ethnicity</string>
     <string name="new_encounter">New Encounter</string>
+    <string name="druguse_title">Have you used any of the following <u>at all</u> during the past three months?</string>
 </resources>

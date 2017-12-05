@@ -47,7 +47,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:layout_marginTop="32dp"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
                 <TextView
                     android:id="@+id/log_para_two"
                     android:layout_width="fill_parent"
@@ -59,7 +59,7 @@ Sex Pro score. It will just take a few minutes and then you’ll be on your way!
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:layout_marginTop="32dp"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
                 </LinearLayout>
             <Button
                 android:id="@+id/loggedNext"

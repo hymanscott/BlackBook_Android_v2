@@ -369,7 +369,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:textColor="@color/white"
-                    android:text="Have they been undetectable for at least 6 months?"/>
+                    android:text="Are they undetectable for at least 6 months?"/>
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -728,9 +728,8 @@
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Body"
                         android:textStyle="bold"
-                        android:hint="Body"
+                        android:hint="Add choice"
                         android:imeOptions="actionNext"
                         android:textColor="@color/white"
                         android:textColorHint="@color/edittext_hint_color"
@@ -777,8 +776,7 @@
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cock"
-                        android:hint="Cock"
+                        android:hint="Add choice"
                         android:textStyle="bold"
                         android:imeOptions="actionNext"
                         android:textColor="@color/white"
@@ -825,8 +823,7 @@
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Butt"
-                        android:hint="Butt"
+                        android:hint="Add choice"
                         android:textStyle="bold"
                         android:imeOptions="actionNext"
                         android:textColor="@color/white"

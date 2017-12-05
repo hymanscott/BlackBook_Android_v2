@@ -78,7 +78,7 @@
                 android:layout_marginTop="32dp"
                 android:lineSpacingMultiplier="1.31"
                 android:gravity="center_vertical"
-                android:text="Number of TIMES (NOT Partner) as a TOP with men or transwomen?"
+                android:text="Number of TIMES (NOT Partners) as a TOP with men or transwomen?"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
 
@@ -117,7 +117,7 @@
                 android:layout_marginTop="40dp"
                 android:gravity="center_vertical"
                 android:lineSpacingMultiplier="1.31"
-                android:text="Think carefully.  How often did you use a condom during these TIMES?"
+                android:text="How often did you use a condom during these TIMES?"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
 

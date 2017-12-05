@@ -37,7 +37,7 @@ public class RegistrationPartnerInfo extends Fragment {
     TextView frag_title,primaryPartner,hivStatus,undetectableTitle,otherPartnersTitle,textview9,addToDiary;
     EditText nick_name;
     RadioButton radio_hiv_neg,radio_hiv_idk,radio_hiv_pos,radio_undetectable_yes,radio_undetectable_no,radio_undetectable_iDontKnow;
-    RadioButton radio_partner_yes,radio_partner_no,radio_lessThanSixMonths,radio_moreThanSixMonths,radio_blackbook_yes,radio_blackbook_no;
+    RadioButton radio_partner_yes,radio_partner_no,radio_partner_unsure,radio_lessThanSixMonths,radio_moreThanSixMonths,radio_blackbook_yes,radio_blackbook_no;
     Button partner_info_nextbtn,partner_info_revisebtn;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,6 +70,8 @@ public class RegistrationPartnerInfo extends Fragment {
         radio_partner_yes.setTypeface(tf);
         radio_partner_no = (RadioButton)view.findViewById(R.id.radio_partner_no);
         radio_partner_no.setTypeface(tf);
+        radio_partner_unsure = (RadioButton)view.findViewById(R.id.radio_partner_unsure);
+        radio_partner_unsure.setTypeface(tf);
         radio_lessThanSixMonths = (RadioButton)view.findViewById(R.id.radio_lessThanSixMonths);
         radio_lessThanSixMonths.setTypeface(tf);
         radio_moreThanSixMonths = (RadioButton)view.findViewById(R.id.radio_moreThanSixMonths);
@@ -194,6 +196,11 @@ public class RegistrationPartnerInfo extends Fragment {
             switch (LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getPartner_have_other_partners())){
                 case "Yes":
                     radio_partner_yes.setSelected(true);
+                    relationshipPeriod_layout.setVisibility(View.GONE);
+                    LynxManager.relationShipLayoutHidden = true;
+                    break;
+                case "I don’t know/unsure":
+                    radio_partner_unsure.setSelected(true);
                     relationshipPeriod_layout.setVisibility(View.GONE);
                     LynxManager.relationShipLayoutHidden = true;
                     break;

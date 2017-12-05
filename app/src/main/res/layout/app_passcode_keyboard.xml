@@ -82,7 +82,7 @@
             android:layout_marginTop="@dimen/button_top_margin"
             android:visibility="visible"
             android:lineSpacingMultiplier="1.33"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
         <TableLayout
             android:id="@+id/tableLayout1"
             android:layout_width="match_parent"

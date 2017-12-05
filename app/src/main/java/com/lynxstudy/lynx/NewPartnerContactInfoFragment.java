@@ -30,7 +30,7 @@ public class NewPartnerContactInfoFragment extends Fragment {
 
     TextView add_partner_title;
     TextView contactInfoTitle,partnerTypeTitle,otherPartnersTitle,monogamousTitle;
-    RadioButton newPartnerPrimary,newPartnerRegular,newPartnerCasual,newPartnerNSA,newPartnerFriends,radio_partner_yes,radio_partner_no,radio_lessThanSixMonths,radio_moreThanSixMonths;
+    RadioButton newPartnerPrimary,newPartnerRegular,newPartnerCasual,newPartnerNSA,newPartnerFriends,radio_partner_yes,radio_partner_unsure,radio_partner_no,radio_lessThanSixMonths,radio_moreThanSixMonths;
     Button next;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,6 +68,8 @@ public class NewPartnerContactInfoFragment extends Fragment {
         radio_partner_yes.setTypeface(tf);
         radio_partner_no = (RadioButton)rootview.findViewById(R.id.radio_partner_no);
         radio_partner_no.setTypeface(tf);
+        radio_partner_unsure = (RadioButton)rootview.findViewById(R.id.radio_partner_unsure);
+        radio_partner_unsure.setTypeface(tf);
         radio_lessThanSixMonths = (RadioButton)rootview.findViewById(R.id.radio_lessThanSixMonths);
         radio_lessThanSixMonths.setTypeface(tf);
         radio_moreThanSixMonths = (RadioButton)rootview.findViewById(R.id.radio_moreThanSixMonths);

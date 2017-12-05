@@ -20,10 +20,12 @@ import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -58,6 +60,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
     ImageView newMessageSend;
     DatabaseHelper db;
     Typeface tf;
+    int chat_bubble_width;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +71,9 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                 "fonts/Roboto-Regular.ttf");
         needUsNow = (Button)findViewById(R.id.needUsNow);
         needUsNow.setTypeface(tf);
+
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        chat_bubble_width = (int) ((metrics.widthPixels / metrics.density) * 1.3);
 
         // Custom Action Bar //
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -175,17 +181,16 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         for(ChatMessage chatMessage : chatMessageList){
             TableRow tr = new TableRow(LynxChat.this);
             final View v = LayoutInflater.from(LynxChat.this).inflate(R.layout.chat_row, tr, false);
-            TextView name = (TextView) v.findViewById(R.id.name);
-            name.setTypeface(tf);
+            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(chat_bubble_width, ViewGroup.LayoutParams.WRAP_CONTENT);
+            //v.setLayoutParams(params);
             TextView date = (TextView) v.findViewById(R.id.date);
             date.setTypeface(tf);
             TextView message = (TextView) v.findViewById(R.id.message);
             message.setTypeface(tf);
-
-            name.setText(LynxManager.decryptString(chatMessage.getSender()));
             //date.setText("FEB 22, 9:31 AM");
             String msg_date = LynxManager.getFormatedDate("yyyy-MM-dd hh:mm:ss",LynxManager.decryptString(chatMessage.getDatetime()),"MMM dd, hh:mm a");
-            date.setText(msg_date);
+            //date.setText(LynxManager.decryptString(chatMessage.getSender()) + ", "+msg_date);
+            date.setText("You, "+msg_date);
             message.setText(LynxManager.decryptString(chatMessage.getMessage()));
             chatTableLayout.addView(v);
         }

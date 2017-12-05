@@ -33,9 +33,11 @@
                         android:text="NEED US NOW?"
                         android:textColor="@color/white"
                         android:layout_marginTop="20dp"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginRight="3dp"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:textStyle="bold"
+                        android:padding="14dp"
+                        android:textSize="16sp"
                         android:id="@+id/needUsNow"
                         android:background="@drawable/lynx_button_red"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -51,7 +53,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="bottom"
-                android:background="@color/white"
+                android:background="@drawable/chat_input"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_alignParentBottom="true">
                 <EditText
                     android:layout_width="match_parent"
@@ -64,16 +69,16 @@
                     android:inputType="textMultiLine"
                     android:layout_marginRight="42dp"
                     android:minLines="1"
+                    android:background="@android:color/transparent"
                     android:id="@+id/newMessage"
-                    android:hint="Enter your message here ..."/>
+                    android:hint="Message"/>
                 <ImageView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:contentDescription="Send"
-                    android:layout_alignBottom="@+id/newMessage"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
                     android:id="@+id/newMessageSend"
                     android:src="@drawable/send"/>
             </RelativeLayout>

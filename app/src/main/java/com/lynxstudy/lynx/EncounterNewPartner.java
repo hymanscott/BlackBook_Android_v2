@@ -224,7 +224,8 @@ public class EncounterNewPartner extends AppCompatActivity {
     }
 
     public boolean onContactInfoNext(View view) {
-        NewPartnerNotesFragment fragNewPartnerNotes = new NewPartnerNotesFragment();
+        /*NewPartnerNotesFragment fragNewPartnerNotes = new NewPartnerNotesFragment();*/
+        NewPartnerRatingsFragment fragPartnerRatings = new NewPartnerRatingsFragment();
         // Contact info validation
         EditText newPartner_emailET = (EditText) findViewById(R.id.newPartnerEmail);
         EditText newPartner_phoneET = (EditText) findViewById(R.id.newPartnerPhone);
@@ -292,21 +293,23 @@ public class EncounterNewPartner extends AppCompatActivity {
                     LynxManager.encryptString(newPartnerRltnPeriod), LynxManager.encryptString(newPartnerNotes),
                     String.valueOf(R.string.statusUpdateNo),true);
             LynxManager.setActivePartnerContact(newPartnerContact);
-            pushFragments("Encounter", fragNewPartnerNotes, true);
+            pushFragments("Encounter", fragPartnerRatings, true);
         }
         return true;
     }
 
     public boolean onPartnerNotesNext(View view) {
-        NewPartnerRatingsFragment fragPartnerRatings = new NewPartnerRatingsFragment();
+        /*NewPartnerRatingsFragment fragPartnerRatings = new NewPartnerRatingsFragment();*/
+        NewPartnerSummaryFragment fragPartnerSummary = new NewPartnerSummaryFragment();
         String partnerNotes = String.valueOf(((EditText) findViewById(R.id.partnerNotes)).getText());
         LynxManager.getActivePartnerContact().setPartner_notes(partnerNotes);
-        pushFragments("Encounter", fragPartnerRatings, true);
+        pushFragments("Encounter", fragPartnerSummary, true);
         return true;
     }
 
     public boolean onPartnerRatingsNext(View view) {
-        NewPartnerSummaryFragment fragPartnerSummary = new NewPartnerSummaryFragment();
+        /*NewPartnerSummaryFragment fragPartnerSummary = new NewPartnerSummaryFragment();*/
+        NewPartnerNotesFragment fragNewPartnerNotes = new NewPartnerNotesFragment();
         TextView ratingField1 = (TextView)findViewById(R.id.newPartner_rate1);
         String ratingFieldValue1 = ratingField1.getText().toString();
         TextView ratingField2 = (TextView)findViewById(R.id.newPartner_rate2);
@@ -370,7 +373,7 @@ public class EncounterNewPartner extends AppCompatActivity {
                         field_id, String.valueOf(rating_values.get(field_id - 1)), rating_fields.get(field_id - 1), String.valueOf(R.string.statusUpdateNo));
                 LynxManager.setActivePartnerRating(partner_rating);
             }
-            pushFragments("Encounter", fragPartnerSummary, true);
+            pushFragments("Encounter", fragNewPartnerNotes, true);
         }
         return true;
 

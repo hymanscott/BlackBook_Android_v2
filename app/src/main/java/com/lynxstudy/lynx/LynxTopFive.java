@@ -119,43 +119,42 @@ public class LynxTopFive extends AppCompatActivity implements View.OnClickListen
         /*Top Five Partners*/
         topFivePartnerList = (TableLayout)findViewById(R.id.topFivePartnerList);
         List<PartnerRating> partnerRatings =  db.getPartnerRatingbyRatingFieldID(1);
-        for (PartnerRating rating : partnerRatings){
-                    Log.v("Rating",rating.getRating());
-        }
-        Collections.sort(partnerRatings,new PartnerRating.comparePartnerRating());
-        int partner_count = 1;
-        for (PartnerRating rating : partnerRatings){
-            Log.v("RatingAftSort",rating.getRating());
-            TableRow encounterRow = new TableRow(LynxTopFive.this);
-            View v = LayoutInflater.from(LynxTopFive.this).inflate(R.layout.top_five_list_row, encounterRow, false);
-            TextView name = (TextView)v.findViewById(R.id.name);
-            name.setTypeface(tf);
-            ImageView rate_image = (ImageView)v.findViewById(R.id.rate_image);
-            Partners partner = db.getPartnerbyID(rating.getPartner_id());
-            name.setText(LynxManager.decryptString(partner.getNickname()));
-            switch (rating.getRating()){
-                case "5.0":
-                    rate_image.setImageDrawable(getResources().getDrawable(R.drawable.partner_rate_five));
-                    break;
-                case "4.5":
-                case "4.0":
-                    rate_image.setImageDrawable(getResources().getDrawable(R.drawable.partner_rate_four));
-                    break;
-                case "3.5":
-                case "3.0":
-                    rate_image.setImageDrawable(getResources().getDrawable(R.drawable.partner_rate_three));
-                    break;
-                case "2.5":
-                case "2.0":
-                    rate_image.setImageDrawable(getResources().getDrawable(R.drawable.partner_rate_two));
-                    break;
-                default:
-                    rate_image.setImageDrawable(getResources().getDrawable(R.drawable.partner_rate_one));
-            }
-            if(partner_count<=5)
-                topFivePartnerList.addView(v);
+        if(partnerRatings!=null){
+            Collections.sort(partnerRatings,new PartnerRating.comparePartnerRating());
+            int partner_count = 1;
+            for (PartnerRating rating : partnerRatings){
+                //Log.v("RatingAftSort",rating.getRating());
+                TableRow encounterRow = new TableRow(LynxTopFive.this);
+                View v = LayoutInflater.from(LynxTopFive.this).inflate(R.layout.top_five_list_row, encounterRow, false);
+                TextView name = (TextView)v.findViewById(R.id.name);
+                name.setTypeface(tf);
+                ImageView rate_image = (ImageView)v.findViewById(R.id.rate_image);
+                Partners partner = db.getPartnerbyID(rating.getPartner_id());
+                name.setText(LynxManager.decryptString(partner.getNickname()));
+                switch (rating.getRating()){
+                    case "5.0":
+                        rate_image.setImageDrawable(getResources().getDrawable(R.drawable.partner_rate_five));
+                        break;
+                    case "4.5":
+                    case "4.0":
+                        rate_image.setImageDrawable(getResources().getDrawable(R.drawable.partner_rate_four));
+                        break;
+                    case "3.5":
+                    case "3.0":
+                        rate_image.setImageDrawable(getResources().getDrawable(R.drawable.partner_rate_three));
+                        break;
+                    case "2.5":
+                    case "2.0":
+                        rate_image.setImageDrawable(getResources().getDrawable(R.drawable.partner_rate_two));
+                        break;
+                    default:
+                        rate_image.setImageDrawable(getResources().getDrawable(R.drawable.partner_rate_one));
+                }
+                if(partner_count<=5)
+                    topFivePartnerList.addView(v);
 
-            partner_count++;
+                partner_count++;
+            }
         }
     }
     @Override

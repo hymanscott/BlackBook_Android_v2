@@ -28,6 +28,7 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.EncounterSexType;
+import com.lynxstudy.model.PartnerContact;
 import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.Partners;
 
@@ -166,10 +167,11 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
         /*Layout Chart*/
 
         LinearLayout PartnersTrend = (LinearLayout)findViewById(R.id.PartnersTrend);
-        float men_count = (float)db.getPartnersCountByGender("Man")/db.getPartnersCount();
-        float woman_count = (float)db.getPartnersCountByGender("Woman")/db.getPartnersCount();
-        float trans_men_count = (float)db.getPartnersCountByGender("Trans man")/db.getPartnersCount();
-        float trans_woman_count = (float)db.getPartnersCountByGender("Trans woman")/db.getPartnersCount();
+        int total_gender_count = db.getPartnersCountByGender("Man") + db.getPartnersCountByGender("Woman") + db.getPartnersCountByGender("Trans man")+db.getPartnersCountByGender("Trans woman");
+        float men_count = (float)db.getPartnersCountByGender("Man")/total_gender_count;
+        float woman_count = (float)db.getPartnersCountByGender("Woman")/total_gender_count;
+        float trans_men_count = (float)db.getPartnersCountByGender("Trans man")/total_gender_count;
+        float trans_woman_count = (float)db.getPartnersCountByGender("Trans woman")/total_gender_count;
 
         if(men_count ==0) {
             menPercentage.setVisibility(View.GONE);
@@ -179,7 +181,8 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
             menPercentage.setLayoutParams(params);
             menPercentage.setGravity(Gravity.CENTER);
             men_count = men_count*100;
-            menPercentage.setText(((int) men_count)+"%");
+            int final_value = Math.round(men_count);
+            menPercentage.setText(final_value+"%");
         }
 
         if(woman_count ==0) {
@@ -190,7 +193,8 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
             womenPercentage.setLayoutParams(params);
             womenPercentage.setGravity(Gravity.CENTER);
             woman_count = woman_count*100;
-            womenPercentage.setText((int)woman_count+"%");
+            int final_value = Math.round(woman_count);
+            womenPercentage.setText(final_value+"%");
         }
 
         if(trans_men_count ==0) {
@@ -201,7 +205,8 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
             transMenPercentage.setLayoutParams(params);
             transMenPercentage.setGravity(Gravity.CENTER);
             trans_men_count = trans_men_count*100;
-            transMenPercentage.setText((int)trans_men_count+"%");
+            int final_value = Math.round(trans_men_count);
+            transMenPercentage.setText(final_value+"%");
         }
 
         if(trans_woman_count ==0) {
@@ -212,7 +217,8 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
             transWomenPercentage.setGravity(Gravity.CENTER);
             transWomenPercentage.setLayoutParams(params);
             trans_woman_count = trans_woman_count*100;
-            transWomenPercentage.setText((int)trans_woman_count+"%");
+            int final_value = Math.round(trans_woman_count);
+            transWomenPercentage.setText(final_value+"%");
         }
         PartnersTrend.setWeightSum(1);
         /*Layout Chart*/
@@ -297,11 +303,12 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
         mChart.invalidate();
 
         /*Partner Types Chart*/
-        float primary = (float)db.getPartnersContactCountByType("Primary")/db.getPartnersContactCount();
-        float friends = (float)db.getPartnersContactCountByType("Friends with benefits")/db.getPartnersContactCount();
-        float regular= (float)db.getPartnersContactCountByType("Regular")/db.getPartnersContactCount();
-        float hookup = (float)db.getPartnersContactCountByType("Hook-up")/db.getPartnersContactCount();
-        float onenight = (float)db.getPartnersContactCountByType("One-night stand")/db.getPartnersContactCount();
+        int total = db.getPartnersContactCountByType("Primary")+db.getPartnersContactCountByType("Friends with benefits")+db.getPartnersContactCountByType("Regular")+db.getPartnersContactCountByType("Hook-up")+db.getPartnersContactCountByType("One-night stand");
+        float primary = (float)db.getPartnersContactCountByType("Primary")/total;
+        float friends = (float)db.getPartnersContactCountByType("Friends with benefits")/total;
+        float regular= (float)db.getPartnersContactCountByType("Regular")/total;
+        float hookup = (float)db.getPartnersContactCountByType("Hook-up")/total;
+        float onenight = (float)db.getPartnersContactCountByType("One-night stand")/total;
 
         /*Layout Chart*/
         LinearLayout PartnerTypeTrend = (LinearLayout)findViewById(R.id.PartnerTypeTrend);
@@ -313,7 +320,8 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
             primaryPercentage.setLayoutParams(params);
             primaryPercentage.setGravity(Gravity.CENTER);
             primary = primary*100;
-            primaryPercentage.setText(((int) primary)+"%");
+            int final_value = Math.round(primary);
+            primaryPercentage.setText((final_value)+"%");
         }
 
         if(regular ==0) {
@@ -324,7 +332,8 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
             regularPercentage.setLayoutParams(params);
             regularPercentage.setGravity(Gravity.CENTER);
             regular = regular*100;
-            regularPercentage.setText(((int) regular)+"%");
+            int final_value = Math.round(regular);
+            regularPercentage.setText((final_value)+"%");
         }
 
         if(friends ==0) {
@@ -335,7 +344,8 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
             friendsPercentage.setLayoutParams(params);
             friendsPercentage.setGravity(Gravity.CENTER);
             friends = friends*100;
-            friendsPercentage.setText(((int) friends)+"%");
+            int final_value = Math.round(friends);
+            friendsPercentage.setText((final_value)+"%");
         }
 
         if(hookup ==0) {
@@ -346,7 +356,8 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
             hookupPercentage.setLayoutParams(params);
             hookupPercentage.setGravity(Gravity.CENTER);
             hookup = hookup*100;
-            hookupPercentage.setText(((int) hookup)+"%");
+            int final_value = Math.round(hookup);
+            hookupPercentage.setText((final_value)+"%");
         }
 
         if(onenight ==0) {
@@ -357,7 +368,8 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
             NSAPercentage.setLayoutParams(params);
             NSAPercentage.setGravity(Gravity.CENTER);
             onenight = onenight*100;
-            NSAPercentage.setText(((int) onenight)+"%");
+            int final_value = Math.round(onenight);
+            NSAPercentage.setText((final_value)+"%");
         }
         PartnerTypeTrend.setWeightSum(1);
         /*Layout Chart*/
@@ -439,14 +451,16 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
 
         /*Partner Hiv Status Chart*/
         int negDBCount = db.getPartnersCountByHivStatus("HIV Negative")+ db.getPartnersCountByHivStatus("HIV negative");
-        float negative = (float)negDBCount/db.getPartnersCount();
         int negprepDBCount = db.getPartnersCountByHivStatus("HIV Negative & on PrEP")+db.getPartnersCountByHivStatus("HIV negative & on PrEP");
-        float negprep = (float)negprepDBCount/db.getPartnersCount();
         int posDBCount = db.getPartnersCountByHivStatus("HIV Positive") + db.getPartnersCountByHivStatus("HIV positive");
-        float positive = (float)posDBCount/db.getPartnersCount();
         int undetectableDBCount = db.getPartnersCountByHivStatus("HIV Positive & Undetectable") + db.getPartnersCountByHivStatus("HIV positive & undetectable");
-        float undetectable = (float)undetectableDBCount/db.getPartnersCount();
-        float unsure = (float)db.getPartnersCountByHivStatus("I don't know/unsure")/db.getPartnersCount();
+        int ununsureDBCount = db.getPartnersCountByHivStatus("I don't know/unsure");
+        int total_hiv_count = negDBCount+posDBCount+negprepDBCount+undetectableDBCount+ununsureDBCount;
+        float negative = (float)negDBCount/total_hiv_count;
+        float negprep = (float)negprepDBCount/total_hiv_count;
+        float positive = (float)posDBCount/total_hiv_count;
+        float undetectable = (float)undetectableDBCount/total_hiv_count;
+        float unsure = (float)ununsureDBCount/total_hiv_count;
         /*Layout Chart*/
         LinearLayout PartnerHivTrend = (LinearLayout)findViewById(R.id.PartnerHivTrend);
         if(negative ==0) {
@@ -457,7 +471,8 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
             negativePercentage.setLayoutParams(params);
             negativePercentage.setGravity(Gravity.CENTER);
             negative = negative*100;
-            negativePercentage.setText(((int) negative)+"%");
+            int final_value = Math.round(negative);
+            negativePercentage.setText((final_value)+"%");
         }
 
         if(negprep ==0) {
@@ -468,7 +483,8 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
             negPrepPercentage.setLayoutParams(params);
             negPrepPercentage.setGravity(Gravity.CENTER);
             negprep = negprep*100;
-            negPrepPercentage.setText(((int) negprep)+"%");
+            int final_value = Math.round(negprep);
+            negPrepPercentage.setText((final_value)+"%");
         }
 
         if(positive ==0) {
@@ -479,7 +495,8 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
             positivePercentage.setLayoutParams(params);
             positivePercentage.setGravity(Gravity.CENTER);
             positive = positive*100;
-            positivePercentage.setText(((int) positive)+"%");
+            int final_value = Math.round(positive);
+            positivePercentage.setText((final_value)+"%");
         }
 
         if(undetectable ==0) {
@@ -490,7 +507,8 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
             undectablePercentage.setLayoutParams(params);
             undectablePercentage.setGravity(Gravity.CENTER);
             undetectable = undetectable*100;
-            undectablePercentage.setText(((int) undetectable)+"%");
+            int final_value = Math.round(undetectable);
+            undectablePercentage.setText((final_value)+"%");
         }
 
         if(unsure ==0) {
@@ -501,7 +519,8 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
             unsurePercentage.setLayoutParams(params);
             unsurePercentage.setGravity(Gravity.CENTER);
             unsure = unsure*100;
-            unsurePercentage.setText(((int) unsure)+"%");
+            int final_value = Math.round(unsure);
+            unsurePercentage.setText((final_value)+"%");
         }
         PartnerHivTrend.setWeightSum(1);
         /*Layout Chart*/

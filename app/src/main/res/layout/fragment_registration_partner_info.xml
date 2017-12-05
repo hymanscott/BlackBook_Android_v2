@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
                 android:gravity="center_vertical"
-                android:text="HIV Status of primary partner:"
+                android:text="HIV status of primary partner:"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
 
@@ -183,7 +183,7 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Have they been undetectable for at least 6 months?"
+                    android:text="Are they undetectable for at least 6 months?"
                     android:textColor="@color/white"
                     android:layout_marginRight="32dp"
                     android:layout_marginLeft="32dp"
@@ -288,6 +288,18 @@
                         android:textColor="@color/white"
                         android:checked="true"
                         android:id="@+id/radio_partner_no" />
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="I don’t know/unsure"
+                        android:textSize="14sp"
+                        android:buttonTint="@color/white"
+                        android:button="@drawable/radiobutton_white"
+                        android:paddingLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:textColor="@color/white"
+                        android:checked="true"
+                        android:id="@+id/radio_partner_unsure" />
 
                 </RadioGroup>
             </LinearLayout>

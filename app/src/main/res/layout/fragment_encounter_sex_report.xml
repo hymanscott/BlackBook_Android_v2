@@ -25,7 +25,7 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_gravity="center_horizontal"
             android:id="@+id/encounter_report_title"
-            android:text="Did you have any more sex to report?"/>
+            android:text="Do you have any more sex to report?"/>
     </LinearLayout>
     <RelativeLayout
             android:layout_width="fill_parent"
