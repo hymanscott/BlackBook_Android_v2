@@ -397,7 +397,7 @@ public class EncounterNewPartner extends AppCompatActivity {
         RadioButton radioUndetectable = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_undetectable)).getCheckedRadioButtonId());
         String partUndetectable ="";
         if (!LynxManager.undetectableLayoutHidden){  partUndetectable = radioUndetectable.getText().toString();} else { partUndetectable = ""; }
-        LynxManager.getActivePartner().setHiv_status(hiv_status);
+        LynxManager.getActivePartner().setHiv_status(LynxManager.encryptString(hiv_status));
         LynxManager.getActivePartner().setUndetectable_for_sixmonth(partUndetectable);
         popFragment();
         return true;

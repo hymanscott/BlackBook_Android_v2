@@ -67,7 +67,6 @@ public class TestingInstructionFragment extends Fragment {
         roboto = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
         List<TestingInstructions> testing_instruction_list = db.getAllTestingInstruction();
-
         questionLayout = (LinearLayout) view.findViewById(R.id.questionLayout);
         answerLayout = (LinearLayout) view.findViewById(R.id.answerLayout);
         testingInsTable = (TableLayout) view.findViewById(R.id.testingInsTable);

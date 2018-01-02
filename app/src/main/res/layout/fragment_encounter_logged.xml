@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/encloggedText"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Your Diary was updated."
+            android:text="Your diary was updated."
             android:textSize="@dimen/encounter_tv_textsize"
             android:textColor="@color/white"
             android:layout_marginTop="@dimen/activity_vertical_margin"

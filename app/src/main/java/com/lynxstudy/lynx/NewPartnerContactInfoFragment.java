@@ -4,6 +4,7 @@ package com.lynxstudy.lynx;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,6 +78,8 @@ public class NewPartnerContactInfoFragment extends Fragment {
 
 
         // Pre filled data
+
+        contactInfoTitle.setText(Html.fromHtml("What is their contact info?<br/>(enter as much or as little of you’d like)"));
         TextView new_partner_nickname = (TextView) rootview.findViewById(R.id.new_partner_nickname);
         new_partner_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         new_partner_nickname.setAllCaps(true);

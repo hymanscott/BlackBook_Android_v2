@@ -90,7 +90,7 @@ public class LynxBadges extends AppCompatActivity implements View.OnClickListene
 
             rowBadgeName.setText(badgesMaster.getBadge_name());
             rowBadgeDescription.setText(badgesMaster.getBadge_description());
-            rowBadgeEarnedTimes.setText("Earned " + noOfCount +" time");
+            rowBadgeEarnedTimes.setText("Earned " + noOfCount +" time(s)");
             switch (badgesMaster.getBadge_icon()){
                 case "high_five_small":
                     badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.high_five_small));

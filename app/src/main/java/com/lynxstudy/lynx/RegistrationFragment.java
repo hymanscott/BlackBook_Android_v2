@@ -86,45 +86,6 @@ public class RegistrationFragment  extends Fragment implements DatePickerDialog.
         createButton = (ImageView)view.findViewById(R.id.create);
         layout1 = (RelativeLayout)view.findViewById(R.id.relativeLayout1);
 
-        /*secQuestions = getResources().getStringArray(R.array.security_questions);
-        spinner = (Spinner) view.findViewById(R.id.regSecQuestion);
-        ArrayAdapter<String> adapterSecQues = new ArrayAdapter<String>(getActivity(),
-                R.layout.spinner_row, R.id.txtView, secQuestions);
-        spinner.setAdapter(adapterSecQues);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                LinearLayout parent_layout = (LinearLayout) view;
-                ((TextView) parent_layout.getChildAt(0)).setTextColor(getResources().getColor(R.color.text_color));
-                //((TextView) parent_layout.getChildAt(0)).setTextSize(14);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        //multi select Spinner
-        multiSelectionSpinner = (MultiSelectionSpinner) view.findViewById(R.id.mySpinner);
-        multiSelectionSpinner.setItems(getResources().getStringArray(R.array.races_list));
-        multiSelectionSpinner.setSelection(new int[]{});*/
-
-        /* //Gender list spinner
-         gender_list = getResources().getStringArray(R.array.gender_list);
-         spinner_gender_list  = (Spinner) view.findViewById(R.id.regGender);
-
-        ArrayAdapter<String> adapterGender = new ArrayAdapter<String>(getActivity(),
-                R.layout.spinner_row, R.id.txtView, gender_list);
-        spinner_gender_list.setAdapter(adapterGender);
-
-        //races list spinner
-        races_list = getResources().getStringArray(R.array.races_list);
-        spinner_races_list = (Spinner) view.findViewById(R.id.regRace);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.spinner_row, R.id.txtView, races_list);
-        spinner_races_list.setAdapter(adapter);*/
-
         // First name Validation
         final EditText firstname = (EditText) view.findViewById(R.id.regFirstName);
         firstname.setTypeface(tf);
@@ -183,116 +144,11 @@ public class RegistrationFragment  extends Fragment implements DatePickerDialog.
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-        /*ImageView calenderIconDOB = (ImageView)view.findViewById(R.id.calenderIconDOB);*/
-
-        /*dob.addTextChangedListener(new TextWatcher() {
-            private String current = "";
-            private String mmddyyyy = "MMDDYYYY";
-            private Calendar cal = Calendar.getInstance();
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                if (!s.toString().equals(current)) {
-                    String clean = s.toString().replaceAll("[^\\d.]", "");
-                    String cleanC = current.replaceAll("[^\\d.]", "");
-
-                    int cl = clean.length();
-                    int sel = cl;
-                    for (int i = 2; i <= cl && i < 6; i += 2) {
-                        sel++;
-                    }
-                    //Fix for pressing delete next to a forward slash
-                    if (clean.equals(cleanC)) sel--;
-
-                    if (clean.length() < 8){
-                        clean = clean + mmddyyyy.substring(clean.length());
-                    }else{
-                        //This part makes sure that when we finish entering numbers
-                        //the date is correct, fixing it otherwise
-                        int mon  = Integer.parseInt(clean.substring(0,2));
-                        int day  = Integer.parseInt(clean.substring(2,4));
-                        int year = Integer.parseInt(clean.substring(4,8));
-
-                        if(mon > 12) mon = 12;
-                        cal.set(Calendar.MONTH, mon-1);
-                        year = (year<1800)?1800:(year>2100)?2100:year;
-                        cal.set(Calendar.YEAR, year);
-                        // ^ first set year for the line below to work correctly
-                        //with leap years - otherwise, date e.g. 29/02/2012
-                        //would be automatically corrected to 28/02/2012
-
-                        day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
-                        clean = String.format("%02d%02d%02d",mon,day, year);
-                    }
-
-                    clean = String.format("%s/%s/%s", clean.substring(0, 2),
-                            clean.substring(2, 4),
-                            clean.substring(4, 8));
-
-                    sel = sel < 0 ? 0 : sel;
-                    current = clean;
-                    dob.setText(current);
-                    dob.setSelection(sel < current.length() ? sel : current.length());
-
-
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });*/
-       /* calenderIconDOB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment datePickerFragment = new DatePickerFragment() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        //   Log.d(TAG, "onDateSet");
-                        Calendar c = Calendar.getInstance();
-                        c.set(year, month, day);
-                        //SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-                        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-                        dob.setText(df.format(c.getTime()));
-                        dob.setError(null);
-                        // nextField.requestFocus(); //moves the focus to something else after dialog is closed
-                    }
-                };
-                datePickerFragment.show(getActivity().getFragmentManager(), "datePicker");
-            }
-        });*/
-
         // prefilled datas
 
         EditText phonenumber = (EditText) view.findViewById(R.id.regPhone);
         phonenumber.setTypeface(tf);
-       /* EditText et_passcode = (EditText) view.findViewById(R.id.regPasscode);
-        et_passcode.setTypeface(tf);
-        EditText et_sec_ans = (EditText) view.findViewById(R.id.regSecAnswer);
-        et_sec_ans.setTypeface(tf);*/
-       // Race/Ethnicity //
         initialize();
-        if(LynxManager.releaseMode==0){
-            firstname.setText("Hari");
-            lastname.setText("Hari");
-            phonenumber.setText("9876543210");
-            dob.setText("11/15/1992");
-        }else{
-            firstname.setText(LynxManager.decryptString(LynxManager.getActiveUser().getFirstname()));
-            lastname.setText(LynxManager.decryptString(LynxManager.getActiveUser().getLastname()));
-            phonenumber.setText(LynxManager.decryptString(LynxManager.getActiveUser().getMobile()));
-            dob.setText(LynxManager.decryptString(LynxManager.getActiveUser().getDob()));
-            if(LynxManager.decryptString(LynxManager.getActiveUser().getRace())!=null && !LynxManager.decryptString(LynxManager.getActiveUser().getRace()).equals("")){
-                tv.setText(LynxManager.decryptString(LynxManager.getActiveUser().getRace()));
-                tv.setTextColor(getResources().getColor(R.color.white));
-            }
-        }
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
         TrackHelper.track().screen("/Onboarding/Demographics").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);

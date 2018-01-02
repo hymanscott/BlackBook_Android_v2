@@ -172,7 +172,10 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
         float woman_count = (float)db.getPartnersCountByGender("Woman")/total_gender_count;
         float trans_men_count = (float)db.getPartnersCountByGender("Trans man")/total_gender_count;
         float trans_woman_count = (float)db.getPartnersCountByGender("Trans woman")/total_gender_count;
-
+        Log.v("Partner count ",String.valueOf(men_count));
+        Log.v("Partner count ",String.valueOf(woman_count));
+        Log.v("Partner count ",String.valueOf(trans_men_count));
+        Log.v("Partner count ",String.valueOf(trans_woman_count));
         if(men_count ==0) {
             menPercentage.setVisibility(View.GONE);
         }
@@ -461,6 +464,13 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
         float positive = (float)posDBCount/total_hiv_count;
         float undetectable = (float)undetectableDBCount/total_hiv_count;
         float unsure = (float)ununsureDBCount/total_hiv_count;
+
+        Log.v("Partner count ",String.valueOf(negDBCount));
+        Log.v("Partner count ",String.valueOf(negprepDBCount));
+        Log.v("Partner count ",String.valueOf(posDBCount));
+        Log.v("Partner count ",String.valueOf(undetectableDBCount));
+        Log.v("Partner count ",String.valueOf(ununsureDBCount));
+
         /*Layout Chart*/
         LinearLayout PartnerHivTrend = (LinearLayout)findViewById(R.id.PartnerHivTrend);
         if(negative ==0) {

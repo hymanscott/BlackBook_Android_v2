@@ -50,20 +50,24 @@
     </style>
 
     <!-- Rating Bar -->
-    <style name="CustomRatingBar" parent="@android:style/Widget.Holo.RatingBar.Indicator" >
-    <item name="android:numStars">5</item>
-    <item name="android:rating">4.5</item>
-    <item name="android:stepSize">0.5</item>
-    <item name="android:layout_width">wrap_content</item>
-    <item name="android:layout_height">wrap_content</item>
-    <item name="android:paddingBottom">44dip</item>
-    <item name="android:layout_marginLeft">4dip</item>
-    <item name="android:layout_marginTop">4dip</item>
+    <style name="CustomRatingBar" parent="@android:style/Widget.Holo.RatingBar.Indicator">
+        <item name="android:numStars">5</item>
+        <item name="android:rating">4.5</item>
+        <item name="android:stepSize">0.5</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">44dip</item>
+        <item name="android:layout_marginLeft">4dip</item>
+        <item name="android:layout_marginTop">4dip</item>
     </style>
 
     <style name="SeekBarAppTheme" parent="android:Widget.Holo.Light.SeekBar">
-        <item name="android:progressDrawable">@drawable/apptheme_scrubber_progress_horizontal_holo_light</item>
-        <item name="android:indeterminateDrawable">@drawable/apptheme_scrubber_progress_horizontal_holo_light</item>
+        <item name="android:progressDrawable">
+            @drawable/apptheme_scrubber_progress_horizontal_holo_light
+        </item>
+        <item name="android:indeterminateDrawable">
+            @drawable/apptheme_scrubber_progress_horizontal_holo_light
+        </item>
         <item name="android:thumb">@drawable/apptheme_scrubber_control_selector_holo_light</item>
         <item name="android:layout_height">10dip</item>
         <item name="android:minHeight">15dip</item>
@@ -86,12 +90,15 @@
         <item name="android:padding">16dp</item>
         <item name="android:gravity">top|center_horizontal</item>
     </style>
+
     <style name="CaldroidDefaultDarkGridView" parent="CaldroidDefaultGridView">
         <item name="android:background">@color/white</item>
     </style>
+
     <style name="CaldroidDefaultDarkCell" parent="CaldroidDefaultCell">
         <!--<item name="android:textColor">@color/text_color</item>-->
     </style>
+
     <style name="CaldroidDefaultDarkNormalCell" parent="CaldroidDefaultDarkCell">
         <item name="android:padding">0dp</item>
         <item name="android:width">48dp</item>
@@ -112,6 +119,7 @@
     <style name="CaldroidDefaultLeftButton" parent="CaldroidDefaultArrowButton">
         <item name="android:background">@drawable/calendar_left</item>
     </style>
+
     <style name="CaldroidDefaultRightButton" parent="CaldroidDefaultArrowButton">
         <item name="android:background">@drawable/calendar_right</item>
     </style>

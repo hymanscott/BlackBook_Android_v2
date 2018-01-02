@@ -180,17 +180,29 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         List<ChatMessage>  chatMessageList = db.getAllChatMessages();
         for(ChatMessage chatMessage : chatMessageList){
             TableRow tr = new TableRow(LynxChat.this);
-            final View v = LayoutInflater.from(LynxChat.this).inflate(R.layout.chat_row, tr, false);
             ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(chat_bubble_width, ViewGroup.LayoutParams.WRAP_CONTENT);
-            //v.setLayoutParams(params);
-            TextView date = (TextView) v.findViewById(R.id.date);
+            LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(chat_bubble_width, LinearLayout.LayoutParams.WRAP_CONTENT);
+            String msg_date = LynxManager.getFormatedDate("yyyy-MM-dd hh:mm:ss",LynxManager.decryptString(chatMessage.getDatetime()),"MMM dd, hh:mm a");
+            View v;
+            TextView date;
+            if(chatMessage.getSender().equals(LynxManager.getActiveUser().getFirstname())){
+                v = LayoutInflater.from(LynxChat.this).inflate(R.layout.chat_row, tr, false);
+                //date.setText("FEB 22, 9:31 AM");
+                date = (TextView) v.findViewById(R.id.date);
+                date.setText("You, "+msg_date);
+                params1.gravity = Gravity.RIGHT;
+            }else{
+                v = LayoutInflater.from(LynxChat.this).inflate(R.layout.chat_row_blue, tr, false);
+                date = (TextView) v.findViewById(R.id.date);
+                date.setText(LynxManager.decryptString(chatMessage.getSender()) + ", "+msg_date);
+                params1.gravity = Gravity.LEFT;
+            }
+
+            LinearLayout container = (LinearLayout) v.findViewById(R.id.container);
+            container.setLayoutParams(params1);
             date.setTypeface(tf);
             TextView message = (TextView) v.findViewById(R.id.message);
             message.setTypeface(tf);
-            //date.setText("FEB 22, 9:31 AM");
-            String msg_date = LynxManager.getFormatedDate("yyyy-MM-dd hh:mm:ss",LynxManager.decryptString(chatMessage.getDatetime()),"MMM dd, hh:mm a");
-            //date.setText(LynxManager.decryptString(chatMessage.getSender()) + ", "+msg_date);
-            date.setText("You, "+msg_date);
             message.setText(LynxManager.decryptString(chatMessage.getMessage()));
             chatTableLayout.addView(v);
         }

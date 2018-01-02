@@ -209,6 +209,12 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             ActivityCompat.requestPermissions(LynxHome.this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, READ_WRITE_PERMISSION);
         }
 
+
+        for (Partners partners:db.getAllPartners()) {
+
+            Log.v("Partner Gender",LynxManager.decryptString(partners.getHiv_status()));
+
+        }
         // update fcm id //
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String tokenid = sharedPref.getString("lynxfirebasetokenid",null);

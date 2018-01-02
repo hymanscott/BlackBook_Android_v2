@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
+        android:layout_gravity="left"
         android:id="@+id/container"
         android:orientation="vertical">
         <LinearLayout
@@ -19,16 +19,16 @@
             android:paddingLeft="14dp"
             android:paddingRight="14dp"
             android:paddingTop="6dp"
-            android:layout_gravity="right"
+            android:layout_gravity="left"
             android:paddingBottom="8dp"
-            android:background="@drawable/chat_bubble_grey"
+            android:background="@drawable/chat_bubble_blue"
             android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/message"
-                android:textColor="@color/chat_row_text"
-                android:text="You should have received your test result by now. Let me look and see what I can find."
+                android:textColor="@color/white"
+                android:text="Message"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
         </LinearLayout>
         <TextView
@@ -39,7 +39,7 @@
             android:textSize="11sp"
             android:layout_weight="0.5"
             android:gravity="left"
-            android:layout_gravity="right"
+            android:layout_gravity="left"
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
             android:paddingLeft="14dp"
