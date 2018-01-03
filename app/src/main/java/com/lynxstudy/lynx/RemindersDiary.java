@@ -38,7 +38,7 @@ public class RemindersDiary extends Fragment {
         // Required empty public constructor
     }
 
-    TextView frag_title,time,day;
+    TextView frag_title,time,day,noteText;
     EditText notificationText;
     Button diaryReminderSave;
     RelativeLayout day_of_week,time_of_day;
@@ -59,6 +59,8 @@ public class RemindersDiary extends Fragment {
         time.setTypeface(tf);
         day = (TextView)rootview.findViewById(R.id.day);
         day.setTypeface(tf);
+        noteText = (TextView)rootview.findViewById(R.id.noteText);
+        noteText.setTypeface(tf);
         notificationText = (EditText)rootview.findViewById(R.id.notificationText);
         notificationText.setTypeface(tf);
         diaryReminderSave = (Button)rootview.findViewById(R.id.diaryReminderSave);

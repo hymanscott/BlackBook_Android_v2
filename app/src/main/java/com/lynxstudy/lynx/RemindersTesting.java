@@ -40,7 +40,7 @@ public class RemindersTesting extends Fragment {
         // Required empty public constructor
     }
 
-    TextView frag_title,time,day;
+    TextView frag_title,time,day,noteText;
     EditText notificationText;
     Button testingReminderSave;
     RelativeLayout day_of_week,time_of_day;
@@ -62,6 +62,8 @@ public class RemindersTesting extends Fragment {
         time.setTypeface(tf);
         day = (TextView)rootview.findViewById(R.id.day);
         day.setTypeface(tf);
+        noteText = (TextView)rootview.findViewById(R.id.noteText);
+        noteText.setTypeface(tf);
         notificationText = (EditText)rootview.findViewById(R.id.notificationText);
         notificationText.setTypeface(tf);
         testingReminderSave = (Button)rootview.findViewById(R.id.testingReminderSave);

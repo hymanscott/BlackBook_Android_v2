@@ -1,5 +1,6 @@
 package com.lynxstudy.lynx;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -117,6 +119,7 @@ public class WelcomeActivity extends AppCompatActivity {
             View indicator4 = (View)rootView.findViewById(R.id.screen_indicator_four);
             TextView label = (TextView) rootView.findViewById(R.id.section_label);
             TextView description = (TextView) rootView.findViewById(R.id.section_description);
+            ImageView welcome_screen_logo = (ImageView)rootView.findViewById(R.id.welcome_screen_logo);
             Button nextScreen = (Button) rootView.findViewById(R.id.nextScreen);
             label.setTypeface(tf_bold);
             description.setTypeface(tf);
@@ -126,28 +129,38 @@ public class WelcomeActivity extends AppCompatActivity {
                     label.setText(getResources().getString(R.string.screen_one_label));
                     description.setText(getResources().getString(R.string.screen_one_description));
                     indicator1.setBackground(getResources().getDrawable(R.drawable.dot_indicator_active));
+                    welcome_screen_logo.setImageDrawable(getResources().getDrawable(R.drawable.welcome_lynx_icon));
                     break;
                 case 2:
                     label.setText(getResources().getString(R.string.screen_two_label));
                     description.setText(getResources().getString(R.string.screen_two_description));
                     indicator2.setBackground(getResources().getDrawable(R.drawable.dot_indicator_active));
+                    welcome_screen_logo.setImageDrawable(getResources().getDrawable(R.drawable.welcome_track_icon));
                     break;
                 case 3:
                     label.setText(getResources().getString(R.string.screen_three_label));
                     description.setText(getResources().getString(R.string.screen_three_description));
                     indicator3.setBackground(getResources().getDrawable(R.drawable.dot_indicator_active));
+                    welcome_screen_logo.setImageDrawable(getResources().getDrawable(R.drawable.welcome_check_icon));
                     break;
                 case 4:
                     label.setText(getResources().getString(R.string.screen_four_label));
                     description.setText(getResources().getString(R.string.screen_four_description));
                     indicator4.setBackground(getResources().getDrawable(R.drawable.dot_indicator_active));
+                    welcome_screen_logo.setImageDrawable(getResources().getDrawable(R.drawable.welcome_protect_icon));
                     break;
             }
 
             nextScreen.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    movetonextscreen(getArguments().getInt(ARG_SECTION_NUMBER));
+                    if(getArguments().getInt(ARG_SECTION_NUMBER)>=4){
+                        Intent goback = new Intent(getActivity(),RegLogin.class);
+                        startActivity(goback);
+                        getActivity().finish();
+                    }else{
+                        movetonextscreen(getArguments().getInt(ARG_SECTION_NUMBER));
+                    }
                 }
             });
             return rootView;

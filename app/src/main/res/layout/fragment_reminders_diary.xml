@@ -151,6 +151,18 @@
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="*This message will appear on your phone as a notification."
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:id="@+id/noteText"
+                android:lineSpacingMultiplier="1.43"
+                android:gravity="center_horizontal"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent">

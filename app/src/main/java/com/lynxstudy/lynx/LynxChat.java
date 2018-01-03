@@ -16,6 +16,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.PaintDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -53,13 +55,14 @@ import java.util.List;
 public class LynxChat extends AppCompatActivity implements View.OnClickListener{
 
     LinearLayout btn_sexpro,btn_diary,btn_prep,btn_testing;
+    RelativeLayout needUsNowLayout,mainLayout;
     TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv;
     Button needUsNow;
     TableLayout chatTableLayout;
     EditText newMessage;
     ImageView newMessageSend;
     DatabaseHelper db;
-    Typeface tf;
+    Typeface tf,tf_bold;
     int chat_bubble_width;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +72,8 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         //Type face
        tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        tf_bold = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Bold.ttf");
         needUsNow = (Button)findViewById(R.id.needUsNow);
         needUsNow.setTypeface(tf);
 
@@ -95,6 +100,42 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         bot_nav_chat_tv.setTypeface(tf);
         newMessage = (EditText) findViewById(R.id.newMessage);
         newMessage.setTypeface(tf);
+        needUsNowLayout = (RelativeLayout)findViewById(R.id.needUsNowLayout);
+        mainLayout= (RelativeLayout)findViewById(R.id.mainLayout);
+        needUsNow = (Button)findViewById(R.id.needUsNow);
+        needUsNow.setTypeface(tf_bold);
+        TextView section_one_title = (TextView)findViewById(R.id.section_one_title);
+        section_one_title.setTypeface(tf_bold);
+        TextView section_two_title = (TextView)findViewById(R.id.section_two_title);
+        section_two_title.setTypeface(tf);
+        TextView callUsNow = (TextView)findViewById(R.id.callUsNow);
+        callUsNow.setTypeface(tf_bold);
+        TextView chatNow = (TextView)findViewById(R.id.chatNow);
+        chatNow.setTypeface(tf_bold);
+        LinearLayout callUsNowSection = (LinearLayout)findViewById(R.id.callUsNowSection);
+        LinearLayout chatNowSection = (LinearLayout)findViewById(R.id.chatNowSection);
+        needUsNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainLayout.setVisibility(View.GONE);
+                needUsNowLayout.setVisibility(View.VISIBLE);
+            }
+        });
+        callUsNowSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:14154086096"));
+                startActivity(intent);
+            }
+        });
+        chatNowSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainLayout.setVisibility(View.VISIBLE);
+                needUsNowLayout.setVisibility(View.GONE);
+            }
+        });
         /********************************************/
         /*SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String tokenid = sharedPref.getString("lynxfirebasetokenid",null);
@@ -128,7 +169,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             String login_query_string = LynxManager.getQueryString(loginOBJ.toString());
             boolean internet_status = LynxManager.haveNetworkConnection(LynxChat.this);
             if(!internet_status){
-                Toast.makeText(LynxChat.this, "Internet connection is not available", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LynxChat.this, "Please check your internet connection!", Toast.LENGTH_SHORT).show();
             }else{
                 new ChatListOnline(login_query_string).execute();
             }
@@ -261,45 +302,6 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     public void onBackPressed() {
-        // do something on back.
-        /*if (onPause_count > 0) {
-            final View popupView = getLayoutInflater().inflate(R.layout.popup_alert_dialog_template, null);
-            final PopupWindow signOut = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
-            TextView title = (TextView)popupView.findViewById(R.id.alertTitle);
-            TextView message = (TextView)popupView.findViewById(R.id.alertMessage);
-            Button positive_btn = (Button) popupView.findViewById(R.id.alertPositiveButton);
-            Button negative_btn = (Button) popupView.findViewById(R.id.alertNegativeButton);
-            title.setVisibility(View.GONE);
-            message.setText("Are you sure, you want to exit?");
-            message.setTypeface(tf);
-            positive_btn.setTypeface(tf);
-            negative_btn.setTypeface(tf);
-
-            positive_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    System.exit(0);
-                }
-            });
-            negative_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    signOut.dismiss();
-                }
-            });
-
-            // If the PopupWindow should be focusable
-            signOut.setFocusable(true);
-
-            // If you need the PopupWindow to dismiss when when touched outside
-            signOut.setBackgroundDrawable(new ColorDrawable());
-            signOut.showAtLocation(popupView, Gravity.CENTER,0,0);
-
-        }
-        else{
-            Toast.makeText(this,"Press Back one more time to exit",Toast.LENGTH_SHORT).show();
-        }
-        onPause_count++;*/
         Intent home = new Intent(LynxChat.this,LynxHome.class);
         startActivity(home);
         finish();

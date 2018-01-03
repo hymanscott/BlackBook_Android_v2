@@ -127,55 +127,54 @@ public class RegLogin extends AppCompatActivity {
         }
 
         int user_count = db.getUsersCount();
-        //Log.v("UserCount", String.valueOf(user_count));
-        if (user_count > 0) {
-            int userBaselineInfoCount = db.getUserBaselineInfoCount();
-            List<Users> allUsers = db.getAllUsers();
-            LynxManager.setActiveUser(allUsers.get(0));
-            //Log.v("userBaselineInfoCount", String.valueOf(userBaselineInfoCount));
-            if (userBaselineInfoCount == 0) {
+        PrefManager prefManager = new PrefManager(this);
+        if (!prefManager.isFirstTimeLaunch()) {
+            if (user_count > 0) {
+                int userBaselineInfoCount = db.getUserBaselineInfoCount();
+                List<Users> allUsers = db.getAllUsers();
+                LynxManager.setActiveUser(allUsers.get(0));
+                //Log.v("userBaselineInfoCount", String.valueOf(userBaselineInfoCount));
+                if (userBaselineInfoCount == 0) {
 
+                    if (savedInstanceState == null) {
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.container, new PlaceholderFragment())
+                                .commit();
+                    }
+
+                /*RegistrationBaselineIntro regPrimaryPartner = new RegistrationBaselineIntro();
+                pushFragments("home", regPrimaryPartner, true);*/
+                    TestingReminder testing_Reminder = db.getTestingReminderByFlag(1);
+                    TestingReminder diary_Reminder = db.getTestingReminderByFlag(0);
+                    Intent baseline;
+                    if(testing_Reminder != null && diary_Reminder!=null){
+                        baseline = new Intent(this, BaselineActivity.class);
+                    }else{
+                        baseline = new Intent(this, RemindersActivity.class);
+                    }
+                    startActivity(baseline);
+                    finish();
+                } else {
+                    Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);
+                    startActivity(lockscreen);
+                    finish();
+                }
+            } else {
                 if (savedInstanceState == null) {
                     getSupportFragmentManager().beginTransaction()
                             .add(R.id.container, new PlaceholderFragment())
                             .commit();
                 }
-
-                /*RegistrationBaselineIntro regPrimaryPartner = new RegistrationBaselineIntro();
-                pushFragments("home", regPrimaryPartner, true);*/
-                TestingReminder testing_Reminder = db.getTestingReminderByFlag(1);
-                TestingReminder diary_Reminder = db.getTestingReminderByFlag(0);
-                Intent baseline;
-                if(testing_Reminder != null && diary_Reminder!=null){
-                    baseline = new Intent(this, BaselineActivity.class);
-                }else{
-                    baseline = new Intent(this, RemindersActivity.class);
-                }
-                startActivity(baseline);
-                finish();
-            } else {
-                Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);
-                startActivity(lockscreen);
-                finish();
             }
-        } else {
-            if (savedInstanceState == null) {
-                getSupportFragmentManager().beginTransaction()
-                        .add(R.id.container, new PlaceholderFragment())
-                        .commit();
-            }
+        }else{
+            prefManager.setFirstTimeLaunch(false);
+            Intent appTour = new Intent(RegLogin.this,WelcomeActivity.class);
+            startActivity(appTour);
+            finish();
         }
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-        /*// Custom ActionBar //
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
-        getSupportActionBar().setCustomView(cView);
-        ImageView viewProfile = (ImageView)cView.findViewById(R.id.viewProfile);
-        TextView title = (TextView)cView.findViewById(R.id.actionbartitle);
-        title.setTypeface(tf);
-        viewProfile.setVisibility(View.GONE);*/
         checkForUpdates();
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
@@ -350,6 +349,21 @@ public class RegLogin extends AppCompatActivity {
         BadgesMaster badgesMaster3 = new BadgesMaster(3,"Healthy Heart","Entered 3 encounters","Humping keeps your hearth thumping. Hopefully the third time was a charm!","healthy_heart_small","Encounter");
         BadgesMaster badgesMaster4 = new BadgesMaster(4,"Silver Screen","Watched all 4 videos","Someone likes being an expert.  Congrats on watching the entire video series.","silver_screen_small","PrEP");
         BadgesMaster badgesMaster5 = new BadgesMaster(5,"Testing 1-2-3","Entered an HIV or STD test","You don't have to pat yourself on the back for taking your test.  We'll do it for you!","testing_small","Testing");
+        BadgesMaster badgesMaster6 = new BadgesMaster(6,"Green Light","Scored higher than 17 on Sex Pro","We see you don't play games when it comes to keeping your HIV risk low. Congrats on scoring high by handling your business.","green_light_small","Sexpro");
+        BadgesMaster badgesMaster7 = new BadgesMaster(7,"PrEP'd","Started PrEP","A daily commitment to take PrEP is a commitment to yourself. Good lookin' out.","prep_small","PrEP");
+        BadgesMaster badgesMaster8 = new BadgesMaster(8,"I ♥ Anal","Anal sex with a condom","Everybody talks about safe sex, but not everybody is about safe sex. Fist bump on the condom use.","","");
+        BadgesMaster badgesMaster9 = new BadgesMaster(9,"Magnum","Used a condom 5 times","Look at you. Hot. Getting it in. And being protected. Keep it up!","","");
+        BadgesMaster badgesMaster10 = new BadgesMaster(10,"Golden Penis","100% condom use as a top in a month","You won the big one for keeping it wrapped!","","");
+        BadgesMaster badgesMaster11 = new BadgesMaster(11,"Fencer","Completed all HIV & STD testing.","‘Penis Fencing’ is a scientific term for the mating ritual between flatworms. It's when two flatworms attempt to stab each other with their penis. Nice job on taking care of your saber.","","");
+        BadgesMaster badgesMaster12 = new BadgesMaster(12,"Desert","No encounters reported in 3 weeks","There are several places in the Sahara Desert that get snow on the regular. Keep your chin up.","","");
+        BadgesMaster badgesMaster13 = new BadgesMaster(13,"Galaxy","4 star rating  on an encounter or person","Sex position #92: The Star Gazer. You have lots of stars in your galaxy!","","");
+        BadgesMaster badgesMaster14 = new BadgesMaster(14,"Gold Star","1 or 2 star rating on an encounter or person","A star is a star, right?! One or two stars can still shine brightly.","","");
+        BadgesMaster badgesMaster15 = new BadgesMaster(15,"All Star","Entered a 5 star rating on an encounter or person","Pigs can have orgasms that last over 30 minutes. #oink for your 5 stars.","","");
+        BadgesMaster badgesMaster16 = new BadgesMaster(16,"Toolbox","Sex Pro Score between 10-16","You're using some prevention tools. PrEP can help you complete your toolbox.","","");
+        BadgesMaster badgesMaster17 = new BadgesMaster(17,"Vital Vitamins","Entered 5 encounters","Semen contains zinc and calcium, both of which prevent tooth decay. (We'd still recommend brushing your teeth.)","","");
+        BadgesMaster badgesMaster18 = new BadgesMaster(18,"King","Entered 10 encounters","Some lions mate over 50 times a day. King of the jungle. Are you PrEP-ready for next encounter? If not, contact us.","","");
+        BadgesMaster badgesMaster19 = new BadgesMaster(19,"Energizer Bunny","title","You burn about 200 calories during 30 minutes of sex. PrEP-ready for next encounter? If not, contact us.","","");
+        BadgesMaster badgesMaster20 = new BadgesMaster(20,"Golden Butt","title","Somebody is keeping it 100 in the best way. Congrats on protecting and enjoying yourself.","","");
 
         List<BadgesMaster> badgesMasterList = new ArrayList<BadgesMaster>();
         badgesMasterList.add(badgesMaster1);
@@ -357,6 +371,21 @@ public class RegLogin extends AppCompatActivity {
         badgesMasterList.add(badgesMaster3);
         badgesMasterList.add(badgesMaster4);
         badgesMasterList.add(badgesMaster5);
+        badgesMasterList.add(badgesMaster6);
+        badgesMasterList.add(badgesMaster7);
+        badgesMasterList.add(badgesMaster8);
+        badgesMasterList.add(badgesMaster9);
+        badgesMasterList.add(badgesMaster10);
+        badgesMasterList.add(badgesMaster11);
+        badgesMasterList.add(badgesMaster12);
+        badgesMasterList.add(badgesMaster13);
+        badgesMasterList.add(badgesMaster14);
+        badgesMasterList.add(badgesMaster15);
+        badgesMasterList.add(badgesMaster16);
+        badgesMasterList.add(badgesMaster17);
+        badgesMasterList.add(badgesMaster18);
+        badgesMasterList.add(badgesMaster19);
+        badgesMasterList.add(badgesMaster20);
         try {
             int drugMastercount = db.getDrugsCount();
             if (drugMastercount < 1) {

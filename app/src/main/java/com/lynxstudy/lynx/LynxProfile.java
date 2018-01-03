@@ -1027,6 +1027,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         int min = 0;
         if(testingReminder != null) {
             String time = LynxManager.decryptString(testingReminder.getNotification_time());
+            notes = LynxManager.decryptString(testingReminder.getReminder_notes());
             if(time.length()!=8) {
                 String[] a = time.split(":");
                 hour = Integer.parseInt(a[0]);
@@ -1051,8 +1052,10 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         String drug_use_day = "";
         int drug_use_hour = 10;
         int drug_use_min = 0;
+        String notes1 = "You have a new message!";
         if(druguseReminder != null) {
             String drug_use_time = LynxManager.decryptString(druguseReminder.getNotification_time());
+            notes1 = LynxManager.decryptString(druguseReminder.getReminder_notes());
             if(drug_use_time.length()!=8) {
                 String[] a = drug_use_time.split(":");
                 drug_use_hour = Integer.parseInt(a[0]);
@@ -1070,7 +1073,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
             //Log.v("NotifDrugTime", String.valueOf(drug_use_hour)+"----------"+ drug_use_min);
             drug_use_day = LynxManager.decryptString(druguseReminder.getNotification_day());
         }
-        scheduleNotification(getSexandEncounterNotification(notes), drug_use_day, drug_use_hour, drug_use_min, 0);// 0 -> DrugUse Reminder Notification ID
+        scheduleNotification(getSexandEncounterNotification(notes1), drug_use_day, drug_use_hour, drug_use_min, 0);// 0 -> DrugUse Reminder Notification ID
     }
     private Notification getSexandEncounterNotification(String content) {
         Intent intentyes = new Intent(this, RegLogin.class);

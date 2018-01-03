@@ -16,6 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="?android:attr/actionBarSize"
+            android:visibility="visible"
+            android:id="@+id/mainLayout"
             android:layout_alignParentTop="true">
 
             <ScrollView
@@ -82,6 +84,106 @@
                     android:id="@+id/newMessageSend"
                     android:src="@drawable/send"/>
             </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="?android:attr/actionBarSize"
+            android:visibility="gone"
+            android:id="@+id/needUsNowLayout"
+            android:layout_alignParentTop="true">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="39dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:id="@+id/section_one_title"
+                        android:text="If your HIV test was positive or you’ve had an HIV exposure and would like to talk to a doctor call us 24 hours a day:"
+                        android:gravity="center_horizontal"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/chat_layout_red_text"
+                        android:lineSpacingMultiplier="1.56"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="18dp"
+                        android:gravity="center"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:id="@+id/callUsNowSection"
+                        android:background="@drawable/chat_layout_red_button">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/phoneicon"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:background="@android:color/transparent"
+                            android:text="CALL US NOW"
+                            android:textStyle="bold"
+                            android:textSize="16dp"
+                            android:id="@+id/callUsNow"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="@color/grey_border">
+                    </View>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:gravity="center"
+                        android:lineSpacingMultiplier="1.44"
+                        android:textColor="#FF343434"
+                        android:id="@+id/section_two_title"
+                        android:text="For any other questions or concerns, chat with us and we’ll reply shortly:"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@drawable/buttonbluecornered"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="24dp"
+                        android:paddingTop="13dp"
+                        android:paddingBottom="13dp"
+                        android:id="@+id/chatNowSection"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/nav_icon_chat_white"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CHAT WITH US NOW"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:id="@+id/chatNow"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="16dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
