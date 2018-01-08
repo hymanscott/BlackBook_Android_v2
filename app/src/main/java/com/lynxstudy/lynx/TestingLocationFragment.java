@@ -89,7 +89,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
     DatabaseHelper db;
     LocationManager mlocManager;
     String[] filters = {"Filters", "PrEP", "HIV Testing",
-            "STI Testing"};
+            "STI Testing","Under 18"};
     String[] miles = {"10 miles", "20 miles", "50 miles",
             "100 miles"};
     ImageView search,swipe_arrow;
@@ -689,6 +689,13 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                         if(location.getSti_clinic().equals("Yes")){
                             LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(),location.getType());
                             Locations_DistanceArray.add(location_distance);
+                        }
+                        break;
+                        case "Under 18":
+                        if(location.getUnder_eighteen().equals("Yes")){
+                            LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(),location.getType());
+                            Locations_DistanceArray.add(location_distance);
+                            Log.v("Under18",location.getName());
                         }
                         break;
                     default:

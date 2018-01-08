@@ -86,6 +86,51 @@ public class BadgeScreenActivity extends AppCompatActivity {
             case "silver_screen_small":
                 badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.silver_screen_large));
                 break;
+            case "green_light_small":
+                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.green_light_large));
+                break;
+            case "prep_small":
+                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.prep_large));
+                break;
+            case "love_anal_small":
+                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.love_anal_large));
+                break;
+            case "magnum_small":
+                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.magnum_large));
+                break;
+            case "golden_penis_small":
+                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.golden_penis_large));
+                break;
+            case "fencer_small":
+                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.fencer_large));
+                break;
+            case "desert_small":
+                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.desert_large));
+                break;
+            case "galaxy_small":
+                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.galaxy_large));
+                break;
+            case "gold_star_small":
+                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.gold_star_large));
+                break;
+            case "all_star_small":
+                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.all_star_large));
+                break;
+            case "toolbox_small":
+                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.toolbox_large));
+                break;
+            case "vital_vitamins_small":
+                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.vital_vitamins_large));
+                break;
+            case "king_small":
+                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.king_large));
+                break;
+            case "energizer_bunny_small":
+                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.energizer_bunny_large));
+                break;
+            case "golden_butt_small":
+                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.golden_butt_large));
+                break;
             default:
                 badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.lynx_large));
         }

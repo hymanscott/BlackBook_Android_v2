@@ -516,6 +516,24 @@ public class EncounterStartActivity extends AppCompatActivity {
             int shown = 0;
             UserBadges lynxBadge = new UserBadges(healthy_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,healthy_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
             db.createUserBadge(lynxBadge);
+        }else if(db.getEncountersCount()==5){
+            // Adding User Badge : Vital Vitamin Badge //
+            BadgesMaster vital_badge = db.getBadgesMasterByName("Vital Vitamins");
+            int shown = 0;
+            UserBadges lynxBadge = new UserBadges(vital_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,vital_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+            db.createUserBadge(lynxBadge);
+        }else if(db.getEncountersCount()==10){
+            // Adding User Badge : King Badge //
+            BadgesMaster king_badge = db.getBadgesMasterByName("King");
+            int shown = 0;
+            UserBadges lynxBadge = new UserBadges(king_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,king_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+            db.createUserBadge(lynxBadge);
+        }else if(db.getEncountersCount()==15){
+            // Adding User Badge : Energizer Bunny Badge //
+            BadgesMaster energizer_badge = db.getBadgesMasterByName("Energizer Bunny");
+            int shown = 0;
+            UserBadges lynxBadge = new UserBadges(energizer_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,energizer_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+            db.createUserBadge(lynxBadge);
         }
         // Clear Condomuse list//
         LynxManager.activeEncCondomUsed.clear();

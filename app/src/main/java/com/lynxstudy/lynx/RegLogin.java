@@ -188,95 +188,231 @@ public class RegLogin extends AppCompatActivity {
         List<TestingLocations> testingLocations = new ArrayList<TestingLocations>();
 
         TestingLocations testingLocation1 = new TestingLocations("AIDS Healthcare Foundation Oakland Wellness Center", "238 E 18th St, Oakland, CA 94606, United States","510-251-8671",
-                "37.8003832", "-122.2528517", " ", "type","","","","<span>-</span>","-","-");
+                "37.8003832", "-122.2528517", " ", "type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation2 = new TestingLocations("Berkeley Free Clinic", "2339 Durant Ave, Berkeley, CA 94704, United States","510-548-2570",
-                "37.8677161", "-122.2618111", "http://www.berkeleyfreeclinic.org/pages/gmhc","type","","","","<span>-</span>","-","-");
+                "37.8677161", "-122.2618111", "http://www.berkeleyfreeclinic.org/pages/gmhc","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation3 = new TestingLocations("Native American Health Center Incorporated NAHC of Oakland ", "2950 International Blvd , Oakland, CA 94601" ,"415-621-4371",
-                "37.7790324", "-122.2282187", "http://www.nativehealth.org/content/circle-healing-hiv-and-hcv-services","type","","","","<span>-</span>","-","-");
+                "37.7790324", "-122.2282187", "http://www.nativehealth.org/content/circle-healing-hiv-and-hcv-services","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation4 = new TestingLocations("San Francisco City Clinic", "356 7th Street, San Francisco, CA 94103","415-487-5500",
-                "37.7759146", "-122.407104", "http://www.sfcityclinic.org/","type","","","","<span>-</span>","-","-");
+                "37.7759146", "-122.407104", "http://www.sfcityclinic.org/","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation5 = new TestingLocations("Alameda County Medical Center Highland Adult Immunology Clinic ",
-                "1411 E 31st St 7th Floor, Oakland, CA 94602","510-437-4373", "37.7986299", "-122.231627", " ","type","","","","<span>-</span>","-","-");
+                "1411 E 31st St 7th Floor, Oakland, CA 94602","510-437-4373", "37.7986299", "-122.231627", " ","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation6 = new TestingLocations("Ann Chandler Public Health Center", "830 University Avenue, Berkeley, CA 94710","510-981-5350",
-                "37.8678272", "-122.2972235", "http://www.ci.berkeley.ca.us/Ann_Chandler_Public_Health_Center/","type","","","","<span>-</span>","-","-");
+                "37.8678272", "-122.2972235", "http://www.ci.berkeley.ca.us/Ann_Chandler_Public_Health_Center/","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation7 = new TestingLocations(" Planned Parenthood ", "1682 7th Street , Oakland, CA 94607","510-300-3800",
-                "37.806617", "-122.300454", "	","type","","","","<span>-</span>","-","-");
+                "37.806617", "-122.300454", "	","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation8 = new TestingLocations("Planned Parenthood", "7200 Bancroft Ave. , Oakland, CA 94605","510-300-3800",
-                "37.7673194", "-122.1779008", "","type","","","","<span>-</span>","-","-");
+                "37.7673194", "-122.1779008", "","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation9 = new TestingLocations("Planned Parenthood", "1032 A Street , Hayward, CA 94541","510-300-3800",
-                "37.6743445", "-122.0831806", "","type","","","","<span>-</span>","-","-");
+                "37.6743445", "-122.0831806", "","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation10 = new TestingLocations("AIDS Project of the East Bay ", "1320 Webster St, Oakland, CA 94612" ,"510-663-7979 x122",
-                "37.802962", "-122.2687084", "http://www.apeb.org/programs.htm#well","type","","","","<span>-</span>","-","-");
+                "37.802962", "-122.2687084", "http://www.apeb.org/programs.htm#well","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation11 = new TestingLocations("Asian Health Services Asian Medical Center ", "818 Webster St, Oakland, CA 94607","510-986-6830",
-                "37.7993669", "-122.270941", "http://www.asianhealthservices.org/handler.php?p=services-HIVAIDS","type","","","","<span>-</span>","-","-");
+                "37.7993669", "-122.270941", "http://www.asianhealthservices.org/handler.php?p=services-HIVAIDS","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation12 = new TestingLocations("Alameda County Medical Center Eastmont Wellness Center ", "6955 Foothill Blvd Suite 200, Oakland, CA 94605" ,"510-567-5700",
-                "37.7680904", "-122.1760889", "http://www.eastmontahs.org/","type","","","","<span>-</span>","-","-");
+                "37.7680904", "-122.1760889", "http://www.eastmontahs.org/","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation13 = new TestingLocations("Planned Parenthood Shasta Pacific El Cerrito Health Center ", "320 El Cerrito Plaza, El Cerrito, CA 94530","510-527-5806",
-                "37.8996547", "-122.2998653", "","type","","","","<span>-</span>","-","-");
+                "37.8996547", "-122.2998653", "","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation14 = new TestingLocations("Asian and Pacific Islander Wellness Center", "730 Polk St, 4th Floor, San Francisco, CA 94109","415-292-3400 x368",
-                "37.7837216", "-122.4191438", "http://www.apiwellness.org/wellnessclinic.html","type","","","","<span>-</span>","-","-");
+                "37.7837216", "-122.4191438", "http://www.apiwellness.org/wellnessclinic.html","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation15 = new TestingLocations("Mission Neighborhood Health Center ", "1663 Mission Street, Suite 603, San Francisco, CA 94013","415-240-4104",
-                "37.7712065", "-122.4192045", "http://www.mnhc.org/community_programs/latino-wellness-center/","type","","","","<span>-</span>","-","-");
+                "37.7712065", "-122.4192045", "http://www.mnhc.org/community_programs/latino-wellness-center/","type","","","","No","<span>-</span>","-","-");
 
-        TestingLocations testingLocation16 = new TestingLocations("Magnet", "4122 18th St, San Francisco, CA 94114","415-581-1600", "37.7609663", "-122.4356606", "http://www.magnetsf.org/","type","","","","<span>-</span>","-","-");
+        TestingLocations testingLocation16 = new TestingLocations("Magnet", "4122 18th St, San Francisco, CA 94114","415-581-1600", "37.7609663", "-122.4356606", "http://www.magnetsf.org/","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation17 = new TestingLocations(" UCSF Alliance Health Project", "1930 Market St, San Francisco, CA 94102","415-502-8378",
-                "37.7705078", "-122.4257072", "http://www.ucsf-ahp.org/hiv/hcat/","type","","","","<span>-</span>","-","-");
+                "37.7705078", "-122.4257072", "http://www.ucsf-ahp.org/hiv/hcat/","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation18 = new TestingLocations("Marin County STD Clinic", "920 Grand Ave, San Rafael, CA","415-499-6944", "37.9717107",
-                "-122.5184603", "https://www.marinhhs.org/sexually-transmitted-disease-std-services","type","","","","<span>-</span>","-","-");
+                "-122.5184603", "https://www.marinhhs.org/sexually-transmitted-disease-std-services","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation19 = new TestingLocations("Concord Health Center", "3052 Willow Pass Road, Clinic D, Concord, CA 94519", "1-800-479-9664",
-                "37.980602", "-122.0210839", "http://cchealth.org/std/","type","","","","<span>-</span>","-","-");
+                "37.980602", "-122.0210839", "http://cchealth.org/std/","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation20 = new TestingLocations("Pittsburg Health Center", "2311 Loveridge Road, East Clinic, Pittsburg, CA 94565","1-800-479-9664",
-                "38.0067923", "-121.8695384", "http://cchealth.org/std/","type","","","","<span>-</span>","-","-");
+                "38.0067923", "-121.8695384", "http://cchealth.org/std/","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation21 = new TestingLocations("West County Health Center", "13601 San Pablo Ave, San Pablo, CA  94806","1-800-479-9664",
-                "37.9557666", "-122.3381267", "http://cchealth.org/std/","type","","","","<span>-</span>","-","-");
+                "37.9557666", "-122.3381267", "http://cchealth.org/std/","type","","","","No","<span>-</span>","-","-");
 
         TestingLocations testingLocation22 = new TestingLocations("Planned Parenthood", "2907 El Camino Real, Redwood City, CA 94061","650-503-7810",
-                "37.4692778", "-122.2112942", "","type","","","","<span></span>","-","-");
+                "37.4692778", "-122.2112942", "","type","","","","No","<span></span>","-","-");
 
         TestingLocations testingLocation23 = new TestingLocations("Planned Parenthood", "225 San Antonio Rd, Mountain View, CA 94040","650-948-0807",
-                "37.4059219", "-122.1102896", "","type","","","","<span></span>","-","-");
+                "37.4059219", "-122.1102896", "","type","","","","No","<span></span>","-","-");
 
         TestingLocations testingLocation24 = new TestingLocations("Billy DeFrank LGBT Community Center of Silicon Valley", "938 The Alameda, San Jose, CA 95126","408-293-3040",
-                "37.3313637", "-121.9080087", "http://www.defrankcenter.org/","type","","","","","","");
+                "37.3313637", "-121.9080087", "http://www.defrankcenter.org/","type","","","","No","","-","-");
 
-        TestingLocations testingLocation25 = new TestingLocations("USF Ybor Youth Clinic", "1315 E 7th Ave, Suite 104, Tampa, FL 33604","813-396-9021","28.0126094", "-82.5109048", "","type","Yes","Yes","Yes","Call","Florida Medicaid and most other major commercial insurance companies","Call");
+        TestingLocations testingLocation25 = new TestingLocations("USF Ybor Youth Clinic", "1315 E 7th Ave, Suite 104, Tampa, FL 33604","813-396-9021","28.0126094", "-82.5109048", "","type","Yes","Yes","Yes","No","Call","Florida Medicaid and most other major commercial insurance companies","Call");
 
-        TestingLocations testingLocation26 = new TestingLocations("USF Children's Medical Services", "13101 Bruce B Downs, Tampa, FL 33612","813-259-8800","28.0662929", "-82.4273804", "","type","Yes","Yes","Yes","<span>Wednesdays, 8am-5pm and the second Thursday of each month, 8am-11:30am by appointment only.</span>","Florida Medicaid and most other major commercial insurance companies","Call");
+        TestingLocations testingLocation26 = new TestingLocations("USF Children's Medical Services", "13101 Bruce B Downs, Tampa, FL 33612","813-259-8800","28.0662929", "-82.4273804", "","type","Yes","Yes","Yes","No","<span>Wednesdays, 8am-5pm and the second Thursday of each month, 8am-11:30am by appointment only.</span>","Florida Medicaid and most other major commercial insurance companies","Call");
 
-        TestingLocations testingLocation27 = new TestingLocations("Johns Hopkins All Children's Hospital Main Campus Outpatient Care Center (OCC)", "601 5th Street South, St. Petersburg, FL 33701","813-259-8800","27.763857", "-82.6426565", "","type","Yes","Yes","Yes","<span>Monday – Friday 8am-4:30pm by appointment only</span>","Florida Medicaid and most other major commercial insurance companies","Call");
+        TestingLocations testingLocation27 = new TestingLocations("Johns Hopkins All Children's Hospital Main Campus Outpatient Care Center (OCC)", "601 5th Street South, St. Petersburg, FL 33701","813-259-8800","27.763857", "-82.6426565", "","type","Yes","Yes","Yes","No","<span>Monday – Friday 8am-4:30pm by appointment only</span>","Florida Medicaid and most other major commercial insurance companies","Call");
 
-        TestingLocations testingLocation28 = new TestingLocations("Florida Department of Health", "1105 E Kennedy Blvd, Tampa, FL 33602","813-307-8064","27.9498074", "-82.4529869", "","type","No","Yes","Yes","<span>Monday–Friday, 7am-4:30pm</span>","","13y.o. and over");
+        TestingLocations testingLocation28 = new TestingLocations("Florida Department of Health", "1105 E Kennedy Blvd, Tampa, FL 33602","813-307-8064","27.9498074", "-82.4529869", "","type","No","Yes","Yes","Yes","<span>Monday–Friday, 7am-4:30pm</span>","","13y.o. and over");
 
-        TestingLocations testingLocation29 = new TestingLocations("Midtown Medical Center", "6919 N Dale Mabry Hwy, Suite 300, Tampa, FL 33614","813-935-3221","28.012131", "-82.506597", "","type","Yes","Yes","Yes","<span>Monday-Friday, 8am-5pm;</br></br>Saturday, 8am – 12pm.</br></br>The site is open until 7:40 every other Tuesday (addtional $10 fee applies)</span>","Self Pay, Medicare, Medicaid, and Commercial Insurances Accepted.","Call");
+        TestingLocations testingLocation29 = new TestingLocations("Midtown Medical Center", "6919 N Dale Mabry Hwy, Suite 300, Tampa, FL 33614","813-935-3221","28.012131", "-82.506597", "","type","Yes","Yes","Yes","No","<span>Monday-Friday, 8am-5pm;</br></br>Saturday, 8am – 12pm.</br></br>The site is open until 7:40 every other Tuesday (addtional $10 fee applies)</span>","Self Pay, Medicare, Medicaid, and Commercial Insurances Accepted.","Call");
 
-        TestingLocations testingLocation30 = new TestingLocations("Metro Health Wellness & Community", "1315 East 7th Avenue, Tampa, FL 33605","813-232-3808","27.960111", "-82.4470239", "","type","Yes","Yes","Yes","<span>Appointments are available  during week day and some evening hours.</span>","Self Pay, Medicare, Medicaid, and Commercial Insurances Accepted.","Call");
+        TestingLocations testingLocation30 = new TestingLocations("Metro Health Wellness & Community", "1315 East 7th Avenue, Tampa, FL 33605","813-232-3808","27.960111", "-82.4470239", "","type","Yes","Yes","Yes","No","<span>Appointments are available  during week day and some evening hours.</span>","Self Pay, Medicare, Medicaid, and Commercial Insurances Accepted.","Call");
 
-        TestingLocations testingLocation31 = new TestingLocations("Metro Health Wellness & Community", "3251 3rd Avenue N, Suite 125, St. Petersburg, FL 33713","727-321-3854","27.7754479", "-82.6796657", "","type","Yes","Yes","Yes","<span>Appointments are available  during week day and some evening hours.</span>","Self Pay, Medicare, Medicaid, and Commercial Insurances Accepted.","Call");
+        TestingLocations testingLocation31 = new TestingLocations("Metro Health Wellness & Community", "3251 3rd Avenue N, Suite 125, St. Petersburg, FL 33713","727-321-3854","27.7754479", "-82.6796657", "","type","Yes","Yes","Yes","No","<span>Appointments are available  during week day and some evening hours.</span>","Self Pay, Medicare, Medicaid, and Commercial Insurances Accepted.","Call");
 
-        TestingLocations testingLocation32 = new TestingLocations("Joel B. Rose, DO", "6101 Webb Road, Suite 207, Tampa, FL 33615","813-882-3331","28.0036589", "-82.5765709", "","type","No","Yes","Yes","<span>Monday-Friday, 9am to 5pm</span>","Most Major commercial insurance companies","Call");
+        TestingLocations testingLocation32 = new TestingLocations("Joel B. Rose, DO", "6101 Webb Road, Suite 207, Tampa, FL 33615","813-882-3331","28.0036589", "-82.5765709", "","type","No","Yes","Yes","No","<span>Monday-Friday, 9am to 5pm</span>","Most Major commercial insurance companies","Call");
 
-        TestingLocations testingLocation33 = new TestingLocations("Vilma Vega, MD", "2349 Sunset Point Road, Suite 405, Clearwater, FL 33765","727-216-6193","27.9894724", "-82.742538", "","type","Yes","Yes","Yes","<span>Monay, Tuesday, and Thursday 9am-4:30pm;</br></br>Wednesday 9am-12pm, New patients 2pm-4:30pm;</br> </br>Friday 9am-12pm. </span>","Medicare, Blue Cross and Blue Shield, Cigna – except Baycare, United, Coventry and Sunshine","Call");
+        TestingLocations testingLocation33 = new TestingLocations("Vilma Vega, MD", "2349 Sunset Point Road, Suite 405, Clearwater, FL 33765","727-216-6193","27.9894724", "-82.742538", "","type","Yes","Yes","Yes","No","<span>Monay, Tuesday, and Thursday 9am-4:30pm;</br></br>Wednesday 9am-12pm, New patients 2pm-4:30pm;</br> </br>Friday 9am-12pm. </span>","Medicare, Blue Cross and Blue Shield, Cigna – except Baycare, United, Coventry and Sunshine","Call");
 
-        TestingLocations testingLocation34 = new TestingLocations("Love the Golden Rule, Inc", "721 Dr. MLK Jr St S, St. Petersburg, FL 33705","727-228-1650","27.762505", "-82.6490846", "https://lovethegoldenrule.com/","type","Yes","Yes","Yes","<span>Monday- Friday, 8:30am to 3:30pm</span>","BCBS (listed as out of network provider), AETNA, CIGNA (some plans only), Wellcare, Staywell and Clear","Call");
+        TestingLocations testingLocation34 = new TestingLocations("Love the Golden Rule, Inc", "721 Dr. MLK Jr St S, St. Petersburg, FL 33705","727-228-1650","27.762505", "-82.6490846", "https://lovethegoldenrule.com/","type","Yes","Yes","Yes","No","<span>Monday- Friday, 8:30am to 3:30pm</span>","BCBS (listed as out of network provider), AETNA, CIGNA (some plans only), Wellcare, Staywell and Clear","Call");
+
+        TestingLocations testingLocation35 = new TestingLocations("ACCESS Auburn-Gresham Family Health Center", "8234 South Ashland Ave, Chicago, IL 60620","866-267-2353","41.743832", "-87.663648", "https://www.achn.net/locations/location-pages/access-auburn-gresham-family-health-center/","type","Yes","Yes","Yes","No","<span>Call</span>","Call","Call");
+
+        TestingLocations testingLocation36 = new TestingLocations("ACCESS Austin Family Health Center", "4909 West Division Street, Suite 508, Chicago, IL 60651","866-267-2353","41.901995", "-87.749254", "https://www.achn.net/locations/location-pages/access-austin-family-health-center/","type","Yes","Yes","Yes","No","<span>Call</span>","Call","Call");
+
+        TestingLocations testingLocation37 = new TestingLocations("ACCESS Booker Family Health Center", "654 East 47th Street, Chicago, IL 60653","866-267-2353","41.809683", "-87.609344", "https://www.achn.net/locations/location-pages/access-booker-family-health-center/","type","Yes","Yes","Yes","No","<span>Call</span>","Call","Call");
+
+        TestingLocations testingLocation38 = new TestingLocations("ACCESS Brandon Family Health Center", "8300 South Brandon, Chicago, IL 60617","866-267-2353","41.74453", "-87.547014", "https://www.achn.net/locations/location-pages/access-brandon-family-health-center/","type","Yes","Yes","Yes","No","<span>Call</span>","Call","Call");
+
+        TestingLocations testingLocation39 = new TestingLocations("ACCESS Centro Medico", "3700 West 26th Street, Chicago, IL 60623","866-267-2353","41.844509", "-87.717409", "https://www.achn.net/locations/location-pages/access-centro-medico/","type","Yes","Yes","Yes","No","<span>Call</span>","Call","Call");
+
+        TestingLocations testingLocation40 = new TestingLocations("ACCESS Centro Medico San Rafael", "3204 West 26th Street, Chicago, IL 60623","866-267-2353","41.844713", "-87.705448", "https://www.achn.net/locations/location-pages/access-centro-medico-san-rafael/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation41 = new TestingLocations("ACCESS Evanston-Rogers Park Family Health Center", "1555 West Howard Street, Chicago, IL 60626","866-267-2353","42.019113", "-87.670241", "https://www.achn.net/locations/location-pages/access-evanston-family-health-center/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation42 = new TestingLocations("ACCESS Grand Boulevard Health & Specialty Center", "5401 South Wentworth Avenue, Chicago, IL 60609","866-267-2353","41.795981", "-87.629084", "https://www.achn.net/locations/location-pages/access-grand-boulevard-health-and-specialty-center/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation43 = new TestingLocations("ACCESS at Holy Cross", "2701 West 68th Street, 3-South, Chicago, IL 60629","866-267-2353","41.76905", "-87.692415", "https://www.achn.net/locations/location-pages/access-located-at-holy-cross/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation44 = new TestingLocations("ACCCESS Humboldt Park Family Health Center", "3202 West North Avenue, Chicago, IL 60647","866-267-2353","41.910444", "-87.707085", "https://www.achn.net/locations/location-pages/access-humboldt-park-family-health-center/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation45 = new TestingLocations("ACCESS Kedzie Family Health Center", "3229-3243 West 47th Place, Chicago, IL 60632","866-267-2353","41.805874", "-87.705001", "https://www.achn.net/locations/location-pages/access-kedzie-family-health-center/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation46 = new TestingLocations("ACCESS Madison Family Health Center", "3800 West Madison Street, Chicago, IL 60624","866-267-2353","41.881126", "-87.721142", "https://www.achn.net/locations/location-pages/access-madison-family-health-center//","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation47 = new TestingLocations("ACCESS Paul and Mimi Francis Westside Family Health Center", "3752 West 16th Street, Chicago, IL, 60623","866-267-2353","41.859102", "-87.719715", "https://www.achn.net/locations/location-pages/access-westside-family-health-center/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation48 = new TestingLocations("ACCESS at Sinai — Sinai Community Institute", "2653 Ogden Avenue, Suite 3B, Chicago, IL 60608","866-267-2353","41.861779", "-87.692947", "https://www.achn.net/locations/location-pages/access-at-sinai/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation49 = new TestingLocations("ACCESS Southwest Family Health Center", "4839 West 47th Street, Chicago, IL, 60638","866-267-2353","41.807403", "-87.744754", "https://www.achn.net/locations/location-pages/access-southwest-family-health-center/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation50 = new TestingLocations("ACCESS Warren Family Health Center", "2409 West Warren Blvd., Chicago, IL 60612","866-267-2353","41.881843", "-87.68684", "https://www.achn.net/locations/location-pages/access-warren-family-health-center/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation51 = new TestingLocations("Advocate Medical Group - Progressive, Tom Klarquist, M.D.", "3000 N. Halsted St., Suite 509, Chicago, IL 60657","773-296-5090","41.936761", "-87.64978", "https://doctors.advocatehealth.com/a/thomas-klarquist-chicago-internal-medicine","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation52 = new TestingLocations("Advocate Ravenswood Family Medicine, Zachary LaMaster, DO", "4600 North Ravenswood Avenue, Chicago, IL 60640","773-561-7500","41.965851", "-87.675071", " ","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation53 = new TestingLocations("AIDS Healthcare Foundation, Kaleo Staszkow, M.D.", "2600 S. Michigan Ave. Suite Lower Level D, Chicago, IL 60616","312-881-3050","41.845412", "-87.624098", " ","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation54 = new TestingLocations("Care Program at Mercy Family Health Center", "2525 S. Michigan Ave., Chicago, IL 60616","312-567-2273, 312-791-3455","41.846453", "-87.623472", "","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation55 = new TestingLocations("Center for Gender, Sexuality, and HIV Prevention - Ann and Robert H. Lurie Children's Hospital", "4711 N. Broadway St, Chicago, IL 60640","773-303-6067","41.967647", "-87.658626", "","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation56 = new TestingLocations("Christian Community Health Center", "9718 S. Halsted St., Chicago, IL 60628","773-231-4100","41.716867", "-87.643454", "http://www.cchc-online.org/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation57 = new TestingLocations("Christian Community Health Center", "901 E. Sibley Blvd., South Holland, IL 60473","773-231-4100","41.622129", "-87.59512", "http://www.cchc-online.org/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation58 = new TestingLocations("Christian Community Health Center", "364 Torrence Ave., Calumet City, IL 60409","773-231-4100","41.626597", "-87.559513", "http://www.cchc-online.org/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation59 = new TestingLocations("Austin Health Center", "4800 W. Chicago Ave., Chicago, IL 60651","708-683-9415","41.895314", "-87.746173", "http://www.cookcountyhhs.org/locations/maps-directions/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation60 = new TestingLocations("Dr. Jorge Prieto Health Center", "2424 S. Pulaski Ave, Chicago, IL 60623","708-683-9415","41.847145", "-87.724934", "http://www.cookcountyhhs.org/locations/maps-directions/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation61 = new TestingLocations("Provident Hospital, Wednesday morning ID clinic", "500 E. 51st St., 7th floor, Chicago, IL 60615","708-683-9415","41.802617", "-87.613593", "http://www.cookcountyhhs.org/locations/provident-hospital/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation62 = new TestingLocations("Ruth M. Rothstein CORE Center", "2020 W. Harrison St., Chicago, IL 60612","708-683-9415","41.874497", "-87.677183", "http://www.cookcountyhhs.org/locations/ruth-m-rothstein-core-center/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation63 = new TestingLocations("Miguel Peña, MD", "3059 W. 26th St., Chicago, IL 60623","773-916-4436","41.844079", "-87.701908", "http://www.esperanzachicago.org/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation64 = new TestingLocations("Carrie Kindleberger, APN, FNP-BC", "2001 S. California Ave. Suite 100, Chicago, IL 60608","773-916-4436","41.854643", "-87.695246", "http://www.esperanzachicago.org/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation65 = new TestingLocations("En-Ling Wu, MD", "3059 W. 26th Street, Chicago, IL 60623","773-916-4436","41.844079", "-87.701908", "http://www.esperanzachicago.org/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation66 = new TestingLocations("Family Clinic for Infectious Disease, University of Illinois-Chicago (FCID – UIC) Outpatient Care Center (OCC), John Stryker, NP", "1801 W. Taylor St., Suite 3, Chicago, IL 60612","312-996-8337","41.8691", "-87.672046", "http://hospital.uillinois.edu/patients-and-visitors/locations-and-directions/outpatient-care-center","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation67 = new TestingLocations("Friend Family Health Center", "800 E. 55th St., Chicago, IL 60615","773-702-7506","41.795664", "-87.605373", "http://friendfhc.org/en/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation68 = new TestingLocations("Heartland Health Outreach - Uptown Clinic", "1015 W Lawrence Ave, Chicago, IL 60640","773-725-2586","41.968947", "-87.655393", "","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation69 = new TestingLocations("Howard Brown Health", "4025 N. Sheridan Rd., Chicago, IL 60613","773-572-5120","41.955202", "-87.654148", "https://howardbrown.org/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation70 = new TestingLocations("Howard Brown Health", "3245 N Halsted St., Chicago, IL 60657","773-296-8400","41.941286", "-87.649089", "https://howardbrown.org/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation71 = new TestingLocations("Howard Brown Health", "615 W Wellington Ave., Chicago, IL 60657","773-935-3151","41.936283", "-87.644862", "https://howardbrown.org/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation72 = new TestingLocations("Howard Brown Health", "6500 N. Clark St., Chicago, IL 60626","773-388-1600","41.999975", "-87.671648", "https://howardbrown.org/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation73 = new TestingLocations("Howard Brown Health", "1525 E. 55th St., Chicago, IL 60637","773-388-1600","41.794974", "-87.587966", "https://howardbrown.org/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation74 = new TestingLocations("Howard Brown Health", "5537 N. Broadway (Howard Brown Health at TPAN), Chicago, IL 60640","773-388-1600","41.982801", "-87.660068", "https://howardbrown.org/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation75 = new TestingLocations("Howard Brown Health", "641 W. 63rd Street, Chicago, IL 60637","773-388-1600","41.77947", "-87.641448", "https://howardbrown.org/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation76 = new TestingLocations("ID Center, Mount Sinai Hospital", "1414 S. Fairfield, Chicago, IL 60608","773-565-3230","41.862309", "-87.694907", "","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation77 = new TestingLocations("Innovative Express Care", "2400 N Ashland Ave., Chicago, IL 60614","773-270-5600","41.925367", "-87.668475", "https://innovativeexpresscare.com/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation78 = new TestingLocations("Lakeview Immediate Care Clinic", "1645 W School St., Chicago, IL 60657","773-227-3669","41.941233", "-87.670342", "","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation79 = new TestingLocations("Lakeshore Infectious Disease", "2900 N. Lake Shore Drive, #1231, Chicago, IL 60657","773-665-3261","41.933882", "-87.637262", "","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation80 = new TestingLocations("Michigan Avenue Internists, Evan Ng, M.D.", "200 S. Michigan Avenue, Suite 805, Chicago, IL 60604","312-922-3815","41.879298", "-87.624905", "http://www.michiganavenueinternists.com/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation81 = new TestingLocations("Millenium Park Medical Associates", "30 S Michigan Ave, Suite 500, Chicago, IL 60603","312-977-1185","41.881145", "-87.624941", " ","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation82 = new TestingLocations("Neel French, M.D.", "2551 North Clark St., Suite 303, Chicago, IL 60614","773-857-2650","41.929314", "-87.642236", "http://www.neelfrenchmd.com/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation83 = new TestingLocations("Northstar Healthcare Medical Center; Daniel S. Berger, M.D.", "2835 N. Sheffield Ave., Suite 500, Chicago, IL 60657","773-296-2400","41.933805", "-87.653725", "http://nstarmedical.com/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation84 = new TestingLocations("Northwestern Medical Group", "1333 W. Belmont Ave., Chicago, IL 60657","312-926-3627","41.939653", "-87.662368", "http://nmg.nm.org/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation85 = new TestingLocations("Northwestern Medical Group","1460 N. Halsted St., 5th Floor, Chicago, IL 60642","312-926-3627","41.908138", "-87.648595", "http://nmg.nm.org/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation86 = new TestingLocations("Northwestern Medicine Infectious Disease Center","676 N. St. Clair, Ninth floor, Suite 940, Chicago, IL 60611","312-926-8358","41.896068", "-87.616877", "http://nmg.nm.org/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation87 = new TestingLocations("Olivo Medical and Wellness Centers; Nicole Markovich APN, FNP-BC","2901 N. Clybourn Ave., Chicago, IL 60618","773-423-6178","41.934622", "-87.681023", " ","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation88 = new TestingLocations("Planned Parenthood of Illinois","5937 W. Chicago, Chicago, IL 60651","773-287-2020","41.894544", "-87.773815", "https://www.plannedparenthood.org/planned-parenthood-illinois/locations","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation89 = new TestingLocations("Planned Parenthood of Illinois", "6059 S. Ashland, Chicago, IL 60636","773-434-3700","41.783242", "-87.663968", "https://www.plannedparenthood.org/planned-parenthood-illinois/locations","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation90 = new TestingLocations("Planned Parenthood of Illinois","18 S. Michigan Avenue, 6th Floor, Chicago, IL 60603","312-592-6700","41.881467", "-87.624939", "https://www.plannedparenthood.org/planned-parenthood-illinois/locations","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation91 = new TestingLocations("Planned Parenthood of Illinois", "1200 N. LaSalle, Chicago, IL 60610","312-266-1033","41.90405", "-87.633296", "https://www.plannedparenthood.org/planned-parenthood-illinois/locations","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation92 = new TestingLocations("Planned Parenthood of Illinois", "6353 N. Broadway, Chicago, IL 60660","773-973-3393","41.997933", "-87.660187", "https://www.plannedparenthood.org/planned-parenthood-illinois/locations","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation93 = new TestingLocations("Planned Parenthood of Illinois", "11250 S. Halsted, Chicago, IL 60628","773-468-1600","41.688866", "-87.642643", "https://www.plannedparenthood.org/planned-parenthood-illinois/locations","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation94 = new TestingLocations("Planned Parenthood of Illinois", "1152 N. Milwaukee, Chicago, IL 60642","773-252-2240","41.902515", "-87.665566", "https://www.plannedparenthood.org/planned-parenthood-illinois/locations/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation95 = new TestingLocations("Presence Medical Group; Kevin Murphy, M.D.; Andrew Pavlatos, M.D.", "2800 N. Sheridan Rd., Suite 606, Chicago, IL 60657","773-525-8846","41.933174", "-87.639820", "http://www.presencehealth.org/presence-medical-group","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation96 = new TestingLocations("Presence Medical Group; Kevin Murphy, M.D.; Andrew Pavlatos, M.D.", "3500 W. Peterson, Suite 300, Chicago, IL 60659","773-961-3200","41.990538", "-87.716807", "http://www.presencehealth.org/presence-medical-group","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation97 = new TestingLocations("Rush University Medical Center; Mariam Aziz, M.D.; Beverly E. Sha, M.D.; Brett Williams, M.D.", "600 S. Paulina, Suite 140-143, Chicago, IL 60612","312-942-5865","41.873602", "-87.669532", "","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation98 = new TestingLocations("Thomas Klein, MD, and Ross Slotten, M.D.", "711 W. North Ave., Chicago, IL 60610","312-280-0996","41.910659", "-87.646204", "","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation99 = new TestingLocations("UIC Family Center for Immune Deficiency & Infectious Diseases (FCID);", "1801 W. Taylor St., Suite 3, Chicago, IL 60612","312-996-1682","41.869100", "-87.672046", "http://hospital.uillinois.edu/find-a-doctor/maximo-o-brito","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation100 = new TestingLocations("UIC Family Medicine; Abbas Hyderi, M.D., Patrick Tranmer, M.D., Ron Chacko, M.D.", "720 W. Maxwell St., Chicago, IL 60607","312-996-2901","41.865032", "-87.645818", "","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation101 = new TestingLocations("University of Chicago Adolescent and Adult PrEP Clinic Network", "5837 S. Maryland Ave., MC 5065, Chicago, IL 60637","872-215-1905","41.788263", "-87.604262", "https://hivelimination.uchicago.edu/","type","yes","yes","yes","No","<span>call </span>","call","call");
+
+        TestingLocations testingLocation102 = new TestingLocations("University of Chicago Infectious Disease Clinic in DCAM", "5758 S. Maryland Ave., Chicago, IL 60637","888-824-0200","41.790023", "-87.60565", "", "type","yes","yes","yes","No","<span>call </span>","call","call");
 
         testingLocations.add(testingLocation1);
         testingLocations.add(testingLocation2);
@@ -312,6 +448,74 @@ public class RegLogin extends AppCompatActivity {
         testingLocations.add(testingLocation32);
         testingLocations.add(testingLocation33);
         testingLocations.add(testingLocation34);
+        testingLocations.add(testingLocation35);
+        testingLocations.add(testingLocation36);
+        testingLocations.add(testingLocation37);
+        testingLocations.add(testingLocation38);
+        testingLocations.add(testingLocation39);
+        testingLocations.add(testingLocation40);
+        testingLocations.add(testingLocation41);
+        testingLocations.add(testingLocation42);
+        testingLocations.add(testingLocation43);
+        testingLocations.add(testingLocation44);
+        testingLocations.add(testingLocation45);
+        testingLocations.add(testingLocation46);
+        testingLocations.add(testingLocation47);
+        testingLocations.add(testingLocation48);
+        testingLocations.add(testingLocation49);
+        testingLocations.add(testingLocation50);
+        testingLocations.add(testingLocation51);
+        testingLocations.add(testingLocation52);
+        testingLocations.add(testingLocation53);
+        testingLocations.add(testingLocation54);
+        testingLocations.add(testingLocation55);
+        testingLocations.add(testingLocation56);
+        testingLocations.add(testingLocation57);
+        testingLocations.add(testingLocation58);
+        testingLocations.add(testingLocation59);
+        testingLocations.add(testingLocation60);
+        testingLocations.add(testingLocation61);
+        testingLocations.add(testingLocation62);
+        testingLocations.add(testingLocation63);
+        testingLocations.add(testingLocation64);
+        testingLocations.add(testingLocation65);
+        testingLocations.add(testingLocation66);
+        testingLocations.add(testingLocation67);
+        testingLocations.add(testingLocation68);
+        testingLocations.add(testingLocation69);
+        testingLocations.add(testingLocation70);
+        testingLocations.add(testingLocation71);
+        testingLocations.add(testingLocation72);
+        testingLocations.add(testingLocation73);
+        testingLocations.add(testingLocation74);
+        testingLocations.add(testingLocation75);
+        testingLocations.add(testingLocation76);
+        testingLocations.add(testingLocation77);
+        testingLocations.add(testingLocation78);
+        testingLocations.add(testingLocation79);
+        testingLocations.add(testingLocation80);
+        testingLocations.add(testingLocation81);
+        testingLocations.add(testingLocation82);
+        testingLocations.add(testingLocation83);
+        testingLocations.add(testingLocation84);
+        testingLocations.add(testingLocation85);
+        testingLocations.add(testingLocation86);
+        testingLocations.add(testingLocation87);
+        testingLocations.add(testingLocation88);
+        testingLocations.add(testingLocation89);
+        testingLocations.add(testingLocation90);
+        testingLocations.add(testingLocation91);
+        testingLocations.add(testingLocation92);
+        testingLocations.add(testingLocation93);
+        testingLocations.add(testingLocation94);
+        testingLocations.add(testingLocation95);
+        testingLocations.add(testingLocation96);
+        testingLocations.add(testingLocation97);
+        testingLocations.add(testingLocation98);
+        testingLocations.add(testingLocation99);
+        testingLocations.add(testingLocation100);
+        testingLocations.add(testingLocation101);
+        testingLocations.add(testingLocation102);
 
         //PrEP information Entries
         List<PrepInformation> prepInformationList = new ArrayList<PrepInformation>();
@@ -350,20 +554,20 @@ public class RegLogin extends AppCompatActivity {
         BadgesMaster badgesMaster4 = new BadgesMaster(4,"Silver Screen","Watched all 4 videos","Someone likes being an expert.  Congrats on watching the entire video series.","silver_screen_small","PrEP");
         BadgesMaster badgesMaster5 = new BadgesMaster(5,"Testing 1-2-3","Entered an HIV or STD test","You don't have to pat yourself on the back for taking your test.  We'll do it for you!","testing_small","Testing");
         BadgesMaster badgesMaster6 = new BadgesMaster(6,"Green Light","Scored higher than 17 on Sex Pro","We see you don't play games when it comes to keeping your HIV risk low. Congrats on scoring high by handling your business.","green_light_small","Sexpro");
-        BadgesMaster badgesMaster7 = new BadgesMaster(7,"PrEP'd","Started PrEP","A daily commitment to take PrEP is a commitment to yourself. Good lookin' out.","prep_small","PrEP");
-        BadgesMaster badgesMaster8 = new BadgesMaster(8,"I ♥ Anal","Anal sex with a condom","Everybody talks about safe sex, but not everybody is about safe sex. Fist bump on the condom use.","","");
-        BadgesMaster badgesMaster9 = new BadgesMaster(9,"Magnum","Used a condom 5 times","Look at you. Hot. Getting it in. And being protected. Keep it up!","","");
-        BadgesMaster badgesMaster10 = new BadgesMaster(10,"Golden Penis","100% condom use as a top in a month","You won the big one for keeping it wrapped!","","");
-        BadgesMaster badgesMaster11 = new BadgesMaster(11,"Fencer","Completed all HIV & STD testing.","‘Penis Fencing’ is a scientific term for the mating ritual between flatworms. It's when two flatworms attempt to stab each other with their penis. Nice job on taking care of your saber.","","");
-        BadgesMaster badgesMaster12 = new BadgesMaster(12,"Desert","No encounters reported in 3 weeks","There are several places in the Sahara Desert that get snow on the regular. Keep your chin up.","","");
-        BadgesMaster badgesMaster13 = new BadgesMaster(13,"Galaxy","4 star rating  on an encounter or person","Sex position #92: The Star Gazer. You have lots of stars in your galaxy!","","");
-        BadgesMaster badgesMaster14 = new BadgesMaster(14,"Gold Star","1 or 2 star rating on an encounter or person","A star is a star, right?! One or two stars can still shine brightly.","","");
-        BadgesMaster badgesMaster15 = new BadgesMaster(15,"All Star","Entered a 5 star rating on an encounter or person","Pigs can have orgasms that last over 30 minutes. #oink for your 5 stars.","","");
-        BadgesMaster badgesMaster16 = new BadgesMaster(16,"Toolbox","Sex Pro Score between 10-16","You're using some prevention tools. PrEP can help you complete your toolbox.","","");
-        BadgesMaster badgesMaster17 = new BadgesMaster(17,"Vital Vitamins","Entered 5 encounters","Semen contains zinc and calcium, both of which prevent tooth decay. (We'd still recommend brushing your teeth.)","","");
-        BadgesMaster badgesMaster18 = new BadgesMaster(18,"King","Entered 10 encounters","Some lions mate over 50 times a day. King of the jungle. Are you PrEP-ready for next encounter? If not, contact us.","","");
-        BadgesMaster badgesMaster19 = new BadgesMaster(19,"Energizer Bunny","title","You burn about 200 calories during 30 minutes of sex. PrEP-ready for next encounter? If not, contact us.","","");
-        BadgesMaster badgesMaster20 = new BadgesMaster(20,"Golden Butt","title","Somebody is keeping it 100 in the best way. Congrats on protecting and enjoying yourself.","","");
+        BadgesMaster badgesMaster7 = new BadgesMaster(7,"PrEP'd","Started PrEP","A daily commitment to take PrEP is a commitment to yourself. Good lookin' out.","prep_small","Home");
+        BadgesMaster badgesMaster8 = new BadgesMaster(8,"I ♥ Anal","Anal sex with a condom","Everybody talks about safe sex, but not everybody is about safe sex. Fist bump on the condom use.","love_anal_small","Encounter");
+        BadgesMaster badgesMaster9 = new BadgesMaster(9,"Magnum","Used a condom 5 times","Look at you. Hot. Getting it in. And being protected. Keep it up!","magnum_small","Encounter");
+        BadgesMaster badgesMaster10 = new BadgesMaster(10,"Golden Penis","100% condom use as a top in a month","You won the big one for keeping it wrapped!","golden_penis_small","Encounter");
+        BadgesMaster badgesMaster11 = new BadgesMaster(11,"Fencer","Completed all HIV & STD testing.","‘Penis Fencing’ is a scientific term for the mating ritual between flatworms. It's when two flatworms attempt to stab each other with their penis. Nice job on taking care of your saber.","fencer_small","Testing");
+        BadgesMaster badgesMaster12 = new BadgesMaster(12,"Desert","No encounters reported in 3 weeks","There are several places in the Sahara Desert that get snow on the regular. Keep your chin up.","desert_small","Home");
+        BadgesMaster badgesMaster13 = new BadgesMaster(13,"Galaxy","4 star rating  on an encounter or person","Sex position #92: The Star Gazer. You have lots of stars in your galaxy!","galaxy_small","Encounter");
+        BadgesMaster badgesMaster14 = new BadgesMaster(14,"Gold Star","1 or 2 star rating on an encounter or person","A star is a star, right?! One or two stars can still shine brightly.","gold_star_small","Encounter");
+        BadgesMaster badgesMaster15 = new BadgesMaster(15,"All Star","Entered a 5 star rating on an encounter or person","Pigs can have orgasms that last over 30 minutes. #oink for your 5 stars.","all_star_small","Encounter");
+        BadgesMaster badgesMaster16 = new BadgesMaster(16,"Toolbox","Sex Pro Score between 10-16","You're using some prevention tools. PrEP can help you complete your toolbox.","toolbox_small","Sexpro");
+        BadgesMaster badgesMaster17 = new BadgesMaster(17,"Vital Vitamins","Entered 5 encounters","Semen contains zinc and calcium, both of which prevent tooth decay. (We'd still recommend brushing your teeth.)","vital_vitamins_small","Encounter");
+        BadgesMaster badgesMaster18 = new BadgesMaster(18,"King","Entered 10 encounters","Some lions mate over 50 times a day. King of the jungle. Are you PrEP-ready for next encounter? If not, contact us.","king_small","Encounter");
+        BadgesMaster badgesMaster19 = new BadgesMaster(19,"Energizer Bunny","Entered 15 encounters","You burn about 200 calories during 30 minutes of sex. PrEP-ready for next encounter? If not, contact us.","energizer_bunny_small","Encounter");
+        BadgesMaster badgesMaster20 = new BadgesMaster(20,"Golden Butt","100% condom use as a bottom in a month","Somebody is keeping it 100 in the best way. Congrats on protecting and enjoying yourself.","golden_butt_small","Encounter");
 
         List<BadgesMaster> badgesMasterList = new ArrayList<BadgesMaster>();
         badgesMasterList.add(badgesMaster1);

@@ -12,6 +12,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -46,6 +48,8 @@ public class TestingTestKitFragment extends Fragment {
     }
     TextView frag_title,title;
     CheckBox oraQuickTestKit,analSwab,chlamydia;
+    Button refresh;
+    WebView testkitWebview;
     private Tracker tracker;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,7 +61,7 @@ public class TestingTestKitFragment extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        frag_title = (TextView) view.findViewById(R.id.frag_title);
+        /*frag_title = (TextView) view.findViewById(R.id.frag_title);
         frag_title.setTypeface(tf_bold);
         title = (TextView) view.findViewById(R.id.title);
         title.setTypeface(tf);
@@ -91,16 +95,42 @@ public class TestingTestKitFragment extends Fragment {
                 } else {
                     Toast.makeText(getActivity(), "Select Test Kit type", Toast.LENGTH_SHORT).show();
                 }
-
-
+            }
+        });*/
+        testkitWebview = (WebView)view.findViewById(R.id.testkitWebview);
+        refresh = (Button)view.findViewById(R.id.refresh);
+        if(!LynxManager.haveNetworkConnection(getActivity())){
+            refresh.setVisibility(View.VISIBLE);
+        }else {
+            refresh.setVisibility(View.GONE);
+            loadTestKitURL();
+        }
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (LynxManager.haveNetworkConnection(getActivity())){
+                    loadTestKitURL();
+                    refresh.setVisibility(View.GONE);
+                }else{
+                    Toast.makeText(getActivity(),"Please enable internet connection",Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
         // Piwik Analytics //
         tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
         TrackHelper.track().screen("/Lynxtesting/Testkit").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return view;
     }
-    public void request_home_kit(final View view) {
+
+    public void loadTestKitURL(){
+        testkitWebview.loadUrl("https://www.surveygizmo.com/s3/3731988/Care-Kit-Order-Form?study=Lynx&test=yes");
+        testkitWebview.setWebChromeClient(new WebChromeClient());
+        testkitWebview.getSettings().setJavaScriptEnabled(true);
+        testkitWebview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        refresh.setVisibility(View.GONE);
+    }
+    /*public void request_home_kit(final View view) {
 
         final View popupView = getActivity().getLayoutInflater().inflate(R.layout.popup_window_confirm_address, null);
         final PopupWindow popupWindow = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -179,14 +209,14 @@ public class TestingTestKitFragment extends Fragment {
         popupWindow.showAtLocation(popupView, Gravity.CENTER,0,0);
 
 
-    }
+    }*/
     /**
      * Async task class to get json by making HTTP call
      *
      * testRequest
      */
 
-    private class requestTestKit extends AsyncTask<Void, Void, Void> {
+    /*private class requestTestKit extends AsyncTask<Void, Void, Void> {
 
         String requestTestKitResult;
         String jsonObj;
@@ -218,10 +248,10 @@ public class TestingTestKitFragment extends Fragment {
             return null;
         }
 
-        /*@Override
+        *//*@Override
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
-        }*/
+        }*//*
 
         @Override
         protected void onPostExecute(Void result) {
@@ -252,5 +282,5 @@ public class TestingTestKitFragment extends Fragment {
 
         }
 
-    }
+    }*/
 }

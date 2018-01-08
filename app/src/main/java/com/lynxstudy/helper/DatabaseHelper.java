@@ -290,6 +290,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_TESTING_LOCATION_PREP = "prep_clinic";
     private static final String KEY_TESTING_LOCATION_HIV = "hiv_clinic";
     private static final String KEY_TESTING_LOCATION_STI = "sti_clinic";
+    private static final String KEY_TESTING_LOCATION_UNDER_EIGHTEEN = "under_eighteen";
     private static final String KEY_TESTING_LOCATION_OPERATION_HOURS = "operation_hours";
     private static final String KEY_TESTING_LOCATION_INSURANCE = "insurance";
     private static final String KEY_TESTING_LOCATION_AGES = "ages";
@@ -467,7 +468,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + TABLE_TESTING_LOCATION + "(" + KEY_TESTING_LOCATION_ID + " INTEGER PRIMARY KEY," + KEY_TESTING_LOCATION_NAME + " TEXT,"
             + KEY_TESTING_LOCATION_ADDRESS + " TEXT," + KEY_TESTING_LOCATION_PHONE + " TEXT," + KEY_TESTING_LOCATION_LATITUDE + " TEXT,"
             + KEY_TESTING_LOCATION_LONGITUDE + " TEXT," + KEY_TESTING_LOCATION_URL + " TEXT," + KEY_TESTING_LOCATION_TYPE + " TEXT,"
-            + KEY_TESTING_LOCATION_PREP + " TEXT," + KEY_TESTING_LOCATION_HIV + " TEXT," + KEY_TESTING_LOCATION_STI + " TEXT,"
+            + KEY_TESTING_LOCATION_PREP + " TEXT," + KEY_TESTING_LOCATION_HIV + " TEXT," + KEY_TESTING_LOCATION_STI + " TEXT,"+ KEY_TESTING_LOCATION_UNDER_EIGHTEEN + " TEXT,"
             + KEY_TESTING_LOCATION_OPERATION_HOURS + " TEXT," + KEY_TESTING_LOCATION_INSURANCE + " TEXT," + KEY_TESTING_LOCATION_AGES + " TEXT,"
             + KEY_CREATED_AT + " DATETIME" + ")";
 
@@ -3843,6 +3844,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_TESTING_LOCATION_PREP,testingLocations.getPrep_clinic());
         values.put(KEY_TESTING_LOCATION_HIV,testingLocations.getHiv_clinic());
         values.put(KEY_TESTING_LOCATION_STI,testingLocations.getSti_clinic());
+        values.put(KEY_TESTING_LOCATION_UNDER_EIGHTEEN,testingLocations.getUnder_eighteen());
         values.put(KEY_TESTING_LOCATION_OPERATION_HOURS,testingLocations.getOperation_hours());
         values.put(KEY_TESTING_LOCATION_INSURANCE,testingLocations.getInsurance());
         values.put(KEY_TESTING_LOCATION_AGES,testingLocations.getAges());
@@ -3883,6 +3885,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         testingLocations.setPrep_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_PREP)));
         testingLocations.setHiv_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_HIV)));
         testingLocations.setSti_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_STI)));
+        testingLocations.setUnder_eighteen(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_UNDER_EIGHTEEN)));
         testingLocations.setOperation_hours(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_OPERATION_HOURS)));
         testingLocations.setInsurance(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_INSURANCE)));
         testingLocations.setAges(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_AGES)));
@@ -3919,6 +3922,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     testingLocations.setPrep_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_PREP)));
                     testingLocations.setHiv_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_HIV)));
                     testingLocations.setSti_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_STI)));
+                    testingLocations.setUnder_eighteen(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_UNDER_EIGHTEEN)));
                     testingLocations.setOperation_hours(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_OPERATION_HOURS)));
                     testingLocations.setInsurance(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_INSURANCE)));
                     testingLocations.setAges(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_AGES)));

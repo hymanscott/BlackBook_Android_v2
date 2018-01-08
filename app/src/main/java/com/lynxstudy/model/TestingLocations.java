@@ -15,6 +15,7 @@ public class TestingLocations {
     String prep_clinic;
     String hiv_clinic;
     String sti_clinic;
+    String under_eighteen;
     String operation_hours;
     String insurance;
     String ages;
@@ -32,7 +33,7 @@ public class TestingLocations {
         this.url = url;
     }
 
-    public TestingLocations(String name, String address,String phone_number, String latitude, String longitude, String url, String type,String prep_clinic,String hiv_clinic,String sti_clinic,String operation_hours,String insurance,String ages) {
+    public TestingLocations(String name, String address,String phone_number, String latitude, String longitude, String url, String type,String prep_clinic,String hiv_clinic,String sti_clinic,String under_eighteen,String operation_hours,String insurance,String ages) {
         this.name = name;
         this.address = address;
         this.phone_number = phone_number;
@@ -43,6 +44,7 @@ public class TestingLocations {
         this.prep_clinic = prep_clinic;
         this.hiv_clinic = hiv_clinic;
         this.sti_clinic = sti_clinic;
+        this.under_eighteen = under_eighteen;
         this.operation_hours = operation_hours;
         this.insurance = insurance;
         this.ages = ages;
@@ -134,6 +136,14 @@ public class TestingLocations {
 
     public void setSti_clinic(String sti_clinic) {
         this.sti_clinic = sti_clinic;
+    }
+
+    public String getUnder_eighteen() {
+        return under_eighteen;
+    }
+
+    public void setUnder_eighteen(String under_eighteen) {
+        this.under_eighteen = under_eighteen;
     }
 
     public String getOperation_hours() {

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -28,7 +29,7 @@ import java.util.Locale;
 
 public class LynxSexPro extends AppCompatActivity implements View.OnClickListener{
 
-    LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
+    LinearLayout btn_testing,btn_diary,btn_prep,btn_chat,additionalTriggerMessage;
     DatabaseHelper db;
     TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,score_update,score_update_date,info_title,info_para_one,info_para_two,info_para_three,infoLink;
     private Statistics statistics = new Statistics();
@@ -156,9 +157,9 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
             }
             String message ="";
             if(adjustedScore>=17){
-                message = "You’re taking good care of your sexual health. You should take PrEP daily to further reduce your risk.";
+                message = "Wow. Look at you! You’re seriously taking good care of your sexual health. Taking PrEP daily can keep you in the green.";
             }else{
-                message = "You’re still at high risk for HIV because you reported not taking PrEP daily. You should take PrEP daily to be protected.";
+                message = "You haven't reached the green because you’re not taking PrEP daily. Taking it every day will really further protect your sexual health. Hit us up, we can help!";
             }
             dial_imgview.setRotation(angle);
             current_score_text.setText(message);
@@ -173,11 +174,11 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
             }
             String message ="";
             if(unAdjustedScore == 1){
-                message = "Your HIV risk is extremely high.  Talk with us about how PrEP can reduce your risk.";
+                message = "You’re deep in the red, but getting into the green is easier than you think. PrEP is a great way to protect your sexual health. Hit us up, we can help.";
             }else if(unAdjustedScore>=2 && unAdjustedScore <=16){
-                message = "You’re at high risk for HIV. Talk with us about how PrEP can reduce your risk.";
+                message = "You’re in the red, but the green zone is closer than you think. PrEP can help protect you, and get you into the green. Talk to us about your options.";
             }else if(unAdjustedScore>=17 && unAdjustedScore <=20){
-                message = "You’re taking good care to lower your HIV risk. PrEP may add additional protection.";
+                message = "Well, alright! You're in the green and doing great. PrEp can offer even more protection with similar convenience.";
             }
             dial_imgview.setRotation(angle);
             current_score_text.setText(message);
@@ -254,6 +255,73 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
             case 20:
                 scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_twenty));
                 break;
+        }
+        /*Additional Trigger message*/
+        TextView additionalMessageTitle = (TextView)findViewById(R.id.additionalMessageTitle);
+        additionalMessageTitle.setTypeface(tf);
+        additionalTriggerMessage = (LinearLayout)findViewById(R.id.additionalTriggerMessage);
+        if(getscore.getNASP()){
+            TextView tv = new TextView(LynxSexPro.this);
+            tv.setTypeface(tf);
+            tv.setTextColor(getResources().getColor(R.color.text_color));
+            tv.setTextSize(14);
+            tv.setPadding(0,5,0,0);
+            tv.setText("+ Decreasing your number of sexual partners.");
+            additionalTriggerMessage.addView(tv);
+        }
+        if(getscore.getPPIAS()){
+            TextView tv = new TextView(LynxSexPro.this);
+            tv.setTypeface(tf);
+            tv.setTextColor(getResources().getColor(R.color.text_color));
+            tv.setTextSize(14);
+            tv.setPadding(0,5,0,0);
+            tv.setText("+ Increasing your condom use as a top.");
+            additionalTriggerMessage.addView(tv);
+        }
+        if(getscore.getPPRAS()){
+            TextView tv = new TextView(LynxSexPro.this);
+            tv.setTypeface(tf);
+            tv.setTextColor(getResources().getColor(R.color.text_color));
+            tv.setTextSize(14);
+            tv.setPadding(0,5,0,0);
+            tv.setText("+ Increasing your condom use as a bottom.");
+            additionalTriggerMessage.addView(tv);
+        }
+        if(getscore.getMETH()){
+            TextView tv = new TextView(LynxSexPro.this);
+            tv.setTypeface(tf);
+            tv.setTextColor(getResources().getColor(R.color.text_color));
+            tv.setTextSize(14);
+            tv.setPadding(0,5,0,0);
+            tv.setText("+ Reducing your use of meth/speed.");
+            additionalTriggerMessage.addView(tv);
+        }
+        if(getscore.getCOKE()){
+            TextView tv = new TextView(LynxSexPro.this);
+            tv.setTypeface(tf);
+            tv.setTextColor(getResources().getColor(R.color.text_color));
+            tv.setTextSize(14);
+            tv.setPadding(0,5,0,0);
+            tv.setText("+ Reducing your use of cocaine/crack.");
+            additionalTriggerMessage.addView(tv);
+        }
+        if(getscore.getPOP()){
+            TextView tv = new TextView(LynxSexPro.this);
+            tv.setTypeface(tf);
+            tv.setTextColor(getResources().getColor(R.color.text_color));
+            tv.setTextSize(14);
+            tv.setPadding(0,5,0,0);
+            tv.setText("+ Reducing your use of poppers.");
+            additionalTriggerMessage.addView(tv);
+        }
+         if(getscore.getSTI()){
+             TextView tv = new TextView(LynxSexPro.this);
+             tv.setTypeface(tf);
+             tv.setTextColor(getResources().getColor(R.color.text_color));
+             tv.setTextSize(14);
+             tv.setPadding(0,5,0,0);
+            tv.setText("+ Using condoms to prevent STDs.");
+            additionalTriggerMessage.addView(tv);
         }
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();

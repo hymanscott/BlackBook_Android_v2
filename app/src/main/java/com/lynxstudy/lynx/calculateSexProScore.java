@@ -572,4 +572,54 @@ public class calculateSexProScore {
         int m2 = Calendar.getInstance().get(Calendar.YEAR) * 12 + Calendar.getInstance().get(Calendar.MONTH);
         return m2 - m1;
     }
+
+    public boolean getPOP() {
+        if (POP>0)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean getMETH(){
+        if (METH>0)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean getCOKE(){
+        if (COKE>0)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean getSTI(){
+        if (STI>0)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean getPPRAS(){
+        if (PPRAS_POS_UNK<1)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean getPPIAS(){
+        if (PPIAS_POS_UNK<1)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean getNASP(){
+        if (NASP_UNKNOWN > 1 && NASP_NEG > 1 && NASP_POS > 1)
+            return true;
+        else
+            return false;
+    }
+
 }
