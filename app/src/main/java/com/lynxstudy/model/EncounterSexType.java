@@ -32,6 +32,16 @@ public class EncounterSexType {
         this.status_update = status_update;
         this.status_encrypt = status_encrypt;
     }
+    public EncounterSexType(int encounter_id,int user_id, String sex_type, String condom_use, String note, String status_update,boolean status_encrypt,String created_at) {
+        this.encounter_id = encounter_id;
+        this.user_id = user_id;
+        this.sex_type = sex_type;
+        this.condom_use = condom_use;
+        this.note = note;
+        this.status_update = status_update;
+        this.status_encrypt = status_encrypt;
+        this.created_at = created_at;
+    }
 
     public int getEncounter_sex_type_id() {
         return encounter_sex_type_id;

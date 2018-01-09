@@ -291,7 +291,12 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     startActivity(diary);
                     finish();
                     break;
-                case "PushNotification":
+                case "Chat":
+                    Intent chat = new Intent(LynxHome.this,LynxChat.class);
+                    startActivity(chat);
+                    finish();
+                    break;
+                case "Testing":
                     break;
 
             }
@@ -323,10 +328,53 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("LYNX").getBadge_id())==0){
             // Adding User Badge : LYNX Badge //
             BadgesMaster lynx_badge = db.getBadgesMasterByName("LYNX");
-            int shown = 0;
+            int shown = 1;
             UserBadges lynxBadge = new UserBadges(lynx_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,lynx_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
             db.createUserBadge(lynxBadge);
         }
+
+        // Checking Golden Butt and Golden Penis badge //
+        Calendar currentCal = Calendar.getInstance();
+        currentCal.add(Calendar.MONTH, -1);
+        int lastMonth = currentCal.get(Calendar.MONTH) + 1; // beware of month indexing from zero
+        int lastYear  = currentCal.get(Calendar.YEAR);
+        String date = lastYear+"-"+String.format("%02d", lastMonth)+"-";
+        List<EncounterSexType> bottomSexTypes = db.getAllEncounterSexTypesByNameAndDate("I bottomed",date);
+        int condombottomusagecount = 0;
+        for(EncounterSexType encounterSexType:bottomSexTypes){
+            if(encounterSexType.getCondom_use().equals("Condom used"))
+                condombottomusagecount++;
+        }
+        List<EncounterSexType> topSexTypes = db.getAllEncounterSexTypesByNameAndDate("I topped",date);
+        int condomtopusagecount = 0;
+        for(EncounterSexType encounterSexType:topSexTypes){
+            if(encounterSexType.getCondom_use().equals("Condom used"))
+                condomtopusagecount++;
+        }
+        int shown = 0;
+        Calendar cal = Calendar.getInstance();
+        int month = cal.get(Calendar.MONTH) + 1;
+        int year  = cal.get(Calendar.YEAR);
+        String date1 = year+"-"+String.format("%02d", month)+"-";
+        if(bottomSexTypes.size() > 0 && condombottomusagecount == bottomSexTypes.size()){
+            // Adding User Badge : Golden Butt Badge //
+            BadgesMaster gold_butt_badge = db.getBadgesMasterByName("Golden Butt");
+            int userbadge = db.getUserBadgeByIdAndDate(LynxManager.getActiveUser().getUser_id(),gold_butt_badge.getBadge_id(),date1);
+            if(userbadge==0){
+                UserBadges lynxBadge = new UserBadges(gold_butt_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,gold_butt_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+                db.createUserBadge(lynxBadge);
+            }
+        }
+         if(topSexTypes.size() > 0 && condomtopusagecount == topSexTypes.size()){
+            // Adding User Badge : Golden Penis Badge //
+            BadgesMaster gold_penis_badge = db.getBadgesMasterByName("Golden Penis");
+            int userbadge1 = db.getUserBadgeByIdAndDate(LynxManager.getActiveUser().getUser_id(),gold_penis_badge.getBadge_id(),date1);
+            if(userbadge1==0){
+                UserBadges lynxBadge = new UserBadges(gold_penis_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,gold_penis_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+                db.createUserBadge(lynxBadge);
+            }
+        }
+
         // Show If Badges Available //
         List<UserBadges> userBadgesList = db.getAllUserBadgesByShownStatus(0);
         int i=0;
@@ -335,6 +383,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 Intent badgeScreen =  new Intent(LynxHome.this,BadgeScreenActivity.class);
                 badgeScreen.putExtra("badge_id",userBadges.getBadge_id());
                 badgeScreen.putExtra("isAlert","Yes");
+                badgeScreen.putExtra("user_badge_id",userBadges.getUser_badge_id());
                 startActivity(badgeScreen);
                 db.updateUserBadgeByShownStatus(userBadges.getUser_badge_id(),1);
             }

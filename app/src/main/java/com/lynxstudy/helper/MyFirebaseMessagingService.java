@@ -16,10 +16,12 @@ import android.widget.Toast;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.lynxstudy.lynx.LynxChat;
+import com.lynxstudy.lynx.LynxHome;
 import com.lynxstudy.lynx.LynxManager;
 import com.lynxstudy.lynx.LynxSexPro;
 import com.lynxstudy.lynx.LynxTesting;
 import com.lynxstudy.lynx.R;
+import com.lynxstudy.lynx.RegLogin;
 import com.lynxstudy.model.ChatMessage;
 
 import java.io.IOException;
@@ -49,7 +51,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.v("PushNotification",String.valueOf(data));
         int pushnotification_flag = Integer.parseInt(data.get("pushnotification_flag"));
         db = new DatabaseHelper(getApplicationContext());
-        if (pushnotification_flag == 1){
+
+
+        /*if (pushnotification_flag == 1){
             ChatMessage newmessage = new ChatMessage();
             newmessage.setMessage(LynxManager.encryptString(data.get("message")));
             newmessage.setSender_pic(LynxManager.encryptString(data.get("sender_profile_pic_url")));
@@ -59,7 +63,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             db.createChatMessage(newmessage);
         }else if(pushnotification_flag == 0){
             // test history goes here
-        }
+        }*/
 
         sendNotification(notification, data);
     }
@@ -72,17 +76,32 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      */
     private void sendNotification(RemoteMessage.Notification notification, Map<String, String> data) {
         Bitmap icon = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-
         int pushnotification_flag = Integer.parseInt(data.get("pushnotification_flag"));
-        Intent intent= new Intent(this, LynxSexPro.class);
-        String message="Message From LYNX";
-        if(pushnotification_flag==1){
-            intent = new Intent(this, LynxChat.class);
-            message = "You received a new message from LYNX";
-        }else if(pushnotification_flag==0){
-            intent = new Intent(this, LynxTesting.class);
+        Intent intent= new Intent(this, RegLogin.class);
+        intent.putExtra("action","PushNotification");
+        String message="New message from Lynx!";
+
+        // pushnotification_flag : 0=> Chat; 1=> Testing; //
+        switch (pushnotification_flag){
+            case 0:
+                /*intent = new Intent(this, LynxChat.class);*/
+                message = "You received a new message from Lynx!";
+                intent.putExtra("subaction","Chat");
+                ChatMessage newmessage = new ChatMessage();
+                newmessage.setMessage(LynxManager.encryptString(data.get("subtitle")));
+                newmessage.setSender_pic(LynxManager.encryptString(""));
+                newmessage.setSender(LynxManager.encryptString(data.get("title")));
+                newmessage.setDatetime(LynxManager.encryptString(data.get("date")));
+                newmessage.setStatusUpdate(LynxManager.encryptString(String.valueOf(R.string.statusUpdateYes)));
+                db.createChatMessage(newmessage);
+                break;
+            case 1:
+                /*intent = new Intent(this, LynxTesting.class);*/
+                intent.putExtra("subaction","Testing");
+                break;
+            default:
+                break;
         }
-        intent.putExtra("fromactivity","PushNotification");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
@@ -95,20 +114,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentInfo("LYNX")
                 .setLargeIcon(icon)
                 .setColor(Color.RED)
-                .setSmallIcon(R.mipmap.ic_launcher);
-
-        /*try {
-            String picture_url = data.get("picture_url");
-            if (picture_url != null && !"".equals(picture_url)) {
-                URL url = new URL(picture_url);
-                Bitmap bigPicture = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                notificationBuilder.setStyle(
-                        new NotificationCompat.BigPictureStyle().bigPicture(bigPicture).setSummaryText(notification.getBody())
-                );
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+                .setSmallIcon(R.drawable.ic_silhouette);
 
         notificationBuilder.setDefaults(Notification.DEFAULT_VIBRATE);
         notificationBuilder.setLights(Color.YELLOW, 1000, 300);

@@ -176,6 +176,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
                 Intent badgeScreen =  new Intent(LynxDiary.this,BadgeScreenActivity.class);
                 badgeScreen.putExtra("badge_id",userBadges.getBadge_id());
                 badgeScreen.putExtra("isAlert","Yes");
+                badgeScreen.putExtra("user_badge_id",userBadges.getUser_badge_id());
                 startActivity(badgeScreen);
                 db.updateUserBadgeByShownStatus(userBadges.getUser_badge_id(),1);
             }

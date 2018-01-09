@@ -119,7 +119,8 @@ public class RegLogin extends AppCompatActivity {
                         LynxManager.notificationActions = "NewSexReportNo";
                         break;
                     case "PushNotification":
-                        LynxManager.notificationActions = "PushNotification";
+                        String subaction = getIntent().getExtras().getString("subaction");
+                        LynxManager.notificationActions = subaction;
                         break;
                     default:
                         LynxManager.notificationActions = null;
@@ -1480,8 +1481,8 @@ public class RegLogin extends AppCompatActivity {
                                     LynxManager.encryptString(encounterSexobject.getString("sex_type")) ,
                                     encounterSexobject.getString("condom_use"),
                                     LynxManager.encryptString(encounterSexobject.getString("note")),
-                                    String.valueOf(R.string.statusUpdateYes), true);
-                            int encSexID = db.createEncounterSexType(encSexType);
+                                    String.valueOf(R.string.statusUpdateYes), true,encounterSexobject.getString("created_at"));
+                            int encSexID = db.createEncounterSexTypeWithDate(encSexType);
                             encSexType.setEncounter_sex_type_id(encSexID);
                         }
 

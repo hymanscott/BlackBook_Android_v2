@@ -3151,6 +3151,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return encounter_sexType_id;
     }
+    public int createEncounterSexTypeWithDate(EncounterSexType encounterSexType) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ENCSEXTYPE_ENCOUNTERID, encounterSexType.getEncounter_id());
+        values.put(KEY_ENCSEXTYPE_USERID, encounterSexType.getUser_id());
+        values.put(KEY_ENCSEXTYPE_SEXTYPE, encounterSexType.getSex_type());
+        values.put(KEY_ENCSEXTYPE_CONDOMUSE, encounterSexType.getCondom_use());
+        values.put(KEY_ENCSEXTYPE_NOTE, encounterSexType.getNote());
+        values.put(KEY_STATUS_UPDATE, encounterSexType.getStatus_update());
+        values.put(KEY_CREATED_AT, encounterSexType.getCreated_at());
+
+        // insert row
+        int encounter_sexType_id = (int) db.insert(TABLE_ENCOUNTER_SEXTYPE, null, values);
+
+
+        return encounter_sexType_id;
+    }
     /**
      * getting all Encounter Sex Type by Encounter_id
      */
@@ -3286,6 +3304,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     public List<EncounterSexType> getAllEncounterSexTypesByName(String type) {
         String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE + " WHERE " + KEY_ENCSEXTYPE_SEXTYPE + " = '"+LynxManager.encryptString(type)+"'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(countQuery, null);
+        // looping through all rows and adding to list
+        List<EncounterSexType> encounterSexTypes = new ArrayList<EncounterSexType>();
+        if (c.moveToFirst()) {
+            do {
+                EncounterSexType encounterSexType = new EncounterSexType();
+                encounterSexType.setEncounter_sex_type_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_ID)));
+                encounterSexType.setEncounter_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_ENCOUNTERID)));
+                encounterSexType.setUser_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_USERID)));
+                encounterSexType.setSex_type(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_SEXTYPE)));
+                encounterSexType.setCondom_use(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_CONDOMUSE)));
+                encounterSexType.setNote(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_NOTE)));
+                encounterSexType.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // adding to Users list
+                encounterSexTypes.add(encounterSexType);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return encounterSexTypes;
+    }
+    public List<EncounterSexType> getAllEncounterSexTypesByNameAndDate(String type, String date) {
+        String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE + " WHERE " + KEY_ENCSEXTYPE_SEXTYPE + " = '"+LynxManager.encryptString(type)+"' AND " + KEY_CREATED_AT + " LIKE '"+ date + "%'";
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(countQuery, null);
         // looping through all rows and adding to list
@@ -4583,7 +4625,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // insert row
         return (int) db.insert(TABLE_USER_BADGES, null, values);
     }
+    public int getUserBadgeByIdAndDate(int user_id, int badge_id, String date){
+        SQLiteDatabase db = this.getReadableDatabase();
 
+        String selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE "
+                + KEY_USERS_ID + " = " + user_id +" AND "+ KEY_USER_BADGE_BADGEID + " = " + badge_id +" AND "+KEY_CREATED_AT+" LIKE '"+ date+"%'";
+        Log.e(LOG, selectQuery);
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+        int count = c.getCount();
+        c.close();
+        return count;
+    }
     /**
      * get all  User Badges by User id
      */

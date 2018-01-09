@@ -226,17 +226,17 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             String msg_date = LynxManager.getFormatedDate("yyyy-MM-dd hh:mm:ss",LynxManager.decryptString(chatMessage.getDatetime()),"MMM dd, hh:mm a");
             View v;
             TextView date;
-            if(chatMessage.getSender().equals(LynxManager.getActiveUser().getFirstname())){
+            if(LynxManager.decryptString(chatMessage.getSender()).equals("Lynx Study")){
+                v = LayoutInflater.from(LynxChat.this).inflate(R.layout.chat_row_blue, tr, false);
+                date = (TextView) v.findViewById(R.id.date);
+                date.setText(LynxManager.decryptString(chatMessage.getSender()) + ", "+msg_date);
+                params1.gravity = Gravity.LEFT;
+            }else{
                 v = LayoutInflater.from(LynxChat.this).inflate(R.layout.chat_row, tr, false);
                 //date.setText("FEB 22, 9:31 AM");
                 date = (TextView) v.findViewById(R.id.date);
                 date.setText("You, "+msg_date);
                 params1.gravity = Gravity.RIGHT;
-            }else{
-                v = LayoutInflater.from(LynxChat.this).inflate(R.layout.chat_row_blue, tr, false);
-                date = (TextView) v.findViewById(R.id.date);
-                date.setText(LynxManager.decryptString(chatMessage.getSender()) + ", "+msg_date);
-                params1.gravity = Gravity.LEFT;
             }
 
             LinearLayout container = (LinearLayout) v.findViewById(R.id.container);

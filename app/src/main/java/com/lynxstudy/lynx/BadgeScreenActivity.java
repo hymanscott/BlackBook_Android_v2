@@ -59,6 +59,9 @@ public class BadgeScreenActivity extends AppCompatActivity {
             actionBar.setVisibility(View.GONE);
             alertText.setVisibility(View.VISIBLE);
             got_it.setVisibility(View.VISIBLE);
+            // Updating Badge shown status //
+            int user_badge_id = getIntent().getIntExtra("user_badge_id",1);
+            db.updateUserBadgeByShownStatus(user_badge_id,1);
         }else{
             actionBar.setVisibility(View.VISIBLE);
             alertText.setVisibility(View.GONE);
