@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -89,6 +90,11 @@ public class LynxBadges extends AppCompatActivity implements View.OnClickListene
             int noOfCount = db.getUserBadgesCountByBadgeID(badgesMaster.getBadge_id());
 
             rowBadgeName.setText(badgesMaster.getBadge_name());
+            if(badgesMaster.getBadge_name().equals("PrEP")){
+                rowBadgeName.setText("PrEP'd");
+            }else if(badgesMaster.getBadge_name().equals("I Love Anal")){
+                rowBadgeName.setText(Html.fromHtml("I &#9829; Anal"));
+            }
             rowBadgeDescription.setText(badgesMaster.getBadge_description());
             rowBadgeEarnedTimes.setText("Earned " + noOfCount +" time(s)");
             switch (badgesMaster.getBadge_icon()){

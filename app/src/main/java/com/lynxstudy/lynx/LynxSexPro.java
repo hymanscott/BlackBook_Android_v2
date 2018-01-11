@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -18,12 +19,18 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.Statistics;
+import com.lynxstudy.model.UserBadges;
+import com.lynxstudy.model.User_baseline_info;
 
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -141,48 +148,84 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         current_score_tv.setTypeface(tf);
         TextView current_score_text = (TextView) findViewById(R.id.current_score_text);
         current_score_text.setTypeface(tf);
+
+        /*SexPro Score*/
         calculateSexProScore getscore = new calculateSexProScore(LynxSexPro.this);
-        int adjustedScore = Math.round((float) getscore.getAdjustedScore());
-        int unAdjustedScore = Math.round((float) getscore.getUnAdjustedScore());
-        int final_score = 1;
-        if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
-            current_score_tv.setText("CURRENT SEX PRO SCORE:  "+String.valueOf(adjustedScore));
-            final_score = adjustedScore;
-            /*float angle = (int) ((adjustedScore-1) * 13.86);*/
-            float angle;
-            if((adjustedScore-1)>=17){
-                angle = (int) ((adjustedScore-1) * 13.76);
+        User_baseline_info user_baseline_info = db.getUserBaselineInfobyUserID(LynxManager.getActiveUser().getUser_id());
+        String message ="";
+        int final_score = user_baseline_info.getSexpro_score();
+        String prep_status = user_baseline_info.getSexpro_prep();
+        String cal_date = user_baseline_info.getSexpro_calculated_date();
+
+        /*Elapsed date calculation*/
+        Calendar calCurrentDate = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat inputDF1  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = null;
+        if(cal_date==null || cal_date ==""){
+            cal_date = LynxManager.getDateTime();
+        }
+        try {
+            date = inputDF1.parse(cal_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        cal.setTime(date);
+        long milliSeconds1 = cal.getTimeInMillis();
+        long milliSeconds2 = calCurrentDate.getTimeInMillis();
+        long periodSeconds = (milliSeconds2 - milliSeconds1) ;
+        long elapsedDays = periodSeconds / (1000 * 60 * 60 * 24);
+        int elapsed_days = (int) elapsedDays;
+
+        /*Recalculate score*/
+        if(final_score == 0 || prep_status == null || cal_date == null || elapsedDays>90){
+            prep_status = LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep());
+            cal_date = LynxManager.getDateTime();
+            if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
+                final_score = Math.round((float) getscore.getAdjustedScore());
             }else{
-                angle = (int) ((adjustedScore-1) * 13.86);
+                final_score = Math.round((float) getscore.getUnAdjustedScore());
             }
-            String message ="";
-            if(adjustedScore>=17){
+            db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), final_score,prep_status, cal_date, String.valueOf(R.string.statusUpdateNo));
+            // Adding User Badge : Tool Box and Green Light Badge //
+            int shown = 0;
+            if(final_score >=17){
+                BadgesMaster green_badge = db.getBadgesMasterByName("Green Light");
+                UserBadges greenBadge = new UserBadges(green_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,green_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+                db.createUserBadge(greenBadge);
+            }else if(final_score>= 10 && final_score<=16){
+                BadgesMaster toolbox_badge = db.getBadgesMasterByName("Toolbox");
+                UserBadges toolBoxBadge = new UserBadges(toolbox_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,toolbox_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+                db.createUserBadge(toolBoxBadge);
+            }
+        }
+
+        if(prep_status.equals("Yes")){
+            if(final_score>=17){
                 message = "Wow. Look at you! You’re seriously taking good care of your sexual health. Taking PrEP daily can keep you in the green.";
             }else{
                 message = "You haven't reached the green because you’re not taking PrEP daily. Taking it every day will really further protect your sexual health. Hit us up, we can help!";
             }
-            dial_imgview.setRotation(angle);
-            current_score_text.setText(message);
         }else{
-            current_score_tv.setText("CURRENT SEX PRO SCORE:  "+String.valueOf(unAdjustedScore));
-            final_score = unAdjustedScore;
-            float angle;
-            if((unAdjustedScore-1)>=17){
-                angle = (int) ((unAdjustedScore-1) * 13.76);
-            }else{
-                angle = (int) ((unAdjustedScore-1) * 13.86);
-            }
-            String message ="";
-            if(unAdjustedScore == 1){
+            if(final_score == 1){
                 message = "You’re deep in the red, but getting into the green is easier than you think. PrEP is a great way to protect your sexual health. Hit us up, we can help.";
-            }else if(unAdjustedScore>=2 && unAdjustedScore <=16){
+            }else if(final_score>=2 && final_score <=16){
                 message = "You’re in the red, but the green zone is closer than you think. PrEP can help protect you, and get you into the green. Talk to us about your options.";
-            }else if(unAdjustedScore>=17 && unAdjustedScore <=20){
+            }else if(final_score>=17 && final_score <=20){
                 message = "Well, alright! You're in the green and doing great. PrEp can offer even more protection with similar convenience.";
             }
-            dial_imgview.setRotation(angle);
-            current_score_text.setText(message);
         }
+        float angle;/*float angle = (int) ((adjustedScore-1) * 13.86);*/
+        if((final_score-1)>=17){
+            angle = (int) ((final_score-1) * 13.76);
+        }else{
+            angle = (int) ((final_score-1) * 13.86);
+        }
+        dial_imgview.setRotation(angle);
+        current_score_tv.setText("CURRENT SEX PRO SCORE:  "+String.valueOf(final_score));
+        current_score_text.setText(message);
+        Log.v("Elapsed Days",final_score + "--" + prep_status + "--" + cal_date);
+
         // Score Update Date //
         String createdAt = LynxManager.getActiveUserBaselineInfo().getCreated_at();
         createdAt = LynxManager.getFormatedDate("yyyy-MM-dd HH:mm:ss",createdAt,"MM/dd/yyyy");

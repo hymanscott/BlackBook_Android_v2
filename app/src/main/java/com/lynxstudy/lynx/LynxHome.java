@@ -64,7 +64,10 @@ import org.piwik.sdk.extra.TrackHelper;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -374,7 +377,33 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 db.createUserBadge(lynxBadge);
             }
         }
-
+        // Adding Fencer Badge //
+        Calendar calCurrentDate = Calendar.getInstance();
+        Calendar calCreatedAt = Calendar.getInstance();
+        SimpleDateFormat inputDF1  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date created_date = null;
+        try {
+            created_date = inputDF1.parse(LynxManager.getActiveUserBaselineInfo().getCreated_at());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        calCreatedAt.setTime(created_date);
+        long milliSeconds1 = calCreatedAt.getTimeInMillis();
+        long milliSeconds2 = calCurrentDate.getTimeInMillis();
+        long periodSeconds = (milliSeconds2 - milliSeconds1) ;
+        long elapsedDays = periodSeconds / (1000 * 60 * 60 * 24);
+        int elapsed_days = (int) elapsedDays;
+        Log.v("elapsed_days",String.valueOf(elapsed_days));
+        if(elapsed_days%90==0){
+            if(db.getTestingHistoriesCountByTestingId(1)>0 && db.getTestingHistoriesCountByTestingId(2)>0){
+                BadgesMaster fencer_badge = db.getBadgesMasterByName("Fencer");
+                UserBadges fencerBadge = new UserBadges(fencer_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,fencer_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+                int userbadge = db.getUserBadgeByIdAndDate(LynxManager.getActiveUser().getUser_id(),fencer_badge.getBadge_id(),date1);
+                if(userbadge==0){
+                    db.createUserBadge(fencerBadge);
+                }
+            }
+        }
         // Show If Badges Available //
         List<UserBadges> userBadgesList = db.getAllUserBadgesByShownStatus(0);
         int i=0;

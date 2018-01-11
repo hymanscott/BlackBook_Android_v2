@@ -21,6 +21,8 @@ public class User_baseline_info {
     String bottom_condom_use_percent;
     String is_primary_partner;
     int sexpro_score;
+    String sexpro_prep;
+    String sexpro_calculated_date;
     String status_update;
     boolean status_encrypt;
     String created_at;
@@ -29,7 +31,7 @@ public class User_baseline_info {
     public User_baseline_info() {
     }
 
-    public User_baseline_info(int user_id, String hiv_negative_count, String hiv_positive_count, String hiv_unknown_count, String no_of_times_top_hivposs, String top_condom_use_percent, String no_of_times_bot_hivposs, String bottom_condom_use_percent, String is_primary_partner, String status_update,boolean status_encrypt) {
+    public User_baseline_info(int user_id, String hiv_negative_count, String hiv_positive_count, String hiv_unknown_count, String no_of_times_top_hivposs, String top_condom_use_percent, String no_of_times_bot_hivposs, String bottom_condom_use_percent, String is_primary_partner, int sexpro_score,String sexpro_prep, String sexpro_calculated_date, String status_update,boolean status_encrypt) {
 
         this.user_id = user_id;
         this.hiv_negative_count = hiv_negative_count;
@@ -40,6 +42,9 @@ public class User_baseline_info {
         this.no_of_times_bot_hivposs = no_of_times_bot_hivposs;
         this.bottom_condom_use_percent = bottom_condom_use_percent;
         this.is_primary_partner = is_primary_partner;
+        this.sexpro_score =sexpro_score;
+        this.sexpro_prep = sexpro_prep;
+        this.sexpro_calculated_date = sexpro_calculated_date;
         this.status_update = status_update;
         this.status_encrypt = status_encrypt;
     }
@@ -138,6 +143,22 @@ public class User_baseline_info {
 
     public void setSexpro_score(int sexpro_score) {
         this.sexpro_score = sexpro_score;
+    }
+
+    public String getSexpro_prep() {
+        return sexpro_prep;
+    }
+
+    public void setSexpro_prep(String sexpro_prep) {
+        this.sexpro_prep = sexpro_prep;
+    }
+
+    public String getSexpro_calculated_date() {
+        return sexpro_calculated_date;
+    }
+
+    public void setSexpro_calculated_date(String sexpro_calculated_date) {
+        this.sexpro_calculated_date = sexpro_calculated_date;
     }
 
     public String getCreated_at() {

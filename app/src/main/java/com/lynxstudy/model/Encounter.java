@@ -43,7 +43,7 @@ public class Encounter {
         this.status_update = status_update;
         this.status_encrypt = status_encrypt;
     }
-    public Encounter(int encounter_id,int user_id, String datetime, int partner_id, String rate_the_sex, String is_drug_used, String did_you_cum,String did_your_partner_cum,String encounter_notes, String is_possible_sex_tomorrow,String status_update,boolean status_encrypt) {
+    public Encounter(int encounter_id,int user_id, String datetime, int partner_id, String rate_the_sex, String is_drug_used, String did_you_cum,String did_your_partner_cum,String encounter_notes, String is_possible_sex_tomorrow,String status_update,boolean status_encrypt,String created_at) {
         this.encounter_id=encounter_id;
         this.user_id = user_id;
         this.datetime = datetime;
@@ -56,6 +56,7 @@ public class Encounter {
         this.is_possible_sex_tomorrow = is_possible_sex_tomorrow;
         this.status_update = status_update;
         this.status_encrypt = status_encrypt;
+        this.created_at = created_at;
     }
 
     public int getEncounter_id() {

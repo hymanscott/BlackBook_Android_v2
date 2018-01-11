@@ -264,10 +264,13 @@ public class calculateSexProScore {
                     }
                 }
             }
-
-            for(UserAlcoholUse alcoholUse : db.getAllAlcoholUse()){
-                if(LynxManager.decryptString(alcoholUse.getIs_baseline()).equals("No")){
-                    LynxManager.setActiveUserAlcoholUse(alcoholUse);
+            List<UserAlcoholUse> alcoholUsesList =db.getAllAlcoholUse();
+            if(alcoholUsesList!=null){
+                for(UserAlcoholUse alcoholUse : alcoholUsesList){
+                    //Log.v("BaselineCheck",alcoholUse.getAlcohol_use_id() + "--" + alcoholUse.getIs_baseline());
+                    if(alcoholUse.getIs_baseline()!=null && LynxManager.decryptString(alcoholUse.getIs_baseline()).equals("No")){
+                       userAlcoholUse = alcoholUse;
+                    }
                 }
             }
             if(userAlcoholUse!=null) {

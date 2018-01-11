@@ -195,9 +195,17 @@ public class RemindersActivity extends AppCompatActivity {
     }
 
     public boolean loggedNext(View view){
-        Intent baselineActivity = new Intent(RemindersActivity.this,BaselineActivity.class);
-        startActivity(baselineActivity);
-        finish();
+        int userBaselineInfoCount = db.getUserBaselineInfoCount();
+        if (userBaselineInfoCount == 0) {
+            Intent baselineActivity = new Intent(RemindersActivity.this,BaselineActivity.class);
+            startActivity(baselineActivity);
+            finish();
+        }else{
+            Intent baselineActivity = new Intent(RemindersActivity.this,LynxHome.class);
+            startActivity(baselineActivity);
+            finish();
+        }
+
         return true;
     }
 }

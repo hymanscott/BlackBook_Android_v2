@@ -73,9 +73,14 @@ public class BadgeScreenActivity extends AppCompatActivity {
         int noOfCount = db.getUserBadgesCountByBadgeID(badge_id);
 
         badgeName.setText(badgesMaster.getBadge_name());
+        if(badgesMaster.getBadge_name().equals("PrEP")){
+            badgeName.setText("PrEP'd");
+        }else if(badgesMaster.getBadge_name().equals("I Love Anal")){
+            badgeName.setText("I ♥ Anal");
+        }
         badgeDescription.setText(badgesMaster.getBadge_description());
         badgeNotes.setText(badgesMaster.getBadge_notes());
-        badgeEarnedTimes.setText("Badge earned " + noOfCount +" time");
+        badgeEarnedTimes.setText("Badge earned " + noOfCount +" time(s)");
         switch (badgesMaster.getBadge_icon()){
             case "high_five_small":
                 badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.high_five_large));

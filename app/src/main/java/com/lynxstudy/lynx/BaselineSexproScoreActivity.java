@@ -83,7 +83,7 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
         int unAdjustedScore = Math.round((float) getscore.getUnAdjustedScore());
         int score = Math.round(current_score);
         db =new DatabaseHelper(BaselineSexproScoreActivity.this);
-        db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), score, String.valueOf(R.string.statusUpdateNo));
+        db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), score,LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()), LynxManager.getDateTime(), String.valueOf(R.string.statusUpdateNo));
         reg_sexPro_score_value.setText(" " + score);
         final ImageView dial_imgview = (ImageView)findViewById(R.id.imageView);
         int final_score;
@@ -187,12 +187,20 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
                 break;
         }
 
-        // Adding User Badge : LYNX Badge //
+        // Adding User Badge : LYNX Badge, Tool Box and Green Light Badge //
         BadgesMaster lynx_badge = db.getBadgesMasterByName("LYNX");
         int shown = 0;
         UserBadges lynxBadge = new UserBadges(lynx_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,lynx_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
         db.createUserBadge(lynxBadge);
-
+        if(final_score >=17){
+            BadgesMaster green_badge = db.getBadgesMasterByName("Green Light");
+            UserBadges greenBadge = new UserBadges(green_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,green_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+            db.createUserBadge(greenBadge);
+        }else if(final_score>= 10 && final_score<=16){
+            BadgesMaster toolbox_badge = db.getBadgesMasterByName("Toolbox");
+            UserBadges toolBoxBadge = new UserBadges(toolbox_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,toolbox_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+            db.createUserBadge(toolBoxBadge);
+        }
         final ImageView btn = (ImageView)findViewById(R.id.information);
         infoLink.setOnClickListener(new View.OnClickListener() {
             @Override

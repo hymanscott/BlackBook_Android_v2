@@ -196,9 +196,11 @@ public class BaselineActivity extends AppCompatActivity {
             Toast.makeText(BaselineActivity.this,"Enter the number of unknown HIV partners",Toast.LENGTH_SHORT).show();
             HIVUnknownCount.requestFocus();
         }else{
+            int score =1;
+            String prep = "No";
             User_baseline_info userBaselineInfo = new User_baseline_info(LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(strHIVNegativeCount)
                     , LynxManager.encryptString(strHIVPossitiveCount), LynxManager.encryptString(strHIVUnknownCount),
-                    "", "0%","","0%","",String.valueOf(R.string.statusUpdateNo),true);
+                    "", "0%","","0%","",score,prep,LynxManager.getDateTime(),String.valueOf(R.string.statusUpdateNo),true);
             LynxManager.setActiveUserBaselineInfo(userBaselineInfo);
             RegistrationTimesTop timesTop = new RegistrationTimesTop();
             pushFragments("Home", timesTop, true);

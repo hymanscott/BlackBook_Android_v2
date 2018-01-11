@@ -130,6 +130,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_BASE_BOTCONDOMUSE_COUNT = "bottom_condom_use_count";
     private static final String KEY_BASE_IS_PRIM_PARTNER = "is_primary_partner";
     private static final String KEY_BASE_SEXPRO_SCORE = "sexpro_score";
+    private static final String KEY_BASE_SEXPRO_PREP = "sexpro_prep";
+    private static final String KEY_BASE_SEXPRO_CALCULATED_DATE = "sexpro_calculated_date";
 
     // DRUG Master Table - Column Names
     private static final String KEY_DRUG_ID = "drug_id";
@@ -368,7 +370,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_BASE_HIVNEG_COUNT + " TEXT," + KEY_BASE_HIVPOS_COUNT + " TEXT," + KEY_BASE_HIVUNK_COUNT + " TEXT,"
             + KEY_BASE_TOP_HIVPOS_COUNT + " TEXT," + KEY_BASE_TOPCONDOMUSE_COUNT + " TEXT," + KEY_BASE_BOT_HIVPOS_COUNT
             + " TEXT," + KEY_BASE_BOTCONDOMUSE_COUNT + " TEXT," + KEY_BASE_IS_PRIM_PARTNER + " TEXT,"
-            + KEY_BASE_SEXPRO_SCORE + " INTEGER DEFAULT 0," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
+            + KEY_BASE_SEXPRO_SCORE + " INTEGER DEFAULT 0," + KEY_BASE_SEXPRO_PREP + " TEXT,"  + KEY_BASE_SEXPRO_CALCULATED_DATE + " TEXT,"
+            + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
 
     private static final String CREATE_TABLE_DRUG_MASTER = "CREATE TABLE "
             + TABLE_DRUG_MASTER + "(" + KEY_DRUG_ID + " INTEGER PRIMARY KEY," + KEY_DRUG_NAME
@@ -1015,6 +1018,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         user.setBottom_condom_use_percent(c.getString(c.getColumnIndex(KEY_BASE_BOTCONDOMUSE_COUNT)));
         user.setIs_primary_partner(c.getString(c.getColumnIndex(KEY_BASE_IS_PRIM_PARTNER)));
         user.setSexpro_score(c.getInt(c.getColumnIndex(KEY_BASE_SEXPRO_SCORE)));
+        user.setSexpro_prep(c.getString(c.getColumnIndex(KEY_BASE_SEXPRO_PREP)));
+        user.setSexpro_calculated_date(c.getString(c.getColumnIndex(KEY_BASE_SEXPRO_CALCULATED_DATE)));
         user.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
         c.close();
@@ -1068,6 +1073,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         user.setBottom_condom_use_percent(c.getString(c.getColumnIndex(KEY_BASE_BOTCONDOMUSE_COUNT)));
         user.setIs_primary_partner(c.getString(c.getColumnIndex(KEY_BASE_IS_PRIM_PARTNER)));
         user.setSexpro_score(c.getInt(c.getColumnIndex(KEY_BASE_SEXPRO_SCORE)));
+        user.setSexpro_prep(c.getString(c.getColumnIndex(KEY_BASE_SEXPRO_PREP)));
+        user.setSexpro_calculated_date(c.getString(c.getColumnIndex(KEY_BASE_SEXPRO_CALCULATED_DATE)));
         user.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
         c.close();
@@ -1117,6 +1124,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 user.setBottom_condom_use_percent(c.getString(c.getColumnIndex(KEY_BASE_BOTCONDOMUSE_COUNT)));
                 user.setIs_primary_partner(c.getString(c.getColumnIndex(KEY_BASE_IS_PRIM_PARTNER)));
                 user.setSexpro_score(c.getInt(c.getColumnIndex(KEY_BASE_SEXPRO_SCORE)));
+                user.setSexpro_prep(c.getString(c.getColumnIndex(KEY_BASE_SEXPRO_PREP)));
+                user.setSexpro_calculated_date(c.getString(c.getColumnIndex(KEY_BASE_SEXPRO_CALCULATED_DATE)));
                 user.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
                 // adding to Users list
@@ -1146,11 +1155,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * Updating a baseline sexpro score
      */
-    public int updateBaselineSexProScore(int user_id,int score, String status){
+    public int updateBaselineSexProScore(int user_id,int score,String prep,String date, String status){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(KEY_BASE_SEXPRO_SCORE,score);
+        values.put(KEY_BASE_SEXPRO_PREP,prep);
+        values.put(KEY_BASE_SEXPRO_CALCULATED_DATE,date);
         values.put(KEY_STATUS_UPDATE,status);
 
         // updating row
@@ -2197,24 +2208,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                UserAlcoholUse alcoholUse = new UserAlcoholUse();
-                alcoholUse.setAlcohol_use_id(c.getInt(c.getColumnIndex(KEY_ALCOUSE_ID)));
-                alcoholUse.setDrugusage_id(c.getInt(c.getColumnIndex(KEY_ALCOUSE_DRUGUSEID)));
-                alcoholUse.setUser_id(c.getInt(c.getColumnIndex(KEY_ALCOUSE_USERID)));
-                alcoholUse.setNo_alcohol_in_week(c.getString(c.getColumnIndex(KEY_ALCOUSE_WEEKCOUNT)));
-                alcoholUse.setNo_alcohol_in_day(c.getString(c.getColumnIndex(KEY_ALCOUSE_DAYCOUNT)));
-                alcoholUse.setIs_baseline(c.getString(c.getColumnIndex(KEY_ALCOUSE_ISBASELINE)));
-                alcoholUse.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
-                alcoholUse.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+        if (c != null && c.getCount()>0) {
+            if (c.moveToFirst()) {
+                do {
+                    UserAlcoholUse alcoholUse = new UserAlcoholUse();
+                    alcoholUse.setAlcohol_use_id(c.getInt(c.getColumnIndex(KEY_ALCOUSE_ID)));
+                    alcoholUse.setDrugusage_id(c.getInt(c.getColumnIndex(KEY_ALCOUSE_DRUGUSEID)));
+                    alcoholUse.setUser_id(c.getInt(c.getColumnIndex(KEY_ALCOUSE_USERID)));
+                    alcoholUse.setNo_alcohol_in_week(c.getString(c.getColumnIndex(KEY_ALCOUSE_WEEKCOUNT)));
+                    alcoholUse.setNo_alcohol_in_day(c.getString(c.getColumnIndex(KEY_ALCOUSE_DAYCOUNT)));
+                    alcoholUse.setIs_baseline(c.getString(c.getColumnIndex(KEY_ALCOUSE_ISBASELINE)));
+                    alcoholUse.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+                    alcoholUse.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
-                // adding to Users list
-                alcoholUses.add(alcoholUse);
-            } while (c.moveToNext());
+                    // adding to Users list
+                    alcoholUses.add(alcoholUse);
+                } while (c.moveToNext());
+            }
+            c.close();
+            return alcoholUses;
         }
-        c.close();
-        return alcoholUses;
+        return null;
     }
 
     /**
@@ -2926,7 +2940,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_ENCOUNTER_DID_YOUR_PARTNER_CUM, encounter.getDid_your_partner_cum());
         values.put(KEY_ENCOUNTER_ISSEX_TOMORROW, encounter.getIs_possible_sex_tomorrow());
         values.put(KEY_STATUS_UPDATE, encounter.getStatus_update());
-        values.put(KEY_CREATED_AT, getDateTime());
+        values.put(KEY_CREATED_AT, encounter.getCreated_at());
 
         // insert row
         int encounter_id = (int) db.insert(TABLE_ENCOUNTER, null, values);
@@ -3685,6 +3699,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     public int getTestingHistoriesCount() {
         String countQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+    public int getTestingHistoriesCountByTestingId(int id) {
+        String countQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY + " WHERE " + KEY_TESTING_HISTORY_TESTINGID + " = " + id;
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();

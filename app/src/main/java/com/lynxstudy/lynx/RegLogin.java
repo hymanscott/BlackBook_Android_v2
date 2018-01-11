@@ -555,8 +555,8 @@ public class RegLogin extends AppCompatActivity {
         BadgesMaster badgesMaster4 = new BadgesMaster(4,"Silver Screen","Watched all 4 videos","Someone likes being an expert.  Congrats on watching the entire video series.","silver_screen_small","PrEP");
         BadgesMaster badgesMaster5 = new BadgesMaster(5,"Testing 1-2-3","Entered an HIV or STD test","You don't have to pat yourself on the back for taking your test.  We'll do it for you!","testing_small","Testing");
         BadgesMaster badgesMaster6 = new BadgesMaster(6,"Green Light","Scored higher than 17 on Sex Pro","We see you don't play games when it comes to keeping your HIV risk low. Congrats on scoring high by handling your business.","green_light_small","Sexpro");
-        BadgesMaster badgesMaster7 = new BadgesMaster(7,"PrEP'd","Started PrEP","A daily commitment to take PrEP is a commitment to yourself. Good lookin' out.","prep_small","Home");
-        BadgesMaster badgesMaster8 = new BadgesMaster(8,"I ♥ Anal","Anal sex with a condom","Everybody talks about safe sex, but not everybody is about safe sex. Fist bump on the condom use.","love_anal_small","Encounter");
+        BadgesMaster badgesMaster7 = new BadgesMaster(7,"PrEP","Started PrEP","A daily commitment to take PrEP is a commitment to yourself. Good lookin' out.","prep_small","Home");
+        BadgesMaster badgesMaster8 = new BadgesMaster(8,"I Love Anal","Anal sex with a condom","Everybody talks about safe sex, but not everybody is about safe sex. Fist bump on the condom use.","love_anal_small","Encounter");
         BadgesMaster badgesMaster9 = new BadgesMaster(9,"Magnum","Used a condom 5 times","Look at you. Hot. Getting it in. And being protected. Keep it up!","magnum_small","Encounter");
         BadgesMaster badgesMaster10 = new BadgesMaster(10,"Golden Penis","100% condom use as a top in a month","You won the big one for keeping it wrapped!","golden_penis_small","Encounter");
         BadgesMaster badgesMaster11 = new BadgesMaster(11,"Fencer","Completed all HIV & STD testing.","‘Penis Fencing’ is a scientific term for the mating ritual between flatworms. It's when two flatworms attempt to stab each other with their penis. Nice job on taking care of your saber.","fencer_small","Testing");
@@ -1437,6 +1437,9 @@ public class RegLogin extends AppCompatActivity {
                                     LynxManager.encryptString(user_baseline_object.getString("no_of_times_bot_hivposs")),
                                     LynxManager.encryptString(user_baseline_object.getString("bottom_condom_use_percent")),
                                     LynxManager.encryptString(user_baseline_object.getString("is_primary_partner")),
+                                    user_baseline_object.getInt("sexpro_score"),
+                                    user_baseline_object.getString("sexpro_prep"),
+                                    user_baseline_object.getString("sexpro_calculated_date"),
                                     String.valueOf(R.string.statusUpdateYes), true);
                             int createBaselineID = db.createbaseline(userBaselineInfo);
                             db.updateUserBaselineCreatedDate(user_baseline_object.getString("created_at"),createBaselineID);
@@ -1500,7 +1503,7 @@ public class RegLogin extends AppCompatActivity {
                                     LynxManager.encryptString(encounterObject.getString("did_your_partner_cum")),
                                     LynxManager.encryptString(encounterObject.getString("encounter_notes")),
                                     LynxManager.encryptString(encounterObject.getString("is_possible_sex_tomorrow")),
-                                    String.valueOf(R.string.statusUpdateYes), true);
+                                    String.valueOf(R.string.statusUpdateYes), true,encounterObject.getString("created_at"));
                             int encID = db.createEncounterWithID(encounter);
                             encounter.setEncounter_id(encID);
                         }

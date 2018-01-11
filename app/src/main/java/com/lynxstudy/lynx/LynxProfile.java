@@ -49,6 +49,7 @@ import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.helper.SpinnerDropDownAdapter;
+import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
 import com.lynxstudy.model.HomeTestingRequest;
@@ -59,6 +60,7 @@ import com.lynxstudy.model.TestingHistory;
 import com.lynxstudy.model.TestingHistoryInfo;
 import com.lynxstudy.model.TestingReminder;
 import com.lynxstudy.model.UserAlcoholUse;
+import com.lynxstudy.model.UserBadges;
 import com.lynxstudy.model.UserDrugUse;
 import com.lynxstudy.model.UserPrimaryPartner;
 import com.lynxstudy.model.UserRatingFields;
@@ -943,6 +945,17 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
 
             db.updateUsers(uptUser);
             LynxManager.getActiveUser().setCreated_at(db.getUserCreatedAt(LynxManager.getActiveUser().getUser_id()));
+
+            if(isPrep.equals("Yes")){
+                Toast.makeText(LynxProfile.this, "Yes", Toast.LENGTH_SHORT).show();
+                if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("PrEP").getBadge_id())==0){
+                    BadgesMaster prep_badge = db.getBadgesMasterByName("PrEP");
+                    int shown = 0;
+                    UserBadges prepBadge = new UserBadges(prep_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,prep_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+                    db.createUserBadge(prepBadge);
+                    Toast.makeText(LynxProfile.this, "Badge Created", Toast.LENGTH_SHORT).show();
+                }
+            }
 
             // Diary Reminder Save //
             String day_of_week = day.getText().toString();
