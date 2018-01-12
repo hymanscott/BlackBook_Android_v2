@@ -60,7 +60,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Partner Notes"
+                            android:text="Partner notes"
                             android:textSize="@dimen/encounter_tv_textsize"
                             android:textColor="@color/white"
                             android:layout_gravity="center_horizontal"

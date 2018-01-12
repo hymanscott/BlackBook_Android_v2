@@ -81,7 +81,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         titleStats.setTypeface(tf_italic);
         int encounters = db.getEncountersCount();
         int partners = db.getPartnersCount();
-        titleStats.setText("For "+encounters+" encounters with "+partners+" partners: ");
+        titleStats.setText("For "+encounters+" encounters with "+partners+" partners ");
 
          /*Exclusivily Bottom Seekbar*/
         TextView bottom_progress = (TextView)findViewById(R.id.bottom_progress);

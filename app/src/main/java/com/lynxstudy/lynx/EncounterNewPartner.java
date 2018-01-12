@@ -588,6 +588,7 @@ public class EncounterNewPartner extends AppCompatActivity {
         popFragmentUntill(choosePartner);
 
         pushFragments("Encounter", fragnewpartnerLogged, true);
+        LynxManager.isNewPartnerEncounter = true;
         return true;
     }
 

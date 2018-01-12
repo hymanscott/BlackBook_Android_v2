@@ -109,7 +109,7 @@
                             android:background="@drawable/rectangle_edittext"
                             android:backgroundTint="@color/edittext_bg"
                             android:ems="10"
-                            android:hint="Last name"
+                            android:hint="Last Name"
                             android:paddingTop="5dp"
                             android:imeOptions="actionNext"
                             android:paddingBottom="5dp"

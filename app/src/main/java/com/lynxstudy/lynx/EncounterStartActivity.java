@@ -33,6 +33,7 @@ import com.lynxstudy.model.DrugMaster;
 import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
 import com.lynxstudy.model.PartnerRating;
+import com.lynxstudy.model.Partners;
 import com.lynxstudy.model.UserAlcoholUse;
 import com.lynxstudy.model.UserBadges;
 import com.lynxstudy.model.UserDrugUse;
@@ -291,6 +292,7 @@ public class EncounterStartActivity extends AppCompatActivity {
 
             EncounterSexTypeFragment fragSexType = new EncounterSexTypeFragment();
             pushFragments("Encounter", fragSexType, true);
+            LynxManager.isNewPartnerEncounter = false;
         }
         return true;
     }
@@ -497,46 +499,119 @@ public class EncounterStartActivity extends AppCompatActivity {
         LynxManager.activeEncounter.setIs_drug_used(LynxManager.encryptString("0"));
         LynxManager.activeEncounter.setIs_possible_sex_tomorrow(LynxManager.encryptString("0"));
         int encounterID = db.createEncounter(LynxManager.activeEncounter);
+        int galaxy_count = 0;
+        int gold_count = 0;
+        int all_star_count = 0;
+        switch (LynxManager.decryptString(LynxManager.activeEncounter.getRate_the_sex())){
+            case "1.0":
+            case "1.5":
+            case "2.0":
+                gold_count++;
+                break;
+            case "4.0":
+            case "4.5":
+                galaxy_count++;
+                break;
+            case "5.0":
+                all_star_count++;
+                break;
+        }
+        if(LynxManager.isNewPartnerEncounter){
+            Partners p = db.getPartnerbyID(LynxManager.activeEncounter.getEncounter_partner_id());
+            PartnerRating partnerRating = db.getPartnerRatingbyPartnerID(p.getPartner_id(),1);
+            switch (LynxManager.decryptString(partnerRating.getRating())){
+                case "1.0":
+                case "1.5":
+                case "2.0":
+                    gold_count++;
+                    break;
+                case "4.0":
+                case "4.5":
+                    galaxy_count++;
+                    break;
+                case "5.0":
+                    all_star_count++;
+                    break;
+            }
+        }
         TrackHelper.track().event("Encounter","Add").name("New Encounter Added").with(tracker);
+        int anal_badge_cause_count = 0;
         for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
-            //Log.v("condomUseText",encSexType.getSex_type()+encSexType.getCondom_use());
+            //Log.v("condomUseText",LynxManager.decryptString(encSexType.getSex_type())+"--"+encSexType.getCondom_use());
             encSexType.setEncounter_id(encounterID);
             db.createEncounterSexType(encSexType);
+            if(encSexType.getCondom_use().equals("Condom used")){
+                if(LynxManager.decryptString(encSexType.getSex_type()).equals("I topped") || LynxManager.decryptString(encSexType.getSex_type()).equals("I bottomed")){
+                    anal_badge_cause_count++;
+                }
+            }
             //Log.v("Encounter Created", "Encounter ID : " + encounterID);
         }
+        int shown = 0;
         if(db.getEncountersCount()==1){
             // Adding User Badge : High Five Badge //
             BadgesMaster highfive_badge = db.getBadgesMasterByName("High Five");
-            int shown = 0;
             UserBadges lynxBadge = new UserBadges(highfive_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,highfive_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
             db.createUserBadge(lynxBadge);
         }else if(db.getEncountersCount()==3){
             // Adding User Badge : Healthy Heart Badge //
             BadgesMaster healthy_badge = db.getBadgesMasterByName("Healthy Heart");
-            int shown = 0;
             UserBadges lynxBadge = new UserBadges(healthy_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,healthy_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
             db.createUserBadge(lynxBadge);
         }else if(db.getEncountersCount()==5){
             // Adding User Badge : Vital Vitamin Badge //
             BadgesMaster vital_badge = db.getBadgesMasterByName("Vital Vitamins");
-            int shown = 0;
             UserBadges lynxBadge = new UserBadges(vital_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,vital_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
             db.createUserBadge(lynxBadge);
         }else if(db.getEncountersCount()==10){
             // Adding User Badge : King Badge //
             BadgesMaster king_badge = db.getBadgesMasterByName("King");
-            int shown = 0;
             UserBadges lynxBadge = new UserBadges(king_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,king_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
             db.createUserBadge(lynxBadge);
         }else if(db.getEncountersCount()==15){
             // Adding User Badge : Energizer Bunny Badge //
             BadgesMaster energizer_badge = db.getBadgesMasterByName("Energizer Bunny");
-            int shown = 0;
             UserBadges lynxBadge = new UserBadges(energizer_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,energizer_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
             db.createUserBadge(lynxBadge);
         }
+        // Adding User Badge : I Love Anal Badge //
+        if(anal_badge_cause_count>0){
+            BadgesMaster anal_badge = db.getBadgesMasterByName("I Love Anal");
+            UserBadges analBadge = new UserBadges(anal_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,anal_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+            db.createUserBadge(analBadge);
+        }
+        // Adding User Badge : Magnum Badge //
+        int distinct_condom_used_times = 0;
+        for (Encounter encounter:db.getAllEncounters()){
+            if(db.getEncSexTypeCountByEncIDandCondomStatus(encounter.getEncounter_id(),"Condom used")>0){
+                distinct_condom_used_times++;
+            }
+        }
+        if(distinct_condom_used_times==5){
+            BadgesMaster magnum_badge = db.getBadgesMasterByName("Magnum");
+            UserBadges magnumBadge = new UserBadges(magnum_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,magnum_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+            db.createUserBadge(magnumBadge);
+        }
+
+        // Adding User Badge : Galaxy, Gold and All Star Badge //
+        if(galaxy_count>0){
+            BadgesMaster galaxy_badge = db.getBadgesMasterByName("Galaxy");
+            UserBadges galaxyBadge = new UserBadges(galaxy_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,galaxy_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+            db.createUserBadge(galaxyBadge);
+        }
+        if(gold_count>0){
+            BadgesMaster gold_badge = db.getBadgesMasterByName("Gold Star");
+            UserBadges goldBadge = new UserBadges(gold_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,gold_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+            db.createUserBadge(goldBadge);
+        }
+        if(all_star_count>0){
+            BadgesMaster all_star_badge = db.getBadgesMasterByName("All Star");
+            UserBadges allStarBadge = new UserBadges(all_star_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,all_star_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+            db.createUserBadge(allStarBadge);
+        }
         // Clear Condomuse list//
         LynxManager.activeEncCondomUsed.clear();
+        LynxManager.isNewPartnerEncounter= false;
         EncounterLoggedFragment fragEncounterLogged = new EncounterLoggedFragment();
         pushFragments("encounter", fragEncounterLogged, true);
         // finish();

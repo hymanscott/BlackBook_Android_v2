@@ -947,13 +947,11 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
             LynxManager.getActiveUser().setCreated_at(db.getUserCreatedAt(LynxManager.getActiveUser().getUser_id()));
 
             if(isPrep.equals("Yes")){
-                Toast.makeText(LynxProfile.this, "Yes", Toast.LENGTH_SHORT).show();
                 if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("PrEP").getBadge_id())==0){
                     BadgesMaster prep_badge = db.getBadgesMasterByName("PrEP");
                     int shown = 0;
                     UserBadges prepBadge = new UserBadges(prep_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,prep_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
                     db.createUserBadge(prepBadge);
-                    Toast.makeText(LynxProfile.this, "Badge Created", Toast.LENGTH_SHORT).show();
                 }
             }
 

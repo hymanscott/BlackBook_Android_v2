@@ -43,7 +43,7 @@
                     android:backgroundTint="@color/edittext_bg"
                     android:ems="10"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:hint="Email Address"
+                    android:hint="Email address"
                     android:layout_gravity="center_vertical"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/white"

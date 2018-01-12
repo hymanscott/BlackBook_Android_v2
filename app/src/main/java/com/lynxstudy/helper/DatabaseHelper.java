@@ -3303,6 +3303,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
     /**
+     * getting Encounter Sex Type count by Encounter ID and Condom Used state
+     */
+    public int getEncSexTypeCountByEncIDandCondomStatus(int id, String status) {
+        String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE + " WHERE " + KEY_ENCSEXTYPE_CONDOMUSE + " = '"+status+"' AND " + KEY_ENCSEXTYPE_ENCOUNTERID + " = " + id;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+    /**
      * getting Encounter Sex Type count by Name
      */
     public int getAllEncounterSexTypeCountByName(String type) {
@@ -4701,6 +4712,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
     /**
+     * get all Last User Badges by Badge id
+     */
+    public UserBadges getLastUserBadgeByBadgeID(int badge_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE "
+                + KEY_USER_BADGE_BADGEID + " = " + badge_id + " ORDER BY " + KEY_USER_BADGE_ID + " DESC";
+
+        Log.e(LOG, selectQuery);
+
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c != null && c.getCount()>0) {
+            if (c.moveToFirst()) {
+                UserBadges userBadge = new UserBadges();
+                userBadge.setUser_badge_id(c.getInt(c.getColumnIndex(KEY_USER_BADGE_ID)));
+                userBadge.setBadge_id(c.getInt(c.getColumnIndex(KEY_USER_BADGE_BADGEID)));
+                userBadge.setUser_id(c.getInt(c.getColumnIndex(KEY_USERS_ID)));
+                userBadge.setIs_shown(c.getInt(c.getColumnIndex(KEY_USER_BADGE_ISSHOWN)));
+                userBadge.setBadge_notes(c.getString(c.getColumnIndex(KEY_USER_BADGE_NOTES)));
+                userBadge.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+                userBadge.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+                return userBadge;
+            }
+        }
+        c.close();
+        return null;
+
+    }
+    /**
      * getting all  User Badges
      */
     public List<UserBadges> getAllUserBadgesByStatus(String status) {
@@ -4772,10 +4814,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery;
         switch (type){
             case "Encounter":
-                selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE "+ KEY_USER_BADGE_BADGEID + " IN ( 2,3 )" + " AND " + KEY_USER_BADGE_ISSHOWN + " = " + status;
+                selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE "+ KEY_USER_BADGE_BADGEID + " IN ( 2,3,8,9,10,13,14,15,17,18,19,20 )" + " AND " + KEY_USER_BADGE_ISSHOWN + " = " + status;
                 break;
             case "Testing":
-                selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE " + KEY_USER_BADGE_BADGEID + " IN ( 5 )" + " AND "  + KEY_USER_BADGE_ISSHOWN + " = " + status;
+                selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE " + KEY_USER_BADGE_BADGEID + " IN ( 5,11 )" + " AND "  + KEY_USER_BADGE_ISSHOWN + " = " + status;
                 break;
             default:
                 selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE " + KEY_USER_BADGE_ISSHOWN + " = " + status;

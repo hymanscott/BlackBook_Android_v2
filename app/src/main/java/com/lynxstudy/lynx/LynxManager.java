@@ -92,6 +92,7 @@ public class LynxManager {
     public static String hashKey = "PhasttDPHapp";
     public static String deviceId="" ; // TelephonyManager ID
     private String lastImageName = "";
+    public static boolean isNewPartnerEncounter = false;
 
     //static Context context;
     //private static String baseURL  =   "http://dev.chipware.in/lynx/";

@@ -67,6 +67,7 @@ import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -316,6 +317,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             public void run() {
                 if (LynxManager.releaseMode != 0) {
                     pushDataToServer();
+                    showBadgesifAvailable();
                     /*// Clear Old Local notifications //
                     NotificationManager notifManager = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
                     notifManager.cancelAll();
@@ -378,22 +380,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             }
         }
         // Adding Fencer Badge //
-        Calendar calCurrentDate = Calendar.getInstance();
-        Calendar calCreatedAt = Calendar.getInstance();
-        SimpleDateFormat inputDF1  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date created_date = null;
-        try {
-            created_date = inputDF1.parse(LynxManager.getActiveUserBaselineInfo().getCreated_at());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        calCreatedAt.setTime(created_date);
-        long milliSeconds1 = calCreatedAt.getTimeInMillis();
-        long milliSeconds2 = calCurrentDate.getTimeInMillis();
-        long periodSeconds = (milliSeconds2 - milliSeconds1) ;
-        long elapsedDays = periodSeconds / (1000 * 60 * 60 * 24);
-        int elapsed_days = (int) elapsedDays;
-        Log.v("elapsed_days",String.valueOf(elapsed_days));
+        int elapsed_days = getElapsedDays(LynxManager.getActiveUserBaselineInfo().getCreated_at());
         if(elapsed_days%90==0){
             if(db.getTestingHistoriesCountByTestingId(1)>0 && db.getTestingHistoriesCountByTestingId(2)>0){
                 BadgesMaster fencer_badge = db.getBadgesMasterByName("Fencer");
@@ -404,6 +391,46 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 }
             }
         }
+        // Adding User Badge : Dessert Badge //
+        List<Encounter> allEncounters = db.getAllEncounters();
+        if(!allEncounters.isEmpty()){
+            Collections.sort(allEncounters, new Encounter.CompDate(true));
+            Encounter lastEncounter = allEncounters.get(0);
+            int enc_elapsed_days = getElapsedDays(LynxManager.decryptString(lastEncounter.getDatetime()));
+            if(enc_elapsed_days>=21){
+                BadgesMaster desert_badge = db.getBadgesMasterByName("Desert");
+                UserBadges desertBadge = new UserBadges(desert_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,desert_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+                UserBadges lastDesertBadge = db.getLastUserBadgeByBadgeID(desert_badge.getBadge_id());
+                if(lastDesertBadge!=null){
+                    if(getElapsedDays(lastDesertBadge.getCreated_at())>21){
+                        db.createUserBadge(desertBadge);
+                    }
+                }else{
+                    desertBadge.setIs_shown(1);
+                    db.createUserBadge(desertBadge);
+                }
+            }
+        }
+
+    }
+    private int getElapsedDays(String dateString){
+        SimpleDateFormat inputDF  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar calCurrentDate = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance();
+        Date date = null;
+        try {
+            date = inputDF.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        cal.setTime(date);
+        long milliSeconds2 = calCurrentDate.getTimeInMillis();
+        long milliSeconds1 = cal.getTimeInMillis();
+        long period = milliSeconds2 - milliSeconds1;
+        long days = period / (1000 * 60 * 60 * 24);
+        return (int) days;
+    }
+    private void showBadgesifAvailable(){
         // Show If Badges Available //
         List<UserBadges> userBadgesList = db.getAllUserBadgesByShownStatus(0);
         int i=0;
@@ -419,7 +446,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             i++;
         }
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

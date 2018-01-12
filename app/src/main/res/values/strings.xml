@@ -131,7 +131,7 @@
     <string name="druguse_title">Have you used any of the following <u>at all</u> during the past three months?</string>
 
     <string name="title_activity_welcome">WelcomeActivity</string>
-    <string name="screen_one_label">Welcome to Lynx!</string>
+    <string name="screen_one_label">Welcome to Lynx</string>
     <string name="screen_two_label">Track</string>
     <string name="screen_three_label">Check</string>
     <string name="screen_four_label">Protect</string>

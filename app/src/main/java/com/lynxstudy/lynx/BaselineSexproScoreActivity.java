@@ -34,7 +34,7 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
     TextView score_message,reg_sexPro_score_label,reg_sexPro_score_value,info_title,info_para_one,info_para_two,info_para_three,infoLink;
     Button sexpro_score_close;
     /*ImageView dialScoreImage;*/
-    LinearLayout infolayout,main_content;
+    LinearLayout infolayout,main_content,additionalTriggerMessage;
     boolean isInfoShown = false;
     Typeface tf;
     @Override
@@ -186,7 +186,73 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
                 scoreImage.setImageDrawable(getResources().getDrawable(R.drawable.score_twenty));
                 break;
         }
-
+        /*Additional Trigger message*/
+        TextView additionalMessageTitle = (TextView)findViewById(R.id.additionalMessageTitle);
+        additionalMessageTitle.setTypeface(tf);
+        additionalTriggerMessage = (LinearLayout)findViewById(R.id.additionalTriggerMessage);
+        if(getscore.getNASP()){
+            TextView tv = new TextView(BaselineSexproScoreActivity.this);
+            tv.setTypeface(tf);
+            tv.setTextColor(getResources().getColor(R.color.text_color));
+            tv.setTextSize(14);
+            tv.setPadding(0,5,0,0);
+            tv.setText("+ Decreasing your number of sexual partners.");
+            additionalTriggerMessage.addView(tv);
+        }
+        if(getscore.getPPIAS()){
+            TextView tv = new TextView(BaselineSexproScoreActivity.this);
+            tv.setTypeface(tf);
+            tv.setTextColor(getResources().getColor(R.color.text_color));
+            tv.setTextSize(14);
+            tv.setPadding(0,5,0,0);
+            tv.setText("+ Increasing your condom use as a top.");
+            additionalTriggerMessage.addView(tv);
+        }
+        if(getscore.getPPRAS()){
+            TextView tv = new TextView(BaselineSexproScoreActivity.this);
+            tv.setTypeface(tf);
+            tv.setTextColor(getResources().getColor(R.color.text_color));
+            tv.setTextSize(14);
+            tv.setPadding(0,5,0,0);
+            tv.setText("+ Increasing your condom use as a bottom.");
+            additionalTriggerMessage.addView(tv);
+        }
+        if(getscore.getMETH()){
+            TextView tv = new TextView(BaselineSexproScoreActivity.this);
+            tv.setTypeface(tf);
+            tv.setTextColor(getResources().getColor(R.color.text_color));
+            tv.setTextSize(14);
+            tv.setPadding(0,5,0,0);
+            tv.setText("+ Reducing your use of meth/speed.");
+            additionalTriggerMessage.addView(tv);
+        }
+        if(getscore.getCOKE()){
+            TextView tv = new TextView(BaselineSexproScoreActivity.this);
+            tv.setTypeface(tf);
+            tv.setTextColor(getResources().getColor(R.color.text_color));
+            tv.setTextSize(14);
+            tv.setPadding(0,5,0,0);
+            tv.setText("+ Reducing your use of cocaine/crack.");
+            additionalTriggerMessage.addView(tv);
+        }
+        if(getscore.getPOP()){
+            TextView tv = new TextView(BaselineSexproScoreActivity.this);
+            tv.setTypeface(tf);
+            tv.setTextColor(getResources().getColor(R.color.text_color));
+            tv.setTextSize(14);
+            tv.setPadding(0,5,0,0);
+            tv.setText("+ Reducing your use of poppers.");
+            additionalTriggerMessage.addView(tv);
+        }
+        if(getscore.getSTI()){
+            TextView tv = new TextView(BaselineSexproScoreActivity.this);
+            tv.setTypeface(tf);
+            tv.setTextColor(getResources().getColor(R.color.text_color));
+            tv.setTextSize(14);
+            tv.setPadding(0,5,0,0);
+            tv.setText("+ Using condoms to prevent STDs.");
+            additionalTriggerMessage.addView(tv);
+        }
         // Adding User Badge : LYNX Badge, Tool Box and Green Light Badge //
         BadgesMaster lynx_badge = db.getBadgesMasterByName("LYNX");
         int shown = 0;
