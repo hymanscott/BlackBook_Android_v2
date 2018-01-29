@@ -638,7 +638,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             builder.setContentTitle("LYNX");
             builder.setContentText(content);
-            builder.setAutoCancel(true);
+            builder.setAutoCancel(false);
             builder.setSmallIcon(R.mipmap.ic_launcher_round);
             builder.setSound(soundUri);
             builder.setContentIntent(sure);
@@ -647,7 +647,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             // Lollipop specific setColor method goes here.
             builder.setContentTitle("LYNX");
             builder.setContentText(content);
-            builder.setAutoCancel(true);
+            builder.setAutoCancel(false);
             builder.setContentIntent(sure);
             builder.setSmallIcon(R.drawable.ic_silhouette);
             builder.setColor(getResources().getColor(R.color.profile_title_text_color));

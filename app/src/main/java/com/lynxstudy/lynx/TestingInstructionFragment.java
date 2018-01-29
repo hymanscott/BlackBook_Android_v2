@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
@@ -26,6 +27,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.barteksc.pdfviewer.PDFView;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.lynx.R;
 import com.lynxstudy.model.TestingInstructions;
@@ -229,21 +231,35 @@ public class TestingInstructionFragment extends Fragment {
         if (instruction.getVideo_link().isEmpty()) {
             if (instruction.getPdf_link().isEmpty()) {
                 instruction_ans_wv.loadDataWithBaseURL("",instruction.getAnswer() , "text/html", "utf-8", "");
+                parentLayout.setVisibility(View.VISIBLE);
+                parentLayout.removeAllViews();
+                parentLayout.addView(instruction_ans_wv, new TableLayout.LayoutParams(
+                        TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));
             } else {
                 final String filename = instruction.getPdf_link();
-                instruction_ans_wv.loadDataWithBaseURL("",filename , "text/html", "utf-8", "");
+                File fileBrochure = new File(Environment.getExternalStorageDirectory().getPath()+"/"+filename);
+                if (!fileBrochure.exists()) {
+                    CopyAssetsbrochure(filename);
+                    Log.v("PDF File name",filename + " !Exist");
+                }else{
+                    Log.v("PDF File name",filename + " Exist");
+                }
+
+                /*WebSettings settings = instruction_ans_wv.getSettings();
+                settings.setJavaScriptEnabled(true);
+                settings.setAllowFileAccessFromFileURLs(true);
+                settings.setAllowUniversalAccessFromFileURLs(true);
+                settings.setBuiltInZoomControls(true);
+                instruction_ans_wv.setWebChromeClient(new WebChromeClient());
+
+                instruction_ans_wv.loadDataWithBaseURL("","file:///android_asset/"+filename, "", "utf-8", "");
+                instruction_ans_wv.loadUrl("https://dev.chipware.in/LynxPortal/rectal_swab.pdf");
                 instruction_ans_wv.setBackground(getResources().getDrawable(R.drawable.buttonbluecornered));
-                instruction_ans_wv.setOnClickListener(new View.OnClickListener() {
+                instruction_ans_wv.setOnTouchListener(new View.OnTouchListener() {
                     @Override
-                    public void onClick(View v) {
-                        File fileBrochure = new File(Environment.getExternalStorageDirectory().getPath()+"/"+filename);
-                        if (!fileBrochure.exists()) {
-                            CopyAssetsbrochure(filename);
-                        }
-
-                            /* PDF reader code*/
+                    public boolean onTouch(View v, MotionEvent event) {
                         File file = new File(Environment.getExternalStorageDirectory().getPath() +"/"+filename);
-
+                        Toast.makeText(getActivity(), "NO App found. Please install a pdf reader.", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Intent.ACTION_VIEW);
                         intent.setDataAndType(Uri.fromFile(file), "application/pdf");
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -253,13 +269,30 @@ public class TestingInstructionFragment extends Fragment {
                         } catch (ActivityNotFoundException e) {
                             Toast.makeText(getActivity(), "NO App found. Please install a pdf reader.", Toast.LENGTH_SHORT).show();
                         }
+                        return false;
                     }
-                });
+                });*/
+                parentLayout.setVisibility(View.GONE);
+                PDFView pdfView = (PDFView) view.findViewById(R.id.pdfView);
+                pdfView.setVisibility(View.VISIBLE);
+                File file_pdf = new File(Environment.getExternalStorageDirectory().getPath() +"/"+filename);
+                pdfView.fromFile(file_pdf)
+                        //.pages(0, 2, 1, 3, 3, 3) // all pages are displayed by default
+                        .enableSwipe(true) // allows to block changing pages using swipe
+                        .swipeHorizontal(false)
+                        .enableDoubletap(true)
+                        .defaultPage(0)
+                        .password(null)
+                        .scrollHandle(null)
+                        .enableAntialiasing(true) // improve rendering a little bit on low-res screens
+                        // spacing between pages in dp. To define spacing color, set view background
+                        .spacing(0)
+                        .load();
             }
-            instruction_ans_wv.setPadding(10, 20, 10, 20);
+            /*instruction_ans_wv.setPadding(10, 20, 10, 20);
             parentLayout.removeAllViews();
             parentLayout.addView(instruction_ans_wv, new TableLayout.LayoutParams(
-                    TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));
+                    TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));*/
         } else {
             video_view.getSettings().setJavaScriptEnabled(true);
             video_view.setWebChromeClient(new WebChromeClient() {
@@ -276,6 +309,7 @@ public class TestingInstructionFragment extends Fragment {
             link += ss;
             String html = getHTML(width, height, link);
             video_view.loadDataWithBaseURL("", html, mimeType, encoding, "");
+            parentLayout.setVisibility(View.VISIBLE);
             parentLayout.removeAllViews();
             parentLayout.addView(video_view, new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));

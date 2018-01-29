@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -34,8 +35,9 @@ public class NewPartnerSummaryFragment extends Fragment {
     public NewPartnerSummaryFragment() {
     }
 
-    TextView add_partner_title,hivStatus,partnerTypeTitle,partnerNotes,overAll,partnerGender,newPartnerSumm_gender;
+    TextView add_partner_title,hivStatus,partnerTypeTitle,partnerNotes,overAll,partnerGender,newPartnerSumm_gender,partnerUndectTitle,newPartnerSumm_undect;
     Button next;
+    LinearLayout undetectable_layout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,6 +64,7 @@ public class NewPartnerSummaryFragment extends Fragment {
         overAll.setTypeface(tf);
         add_partner_title = (TextView)rootview.findViewById(R.id.add_partner_title);
         add_partner_title.setTypeface(tf_bold);
+        undetectable_layout = (LinearLayout) rootview.findViewById(R.id.undetectable_layout);
 
         // Display Summary
         TextView new_partner_Summ_nickname = (TextView) rootview.findViewById(R.id.new_partner_Summ_nickname);
@@ -70,6 +73,8 @@ public class NewPartnerSummaryFragment extends Fragment {
         new_partner_Summ_nickname.setTypeface(tf_bold);
         TextView nickName = (TextView) rootview.findViewById(R.id.newPartnerSumm_nickName);
         TextView hivStatus = (TextView) rootview.findViewById(R.id.newPartnerSumm_hivStatus);
+        TextView newPartnerSumm_undect = (TextView) rootview.findViewById(R.id.newPartnerSumm_undect);
+        TextView partnerUndectTitle = (TextView) rootview.findViewById(R.id.partnerUndectTitle);
         TextView gender = (TextView) rootview.findViewById(R.id.newPartnerSumm_gender);
         TextView email = (TextView) rootview.findViewById(R.id.newPartnerSumm_email);
         TextView phone = (TextView) rootview.findViewById(R.id.newPartnerSumm_phone);
@@ -85,6 +90,14 @@ public class NewPartnerSummaryFragment extends Fragment {
         gender.setTypeface(tf);
         hivStatus.setText(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()));
         hivStatus.setTypeface(tf);
+        if(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()).equals("HIV Positive & Undetectable") || LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()).equals("HIV positive & undetectable")){
+            undetectable_layout.setVisibility(View.VISIBLE);
+            newPartnerSumm_undect.setText(LynxManager.decryptString(LynxManager.getActivePartner().getUndetectable_for_sixmonth()));
+            newPartnerSumm_undect.setTypeface(tf);
+            partnerUndectTitle.setTypeface(tf_bold);
+        }else{
+            undetectable_layout.setVisibility(View.GONE);
+        }
         email.setText(LynxManager.decryptString(LynxManager.getActivePartnerContact().getEmail()));
         email.setTypeface(tf);
         phone.setText(LynxManager.decryptString(LynxManager.getActivePartnerContact().getPhone()));

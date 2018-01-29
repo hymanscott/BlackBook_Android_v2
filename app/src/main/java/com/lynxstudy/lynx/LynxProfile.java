@@ -1098,14 +1098,14 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             builder_Encounter.setContentTitle("LYNX");
             builder_Encounter.setContentText(content);
-            builder_Encounter.setAutoCancel(true);
+            builder_Encounter.setAutoCancel(false);
             builder_Encounter.setSmallIcon(R.mipmap.ic_launcher_round);
             builder_Encounter.setSound(soundUri);
             builder_Encounter.setContentIntent(yes);
         }else{
             builder_Encounter.setContentTitle("LYNX");
             builder_Encounter.setContentText(content);
-            builder_Encounter.setAutoCancel(true);
+            builder_Encounter.setAutoCancel(false);
             builder_Encounter.setSmallIcon(R.drawable.ic_silhouette);
             builder_Encounter.setColor(getResources().getColor(R.color.profile_title_text_color));
             builder_Encounter.setSound(soundUri);

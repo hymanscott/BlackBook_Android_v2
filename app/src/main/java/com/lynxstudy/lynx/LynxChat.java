@@ -40,6 +40,7 @@ import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.ChatMessage;
+import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.Videos;
 
 import org.json.JSONArray;
@@ -50,6 +51,7 @@ import org.piwik.sdk.extra.TrackHelper;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Collections;
 import java.util.List;
 
 public class LynxChat extends AppCompatActivity implements View.OnClickListener{
@@ -219,6 +221,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
     private void addChatData(){
         chatTableLayout.removeAllViews();
         List<ChatMessage>  chatMessageList = db.getAllChatMessages();
+        Collections.sort(chatMessageList, new ChatMessage.CompDate(true));
         for(ChatMessage chatMessage : chatMessageList){
             TableRow tr = new TableRow(LynxChat.this);
             ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(chat_bubble_width, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -226,17 +229,18 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             String msg_date = LynxManager.getFormatedDate("yyyy-MM-dd hh:mm:ss",LynxManager.decryptString(chatMessage.getDatetime()),"MMM dd, hh:mm a");
             View v;
             TextView date;
-            if(LynxManager.decryptString(chatMessage.getSender()).equals("Lynx Study")){
-                v = LayoutInflater.from(LynxChat.this).inflate(R.layout.chat_row_blue, tr, false);
-                date = (TextView) v.findViewById(R.id.date);
-                date.setText(LynxManager.decryptString(chatMessage.getSender()) + ", "+msg_date);
-                params1.gravity = Gravity.LEFT;
-            }else{
+            //if(LynxManager.decryptString(chatMessage.getSender()).equals("Lynx Study")){
+            if(LynxManager.decryptString(chatMessage.getSender()).equals(LynxManager.decryptString(LynxManager.getActiveUser().getFirstname()))){
                 v = LayoutInflater.from(LynxChat.this).inflate(R.layout.chat_row, tr, false);
                 //date.setText("FEB 22, 9:31 AM");
                 date = (TextView) v.findViewById(R.id.date);
                 date.setText("You, "+msg_date);
                 params1.gravity = Gravity.RIGHT;
+            }else{
+                v = LayoutInflater.from(LynxChat.this).inflate(R.layout.chat_row_blue, tr, false);
+                date = (TextView) v.findViewById(R.id.date);
+                date.setText("Lynx Study" + ", "+msg_date);
+                params1.gravity = Gravity.LEFT;
             }
 
             LinearLayout container = (LinearLayout) v.findViewById(R.id.container);

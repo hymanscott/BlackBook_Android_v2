@@ -303,6 +303,43 @@
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin" />
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/undetectSummLayout"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="145dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/encounter_tv_textsize"
+                            android:id="@+id/undetct_summ_title"
+                            android:textColor="@color/text_color"
+                            android:paddingRight="10dp"
+                            android:text="Undetectable for at least 6 months: "/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/selectedPartner_undetct"
+                            android:textSize="14sp"
+                            android:textColor="@color/text_color"
+                            android:text="x"/>
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/border_grey"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="fill_parent"
                     android:orientation="horizontal"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -913,7 +950,7 @@
                         android:layout_centerVertical="true"
                         android:textColor="@color/text_color"
                         android:padding="@dimen/edittext_padding"
-                        android:text="Are they undetectable for at least 6 months?"/>
+                        android:text="Have they been undetectable for at least 6 months?"/>
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

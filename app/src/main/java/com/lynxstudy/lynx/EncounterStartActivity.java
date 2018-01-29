@@ -64,37 +64,10 @@ public class EncounterStartActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(android.R.id.content, new EncounterEnctimeFragment())
                     .commit();
-            /*if(drug_frag){
-                getSupportFragmentManager().beginTransaction()
-                        .add(android.R.id.content, new EncounterFromNotificationFragment())
-                        .commit();
-            }
-            else {
-                getSupportFragmentManager().beginTransaction()
-                        .add(android.R.id.content, new EncounterEnctimeFragment())
-                        .commit();
-                //finish();
-            }*/
         }
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-        // Custom Action Bar //
-        /*getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
-        getSupportActionBar().setCustomView(cView);
-        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
-        ImageView viewProfile = (ImageView)cView.findViewById(R.id.viewProfile);
-        *//*viewProfile.setVisibility(View.GONE);*//*
-        LinearLayout sexualHistory = (LinearLayout)cView.findViewById(R.id.sexualHistory);
-        sexualHistory.setVisibility(View.VISIBLE);
-        viewProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EncounterStartActivity.this,LynxProfile.class);
-                startActivity(intent);
-            }
-        });*/
         // Piwik Analytics //
         tracker = ((lynxApplication) getApplication()).getTracker();
         TrackHelper.track().screen("/Encounter/Start").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);

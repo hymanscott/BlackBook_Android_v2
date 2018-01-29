@@ -59,10 +59,10 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
     LinearLayout summaryLayout,mainContentLayout,editLayout;
     private boolean isSummaryShown = false;
     private boolean isEditShown = false;
-    TextView add_partner_title,edithivStatus,partnerTypeTitle,partnerNotes,editoverAll,undetectableAns,monogamousTitle,undetectableQn,otherPartnerTitle,otherPartner,monogamous,partnerGender,selectedPartner_gender;
+    TextView add_partner_title,edithivStatus,partnerTypeTitle,partnerNotes,editoverAll,undetectableAns,monogamousTitle,undetectableQn,otherPartnerTitle,otherPartner,monogamous,partnerGender,selectedPartner_gender,selectedPartner_undetct,undetct_summ_title;
     Button next;
     RelativeLayout undetectableLayout,undetectableAnsParent,hivStatusParent,partnerTypeParent,monogamousParent,otherPartnerParent;
-    LinearLayout monogamousLayout,otherPartnerLayout;
+    LinearLayout monogamousLayout,otherPartnerLayout,undetectSummLayout;
     View rootview;
     Typeface tf,tf_bold;
     int back_press_count;
@@ -255,7 +255,12 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         notesPartner.setTypeface(tf_bold);
         overAll = (TextView) rootview.findViewById(R.id.overAll);
         overAll.setTypeface(tf_bold);
+        undetct_summ_title = (TextView) rootview.findViewById(R.id.undetct_summ_title);
+        undetct_summ_title.setTypeface(tf_bold);
+        selectedPartner_undetct = (TextView) rootview.findViewById(R.id.selectedPartner_undetct);
+        selectedPartner_undetct.setTypeface(tf);
 
+        undetectSummLayout = (LinearLayout) rootview.findViewById(R.id.undetectSummLayout);
         // Display Summary
         TextView new_partner_Summ_nickname = (TextView) rootview.findViewById(R.id.selectedPartner_bannername);
         TextView selectedPartner_nickname = (TextView) rootview.findViewById(R.id.selectedPartner_nickname);
@@ -291,6 +296,12 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         edit_details.setTypeface(tf);
         hivStatus.setText(LynxManager.decryptString(partner.getHiv_status()));
         hivStatus.setTypeface(tf);
+        if(LynxManager.decryptString(partner.getHiv_status()).equals("HIV Positive & Undetectable") || LynxManager.decryptString(partner.getHiv_status()).equals("HIV positive & undetectable")){
+            undetectSummLayout.setVisibility(View.VISIBLE);
+            selectedPartner_undetct.setText(LynxManager.decryptString(partner.getUndetectable_for_sixmonth()));
+        }else{
+            undetectSummLayout.setVisibility(View.GONE);
+        }
         gender.setText(LynxManager.decryptString(partner.getGender()));
         gender.setTypeface(tf);
         email.setTypeface(tf);

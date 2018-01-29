@@ -93,6 +93,7 @@ public class LynxManager {
     public static String deviceId="" ; // TelephonyManager ID
     private String lastImageName = "";
     public static boolean isNewPartnerEncounter = false;
+    public static boolean haveWeeklyEncounter = false;
 
     //static Context context;
     //private static String baseURL  =   "http://dev.chipware.in/lynx/";

@@ -369,7 +369,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:textColor="@color/white"
-                    android:text="Are they undetectable for at least 6 months?"/>
+                    android:text="Have they been undetectable for at least 6 months?"/>
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

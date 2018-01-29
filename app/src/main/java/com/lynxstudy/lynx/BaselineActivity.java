@@ -535,7 +535,7 @@ public class BaselineActivity extends AppCompatActivity {
         if(LynxManager.decryptString(activeBaselineInfo.getIs_primary_partner()).equals("Yes")) {
 
             if (LynxManager.decryptString(activePrimaryPartner.getIs_added_to_blackbook()).contentEquals("Yes")) {
-                Partners partner = new Partners(activePrimaryPartner.getUser_id(), activePrimaryPartner.getName(),LynxManager.encryptString("Trans man"), LynxManager.encryptString(activePrimaryPartner.getHiv_status()),activePrimaryPartner.getUndetectable_for_sixmonth(), LynxManager.encryptString("Yes"), String.valueOf(R.string.statusUpdateNo), true);
+                Partners partner = new Partners(activePrimaryPartner.getUser_id(), activePrimaryPartner.getName(),LynxManager.encryptString("Man"), LynxManager.encryptString(activePrimaryPartner.getHiv_status()),activePrimaryPartner.getUndetectable_for_sixmonth(), LynxManager.encryptString("Yes"), String.valueOf(R.string.statusUpdateNo), true);
                 int pri_partner_partnerID = db.createPartner(partner);
 
                 PartnerContact PriPartnerContact = new PartnerContact(pri_partner_partnerID, LynxManager.getActiveUser().getUser_id(), activePrimaryPartner.getName(), "", "", "", "", "", "", "", "", LynxManager.encryptString("Primary"),activePrimaryPartner.getPartner_have_other_partners(),activePrimaryPartner.getRelationship_period(),"", String.valueOf(R.string.statusUpdateNo), true);
