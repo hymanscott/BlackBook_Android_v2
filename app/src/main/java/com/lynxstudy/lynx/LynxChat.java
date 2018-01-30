@@ -157,7 +157,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         viewProfile.setOnClickListener(this);
 
         // Chat Table //
-        if(db.getChatMessagesCount()==0){
+//        if(db.getChatMessagesCount()==0){
             // Get Chat List from Online //
             JSONObject loginOBJ = new JSONObject();
             try {
@@ -172,12 +172,13 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             boolean internet_status = LynxManager.haveNetworkConnection(LynxChat.this);
             if(!internet_status){
                 Toast.makeText(LynxChat.this, "Please check your internet connection!", Toast.LENGTH_SHORT).show();
+                addChatData();
             }else{
                 new ChatListOnline(login_query_string).execute();
             }
-        }else{
+       /* }else{
             addChatData();
-        }
+        }*/
 
         // Send New Message to Server //
         newMessageSend = (ImageView)findViewById(R.id.newMessageSend);
@@ -204,11 +205,12 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                     }else{
                         ChatMessage newmessage = new ChatMessage();
                         newmessage.setMessage(LynxManager.encryptString(newMessage.getText().toString()));
-                        newmessage.setSender(LynxManager.encryptString(LynxManager.getActiveUser().getFirstname()));
+                        newmessage.setSender(LynxManager.getActiveUser().getFirstname());
                         newmessage.setSender_pic(LynxManager.encryptString(""));
                         newmessage.setDatetime(LynxManager.encryptString(LynxManager.getDateTime()));
                         newmessage.setStatusUpdate(LynxManager.encryptString(String.valueOf(R.string.statusUpdateYes)));
                         new sendNewMessage(query_string,newmessage).execute();
+                        newMessage.setText("");
                     }
                 }
             }
@@ -249,6 +251,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             TextView message = (TextView) v.findViewById(R.id.message);
             message.setTypeface(tf);
             message.setText(LynxManager.decryptString(chatMessage.getMessage()));
+            v.requestFocus();
             chatTableLayout.addView(v);
         }
 
@@ -306,7 +309,11 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     public void onBackPressed() {
+        LynxManager.notificationActions = null;
         Intent home = new Intent(LynxChat.this,LynxHome.class);
+        home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        home.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        home.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(home);
         finish();
     }
@@ -435,6 +442,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                         Log.d("Response: ", "> ChatListOnlineError. " + jsonObj.getString("message"));
                     } else {
                         JSONArray chatArray = jsonObj.getJSONArray("ticketChat");
+                        db.deleteChatData();
                         for(int i=0;i<chatArray.length();i++){
                             JSONObject childObj = chatArray.getJSONObject(i).getJSONObject("TicketChat");
                             ChatMessage newmessage = new ChatMessage();

@@ -52,19 +52,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         int pushnotification_flag = Integer.parseInt(data.get("pushnotification_flag"));
         db = new DatabaseHelper(getApplicationContext());
 
-
-        /*if (pushnotification_flag == 1){
-            ChatMessage newmessage = new ChatMessage();
-            newmessage.setMessage(LynxManager.encryptString(data.get("message")));
-            newmessage.setSender_pic(LynxManager.encryptString(data.get("sender_profile_pic_url")));
-            newmessage.setSender(LynxManager.encryptString(data.get("sender_name")));
-            newmessage.setDatetime(LynxManager.encryptString(data.get("date")));
-            newmessage.setStatusUpdate(LynxManager.encryptString(String.valueOf(R.string.statusUpdateYes)));
-            db.createChatMessage(newmessage);
-        }else if(pushnotification_flag == 0){
-            // test history goes here
-        }*/
-
         sendNotification(notification, data);
     }
 
@@ -113,11 +100,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentIntent(pendingIntent)
                 .setContentInfo("LYNX")
                 .setLargeIcon(icon)
-                .setColor(Color.RED)
+                .setColor(getResources().getColor(R.color.faq_blue))
                 .setSmallIcon(R.drawable.ic_silhouette);
 
         notificationBuilder.setDefaults(Notification.DEFAULT_VIBRATE);
-        notificationBuilder.setLights(Color.YELLOW, 1000, 300);
+        notificationBuilder.setLights(Color.BLUE, 1000, 300);
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0, notificationBuilder.build());

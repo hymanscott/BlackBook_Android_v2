@@ -297,6 +297,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     break;
                 case "Chat":
                     Intent chat = new Intent(LynxHome.this,LynxChat.class);
+                    chat.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(chat);
                     finish();
                     break;

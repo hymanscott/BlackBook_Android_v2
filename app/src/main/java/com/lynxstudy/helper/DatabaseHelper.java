@@ -4439,6 +4439,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
+    public boolean deleteChatData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_CHAT_MESSAGES, null, null);
+        return true;
+    }
 
     //*****************Statistics Table Methods *******************//
 
