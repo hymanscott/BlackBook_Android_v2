@@ -18,6 +18,7 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -65,6 +67,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
     ImageView newMessageSend;
     DatabaseHelper db;
     Typeface tf,tf_bold;
+    ScrollView chatScrollView;
     int chat_bubble_width;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +117,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         callUsNow.setTypeface(tf_bold);
         TextView chatNow = (TextView)findViewById(R.id.chatNow);
         chatNow.setTypeface(tf_bold);
+        chatScrollView = (ScrollView)findViewById(R.id.chatScrollView);
         LinearLayout callUsNowSection = (LinearLayout)findViewById(R.id.callUsNowSection);
         LinearLayout chatNowSection = (LinearLayout)findViewById(R.id.chatNowSection);
         needUsNow.setOnClickListener(new View.OnClickListener() {
@@ -170,9 +174,9 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
 
             String login_query_string = LynxManager.getQueryString(loginOBJ.toString());
             boolean internet_status = LynxManager.haveNetworkConnection(LynxChat.this);
+            addChatData();
             if(!internet_status){
                 Toast.makeText(LynxChat.this, "Please check your internet connection!", Toast.LENGTH_SHORT).show();
-                addChatData();
             }else{
                 new ChatListOnline(login_query_string).execute();
             }
@@ -254,7 +258,20 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             v.requestFocus();
             chatTableLayout.addView(v);
         }
-
+        //chatTableLayout.scrollTo(0,chatTableLayout.getBottom());
+        scrolltolastmessage();
+    }
+    public void scrolltolastmessage(){
+        final int index = chatTableLayout.getChildCount() - 1;
+        final View child = chatTableLayout.getChildAt(index);
+        Log.v("Index",String.valueOf(index));
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                chatScrollView.setSmoothScrollingEnabled(true);
+                chatScrollView.fullScroll(View.FOCUS_DOWN);
+            }
+        });
     }
     @Override
     public void onClick(View v) {
