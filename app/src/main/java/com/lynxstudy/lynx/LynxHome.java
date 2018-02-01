@@ -359,6 +359,14 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         }
         int shown = 0;
         Calendar cal = Calendar.getInstance();
+        SimpleDateFormat inputDFUS  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date uscurrentdate = null;
+        try {
+            uscurrentdate = inputDFUS.parse(LynxManager.getDateTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        cal.setTime(uscurrentdate);
         int month = cal.get(Calendar.MONTH) + 1;
         int year  = cal.get(Calendar.YEAR);
         String date1 = year+"-"+String.format("%02d", month)+"-";

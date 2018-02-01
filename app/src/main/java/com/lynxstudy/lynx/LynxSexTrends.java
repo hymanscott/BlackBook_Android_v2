@@ -83,6 +83,34 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         int partners = db.getPartnersCount();
         titleStats.setText("For "+encounters+" encounters with "+partners+" partners ");
 
+        /*versatile Seekbar*/
+        TextView versatile_progress = (TextView)findViewById(R.id.versatile_progress);
+        versatile_progress.setTypeface(tf_bold);
+        TextView versatile_description = (TextView)findViewById(R.id.versatile_description);
+        versatile_description.setTypeface(tf_italic);
+        CircularSeekBar versatile = (CircularSeekBar)findViewById(R.id.versatile);
+        int versatileCount = 0;
+        for(Encounter encounter: db.getAllEncounters()){
+            int topcount = db.getEncSexTypeCountByEncIDandName(encounter.getEncounter_id(),"I topped");
+            int bottomcount = db.getEncSexTypeCountByEncIDandName(encounter.getEncounter_id(),"I bottomed");
+            if(topcount>0 && bottomcount>0){
+                versatileCount++;
+            }
+            //Log.v("Versatile",encounter.getEncounter_id()+", Top=" + topcount + ", bottom=" +bottomcount+", VersatileCount ="+versatileCount);
+        }
+        float versatile_percent =0;
+        int versatile_value =0;
+        if(versatileCount>0){
+            versatile_percent =(float)versatileCount/db.getEncountersCount();
+            versatile_value = (int) (versatile_percent*100);
+            versatile.setVisibility(View.VISIBLE);
+            versatile.setProgress(versatile_value);
+        }else{
+            versatile.setVisibility(View.GONE);
+        }
+
+        versatile_progress.setText(versatile_value + "%");
+
          /*Exclusivily Bottom Seekbar*/
         TextView bottom_progress = (TextView)findViewById(R.id.bottom_progress);
         bottom_progress.setTypeface(tf_bold);
@@ -91,9 +119,10 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         CircularSeekBar exclusive_bottom = (CircularSeekBar)findViewById(R.id.exclusive_bottom);
         float bottom_percent = 0;
         if(db.getEncountersCount()>0){
-            bottom_percent =(float)db.getAllEncounterSexTypeCountByName("I bottomed")/db.getEncountersCount();
-            Log.v("Bottom Count", String.valueOf(db.getAllEncounterSexTypeCountByName("I bottomed")));
-            Log.v("Bottom Count", String.valueOf(db.getEncountersCount()));
+            // To get Exclusive bottom remove versatile
+            int bottom_count = db.getAllEncounterSexTypeCountByName("I bottomed");
+            bottom_count = bottom_count-versatileCount;
+            bottom_percent =(float)bottom_count/db.getEncountersCount();
         }
         for(EncounterSexType encounterSexType:db.getAllEncounterSexTypes()){
             Log.v("SexType",LynxManager.decryptString(encounterSexType.getSex_type())+"->"+encounterSexType.getEncounter_id());
@@ -115,8 +144,9 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         CircularSeekBar exclusive_top = (CircularSeekBar)findViewById(R.id.exclusive_top);
         float top_percent = 0;
         if(db.getEncountersCount()>0){
-            top_percent =(float)db.getAllEncounterSexTypeCountByName("I topped")/db.getEncountersCount();
-            Log.v("top Count", String.valueOf(db.getAllEncounterSexTypeCountByName("I topped")));
+            int top_count = db.getAllEncounterSexTypeCountByName("I topped");
+            top_count = top_count - versatileCount;
+            top_percent =(float)top_count/db.getEncountersCount();
         }
         int top_progress_value = (int) (top_percent*100);
         if(top_progress_value>0){
@@ -126,34 +156,6 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
             exclusive_top.setVisibility(View.GONE);
         }
         top_progress.setText(top_progress_value + "%");
-
-        /*versatile Seekbar*/
-        TextView versatile_progress = (TextView)findViewById(R.id.versatile_progress);
-        versatile_progress.setTypeface(tf_bold);
-        TextView versatile_description = (TextView)findViewById(R.id.versatile_description);
-        versatile_description.setTypeface(tf_italic);
-        CircularSeekBar versatile = (CircularSeekBar)findViewById(R.id.versatile);
-        int versatileCount = 0;
-        for(Encounter encounter: db.getAllEncounters()){
-            int topcount = db.getEncSexTypeCountByEncIDandName(encounter.getEncounter_id(),"I topped");
-            int bottomcount = db.getEncSexTypeCountByEncIDandName(encounter.getEncounter_id(),"I bottomed");
-            if(topcount>0 && bottomcount>0){
-                versatileCount++;
-            }
-            Log.v("Versatile",encounter.getEncounter_id()+", Top=" + topcount + ", bottom=" +bottomcount+", VersatileCount ="+versatileCount);
-        }
-        float versatile_percent =0;
-        int versatile_value =0;
-        if(versatileCount>0){
-            versatile_percent =(float)versatileCount/db.getEncountersCount();
-            versatile_value = (int) (versatile_percent*100);
-            versatile.setVisibility(View.VISIBLE);
-            versatile.setProgress(versatile_value);
-        }else{
-            versatile.setVisibility(View.GONE);
-        }
-        Log.v("Ver",versatile_percent +" " + versatile_value);
-        versatile_progress.setText(versatile_value + "%");
 
         /*Condom use Seekbar*/
         TextView condom_use_progress = (TextView)findViewById(R.id.condom_use_progress);
