@@ -80,7 +80,7 @@ public class EditPartnerContactInfoFragment extends Fragment {
         if (partnerContact != null) {
             TextView new_partner_nickname = (TextView) rootview.findViewById(R.id.new_partner_nickname);
             new_partner_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-            new_partner_nickname.setAllCaps(true);
+            //new_partner_nickname.setAllCaps(true);
             new_partner_nickname.setTypeface(tf);
 
             EditText newPartner_emailET = (EditText) rootview.findViewById(R.id.newPartnerEmail);

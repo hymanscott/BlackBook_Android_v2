@@ -82,7 +82,7 @@ public class NewPartnerContactInfoFragment extends Fragment {
         contactInfoTitle.setText(Html.fromHtml("What is their contact info?<br/>(enter as much or as little of you’d like)"));
         TextView new_partner_nickname = (TextView) rootview.findViewById(R.id.new_partner_nickname);
         new_partner_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        new_partner_nickname.setAllCaps(true);
+        //new_partner_nickname.setAllCaps(true);
         new_partner_nickname.setTypeface(tf_bold);
         EditText newPartner_emailET = (EditText) rootview.findViewById(R.id.newPartnerEmail);
         newPartner_emailET.setTypeface(tf);

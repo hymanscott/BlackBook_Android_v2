@@ -66,7 +66,7 @@ public class EncounterEjaculationFragment extends Fragment {
         // Set NickName
         TextView nickname = (TextView) rootview.findViewById(R.id.encounter_notes_nickName);
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        nickname.setAllCaps(true);
+        //nickname.setAllCaps(true);
         nickname.setTypeface(tf_bold);
 
 

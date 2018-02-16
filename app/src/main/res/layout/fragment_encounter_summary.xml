@@ -246,7 +246,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/encounter_tv_textsize"
                         android:textColor="@color/white"
-                        android:text="Came inside partner ?"
+                        android:text="Came inside partner?"
                         android:id="@+id/did_you_cum_title"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -283,7 +283,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/encounter_tv_textsize"
                         android:textColor="@color/white"
-                        android:text="Partner came in me ?"
+                        android:text="Partner came in me?"
                         android:id="@+id/did_your_partner_cum_title"/>
                     <TextView
                         android:layout_width="wrap_content"

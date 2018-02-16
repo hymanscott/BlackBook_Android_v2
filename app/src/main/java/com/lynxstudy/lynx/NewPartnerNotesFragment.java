@@ -40,7 +40,7 @@ public class NewPartnerNotesFragment extends Fragment {
                 "fonts/Roboto-Bold.ttf");
         TextView new_partner_nickname = (TextView) rootview.findViewById(R.id.new_partner_nickname);
         new_partner_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        new_partner_nickname.setAllCaps(true);
+        //new_partner_nickname.setAllCaps(true);
         new_partner_nickname.setTypeface(tf_bold);
         add_partner_title = (TextView) rootview.findViewById(R.id.add_partner_title);
         add_partner_title.setTypeface(tf_bold);

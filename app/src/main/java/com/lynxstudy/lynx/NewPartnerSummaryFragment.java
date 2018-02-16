@@ -69,7 +69,7 @@ public class NewPartnerSummaryFragment extends Fragment {
         // Display Summary
         TextView new_partner_Summ_nickname = (TextView) rootview.findViewById(R.id.new_partner_Summ_nickname);
         new_partner_Summ_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        new_partner_Summ_nickname.setAllCaps(true);
+        //new_partner_Summ_nickname.setAllCaps(true);
         new_partner_Summ_nickname.setTypeface(tf_bold);
         TextView nickName = (TextView) rootview.findViewById(R.id.newPartnerSumm_nickName);
         TextView hivStatus = (TextView) rootview.findViewById(R.id.newPartnerSumm_hivStatus);

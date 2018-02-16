@@ -87,7 +87,7 @@ public class EncounterSummaryEditFragment extends Fragment {
         didYourPartnerCumParent = (LinearLayout)rootview.findViewById(R.id.didYourPartnerCumParent);
 
         encounter_summary_nickName.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        encounter_summary_nickName.setAllCaps(true);
+        //encounter_summary_nickName.setAllCaps(true);
 
         encNotes.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getEncounter_notes()));
         didYouCum.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getDid_you_cum()));
