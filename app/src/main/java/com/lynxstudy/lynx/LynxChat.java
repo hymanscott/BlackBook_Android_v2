@@ -191,6 +191,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             public void onClick(View v) {
                 if(!newMessage.getText().toString().isEmpty()){
                     JSONObject newMessageObj = new JSONObject();
+                    String curent_datetime = LynxManager.getDateTime();
                     try {
                         newMessageObj.put("email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail()));
                         newMessageObj.put("password",LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
@@ -198,6 +199,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                         newMessageObj.put("message",newMessage.getText().toString());
                         newMessageObj.put("sender_name",LynxManager.decryptString(LynxManager.getActiveUser().getFirstname()));
                         newMessageObj.put("sender_profile_pic_url","propicurl");
+                        newMessageObj.put("created_at",curent_datetime);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -211,7 +213,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                         newmessage.setMessage(LynxManager.encryptString(newMessage.getText().toString()));
                         newmessage.setSender(LynxManager.getActiveUser().getFirstname());
                         newmessage.setSender_pic(LynxManager.encryptString(""));
-                        newmessage.setDatetime(LynxManager.encryptString(LynxManager.getDateTime()));
+                        newmessage.setDatetime(LynxManager.encryptString(curent_datetime));
                         newmessage.setStatusUpdate(LynxManager.encryptString(String.valueOf(R.string.statusUpdateYes)));
                         new sendNewMessage(query_string,newmessage).execute();
                         newMessage.setText("");

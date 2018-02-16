@@ -204,13 +204,13 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
             if(final_score>=17){
                 message = "Wow. Look at you! You’re seriously taking good care of your sexual health. Taking PrEP daily can keep you in the green.";
             }else{
-                message = "You haven't reached the green because you’re not taking PrEP daily. Taking it every day will really further protect your sexual health. Hit us up, we can help!";
+                message = "You’re not in the green because you’re not taking PrEP daily. Taking it every day will really further protect your sexual health. Hit us up, we can help!";
             }
         }else{
-            if(final_score == 1){
-                message = "You’re deep in the red, but getting into the green is easier than you think. PrEP is a great way to protect your sexual health. Hit us up, we can help.";
-            }else if(final_score>=2 && final_score <=16){
-                message = "You’re in the red, but the green zone is closer than you think. PrEP can help protect you, and get you into the green. Talk to us about your options.";
+            if(final_score >= 1 && final_score <=8){
+                message = "You’re in the red, but getting into the green is easier than you think. PrEP is a great way to protect your sexual health. Hit us up, we can help.";
+            }else if(final_score>=9 && final_score <=16){
+                message = "You’re in the yellow, but the green zone is closer than you think. PrEP can help protect you, and get you into the green. Talk to us about your options.";
             }else if(final_score>=17 && final_score <=20){
                 message = "Well, alright! You're in the green and doing great. PrEp can offer even more protection with similar convenience.";
             }
