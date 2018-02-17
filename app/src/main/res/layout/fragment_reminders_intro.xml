@@ -36,17 +36,16 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="We got you! During the study, we’ll send you monthly testing reminders as well as weekly reminders to add your sexual activity and any PrEP use."
+                android:text="We got you! During the study, we’ll send you reminders to do HIV/STD testing every three months, as well as weekly reminders to add your sexual activity and any PrEP use."
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:layout_marginTop="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:lineSpacingMultiplier="1.43"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:textSize="16sp" />
             <TextView
                 android:id="@+id/intro_second_paragraph"
                 android:layout_width="fill_parent"
@@ -55,13 +54,11 @@
                 android:text="But you’re in charge – so let’s set those now."
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:layout_marginTop="32dp"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:lineSpacingMultiplier="1.43"
+                android:textSize="16sp" />
             <TextView
                 android:id="@+id/intro_third_paragraph"
                 android:layout_width="fill_parent"
@@ -70,12 +67,11 @@
                 android:text="(Don’t worry – you can change these whenever you want in User Settings.)"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:lineSpacingMultiplier="1.43"
                 android:layout_marginTop="32dp"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="16sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
