@@ -51,7 +51,7 @@ public class EncounterNotesFragment extends Fragment {
 
         TextView nickname = (TextView) rootview.findViewById(R.id.encounter_notes_nickName);
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        nickname.setAllCaps(true);
+        //nickname.setAllCaps(true);
         nickname.setTypeface(tf_bold);
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();

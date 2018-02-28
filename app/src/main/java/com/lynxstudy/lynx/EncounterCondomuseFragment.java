@@ -77,7 +77,7 @@ public class EncounterCondomuseFragment extends Fragment {
         //set Nick name
         TextView nickname = (TextView) rootview.findViewById(R.id.enc_sexType_condomUse_nickName);
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        nickname.setAllCaps(true);
+        //nickname.setAllCaps(true);
         nickname.setTypeface(tf_bold);
 
         LinearLayout layout_whenIsucked = (LinearLayout) rootview.findViewById(R.id.whenIsucked_layout);

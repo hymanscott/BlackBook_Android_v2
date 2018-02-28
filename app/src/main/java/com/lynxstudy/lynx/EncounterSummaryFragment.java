@@ -80,7 +80,7 @@ public class EncounterSummaryFragment extends Fragment {
         // Set NickName
         TextView nickname = (TextView) rootview.findViewById(R.id.encounter_summary_nickName);
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        nickname.setAllCaps(true);
+        nickname.setAllCaps(false);
         nickname.setTypeface(tf);
 
         encSumm_partnerNotes.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getEncounter_notes()));

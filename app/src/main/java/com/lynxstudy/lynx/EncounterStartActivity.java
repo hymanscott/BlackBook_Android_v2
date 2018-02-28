@@ -221,7 +221,7 @@ public class EncounterStartActivity extends AppCompatActivity {
         final EditText enctime = (EditText) findViewById(R.id.encTime);
 
         if (encdate.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Please choose Encounter Date !", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please choose Encounter Date!", Toast.LENGTH_LONG).show();
         }else if(LynxManager.dateValidation(encdate.getText().toString())){
             Toast.makeText(this,"Invalid Date",Toast.LENGTH_SHORT).show();
         }else if(!LynxManager.timeValidation(enctime.getText().toString())){

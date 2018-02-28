@@ -66,7 +66,7 @@ public class NewPartnerRatingsFragment extends Fragment {
         newPartner_rate1.setTypeface(tf);
         TextView newPartner_rating_nickname = (TextView) rootview.findViewById(R.id.newPartner_rating_nickname);
         newPartner_rating_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        newPartner_rating_nickname.setAllCaps(true);
+        //newPartner_rating_nickname.setAllCaps(true);
         newPartner_rating_nickname.setTypeface(tf_bold);
         db = new DatabaseHelper(getActivity().getBaseContext());
         /*List<UserRatingFields> field = db.getAllUserRatingFields(LynxManager.getActiveUser().getUser_id());

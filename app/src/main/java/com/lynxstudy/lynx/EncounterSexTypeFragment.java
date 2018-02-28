@@ -48,7 +48,7 @@ public class EncounterSexTypeFragment extends Fragment {
 
         TextView nickname = (TextView) rootview.findViewById(R.id.enc_sexType_nickName);
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        nickname.setAllCaps(true);
+        //nickname.setAllCaps(true);
         nickname.setTypeface(tf_bold);
         newEncounter = (TextView) rootview.findViewById(R.id.newEncounter);
         newEncounter.setTypeface(tf_bold);

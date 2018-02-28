@@ -104,7 +104,7 @@ public class EditPartner extends Fragment {
         TextView selectedPartner_bannername = (TextView) rootview.findViewById(R.id.selectedPartner_bannername);
         selectedPartner_bannername.setVisibility(View.VISIBLE);
         selectedPartner_bannername.setTypeface(tf);
-        selectedPartner_bannername.setAllCaps(true);
+        //selectedPartner_bannername.setAllCaps(true);
         selectedPartner_bannername.setText(LynxManager.decryptString(partner.getNickname()));
         final RadioGroup hiv_status_grp = (RadioGroup)rootview.findViewById(R.id.radio_hivstatus);
         setSelectedRadio(rootview, hiv_status_grp, LynxManager.decryptString(partner.getHiv_status()));

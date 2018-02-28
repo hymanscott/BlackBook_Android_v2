@@ -37,7 +37,7 @@ public class EditPartnerNotesFragment extends Fragment {
         TextView partnerNotesTitle = (TextView)rootview.findViewById(R.id.partnerNotesTitle);
         partnerNotesTitle.setTypeface(tf);
         TextView new_partner_nickname = (TextView) rootview.findViewById(R.id.new_partner_nickname);
-        new_partner_nickname.setAllCaps(true);
+        //new_partner_nickname.setAllCaps(true);
         new_partner_nickname.setTypeface(tf);
         EditText notes = (EditText) rootview.findViewById(R.id.partnerNotes);
         PartnerContact partnerContact = db.getPartnerContactbyPartnerID(LynxManager.selectedPartnerID);

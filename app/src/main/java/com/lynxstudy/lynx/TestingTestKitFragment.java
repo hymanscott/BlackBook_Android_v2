@@ -124,7 +124,8 @@ public class TestingTestKitFragment extends Fragment {
     }
 
     public void loadTestKitURL(){
-        testkitWebview.loadUrl("https://www.surveygizmo.com/s3/3731988/Care-Kit-Order-Form?study=Lynx&test=yes");
+        int appID = LynxManager.getActiveUser().getUser_id();
+        testkitWebview.loadUrl("https://www.surveygizmo.com/s3/3731988/Care-Kit-Order-Form?study=Lynx&appID="+appID);
         testkitWebview.setWebChromeClient(new WebChromeClient());
         testkitWebview.getSettings().setJavaScriptEnabled(true);
         testkitWebview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
