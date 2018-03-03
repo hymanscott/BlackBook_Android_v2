@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.lynxstudy.model.AppAlerts;
 import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.ChatMessage;
 import com.lynxstudy.model.CloudMessages;
@@ -92,6 +93,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_CHAT_MESSAGES = "ChatMessages";
     private static final String TABLE_STATISTICS = "Statistics";
     private static final String TABLE_USER_BADGES = "UserBadges";
+    private static final String TABLE_APP_ALERTS = "AppAlerts";
 
     // Common column names
     private static final String KEY_CREATED_AT = "created_at";
@@ -351,6 +353,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_USER_BADGE_ISSHOWN = "is_shown";
     private static final String KEY_USER_BADGE_NOTES = "badge_notes";
 
+    private static final String KEY_APP_ALERT_ID = "app_alert_id";
+    private static final String KEY_APP_ALERT_NAME = "app_alert_name";
+    private static final String KEY_APP_ALERT_MODIFIED = "app_alert_modified";
+    private static final String KEY_APP_ALERT_CREATEDAT = "app_alert_createdat";
 
     // Table Create Statements
     // Users table create statement
@@ -509,6 +515,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_USER_BADGE_BADGEID + " INTEGER,"+ KEY_USER_BADGE_ISSHOWN + " INTEGER,"+ KEY_USER_BADGE_NOTES + " TEXT,"
             + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
 
+    private static final String CREATE_TABLE_APP_ALERT = "CREATE TABLE "
+            + TABLE_APP_ALERTS + "(" + KEY_APP_ALERT_ID + " INTEGER PRIMARY KEY," + KEY_APP_ALERT_NAME + " TEXT,"
+            + KEY_APP_ALERT_MODIFIED + " TEXT," + KEY_APP_ALERT_CREATEDAT + " TEXT)";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
@@ -548,6 +558,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_CHAT_MESSAGES);
         db.execSQL(CREATE_TABLE_STATISTICS);
         db.execSQL(CREATE_TABLE_USER_BADGES);
+        db.execSQL(CREATE_TABLE_APP_ALERT);
 
     }
 
@@ -582,6 +593,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CHAT_MESSAGES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STATISTICS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_BADGES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_APP_ALERTS);
         // create new tables
         onCreate(db);
         Log.v("Database upgrade","Executed");
@@ -645,6 +657,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_CHAT_MESSAGES, null, null);
         db.delete(TABLE_STATISTICS, null, null);
         db.delete(TABLE_USER_BADGES, null, null);
+        db.delete(TABLE_APP_ALERTS, null, null);
     }
 
     // ------------------------ "Users" table methods ----------------//
@@ -3570,8 +3583,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // insert row
         int test_history_id = (int) db.insert(TABLE_TESTING_HISTORY, null, values);
-
-
         return test_history_id;
     }
 
@@ -3608,6 +3619,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<TestingHistory> getAllTestingHistories() {
         List<TestingHistory> testingHistories = new ArrayList<TestingHistory>();
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY + " ORDER BY " + KEY_TESTING_HISTORY_ID + " DESC";
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                TestingHistory testHistory = new TestingHistory();
+                testHistory.setTesting_history_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_ID)));
+                testHistory.setTesting_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_TESTINGID)));
+                testHistory.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_USERID)));
+                testHistory.setTesting_date(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_TESTINGDATE)));
+                testHistory.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // adding to Users list
+                testingHistories.add(testHistory);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return testingHistories;
+    }
+    public List<TestingHistory> getAllTestingHistoriesByTestingID(int id) {
+        List<TestingHistory> testingHistories = new ArrayList<TestingHistory>();
+        String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY + " WHERE "
+                + KEY_TESTING_HISTORY_TESTINGID + " = " + id + " ORDER BY " + KEY_TESTING_HISTORY_ID + " DESC";;
 
         Log.e(LOG, selectQuery);
 
@@ -4914,5 +4952,64 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
+    // ------------------------ "APP ALERTS" table methods ----------------//
+
+    /**
+     * Creating a  App Alerts
+     */
+    public int createAppAlert(AppAlerts appAlerts) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        //values.put(KEY_APP_ALERT_ID, appAlerts.getId());
+        values.put(KEY_APP_ALERT_NAME, appAlerts.getName());
+        values.put(KEY_APP_ALERT_MODIFIED, appAlerts.getModified_date());
+        values.put(KEY_APP_ALERT_CREATEDAT, getDateTime());
+
+        // insert row
+        return (int) db.insert(TABLE_APP_ALERTS, null, values);
+    }
+
+    public int getAppAlertsCountByName(String name){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_APP_ALERTS + " WHERE "
+                + KEY_APP_ALERT_NAME + " = '" + name + "'";
+
+        android.database.Cursor cursor = db.rawQuery(selectQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+    public AppAlerts getAppAlertByName(String name){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_APP_ALERTS + " WHERE "
+                + KEY_APP_ALERT_NAME + " = '" + name + "'";
+
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c != null && c.getCount()>0) {
+            AppAlerts appAlerts = new AppAlerts();
+            appAlerts.setId(c.getInt(c.getColumnIndex(KEY_APP_ALERT_ID)));
+            appAlerts.setName(c.getString(c.getColumnIndex(KEY_APP_ALERT_NAME)));
+            appAlerts.setCreated_date(c.getString(c.getColumnIndex(KEY_APP_ALERT_CREATEDAT)));
+            appAlerts.setModified_date(c.getString(c.getColumnIndex(KEY_APP_ALERT_MODIFIED)));
+            return appAlerts;
+        }
+        c.close();
+        return null;
+    }
+    public int updateAppAlertModifiedDate(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_APP_ALERT_MODIFIED, getDateTime());
+
+        // updating row
+        return db.update(TABLE_APP_ALERTS, values, KEY_APP_ALERT_ID+ " = ?",
+                new String[]{String.valueOf(id)});
+    }
 }
 

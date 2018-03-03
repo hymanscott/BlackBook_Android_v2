@@ -2,14 +2,17 @@ package com.lynxstudy.lynx;
 
 import android.app.ActionBar;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.media.RingtoneManager;
@@ -18,12 +21,14 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -34,6 +39,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.AppAlerts;
 import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.CloudMessages;
 import com.lynxstudy.model.Encounter;
@@ -303,6 +309,9 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     break;
                 case "Testing":
                     break;
+                case "TestingRemindersFromServer":
+                    finish();
+                    break;
 
             }
         }
@@ -421,6 +430,140 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             }
         }
 
+        // APP Behaviour Alerts //
+
+        int elapsed_reg_days = getElapsedDays(LynxManager.getActiveUserBaselineInfo().getCreated_at());
+        String message = "";
+        Log.v("TokenID",LynxManager.decryptString(db.getCloudMessaging().getToken_id()));
+        if(elapsed_reg_days>2){
+            if(db.getTestingHistoriesCountByTestingId(1)==0 && !isPositiveHIVTestLogged()){
+                message = "You haven't entered an HIV test yet. Don't forget to do your first test!";
+                if(db.getAppAlertsCountByName("Reminder One")==0){
+                    showAppAlert(message,1,"Reminder One");
+                }
+            }
+            if(db.getTestingHistoriesCountByTestingId(2)==0 && !isPositiveHIVTestLogged()){
+                message = "You haven't entered an HIV test yet. Don't forget to do your first set of test!";
+                if(db.getAppAlertsCountByName("Reminder One")==0){
+                    showAppAlert(message,1,"Reminder One");
+                }
+            }
+            if(db.getTestingHistoriesCountByTestingId(1)==0 && db.getTestingHistoriesCountByTestingId(2)==0){
+                message = "You haven't entered an HIV or STD test yet. Don't forget to do your first set of tests!";
+                if(db.getAppAlertsCountByName("Reminder One")==0){
+                    showAppAlert(message,1,"Reminder One");
+                }
+            }
+
+        }else if(elapsed_reg_days>30){
+            if(db.getTestingHistoriesCountByTestingId(1)==0 && !isPositiveHIVTestLogged()){
+                message = "It’s been more than 2 months since your last test. You deserve to know your HIV status. Test time, baby!";
+                if(db.getAppAlertsCountByName("Reminder Two")==0){
+                    showAppAlert(message,1,"Reminder Two");
+                }
+            }
+            if(db.getTestingHistoriesCountByTestingId(2)==0 && !isPositiveHIVTestLogged()){
+                message = "It’s been more than 2 months since your last test. Getting tested on the regular is a great habit to have. Speaking of which, it's that time. With STIs and related HIV risk on the rise, stay on track and get tested this week.";
+                if(db.getAppAlertsCountByName("Reminder Two")==0){
+                    showAppAlert(message,1,"Reminder Two");
+                }
+            }
+        }else if(elapsed_reg_days>90 || firstHIVElapsedDays()>90){
+            if(!isPositiveHIVTestLogged()){
+                TestingReminder testingReminder = db.getTestingReminderByFlag(1);
+                message = LynxManager.decryptString(testingReminder.getReminder_notes());
+                if(db.getAppAlertsCountByName("Reminder Three")==0){
+                    showAppAlert(message,1,"Reminder Three");
+                }
+            }
+        }
+        if(db.getAppAlertByName("Reminder Three") !=null){
+            AppAlerts appAlerts = db.getAppAlertByName("Reminder Three");
+            int modifieddate = getElapsedDays(appAlerts.getModified_date());
+            if(modifieddate>=90){
+                TestingReminder testingReminder = db.getTestingReminderByFlag(1);
+                message = LynxManager.decryptString(testingReminder.getReminder_notes());
+                showAppAlert(message,1,"Reminder Four");
+                db.updateAppAlertModifiedDate(appAlerts.getId());
+            }
+        }
+    }
+    private boolean isPositiveHIVTestLogged(){
+        /*
+        * Positive HIV Elapsed Days calculation
+        * */
+        int hiv_elapsed_days = 0;
+        List<TestingHistory> testingHistoryList = db.getAllTestingHistoriesByTestingID(1);
+        Collections.sort(testingHistoryList, new TestingHistory.CompDate(true));
+
+        boolean breakflag = false;
+        String lastHivPosdate = null;
+        for(TestingHistory testingHistory2:testingHistoryList){
+            List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(testingHistory2.getTesting_history_id());
+            for (TestingHistoryInfo historyInfo : testinghistoryInfoList) {
+                if (historyInfo.getSti_id() == 0) {
+                    if(LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")){
+                        lastHivPosdate = LynxManager.decryptString(testingHistory2.getTesting_date()) + " 00:00:00";
+                        hiv_elapsed_days = getElapsedDays(lastHivPosdate);
+                        Log.v("LastPositiveHIVTestDate",lastHivPosdate + "--" + hiv_elapsed_days);
+                        breakflag = true;
+                        return true;
+                    }
+                }
+            }
+            if(breakflag){
+                break;
+            }
+        }
+        return false;
+    }
+    private int firstHIVElapsedDays(){
+        List<TestingHistory> testingHistoryList = db.getAllTestingHistoriesByTestingID(1);
+        Collections.sort(testingHistoryList, new TestingHistory.CompDate(true));
+        TestingHistory testingHistory1 = testingHistoryList.get(testingHistoryList.size()-1);
+        String firstHivdate = LynxManager.decryptString(testingHistory1.getTesting_date()) + " 00:00:00";
+        return getElapsedDays(firstHivdate);
+    }
+    private void showAppAlert(String message,int no_of_buttons,String name){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(LynxHome.this);
+        View appAlertLayout = getLayoutInflater().inflate(R.layout.app_alert_template,null);
+        builder1.setView(appAlertLayout);
+        TextView message_tv = (TextView)appAlertLayout.findViewById(R.id.message);
+        TextView maybeLater = (TextView)appAlertLayout.findViewById(R.id.maybeLater);
+        TextView prepInfo = (TextView)appAlertLayout.findViewById(R.id.prepInfo);
+        View verticalBorder = (View)appAlertLayout.findViewById(R.id.verticalBorder);
+        message_tv.setText(message);
+        builder1.setCancelable(false);
+        final AlertDialog alert11 = builder1.create();
+        if(no_of_buttons==1){
+            prepInfo.setVisibility(View.GONE);
+            verticalBorder.setVisibility(View.GONE);
+            maybeLater.setText("Got it!");
+            maybeLater.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                }
+            });
+        }else{
+            prepInfo.setVisibility(View.VISIBLE);
+            verticalBorder.setVisibility(View.VISIBLE);
+            maybeLater.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                }
+            });
+            prepInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                }
+            });
+        }
+        alert11.show();
+        AppAlerts appAlerts = new AppAlerts(name,LynxManager.getDateTime(),LynxManager.getDateTime());
+        db.createAppAlert(appAlerts);
     }
     private int getElapsedDays(String dateString){
         SimpleDateFormat inputDF  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

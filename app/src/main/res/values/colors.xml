@@ -66,4 +66,9 @@
     <color name="chart_orange">#FFF16A38</color>
     <color name="chart_purple">#FFC73BC0</color>
     <color name="chart_grey">#FF979797</color>
+
+    <color name="alert_box_bg">#CCFCFCFC</color>
+    <color name="alert_box_btn">#FF256DFF</color>
+    <color name="alert_box_border">#C74D4D4D</color>
+    <color name="alert_box_text">#FF343434</color>
 </resources>

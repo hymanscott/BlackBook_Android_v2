@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -36,11 +38,13 @@ public class EncounterWeeklyCheckinPrep extends Fragment {
     Button checkin_prep_next;
     RadioButton taking_prep_yes,taking_prep_no;
     RelativeLayout prep_parent;
+    LinearLayout last7daysLayout;
+    RadioGroup taking_prep_rg;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_encounter_weekly_checkin_prep, container, false);
+        final View view = inflater.inflate(R.layout.fragment_encounter_weekly_checkin_prep, container, false);
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
@@ -58,6 +62,18 @@ public class EncounterWeeklyCheckinPrep extends Fragment {
         taking_prep_no = (RadioButton) view.findViewById(R.id.taking_prep_no);
         taking_prep_no.setTypeface(tf);
 
+        taking_prep_rg = (RadioGroup) view.findViewById(R.id.taking_prep_rg);
+        last7daysLayout = (LinearLayout) view.findViewById(R.id.last7daysLayout);
+        taking_prep_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton rd_btn = (RadioButton) view.findViewById(taking_prep_rg.getCheckedRadioButtonId());
+                if(rd_btn.getText().toString().equals("No"))
+                    last7daysLayout.setVisibility(View.GONE);
+                else
+                    last7daysLayout.setVisibility(View.VISIBLE);
+            }
+        });
         prep_parent = (RelativeLayout) view.findViewById(R.id.prep_parent);
         final List<String> isPrepList= Arrays.asList(getResources().getStringArray(R.array.no_of_days));
         final ArrayAdapter<String> adapterPrep = new ArrayAdapter<String>(getActivity(),

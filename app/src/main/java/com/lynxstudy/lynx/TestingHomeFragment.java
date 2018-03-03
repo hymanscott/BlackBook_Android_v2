@@ -101,6 +101,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
     LinearLayout mainContentLayout,summaryLayout,newTestLayout;
     ImageView hivIcon,gonorrheaIcon,syphilisIcon,chlamydiaIcon;
     TextView teststatus,gonorrheaTitle,syphilisTitle,chlamydiaTitle;
+    private boolean isPositiveHIVAdded = false;
     private boolean isSummaryShown = false;
     String title="";
     ImageView newhivAttachment,newgonorrheaAttachment,newsyphilisAttachment,newchlamydiaAttachment;
@@ -638,6 +639,10 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     }else{
                         String path = hivImageName.substring(hivImageName.lastIndexOf("/") + 1);
                         String test_status = LynxManager.encryptString(hivTestStatus.getText().toString());
+                        if(hivTestStatus.getText().toString().equals("Yes"))
+                            isPositiveHIVAdded = true;
+                        else
+                            isPositiveHIVAdded = false;
                         TestingHistoryInfo historyInfo = new TestingHistoryInfo(testingHistoryid , LynxManager.getActiveUser().getUser_id(),0,test_status,LynxManager.encryptString(path),String.valueOf(R.string.statusUpdateNo),true);
                         int historyInfo_id = db.createTestingHistoryInfo(historyInfo);
                         uploadMultipart(hivImageName,path); // fullpath,imagename
@@ -659,10 +664,13 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     db.createUserBadge(lynxBadge);
 
                     // Trigger Badge //
-                    Intent badgeScreen =  new Intent(getActivity(),BadgeScreenActivity.class);
-                    badgeScreen.putExtra("badge_id",test_badge.getBadge_id());
-                    badgeScreen.putExtra("isAlert","Yes");
-                    startActivity(badgeScreen);
+                    if(!isPositiveHIVAdded){
+                        Intent badgeScreen =  new Intent(getActivity(),BadgeScreenActivity.class);
+                        badgeScreen.putExtra("badge_id",test_badge.getBadge_id());
+                        badgeScreen.putExtra("isAlert","Yes");
+                        startActivity(badgeScreen);
+                    }
+                    isPositiveHIVAdded = false;
                 }
             }
         });

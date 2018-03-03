@@ -122,6 +122,9 @@ public class RegLogin extends AppCompatActivity {
                         String subaction = getIntent().getExtras().getString("subaction");
                         LynxManager.notificationActions = subaction;
                         break;
+                    case "TestingRemindersFromServer":
+                        LynxManager.notificationActions = "TestingRemindersFromServer";
+                        break;
                     default:
                         LynxManager.notificationActions = null;
                 }
