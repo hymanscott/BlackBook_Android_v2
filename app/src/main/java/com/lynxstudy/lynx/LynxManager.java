@@ -368,6 +368,26 @@ public class LynxManager {
         Date date = new Date();
         return dateFormat.format(date);
     }
+    public static String getUTCDateTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss", Locale.US);
+        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+    public static String getLocaltimeFromUTC(String dateStr){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+        df.setTimeZone(TimeZone.getTimeZone("UTC"));
+        try {
+            Date datenew = df.parse(dateStr);
+            df.setTimeZone(TimeZone.getDefault());
+            String formattedDate = df.format(datenew);
+            return formattedDate;
+        }catch (Exception e){
+            Log.v("Exception",e.getLocalizedMessage());
+            return null;
+        }
+    }
     /**
      * get TimeStamp
      */

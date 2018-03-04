@@ -76,6 +76,8 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -483,7 +485,9 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             if(modifieddate>=90){
                 TestingReminder testingReminder = db.getTestingReminderByFlag(1);
                 message = LynxManager.decryptString(testingReminder.getReminder_notes());
-                showAppAlert(message,1,"Reminder Four");
+                if(!isPositiveHIVTestLogged()){
+                    showAppAlert(message,1,"Reminder Four");
+                }
                 db.updateAppAlertModifiedDate(appAlerts.getId());
             }
         }

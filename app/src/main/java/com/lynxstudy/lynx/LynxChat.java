@@ -91,8 +91,6 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView)cView.findViewById(R.id.viewProfile);
-        /*TextView actionbartitle = (TextView)cView.findViewById(R.id.actionbartitle);
-        actionbartitle.setTypeface(tf);*/
         bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
         bot_nav_sexpro_tv.setTypeface(tf);
         bot_nav_diary_tv = (TextView)findViewById(R.id.bot_nav_diary_tv);
@@ -142,11 +140,6 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                 needUsNowLayout.setVisibility(View.GONE);
             }
         });
-        /********************************************/
-        /*SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        String tokenid = sharedPref.getString("lynxfirebasetokenid",null);
-        newMessage.setText(tokenid);*/
-        /********************************************/
         // Click Listners //
         btn_sexpro = (LinearLayout)findViewById(R.id.bot_nav_sexpro);
         btn_testing = (LinearLayout) findViewById(R.id.bot_nav_testing);
@@ -161,29 +154,24 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         viewProfile.setOnClickListener(this);
 
         // Chat Table //
-//        if(db.getChatMessagesCount()==0){
-            // Get Chat List from Online //
-            JSONObject loginOBJ = new JSONObject();
-            try {
-                loginOBJ.put("email",LynxManager.getActiveUser().getEmail());
-                loginOBJ.put("password",LynxManager.getActiveUser().getPassword());
-                loginOBJ.put("user_id",LynxManager.getActiveUser().getUser_id());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+        // Get Chat List from Online //
+        JSONObject loginOBJ = new JSONObject();
+        try {
+            loginOBJ.put("email",LynxManager.getActiveUser().getEmail());
+            loginOBJ.put("password",LynxManager.getActiveUser().getPassword());
+            loginOBJ.put("user_id",LynxManager.getActiveUser().getUser_id());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-            String login_query_string = LynxManager.getQueryString(loginOBJ.toString());
-            boolean internet_status = LynxManager.haveNetworkConnection(LynxChat.this);
-            addChatData();
-            if(!internet_status){
-                Toast.makeText(LynxChat.this, "Please check your internet connection!", Toast.LENGTH_SHORT).show();
-            }else{
-                new ChatListOnline(login_query_string).execute();
-            }
-       /* }else{
-            addChatData();
-        }*/
-
+        String login_query_string = LynxManager.getQueryString(loginOBJ.toString());
+        boolean internet_status = LynxManager.haveNetworkConnection(LynxChat.this);
+        addChatData();
+        if(!internet_status){
+            Toast.makeText(LynxChat.this, "Please check your internet connection!", Toast.LENGTH_SHORT).show();
+        }else{
+            new ChatListOnline(login_query_string).execute();
+        }
         // Send New Message to Server //
         newMessageSend = (ImageView)findViewById(R.id.newMessageSend);
         newMessageSend.setOnClickListener(new View.OnClickListener() {
@@ -191,7 +179,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             public void onClick(View v) {
                 if(!newMessage.getText().toString().isEmpty()){
                     JSONObject newMessageObj = new JSONObject();
-                    String curent_datetime = LynxManager.getDateTime();
+                    String curent_datetime = LynxManager.getUTCDateTime();
                     try {
                         newMessageObj.put("email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail()));
                         newMessageObj.put("password",LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
@@ -234,7 +222,8 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             TableRow tr = new TableRow(LynxChat.this);
             ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(chat_bubble_width, ViewGroup.LayoutParams.WRAP_CONTENT);
             LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(chat_bubble_width, LinearLayout.LayoutParams.WRAP_CONTENT);
-            String msg_date = LynxManager.getFormatedDate("yyyy-MM-dd hh:mm:ss",LynxManager.decryptString(chatMessage.getDatetime()),"MMM dd, hh:mm a");
+            String msg_utc_date = LynxManager.decryptString(chatMessage.getDatetime());
+            String msg_date = LynxManager.getFormatedDate("yyyy-MM-dd hh:mm:ss",LynxManager.getLocaltimeFromUTC(msg_utc_date),"MMM dd, hh:mm a");
             View v;
             TextView date;
             //if(LynxManager.decryptString(chatMessage.getSender()).equals("Lynx Study")){
