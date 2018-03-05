@@ -99,6 +99,11 @@ public class BaselineActivity extends AppCompatActivity {
             textView10.setTypeface(tf);
             textView11.setTypeface(tf);
             next.setTypeface(tf_bold);
+            LynxManager.getActiveUserBaselineInfo().setHiv_negative_count("0");
+            LynxManager.getActiveUserBaselineInfo().setHiv_positive_count("0");
+            LynxManager.getActiveUserBaselineInfo().setHiv_unknown_count("0");
+            LynxManager.getActiveUserPrimaryPartner().setName(LynxManager.encryptString(""));
+            LynxManager.getActiveUserAlcoholUse().setNo_alcohol_in_day(LynxManager.encryptString(""));
             // Piwik Analytics //
             Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
             TrackHelper.track().screen("/Baseline/Introduction").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);

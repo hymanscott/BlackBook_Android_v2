@@ -524,9 +524,15 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
     private int firstHIVElapsedDays(){
         List<TestingHistory> testingHistoryList = db.getAllTestingHistoriesByTestingID(1);
         Collections.sort(testingHistoryList, new TestingHistory.CompDate(true));
-        TestingHistory testingHistory1 = testingHistoryList.get(testingHistoryList.size()-1);
-        String firstHivdate = LynxManager.decryptString(testingHistory1.getTesting_date()) + " 00:00:00";
-        return getElapsedDays(firstHivdate);
+        if(testingHistoryList.size()>=1){
+            TestingHistory testingHistory1 = testingHistoryList.get(testingHistoryList.size()-1);
+            String firstHivdate = LynxManager.decryptString(testingHistory1.getTesting_date()) + " 00:00:00";
+            return getElapsedDays(firstHivdate);
+        }else{
+
+            return 0;
+        }
+
     }
     private void showAppAlert(String message,int no_of_buttons,String name){
         AlertDialog.Builder builder1 = new AlertDialog.Builder(LynxHome.this);
