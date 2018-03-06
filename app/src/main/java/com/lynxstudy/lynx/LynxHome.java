@@ -310,6 +310,9 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     finish();
                     break;
                 case "Testing":
+                    LynxManager.goToIntent(LynxHome.this,"testing",LynxHome.this.getClass().getSimpleName());
+                    overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
+                    finish();
                     break;
                 case "TestingRemindersFromServer":
                     finish();
@@ -491,6 +494,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 db.updateAppAlertModifiedDate(appAlerts.getId());
             }
         }
+        Log.v("FCMToken",LynxManager.decryptString(db.getCloudMessaging().getToken_id()));
     }
     private boolean isPositiveHIVTestLogged(){
         /*
@@ -576,21 +580,24 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         db.createAppAlert(appAlerts);
     }
     private int getElapsedDays(String dateString){
-        SimpleDateFormat inputDF  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Calendar calCurrentDate = Calendar.getInstance();
-        Calendar cal = Calendar.getInstance();
-        Date date = null;
-        try {
-            date = inputDF.parse(dateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        cal.setTime(date);
-        long milliSeconds2 = calCurrentDate.getTimeInMillis();
-        long milliSeconds1 = cal.getTimeInMillis();
-        long period = milliSeconds2 - milliSeconds1;
-        long days = period / (1000 * 60 * 60 * 24);
-        return (int) days;
+        if(dateString!=null){
+            SimpleDateFormat inputDF  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Calendar calCurrentDate = Calendar.getInstance();
+            Calendar cal = Calendar.getInstance();
+            Date date = null;
+            try {
+                date = inputDF.parse(dateString);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            cal.setTime(date);
+            long milliSeconds2 = calCurrentDate.getTimeInMillis();
+            long milliSeconds1 = cal.getTimeInMillis();
+            long period = milliSeconds2 - milliSeconds1;
+            long days = period / (1000 * 60 * 60 * 24);
+            return (int) days;
+        }return 0;
+
     }
     private void showBadgesifAvailable(){
         // Show If Badges Available //

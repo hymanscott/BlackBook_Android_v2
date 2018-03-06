@@ -84,6 +84,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 break;
             case 1:
                 /*intent = new Intent(this, LynxTesting.class);*/
+                message="Your results are ready!";
                 intent.putExtra("subaction","Testing");
                 break;
             case 2:

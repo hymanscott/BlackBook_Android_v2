@@ -157,8 +157,8 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         // Get Chat List from Online //
         JSONObject loginOBJ = new JSONObject();
         try {
-            loginOBJ.put("email",LynxManager.getActiveUser().getEmail());
-            loginOBJ.put("password",LynxManager.getActiveUser().getPassword());
+            loginOBJ.put("email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail()));
+            loginOBJ.put("password",LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
             loginOBJ.put("user_id",LynxManager.getActiveUser().getUser_id());
         } catch (JSONException e) {
             e.printStackTrace();

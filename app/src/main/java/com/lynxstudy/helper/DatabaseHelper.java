@@ -3763,6 +3763,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
+    public boolean deleteTestingHistories(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_TESTING_HISTORY, null, null);
+        return true;
+    }
+
     // ------------------------ "TESTING HISTORY INFO" table methods ----------------//
 
     /**
@@ -3865,7 +3871,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(id)});
     }
 
-
+    public boolean deleteTestingHistoryInfos(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_TESTING_HISTORY_INFO, null, null);
+        return true;
+    }
     // ------------------------ " HOME TESTING REQUEST" table methods ----------------//
 
     /**

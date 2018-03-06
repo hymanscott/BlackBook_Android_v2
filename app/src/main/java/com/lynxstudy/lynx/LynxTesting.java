@@ -412,8 +412,15 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
     public void onBackPressed() {
         // do something on back.
         if (onPause_count > 0) {
-            LynxManager.goToIntent(LynxTesting.this,"home",LynxTesting.this.getClass().getSimpleName());
+            /*LynxManager.goToIntent(LynxTesting.this,"home",LynxTesting.this.getClass().getSimpleName());
             overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
+            finish();*/
+            LynxManager.notificationActions = null;
+            Intent home = new Intent(LynxTesting.this,LynxHome.class);
+            home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            home.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            home.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(home);
             finish();
         }
         onPause_count++;

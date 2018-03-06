@@ -58,6 +58,9 @@ import com.lynxstudy.model.UserBadges;
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
 
@@ -69,9 +72,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
@@ -130,6 +135,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         view = inflater.inflate(R.layout.fragment_testing_home, container, false);
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        db = new DatabaseHelper(getActivity());
         // Piwik Analytics //
         tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
         TrackHelper.track().screen("/Lynxtesting/History").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
@@ -224,14 +230,65 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                 setNewTestContent("STD Test");
             }
         });
+        loadTestingHistories();
+        // Get Histories from Online //
+        JSONObject loginOBJ = new JSONObject();
+        try {
+            loginOBJ.put("email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail()));
+            loginOBJ.put("password",LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
+            loginOBJ.put("user_id",LynxManager.getActiveUser().getUser_id());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String login_query_string = LynxManager.getQueryString(loginOBJ.toString());
+        boolean internet_status = LynxManager.haveNetworkConnection(getActivity());
+        if(internet_status){
+            new TestingHistoriesOnline(login_query_string).execute();
+        }
 
+        if ( Build.VERSION.SDK_INT >= 23 &&
+                ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission( getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, FINE_COARSE_PERMISSION_REQUEST_CODE);
+        }
+        back_press_count = 0;
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener( new View.OnKeyListener()
+        {
+            @Override
+            public boolean onKey( View v, int keyCode, KeyEvent event )
+            {
+                if( keyCode == KeyEvent.KEYCODE_BACK )
+                {
+                    if(isSummaryShown || isNewTestShown){
+                        summaryLayout.setVisibility(View.GONE);
+                        newTestLayout.setVisibility(View.GONE);
+                        mainContentLayout.setVisibility(View.VISIBLE);
+                        isSummaryShown = false;
+                        isNewTestShown = false;
+                        back_press_count = 0;
+                    }else{
+                        if(back_press_count>1){
+                            LynxManager.goToIntent(getActivity(),"home",getActivity().getClass().getSimpleName());
+                            getActivity().overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
+                            getActivity().finish();
+                        }else{
+                            back_press_count++;
+                        }
+                    }
+                    return true;
+                }
+                return false;
+            }
+        } );
+        return view;
+    }
 
+    private void loadTestingHistories(){
         // Testing History Table //
         final TableLayout testing_history_table = (TableLayout) view.findViewById(R.id.testingHistoryTable);
         testing_history_table.removeAllViews();
-
-        db = new DatabaseHelper(getActivity());
-
 
         List<TestingHistory> histories = db.getAllTestingHistories();
         //Log.v("TestingHistoryCount", String.valueOf(db.getTestingHistoryCount()));
@@ -369,45 +426,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
             }
             j++;
         }
-        if ( Build.VERSION.SDK_INT >= 23 &&
-                ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission( getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, FINE_COARSE_PERMISSION_REQUEST_CODE);
-        }
-        back_press_count = 0;
-        view.setFocusableInTouchMode(true);
-        view.requestFocus();
-        view.setOnKeyListener( new View.OnKeyListener()
-        {
-            @Override
-            public boolean onKey( View v, int keyCode, KeyEvent event )
-            {
-                if( keyCode == KeyEvent.KEYCODE_BACK )
-                {
-                    if(isSummaryShown || isNewTestShown){
-                        summaryLayout.setVisibility(View.GONE);
-                        newTestLayout.setVisibility(View.GONE);
-                        mainContentLayout.setVisibility(View.VISIBLE);
-                        isSummaryShown = false;
-                        isNewTestShown = false;
-                        back_press_count = 0;
-                    }else{
-                        if(back_press_count>1){
-                            LynxManager.goToIntent(getActivity(),"home",getActivity().getClass().getSimpleName());
-                            getActivity().overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
-                            getActivity().finish();
-                        }else{
-                            back_press_count++;
-                        }
-                    }
-                    return true;
-                }
-                return false;
-            }
-        } );
-        return view;
     }
-
     private void setNewTestContent(String testname) {
         newTestLayout.setVisibility(View.VISIBLE);
         mainContentLayout.setVisibility(View.GONE);
@@ -1446,6 +1465,93 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
             if (pDialog.isShowing())
                 pDialog.dismiss();
 
+        }
+
+    }
+
+    private class TestingHistoriesOnline extends AsyncTask<Void, Void, Void> {
+
+        String testingHistoriesOnline;
+        String jsonChatListObj;
+
+
+        TestingHistoriesOnline(String jsonChatListObj) {
+            this.jsonChatListObj = jsonChatListObj;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Showing progress dialog
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+
+            // Creating service handler class instance
+            ServiceHandler sh = new ServiceHandler();
+            // Making a request to url and getting response
+            String jsonChatListStr = null;
+            try {
+                jsonChatListStr = sh.makeServiceCall(LynxManager.getBaseURL() + "TestingHistories/getInfo/?hashkey="+ LynxManager.stringToHashcode(jsonChatListObj + LynxManager.hashKey)+"&timestamp="+ URLEncoder.encode(LynxManager.getDateTime(), "UTF-8"), jsonChatListObj);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            Log.d("Response: ", ">testingHistoriesOnline " + jsonChatListStr);
+            testingHistoriesOnline = jsonChatListStr;
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            // Dismiss the progress dialog
+            /*if (pDialog.isShowing())
+                pDialog.dismiss(); */
+
+            if (testingHistoriesOnline != null) {
+                try {
+                    JSONObject jsonObj = new JSONObject(testingHistoriesOnline);
+
+                    // Getting JSON Array node
+                    boolean is_error = jsonObj.getBoolean("is_error");
+                    // Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
+                    if (is_error) {
+                        Log.d("Response: ", "> testingHistoriesOnlineError. " + jsonObj.getString("message"));
+                    } else {
+                        //JSONArray chatArray = jsonObj.getJSONArray("ticketChat");
+                        db.deleteTestingHistories();
+                        db.deleteTestingHistoryInfos();
+                        JSONArray testingHistoryInfo = jsonObj.getJSONArray("TestingHistory");
+                        for(int n = 0; n <testingHistoryInfo.length(); n++) {
+                            JSONObject testingHistoryObject = testingHistoryInfo.getJSONObject(n);
+                            //Log.v("testingHistoryInfo", testingHistoryObject.getString(""));
+                            TestingHistory history = new TestingHistory(testingHistoryObject.getInt("testing_id"),
+                                    LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(testingHistoryObject.getString("testing_date")),
+                                    String.valueOf(R.string.statusUpdateYes), true);
+                            int id = db.createTestingHistory(history);
+                        }
+
+                        //TestingHistoryInfo
+                        JSONArray testingHistoryInfo_info = jsonObj.getJSONArray("TestingHistoryInfo");
+                        for(int n = 0; n <testingHistoryInfo_info.length(); n++) {
+                            JSONObject testingHistoryInfoObject = testingHistoryInfo_info.getJSONObject(n);
+                            TestingHistoryInfo history_info = new TestingHistoryInfo(testingHistoryInfoObject.getInt("testing_history_id"), LynxManager.getActiveUser().getUser_id(),
+                                    testingHistoryInfoObject.getInt("sti_id"), LynxManager.encryptString(testingHistoryInfoObject.getString("test_status")),
+                                    LynxManager.encryptString(testingHistoryInfoObject.getString("attachment")),String.valueOf(R.string.statusUpdateYes), true);
+                            int id = db.createTestingHistoryInfo(history_info);
+                        }
+                        loadTestingHistories();
+                    }
+                    // looping through All Contacts
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Log.e("ServiceHandler", "Couldn't get any data from the url");
+            }
         }
 
     }
