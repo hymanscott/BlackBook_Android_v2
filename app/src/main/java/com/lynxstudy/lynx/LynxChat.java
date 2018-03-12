@@ -3,6 +3,7 @@ package com.lynxstudy.lynx;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -41,6 +42,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.AppAlerts;
 import com.lynxstudy.model.ChatMessage;
 import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.Videos;
@@ -198,7 +200,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                         Toast.makeText(LynxChat.this, "Internet connection is not available", Toast.LENGTH_SHORT).show();
                     }else{
                         ChatMessage newmessage = new ChatMessage();
-                        newmessage.setMessage(LynxManager.encryptString(newMessage.getText().toString()));
+                        newmessage.setMessage(LynxManager.encryptString(newMessage.getText().toString().trim()));
                         newmessage.setSender(LynxManager.getActiveUser().getFirstname());
                         newmessage.setSender_pic(LynxManager.encryptString(""));
                         newmessage.setDatetime(LynxManager.encryptString(curent_datetime));
@@ -251,6 +253,11 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         }
         //chatTableLayout.scrollTo(0,chatTableLayout.getBottom());
         scrolltolastmessage();
+        Log.v("ChatMessageCount",db.getChatMessagesCount() + ", APPALertCount=>" + db.getAppAlertsCountByName("Chat Used"));
+        // Showing APP Alert box //
+        if(db.getChatMessagesCount() == 1 && db.getAppAlertsCountByName("Chat Used")==0){
+            showAppAlert("Great to see you working the chat feature. We're always one click away.",1,"Chat Used");
+        }
     }
     public void scrolltolastmessage(){
         final int index = chatTableLayout.getChildCount() - 1;
@@ -263,6 +270,47 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                 chatScrollView.fullScroll(View.FOCUS_DOWN);
             }
         });
+    }
+    private void showAppAlert(String message, int no_of_buttons, String name){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(LynxChat.this);
+        View appAlertLayout = getLayoutInflater().inflate(R.layout.app_alert_template,null);
+        builder1.setView(appAlertLayout);
+        TextView message_tv = (TextView)appAlertLayout.findViewById(R.id.message);
+        TextView maybeLater = (TextView)appAlertLayout.findViewById(R.id.maybeLater);
+        TextView prepInfo = (TextView)appAlertLayout.findViewById(R.id.prepInfo);
+        View verticalBorder = (View)appAlertLayout.findViewById(R.id.verticalBorder);
+        message_tv.setText(message);
+        builder1.setCancelable(false);
+        final AlertDialog alert11 = builder1.create();
+        if(no_of_buttons==1){
+            prepInfo.setVisibility(View.GONE);
+            verticalBorder.setVisibility(View.GONE);
+            maybeLater.setText("Got it!");
+            maybeLater.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                }
+            });
+        }else{
+            prepInfo.setVisibility(View.VISIBLE);
+            verticalBorder.setVisibility(View.VISIBLE);
+            maybeLater.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                }
+            });
+            prepInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                }
+            });
+        }
+        alert11.show();
+        AppAlerts appAlerts = new AppAlerts(name,LynxManager.getDateTime(),LynxManager.getDateTime());
+        db.createAppAlert(appAlerts);
     }
     @Override
     public void onClick(View v) {

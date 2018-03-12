@@ -1,6 +1,7 @@
 package com.lynxstudy.lynx;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -30,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.AppAlerts;
 import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.UserBadges;
 import com.lynxstudy.model.User_baseline_info;
@@ -289,11 +291,56 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
                 badgeScreen.putExtra("badge_id",badge.getBadge_id());
                 badgeScreen.putExtra("isAlert","Yes");
                 startActivity(badgeScreen);
+            }else if(db.getWatchedVideosCount()<=3){
+                String appAlertName = "Video " + videoid + " watched" ;
+                if(db.getAppAlertsCountByName(appAlertName)==0){
+                    showAppAlert("We see that you checked out our videos. Get informed by watching the rest.",1,appAlertName);
+                }
             }
         }
         return false;
     }
-
+    private void showAppAlert(String message, int no_of_buttons, String name){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+        View appAlertLayout = getActivity().getLayoutInflater().inflate(R.layout.app_alert_template,null);
+        builder1.setView(appAlertLayout);
+        TextView message_tv = (TextView)appAlertLayout.findViewById(R.id.message);
+        TextView maybeLater = (TextView)appAlertLayout.findViewById(R.id.maybeLater);
+        TextView prepInfo = (TextView)appAlertLayout.findViewById(R.id.prepInfo);
+        View verticalBorder = (View)appAlertLayout.findViewById(R.id.verticalBorder);
+        message_tv.setText(message);
+        builder1.setCancelable(false);
+        final AlertDialog alert11 = builder1.create();
+        if(no_of_buttons==1){
+            prepInfo.setVisibility(View.GONE);
+            verticalBorder.setVisibility(View.GONE);
+            maybeLater.setText("Got it!");
+            maybeLater.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                }
+            });
+        }else{
+            prepInfo.setVisibility(View.VISIBLE);
+            verticalBorder.setVisibility(View.VISIBLE);
+            maybeLater.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                }
+            });
+            prepInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                }
+            });
+        }
+        alert11.show();
+        AppAlerts appAlerts = new AppAlerts(name,LynxManager.getDateTime(),LynxManager.getDateTime());
+        db.createAppAlert(appAlerts);
+    }
     private class DownloadImagesTask extends AsyncTask<ImageView, Void, Bitmap> {
 
         ImageView imageView = null;
