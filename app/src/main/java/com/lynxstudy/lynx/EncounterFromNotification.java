@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -24,6 +25,7 @@ import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.UserAlcoholUse;
 import com.lynxstudy.model.UserBadges;
 import com.lynxstudy.model.UserDrugUse;
+import com.lynxstudy.model.User_baseline_info;
 
 public class EncounterFromNotification extends AppCompatActivity {
 
@@ -48,24 +50,6 @@ public class EncounterFromNotification extends AppCompatActivity {
                     .add(android.R.id.content, new EncounterWeeklyCheckinIntro())
                     .commit();
         }
-        /*no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent home = new Intent(EncounterFromNotification.this,LynxHome.class);
-                startActivity(home);
-                finish();
-            }
-        });
-        yes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent diary = new Intent(EncounterFromNotification.this,LynxDiary.class);
-                diary.putExtra("fromNotification",true);
-                startActivity(diary);
-                finish();
-            }
-        });*/
-
     }
 
     public void pushFragments(String tag, android.support.v4.app.Fragment fragment, Boolean addToStack) {
@@ -115,6 +99,19 @@ public class EncounterFromNotification extends AppCompatActivity {
         // Updating User PrEP status //
         LynxManager.getActiveUser().setIs_prep(LynxManager.encryptString(is_prep.getText().toString()));
         db.updateUsers(LynxManager.getActiveUser());
+
+        // Updating Score //
+        calculateSexProScore getscore = new calculateSexProScore(EncounterFromNotification.this);
+        int final_score = 1;
+        if(is_prep.getText().toString().equals("Yes")){
+            final_score = Math.round((float) getscore.getAdjustedScore());
+        }else{
+            final_score = Math.round((float) getscore.getUnAdjustedScore());
+        }
+        User_baseline_info user_baseline_info = db.getUserBaselineInfobyUserID(LynxManager.getActiveUser().getUser_id());
+        String cal_date = user_baseline_info.getSexpro_calculated_date();
+        db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), final_score,is_prep.getText().toString(), cal_date, String.valueOf(R.string.statusUpdateNo));
+        Log.v("ScoreStat",final_score+"-"+is_prep.getText().toString()+"--"+cal_date);
         pushFragments("EncounterFromNotification", drugScreeen, true);
         return true;
     }

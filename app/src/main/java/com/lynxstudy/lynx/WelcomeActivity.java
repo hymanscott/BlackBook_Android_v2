@@ -23,6 +23,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 public class WelcomeActivity extends AppCompatActivity {
 
     /**
@@ -124,30 +127,35 @@ public class WelcomeActivity extends AppCompatActivity {
             label.setTypeface(tf_bold);
             description.setTypeface(tf);
             nextScreen.setTypeface(tf_bold);
+            Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
             switch (getArguments().getInt(ARG_SECTION_NUMBER)){
                 case 1:
                     label.setText(getResources().getString(R.string.screen_one_label));
                     description.setText(getResources().getString(R.string.screen_one_description));
                     indicator1.setBackground(getResources().getDrawable(R.drawable.dot_indicator_active));
                     welcome_screen_logo.setImageDrawable(getResources().getDrawable(R.drawable.welcome_lynx_icon));
+                    TrackHelper.track().screen("/Welcomescreen/Lynx").title("Welcomescreen/Lynx").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
                     break;
                 case 2:
                     label.setText(getResources().getString(R.string.screen_two_label));
                     description.setText(getResources().getString(R.string.screen_two_description));
                     indicator2.setBackground(getResources().getDrawable(R.drawable.dot_indicator_active));
                     welcome_screen_logo.setImageDrawable(getResources().getDrawable(R.drawable.welcome_track_icon));
+                    TrackHelper.track().screen("/Welcomescreen/Track").title("Welcomescreen/Track").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
                     break;
                 case 3:
                     label.setText(getResources().getString(R.string.screen_three_label));
                     description.setText(getResources().getString(R.string.screen_three_description));
                     indicator3.setBackground(getResources().getDrawable(R.drawable.dot_indicator_active));
                     welcome_screen_logo.setImageDrawable(getResources().getDrawable(R.drawable.welcome_check_icon));
+                    TrackHelper.track().screen("/Welcomescreen/Check").title("Welcomescreen/Check").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
                     break;
                 case 4:
                     label.setText(getResources().getString(R.string.screen_four_label));
                     description.setText(getResources().getString(R.string.screen_four_description));
                     indicator4.setBackground(getResources().getDrawable(R.drawable.dot_indicator_active));
                     welcome_screen_logo.setImageDrawable(getResources().getDrawable(R.drawable.welcome_protect_icon));
+                    TrackHelper.track().screen("/Welcomescreen/Protect").title("Welcomescreen/Protect").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
                     break;
             }
 

@@ -1,7 +1,6 @@
 package com.lynxstudy.lynx;
 
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,10 +11,10 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeDrugUse extends Fragment {
+public class EncounterIsGroupFragment extends Fragment {
 
 
-    public HomeDrugUse() {
+    public EncounterIsGroupFragment() {
         // Required empty public constructor
     }
 
@@ -24,13 +23,7 @@ public class HomeDrugUse extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootview = inflater.inflate(R.layout.fragment_home_drug_use, container, false);
-
-        // Typeface //
-        Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
-
-        return rootview;
+        return inflater.inflate(R.layout.fragment_encounter_is_group, container, false);
     }
 
 }

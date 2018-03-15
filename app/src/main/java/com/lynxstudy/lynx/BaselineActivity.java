@@ -66,7 +66,7 @@ public class BaselineActivity extends AppCompatActivity {
                     .commit();
         }
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
-        TrackHelper.track().screen("/Baseline").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+        TrackHelper.track().screen("/Baseline").title("Baseline").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         checkForUpdates();
     }
 
@@ -106,7 +106,7 @@ public class BaselineActivity extends AppCompatActivity {
             LynxManager.getActiveUserAlcoholUse().setNo_alcohol_in_day(LynxManager.encryptString(""));
             // Piwik Analytics //
             Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
-            TrackHelper.track().screen("/Baseline/Introduction").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+            TrackHelper.track().screen("/Baseline/Introduction").title("Baseline/Introduction").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
             return view;
         }
     }

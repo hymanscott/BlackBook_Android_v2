@@ -75,7 +75,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         params.setScrollFlags(0);
         toolbar.setLayoutParams(params);
         tracker = ((lynxApplication) getApplication()).getTracker();
-        TrackHelper.track().screen("/Lynxdiary").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+        TrackHelper.track().screen("/Lynxdiary").title("Lynxdiary").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
@@ -296,7 +296,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         switch (v.getId()) {
 
             case R.id.bot_nav_sexpro:
-                TrackHelper.track().event("Navigation","Click").name("Sex Pro").with(tracker);
+                TrackHelper.track().event("Navigation","Click").name("Home").with(tracker);
                 LynxManager.goToIntent(LynxDiary.this,"home",LynxDiary.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();

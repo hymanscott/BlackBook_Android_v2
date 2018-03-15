@@ -87,6 +87,7 @@ import net.hockeyapp.android.UpdateManager;
 
 public class RegLogin extends AppCompatActivity {
     DatabaseHelper db;
+    Tracker tracker;
     private static final int READ_PHONE_STATE = 100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,8 +182,8 @@ public class RegLogin extends AppCompatActivity {
                 "fonts/Roboto-Regular.ttf");
         checkForUpdates();
         // Piwik Analytics //
-        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
-        TrackHelper.track().screen("/Onboarding").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+        tracker = ((lynxApplication) getApplication()).getTracker();
+        TrackHelper.track().screen("/Onboarding").title("Onboarding").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
 
     }
     private void initializeDatabase() {
@@ -754,6 +755,8 @@ public class RegLogin extends AppCompatActivity {
                 Toast.makeText(this, "Internet connection is not available", Toast.LENGTH_LONG).show();
             } else {
                 new requestNewPassword(newPass_query_string).execute();
+                tracker = ((lynxApplication) getApplication()).getTracker();
+                TrackHelper.track().event("Forgot Password","Click").name("Submit Button").with(tracker);
             }
         }
         return true;
@@ -780,6 +783,7 @@ public class RegLogin extends AppCompatActivity {
             Toast.makeText(this, "Internet connection is not available", Toast.LENGTH_SHORT).show();
         }else{
             new loginOnline(login_query_string).execute();
+            TrackHelper.track().event("Login","Click").name("Login Button").with(tracker);
         }
         return true;
     }
@@ -1139,8 +1143,8 @@ public class RegLogin extends AppCompatActivity {
                     R.drawable.passicon);
             passicon.setImageBitmap(crop(icon));*/
             // Piwik Analytics //
-            Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
-            TrackHelper.track().screen("/Login").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+            // Added as event
+            //TrackHelper.track().screen("/Login").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
             return view;
         }
 

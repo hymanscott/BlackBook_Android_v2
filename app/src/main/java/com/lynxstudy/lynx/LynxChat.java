@@ -71,6 +71,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
     Typeface tf,tf_bold;
     ScrollView chatScrollView;
     int chat_bubble_width;
+    private Tracker tracker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +82,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                 "fonts/Roboto-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
+        tracker = ((lynxApplication) getApplication()).getTracker();
         needUsNow = (Button)findViewById(R.id.needUsNow);
         needUsNow.setTypeface(tf);
 
@@ -213,7 +215,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         });
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
-        TrackHelper.track().screen("/Lynxchat").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+        TrackHelper.track().screen("/Lynxchat").title("Lynxchat").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
 
     private void addChatData(){
@@ -317,26 +319,31 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         switch (v.getId()) {
 
             case R.id.bot_nav_sexpro:
+                TrackHelper.track().event("Navigation","Click").name("Home").with(tracker);
                 LynxManager.goToIntent(LynxChat.this,"home",LynxChat.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
             case R.id.bot_nav_testing:
+                TrackHelper.track().event("Navigation","Click").name("Testing").with(tracker);
                 LynxManager.goToIntent(LynxChat.this,"testing",LynxChat.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
             case R.id.bot_nav_prep:
+                TrackHelper.track().event("Navigation","Click").name("PrEP").with(tracker);
                 LynxManager.goToIntent(LynxChat.this,"prep",LynxChat.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
             case R.id.bot_nav_diary:
+                TrackHelper.track().event("Navigation","Click").name("Diary").with(tracker);
                 LynxManager.goToIntent(LynxChat.this,"diary",LynxChat.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
             case R.id.viewProfile:
+                TrackHelper.track().event("Navigation","Click").name("Profile").with(tracker);
                 Intent profile = new Intent(LynxChat.this,LynxProfile.class);
                 startActivity(profile);
                 finish();

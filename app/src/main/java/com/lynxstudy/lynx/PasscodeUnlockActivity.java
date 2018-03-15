@@ -21,6 +21,9 @@ import com.lynxstudy.model.UserSTIDiag;
 import com.lynxstudy.model.User_baseline_info;
 import com.lynxstudy.model.Users;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.util.Objects;
 
 /**
@@ -32,7 +35,7 @@ public class PasscodeUnlockActivity extends AbstractPasscodeKeyboardActivity {
     public int counter = 1;
     lynxApplication myApp = (lynxApplication) getApplication();
     DatabaseHelper db;
-
+    private Tracker tracker;
     @Override
     public void onBackPressed() {
         if(AppLockManager.getInstance().getCurrentAppLock()!=null){
@@ -84,7 +87,7 @@ public class PasscodeUnlockActivity extends AbstractPasscodeKeyboardActivity {
                 startActivity(home);
                 finish();
             }
-
+            TrackHelper.track().event("Passcode Unlock","Click").name("Success").with(tracker);
 
         } else if (counter < 3) {
 
@@ -98,7 +101,7 @@ public class PasscodeUnlockActivity extends AbstractPasscodeKeyboardActivity {
             };
             runOnUiThread(shake);
             counter = counter + 1;
-
+            TrackHelper.track().event("Passcode Unlock","Click").name("Failed").with(tracker);
         } else {
             hide_keyboard(this);
             clearPasswodeFields();

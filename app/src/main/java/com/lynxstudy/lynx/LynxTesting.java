@@ -357,7 +357,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()) {
 
             case R.id.bot_nav_sexpro:
-                TrackHelper.track().event("Navigation","Click").name("Sex Pro").with(tracker);
+                TrackHelper.track().event("Navigation","Click").name("Home").with(tracker);
                 LynxManager.goToIntent(LynxTesting.this,"home",LynxTesting.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
