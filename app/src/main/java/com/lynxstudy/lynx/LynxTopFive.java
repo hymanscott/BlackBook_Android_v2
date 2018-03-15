@@ -20,6 +20,9 @@ import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.Partners;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -42,6 +45,11 @@ public class LynxTopFive extends AppCompatActivity implements View.OnClickListen
                 "fonts/Roboto-Bold.ttf");
         tf_bold_italic = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-BoldItalic.ttf");
+
+        // Piwik Analytics //
+        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        TrackHelper.track().screen("/Lynxhome/Topfive").title("Lynxhome/Topfive").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+
         // Custom Action Bar //
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);

@@ -191,7 +191,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
 
         // Piwik Analytics //
         tracker = ((lynxApplication) getApplication()).getTracker();
-        TrackHelper.track().screen("/Lynxprofile").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+        TrackHelper.track().screen("/Lynxprofile").title("Lynxprofile").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
 
         db = new DatabaseHelper(LynxProfile.this);
         setSelected();
@@ -273,7 +273,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     private void setEditLayout() {
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
-        TrackHelper.track().screen("/Lynxprofileedit").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+        TrackHelper.track().screen("/Lynxprofile/Edit").title("Lynxprofile/Edit").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
 
         editLayout.setVisibility(View.VISIBLE);
         mainContentLayout.setVisibility(View.GONE);
@@ -870,6 +870,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
                 signOut.dismiss();
                 db.deleteAllTables();
                 LynxManager.signOut = true;
+                TrackHelper.track().event("Navigation","Click").name("Log Out").with(tracker);
                 finish();
             }
         });
@@ -1174,40 +1175,5 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         //Log.v("futureInMillis", String.valueOf(futureInMillis));
         AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, futureInMillis, AlarmManager.INTERVAL_DAY * 7, pendingIntent);
-        //alarmManager.set(AlarmManager.RTC_WAKEUP, futureInMillis,pendingIntent);
-        /*setNotificationData();
-        setDataForSimpleNotification();
-        sendNotification();*/
-    }
-
-    /*bottom_navigation*/
-    private NotificationManager notificationManager;
-    private NotificationCompat.Builder notificationBuilder;
-    private String title,text;
-    private void setDataForSimpleNotification() {
-         notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_silhouette)
-                .setContentTitle(title)
-                .setContentText(text);
-    }
-
-    private void setNotificationData() {
-        title = this.getString(R.string.app_name);
-        text = "Hello..This is a Notification Test";
-
-    }
-
-    private void sendNotification() {
-        Intent notificationIntent = new Intent(this, MainActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        notificationBuilder.setContentIntent(contentIntent);
-        Notification notification = notificationBuilder.build();
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-        notification.defaults |= Notification.DEFAULT_SOUND;
-        int notificationId = 199;
-        if (notificationId == Integer.MAX_VALUE - 1)
-            notificationId = 0;
-        notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(notificationId, notification);
     }
 }

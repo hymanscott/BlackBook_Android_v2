@@ -54,7 +54,7 @@ public class BadgeScreenActivity extends AppCompatActivity {
         badgeNotes.setTypeface(tf);
         badgeEarnedTimes = (TextView)findViewById(R.id.badgeEarnedTimes);
         badgeEarnedTimes.setTypeface(tf_bold);
-
+        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
         if(isAlert.equals("Yes")){
             actionBar.setVisibility(View.GONE);
             alertText.setVisibility(View.VISIBLE);
@@ -62,10 +62,12 @@ public class BadgeScreenActivity extends AppCompatActivity {
             // Updating Badge shown status //
             int user_badge_id = getIntent().getIntExtra("user_badge_id",1);
             db.updateUserBadgeByShownStatus(user_badge_id,1);
+            TrackHelper.track().screen("/Lynxhome/Badges/Popup").title("Lynxhome/Badges/Popup").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         }else{
             actionBar.setVisibility(View.VISIBLE);
             alertText.setVisibility(View.GONE);
             got_it.setVisibility(View.GONE);
+            TrackHelper.track().screen("/Lynxhome/Badges/Summary").title("Lynxhome/Badges/Summary").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         }
 
         BadgesMaster badgesMaster = db.getBadgesMasterByID(badge_id);

@@ -385,11 +385,11 @@ public class EncounterNewPartner extends AppCompatActivity {
         return true;
     }
 
-    public boolean showHivStatusEdit(View view){
+    /*public boolean showHivStatusEdit(View view){
         NewPartnerHivStatusEditFragment frag = new NewPartnerHivStatusEditFragment();
         pushFragments("Encounter", frag, true);
         return true;
-    }
+    }*/
 
     public boolean changeHivStatus(View view) {
         RadioButton hiv_status_btn = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_hivstatus)).getCheckedRadioButtonId());
@@ -403,11 +403,11 @@ public class EncounterNewPartner extends AppCompatActivity {
         return true;
     }
 
-    public boolean showPartnerTypeEdit(View view){
+    /*public boolean showPartnerTypeEdit(View view){
         NewPartnerEditTypeFragment frag = new NewPartnerEditTypeFragment();
         pushFragments("Encounter", frag, true);
         return true;
-    }
+    }*/
 
     public boolean changePartnerType(View view){
         RadioButton radioPartnerType= (RadioButton) findViewById(((RadioGroup) findViewById(R.id.newPartnerType)).getCheckedRadioButtonId());

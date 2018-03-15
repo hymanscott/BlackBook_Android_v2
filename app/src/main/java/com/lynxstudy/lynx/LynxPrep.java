@@ -29,6 +29,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 public class LynxPrep extends AppCompatActivity implements View.OnClickListener {
 
     /**
@@ -49,6 +52,7 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
     ImageView viewProfile;
     TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv;
     Typeface tf,tf_bold;
+    private Tracker tracker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +69,7 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
                 "fonts/Roboto-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
+        tracker = ((lynxApplication) getApplication()).getTracker();
         // Click Listners //
         viewProfile = (ImageView)findViewById(R.id.viewProfile);
         btn_sexpro = (LinearLayout)findViewById(R.id.bot_nav_sexpro);
@@ -274,26 +279,31 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
         switch (v.getId()) {
 
             case R.id.bot_nav_sexpro:
+                TrackHelper.track().event("Navigation","Click").name("Home").with(tracker);
                 LynxManager.goToIntent(LynxPrep.this,"home",LynxPrep.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
             case R.id.bot_nav_testing:
+                TrackHelper.track().event("Navigation","Click").name("Testing").with(tracker);
                 LynxManager.goToIntent(LynxPrep.this,"testing",LynxPrep.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
             case R.id.bot_nav_diary:
+                TrackHelper.track().event("Navigation","Click").name("Diary").with(tracker);
                 LynxManager.goToIntent(LynxPrep.this,"diary",LynxPrep.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                 finish();
                 break;
             case R.id.bot_nav_chat:
+                TrackHelper.track().event("Navigation","Click").name("Chat").with(tracker);
                 LynxManager.goToIntent(LynxPrep.this,"chat",LynxPrep.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
                 break;
             case R.id.viewProfile:
+                TrackHelper.track().event("Navigation","Click").name("Profile").with(tracker);
                 Intent profile = new Intent(LynxPrep.this,LynxProfile.class);
                 startActivity(profile);
                 finish();

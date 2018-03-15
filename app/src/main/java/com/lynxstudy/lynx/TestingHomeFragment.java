@@ -138,7 +138,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         db = new DatabaseHelper(getActivity());
         // Piwik Analytics //
         tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
-        TrackHelper.track().screen("/Lynxtesting/History").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+        TrackHelper.track().screen("/Lynxtesting/History").title("Lynxtesting/History").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         final int height = (int) ((displaymetrics.heightPixels)*0.7);
         final int width = (int) ((displaymetrics.widthPixels)*0.9);
         if(LynxManager.notificationActions !=null ){
