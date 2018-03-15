@@ -44,7 +44,7 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
 
     Typeface tf,tf_bold,tf_italic,tf_bold_italic;
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
-    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,pageTitle,partnerTypeChartTitle,partnerHivChartTitle,partnersChartTitle,titleStats;
+    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,pageTitle,partnerTypeChartTitle,partnerHivChartTitle,partnersChartTitle,titleStats,titleSubStats;
     TextView legendMen,legendTransMen,legendWomen,legendTransWomen,legendPrimary,legendRegular,legendHookUp,legendOneNightStand,legendFriends,legendNegative,legendNegPrep,legendUnsure,legendPositive,legendUndectable;
     TextView menPercentage,transMenPercentage,womenPercentage,transWomenPercentage,primaryPercentage,regularPercentage,hookupPercentage,NSAPercentage,friendsPercentage,negativePercentage,negPrepPercentage,unsurePercentage,positivePercentage,undectablePercentage;
     DatabaseHelper db;
@@ -101,10 +101,12 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
         partnersChartTitle = (TextView)findViewById(R.id.partnersChartTitle);
         partnersChartTitle.setTypeface(tf_bold_italic);
         titleStats = (TextView)findViewById(R.id.titleStats);
-        titleStats.setTypeface(tf_italic);
+        titleStats.setTypeface(tf_bold_italic);
+        titleSubStats = (TextView)findViewById(R.id.titleSubStats);
+        titleSubStats.setTypeface(tf_italic);
         int encounters = db.getEncountersCount();
         int partners = db.getPartnersCount();
-        titleStats.setText("For "+encounters+" encounters with "+partners+" partners");
+        titleStats.setText("For "+encounters+" encounters with "+partners+" partners:");
         /*Chart UI Fields*/
         legendMen = (TextView)findViewById(R.id.legendMen);
         legendMen.setTypeface(tf);

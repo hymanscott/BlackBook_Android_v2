@@ -30,7 +30,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
 
     Typeface tf,tf_bold,tf_italic,tf_bold_italic;
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
-    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,pageTitle,partnerTypeChartTitle,partnerHivChartTitle,partnersChartTitle,titleStats;
+    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,pageTitle,partnerTypeChartTitle,partnerHivChartTitle,partnersChartTitle,titleStats,titleSubStats;
     DatabaseHelper db;
 
     @Override
@@ -78,10 +78,12 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         pageTitle = (TextView)findViewById(R.id.pageTitle);
         pageTitle.setTypeface(tf_bold);
         titleStats = (TextView)findViewById(R.id.titleStats);
-        titleStats.setTypeface(tf_italic);
+        titleStats.setTypeface(tf_bold_italic);
+        titleSubStats = (TextView)findViewById(R.id.titleSubStats);
+        titleSubStats.setTypeface(tf_italic);
         int encounters = db.getEncountersCount();
         int partners = db.getPartnersCount();
-        titleStats.setText("For "+encounters+" encounters with "+partners+" partners ");
+        titleStats.setText("For "+encounters+" encounters with "+partners+" partners: ");
 
         /*versatile Seekbar*/
         TextView versatile_progress = (TextView)findViewById(R.id.versatile_progress);
