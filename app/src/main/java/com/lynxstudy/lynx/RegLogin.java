@@ -1447,6 +1447,7 @@ public class RegLogin extends AppCompatActivity {
                                     user_baseline_object.getString("sexpro_calculated_date"),
                                     String.valueOf(R.string.statusUpdateYes), true);
                             int createBaselineID = db.createbaseline(userBaselineInfo);
+                            db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), user_baseline_object.getInt("sexpro_score"),user_baseline_object.getString("sexpro_prep"), user_baseline_object.getString("sexpro_calculated_date"), String.valueOf(R.string.statusUpdateNo));
                             db.updateUserBaselineCreatedDate(user_baseline_object.getString("created_at"),createBaselineID);
                             userBaselineInfo.setBaseline_id(createBaselineID);
                             userBaselineInfo.setCreated_at(db.getUserBaselineCreatedAtByUserId(LynxManager.getActiveUser().getUser_id()));
