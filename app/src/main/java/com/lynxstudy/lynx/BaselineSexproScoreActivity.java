@@ -83,7 +83,7 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
         int unAdjustedScore = Math.round((float) getscore.getUnAdjustedScore());
         int score = Math.round(current_score);
         db =new DatabaseHelper(BaselineSexproScoreActivity.this);
-        db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), score,LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()), LynxManager.getDateTime(), String.valueOf(R.string.statusUpdateNo));
+        db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), score,LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()), LynxManager.getUTCDateTime(), String.valueOf(R.string.statusUpdateNo));
         reg_sexPro_score_value.setText(" " + score);
         final ImageView dial_imgview = (ImageView)findViewById(R.id.imageView);
         int final_score;

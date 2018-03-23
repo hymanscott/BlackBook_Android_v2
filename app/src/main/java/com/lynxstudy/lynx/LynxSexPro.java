@@ -156,21 +156,24 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         int final_score = user_baseline_info.getSexpro_score();
         String prep_status = user_baseline_info.getSexpro_prep();
         String cal_date = user_baseline_info.getSexpro_calculated_date();
-
+        if(cal_date==null || cal_date ==""){
+            cal_date = LynxManager.getUTCDateTime();
+        }
+        Log.v("ScoreStat",final_score+"-"+prep_status+"--"+cal_date);
         /*Elapsed date calculation*/
         Calendar calCurrentDate = Calendar.getInstance();
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat inputDF1  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = null;
-        if(cal_date==null || cal_date ==""){
-            cal_date = LynxManager.getDateTime();
-        }
+        Date dateCurrent = null;
         try {
             date = inputDF1.parse(cal_date);
+            dateCurrent = inputDF1.parse(LynxManager.getUTCDateTime());
         } catch (ParseException e) {
             e.printStackTrace();
         }
         cal.setTime(date);
+        calCurrentDate.setTime(dateCurrent);
         long milliSeconds1 = cal.getTimeInMillis();
         long milliSeconds2 = calCurrentDate.getTimeInMillis();
         long periodSeconds = (milliSeconds2 - milliSeconds1) ;
@@ -178,9 +181,9 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         int elapsed_days = (int) elapsedDays;
 
         /*Recalculate score*/
-        if(final_score == 0 || prep_status == null || cal_date == null || elapsedDays>90){
+        if(final_score == 0 || prep_status == null || cal_date == null || elapsed_days>90 || getscore.getElapsedDays()>90){
             prep_status = LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep());
-            cal_date = LynxManager.getDateTime();
+            cal_date = LynxManager.getUTCDateTime();
             if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
                 final_score = Math.round((float) getscore.getAdjustedScore());
             }else{
@@ -199,7 +202,7 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
                 db.createUserBadge(toolBoxBadge);
             }
         }
-
+        Log.v("ScoreStat",final_score+"-"+prep_status+"--"+cal_date);
         if(prep_status.equals("Yes")){
             if(final_score>=17){
                 message = "Wow. Look at you! You’re seriously taking good care of your sexual health. Taking PrEP daily can keep you in the green.";
@@ -224,7 +227,6 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         dial_imgview.setRotation(angle);
         current_score_tv.setText("CURRENT SEX PRO SCORE:  "+String.valueOf(final_score));
         current_score_text.setText(message);
-        Log.v("Elapsed Days",final_score + "--" + prep_status + "--" + cal_date);
 
         // Score Update Date //
         String createdAt = LynxManager.getActiveUserBaselineInfo().getCreated_at();

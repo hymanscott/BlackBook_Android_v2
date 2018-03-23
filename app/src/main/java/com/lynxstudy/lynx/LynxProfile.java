@@ -954,6 +954,18 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
                     db.createUserBadge(prepBadge);
                 }
             }
+            // Update Score //
+            calculateSexProScore getscore = new calculateSexProScore(LynxProfile.this);
+            int final_score = 1;
+            if(isPrep.equals("Yes")){
+                final_score = Math.round((float) getscore.getAdjustedScore());
+            }else{
+                final_score = Math.round((float) getscore.getUnAdjustedScore());
+            }
+            User_baseline_info user_baseline_info = db.getUserBaselineInfobyUserID(LynxManager.getActiveUser().getUser_id());
+            String cal_date = user_baseline_info.getSexpro_calculated_date();
+            db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), final_score,isPrep, cal_date, String.valueOf(R.string.statusUpdateNo));
+            Log.v("ScoreStat",final_score+"-"+isPrep+"--"+cal_date);
 
             // Diary Reminder Save //
             String day_of_week = day.getText().toString();
