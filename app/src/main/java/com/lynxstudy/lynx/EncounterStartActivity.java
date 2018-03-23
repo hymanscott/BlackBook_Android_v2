@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.icu.text.SimpleDateFormat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -42,6 +43,9 @@ import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
 import org.w3c.dom.Text;
 
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class EncounterStartActivity extends AppCompatActivity {
@@ -205,13 +209,6 @@ public class EncounterStartActivity extends AppCompatActivity {
                 return fragment;
         }
         return null;
-    }
-
-
-    public boolean onCancelEnctime(View view) {
-        popFragment();
-        finish();
-        return true;
     }
 
     public boolean onNextEnctime(View view) {
@@ -582,6 +579,41 @@ public class EncounterStartActivity extends AppCompatActivity {
             UserBadges allStarBadge = new UserBadges(all_star_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,all_star_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
             db.createUserBadge(allStarBadge);
         }
+        // Showing In-APP Notifications //
+        Calendar currentDateCal  = Calendar.getInstance();
+        SimpleDateFormat sdf_enc = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = sdf_enc.format(currentDateCal.getTime());
+        int lastweek_encounters_count = 0;
+        int dateminus = 0;
+        for(int i=0; i<=7; i++){
+            dateminus = i * -1;
+            currentDateCal.add(Calendar.DATE,i);
+            currentDate = sdf_enc.format(currentDateCal.getTime());
+            //Log.v("EncounterCount",currentDate +" =>"+db.getEncountersCountByDate(currentDate+" 00:00:00"));
+        }
+        /*Log.v("EncounterCount",currentDate+" =>"+db.getEncountersCountByDate(currentDate+" 00:00:00"));
+        currentDateCal.add(Calendar.DATE,-1);
+        currentDate = sdf_enc.format(currentDateCal.getTime());
+        Log.v("EncounterCount",currentDate+" -1>"+db.getEncountersCountByDate(currentDate+" 00:00:00"));
+        currentDateCal.add(Calendar.DATE,-1);
+        currentDate = sdf_enc.format(currentDateCal.getTime());
+        Log.v("EncounterCount",currentDate+" -2>"+db.getEncountersCountByDate(currentDate+" 00:00:00"));*/
+
+       /* Log.v("LastEncounterDate",LynxManager.decryptString(LynxManager.getActiveEncounter().getDatetime()));
+        String LastEncounterDate = LynxManager.getActiveEncounter().getDatetime();
+        Calendar cal_last_enc = Calendar.getInstance();
+        Date date_last_enc = null;
+        SimpleDateFormat sdf_last_enc = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            date_last_enc = sdf_last_enc.parse(LynxManager.decryptString(LynxManager.getActiveEncounter().getDatetime()));
+        }catch (ParseException e){
+            Log.v("LastEncounterDate:",e.getMessage());
+        }
+        cal_last_enc.setTime(date_last_enc);
+        cal_last_enc.add(Calendar.DATE,-7);
+        Log.v("Pre7thday",sdf_last_enc.format(cal_last_enc.getTime()));
+        String preSeventhDate = LynxManager.encryptString(sdf_last_enc.format(cal_last_enc.getTime()));
+        Log.v("Encounter","Count->" + db.getEncountersCountBtwDates(preSeventhDate,LastEncounterDate));*/
         // Clear Condomuse list//
         LynxManager.activeEncCondomUsed.clear();
         LynxManager.isNewPartnerEncounter= false;

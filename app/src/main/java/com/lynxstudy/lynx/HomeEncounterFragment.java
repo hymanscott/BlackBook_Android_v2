@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.LayerDrawable;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -38,6 +39,7 @@ import com.lynxstudy.model.Users;
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
 
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -120,7 +122,16 @@ public class HomeEncounterFragment extends Fragment {
 
         List<Encounter> allEncounters = db.getAllEncounters();
         int j = 0;
-
+        Calendar currentDateCal  = Calendar.getInstance();
+        SimpleDateFormat sdf_enc = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = sdf_enc.format(currentDateCal.getTime());
+        int lastweek_encounters_count = 0;
+        int dateminus = 0;
+        for(int i=0; i<=2; i++){
+            currentDateCal.add(Calendar.DATE,dateminus);
+            currentDate = sdf_enc.format(currentDateCal.getTime());
+            //Log.v("currentDate",currentDate);
+        }
         if(allEncounters.isEmpty()){
             TableRow encounterRow = new TableRow(getActivity());
             encounterRow.setPadding(0, 0, 10, 0);

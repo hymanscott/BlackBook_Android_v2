@@ -3132,6 +3132,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return count;
     }
+
+    /**
+     * getting Encounter count by date
+     */
+    public int getEncountersCountByDate(String date) {
+        String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER + " WHERE " + KEY_ENCOUNTER_DATE + " = '"+ LynxManager.encryptString(date) + "'";
+        Log.e(LOG, countQuery);
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+
+    /**
+     * getting Encounter count between two dates
+     */
+    public int getEncountersCountBtwDates(String startDate, String endDate) {
+        String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER + " WHERE " + KEY_ENCOUNTER_DATE + " BETWEEN '"+startDate +"' AND '"+ endDate + "'";
+        Log.e(LOG, countQuery);
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
     /**
      * getting more than one Encounter count for partner
      */
