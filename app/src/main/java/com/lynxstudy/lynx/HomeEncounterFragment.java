@@ -128,9 +128,11 @@ public class HomeEncounterFragment extends Fragment {
         int lastweek_encounters_count = 0;
         int dateminus = 0;
         for(int i=0; i<=2; i++){
+            dateminus = i * -1;
             currentDateCal.add(Calendar.DATE,dateminus);
             currentDate = sdf_enc.format(currentDateCal.getTime());
             //Log.v("currentDate",currentDate);
+            //Log.v("EncounterCount",currentDate +" =>"+db.getEncountersCountByDate(currentDate+" 00:00:00"));
         }
         if(allEncounters.isEmpty()){
             TableRow encounterRow = new TableRow(getActivity());
