@@ -68,25 +68,14 @@ tools:context="com.lynxstudy.lynx.LynxBadges">
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
+                        android:layout_marginBottom="40dp"
                         android:id="@+id/titleStats"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:text="For [xx] encounters with [xx] partners: "
                         android:textSize="15sp"
-                        android:textStyle="italic|bold"
-                        android:textColor="@color/text_color"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="(Does not include your group sex encounters)"
                         android:textStyle="italic"
-                        android:textSize="15sp"
-                        android:textColor="@color/text_color"
-                        android:id="@+id/titleSubStats"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="32dp"/>
+                        android:textColor="@color/text_color"/>
                     <TextView
                         android:id="@+id/partnersChartTitle"
                         android:layout_width="match_parent"
@@ -735,131 +724,16 @@ tools:context="com.lynxstudy.lynx.LynxBadges">
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="32dp"
                         android:background="@color/grey_border" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="1"
                         android:layout_marginLeft="32dp"
                         android:layout_marginRight="32dp"
+                        android:layout_marginBottom="32dp"
                         android:orientation="horizontal">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:layout_marginRight="4dp"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/positivePartnersCount"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-
-                            <TextView
-                                android:id="@+id/postivePartners"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:layout_marginTop="20dp"
-                                android:text="# of HIV postive partners"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:layout_marginLeft="4dp"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/negativePartnersCount"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-
-                            <TextView
-                                android:id="@+id/negativePartners"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# of HIV negative partners"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:weightSum="1"
-                        android:layout_margin="32dp"
-                        android:orientation="horizontal">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/unknownPartnersCount"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-
-                            <TextView
-                                android:id="@+id/unknownPartners"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:layout_marginTop="20dp"
-                                android:text="# of unknown status partners"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:layout_marginLeft="4dp"
-                            android:orientation="vertical">
-
-                            <TextView
+                        <TextView
                                 android:id="@+id/fiveStarPartnersCount"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
@@ -872,37 +746,126 @@ tools:context="com.lynxstudy.lynx.LynxBadges">
                                 android:gravity="center"
                                 android:background="@drawable/insights_blue_circle"/>
 
-                            <TextView
-                                android:id="@+id/fiveStarPartners"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# of 5 star partners"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
+                        <TextView
+                            android:id="@+id/fiveStarPartners"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:lineSpacingMultiplier="1.25"
+                            android:text="number of partners who are rated 5 stars"
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="1"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_marginBottom="32dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/positivePartnersCount"
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="0"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:background="@drawable/insights_blue_circle"/>
+
+                        <TextView
+                            android:id="@+id/postivePartners"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:lineSpacingMultiplier="1.25"
+                            android:text="number of partners who are HIV positive"
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_marginBottom="32dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/negativePartnersCount"
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="0"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:background="@drawable/insights_blue_circle"/>
+
+                        <TextView
+                            android:id="@+id/negativePartners"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:lineSpacingMultiplier="1.25"
+                            android:text="number of partners who are HIV negative"
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_marginBottom="32dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                                android:id="@+id/unknownPartnersCount"
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="0"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:background="@drawable/insights_blue_circle"/>
+
+                        <TextView
+                            android:id="@+id/unknownPartners"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:lineSpacingMultiplier="1.25"
+                            android:text="number of partners whose HIV status is unknown"
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp"
                         android:layout_marginRight="32dp"
                         android:layout_marginBottom="48dp"
                         android:orientation="horizontal">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:layout_marginRight="4dp"
-                            android:orientation="vertical">
 
-                            <TextView
+                        <TextView
                                 android:id="@+id/repeatedPartnersCount"
                                 android:layout_width="90dp"
                                 android:layout_height="90dp"
@@ -915,53 +878,17 @@ tools:context="com.lynxstudy.lynx.LynxBadges">
                                 android:gravity="center"
                                 android:background="@drawable/insights_blue_circle"/>
 
-                            <TextView
-                                android:id="@+id/repeatedPartners"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# of repeat partners"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/repeatedPartners"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:layout_marginLeft="4dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/partnersOnPrep"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-
-                            <TextView
-                                android:id="@+id/prepPartners"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# of partners on PrEP"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:lineSpacingMultiplier="1.25"
+                            android:text="number of partners you've had sex with more than once"
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
                     </LinearLayout>
                 </LinearLayout>
             </ScrollView>
