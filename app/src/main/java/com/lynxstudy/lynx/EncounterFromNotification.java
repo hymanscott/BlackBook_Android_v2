@@ -177,7 +177,9 @@ public class EncounterFromNotification extends AppCompatActivity {
     public boolean weeklyCheckInSummaryNext(View view){
 
         DatabaseHelper db = new DatabaseHelper(EncounterFromNotification.this);
-        db.createAlcoholUser(LynxManager.getActiveUserAlcoholUse());
+        if(LynxManager.getActiveUserAlcoholUse()!=null){
+            db.createAlcoholUser(LynxManager.getActiveUserAlcoholUse());
+        }
         for(UserDrugUse drugUse: LynxManager.getActiveUserDrugUse()){
             db.createDrugUser(drugUse);
         }
