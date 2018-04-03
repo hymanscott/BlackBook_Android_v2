@@ -47,7 +47,7 @@ public class LynxTopFive extends AppCompatActivity implements View.OnClickListen
                 "fonts/Roboto-BoldItalic.ttf");
 
         // Piwik Analytics //
-        Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
         TrackHelper.track().screen("/Lynxhome/Topfive").title("Lynxhome/Topfive").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
 
         // Custom Action Bar //

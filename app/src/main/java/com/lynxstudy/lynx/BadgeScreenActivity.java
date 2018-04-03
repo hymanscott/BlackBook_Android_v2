@@ -157,9 +157,6 @@ public class BadgeScreenActivity extends AppCompatActivity {
                 finish();
             }
         });
-        // Piwik Analytics //
-        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
-        TrackHelper.track().screen("/Lynxhome/Badgesummary").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
     @Override
     public void onBackPressed() {
