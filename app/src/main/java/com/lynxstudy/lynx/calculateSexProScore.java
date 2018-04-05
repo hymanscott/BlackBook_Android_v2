@@ -109,6 +109,7 @@ public class calculateSexProScore {
         SimpleDateFormat inputDF  = new SimpleDateFormat("dd-MMM-yyyy");
 
         Date date1 = null;
+        Date currentDate = null;
         try {
             date1 = inputDF.parse(LynxManager.decryptString(cur_user.getDob()));
         } catch (ParseException e) {
@@ -121,26 +122,29 @@ public class calculateSexProScore {
         }
 
         int month = cal.get(Calendar.MONTH);
+        month +=1; // Calender return 0 based value. so adding 1
         int year = cal.get(Calendar.YEAR);
-
+        //Log.v("CurUserDOB",LynxManager.decryptString(cur_user.getDob()) + "---" + date1 + "---" +month);
         BMO = month;
         BY  =   year;
         SimpleDateFormat inputDF1  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         try {
             date1 = inputDF1.parse(baselineInfo.getCreated_at());
+            currentDate = inputDF1.parse(LynxManager.getDateTime());
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        cal.setTime(date1);
+        cal.setTime(currentDate);
 
         month = cal.get(Calendar.MONTH);
+        month += 1;
         year = cal.get(Calendar.YEAR);
-
+        //Log.v("BaselineCreatedDate",baselineInfo.getCreated_at() + "---" +date1 + "--month->"+month +"--year->"+year);
         CMO         =       month;
         CY          =       year;
-
+        cal.setTime(date1);
         if(LynxManager.decryptString(cur_user.getRace()).contains("Black")){
             BLACK = 1;
         } else{BLACK = 0;}
@@ -451,7 +455,8 @@ public class calculateSexProScore {
             B2  =   AGE>35?0:0.2703;
             B3  =   BLACK==0?0:0.8749;
             //B4  =   LATINO==0?0:0.4284;
-            B4  =   LATINO==1 && BLACK==1?0.4284:0;
+            //B4  =   LATINO==1 && BLACK==1?0.4284:0;
+            B4  =   LATINO==1 && BLACK!=1?0.4284:0;
             B5  =   0.2109  *   lsp1_NURAS_POS_UNK;
             B6  =   0.0024  *   lsp2_NURAS_POS_UNK;
             B7  =   0.0322  *   adjNPRAS_POS_UNK;
@@ -465,7 +470,8 @@ public class calculateSexProScore {
 
             ETA     =   B1 + B2 + B3 + B4 + B5 + B6 + B7 + B8 + B9 + B10 + B11 + B12 + B13 + B14;
             if(LynxManager.decryptString(cur_user.getIs_prep()).equals("Yes")){
-                adjETA  = ETA   *   0.1;
+                //adjETA  = ETA   *   0.1;
+                adjETA  = ETA;
             }
             else {
                 adjETA = ETA;
