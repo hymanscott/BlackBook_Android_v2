@@ -159,7 +159,13 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         if(cal_date==null || cal_date ==""){
             cal_date = LynxManager.getUTCDateTime();
         }
-        Log.v("ScoreStat",final_score+"-"+prep_status+"--"+cal_date);
+        if(cal_date.isEmpty()){
+            cal_date = LynxManager.getUTCDateTime();
+        }
+        if(prep_status.isEmpty()){
+            prep_status = LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep());
+        }
+        //Log.v("ScoreStat",final_score+"-"+prep_status+"--"+cal_date);
         /*Elapsed date calculation*/
         Calendar calCurrentDate = Calendar.getInstance();
         Calendar cal = Calendar.getInstance();
@@ -181,7 +187,7 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         int elapsed_days = (int) elapsedDays;
 
         /*Recalculate score*/
-        if(final_score == 0 || prep_status == null || cal_date == null || elapsed_days>90 || getscore.getElapsedDays()>90){
+        if(final_score == 0 || prep_status == null || elapsed_days>90 || getscore.getElapsedDays()>90){
             prep_status = LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep());
             cal_date = LynxManager.getUTCDateTime();
             if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
@@ -202,7 +208,7 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
                 db.createUserBadge(toolBoxBadge);
             }
         }
-        Log.v("ScoreStat",final_score+"-"+prep_status+"--"+cal_date);
+        //Log.v("ScoreStat",final_score+"-"+prep_status+"--"+cal_date);
         if(prep_status.equals("Yes")){
             if(final_score>=17){
                 message = "Wow. Look at you! You’re seriously taking good care of your sexual health. Taking PrEP daily can keep you in the green.";

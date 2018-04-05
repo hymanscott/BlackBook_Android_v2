@@ -53,6 +53,7 @@ public class PasscodeUnlockActivity extends AbstractPasscodeKeyboardActivity {
         String passLock = pinCodeField1.getText().toString() + pinCodeField2.getText().toString() +
                 pinCodeField3.getText().toString() + pinCodeField4.getText();
         Log.v("PassLock",passLock);
+        tracker = ((lynxApplication) getApplication()).getTracker();
         if (!passLock.equals("") && !passLock.isEmpty() && AppLockManager.getInstance().getCurrentAppLock().verifyPassword(passLock)) {
             setResult(RESULT_OK);
             db= new DatabaseHelper(getApplicationContext());
@@ -85,10 +86,9 @@ public class PasscodeUnlockActivity extends AbstractPasscodeKeyboardActivity {
                 Intent home = new Intent(this, LynxHome.class);
                 home.putExtra("fromactivity",PasscodeUnlockActivity.this.getClass().getSimpleName());
                 startActivity(home);
+                TrackHelper.track().event("Passcode Unlock","Click").name("Success").with(tracker);
                 finish();
             }
-            TrackHelper.track().event("Passcode Unlock","Click").name("Success").with(tracker);
-
         } else if (counter < 3) {
 
             Thread shake = new Thread() {

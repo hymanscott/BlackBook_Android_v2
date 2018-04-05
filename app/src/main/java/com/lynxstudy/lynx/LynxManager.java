@@ -96,10 +96,12 @@ public class LynxManager {
     public static boolean haveWeeklyEncounter = false;
 
     //static Context context;
+    private static String baseURL  =   "http://test.chipware.in:8080/Lynxportal/";
+    private static String testImageBaseUrl = "http://test.chipware.in:8080/Lynxportal/testimages/";
     /*private static String baseURL  =   "https://dev.chipware.in/LynxPortal/";
     private static String testImageBaseUrl = "https://dev.chipware.in/LynxPortal/testimages/";*/
-    private static String baseURL  =   "https://lynxstudy.com/";
-    private static String testImageBaseUrl = "https://lynxstudy.com/testimages/";
+    /*private static String baseURL  =   "https://lynxstudy.com/";
+    private static String testImageBaseUrl = "https://lynxstudy.com/testimages/";*/
     private LynxManager() {
     }
 
