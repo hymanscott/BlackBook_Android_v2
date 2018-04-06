@@ -397,7 +397,6 @@ public class calculateSexProScore {
         PPIAS_POS_UNK   =   Integer.parseInt(topCondomUse) * 0.01;
         NRAS_POS_UNK    =   Integer.parseInt(LynxManager.decryptString(baselineInfo.getNo_of_times_bot_hivposs()));
         PPRAS_POS_UNK   =   Integer.parseInt(botCondomUse) * 0.01;
-
         if(BMO<=CMO){
             AGE     = CY - BY;
         }
@@ -567,8 +566,10 @@ public class calculateSexProScore {
         Log.v("P6m", String.valueOf(P6m));
         Log.v("P2y", String.valueOf(P2y));
         Log.v("Pt", String.valueOf(Pt));
-
-        Log.v("sexProScore", String.valueOf(sexProScore));*/
+        double scoreWithPrep = 16+4*(1-P2y);
+        double scoreWithOutPrep = 1 + 2*(10-(100*Pt));
+        Log.v("scoreWithPrep", String.valueOf(scoreWithPrep));
+        Log.v("scoreWithOutPrep", String.valueOf(scoreWithOutPrep));*/
         if(NASP_POS == 0 && NASP_UNKNOWN == 0 && NASP_NEG == 0 && DRUG == 0 && POP == 0 && HEAVYALC ==0 && STI == 0){
             return 20;
         }else{

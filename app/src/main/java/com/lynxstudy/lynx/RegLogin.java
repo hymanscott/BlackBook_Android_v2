@@ -1600,18 +1600,6 @@ public class RegLogin extends AppCompatActivity {
                             db.createTestingReminder(testingReminder);
                         }
 
-                        //UserDrugUsage
-                        JSONArray userDrugUsageInfo = parentObject.getJSONArray("UserDrugUsage");
-                        for(int n = 0; n <userDrugUsageInfo.length(); n++) {
-                            JSONObject userDrugUsageObject = userDrugUsageInfo.getJSONObject(n);
-                            //Log.v("userDrugUsageInfo", userDrugUsageObject.getString(""));
-
-                            UserDrugUse userDrugUse  = new UserDrugUse( LynxManager.getActiveUser().getUser_id(),
-                                    userDrugUsageObject.getInt("drug_id") , LynxManager.encryptString(userDrugUsageObject.getString("is_baseline")) ,
-                                    String.valueOf(R.string.statusUpdateYes),true);
-                            db.createDrugUser(userDrugUse);
-                        }
-
                         //UserRatingField
                         JSONArray userRatingFieldInfo = parentObject.getJSONArray("UserRatingField");
                         for(int n = 0; n <userRatingFieldInfo.length(); n++) {
@@ -1694,6 +1682,19 @@ public class RegLogin extends AppCompatActivity {
                             int id = db.createUserBadgeWithDate(userBadge);
                         }
 
+                        //UserDrugUsage
+                        JSONArray userDrugUsageInfo = parentObject.getJSONArray("UserDrugUsage");
+                        for(int n = 0; n <userDrugUsageInfo.length(); n++) {
+                            JSONObject userDrugUsageObject = userDrugUsageInfo.getJSONObject(n);
+                            //Log.v("userDrugUsageInfo", userDrugUsageObject.getString(""));
+                            String  last_drug_id= userDrugUsageObject.getString("drug_id");
+                            if(!last_drug_id.isEmpty()){
+                                UserDrugUse userDrugUse  = new UserDrugUse( LynxManager.getActiveUser().getUser_id(),
+                                        userDrugUsageObject.getInt("drug_id") , LynxManager.encryptString(userDrugUsageObject.getString("is_baseline")) ,
+                                        String.valueOf(R.string.statusUpdateYes),true);
+                                db.createDrugUser(userDrugUse);
+                            }
+                        }
                         //Log.v("userBaselineArray", String.valueOf(userBaselineArray.length()));
                         if(testingRemindersInfo.length()==0){
                             Intent home = new Intent(RegLogin.this, RemindersActivity.class);
