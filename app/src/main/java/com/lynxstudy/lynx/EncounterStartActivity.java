@@ -1,15 +1,12 @@
 package com.lynxstudy.lynx;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.icu.text.SimpleDateFormat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -20,8 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
@@ -41,11 +36,8 @@ import com.lynxstudy.model.UserDrugUse;
 
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
-import org.w3c.dom.Text;
 
-import java.text.ParseException;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class EncounterStartActivity extends AppCompatActivity {
@@ -225,16 +217,41 @@ public class EncounterStartActivity extends AppCompatActivity {
             Toast.makeText(this, "Invalid Time", Toast.LENGTH_LONG).show();
         }else{
             String encounter_datetime = LynxManager.getFormatedDate("MM/dd/yy hh:mm a", encdate.getText().toString() + " " + enctime.getText().toString(), "yyyy-MM-dd HH:mm:ss");
-            //Log.v("encounter datetime",encounter_datetime);
             LynxManager.activeEncounter.setDatetime(LynxManager.encryptString(encounter_datetime));
-            EncounterChoosePartnerFragment fragEncChoosePartner = new EncounterChoosePartnerFragment();
-            pushFragments("Encounter", fragEncChoosePartner, true);
+            EncounterIsGroupFragment fragEncisGroup = new EncounterIsGroupFragment();
+            pushFragments("Encounter", fragEncisGroup, true);
         }
 
         return true;
     }
 
+    public boolean onIsGroupSexNext(View view){
 
+        RadioGroup isGroupSexRG = (RadioGroup) findViewById(R.id.isGroupSexRG);
+        if(isGroupSexRG.getCheckedRadioButtonId()==-1){
+            Toast.makeText(EncounterStartActivity.this,"Please select any one option",Toast.LENGTH_SHORT).show();
+        }else if(isGroupSexRG.getCheckedRadioButtonId() == R.id.isGroupSexYes){
+            LynxManager.activeGroupEncounter.setDatetime(LynxManager.activeEncounter.getDatetime());
+            EncounterGroupNoOfPeopleFragment fragNoOfPeople = new EncounterGroupNoOfPeopleFragment();
+            pushFragments("Encounter", fragNoOfPeople, true);
+        }else{
+            EncounterChoosePartnerFragment fragEncChoosePartner = new EncounterChoosePartnerFragment();
+            pushFragments("Encounter", fragEncChoosePartner, true);
+        }
+        return true;
+    }
+    public boolean onNumOfPeopleNext(View view){
+        EditText no_of_people_et = (EditText) findViewById(R.id.no_of_people);
+        String no_of_people = no_of_people_et.getText().toString();
+        if(no_of_people_et.getText().toString().isEmpty()){
+            Toast.makeText(EncounterStartActivity.this,"Please enter the number of people you had sex with",Toast.LENGTH_SHORT).show();
+        }else{
+            LynxManager.activeGroupEncounter.setNo_of_people(Integer.parseInt(no_of_people));
+            EncounterGroupHivFragment fragGroupHiv = new EncounterGroupHivFragment();
+            pushFragments("Encounter", fragGroupHiv, true);
+        }
+        return true;
+    }
     public boolean onClickaddNewPartner(View view) {
         Intent addNewPartner = new Intent(this, EncounterNewPartner.class);
         // startActivity(addNewPartner);

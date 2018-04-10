@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
+import com.lynxstudy.model.GroupEncounter;
+import com.lynxstudy.model.GroupEncounterHiv;
+import com.lynxstudy.model.GroupEncounterSexTypes;
 import com.lynxstudy.model.PartnerContact;
 import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.Partners;
@@ -55,13 +58,16 @@ public class LynxManager {
     public static List<String> selectedTestKits = new ArrayList<String>();
     public static List<String> PrepVideos = new ArrayList<String>();
     public static Encounter activeEncounter = new Encounter();
+    public static List<EncounterSexType> activePartnerSexType = new ArrayList<EncounterSexType>();
+    public static GroupEncounter activeGroupEncounter = new GroupEncounter();
+    public static List<GroupEncounterSexTypes> activeGroupSexType = new ArrayList<GroupEncounterSexTypes>();
+    public static List<GroupEncounterHiv> activeGroupHiv = new ArrayList<GroupEncounterHiv>();
     public static Partners activePartner = new Partners();
     public static PartnerContact activePartnerContact = new PartnerContact();
     public static List<PartnerRating> activePartnerRating = new ArrayList<PartnerRating>();
     public static List<Integer> partnerRatingIds = new ArrayList<Integer>();
     public static List<String> partnerRatingValues = new ArrayList<String>();
     public static List<String> partnerRatingFields = new ArrayList<String>();
-    public static List<EncounterSexType> activePartnerSexType = new ArrayList<EncounterSexType>();
     public static List<String> activeEncCondomUsed = new ArrayList<String>();
     public static String encRateofSex;
     public static int selectedPartnerID;
@@ -189,6 +195,30 @@ public class LynxManager {
 
     public static void setActiveEncounter(Encounter activeEncounter) {
         LynxManager.activeEncounter = activeEncounter;
+    }
+
+    public static GroupEncounter getActiveGroupEncounter() {
+        return activeGroupEncounter;
+    }
+
+    public static void setActiveGroupEncounter(GroupEncounter activeGroupEncounter) {
+        LynxManager.activeGroupEncounter = activeGroupEncounter;
+    }
+
+    public static List<GroupEncounterSexTypes> getActiveGroupSexType() {
+        return activeGroupSexType;
+    }
+
+    public static void setActiveGroupSexType(List<GroupEncounterSexTypes> activeGroupSexType) {
+        LynxManager.activeGroupSexType = activeGroupSexType;
+    }
+
+    public static List<GroupEncounterHiv> getActiveGroupHiv() {
+        return activeGroupHiv;
+    }
+
+    public static void setActiveGroupHiv(List<GroupEncounterHiv> activeGroupHiv) {
+        LynxManager.activeGroupHiv = activeGroupHiv;
     }
 
     public static LynxManager getInstance() {

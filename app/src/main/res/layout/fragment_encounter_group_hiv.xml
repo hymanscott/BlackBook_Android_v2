@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/encounter_bg"
-    tools:context="com.lynxstudy.lynx.EncounterIsGroupFragment">
+    tools:context="com.lynxstudy.lynx.EncounterIsGroupHiv">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -47,43 +47,66 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/encounter_tv_textsize"
                     android:textColor="@color/white"
-                    android:text="Was this a group sex encounter?"
+                    android:text="Do you know the HIV status of anyone?"
                     android:layout_marginTop="24dp"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginRight="32dp"
-                    android:id="@+id/subtitle" />
-                <RadioGroup
-                    android:id="@+id/isGroupSexRG"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_marginLeft="24dp"
                     android:layout_marginRight="24dp"
-                    android:paddingLeft="8dp"
-                    android:layout_marginTop="@dimen/activity_vertical_margin">
-
-                    <RadioButton
-                        android:id="@+id/isGroupSexNo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/white"
-                        android:button="@drawable/radiobutton_white"
-                        android:paddingLeft="12dp"
-                        android:text="No"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/encounter_radio_btn_textsize" />
-
-                    <RadioButton
-                        android:id="@+id/isGroupSexYes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/white"
-                        android:button="@drawable/radiobutton_white"
-                        android:paddingLeft="12dp"
-                        android:layout_marginTop="12dp"
-                        android:text="Yes"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/encounter_radio_btn_textsize" />
-                </RadioGroup>
+                    android:id="@+id/subtitle" />
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HIV Negative"
+                    android:paddingLeft="12dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/white"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HIV Negative and on PrEP"
+                    android:textSize="14sp"
+                    android:paddingLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/white"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I don’t know/unsure"
+                    android:textSize="14sp"
+                    android:paddingLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/white"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HIV Positive"
+                    android:textSize="14sp"
+                    android:paddingLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/white"/>
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HIV Positive and undetectable"
+                    android:textSize="14sp"
+                    android:paddingLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/white"/>
             </LinearLayout>
 
             <RelativeLayout
@@ -92,13 +115,13 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true">
                 <Button
-                    android:id="@+id/is_groupsex_next"
+                    android:id="@+id/is_grouphiv_next"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginTop="@dimen/button_top_margin"
                     android:background="@color/encounter_btn_bg"
-                    android:onClick="onIsGroupSexNext"
+                    android:onClick="onGroupHivNext"
                     android:text="NEXT"
                     android:textColor="@color/white"
                     android:textSize="@dimen/button_textsize"
