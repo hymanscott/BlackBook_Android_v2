@@ -72,15 +72,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         switch (pushnotification_flag){
             case 0:
                 /*intent = new Intent(this, LynxChat.class);*/
-                message = "You received a new message from Lynx!";
+                message = "You received a new chat message from Lynx!";
                 intent.putExtra("subaction","Chat");
-                ChatMessage newmessage = new ChatMessage();
+                /*ChatMessage newmessage = new ChatMessage();
                 newmessage.setMessage(LynxManager.encryptString(data.get("subtitle")));
                 newmessage.setSender_pic(LynxManager.encryptString(""));
                 newmessage.setSender(LynxManager.encryptString(data.get("title")));
                 newmessage.setDatetime(LynxManager.encryptString(data.get("date")));
                 newmessage.setStatusUpdate(LynxManager.encryptString(String.valueOf(R.string.statusUpdateYes)));
-                db.createChatMessage(newmessage);
+                db.createChatMessage(newmessage);*/
                 break;
             case 1:
                 /*intent = new Intent(this, LynxTesting.class);*/

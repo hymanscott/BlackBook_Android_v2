@@ -101,10 +101,10 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         //TrackHelper.track().screen("/LynxHome").title("Home").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).with(tracker);
         //TrackHelper.track().screen("/Lynxhome").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,piwikID).with(tracker);
         TrackHelper.track().visitVariables(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).visitVariables(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).screen("/Lynxhome").dimension(1,piwikID).with(tracker);
-        Log.v("PiwikUserID",tracker.getUserId());
+       /* Log.v("PiwikUserID",tracker.getUserId());
         Log.v("PiwikUserNAME",tracker.getName());
         Log.v("PiwikVisitorID",tracker.getVisitorId());
-        Log.v("PiwikAPIUrl", String.valueOf(tracker.getAPIUrl()));
+        Log.v("PiwikAPIUrl", String.valueOf(tracker.getAPIUrl()));*/
 
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
@@ -222,11 +222,11 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         }
 
 
-        for (Partners partners:db.getAllPartners()) {
+        /*for (Partners partners:db.getAllPartners()) {
 
             Log.v("Partner Gender",LynxManager.decryptString(partners.getHiv_status()));
 
-        }
+        }*/
         // update fcm id //
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String tokenid = sharedPref.getString("lynxfirebasetokenid",null);
@@ -323,7 +323,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         Log.v("allUserBadgesCount", String.valueOf(db.getUserBadgesCount()));
         List<UserBadges> nonUpdateduserBadgesList =  db.getAllUserBadgesByUserID(LynxManager.getActiveUser().getUser_id());
         for (UserBadges userBadge:nonUpdateduserBadgesList) {
-            Log.v("UserBadgesSta",userBadge.getBadge_id()+"--"+userBadge.getUser_badge_id()+"--"+userBadge.getIs_shown()+"--"+userBadge.getStatus_update());
+           // Log.v("UserBadgesSta",userBadge.getBadge_id()+"--"+userBadge.getUser_badge_id()+"--"+userBadge.getIs_shown()+"--"+userBadge.getStatus_update());
         }
         ScheduledExecutorService scheduleTaskExecutor = Executors.newScheduledThreadPool(5);
         //Pushing All the Tables to Server
@@ -439,7 +439,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
 
         int elapsed_reg_days = getElapsedDays(LynxManager.getActiveUserBaselineInfo().getCreated_at());
         String message = "";
-        Log.v("TokenID",LynxManager.decryptString(db.getCloudMessaging().getToken_id()));
+        //Log.v("TokenID",LynxManager.decryptString(db.getCloudMessaging().getToken_id()));
         if(elapsed_reg_days>2){
             if(db.getTestingHistoriesCountByTestingId(1)==0 && !isPositiveHIVTestLogged()){
                 message = "You haven't entered an HIV test yet. Don't forget to do your first test!";

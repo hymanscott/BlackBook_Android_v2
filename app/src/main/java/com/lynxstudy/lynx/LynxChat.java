@@ -57,6 +57,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class LynxChat extends AppCompatActivity implements View.OnClickListener{
 
@@ -72,6 +75,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
     ScrollView chatScrollView;
     int chat_bubble_width;
     private Tracker tracker;
+    private boolean internet_status;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -168,14 +172,24 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             e.printStackTrace();
         }
 
-        String login_query_string = LynxManager.getQueryString(loginOBJ.toString());
-        boolean internet_status = LynxManager.haveNetworkConnection(LynxChat.this);
+        final String login_query_string = LynxManager.getQueryString(loginOBJ.toString());
+        internet_status = LynxManager.haveNetworkConnection(LynxChat.this);
         addChatData();
         if(!internet_status){
             Toast.makeText(LynxChat.this, "Please check your internet connection!", Toast.LENGTH_SHORT).show();
         }else{
             new ChatListOnline(login_query_string).execute();
         }
+        // Sync Chat for every 5 Seconds //
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5);
+        scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                if(internet_status){
+                    new ChatListOnline(login_query_string).execute();
+                }
+            }
+        },0,5000, TimeUnit.MILLISECONDS);
         // Send New Message to Server //
         newMessageSend = (ImageView)findViewById(R.id.newMessageSend);
         newMessageSend.setOnClickListener(new View.OnClickListener() {
@@ -214,7 +228,6 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             }
         });
         // Piwik Analytics //
-        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
         TrackHelper.track().screen("/Lynxchat").title("Lynxchat").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
 
@@ -255,7 +268,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         }
         //chatTableLayout.scrollTo(0,chatTableLayout.getBottom());
         scrolltolastmessage();
-        Log.v("ChatMessageCount",db.getChatMessagesCount() + ", APPALertCount=>" + db.getAppAlertsCountByName("Chat Used"));
+       // Log.v("ChatMessageCount",db.getChatMessagesCount() + ", APPALertCount=>" + db.getAppAlertsCountByName("Chat Used"));
         // Showing APP Alert box //
         if(db.getChatMessagesCount() == 1 && db.getAppAlertsCountByName("Chat Used")==0){
             showAppAlert("Great to see you working the chat feature. We're always one click away.",1,"Chat Used");
@@ -264,7 +277,6 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
     public void scrolltolastmessage(){
         final int index = chatTableLayout.getChildCount() - 1;
         final View child = chatTableLayout.getChildAt(index);
-        Log.v("Index",String.valueOf(index));
         new Handler().post(new Runnable() {
             @Override
             public void run() {
@@ -357,7 +369,6 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
     public void onResume() {
         super.onResume();
         // Closing the App if sign out enabled
-        Log.v("SignOut", String.valueOf(LynxManager.signOut));
         if(LynxManager.signOut){
             finish();
             System.exit(0);
@@ -365,7 +376,6 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         if (LynxManager.onPause){
             Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);
             startActivity(lockscreen);
-            Log.v("onResumeusername", LynxManager.getActiveUser().getFirstname());
         }
     }
     int onPause_count =0;
@@ -433,12 +443,15 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                     // Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
                     if (is_error) {
                         Log.d("Response: ", "> sendnewMessageOnlineError. " + jsonObj.getString("message"));
-                        currentMessage.setStatusUpdate(String.valueOf(R.string.statusUpdateNo));
+                        //currentMessage.setStatusUpdate(String.valueOf(R.string.statusUpdateNo));
+                        Toast.makeText(LynxChat.this,"Something went wrong. Please resend again!",Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(LynxChat.this,"Message Sent",Toast.LENGTH_LONG).show();
                         newMessage.setText("");
+                        currentMessage.setId(jsonObj.getInt("id"));
+                        db.createChatMessageWithID(currentMessage);
+                        TrackHelper.track().event("Chat","Activity").name("New Message Sent").with(tracker);
                     }
-                    db.createChatMessage(currentMessage);
                     addChatData();
                     // looping through All Contacts
                 } catch (JSONException e) {
@@ -505,16 +518,20 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                         Log.d("Response: ", "> ChatListOnlineError. " + jsonObj.getString("message"));
                     } else {
                         JSONArray chatArray = jsonObj.getJSONArray("ticketChat");
-                        db.deleteChatData();
+                        //db.deleteChatData();
                         for(int i=0;i<chatArray.length();i++){
                             JSONObject childObj = chatArray.getJSONObject(i).getJSONObject("TicketChat");
-                            ChatMessage newmessage = new ChatMessage();
-                            newmessage.setMessage(LynxManager.encryptString(childObj.getString("message")));
-                            newmessage.setSender_pic(LynxManager.encryptString(childObj.getString("sender_profile_pic_url")));
-                            newmessage.setSender(LynxManager.encryptString(childObj.getString("sender_name")));
-                            newmessage.setDatetime(LynxManager.encryptString(childObj.getString("created_at")));
-                            newmessage.setStatusUpdate(LynxManager.encryptString(String.valueOf(R.string.statusUpdateYes)));
-                            db.createChatMessage(newmessage);
+                            if(db.getChatMessagesCountByID(childObj.getInt("id"))==0){
+                                ChatMessage newmessage = new ChatMessage();
+                                newmessage.setId(childObj.getInt("id"));
+                                newmessage.setMessage(LynxManager.encryptString(childObj.getString("message")));
+                                newmessage.setSender_pic(LynxManager.encryptString(childObj.getString("sender_profile_pic_url")));
+                                newmessage.setSender(LynxManager.encryptString(childObj.getString("sender_name")));
+                                newmessage.setDatetime(LynxManager.encryptString(childObj.getString("created_at")));
+                                newmessage.setStatusUpdate(LynxManager.encryptString(String.valueOf(R.string.statusUpdateYes)));
+                                db.createChatMessageWithID(newmessage);
+                                TrackHelper.track().event("Chat","Activity").name("New Message Received").with(tracker);
+                            }
                         }
                             addChatData();
                     }
