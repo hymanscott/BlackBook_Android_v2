@@ -4451,6 +4451,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // insert row
         return (int) db.insert(TABLE_CHAT_MESSAGES, null, values);
     }
+
+    public int createChatMessageWithID(ChatMessage chatMessage) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_CHAT_MESSAGE_ID,chatMessage.getId());
+        values.put(KEY_CHAT_MESSAGE,chatMessage.getMessage());
+        values.put(KEY_CHAT_MESSAGE_SENDER, chatMessage.getSender());
+        values.put(KEY_CHAT_MESSAGE_SENDER_PIC, chatMessage.getSender_pic());
+        values.put(KEY_CHAT_MESSAGE_DATETIME, chatMessage.getDatetime());
+        values.put(KEY_STATUS_UPDATE,chatMessage.getStatusUpdate());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        return (int) db.insert(TABLE_CHAT_MESSAGES, null, values);
+    }
     /**
      * getting all ChatMessages
      */
@@ -4480,6 +4496,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     public int getChatMessagesCount() {
         String countQuery = "SELECT  * FROM " + TABLE_CHAT_MESSAGES;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+    public int getChatMessagesCountByID(int id) {
+        String countQuery = "SELECT  * FROM " + TABLE_CHAT_MESSAGES + " WHERE " + KEY_CHAT_MESSAGE_ID + " = " + id;
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();
