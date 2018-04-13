@@ -191,6 +191,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
 
         // Piwik Analytics //
         tracker = ((lynxApplication) getApplication()).getTracker();
+		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         TrackHelper.track().screen("/Lynxprofile").title("Lynxprofile").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
 
         db = new DatabaseHelper(LynxProfile.this);
@@ -273,6 +274,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     private void setEditLayout() {
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         TrackHelper.track().screen("/Lynxprofile/Edit").title("Lynxprofile/Edit").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
 
         editLayout.setVisibility(View.VISIBLE);

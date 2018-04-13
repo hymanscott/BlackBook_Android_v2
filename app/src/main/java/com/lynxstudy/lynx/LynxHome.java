@@ -96,11 +96,12 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.activity_lynx_home);
 
         tracker = ((lynxApplication) getApplication()).getTracker();
+        tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         String piwikID = tracker.getUserId();
         //TrackHelper.track().screen("/LynxHome").title("Home").dimension(1,LynxManager.getActiveUser().getEmail()).with(tracker);
         //TrackHelper.track().screen("/LynxHome").title("Home").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).with(tracker);
         //TrackHelper.track().screen("/Lynxhome").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,piwikID).with(tracker);
-        TrackHelper.track().visitVariables(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).visitVariables(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).screen("/Lynxhome").dimension(1,piwikID).with(tracker);
+        TrackHelper.track().visitVariables(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).visitVariables(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).screen("/Lynxhome").title("Home").dimension(1,piwikID).with(tracker);
        /* Log.v("PiwikUserID",tracker.getUserId());
         Log.v("PiwikUserNAME",tracker.getName());
         Log.v("PiwikVisitorID",tracker.getVisitorId());

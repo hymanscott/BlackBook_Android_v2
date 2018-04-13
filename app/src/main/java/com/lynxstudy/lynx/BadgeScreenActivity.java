@@ -55,6 +55,7 @@ public class BadgeScreenActivity extends AppCompatActivity {
         badgeEarnedTimes = (TextView)findViewById(R.id.badgeEarnedTimes);
         badgeEarnedTimes.setTypeface(tf_bold);
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         if(isAlert.equals("Yes")){
             actionBar.setVisibility(View.GONE);
             alertText.setVisibility(View.VISIBLE);

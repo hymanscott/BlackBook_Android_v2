@@ -77,6 +77,7 @@ public class RegistrationConfirmFragment extends Fragment {
         c_passcode.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPasscode()));
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         TrackHelper.track().screen("/Onboarding/Confirmation").title("Onboarding/Confirmation").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return view;
     }

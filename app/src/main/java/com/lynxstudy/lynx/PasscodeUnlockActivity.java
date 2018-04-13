@@ -54,6 +54,7 @@ public class PasscodeUnlockActivity extends AbstractPasscodeKeyboardActivity {
                 pinCodeField3.getText().toString() + pinCodeField4.getText();
         Log.v("PassLock",passLock);
         tracker = ((lynxApplication) getApplication()).getTracker();
+		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         if (!passLock.equals("") && !passLock.isEmpty() && AppLockManager.getInstance().getCurrentAppLock().verifyPassword(passLock)) {
             setResult(RESULT_OK);
             db= new DatabaseHelper(getApplicationContext());

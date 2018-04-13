@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 public class PasscodeResetActivity extends AppCompatActivity {
 
     Button reset_passcode;
@@ -32,7 +35,9 @@ public class PasscodeResetActivity extends AppCompatActivity {
         sec_qn.setTypeface(tf);
         sec_ans = (EditText)findViewById(R.id.sec_ans);
         sec_ans.setTypeface(tf);
-
+        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+        tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
+        TrackHelper.track().screen("/Passcode/Reset").title("Reset Passcode").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         String question = getIntent().getStringExtra("question");
         final String answer = getIntent().getStringExtra("answer");
 

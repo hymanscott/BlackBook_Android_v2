@@ -17,6 +17,9 @@ import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
 
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
+
 /**
  * Created by Hari on 2017-04-13.
  */
@@ -27,7 +30,7 @@ public class PasscodeChangePasscode extends AppCompatActivity {
     TextView frag_title,title;
     EditText newPasscode,confirmNewPasscode;
     Button change_passcode_submit;
-
+    private Tracker tracker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +38,9 @@ public class PasscodeChangePasscode extends AppCompatActivity {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-
+        tracker = ((lynxApplication) getApplication()).getTracker();
+        tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
+        TrackHelper.track().screen("/Passcode/ChangePasscode").title("Change Passcode").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         frag_title = (TextView) findViewById(R.id.frag_title);
         frag_title.setTypeface(tf);
         newPasscode = (EditText) findViewById(R.id.newPasscode);
@@ -85,6 +90,7 @@ public class PasscodeChangePasscode extends AppCompatActivity {
             db.updateUserPasscode(strPasscode, LynxManager.getActiveUser().getUser_id());
             LynxManager.getActiveUser().setPasscode(LynxManager.encryptString(strPasscode));
             Toast.makeText(PasscodeChangePasscode.this, "Passcode Updated", Toast.LENGTH_LONG).show();
+            TrackHelper.track().event("Passcode","Update").name("Passcode Updated").with(tracker);
             finish();
         }
         else {
