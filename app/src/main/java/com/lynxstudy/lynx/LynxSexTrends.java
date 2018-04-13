@@ -272,6 +272,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         topPartnersCount.setText(String.valueOf(topPeopleCount));
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         TrackHelper.track().screen("/Lynxhome/Trends").title("Lynxhome/Trends").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
 

@@ -48,6 +48,7 @@ public class LynxTopFive extends AppCompatActivity implements View.OnClickListen
 
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         TrackHelper.track().screen("/Lynxhome/Topfive").title("Lynxhome/Topfive").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
 
         // Custom Action Bar //

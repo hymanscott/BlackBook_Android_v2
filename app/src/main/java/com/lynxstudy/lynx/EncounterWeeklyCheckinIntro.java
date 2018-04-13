@@ -46,6 +46,7 @@ public class EncounterWeeklyCheckinIntro extends Fragment {
         checkin_intro_next.setTypeface(tf_bold);
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         TrackHelper.track().screen("/WeeklyCheckIn/Intro").title("WeeklyCheckIn/Intro").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return view;
     }

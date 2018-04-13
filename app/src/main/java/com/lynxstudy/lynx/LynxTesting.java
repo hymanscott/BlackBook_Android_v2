@@ -69,7 +69,8 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         params.setScrollFlags(0);
         toolbar.setLayoutParams(params);
         tracker = ((lynxApplication) getApplication()).getTracker();
-        TrackHelper.track().screen("/Lynxtesting").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
+        TrackHelper.track().screen("/Lynxtesting").title("Lynxtesting").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");

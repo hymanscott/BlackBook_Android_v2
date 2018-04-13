@@ -50,6 +50,7 @@ public class RemindersActivity extends AppCompatActivity {
         }
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
+		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         TrackHelper.track().screen("/Reminders").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
     /**
@@ -86,6 +87,7 @@ public class RemindersActivity extends AppCompatActivity {
             reminderIntroNext.setTypeface(tf_bold);
             // Piwik Analytics //
             Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+			tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
             TrackHelper.track().screen("/Reminders/Introduction").title("Reminders/Introduction").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
             return view;
         }

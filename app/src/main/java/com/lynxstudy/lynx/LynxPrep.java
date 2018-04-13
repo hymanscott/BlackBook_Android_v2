@@ -70,6 +70,7 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
         tracker = ((lynxApplication) getApplication()).getTracker();
+		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         // Click Listners //
         viewProfile = (ImageView)findViewById(R.id.viewProfile);
         btn_sexpro = (LinearLayout)findViewById(R.id.bot_nav_sexpro);

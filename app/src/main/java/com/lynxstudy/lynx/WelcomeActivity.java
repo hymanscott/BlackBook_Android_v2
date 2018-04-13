@@ -128,6 +128,7 @@ public class WelcomeActivity extends AppCompatActivity {
             description.setTypeface(tf);
             nextScreen.setTypeface(tf_bold);
             Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
+			tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
             switch (getArguments().getInt(ARG_SECTION_NUMBER)){
                 case 1:
                     label.setText(getResources().getString(R.string.screen_one_label));
