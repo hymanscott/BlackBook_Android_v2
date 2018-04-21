@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -28,6 +29,7 @@ import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.DrugMaster;
 import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
+import com.lynxstudy.model.GroupEncounterHiv;
 import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.Partners;
 import com.lynxstudy.model.UserAlcoholUse;
@@ -37,6 +39,7 @@ import com.lynxstudy.model.UserDrugUse;
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -251,6 +254,114 @@ public class EncounterStartActivity extends AppCompatActivity {
             EncounterGroupHivFragment fragGroupHiv = new EncounterGroupHivFragment();
             pushFragments("Encounter", fragGroupHiv, true);
         }
+        return true;
+    }
+    public boolean onGroupHivNext(View view){
+        CheckBox cb_HivNegative = (CheckBox) findViewById(R.id.cb_HivNegative);
+        CheckBox cb_HivNegativeAndPrep = (CheckBox) findViewById(R.id.cb_HivNegativeAndPrep);
+        CheckBox cb_IdontKnow = (CheckBox) findViewById(R.id.cb_IdontKnow);
+        CheckBox cb_HivPositive = (CheckBox) findViewById(R.id.cb_HivPositive);
+        CheckBox cb_HivUndetect = (CheckBox) findViewById(R.id.cb_HivUndetect);
+        int selectedCheckBoxCount = 0;
+        List<String>selectedStrings = new ArrayList<String>();
+        if(cb_HivNegative.isChecked()){
+            selectedCheckBoxCount++;
+            selectedStrings.add(cb_HivNegative.getText().toString());
+        }
+        if(cb_HivNegativeAndPrep.isChecked()){
+            selectedCheckBoxCount++;
+            selectedStrings.add(cb_HivNegativeAndPrep.getText().toString());
+        }
+        if(cb_IdontKnow.isChecked()){
+            selectedCheckBoxCount++;
+            selectedStrings.add(cb_IdontKnow.getText().toString());
+        }
+        if(cb_HivPositive.isChecked()){
+            selectedCheckBoxCount++;
+            selectedStrings.add(cb_HivPositive.getText().toString());
+        }
+        if(cb_HivUndetect.isChecked()){
+            selectedCheckBoxCount++;
+            selectedStrings.add(cb_HivUndetect.getText().toString());
+        }
+
+        if(selectedCheckBoxCount==0 || selectedStrings.size()==0){
+            Toast.makeText(EncounterStartActivity.this,"Please select HIV Status",Toast.LENGTH_SHORT).show();
+        }else{
+            int active_user_id = LynxManager.getActiveUser().getUser_id();
+            // Set Active Group HIVs
+            for (String status_name: selectedStrings) {
+                GroupEncounterHiv groupEncounterHiv = new GroupEncounterHiv(0, LynxManager.encryptString(status_name) , active_user_id , String.valueOf(R.string.statusUpdateNo), true);
+                LynxManager.activeGroupHiv.add(groupEncounterHiv);
+            }
+            // Redirect to sextype screen
+            EncounterGroupSexTypesFragment sexTypesFragment = new EncounterGroupSexTypesFragment();
+            pushFragments("Encounter", sexTypesFragment, true);
+        }
+        return true;
+    }
+    public boolean onGroupSexTypesNext(View view){
+        RatingBar rb_RateSex = (RatingBar)findViewById(R.id.rb_RateSex);
+        if(rb_RateSex.getRating()==0){
+            Toast.makeText(EncounterStartActivity.this,"Please rate your sex",Toast.LENGTH_SHORT).show();
+        }else if(LynxManager.activeGroupSexType.size()==0){
+            Toast.makeText(EncounterStartActivity.this,"Please select Type of sex",Toast.LENGTH_SHORT).show();
+        }else {
+            LynxManager.activeGroupEncounter.setRate_the_sex(String.valueOf(rb_RateSex.getRating()));
+            EncounterGroupCondomuseFragment condomuseFragment = new EncounterGroupCondomuseFragment();
+            pushFragments("Encounter", condomuseFragment, true);
+        }
+        return true;
+    }
+    public boolean onGroupCondomuseNext(View view){
+        RadioGroup RG_condomUse = (RadioGroup) findViewById(R.id.RG_condomUse);
+        RadioGroup RG_CumInside = (RadioGroup) findViewById(R.id.RG_CumInside);
+        if(RG_condomUse.getCheckedRadioButtonId()==-1){
+            Toast.makeText(EncounterStartActivity.this,"Please select condom usage period",Toast.LENGTH_SHORT).show();
+        }else if(RG_CumInside.getCheckedRadioButtonId()==-1){
+            Toast.makeText(EncounterStartActivity.this,"Please select Cum status",Toast.LENGTH_SHORT).show();
+        }else{
+            RadioButton RB_condomuse = (RadioButton) findViewById(RG_condomUse.getCheckedRadioButtonId());
+            RadioButton RB_cuminside = (RadioButton) findViewById(RG_CumInside.getCheckedRadioButtonId());
+            LynxManager.activeGroupEncounter.setCondom_use(LynxManager.encryptString(RB_condomuse.getText().toString()));
+            LynxManager.activeGroupEncounter.setCum_inside(LynxManager.encryptString(RB_cuminside.getText().toString()));
+            EncounterGroupDrunkFragment drunkFragment = new EncounterGroupDrunkFragment();
+            pushFragments("Encounter", drunkFragment, true);
+        }
+        return true;
+    }
+    public boolean onGroupDrunkNext(View view){
+
+        RadioGroup RG_Drunk = (RadioGroup)findViewById(R.id.RG_Drunk);
+        if(RG_Drunk.getCheckedRadioButtonId()==-1){
+            Toast.makeText(EncounterStartActivity.this,"Please select any one option",Toast.LENGTH_SHORT).show();
+        }else{
+            RadioButton RB_drunk = (RadioButton) findViewById(RG_Drunk.getCheckedRadioButtonId());
+            LynxManager.activeGroupEncounter.setDrunk_status(LynxManager.encryptString(RB_drunk.getText().toString()));
+            EncounterGroupNotesFragment notesFragment = new EncounterGroupNotesFragment();
+            pushFragments("Encounter", notesFragment, true);
+        }
+        return true;
+    }
+    public boolean onGroupEncNotesNext(View view){
+        EditText ET_grpnotes = (EditText)findViewById(R.id.encNotes);
+        LynxManager.activeGroupEncounter.setNotes(LynxManager.encryptString(ET_grpnotes.getText().toString()));
+        LynxManager.activeGroupEncounter.setStatus_update(String.valueOf(R.string.statusUpdateNo));
+        LynxManager.activeGroupEncounter.setStatus_encrypt(true);
+        EncounterGroupSummaryFragment groupSummary = new EncounterGroupSummaryFragment();
+        pushFragments("Encounter", groupSummary, true);
+        return true;
+    }
+    public boolean editGroupEncounterSummary(View view){
+        EncounterGroupSummaryEditFragment editFragment = new EncounterGroupSummaryEditFragment();
+        pushFragments("Encounter", editFragment, true);
+        return true;
+    }
+    public boolean onGroupSexEditConfirm(View view) {
+        popFragment();
+        return true;
+    }
+    public boolean onGroupSexConfirm(View view){
         return true;
     }
     public boolean onClickaddNewPartner(View view) {

@@ -25,6 +25,14 @@ public class GroupEncounterHiv {
         this.created_at = created_at;
     }
 
+    public GroupEncounterHiv(int group_encounter_id, String hiv_status, int user_id, String status_update, boolean status_encrypt) {
+        this.group_encounter_id = group_encounter_id;
+        this.hiv_status = hiv_status;
+        this.user_id = user_id;
+        this.status_update = status_update;
+        this.status_encrypt = status_encrypt;
+    }
+
     public int getGroup_encounter_hiv_id() {
         return group_encounter_hiv_id;
     }

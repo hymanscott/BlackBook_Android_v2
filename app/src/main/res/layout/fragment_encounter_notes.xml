@@ -56,7 +56,16 @@
                             android:textColor="@color/encounter_btn_bg"
                             android:background="@color/banner_name_bg"
                             android:gravity="center_vertical|center_horizontal" />
-
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:id="@+id/titleBorder"
+                            android:visibility="gone"
+                            android:background="@color/edittext_bg"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="24dp"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -98,6 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/bottomNav"
+                android:orientation="vertical"
                 android:layout_alignParentBottom="true">
                 <Button
                     android:layout_width="match_parent"
@@ -106,6 +116,17 @@
                     android:onClick="onEncNotesNext"
                     android:textStyle="bold"
                     android:id="@+id/onEncNotesNext"
+                    android:textSize="@dimen/button_textsize"
+                    android:background="@color/encounter_btn_bg"
+                    android:textColor="@color/white" />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Next"
+                    android:onClick="onGroupEncNotesNext"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    android:id="@+id/onGrpEncNotesNext"
                     android:textSize="@dimen/button_textsize"
                     android:background="@color/encounter_btn_bg"
                     android:textColor="@color/white" />

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/encounter_bg"
-    tools:context="com.lynxstudy.lynx.EncounterIsGroupHiv">
+    tools:context="com.lynxstudy.lynx.EncounterGroupHivFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
-                    android:text="@string/new_encounter"
+                    android:text="@string/new_grp_encounter"
                     android:id="@+id/textView14"
                     android:layout_gravity="center_horizontal"
                     android:textColor="@color/white"/>
@@ -53,6 +53,7 @@
                     android:layout_marginRight="24dp"
                     android:id="@+id/subtitle" />
                 <CheckBox
+                    android:id="@+id/cb_HivNegative"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="HIV Negative"
@@ -64,6 +65,7 @@
                     android:textColor="@color/white"
                     android:buttonTint="@color/white"/>
                 <CheckBox
+                    android:id="@+id/cb_HivNegativeAndPrep"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="HIV Negative and on PrEP"
@@ -75,6 +77,7 @@
                     android:textColor="@color/white"
                     android:buttonTint="@color/white"/>
                 <CheckBox
+                    android:id="@+id/cb_IdontKnow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="I don’t know/unsure"
@@ -86,6 +89,7 @@
                     android:textColor="@color/white"
                     android:buttonTint="@color/white"/>
                 <CheckBox
+                    android:id="@+id/cb_HivPositive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="HIV Positive"
@@ -97,6 +101,7 @@
                     android:textColor="@color/white"
                     android:buttonTint="@color/white"/>
                 <CheckBox
+                    android:id="@+id/cb_HivUndetect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="HIV Positive and undetectable"

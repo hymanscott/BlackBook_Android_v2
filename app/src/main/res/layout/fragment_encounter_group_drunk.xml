@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/encounter_bg"
+    tools:context="com.lynxstudy.lynx.EncounterGroupDrunkFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentTop="true">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/encounterlarge" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="@string/new_grp_encounter"
+                    android:id="@+id/textView14"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/white"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/edittext_bg"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="16dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:text="During this encounter were you:"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:id="@+id/subtitle" />
+
+                <RadioGroup
+                    android:id="@+id/RG_Drunk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:paddingLeft="8dp"
+                    android:layout_marginBottom="32dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin">
+                    <RadioButton
+                        android:id="@+id/RB_Drunk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/white"
+                        android:button="@drawable/radiobutton_white"
+                        android:paddingLeft="12dp"
+                        android:text="Drunk"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/encounter_radio_btn_textsize" />
+                    <RadioButton
+                        android:id="@+id/RB_High"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/white"
+                        android:button="@drawable/radiobutton_white"
+                        android:paddingLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="High"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/encounter_radio_btn_textsize" />
+                    <RadioButton
+                        android:id="@+id/RB_Drunk_High"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/white"
+                        android:button="@drawable/radiobutton_white"
+                        android:paddingLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Both drunk and high"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/encounter_radio_btn_textsize" />
+                    <RadioButton
+                        android:id="@+id/RB_None"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/white"
+                        android:button="@drawable/radiobutton_white"
+                        android:paddingLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Neither drunk nor high"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/encounter_radio_btn_textsize" />
+                </RadioGroup>
+            </LinearLayout>
+            <Button
+                android:id="@+id/group_drunk_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/button_top_margin"
+                android:background="@color/encounter_btn_bg"
+                android:onClick="onGroupDrunkNext"
+                android:text="NEXT"
+                android:textColor="@color/white"
+                android:textSize="@dimen/button_textsize"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

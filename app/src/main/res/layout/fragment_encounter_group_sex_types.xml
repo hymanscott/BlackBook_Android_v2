@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/encounter_bg"
+    tools:context="com.lynxstudy.lynx.EncounterGroupSexTypesFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentTop="true">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/encounterlarge" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="@string/new_grp_encounter"
+                    android:id="@+id/textView14"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/white"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/edittext_bg"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="16dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:text="How was the sex?"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/subtitle" />
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:rating="0"
+                    android:id="@+id/rb_RateSex"
+                    android:layout_marginTop="16dp"
+                    android:layout_gravity="center_horizontal"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
+                    android:stepSize="0.5"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/edittext_bg"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="16dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:text="What did you do?"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/subtitle_two" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp">
+
+                    <ToggleButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/toggle_btn_height"
+                        android:textOn="I sucked"
+                        android:textColor="@color/colorPrimary"
+                        android:textOff="I sucked"
+                        android:layout_gravity="center"
+                        android:id="@+id/sexType_iSucked"
+                        android:textAlignment="gravity"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:background="@drawable/toggle_button"/>
+                    <ToggleButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/toggle_btn_height"
+                        android:textOn="I got sucked"
+                        android:textOff="I got sucked"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/sexType_gotSucked"
+                        android:layout_gravity="center"
+                        android:textAlignment="gravity"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:background="@drawable/toggle_button"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp">
+
+                    <ToggleButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/toggle_btn_height"
+                        android:textOn="I fucked"
+                        android:textColor="@color/colorPrimary"
+                        android:textOff="I fucked"
+                        android:layout_gravity="center"
+                        android:id="@+id/sexType_iFucked"
+                        android:textAlignment="gravity"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:background="@drawable/toggle_button"/>
+                    <ToggleButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/toggle_btn_height"
+                        android:textOn="I got fucked"
+                        android:textOff="I got fucked"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/sexType_gotFucked"
+                        android:layout_gravity="center"
+                        android:textAlignment="gravity"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:background="@drawable/toggle_button"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="32dp">
+
+                    <ToggleButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/toggle_btn_height"
+                        android:textOn="I rimmed"
+                        android:textColor="@color/colorPrimary"
+                        android:textOff="I rimmed"
+                        android:layout_gravity="center"
+                        android:id="@+id/sexType_iRimmed"
+                        android:textAlignment="gravity"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:background="@drawable/toggle_button"/>
+                    <ToggleButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/toggle_btn_height"
+                        android:textOn="I got rimmed"
+                        android:textOff="I got rimmed"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/sexType_gotRimmed"
+                        android:layout_gravity="center"
+                        android:textAlignment="gravity"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:background="@drawable/toggle_button"/>
+
+                </LinearLayout>
+                <Button
+                    android:id="@+id/group_sextypes_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="@dimen/button_top_margin"
+                    android:background="@color/encounter_btn_bg"
+                    android:onClick="onGroupSexTypesNext"
+                    android:text="NEXT"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/button_textsize"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

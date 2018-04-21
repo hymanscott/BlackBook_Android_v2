@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/encounter_bg"
+    tools:context="com.lynxstudy.lynx.EncounterGroupSexTypesFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentTop="true">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/encounterlarge" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="@string/new_grp_encounter"
+                    android:id="@+id/textView14"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/white"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/edittext_bg"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="16dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:text="Did you use a condom?"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:id="@+id/subtitle" />
+                <RadioGroup
+                    android:id="@+id/RG_condomUse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:paddingLeft="8dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                    <RadioButton
+                        android:id="@+id/RB_CondomAllTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/white"
+                        android:button="@drawable/radiobutton_white"
+                        android:paddingLeft="12dp"
+                        android:text="All of the time"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/encounter_radio_btn_textsize" />
+
+                    <RadioButton
+                        android:id="@+id/RB_CondomPartTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/white"
+                        android:button="@drawable/radiobutton_white"
+                        android:paddingLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Part of the time"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/encounter_radio_btn_textsize" />
+                    <RadioButton
+                        android:id="@+id/RB_CondomNoneTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/white"
+                        android:button="@drawable/radiobutton_white"
+                        android:paddingLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="None of the time"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/encounter_radio_btn_textsize" />
+                </RadioGroup>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/edittext_bg"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="16dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:text="Did anyone cum inside of you?"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:id="@+id/subtitle_two" />
+
+                <RadioGroup
+                    android:id="@+id/RG_CumInside"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:paddingLeft="8dp"
+                    android:layout_marginBottom="32dp"
+                    android:layout_marginTop="@dimen/activity_vertical_margin">
+                    <RadioButton
+                        android:id="@+id/RB_CumInsideYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/white"
+                        android:button="@drawable/radiobutton_white"
+                        android:paddingLeft="12dp"
+                        android:text="Yes"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/encounter_radio_btn_textsize" />
+                    <RadioButton
+                        android:id="@+id/RB_CumInsideNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/white"
+                        android:button="@drawable/radiobutton_white"
+                        android:paddingLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="No"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/encounter_radio_btn_textsize" />
+                </RadioGroup>
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/group_condomuse_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/button_top_margin"
+                android:background="@color/encounter_btn_bg"
+                android:onClick="onGroupCondomuseNext"
+                android:text="NEXT"
+                android:textColor="@color/white"
+                android:textSize="@dimen/button_textsize"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

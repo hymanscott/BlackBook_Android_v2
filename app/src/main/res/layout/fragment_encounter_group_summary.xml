@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/encounter_bg"
+    tools:context="com.lynxstudy.lynx.EncounterGroupSexTypesFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentTop="true">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/encounterlarge" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Group Encounter Snapshot"
+                    android:id="@+id/textView14"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/white"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/edittext_bg"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="16dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginLeft="32dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/encounter_tv_textsize"
+                        android:id="@+id/sexRating"
+                        android:layout_weight="1"
+                        android:lineSpacingMultiplier="1.31"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@color/white"
+                        android:text="Sex Rating :" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1">
+                        <RatingBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/grpSumm_sexRating"
+                            android:numStars="5"
+                            android:isIndicator="true"
+                            android:stepSize="0.5"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/edittext_bg"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="24dp" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/encounter_tv_textsize"
+                        android:textColor="@color/white"
+                        android:text="Number of People :"
+                        android:lineSpacingMultiplier="1.31"
+                        android:id="@+id/noOfPeople"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="@color/white"
+                        android:id="@+id/grpSumm_noOfPeople"
+                        android:text="x" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/edittext_bg"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="24dp" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/encounter_tv_textsize"
+                        android:textColor="@color/white"
+                        android:text="Condom Used :"
+                        android:lineSpacingMultiplier="1.31"
+                        android:id="@+id/condomUsed"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="@color/white"
+                        android:id="@+id/grpSumm_condomUsed"
+                        android:text="x" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/edittext_bg"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="24dp" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/encounter_tv_textsize"
+                        android:textColor="@color/white"
+                        android:lineSpacingMultiplier="1.31"
+                        android:text="Did anyone cum inside you?:"
+                        android:id="@+id/cumInside"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="@color/white"
+                        android:id="@+id/grpSumm_cumInside"
+                        android:text="x" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/edittext_bg"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="24dp" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/encounter_tv_textsize"
+                        android:textColor="@color/white"
+                        android:lineSpacingMultiplier="1.31"
+                        android:text="HIV Status:"
+                        android:id="@+id/hivStatus"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="@color/white"
+                        android:lineSpacingMultiplier="1.36"
+                        android:id="@+id/grpSumm_hivStatus"
+                        android:text="x" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/edittext_bg"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="24dp" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/encounter_tv_textsize"
+                        android:textColor="@color/white"
+                        android:lineSpacingMultiplier="1.31"
+                        android:text="Encounter Notes:"
+                        android:id="@+id/encNotes"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="@color/white"
+                        android:lineSpacingMultiplier="1.36"
+                        android:id="@+id/grpSumm_encNotes"
+                        android:text="x" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/edittext_bg"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="24dp" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/encounter_tv_textsize"
+                        android:textColor="@color/white"
+                        android:lineSpacingMultiplier="1.31"
+                        android:text="I was: "
+                        android:id="@+id/drunk"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="@color/white"
+                        android:lineSpacingMultiplier="1.36"
+                        android:id="@+id/grpSumm_drunk"
+                        android:text="x" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/edittext_bg"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="24dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:textColor="@color/white"
+                    android:lineSpacingMultiplier="1.31"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:text="Type of Sex :"
+                    android:id="@+id/typeOfSex"/>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp">
+
+                    <ToggleButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/toggle_btn_height"
+                        android:textOn="I sucked"
+                        android:textColor="@color/colorPrimary"
+                        android:textOff="I sucked"
+                        android:layout_gravity="center"
+                        android:id="@+id/sexType_iSucked"
+                        android:textAlignment="gravity"
+                        android:layout_margin="10dp"
+                        android:enabled="false"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:background="@drawable/toggle_button"/>
+                    <ToggleButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/toggle_btn_height"
+                        android:textOn="I got sucked"
+                        android:textOff="I got sucked"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/sexType_gotSucked"
+                        android:layout_gravity="center"
+                        android:textAlignment="gravity"
+                        android:enabled="false"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:background="@drawable/toggle_button"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp">
+
+                    <ToggleButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/toggle_btn_height"
+                        android:textOn="I fucked"
+                        android:textColor="@color/colorPrimary"
+                        android:textOff="I fucked"
+                        android:layout_gravity="center"
+                        android:id="@+id/sexType_iFucked"
+                        android:textAlignment="gravity"
+                        android:enabled="false"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:background="@drawable/toggle_button"/>
+                    <ToggleButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/toggle_btn_height"
+                        android:textOn="I got fucked"
+                        android:textOff="I got fucked"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/sexType_gotFucked"
+                        android:layout_gravity="center"
+                        android:textAlignment="gravity"
+                        android:enabled="false"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:background="@drawable/toggle_button"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="32dp">
+
+                    <ToggleButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/toggle_btn_height"
+                        android:textOn="I rimmed"
+                        android:textColor="@color/colorPrimary"
+                        android:textOff="I rimmed"
+                        android:layout_gravity="center"
+                        android:id="@+id/sexType_iRimmed"
+                        android:textAlignment="gravity"
+                        android:enabled="false"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:background="@drawable/toggle_button"/>
+                    <ToggleButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/toggle_btn_height"
+                        android:textOn="I got rimmed"
+                        android:textOff="I got rimmed"
+                        android:textColor="@color/colorPrimary"
+                        android:id="@+id/sexType_gotRimmed"
+                        android:layout_gravity="center"
+                        android:textAlignment="gravity"
+                        android:enabled="false"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:background="@drawable/toggle_button"/>
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="40dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="75dp"
+                    android:paddingRight="75dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:background="@drawable/border_full_white"
+                    android:text="EDIT"
+                    android:onClick="editGroupEncounterSummary"
+                    android:id="@+id/edit_grp_details"/>
+                <Button
+                    android:id="@+id/group_sex_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="@dimen/button_top_margin"
+                    android:background="@color/encounter_btn_bg"
+                    android:onClick="onGroupSexConfirm"
+                    android:text="Confirm"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/button_textsize"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

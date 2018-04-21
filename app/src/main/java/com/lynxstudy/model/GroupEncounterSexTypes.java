@@ -26,6 +26,14 @@ public class GroupEncounterSexTypes {
         this.created_at = created_at;
     }
 
+    public GroupEncounterSexTypes(int group_encounter_id, String sex_type, int user_id, String status_update, boolean status_encrypt) {
+        this.group_encounter_id = group_encounter_id;
+        this.sex_type = sex_type;
+        this.user_id = user_id;
+        this.status_update = status_update;
+        this.status_encrypt = status_encrypt;
+    }
+
     public int getGroup_encounter_sex_type_id() {
         return group_encounter_sex_type_id;
     }
