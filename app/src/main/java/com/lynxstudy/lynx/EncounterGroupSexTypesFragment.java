@@ -16,7 +16,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import com.lynxstudy.model.GroupEncounterSexTypes;
+import com.lynxstudy.model.GroupEncounterSexType;
 
 
 /**
@@ -72,12 +72,12 @@ public class EncounterGroupSexTypesFragment extends Fragment {
         String gotrimmed = sexType_gotRimmed.getText().toString();
 
         int active_user_id = LynxManager.getActiveUser().getUser_id();
-        final GroupEncounterSexTypes encSexType_isucked = new GroupEncounterSexTypes(0, LynxManager.encryptString(isucked), active_user_id, String.valueOf(R.string.statusUpdateNo), true);
-        final GroupEncounterSexTypes encSexType_gotsucked = new GroupEncounterSexTypes(0, LynxManager.encryptString(gotsucked), active_user_id, String.valueOf(R.string.statusUpdateNo), true);
-        final GroupEncounterSexTypes encSexType_ifucked = new GroupEncounterSexTypes(0, LynxManager.encryptString(ifucked), active_user_id, String.valueOf(R.string.statusUpdateNo), true);
-        final GroupEncounterSexTypes encSexType_gotfucked = new GroupEncounterSexTypes(0, LynxManager.encryptString(gotfucked), active_user_id, String.valueOf(R.string.statusUpdateNo), true);
-        final GroupEncounterSexTypes encSexType_irimmed = new GroupEncounterSexTypes(0, LynxManager.encryptString(irimmed), active_user_id, String.valueOf(R.string.statusUpdateNo), true);
-        final GroupEncounterSexTypes encSexType_gotrimmed = new GroupEncounterSexTypes(0, LynxManager.encryptString(gotrimmed), active_user_id, String.valueOf(R.string.statusUpdateNo), true);
+        final GroupEncounterSexType encSexType_isucked = new GroupEncounterSexType(0, LynxManager.encryptString(isucked), active_user_id, String.valueOf(R.string.statusUpdateNo), true);
+        final GroupEncounterSexType encSexType_gotsucked = new GroupEncounterSexType(0, LynxManager.encryptString(gotsucked), active_user_id, String.valueOf(R.string.statusUpdateNo), true);
+        final GroupEncounterSexType encSexType_ifucked = new GroupEncounterSexType(0, LynxManager.encryptString(ifucked), active_user_id, String.valueOf(R.string.statusUpdateNo), true);
+        final GroupEncounterSexType encSexType_gotfucked = new GroupEncounterSexType(0, LynxManager.encryptString(gotfucked), active_user_id, String.valueOf(R.string.statusUpdateNo), true);
+        final GroupEncounterSexType encSexType_irimmed = new GroupEncounterSexType(0, LynxManager.encryptString(irimmed), active_user_id, String.valueOf(R.string.statusUpdateNo), true);
+        final GroupEncounterSexType encSexType_gotrimmed = new GroupEncounterSexType(0, LynxManager.encryptString(gotrimmed), active_user_id, String.valueOf(R.string.statusUpdateNo), true);
 
         sexType_iSucked.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

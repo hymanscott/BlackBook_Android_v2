@@ -30,6 +30,7 @@ import com.lynxstudy.model.DrugMaster;
 import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
 import com.lynxstudy.model.GroupEncounterHiv;
+import com.lynxstudy.model.GroupEncounterSexType;
 import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.Partners;
 import com.lynxstudy.model.UserAlcoholUse;
@@ -41,7 +42,9 @@ import org.piwik.sdk.extra.TrackHelper;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class EncounterStartActivity extends AppCompatActivity {
 
@@ -358,7 +361,63 @@ public class EncounterStartActivity extends AppCompatActivity {
         return true;
     }
     public boolean onGroupSexEditConfirm(View view) {
-        popFragment();
+        RatingBar rb_RateSex = (RatingBar)findViewById(R.id.grpSumm_sexRating);
+        CheckBox cb_HivNegative = (CheckBox) findViewById(R.id.cb_HivNegative);
+        CheckBox cb_HivNegativeAndPrep = (CheckBox) findViewById(R.id.cb_HivNegativeAndPrep);
+        CheckBox cb_IdontKnow = (CheckBox) findViewById(R.id.cb_IdontKnow);
+        CheckBox cb_HivPositive = (CheckBox) findViewById(R.id.cb_HivPositive);
+        CheckBox cb_HivUndetect = (CheckBox) findViewById(R.id.cb_HivUndetect);
+        int selectedCheckBoxCount = 0;
+        List<String>selectedStrings = new ArrayList<String>();
+        if(cb_HivNegative.isChecked()){
+            selectedCheckBoxCount++;
+            selectedStrings.add(cb_HivNegative.getText().toString());
+        }
+        if(cb_HivNegativeAndPrep.isChecked()){
+            selectedCheckBoxCount++;
+            selectedStrings.add(cb_HivNegativeAndPrep.getText().toString());
+        }
+        if(cb_IdontKnow.isChecked()){
+            selectedCheckBoxCount++;
+            selectedStrings.add(cb_IdontKnow.getText().toString());
+        }
+        if(cb_HivPositive.isChecked()){
+            selectedCheckBoxCount++;
+            selectedStrings.add(cb_HivPositive.getText().toString());
+        }
+        if(cb_HivUndetect.isChecked()){
+            selectedCheckBoxCount++;
+            selectedStrings.add(cb_HivUndetect.getText().toString());
+        }
+
+        if(rb_RateSex.getRating()==0){
+            Toast.makeText(EncounterStartActivity.this,"Please rate your sex",Toast.LENGTH_SHORT).show();
+        }else if(selectedCheckBoxCount==0 || selectedStrings.size()==0){
+            Toast.makeText(EncounterStartActivity.this,"Please select HIV Status",Toast.LENGTH_SHORT).show();
+        }else if(LynxManager.activeGroupSexType.size()==0){
+            Toast.makeText(EncounterStartActivity.this,"Please select Type of sex",Toast.LENGTH_SHORT).show();
+        }{
+            int active_user_id = LynxManager.getActiveUser().getUser_id();
+            // Set Active Group HIVs
+            LynxManager.activeGroupHiv.clear();
+            for (String status_name: selectedStrings) {
+                GroupEncounterHiv groupEncounterHiv = new GroupEncounterHiv(0, LynxManager.encryptString(status_name) , active_user_id , String.valueOf(R.string.statusUpdateNo), true);
+                LynxManager.activeGroupHiv.add(groupEncounterHiv);
+            }
+            // Removing Duplicates from Sextypes //
+            Set<GroupEncounterSexType> groupEncounterSexTypes = new HashSet<GroupEncounterSexType>();
+            groupEncounterSexTypes.addAll(LynxManager.activeGroupSexType);
+            LynxManager.activeGroupSexType.clear();
+            LynxManager.activeGroupSexType.addAll(groupEncounterSexTypes);
+            Log.v("SummarySextypesSize",String.valueOf(LynxManager.activeGroupSexType.size()));
+            int group_encouter_id = db.createGroupEncounter(LynxManager.activeGroupEncounter);
+            
+
+            // Redirect to Summary screen
+            /*EncounterGroupSummaryFragment groupSummary = new EncounterGroupSummaryFragment();
+            pushFragments("Encounter", groupSummary, false);*/
+        }
+
         return true;
     }
     public boolean onGroupSexConfirm(View view){

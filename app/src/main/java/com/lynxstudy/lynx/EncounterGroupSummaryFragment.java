@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.lynxstudy.model.GroupEncounterHiv;
-import com.lynxstudy.model.GroupEncounterSexTypes;
+import com.lynxstudy.model.GroupEncounterSexType;
 
 
 /**
@@ -97,7 +97,7 @@ public class EncounterGroupSummaryFragment extends Fragment {
         }
         grpSumm_hivStatus.setText(hivStatuses);
 
-        for (GroupEncounterSexTypes encounterSexTypes:LynxManager.getActiveGroupSexType()){
+        for (GroupEncounterSexType encounterSexTypes:LynxManager.getActiveGroupSexType()){
 
             switch (LynxManager.decryptString(encounterSexTypes.getSex_type())){
                 case "I sucked":

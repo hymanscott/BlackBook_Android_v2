@@ -4,7 +4,7 @@ package com.lynxstudy.model;
  * Created by Hari on 2018-04-09.
  */
 
-public class GroupEncounterSexTypes {
+public class GroupEncounterSexType {
 
     int group_encounter_sex_type_id;
     int group_encounter_id;
@@ -14,10 +14,10 @@ public class GroupEncounterSexTypes {
     boolean status_encrypt;
     String created_at;
 
-    public GroupEncounterSexTypes() {
+    public GroupEncounterSexType() {
     }
 
-    public GroupEncounterSexTypes(int group_encounter_id, String sex_type, int user_id, String status_update, boolean status_encrypt, String created_at) {
+    public GroupEncounterSexType(int group_encounter_id, String sex_type, int user_id, String status_update, boolean status_encrypt, String created_at) {
         this.group_encounter_id = group_encounter_id;
         this.sex_type = sex_type;
         this.user_id = user_id;
@@ -26,7 +26,7 @@ public class GroupEncounterSexTypes {
         this.created_at = created_at;
     }
 
-    public GroupEncounterSexTypes(int group_encounter_id, String sex_type, int user_id, String status_update, boolean status_encrypt) {
+    public GroupEncounterSexType(int group_encounter_id, String sex_type, int user_id, String status_update, boolean status_encrypt) {
         this.group_encounter_id = group_encounter_id;
         this.sex_type = sex_type;
         this.user_id = user_id;

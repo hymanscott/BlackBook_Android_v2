@@ -17,6 +17,9 @@ import com.lynxstudy.model.CloudMessages;
 import com.lynxstudy.model.DrugMaster;
 import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
+import com.lynxstudy.model.GroupEncounter;
+import com.lynxstudy.model.GroupEncounterHiv;
+import com.lynxstudy.model.GroupEncounterSexType;
 import com.lynxstudy.model.HomeTestingRequest;
 import com.lynxstudy.model.PartnerContact;
 import com.lynxstudy.model.PartnerRating;
@@ -94,6 +97,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_STATISTICS = "Statistics";
     private static final String TABLE_USER_BADGES = "UserBadges";
     private static final String TABLE_APP_ALERTS = "AppAlerts";
+    private static final String TABLE_GRP_ENCOUNTER = "GroupEncounter";
+    private static final String TABLE_GRP_ENCOUNTER_HIV = "GroupEncounterHIV";
+    private static final String TABLE_GRP_ENCOUNTER_SEXTYPE = "GroupEncounterSexType";
 
     // Common column names
     private static final String KEY_CREATED_AT = "created_at";
@@ -358,6 +364,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_APP_ALERT_MODIFIED = "app_alert_modified";
     private static final String KEY_APP_ALERT_CREATEDAT = "app_alert_createdat";
 
+    /* Group Encounters */
+
+    private static final String KEY_GRP_ENC_ID ="group_encounter_id";
+    private static final String KEY_GRP_ENC_NO_OF_PEOPLE ="no_of_people";
+    private static final String KEY_GRP_ENC_DATETIME ="datetime";
+    private static final String KEY_GRP_ENC_RATE_SEX ="rate_the_sex";
+    private static final String KEY_GRP_ENC_CONDOM_USE ="condom_use";
+    private static final String KEY_GRP_ENC_CUM_INSIDE ="cum_inside";
+    private static final String KEY_GRP_ENC_DRUNK_STATUS ="drunk_status";
+    private static final String KEY_GRP_ENC_NOTES ="notes";
+
+    private static final String KEY_GRP_ENC_HIV_ID = "group_encounter_hiv_id";
+    private static final String KEY_GRP_ENC_HIV_STATUS = "hiv_status";
+
+    private static final String KEY_GRP_ENC_SEX_TYPE_ID = "group_encounter_sex_type_id";
+    private static final String KEY_GRP_ENC_SEX_TYPE = "sextype";
+
+
     // Table Create Statements
     // Users table create statement
     private static final String CREATE_TABLE_USERS = "CREATE TABLE "
@@ -519,6 +543,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + TABLE_APP_ALERTS + "(" + KEY_APP_ALERT_ID + " INTEGER PRIMARY KEY," + KEY_APP_ALERT_NAME + " TEXT,"
             + KEY_APP_ALERT_MODIFIED + " TEXT," + KEY_APP_ALERT_CREATEDAT + " TEXT)";
 
+    private static final String CREATE_TABLE_GRP_ENCOUNTER = "CREATE TABLE "
+            + TABLE_GRP_ENCOUNTER + "(" + KEY_GRP_ENC_ID + " INTEGER PRIMARY KEY," + KEY_USERS_ID + " INTEGER,"
+            + KEY_GRP_ENC_NO_OF_PEOPLE + " INTEGER," + KEY_GRP_ENC_DATETIME + " TEXT," + KEY_GRP_ENC_RATE_SEX + " TEXT,"
+            + KEY_GRP_ENC_CONDOM_USE + " TEXT," + KEY_GRP_ENC_CUM_INSIDE + " TEXT," + KEY_GRP_ENC_DRUNK_STATUS + " TEXT,"
+            + KEY_GRP_ENC_NOTES + " TEXT," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT+ " TEXT)";
+
+    private static final String CREATE_TABLE_GRP_ENCOUNTER_HIV = "CREATE TABLE "
+            + TABLE_GRP_ENCOUNTER_HIV + "(" + KEY_GRP_ENC_HIV_ID + " INTEGER PRIMARY KEY," + KEY_USERS_ID + " INTEGER,"
+            + KEY_GRP_ENC_ID + " INTEGER," + KEY_GRP_ENC_HIV_STATUS + " TEXT," + KEY_STATUS_UPDATE + " TEXT,"
+            + KEY_CREATED_AT+ " TEXT)";
+
+    private static final String CREATE_TABLE_GRP_ENCOUNTER_SEXTYPE = "CREATE TABLE "
+            + TABLE_GRP_ENCOUNTER_SEXTYPE + "(" + KEY_GRP_ENC_SEX_TYPE_ID+ " INTEGER PRIMARY KEY," + KEY_USERS_ID + " INTEGER,"
+            + KEY_GRP_ENC_ID + " INTEGER," + KEY_GRP_ENC_SEX_TYPE + " TEXT," + KEY_STATUS_UPDATE + " TEXT,"
+            + KEY_CREATED_AT+ " TEXT)";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
@@ -559,6 +599,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_STATISTICS);
         db.execSQL(CREATE_TABLE_USER_BADGES);
         db.execSQL(CREATE_TABLE_APP_ALERT);
+        db.execSQL(CREATE_TABLE_GRP_ENCOUNTER);
+        db.execSQL(CREATE_TABLE_GRP_ENCOUNTER_HIV);
+        db.execSQL(CREATE_TABLE_GRP_ENCOUNTER_SEXTYPE);
 
     }
 
@@ -594,6 +637,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STATISTICS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_BADGES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_APP_ALERTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_GRP_ENCOUNTER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_GRP_ENCOUNTER_HIV);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_GRP_ENCOUNTER_SEXTYPE);
         // create new tables
         onCreate(db);
         Log.v("Database upgrade","Executed");
@@ -5070,6 +5116,267 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // updating row
         return db.update(TABLE_APP_ALERTS, values, KEY_APP_ALERT_ID+ " = ?",
                 new String[]{String.valueOf(id)});
+    }
+
+    /* GroupEncounter Methods */
+
+    public int createGroupEncounter(GroupEncounter groupEncounter){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_GRP_ENC_ID, groupEncounter.getGroup_encounter_id());
+        values.put(KEY_USERS_ID, groupEncounter.getUser_id());
+        values.put(KEY_GRP_ENC_NO_OF_PEOPLE, groupEncounter.getNo_of_people());
+        values.put(KEY_GRP_ENC_DATETIME, groupEncounter.getDatetime());
+        values.put(KEY_GRP_ENC_RATE_SEX, groupEncounter.getRate_the_sex());
+        values.put(KEY_GRP_ENC_CONDOM_USE, groupEncounter.getCondom_use());
+        values.put(KEY_GRP_ENC_CUM_INSIDE, groupEncounter.getCum_inside());
+        values.put(KEY_GRP_ENC_DRUNK_STATUS, groupEncounter.getDrunk_status());
+        values.put(KEY_GRP_ENC_NOTES, groupEncounter.getNotes());
+        values.put(KEY_STATUS_UPDATE, groupEncounter.getStatus_update());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        return (int) db.insert(TABLE_GRP_ENCOUNTER, null, values);
+    }
+
+    public List<GroupEncounter> getAllGroupEncounters(){
+        List<GroupEncounter> grpEncountersList = new ArrayList<GroupEncounter>();
+        String selectQuery = "SELECT  * FROM " + TABLE_GRP_ENCOUNTER;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                GroupEncounter groupEncounter = new GroupEncounter();
+                groupEncounter.setGroup_encounter_id(c.getInt(c.getColumnIndex(KEY_GRP_ENC_ID)));
+                groupEncounter.setNo_of_people(c.getInt(c.getColumnIndex(KEY_GRP_ENC_NO_OF_PEOPLE)));
+                groupEncounter.setUser_id(c.getInt(c.getColumnIndex(KEY_USERS_ID)));
+                groupEncounter.setDatetime(c.getString(c.getColumnIndex(KEY_GRP_ENC_DATETIME)));
+                groupEncounter.setRate_the_sex(c.getString(c.getColumnIndex(KEY_GRP_ENC_RATE_SEX)));
+                groupEncounter.setCondom_use(c.getString(c.getColumnIndex(KEY_GRP_ENC_CONDOM_USE)));
+                groupEncounter.setCum_inside(c.getString(c.getColumnIndex(KEY_GRP_ENC_CUM_INSIDE)));
+                groupEncounter.setDrunk_status(c.getString(c.getColumnIndex(KEY_GRP_ENC_DRUNK_STATUS)));
+                groupEncounter.setNotes(c.getString(c.getColumnIndex(KEY_GRP_ENC_NOTES)));
+                groupEncounter.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+                groupEncounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+
+                // adding to Users list
+                grpEncountersList.add(groupEncounter);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return grpEncountersList;
+    }
+
+    public GroupEncounter getGroupEncounterByID(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_GRP_ENCOUNTER + " WHERE "
+                + KEY_GRP_ENC_ID + " = " + id;
+
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c != null && c.getCount()>0) {
+            if (c.moveToFirst()) {
+                GroupEncounter groupEncounter = new GroupEncounter();
+                groupEncounter.setGroup_encounter_id(c.getInt(c.getColumnIndex(KEY_GRP_ENC_ID)));
+                groupEncounter.setNo_of_people(c.getInt(c.getColumnIndex(KEY_GRP_ENC_NO_OF_PEOPLE)));
+                groupEncounter.setUser_id(c.getInt(c.getColumnIndex(KEY_USERS_ID)));
+                groupEncounter.setDatetime(c.getString(c.getColumnIndex(KEY_GRP_ENC_DATETIME)));
+                groupEncounter.setRate_the_sex(c.getString(c.getColumnIndex(KEY_GRP_ENC_RATE_SEX)));
+                groupEncounter.setCondom_use(c.getString(c.getColumnIndex(KEY_GRP_ENC_CONDOM_USE)));
+                groupEncounter.setCum_inside(c.getString(c.getColumnIndex(KEY_GRP_ENC_CUM_INSIDE)));
+                groupEncounter.setDrunk_status(c.getString(c.getColumnIndex(KEY_GRP_ENC_DRUNK_STATUS)));
+                groupEncounter.setNotes(c.getString(c.getColumnIndex(KEY_GRP_ENC_NOTES)));
+                groupEncounter.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+                groupEncounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+                return groupEncounter;
+            }
+            c.close();
+        }
+        return null;
+
+    }
+    public int getGroupEncountersCount(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_GRP_ENCOUNTER;
+
+        android.database.Cursor cursor = db.rawQuery(selectQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+    /* Group Encounter HIV Methods */
+
+    public int createGroupEncounterHIV(GroupEncounterHiv groupEncounterHiv){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_GRP_ENC_HIV_ID, groupEncounterHiv.getGroup_encounter_hiv_id());
+        values.put(KEY_USERS_ID, groupEncounterHiv.getUser_id());
+        values.put(KEY_GRP_ENC_ID, groupEncounterHiv.getGroup_encounter_id());
+        values.put(KEY_GRP_ENC_HIV_STATUS, groupEncounterHiv.getHiv_status());
+        values.put(KEY_STATUS_UPDATE, groupEncounterHiv.getStatus_update());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        return (int) db.insert(TABLE_GRP_ENCOUNTER_HIV, null, values);
+    }
+    public List<GroupEncounterHiv> getAllGroupEncounterHIVsByEncID(int enc_id){
+        List<GroupEncounterHiv> grpEncHIVList = new ArrayList<GroupEncounterHiv>();
+        String selectQuery = "SELECT  * FROM " + TABLE_GRP_ENCOUNTER_HIV + " WHERE "+ KEY_GRP_ENC_ID +" = " + enc_id;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                GroupEncounterHiv groupEncounterHiv = new GroupEncounterHiv();
+                groupEncounterHiv.setGroup_encounter_id(c.getInt(c.getColumnIndex(KEY_GRP_ENC_ID)));
+                groupEncounterHiv.setGroup_encounter_hiv_id(c.getInt(c.getColumnIndex(KEY_GRP_ENC_HIV_ID)));
+                groupEncounterHiv.setUser_id(c.getInt(c.getColumnIndex(KEY_USERS_ID)));
+                groupEncounterHiv.setHiv_status(c.getString(c.getColumnIndex(KEY_GRP_ENC_HIV_STATUS)));
+                groupEncounterHiv.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+                groupEncounterHiv.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+
+                // adding to Users list
+                grpEncHIVList.add(groupEncounterHiv);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return grpEncHIVList;
+    }
+    public List<GroupEncounterHiv> getAllGroupEncounterHIVsByStatus(String status){
+        List<GroupEncounterHiv> grpEncHIVList = new ArrayList<GroupEncounterHiv>();
+        String selectQuery = "SELECT  * FROM " + TABLE_GRP_ENCOUNTER_HIV + " WHERE "+ KEY_STATUS_UPDATE+" = '" + status+"'";
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                GroupEncounterHiv groupEncounterHiv = new GroupEncounterHiv();
+                groupEncounterHiv.setGroup_encounter_id(c.getInt(c.getColumnIndex(KEY_GRP_ENC_ID)));
+                groupEncounterHiv.setGroup_encounter_hiv_id(c.getInt(c.getColumnIndex(KEY_GRP_ENC_HIV_ID)));
+                groupEncounterHiv.setUser_id(c.getInt(c.getColumnIndex(KEY_USERS_ID)));
+                groupEncounterHiv.setHiv_status(c.getString(c.getColumnIndex(KEY_GRP_ENC_HIV_STATUS)));
+                groupEncounterHiv.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+                groupEncounterHiv.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+
+                // adding to Users list
+                grpEncHIVList.add(groupEncounterHiv);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return grpEncHIVList;
+    }
+    public int getGroupEncounterHIVsCount(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_GRP_ENCOUNTER_HIV;
+
+        android.database.Cursor cursor = db.rawQuery(selectQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+    /* Group Encounter Sex Types*/
+
+    public int createGroupEncounterSexType(GroupEncounterSexType groupSextype){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_GRP_ENC_SEX_TYPE_ID, groupSextype.getGroup_encounter_sex_type_id());
+        values.put(KEY_USERS_ID, groupSextype.getUser_id());
+        values.put(KEY_GRP_ENC_ID, groupSextype.getGroup_encounter_id());
+        values.put(KEY_GRP_ENC_SEX_TYPE, groupSextype.getSex_type());
+        values.put(KEY_STATUS_UPDATE, groupSextype.getStatus_update());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        return (int) db.insert(TABLE_GRP_ENCOUNTER_HIV, null, values);
+    }
+    public List<GroupEncounterSexType> getAllGroupEncounterSexTypesByEncID(int enc_id){
+        List<GroupEncounterSexType> grpEncSexList = new ArrayList<GroupEncounterSexType>();
+        String selectQuery = "SELECT  * FROM " + TABLE_GRP_ENCOUNTER_SEXTYPE + " WHERE "+ KEY_GRP_ENC_ID +" = " + enc_id;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                GroupEncounterSexType groupSexType = new GroupEncounterSexType();
+                groupSexType.setGroup_encounter_id(c.getInt(c.getColumnIndex(KEY_GRP_ENC_ID)));
+                groupSexType.setGroup_encounter_sex_type_id(c.getInt(c.getColumnIndex(KEY_GRP_ENC_SEX_TYPE_ID)));
+                groupSexType.setUser_id(c.getInt(c.getColumnIndex(KEY_USERS_ID)));
+                groupSexType.setSex_type(c.getString(c.getColumnIndex(KEY_GRP_ENC_SEX_TYPE)));
+                groupSexType.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+                groupSexType.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+
+                // adding to Users list
+                grpEncSexList.add(groupSexType);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return grpEncSexList;
+    }
+    public List<GroupEncounterSexType> getAllGroupEncounterSexTypesByStatus(String status){
+        List<GroupEncounterSexType> grpEncSexList = new ArrayList<GroupEncounterSexType>();
+        String selectQuery = "SELECT  * FROM " + TABLE_GRP_ENCOUNTER_SEXTYPE + " WHERE "+ KEY_GRP_ENC_ID +" = '" + status +"'";
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                GroupEncounterSexType groupSexType = new GroupEncounterSexType();
+                groupSexType.setGroup_encounter_id(c.getInt(c.getColumnIndex(KEY_GRP_ENC_ID)));
+                groupSexType.setGroup_encounter_sex_type_id(c.getInt(c.getColumnIndex(KEY_GRP_ENC_SEX_TYPE_ID)));
+                groupSexType.setUser_id(c.getInt(c.getColumnIndex(KEY_USERS_ID)));
+                groupSexType.setSex_type(c.getString(c.getColumnIndex(KEY_GRP_ENC_SEX_TYPE)));
+                groupSexType.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+                groupSexType.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+
+                // adding to Users list
+                grpEncSexList.add(groupSexType);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return grpEncSexList;
+    }
+    public int getGroupEncounterSexTypesCount(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_GRP_ENCOUNTER_SEXTYPE;
+
+        android.database.Cursor cursor = db.rawQuery(selectQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
     }
 }
 

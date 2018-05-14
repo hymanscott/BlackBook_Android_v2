@@ -7,13 +7,12 @@ import android.net.NetworkInfo;
 import android.net.ParseException;
 import android.util.Base64;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
 import com.lynxstudy.model.GroupEncounter;
 import com.lynxstudy.model.GroupEncounterHiv;
-import com.lynxstudy.model.GroupEncounterSexTypes;
+import com.lynxstudy.model.GroupEncounterSexType;
 import com.lynxstudy.model.PartnerContact;
 import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.Partners;
@@ -60,7 +59,7 @@ public class LynxManager {
     public static Encounter activeEncounter = new Encounter();
     public static List<EncounterSexType> activePartnerSexType = new ArrayList<EncounterSexType>();
     public static GroupEncounter activeGroupEncounter = new GroupEncounter();
-    public static List<GroupEncounterSexTypes> activeGroupSexType = new ArrayList<GroupEncounterSexTypes>();
+    public static List<GroupEncounterSexType> activeGroupSexType = new ArrayList<GroupEncounterSexType>();
     public static List<GroupEncounterHiv> activeGroupHiv = new ArrayList<GroupEncounterHiv>();
     public static Partners activePartner = new Partners();
     public static PartnerContact activePartnerContact = new PartnerContact();
@@ -102,12 +101,10 @@ public class LynxManager {
     public static boolean haveWeeklyEncounter = false;
 
     //static Context context;
-    /*private static String baseURL  =   "http://test.chipware.in:8080/Lynxportal/";
-    private static String testImageBaseUrl = "http://test.chipware.in:8080/Lynxportal/testimages/";*/
-    /*private static String baseURL  =   "https://dev.chipware.in/LynxPortal/";
-    private static String testImageBaseUrl = "https://dev.chipware.in/LynxPortal/testimages/";*/
-    private static String baseURL  =   "https://lynxstudy.com/";
-    private static String testImageBaseUrl = "https://lynxstudy.com/testimages/";
+    private static String baseURL  =   "https://dev.chipware.in/LynxPortal/";
+    private static String testImageBaseUrl = "https://dev.chipware.in/LynxPortal/testimages/";
+    /*private static String baseURL  =   "https://lynxstudy.com/";
+    private static String testImageBaseUrl = "https://lynxstudy.com/testimages/";*/
     private LynxManager() {
     }
 
@@ -205,11 +202,11 @@ public class LynxManager {
         LynxManager.activeGroupEncounter = activeGroupEncounter;
     }
 
-    public static List<GroupEncounterSexTypes> getActiveGroupSexType() {
+    public static List<GroupEncounterSexType> getActiveGroupSexType() {
         return activeGroupSexType;
     }
 
-    public static void setActiveGroupSexType(List<GroupEncounterSexTypes> activeGroupSexType) {
+    public static void setActiveGroupSexType(List<GroupEncounterSexType> activeGroupSexType) {
         LynxManager.activeGroupSexType = activeGroupSexType;
     }
 

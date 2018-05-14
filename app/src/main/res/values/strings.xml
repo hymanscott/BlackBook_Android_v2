@@ -151,4 +151,15 @@
     <string name="screen_three_description">Lynx makes it possible to take care of your business without having anyone in your business. We’ll remind you to get tested for HIV and STDs every three months at a location that’s easiest for you – yep, even at home.</string>
     <string name="screen_four_description">Lynx makes sure you know how much of a pro you are at protecting your sexual health. We calculate your Sexual Health Protection (Sex Pro) Score and help you access PrEP.</string>
 
+    <string-array name="groupsex_condom_texts">
+        <item>All of the time</item>
+        <item>Part of the time</item>
+        <item>None of the time</item>
+    </string-array>
+    <string-array name="drunk_status_texts">
+        <item>Drunk</item>
+        <item>High</item>
+        <item>Both drunk and high</item>
+        <item>Neither drunk nor high</item>
+    </string-array>
 </resources>
