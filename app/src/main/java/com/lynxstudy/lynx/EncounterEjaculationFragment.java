@@ -26,10 +26,10 @@ public class EncounterEjaculationFragment extends Fragment {
     public EncounterEjaculationFragment() {
     }
 
-    TextView newEncounter,youCumTitle,yourPartnerCumTitle;
+    TextView newEncounter,whenISuckedTitle,whenIbottomTitle,whenItopTitle;
     Button onEjaculationNext;
-    RadioButton radio_you_cum_yes,radio_you_cum_no,radio_you_cum_iDontKnow,radio_your_partner_cum_yes,radio_your_partner_cum_no,radio_your_partner_cum_iDontKnow;
-    LinearLayout didYouCumLayout,didYourPartnerCumLayout;
+    RadioButton RB_whenIsuckedSwallow,RB_whenIsuckedSpit,RB_whenIsuckedNeither,RB_whenIbotINme,RB_whenIbotONme,RB_whenIbotNeither,RB_whenItopINthem,RB_whenItopONthem,RB_whenItopNeither;
+    LinearLayout whenISuckedParent,whenIbottomParent,whenItopParent;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,27 +42,36 @@ public class EncounterEjaculationFragment extends Fragment {
                 "fonts/Roboto-Bold.ttf");
         newEncounter = (TextView) rootview.findViewById(R.id.newEncounter);
         newEncounter.setTypeface(tf_bold);
-        youCumTitle = (TextView) rootview.findViewById(R.id.youCumTitle);
-        youCumTitle.setTypeface(tf);
-        yourPartnerCumTitle = (TextView) rootview.findViewById(R.id.yourPartnerCumTitle);
-        yourPartnerCumTitle.setTypeface(tf);
+        whenISuckedTitle = (TextView) rootview.findViewById(R.id.whenISuckedTitle);
+        whenISuckedTitle.setTypeface(tf);
+        whenIbottomTitle = (TextView) rootview.findViewById(R.id.whenIbottomTitle);
+        whenIbottomTitle.setTypeface(tf);
+        whenItopTitle = (TextView) rootview.findViewById(R.id.whenItopTitle);
+        whenItopTitle.setTypeface(tf);
         onEjaculationNext = (Button) rootview.findViewById(R.id.onEjaculationNext);
         onEjaculationNext.setTypeface(tf_bold);
-        radio_you_cum_yes = (RadioButton)rootview.findViewById(R.id.radio_you_cum_yes);
-        radio_you_cum_yes.setTypeface(tf);
-        radio_you_cum_no = (RadioButton)rootview.findViewById(R.id.radio_you_cum_no);
-        radio_you_cum_no.setTypeface(tf);
-        radio_you_cum_iDontKnow = (RadioButton)rootview.findViewById(R.id.radio_you_cum_iDontKnow);
-        radio_you_cum_iDontKnow.setTypeface(tf);
-        radio_your_partner_cum_yes = (RadioButton)rootview.findViewById(R.id.radio_your_partner_cum_yes);
-        radio_your_partner_cum_yes.setTypeface(tf);
-        radio_your_partner_cum_no = (RadioButton)rootview.findViewById(R.id.radio_your_partner_cum_no);
-        radio_your_partner_cum_no.setTypeface(tf);
-        radio_your_partner_cum_iDontKnow = (RadioButton)rootview.findViewById(R.id.radio_your_partner_cum_iDontKnow);
-        radio_your_partner_cum_iDontKnow.setTypeface(tf);
+        RB_whenIsuckedSwallow = (RadioButton)rootview.findViewById(R.id.RB_whenIsuckedSwallow);
+        RB_whenIsuckedSwallow.setTypeface(tf);
+        RB_whenIsuckedSpit = (RadioButton)rootview.findViewById(R.id.RB_whenIsuckedSpit);
+        RB_whenIsuckedSpit.setTypeface(tf);
+        RB_whenIsuckedNeither = (RadioButton)rootview.findViewById(R.id.RB_whenIsuckedNeither);
+        RB_whenIsuckedNeither.setTypeface(tf);
+        RB_whenIbotINme = (RadioButton)rootview.findViewById(R.id.RB_whenIbotINme);
+        RB_whenIbotINme.setTypeface(tf);
+        RB_whenIbotONme = (RadioButton)rootview.findViewById(R.id.RB_whenIbotONme);
+        RB_whenIbotONme.setTypeface(tf);
+        RB_whenIbotNeither = (RadioButton)rootview.findViewById(R.id.RB_whenIbotNeither);
+        RB_whenIbotNeither.setTypeface(tf);
+        RB_whenItopINthem = (RadioButton)rootview.findViewById(R.id.RB_whenItopINthem);
+        RB_whenItopINthem.setTypeface(tf);
+        RB_whenItopONthem = (RadioButton)rootview.findViewById(R.id.RB_whenItopONthem);
+        RB_whenItopONthem.setTypeface(tf);
+        RB_whenItopNeither = (RadioButton)rootview.findViewById(R.id.RB_whenItopNeither);
+        RB_whenItopNeither.setTypeface(tf);
 
-        didYouCumLayout = (LinearLayout)rootview.findViewById(R.id.didYouCumLayout);
-        didYourPartnerCumLayout = (LinearLayout)rootview.findViewById(R.id.didYourPartnerCumLayout);
+        whenISuckedParent = (LinearLayout)rootview.findViewById(R.id.whenISuckedParent);
+        whenIbottomParent = (LinearLayout)rootview.findViewById(R.id.whenIbottomParent);
+        whenItopParent = (LinearLayout)rootview.findViewById(R.id.whenItopParent);
         // Set NickName
         TextView nickname = (TextView) rootview.findViewById(R.id.encounter_notes_nickName);
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
@@ -76,11 +85,13 @@ public class EncounterEjaculationFragment extends Fragment {
             switch (sexTypeText) {
                 case "I sucked him":
                 case "I sucked her":
+                    whenISuckedParent.setVisibility(View.VISIBLE);
+                    break;
                 case "I bottomed":
-                    didYourPartnerCumLayout.setVisibility(View.VISIBLE);
+                    whenIbottomParent.setVisibility(View.VISIBLE);
                     break;
                 case "I topped":
-                    didYouCumLayout.setVisibility(View.VISIBLE);
+                    whenItopParent.setVisibility(View.VISIBLE);
                     break;
             }
         }

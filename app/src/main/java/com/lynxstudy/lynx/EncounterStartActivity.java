@@ -370,12 +370,27 @@ public class EncounterStartActivity extends AppCompatActivity {
     }
 
     public boolean onEjaculationNext(View view) {
-        RadioGroup youCumGroup = (RadioGroup) findViewById(R.id.radio_you_cum);
-        RadioButton you_cum_btn = (RadioButton) findViewById(youCumGroup.getCheckedRadioButtonId());
-        RadioGroup yourPartnerCumGroup = (RadioGroup) findViewById(R.id.radio_your_partner_cum);
-        RadioButton your_partner_cum_btn = (RadioButton) findViewById(yourPartnerCumGroup.getCheckedRadioButtonId());
-        LynxManager.activeEncounter.setDid_you_cum(LynxManager.encryptString(you_cum_btn.getText().toString()));
-        LynxManager.activeEncounter.setDid_your_partner_cum(LynxManager.encryptString(your_partner_cum_btn.getText().toString()));
+        for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
+
+            switch (LynxManager.decryptString(encSexType.getSex_type())) {
+                case "I sucked him":
+                case "I sucked her":
+                    RadioGroup RG_whenIsucked = (RadioGroup) findViewById(R.id.RG_whenIsucked);
+                    RadioButton whenISuckedHim_btn = (RadioButton) findViewById(RG_whenIsucked.getCheckedRadioButtonId());
+                    encSexType.setEjaculation(whenISuckedHim_btn.getText().toString());
+                    break;
+                case "I bottomed":
+                    RadioGroup RG_whenIbottomed = (RadioGroup) findViewById(R.id.RG_whenIbottomed);
+                    RadioButton whenIBottomed_btn = (RadioButton) findViewById(RG_whenIbottomed.getCheckedRadioButtonId());
+                    encSexType.setEjaculation(whenIBottomed_btn.getText().toString());
+                    break;
+                case "I topped":
+                    RadioGroup RG_whenItopped = (RadioGroup) findViewById(R.id.RG_whenItopped);
+                    RadioButton whenITopped_btn = (RadioButton) findViewById(RG_whenItopped.getCheckedRadioButtonId());
+                    encSexType.setEjaculation(whenITopped_btn.getText().toString());
+                    break;
+            }
+        }
         EncounterNotesFragment fragEncNotes = new EncounterNotesFragment();
         pushFragments("encounter", fragEncNotes, true);
 
@@ -462,10 +477,25 @@ public class EncounterStartActivity extends AppCompatActivity {
         LynxManager.encRateofSex = String.valueOf(sexType_RateTheSex.getRating());
         String encNotes = String.valueOf(((EditText) findViewById(R.id.encNotes)).getText());
         LynxManager.activeEncounter.setEncounter_notes(LynxManager.encryptString(encNotes));
-        TextView didYouCum = (TextView)findViewById(R.id.didYouCum);
-        TextView didYourPartnerCum = (TextView)findViewById(R.id.didYourPartnerCum);
-        LynxManager.activeEncounter.setDid_you_cum(LynxManager.encryptString(didYouCum.getText().toString()));
-        LynxManager.activeEncounter.setDid_your_partner_cum(LynxManager.encryptString(didYourPartnerCum.getText().toString()));
+
+        for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
+
+            switch (LynxManager.decryptString(encSexType.getSex_type())) {
+                case "I sucked him":
+                case "I sucked her":
+                    TextView whenIsucked = (TextView)findViewById(R.id.whenIsucked);
+                    encSexType.setEjaculation(whenIsucked.getText().toString());
+                    break;
+                case "I bottomed":
+                    TextView whenIbottom = (TextView)findViewById(R.id.whenIbottom);
+                    encSexType.setEjaculation(whenIbottom.getText().toString());
+                    break;
+                case "I topped":
+                    TextView whenItop = (TextView)findViewById(R.id.whenItop);
+                    encSexType.setEjaculation(whenItop.getText().toString());
+                    break;
+            }
+        }
         popFragment();
         return true;
     }

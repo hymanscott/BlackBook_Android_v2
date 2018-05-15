@@ -38,11 +38,11 @@ import java.util.List;
 public class EncounterSummaryEditFragment extends Fragment {
     public EncounterSummaryEditFragment() {
     }
-    TextView newEncounter,encounter_summary_nickName,rateSex,hivStatusTitle,hivStatus,encounterNotesTitle,typeSex,condomUsed,didYouCumTitle,didYouCum,didYourPartnerCumTitle,didYourPartnerCum;
+    TextView newEncounter,encounter_summary_nickName,rateSex,hivStatusTitle,hivStatus,encounterNotesTitle,typeSex,condomUsed,whenIsuckedTitle,whenIsucked,whenIbottomTitle,whenItopTitle,whenIbottom,whenItop;
     EditText encNotes;
     RatingBar sexType_RateTheSex;
     Button next;
-    LinearLayout condomUsedContent,didYouCumParent,didYourPartnerCumParent;
+    LinearLayout condomUsedContent,whenIsuckedParent,whenIbottomParent,whenItopParent;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,28 +70,33 @@ public class EncounterSummaryEditFragment extends Fragment {
         typeSex.setTypeface(tf);
         condomUsed = (TextView)rootview.findViewById(R.id.condomUsed);
         condomUsed.setTypeface(tf);
-        didYouCumTitle = (TextView)rootview.findViewById(R.id.didYouCumTitle);
-        didYouCumTitle.setTypeface(tf);
-        didYouCum = (TextView)rootview.findViewById(R.id.didYouCum);
-        didYouCum.setTypeface(tf);
-        didYourPartnerCumTitle = (TextView)rootview.findViewById(R.id.didYourPartnerCumTitle);
-        didYourPartnerCumTitle.setTypeface(tf);
-        didYourPartnerCum = (TextView)rootview.findViewById(R.id.didYourPartnerCum);
-        didYourPartnerCum.setTypeface(tf);
+        whenIsuckedTitle = (TextView)rootview.findViewById(R.id.whenIsuckedTitle);
+        whenIsuckedTitle.setTypeface(tf);
+        whenIsucked = (TextView)rootview.findViewById(R.id.whenIsucked);
+        whenIsucked.setTypeface(tf);
+        whenIbottomTitle = (TextView)rootview.findViewById(R.id.whenIbottomTitle);
+        whenIbottomTitle.setTypeface(tf);
+        whenItopTitle = (TextView)rootview.findViewById(R.id.whenItopTitle);
+        whenItopTitle.setTypeface(tf);
+        whenIbottom = (TextView)rootview.findViewById(R.id.whenIbottom);
+        whenIbottom.setTypeface(tf);
+        whenItop = (TextView)rootview.findViewById(R.id.whenItop);
+        whenItop.setTypeface(tf);
         encNotes = (EditText) rootview.findViewById(R.id.encNotes);
         encNotes.setTypeface(tf);
         next = (Button) rootview.findViewById(R.id.next);
         next.setTypeface(tf_bold);
         condomUsedContent = (LinearLayout)rootview.findViewById(R.id.condomUsedContent);
-        didYouCumParent = (LinearLayout)rootview.findViewById(R.id.didYouCumParent);
-        didYourPartnerCumParent = (LinearLayout)rootview.findViewById(R.id.didYourPartnerCumParent);
+        whenIsuckedParent = (LinearLayout)rootview.findViewById(R.id.whenIsuckedLayout);
+        whenIbottomParent = (LinearLayout)rootview.findViewById(R.id.whenIbottomLayout);
+        whenItopParent = (LinearLayout)rootview.findViewById(R.id.whenItopLayout);
 
         encounter_summary_nickName.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         //encounter_summary_nickName.setAllCaps(true);
 
         encNotes.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getEncounter_notes()));
-        didYouCum.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getDid_you_cum()));
-        didYourPartnerCum.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getDid_your_partner_cum()));
+        /*whenIsucked.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getDid_you_cum()));
+        whenIbottom.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getDid_your_partner_cum()));*/
 
         sexType_RateTheSex = (RatingBar) rootview.findViewById(R.id.sexType_RateTheSex);
         sexType_RateTheSex.setRating(Float.parseFloat(LynxManager.encRateofSex));
@@ -165,19 +170,19 @@ public class EncounterSummaryEditFragment extends Fragment {
         String sexType_ifingered= btn_sexType_iFingered.getText().toString();
         String sexType_hefingered= btn_sexType_heFingered.getText().toString();
 
-        final EncounterSexType encSexType_kissing = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_kissing) , "", "",String.valueOf(R.string.statusUpdateNo),true);
-        final EncounterSexType encSexType_iSucked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_iSucked) , "", "",String.valueOf(R.string.statusUpdateNo),true);
-        final EncounterSexType encSexType_heSucked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_heSucked) , "", "",String.valueOf(R.string.statusUpdateNo),true);
-        final EncounterSexType encSexType_iTopped = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_iTopped), "", "",String.valueOf(R.string.statusUpdateNo),true);
-        final EncounterSexType encSexType_iBottomed = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_iBottomed), "", "",String.valueOf(R.string.statusUpdateNo),true);
-        final EncounterSexType encSexType_iJerked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_iJerked), "", "",String.valueOf(R.string.statusUpdateNo),true);
-        final EncounterSexType encSexType_heJerked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_heJerked), "", "",String.valueOf(R.string.statusUpdateNo),true);
-        final EncounterSexType encSexType_iRimmed = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_iRimmed), "", "",String.valueOf(R.string.statusUpdateNo),true);
-        final EncounterSexType encSexType_heRimmed = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_heRimmed), "", "",String.valueOf(R.string.statusUpdateNo),true);
-        final EncounterSexType encSexType_iWentDown = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_iwentdown), "", "",String.valueOf(R.string.statusUpdateNo),true);
-        final EncounterSexType encSexType_iFucked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_ifucked), "", "",String.valueOf(R.string.statusUpdateNo),true);
-        final EncounterSexType encSexType_iFingered= new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_ifingered), "", "",String.valueOf(R.string.statusUpdateNo),true);
-        final EncounterSexType encSexType_heFingered= new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_hefingered), "", "",String.valueOf(R.string.statusUpdateNo),true);
+        final EncounterSexType encSexType_kissing = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_kissing) , "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+        final EncounterSexType encSexType_iSucked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_iSucked) , "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+        final EncounterSexType encSexType_heSucked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_heSucked) , "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+        final EncounterSexType encSexType_iTopped = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_iTopped), "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+        final EncounterSexType encSexType_iBottomed = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_iBottomed), "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+        final EncounterSexType encSexType_iJerked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_iJerked), "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+        final EncounterSexType encSexType_heJerked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_heJerked), "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+        final EncounterSexType encSexType_iRimmed = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_iRimmed), "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+        final EncounterSexType encSexType_heRimmed = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_heRimmed), "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+        final EncounterSexType encSexType_iWentDown = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_iwentdown), "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+        final EncounterSexType encSexType_iFucked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_ifucked), "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+        final EncounterSexType encSexType_iFingered= new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_ifingered), "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+        final EncounterSexType encSexType_heFingered= new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_hefingered), "", "", "",String.valueOf(R.string.statusUpdateNo),true);
         /*LynxManager.activePartnerSexType.clear();*/
 
         btn_sexType_kissing.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -417,7 +422,8 @@ public class EncounterSummaryEditFragment extends Fragment {
                     if(encSexType.getCondom_use().equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                         LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                     }
-                    didYourPartnerCumParent.setVisibility(View.VISIBLE);
+                    whenIsuckedParent.setVisibility(View.VISIBLE);
+                    whenIsucked.setText(encSexType.getEjaculation());
                     /*TextView isucked_txt = (TextView) rootview.findViewById(R.id.encSumm_iSucked_condomuse);
                     isucked_txt.setVisibility(View.VISIBLE);
                     isucked_txt.setText("When I sucked him, " + encSexType.getCondom_use() + " \n Did Come in my mouth :" + encSexType.getNote());*/
@@ -433,7 +439,8 @@ public class EncounterSummaryEditFragment extends Fragment {
                     if(encSexType.getCondom_use().equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                         LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                     }
-                    didYourPartnerCumParent.setVisibility(View.VISIBLE);
+                    whenIbottomParent.setVisibility(View.VISIBLE);
+                    whenIbottom.setText(encSexType.getEjaculation());
                     break;
                 case "I topped":
                     btn_sexType_iTopped.setSelected(true);
@@ -441,7 +448,8 @@ public class EncounterSummaryEditFragment extends Fragment {
                     if(encSexType.getCondom_use().equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                         LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                     }
-                    didYouCumParent.setVisibility(View.VISIBLE);
+                    whenItopParent.setVisibility(View.VISIBLE);
+                    whenItop.setText(encSexType.getEjaculation());
                     break;
                 case "I jerked him":
                 case "I jerked her":
@@ -520,63 +528,95 @@ public class EncounterSummaryEditFragment extends Fragment {
                     }
                 }, 500);
 
-        // didYouCum Layout //
-        final List<String> yes_no_idk= Arrays.asList(getResources().getStringArray(R.array.yes_no_idk));
-        LinearLayout didYouCumParent= (LinearLayout)rootview.findViewById(R.id.didYouCumParent);
-        final ArrayAdapter<String> adapterDidYouCum = new ArrayAdapter<String>(getActivity(),
-                R.layout.spinner_row_white, R.id.txtView, yes_no_idk);
-        didYouCum.setOnClickListener(new View.OnClickListener() {
+        // When I Sucked Layout //
+        final List<String> i_sucked= Arrays.asList(getResources().getStringArray(R.array.when_i_sucked));
+        LinearLayout suckedParent= (LinearLayout)rootview.findViewById(R.id.whenIsuckedParent);
+        final ArrayAdapter<String> adapterSucked = new ArrayAdapter<String>(getActivity(),
+                R.layout.spinner_row_white, R.id.txtView, i_sucked);
+        whenIsucked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(getActivity())
-                        .setAdapter(adapterDidYouCum, new DialogInterface.OnClickListener() {
+                        .setAdapter(adapterSucked, new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int which) {
-                                didYouCum.setText(yes_no_idk.get(which).toString());
+                                whenIsucked.setText(i_sucked.get(which).toString());
                                 dialog.dismiss();
                             }
                         }).create().show();
             }
         });
-        didYouCumParent.setOnClickListener(new View.OnClickListener() {
+        suckedParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(getActivity())
-                        .setAdapter(adapterDidYouCum, new DialogInterface.OnClickListener() {
+                        .setAdapter(adapterSucked, new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int which) {
-                                didYouCum.setText(yes_no_idk.get(which).toString());
+                                whenIsucked.setText(i_sucked.get(which).toString());
                                 dialog.dismiss();
                             }
                         }).create().show();
             }
         });
-        // didYouCum Layout //
-        final List<String> yes_no_idk1= Arrays.asList(getResources().getStringArray(R.array.yes_no_idk));
-        LinearLayout didYourPartnerCumParent= (LinearLayout)rootview.findViewById(R.id.didYourPartnerCumParent);
-        final ArrayAdapter<String> adapterDidYourPartnerCum = new ArrayAdapter<String>(getActivity(),
-                R.layout.spinner_row_white, R.id.txtView, yes_no_idk1);
-        didYourPartnerCum.setOnClickListener(new View.OnClickListener() {
+
+        // When I Bottomed Layout //
+        final List<String> i_bottomed= Arrays.asList(getResources().getStringArray(R.array.when_i_bottomed));
+        LinearLayout bottomParent= (LinearLayout)rootview.findViewById(R.id.whenIbottomParent);
+        final ArrayAdapter<String> adapterBottom = new ArrayAdapter<String>(getActivity(),
+                R.layout.spinner_row_white, R.id.txtView, i_bottomed);
+        whenIbottom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(getActivity())
-                        .setAdapter(adapterDidYourPartnerCum, new DialogInterface.OnClickListener() {
+                        .setAdapter(adapterBottom, new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int which) {
-                                didYourPartnerCum.setText(yes_no_idk1.get(which).toString());
+                                whenIbottom.setText(i_bottomed.get(which).toString());
                                 dialog.dismiss();
                             }
                         }).create().show();
             }
         });
-        didYourPartnerCumParent.setOnClickListener(new View.OnClickListener() {
+        bottomParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(getActivity())
-                        .setAdapter(adapterDidYourPartnerCum, new DialogInterface.OnClickListener() {
+                        .setAdapter(adapterBottom, new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int which) {
-                                didYourPartnerCum.setText(yes_no_idk1.get(which).toString());
+                                whenIbottom.setText(i_bottomed.get(which).toString());
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+        // When I topped Layout //
+        final List<String> i_topped= Arrays.asList(getResources().getStringArray(R.array.when_i_topped));
+        LinearLayout topParent= (LinearLayout)rootview.findViewById(R.id.whenIbottomParent);
+        final ArrayAdapter<String> adapterTop = new ArrayAdapter<String>(getActivity(),
+                R.layout.spinner_row_white, R.id.txtView, i_topped);
+        whenItop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterTop, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                whenItop.setText(i_topped.get(which).toString());
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+        topParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterTop, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                whenItop.setText(i_topped.get(which).toString());
                                 dialog.dismiss();
                             }
                         }).create().show();

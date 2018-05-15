@@ -50,12 +50,12 @@ public class HomeEncounterFragment extends Fragment {
 
     DatabaseHelper db;
     private  int width,height;
-    TextView partner,sexRating,hivStatus,typeSex,condomUsed;
+    TextView partner,sexRating,hivStatus,typeSex,condomUsed,whenIsuckedtitle,whenIbottomedtitle,whenItoppedtitle,whenIsucked,whenIbottom,whenItop;
     private boolean isSummaryShown = false;
     public HomeEncounterFragment() {
         // Required empty public constructor
     }
-    LinearLayout encounterListContent;
+    LinearLayout encounterListContent,whenIsuckedParent,whenIbottomParent,whenItoppedParent;
     RelativeLayout encounterSummaryContent;
     View view;
     Typeface tf,tf_bold;
@@ -85,6 +85,9 @@ public class HomeEncounterFragment extends Fragment {
                 "fonts/Roboto-Bold.ttf");
         //Log.v("priPartId", String.valueOf(LynxManager.getActiveUserPrimaryPartner().getPrimarypartner_id()));
         encounterListContent = (LinearLayout) view.findViewById(R.id.encounterListContent);
+        whenIsuckedParent = (LinearLayout) view.findViewById(R.id.whenIsuckedParent);
+        whenIbottomParent = (LinearLayout) view.findViewById(R.id.whenIbottomParent);
+        whenItoppedParent = (LinearLayout) view.findViewById(R.id.whenItoppedParent);
         encounterSummaryContent = (RelativeLayout) view.findViewById(R.id.encounterSummaryContent);
         Button addNewEncounter = (Button) view.findViewById(R.id.addNewEncounter);
         addNewEncounter.setTypeface(tf_bold);
@@ -190,7 +193,7 @@ public class HomeEncounterFragment extends Fragment {
                                 List<EncounterSexType> selectedSEXtypes = db.getAllEncounterSexTypes(row.getId());
 
                                 for (EncounterSexType setSextype : selectedSEXtypes) {
-                                    EncounterSexType encounterSexType = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.decryptString(setSextype.getSex_type()), "", "", String.valueOf(R.string.statusUpdateNo),false);
+                                    EncounterSexType encounterSexType = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.decryptString(setSextype.getSex_type()), "","", "", String.valueOf(R.string.statusUpdateNo),false);
                                     //Log.v("sextypes", String.valueOf(encounterSexType));
                                     LynxManager.activePartnerSexType.add(encounterSexType);
                                 }
@@ -305,6 +308,18 @@ public class HomeEncounterFragment extends Fragment {
         typeSex.setTypeface(tf);
         condomUsed = (TextView)view.findViewById(R.id.condomUsed);
         condomUsed.setTypeface(tf);
+        whenIsuckedtitle = (TextView)view.findViewById(R.id.whenIsuckedtitle);
+        whenIsuckedtitle.setTypeface(tf);
+        whenIbottomedtitle = (TextView)view.findViewById(R.id.whenIbottomedtitle);
+        whenIbottomedtitle.setTypeface(tf);
+        whenItoppedtitle = (TextView)view.findViewById(R.id.whenItoppedtitle);
+        whenItoppedtitle.setTypeface(tf);
+        whenIsucked = (TextView)view.findViewById(R.id.whenIsucked);
+        whenIsucked.setTypeface(tf);
+        whenIbottom = (TextView)view.findViewById(R.id.whenIbottom);
+        whenIbottom.setTypeface(tf);
+        whenItop = (TextView)view.findViewById(R.id.whenItop);
+        whenItop.setTypeface(tf);
         db = new DatabaseHelper(getActivity());
         TextView nickname = (TextView) view.findViewById(R.id.encList_summary_nickName);
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
@@ -400,6 +415,8 @@ public class HomeEncounterFragment extends Fragment {
                         if(LynxManager.decryptString(encSexType.getCondom_use()).equals("Condom used")&& !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                             LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                         }
+                        whenIsuckedParent.setVisibility(View.VISIBLE);
+                        whenIsucked.setText(encSexType.getEjaculation());
                         break;
                     case "He sucked me":
                     case "She sucked me":
@@ -419,6 +436,8 @@ public class HomeEncounterFragment extends Fragment {
                         if(LynxManager.decryptString(encSexType.getCondom_use()).equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                             LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                         }
+                        whenIbottomParent.setVisibility(View.VISIBLE);
+                        whenIbottom.setText(encSexType.getEjaculation());
                         break;
                     case "I topped":
                         ToggleButton sexType_iTopped = (ToggleButton)view.findViewById(R.id.sexType_iTopped);
@@ -429,7 +448,8 @@ public class HomeEncounterFragment extends Fragment {
                         if(LynxManager.decryptString(encSexType.getCondom_use()).equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                             LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                         }
-                        //Log.v("CondomStatus","iTop "+LynxManager.decryptString(encSexType.getCondom_use()));
+                        whenItoppedParent.setVisibility(View.VISIBLE);
+                        whenItop.setText(encSexType.getEjaculation());
                         break;
                     case "I jerked him":
                     case "I jerked her":

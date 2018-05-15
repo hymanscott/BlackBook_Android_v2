@@ -1495,6 +1495,7 @@ public class RegLogin extends AppCompatActivity {
                                     encounterSexobject.getInt("user_id"),
                                     LynxManager.encryptString(encounterSexobject.getString("sex_type")) ,
                                     encounterSexobject.getString("condom_use"),
+                                    encounterSexobject.getString("ejaculation"),
                                     LynxManager.encryptString(encounterSexobject.getString("note")),
                                     String.valueOf(R.string.statusUpdateYes), true,encounterSexobject.getString("created_at"));
                             int encSexID = db.createEncounterSexTypeWithDate(encSexType);
@@ -1511,8 +1512,6 @@ public class RegLogin extends AppCompatActivity {
                                     encounterObject.getInt("partner_id"),
                                     LynxManager.encryptString(encounterObject.getString("rate_the_sex")),
                                     LynxManager.encryptString(encounterObject.getString("is_drug_used")),
-                                    LynxManager.encryptString(encounterObject.getString("did_you_cum")),
-                                    LynxManager.encryptString(encounterObject.getString("did_your_partner_cum")),
                                     LynxManager.encryptString(encounterObject.getString("encounter_notes")),
                                     LynxManager.encryptString(encounterObject.getString("is_possible_sex_tomorrow")),
                                     String.valueOf(R.string.statusUpdateYes), true,encounterObject.getString("created_at"));

@@ -199,33 +199,32 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="2dp"
-                android:id="@+id/didYouCumParent"
-                android:orientation="horizontal"
+                android:id="@+id/whenIsuckedLayout"
                 android:visibility="gone"
+                android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:padding="16dp">
 
                 <TextView
-                    android:id="@+id/didYouCumTitle"
+                    android:id="@+id/whenIsuckedTitle"
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:text="Came inside partner ?"
+                    android:text="When I sucked"
                     android:textColor="@color/white"
                     android:textSize="@dimen/encounter_tv_textsize" />
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:id="@+id/didYouCumParent"
+                    android:id="@+id/whenIsuckedParent"
                     android:background="@drawable/rectangle_bg">
                     <TextView
-                        android:id="@+id/didYouCum"
+                        android:id="@+id/whenIsucked"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/rectangle_edittext"
-                        android:ems="5"
-                        android:text="Yes"
+                        android:text="x"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -238,32 +237,68 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="2dp"
                 android:orientation="horizontal"
-                android:id="@+id/didYourPartnerCumParent"
+                android:id="@+id/whenIbottomLayout"
                 android:gravity="center_vertical"
                 android:visibility="gone"
                 android:padding="16dp">
 
                 <TextView
-                    android:id="@+id/didYourPartnerCumTitle"
+                    android:id="@+id/whenIbottomTitle"
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:text="Partner came in me?"
+                    android:text="When I bottomed"
                     android:textColor="@color/white"
                     android:textSize="@dimen/encounter_tv_textsize" />
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:id="@+id/didYourPartnerCumParent"
+                    android:id="@+id/whenIbottomParent"
                     android:background="@drawable/rectangle_bg">
                     <TextView
-                        android:id="@+id/didYourPartnerCum"
+                        android:id="@+id/whenIbottom"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/rectangle_edittext"
-                        android:ems="5"
-                        android:text="Yes"
+                        android:text="x"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:id="@+id/whenItopLayout"
+                android:gravity="center_vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/whenItopTitle"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="When I topped"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/encounter_tv_textsize" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/whenItopParent"
+                    android:background="@drawable/rectangle_bg">
+                    <TextView
+                        android:id="@+id/whenItop"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/rectangle_edittext"
+                        android:text="x"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
                 </LinearLayout>

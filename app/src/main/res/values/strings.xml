@@ -129,6 +129,21 @@
         <item>6</item>
         <item>7</item>
     </string-array>
+    <string-array name="when_i_sucked">
+        <item>I swallowed</item>
+        <item>I spit</item>
+        <item>Neither</item>
+    </string-array>
+    <string-array name="when_i_bottomed">
+        <item>They came IN me</item>
+        <item>They came ON me</item>
+        <item>Neither</item>
+    </string-array>
+    <string-array name="when_i_topped">
+        <item>I came IN them</item>
+        <item>I came ON them</item>
+        <item>Neither</item>
+    </string-array>
 
     <string name="AddPartnerTitle">New Partner</string>
     <string name="title_activity_lynx_diary">LynxDiary</string>

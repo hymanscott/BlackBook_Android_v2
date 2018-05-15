@@ -230,7 +230,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/didYouCumParent"
+                android:id="@+id/whenIsuckedParent"
                 android:visibility="gone"
                 android:orientation="vertical">
                 <LinearLayout
@@ -246,15 +246,15 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/encounter_tv_textsize"
                         android:textColor="@color/white"
-                        android:text="Came inside partner?"
-                        android:id="@+id/did_you_cum_title"/>
+                        android:text="When I sucked:"
+                        android:id="@+id/whenIsuckedtitle"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="@color/white"
-                        android:id="@+id/did_you_cum"
-                        android:text="Yes" />
+                        android:id="@+id/whenIsucked"
+                        android:text="x" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
@@ -267,7 +267,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/didYourPartnerCumParent"
+                android:id="@+id/whenIbottomParent"
                 android:visibility="gone"
                 android:orientation="vertical">
                 <LinearLayout
@@ -283,15 +283,52 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/encounter_tv_textsize"
                         android:textColor="@color/white"
-                        android:text="Partner came in me?"
-                        android:id="@+id/did_your_partner_cum_title"/>
+                        android:text="When I bottomed:"
+                        android:id="@+id/whenIbottomedtitle"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="@color/white"
-                        android:id="@+id/did_your_partner_cum"
-                        android:text="Yes" />
+                        android:id="@+id/whenIbottom"
+                        android:text="x" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/edittext_bg"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/whenItoppedParent"
+                android:visibility="gone"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/encounter_tv_textsize"
+                        android:textColor="@color/white"
+                        android:text="When I topped:"
+                        android:id="@+id/whenItoppedtitle"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:id="@+id/whenItop"
+                        android:text="x" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
@@ -338,187 +375,3 @@
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
-
-<!--
-<LinearLayout
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:layout_margin="5dp">
-
-<ToggleButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textOn="I sucked him"
-    android:textOff="I sucked him"
-    android:textColor="@color/colorAccent"
-    android:layout_gravity="center"
-    android:textAlignment="gravity"
-    android:layout_margin="10dp"
-    android:layout_weight="1"
-    android:id="@+id/encSumm_iSucked"
-    android:padding="10dp"
-    android:gravity="center_vertical|center_horizontal"
-    android:background="@drawable/toggle_button"/>
-<ToggleButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textOn="He sucked me"
-    android:textOff="He sucked me"
-    android:textColor="@color/colorAccent"
-    android:layout_gravity="center"
-    android:textAlignment="gravity"
-    android:layout_weight="1"
-    android:id="@+id/encSumm_heSucked"
-    android:padding="10dp"
-    android:layout_margin="10dp"
-    android:gravity="center_vertical|center_horizontal"
-    android:background="@drawable/toggle_button"/>
-</LinearLayout>
-<LinearLayout
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:layout_margin="5dp">
-
-<ToggleButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textOn="I topped"
-    android:textOff="I topped"
-    android:textColor="@color/colorAccent"
-    android:layout_gravity="center"
-    android:textAlignment="gravity"
-    android:id="@+id/encSumm_iTopped"
-    android:padding="10dp"
-    android:layout_margin="10dp"
-    android:layout_weight="1"
-    android:gravity="center_vertical|center_horizontal"
-    android:background="@drawable/toggle_button"/>
-<ToggleButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textOn="I bottomed"
-    android:textOff="I bottomed"
-    android:textColor="@color/colorAccent"
-    android:layout_gravity="center"
-    android:textAlignment="gravity"
-    android:layout_margin="10dp"
-    android:layout_weight="1"
-    android:id="@+id/encSumm_iBottomed"
-    android:padding="10dp"
-    android:gravity="center_vertical|center_horizontal"
-    android:background="@drawable/toggle_button"/>
-</LinearLayout>
-<LinearLayout
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:layout_margin="5dp">
-<ToggleButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textOn="I jerked him"
-    android:textOff="I jerked him"
-    android:textColor="@color/colorAccent"
-    android:layout_gravity="center"
-    android:textAlignment="gravity"
-    android:layout_margin="10dp"
-    android:layout_weight="1"
-    android:id="@+id/encSumm_iJerked"
-    android:padding="10dp"
-    android:gravity="center_vertical|center_horizontal"
-    android:background="@drawable/toggle_button"/>
-<ToggleButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textOn="He jerked me"
-    android:textOff="He jerked me"
-    android:textColor="@color/colorAccent"
-    android:layout_gravity="center"
-    android:textAlignment="gravity"
-    android:layout_margin="10dp"
-    android:layout_weight="1"
-    android:id="@+id/encSumm_heJerked"
-    android:padding="10dp"
-    android:gravity="center_vertical|center_horizontal"
-    android:background="@drawable/toggle_button"/>
-</LinearLayout>
-<LinearLayout
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:orientation="horizontal"
-android:layout_margin="5dp">
-<ToggleButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textOn="I rimmed him"
-    android:textOff="I rimmed him"
-    android:textColor="@color/colorAccent"
-    android:layout_gravity="center"
-    android:textAlignment="gravity"
-    android:layout_margin="10dp"
-    android:layout_weight="1"
-    android:id="@+id/encSumm_iRimmed"
-    android:padding="10dp"
-    android:gravity="center_vertical|center_horizontal"
-    android:background="@drawable/toggle_button"/>
-<ToggleButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textOn="He rimmed me"
-    android:textOff="He rimmed me"
-    android:textColor="@color/colorAccent"
-    android:layout_gravity="center"
-    android:textAlignment="gravity"
-    android:layout_margin="10dp"
-    android:layout_weight="1"
-    android:id="@+id/encSumm_heRimmed"
-    android:padding="10dp"
-    android:gravity="center_vertical|center_horizontal"
-    android:background="@drawable/toggle_button"/>
-</LinearLayout>
-<LinearLayout
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:gravity="center"
-android:layout_margin="5dp">
-<ToggleButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textOn="Kissing / making out"
-    android:textOff="Kissing / making out"
-    android:textColor="@color/colorAccent"
-    android:layout_gravity="center"
-    android:textAlignment="gravity"
-    android:layout_margin="10dp"
-    android:id="@+id/encSumm_kissing"
-    android:padding="10dp"
-    android:gravity="center_vertical|center_horizontal"
-    android:background="@drawable/toggle_button"/>
-</LinearLayout>
- <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:id="@+id/encSumm_iSucked_condomuse"
-                android:layout_marginTop="20dp"
-                android:text="x"/>
-               <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="20dp"
-                android:id="@+id/encSumm_iTopped_condomuse"
-                android:text="x"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="20dp"
-                android:id="@+id/encSumm_iBottomed_condomuse"
-                android:text="x"/> -->

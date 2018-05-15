@@ -57,21 +57,21 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/didYouCumLayout"
+                            android:id="@+id/whenISuckedParent"
                             android:visibility="gone"
                             android:orientation="vertical">
                             <TextView
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Did you cum inside your partner?"
+                                android:text="When I sucked:"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/encounter_tv_textsize"
                                 android:layout_marginRight="24dp"
                                 android:layout_marginLeft="24dp"
-                                android:id="@+id/youCumTitle"
+                                android:id="@+id/whenISuckedTitle"
                                 android:gravity="center_vertical"/>
                             <RadioGroup
-                                android:id="@+id/radio_you_cum"
+                                android:id="@+id/RG_whenIsucked"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="24dp"
@@ -81,24 +81,24 @@
                                 <RadioButton
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Yes"
+                                    android:text="I swallowed"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/encounter_radio_btn_textsize"
                                     android:buttonTint="@color/white"
                                     android:button="@drawable/radiobutton_white"
                                     android:paddingLeft="12dp"
-                                    android:id="@+id/radio_you_cum_yes" />
+                                    android:id="@+id/RB_whenIsuckedSwallow" />
                                 <RadioButton
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="No"
+                                    android:text="I spit"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/encounter_radio_btn_textsize"
                                     android:buttonTint="@color/white"
                                     android:button="@drawable/radiobutton_white"
                                     android:paddingLeft="12dp"
                                     android:layout_marginTop="12dp"
-                                    android:id="@+id/radio_you_cum_no" />
+                                    android:id="@+id/RB_whenIsuckedSpit" />
                                 <RadioButton
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -108,9 +108,9 @@
                                     android:button="@drawable/radiobutton_white"
                                     android:paddingLeft="12dp"
                                     android:layout_marginTop="12dp"
-                                    android:text="I don't know"
+                                    android:text="Neither"
                                     android:checked="true"
-                                    android:id="@+id/radio_you_cum_iDontKnow" />
+                                    android:id="@+id/RB_whenIsuckedNeither" />
                             </RadioGroup>
                             <View
                                 android:layout_width="match_parent"
@@ -124,21 +124,21 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/didYourPartnerCumLayout"
+                            android:id="@+id/whenIbottomParent"
                             android:visibility="gone"
                             android:orientation="vertical">
                             <TextView
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Did your partner cum inside you?"
+                                android:text="When I bottomed:"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/encounter_tv_textsize"
                                 android:layout_marginRight="24dp"
                                 android:layout_marginLeft="24dp"
-                                android:id="@+id/yourPartnerCumTitle"
+                                android:id="@+id/whenIbottomTitle"
                                 android:gravity="center_vertical"/>
                             <RadioGroup
-                                android:id="@+id/radio_your_partner_cum"
+                                android:id="@+id/RG_whenIbottomed"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="24dp"
@@ -148,24 +148,24 @@
                                 <RadioButton
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Yes"
+                                    android:text="They came IN me"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/encounter_radio_btn_textsize"
                                     android:buttonTint="@color/white"
                                     android:button="@drawable/radiobutton_white"
                                     android:paddingLeft="12dp"
-                                    android:id="@+id/radio_your_partner_cum_yes" />
+                                    android:id="@+id/RB_whenIbotINme" />
                                 <RadioButton
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="No"
+                                    android:text="They came ON me"
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/encounter_radio_btn_textsize"
                                     android:buttonTint="@color/white"
                                     android:button="@drawable/radiobutton_white"
                                     android:paddingLeft="12dp"
                                     android:layout_marginTop="12dp"
-                                    android:id="@+id/radio_your_partner_cum_no" />
+                                    android:id="@+id/RB_whenIbotONme" />
                                 <RadioButton
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -175,9 +175,9 @@
                                     android:button="@drawable/radiobutton_white"
                                     android:paddingLeft="12dp"
                                     android:layout_marginTop="12dp"
-                                    android:text="I don't know"
+                                    android:text="Neither"
                                     android:checked="true"
-                                    android:id="@+id/radio_your_partner_cum_iDontKnow" />
+                                    android:id="@+id/RB_whenIbotNeither" />
                             </RadioGroup>
                             <View
                                 android:layout_width="match_parent"
@@ -186,7 +186,67 @@
                                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                                 android:layout_marginTop="24dp"
-                                android:layout_marginBottom="48dp" />
+                                android:layout_marginBottom="24dp" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/whenItopParent"
+                            android:paddingBottom="32dp"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:text="When I topped:"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/encounter_tv_textsize"
+                                android:layout_marginRight="24dp"
+                                android:layout_marginLeft="24dp"
+                                android:id="@+id/whenItopTitle"
+                                android:gravity="center_vertical"/>
+                            <RadioGroup
+                                android:id="@+id/RG_whenItopped"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="24dp"
+                                android:layout_marginLeft="24dp"
+                                android:paddingLeft="8dp"
+                                android:layout_marginTop="@dimen/activity_vertical_margin">
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="I came IN them"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:buttonTint="@color/white"
+                                    android:button="@drawable/radiobutton_white"
+                                    android:paddingLeft="12dp"
+                                    android:id="@+id/RB_whenItopINthem" />
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="I came ON them"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:buttonTint="@color/white"
+                                    android:button="@drawable/radiobutton_white"
+                                    android:paddingLeft="12dp"
+                                    android:layout_marginTop="12dp"
+                                    android:id="@+id/RB_whenItopONthem" />
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:buttonTint="@color/white"
+                                    android:button="@drawable/radiobutton_white"
+                                    android:paddingLeft="12dp"
+                                    android:layout_marginTop="12dp"
+                                    android:text="Neither"
+                                    android:checked="true"
+                                    android:id="@+id/RB_whenItopNeither" />
+                            </RadioGroup>
                         </LinearLayout>
                     </LinearLayout>
                 </ScrollView>

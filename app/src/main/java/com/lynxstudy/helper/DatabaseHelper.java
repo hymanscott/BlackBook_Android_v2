@@ -235,8 +235,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_ENCOUNTER_PARTNERID = "partner_id";
     private static final String KEY_ENCOUNTER_SEXRATING = "rate_the_sex";
     private static final String KEY_ENCOUNTER_ISDRUGUSED = "is_drug_used";
-    private static final String KEY_ENCOUNTER_DID_YOU_CUM = "you_cum";
-    private static final String KEY_ENCOUNTER_DID_YOUR_PARTNER_CUM = "your_partner_cum";
     private static final String KEY_ENCOUNTER_NOTES = "encounter_notes";
     private static final String KEY_ENCOUNTER_ISSEX_TOMORROW = "is_possible_sex_tomorrow";
 
@@ -246,6 +244,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_ENCSEXTYPE_USERID = "user_id";
     private static final String KEY_ENCSEXTYPE_SEXTYPE = "sex_type";
     private static final String KEY_ENCSEXTYPE_CONDOMUSE = "condom_use";
+    private static final String KEY_ENCSEXTYPE_EJACULATION = "ejaculation";
     private static final String KEY_ENCSEXTYPE_NOTE = "note";
 
     // Testing Reminder Table - column names
@@ -445,14 +444,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_ENCOUNTER = "CREATE TABLE "
             + TABLE_ENCOUNTER + "(" + KEY_ENCOUNTER_ID + " INTEGER PRIMARY KEY," + KEY_ENCOUNTER_USERID + " INTEGER," + KEY_ENCOUNTER_DATE
             + " TEXT," + KEY_ENCOUNTER_PARTNERID + " INTEGER," + KEY_ENCOUNTER_SEXRATING + " TEXT," + KEY_ENCOUNTER_ISDRUGUSED
-            + " TEXT," + KEY_ENCOUNTER_NOTES + " TEXT," + KEY_ENCOUNTER_DID_YOU_CUM + " TEXT,"+ KEY_ENCOUNTER_DID_YOUR_PARTNER_CUM
-            + " TEXT," + KEY_ENCOUNTER_ISSEX_TOMORROW + " TEXT," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
+            + " TEXT," + KEY_ENCOUNTER_NOTES + " TEXT," + KEY_ENCOUNTER_ISSEX_TOMORROW + " TEXT," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
 
 
     private static final String CREATE_TABLE_ENCOUNTER_SEXTYPE = "CREATE TABLE "
             + TABLE_ENCOUNTER_SEXTYPE + "(" + KEY_ENCSEXTYPE_ID + " INTEGER PRIMARY KEY," + KEY_ENCSEXTYPE_ENCOUNTERID + " INTEGER," + KEY_ENCSEXTYPE_USERID + " INTEGER,"
-            + KEY_ENCSEXTYPE_SEXTYPE + " TEXT," + KEY_ENCSEXTYPE_CONDOMUSE+ " TEXT," + KEY_ENCSEXTYPE_NOTE+ " TEXT," +
-            KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
+            + KEY_ENCSEXTYPE_SEXTYPE + " TEXT," + KEY_ENCSEXTYPE_CONDOMUSE+ " TEXT,"  + KEY_ENCSEXTYPE_EJACULATION+ " TEXT,"
+            + KEY_ENCSEXTYPE_NOTE+ " TEXT," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
 
     private static final String CREATE_TABLE_TESTING_REMINDER = "CREATE TABLE "
             + TABLE_TESTING_REMINDER + "(" + KEY_TESTING_REMINDER_ID + " INTEGER PRIMARY KEY," + KEY_TESTING_REMINDER_USERID + " INTEGER,"
@@ -2922,8 +2920,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_ENCOUNTER_SEXRATING, encounter.getRate_the_sex());
         values.put(KEY_ENCOUNTER_ISDRUGUSED, encounter.getIs_drug_used());
         values.put(KEY_ENCOUNTER_NOTES, encounter.getEncounter_notes());
-        values.put(KEY_ENCOUNTER_DID_YOU_CUM, encounter.getDid_you_cum());
-        values.put(KEY_ENCOUNTER_DID_YOUR_PARTNER_CUM, encounter.getDid_your_partner_cum());
         values.put(KEY_ENCOUNTER_ISSEX_TOMORROW, encounter.getIs_possible_sex_tomorrow());
         values.put(KEY_STATUS_UPDATE, encounter.getStatus_update());
         values.put(KEY_CREATED_AT, getDateTime());
@@ -2949,8 +2945,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_ENCOUNTER_SEXRATING, encounter.getRate_the_sex());
         values.put(KEY_ENCOUNTER_ISDRUGUSED, encounter.getIs_drug_used());
         values.put(KEY_ENCOUNTER_NOTES, encounter.getEncounter_notes());
-        values.put(KEY_ENCOUNTER_DID_YOU_CUM, encounter.getDid_you_cum());
-        values.put(KEY_ENCOUNTER_DID_YOUR_PARTNER_CUM, encounter.getDid_your_partner_cum());
         values.put(KEY_ENCOUNTER_ISSEX_TOMORROW, encounter.getIs_possible_sex_tomorrow());
         values.put(KEY_STATUS_UPDATE, encounter.getStatus_update());
         values.put(KEY_CREATED_AT, encounter.getCreated_at());
@@ -2987,8 +2981,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         encounter.setRate_the_sex(c.getString(c.getColumnIndex(KEY_ENCOUNTER_SEXRATING)));
         encounter.setIs_drug_used((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISDRUGUSED))));
         encounter.setEncounter_notes((c.getString(c.getColumnIndex(KEY_ENCOUNTER_NOTES))));
-        encounter.setDid_you_cum((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DID_YOU_CUM))));
-        encounter.setDid_your_partner_cum((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DID_YOUR_PARTNER_CUM))));
         encounter.setIs_possible_sex_tomorrow((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISSEX_TOMORROW))));
 
         encounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
@@ -3020,8 +3012,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounter.setRate_the_sex(c.getString(c.getColumnIndex(KEY_ENCOUNTER_SEXRATING)));
                 encounter.setIs_drug_used((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISDRUGUSED))));
                 encounter.setEncounter_notes((c.getString(c.getColumnIndex(KEY_ENCOUNTER_NOTES))));
-                encounter.setDid_you_cum((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DID_YOU_CUM))));
-                encounter.setDid_your_partner_cum((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DID_YOUR_PARTNER_CUM))));
                 encounter.setIs_possible_sex_tomorrow((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISSEX_TOMORROW))));
 
                 encounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
@@ -3057,8 +3047,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounter.setRate_the_sex(c.getString(c.getColumnIndex(KEY_ENCOUNTER_SEXRATING)));
                 encounter.setIs_drug_used((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISDRUGUSED))));
                 encounter.setEncounter_notes((c.getString(c.getColumnIndex(KEY_ENCOUNTER_NOTES))));
-                encounter.setDid_you_cum((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DID_YOU_CUM))));
-                encounter.setDid_your_partner_cum((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DID_YOUR_PARTNER_CUM))));
                 encounter.setIs_possible_sex_tomorrow((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISSEX_TOMORROW))));
 
                 encounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
@@ -3093,8 +3081,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounter.setRate_the_sex(c.getString(c.getColumnIndex(KEY_ENCOUNTER_SEXRATING)));
                 encounter.setIs_drug_used((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISDRUGUSED))));
                 encounter.setEncounter_notes((c.getString(c.getColumnIndex(KEY_ENCOUNTER_NOTES))));
-                encounter.setDid_you_cum((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DID_YOU_CUM))));
-                encounter.setDid_your_partner_cum((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DID_YOUR_PARTNER_CUM))));
                 encounter.setIs_possible_sex_tomorrow((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISSEX_TOMORROW))));
 
                 encounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
@@ -3168,6 +3154,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_ENCSEXTYPE_USERID, encounterSexType.getUser_id());
         values.put(KEY_ENCSEXTYPE_SEXTYPE, encounterSexType.getSex_type());
         values.put(KEY_ENCSEXTYPE_CONDOMUSE, encounterSexType.getCondom_use());
+        values.put(KEY_ENCSEXTYPE_EJACULATION, encounterSexType.getEjaculation());
         values.put(KEY_ENCSEXTYPE_NOTE, encounterSexType.getNote());
         values.put(KEY_STATUS_UPDATE, encounterSexType.getStatus_update());
         values.put(KEY_CREATED_AT, getDateTime());
@@ -3186,6 +3173,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_ENCSEXTYPE_USERID, encounterSexType.getUser_id());
         values.put(KEY_ENCSEXTYPE_SEXTYPE, encounterSexType.getSex_type());
         values.put(KEY_ENCSEXTYPE_CONDOMUSE, encounterSexType.getCondom_use());
+        values.put(KEY_ENCSEXTYPE_EJACULATION, encounterSexType.getEjaculation());
         values.put(KEY_ENCSEXTYPE_NOTE, encounterSexType.getNote());
         values.put(KEY_STATUS_UPDATE, encounterSexType.getStatus_update());
         values.put(KEY_CREATED_AT, encounterSexType.getCreated_at());
@@ -3217,6 +3205,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounterSexType.setUser_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_USERID)));
                 encounterSexType.setSex_type(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_SEXTYPE)));
                 encounterSexType.setCondom_use(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_CONDOMUSE)));
+                encounterSexType.setEjaculation(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_EJACULATION)));
                 encounterSexType.setNote(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_NOTE)));
                 encounterSexType.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
@@ -3248,6 +3237,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounterSexType.setUser_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_USERID)));
                 encounterSexType.setSex_type(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_SEXTYPE)));
                 encounterSexType.setCondom_use(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_CONDOMUSE)));
+                encounterSexType.setEjaculation(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_EJACULATION)));
                 encounterSexType.setNote(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_NOTE)));
                 encounterSexType.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
@@ -3280,6 +3270,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounterSexType.setUser_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_USERID)));
                 encounterSexType.setSex_type(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_SEXTYPE)));
                 encounterSexType.setCondom_use(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_CONDOMUSE)));
+                encounterSexType.setEjaculation(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_EJACULATION)));
                 encounterSexType.setNote(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_NOTE)));
                 encounterSexType.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
@@ -3354,6 +3345,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounterSexType.setUser_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_USERID)));
                 encounterSexType.setSex_type(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_SEXTYPE)));
                 encounterSexType.setCondom_use(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_CONDOMUSE)));
+                encounterSexType.setEjaculation(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_EJACULATION)));
                 encounterSexType.setNote(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_NOTE)));
                 encounterSexType.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
@@ -3378,6 +3370,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounterSexType.setUser_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_USERID)));
                 encounterSexType.setSex_type(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_SEXTYPE)));
                 encounterSexType.setCondom_use(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_CONDOMUSE)));
+                encounterSexType.setEjaculation(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_EJACULATION)));
                 encounterSexType.setNote(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_NOTE)));
                 encounterSexType.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
@@ -3421,6 +3414,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounterSexType.setUser_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_USERID)));
                 encounterSexType.setSex_type(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_SEXTYPE)));
                 encounterSexType.setCondom_use(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_CONDOMUSE)));
+                encounterSexType.setEjaculation(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_EJACULATION)));
                 encounterSexType.setNote(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_NOTE)));
                 encounterSexType.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 

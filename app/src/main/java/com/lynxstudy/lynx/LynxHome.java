@@ -495,7 +495,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 db.updateAppAlertModifiedDate(appAlerts.getId());
             }
         }
-        Log.v("FCMToken",LynxManager.decryptString(db.getCloudMessaging().getToken_id()));
+//        Log.v("FCMToken",LynxManager.decryptString(db.getCloudMessaging().getToken_id()));
     }
     private boolean isPositiveHIVTestLogged(){
         /*

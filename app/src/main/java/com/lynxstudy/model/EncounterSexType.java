@@ -14,6 +14,7 @@ public class EncounterSexType {
     int user_id;
     String sex_type;
     String condom_use;
+    String ejaculation;
     String note;
     String status_update;
     boolean status_encrypt;
@@ -22,21 +23,23 @@ public class EncounterSexType {
     public EncounterSexType() {
     }
 
-
-    public EncounterSexType(int encounter_id,int user_id, String sex_type, String condom_use, String note, String status_update,boolean status_encrypt) {
+    public EncounterSexType(int encounter_id,int user_id, String sex_type, String condom_use, String ejaculation, String note, String status_update,boolean status_encrypt) {
         this.encounter_id = encounter_id;
         this.user_id = user_id;
         this.sex_type = sex_type;
         this.condom_use = condom_use;
+        this.ejaculation = ejaculation;
         this.note = note;
         this.status_update = status_update;
         this.status_encrypt = status_encrypt;
     }
-    public EncounterSexType(int encounter_id,int user_id, String sex_type, String condom_use, String note, String status_update,boolean status_encrypt,String created_at) {
+
+    public EncounterSexType(int encounter_id,int user_id, String sex_type, String condom_use, String ejaculation, String note, String status_update,boolean status_encrypt,String created_at) {
         this.encounter_id = encounter_id;
         this.user_id = user_id;
         this.sex_type = sex_type;
         this.condom_use = condom_use;
+        this.ejaculation = ejaculation;
         this.note = note;
         this.status_update = status_update;
         this.status_encrypt = status_encrypt;
@@ -89,6 +92,14 @@ public class EncounterSexType {
 
     public void setCondom_use(String condom_use) {
         this.condom_use = condom_use;
+    }
+
+    public String getEjaculation() {
+        return ejaculation;
+    }
+
+    public void setEjaculation(String ejaculation) {
+        this.ejaculation = ejaculation;
     }
 
     public String getNote() {
