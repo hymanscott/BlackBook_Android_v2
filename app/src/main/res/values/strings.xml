@@ -144,6 +144,12 @@
         <item>I came ON them</item>
         <item>Neither</item>
     </string-array>
+    <string-array name="drunk_list">
+        <item>Drunk</item>
+        <item>High</item>
+        <item>Both drunk and high</item>
+        <item>Neither drunk nor high</item>
+    </string-array>
 
     <string name="AddPartnerTitle">New Partner</string>
     <string name="title_activity_lynx_diary">LynxDiary</string>

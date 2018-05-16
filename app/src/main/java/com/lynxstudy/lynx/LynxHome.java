@@ -660,8 +660,12 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         // Closing the App if sign out enabled
         //Log.v("SignOut", String.valueOf(LynxManager.signOut));
         if(LynxManager.signOut){
+            Intent intent = new Intent(LynxHome.this, LynxHome.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK  | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
             finish();
             System.exit(0);
+
         }
         if (LynxManager.onPause){
             Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);

@@ -304,6 +304,42 @@
                 </LinearLayout>
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal"
+                android:id="@+id/drunkLayout"
+                android:gravity="center_vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/drunktitle"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:text="I was"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/encounter_tv_textsize" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/drunkParent"
+                    android:background="@drawable/rectangle_bg">
+                    <TextView
+                        android:id="@+id/drunk"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/rectangle_edittext"
+                        android:text="x"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </LinearLayout>
             <Button
                 android:id="@+id/next"
                 android:layout_width="match_parent"

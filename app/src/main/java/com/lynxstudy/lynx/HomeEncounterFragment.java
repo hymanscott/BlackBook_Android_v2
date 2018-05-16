@@ -50,7 +50,7 @@ public class HomeEncounterFragment extends Fragment {
 
     DatabaseHelper db;
     private  int width,height;
-    TextView partner,sexRating,hivStatus,typeSex,condomUsed,whenIsuckedtitle,whenIbottomedtitle,whenItoppedtitle,whenIsucked,whenIbottom,whenItop;
+    TextView partner,sexRating,hivStatus,typeSex,condomUsed,whenIsuckedtitle,whenIbottomedtitle,whenItoppedtitle,whenIsucked,whenIbottom,whenItop,drunktitle,drunk;
     private boolean isSummaryShown = false;
     public HomeEncounterFragment() {
         // Required empty public constructor
@@ -320,6 +320,10 @@ public class HomeEncounterFragment extends Fragment {
         whenIbottom.setTypeface(tf);
         whenItop = (TextView)view.findViewById(R.id.whenItop);
         whenItop.setTypeface(tf);
+        drunktitle = (TextView)view.findViewById(R.id.drunktitle);
+        drunktitle.setTypeface(tf);
+        drunk = (TextView)view.findViewById(R.id.drunk);
+        drunk.setTypeface(tf);
         db = new DatabaseHelper(getActivity());
         TextView nickname = (TextView) view.findViewById(R.id.encList_summary_nickName);
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
@@ -328,6 +332,8 @@ public class HomeEncounterFragment extends Fragment {
         TextView partnerNotes = (TextView) view.findViewById(R.id.encListSumm_partnerNotes);
         partnerNotes.setText(LynxManager.decryptString(db.getEncounter(encounter_id).getEncounter_notes()));
         partnerNotes.setTypeface(tf);
+
+        drunk.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getIs_drug_used()));
 
         RatingBar sexRating = (RatingBar) view.findViewById(R.id.encListSumm_sexRating);
         sexRating.setRating(Float.parseFloat(LynxManager.decryptString(String.valueOf(LynxManager.getActiveEncounter().getRate_the_sex()))));

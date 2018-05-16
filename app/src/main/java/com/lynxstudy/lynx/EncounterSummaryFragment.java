@@ -34,7 +34,7 @@ public class EncounterSummaryFragment extends Fragment {
 
     public EncounterSummaryFragment() {
     }
-    TextView newEncounter,partner,hivStatus,edit_details,typeSex,sexRating,partnerNotes,encSumm_partnerNotes,condomUsed,whenIsuckedtitle,whenIbottomedtitle,whenItoppedtitle,whenIsucked,whenIbottom,whenItop;
+    TextView newEncounter,partner,hivStatus,edit_details,typeSex,sexRating,partnerNotes,encSumm_partnerNotes,condomUsed,whenIsuckedtitle,whenIbottomedtitle,whenItoppedtitle,whenIsucked,whenIbottom,whenItop,drunktitle,drunk;
     Button next;
     LinearLayout condomUsedContent,whenIsuckedParent,whenIbottomParent,whenItoppedParent;
     @Override
@@ -75,6 +75,10 @@ public class EncounterSummaryFragment extends Fragment {
         whenIbottom.setTypeface(tf);
         whenItop= (TextView) rootview.findViewById(R.id.whenItop);
         whenItop.setTypeface(tf);
+        drunktitle= (TextView) rootview.findViewById(R.id.drunktitle);
+        drunktitle.setTypeface(tf);
+        drunk= (TextView) rootview.findViewById(R.id.drunk);
+        drunk.setTypeface(tf);
         edit_details = (TextView) rootview.findViewById(R.id.edit_details);
         edit_details.setTypeface(tf);
         condomUsedContent = (LinearLayout)rootview.findViewById(R.id.condomUsedContent);
@@ -87,7 +91,7 @@ public class EncounterSummaryFragment extends Fragment {
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         nickname.setAllCaps(false);
         nickname.setTypeface(tf);
-
+        drunk.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getIs_drug_used()));
         encSumm_partnerNotes.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getEncounter_notes()));
         final RatingBar sexRating = (RatingBar) rootview.findViewById(R.id.encSumm_sexRating);
         sexRating.setRating(Float.parseFloat(LynxManager.encRateofSex));

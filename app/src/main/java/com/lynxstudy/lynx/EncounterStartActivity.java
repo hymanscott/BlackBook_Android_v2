@@ -292,7 +292,7 @@ public class EncounterStartActivity extends AppCompatActivity {
 
     public boolean onSexTypeNext(View view) {
         EncounterCondomuseFragment fragSextypeCondomuse = new EncounterCondomuseFragment();
-        EncounterNotesFragment fragEncNotes = new EncounterNotesFragment();
+        EncounterDrunkStatusFragment fragEncNotes = new EncounterDrunkStatusFragment();
         RatingBar rate_of_sex = (RatingBar) findViewById(R.id.sexType_RateTheSex);
 
         //Log.v("Rate of sex", String.valueOf(rate_of_sex.getRating()));
@@ -391,14 +391,27 @@ public class EncounterStartActivity extends AppCompatActivity {
                     break;
             }
         }
-        EncounterNotesFragment fragEncNotes = new EncounterNotesFragment();
-        pushFragments("encounter", fragEncNotes, true);
+        EncounterDrunkStatusFragment fragEncDrunk = new EncounterDrunkStatusFragment();
+        pushFragments("encounter", fragEncDrunk, true);
 
         return true;
     }
 
     public boolean onEncCondomUsePrev(View view) {
         popFragment();
+        return true;
+    }
+
+    public boolean onDrunkStatusNext(View view){
+        RadioGroup RG_Drunk = (RadioGroup)findViewById(R.id.RG_drunkStatus);
+        if(RG_Drunk.getCheckedRadioButtonId() == -1){
+            Toast.makeText(EncounterStartActivity.this,"Please select any one option",Toast.LENGTH_SHORT).show();
+        }else{
+            RadioButton RB_drunk = (RadioButton)findViewById(RG_Drunk.getCheckedRadioButtonId());
+            LynxManager.activeEncounter.setIs_drug_used(LynxManager.encryptString(RB_drunk.getText().toString()));
+            EncounterNotesFragment fragEncNotes = new EncounterNotesFragment();
+            pushFragments("encounter", fragEncNotes, true);
+        }
         return true;
     }
 
@@ -477,6 +490,8 @@ public class EncounterStartActivity extends AppCompatActivity {
         LynxManager.encRateofSex = String.valueOf(sexType_RateTheSex.getRating());
         String encNotes = String.valueOf(((EditText) findViewById(R.id.encNotes)).getText());
         LynxManager.activeEncounter.setEncounter_notes(LynxManager.encryptString(encNotes));
+        TextView drunk = (TextView)findViewById(R.id.drunk);
+        LynxManager.activeEncounter.setIs_drug_used(LynxManager.encryptString(drunk.getText().toString()));
 
         for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
 
@@ -500,7 +515,6 @@ public class EncounterStartActivity extends AppCompatActivity {
         return true;
     }
     public boolean onEncSummNext(View view) {
-        LynxManager.activeEncounter.setIs_drug_used(LynxManager.encryptString("0"));
         LynxManager.activeEncounter.setIs_possible_sex_tomorrow(LynxManager.encryptString("0"));
         int encounterID = db.createEncounter(LynxManager.activeEncounter);
         int galaxy_count = 0;

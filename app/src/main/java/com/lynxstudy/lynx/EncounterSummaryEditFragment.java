@@ -9,6 +9,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +39,7 @@ import java.util.List;
 public class EncounterSummaryEditFragment extends Fragment {
     public EncounterSummaryEditFragment() {
     }
-    TextView newEncounter,encounter_summary_nickName,rateSex,hivStatusTitle,hivStatus,encounterNotesTitle,typeSex,condomUsed,whenIsuckedTitle,whenIsucked,whenIbottomTitle,whenItopTitle,whenIbottom,whenItop;
+    TextView newEncounter,encounter_summary_nickName,rateSex,hivStatusTitle,hivStatus,encounterNotesTitle,typeSex,condomUsed,whenIsuckedTitle,whenIsucked,whenIbottomTitle,whenItopTitle,whenIbottom,whenItop,drunktitle,drunk;
     EditText encNotes;
     RatingBar sexType_RateTheSex;
     Button next;
@@ -82,6 +83,10 @@ public class EncounterSummaryEditFragment extends Fragment {
         whenIbottom.setTypeface(tf);
         whenItop = (TextView)rootview.findViewById(R.id.whenItop);
         whenItop.setTypeface(tf);
+        drunktitle= (TextView) rootview.findViewById(R.id.drunktitle);
+        drunktitle.setTypeface(tf);
+        drunk= (TextView) rootview.findViewById(R.id.drunk);
+        drunk.setTypeface(tf);
         encNotes = (EditText) rootview.findViewById(R.id.encNotes);
         encNotes.setTypeface(tf);
         next = (Button) rootview.findViewById(R.id.next);
@@ -97,7 +102,7 @@ public class EncounterSummaryEditFragment extends Fragment {
         encNotes.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getEncounter_notes()));
         /*whenIsucked.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getDid_you_cum()));
         whenIbottom.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getDid_your_partner_cum()));*/
-
+        drunk.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getIs_drug_used()));
         sexType_RateTheSex = (RatingBar) rootview.findViewById(R.id.sexType_RateTheSex);
         sexType_RateTheSex.setRating(Float.parseFloat(LynxManager.encRateofSex));
 
@@ -617,6 +622,47 @@ public class EncounterSummaryEditFragment extends Fragment {
 
                             public void onClick(DialogInterface dialog, int which) {
                                 whenItop.setText(i_topped.get(which).toString());
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+
+        // Drunk Layout //
+        final List<String> i_was= Arrays.asList(getResources().getStringArray(R.array.drunk_list));
+        LinearLayout drunkParent= (LinearLayout)rootview.findViewById(R.id.whenIbottomParent);
+        final ArrayAdapter<String> adapterDrunk = new ArrayAdapter<String>(getActivity(),
+                R.layout.spinner_row_white, R.id.txtView, i_was);
+        drunk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterDrunk, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                if(i_was.get(which).toString().equals("Both drunk and high")){
+                                    drunk.setText(Html.fromHtml("Both drunk & high"));
+                                }else{
+                                    drunk.setText(i_was.get(which).toString());
+                                }
+                                dialog.dismiss();
+                            }
+                        }).create().show();
+            }
+        });
+        drunkParent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setAdapter(adapterDrunk, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                if(i_was.get(which).toString().equals("Both drunk and high")){
+                                    drunk.setText(Html.fromHtml("Both drunk & high"));
+                                }else{
+                                    drunk.setText(i_was.get(which).toString());
+                                }
+
                                 dialog.dismiss();
                             }
                         }).create().show();
