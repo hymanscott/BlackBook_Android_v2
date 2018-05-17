@@ -555,6 +555,9 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
         TextView partnersOnPrep = (TextView)findViewById(R.id.partnersOnPrep);
         partnersOnPrep.setTypeface(tf_bold);
         partnersOnPrep.setText(String.valueOf(negprepDBCount));
+        TextView undectablePartnersCount = (TextView)findViewById(R.id.undectablePartnersCount);
+        undectablePartnersCount.setTypeface(tf_bold);
+        undectablePartnersCount.setText(String.valueOf(undetectableDBCount));
 
         TextView fiveStarPartners = (TextView)findViewById(R.id.fiveStarPartners);
         fiveStarPartners.setTypeface(tf_italic);
@@ -568,6 +571,8 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
         repeatedPartners.setTypeface(tf_italic);
         TextView prepPartners = (TextView)findViewById(R.id.prepPartners);
         prepPartners.setTypeface(tf_italic);
+        TextView undectablePartners = (TextView)findViewById(R.id.undectablePartners);
+        undectablePartners.setTypeface(tf_italic);
 
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
