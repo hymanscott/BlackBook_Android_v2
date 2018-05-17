@@ -17,11 +17,16 @@ import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
 import com.lynxstudy.model.Partners;
+import com.lynxstudy.model.TestingHistory;
 
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
 import org.w3c.dom.Text;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import me.tankery.lib.circularseekbar.CircularSeekBar;
@@ -106,7 +111,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
             versatile.setVisibility(View.VISIBLE);
             versatile.setProgress(versatile_value);
         }else{
-            versatile.setVisibility(View.GONE);
+            versatile.setVisibility(View.INVISIBLE);
         }
 
         versatile_progress.setText(versatile_value + "%");
@@ -132,7 +137,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
             exclusive_bottom.setVisibility(View.VISIBLE);
             exclusive_bottom.setProgress(progress);
         }else{
-            exclusive_bottom.setVisibility(View.GONE);
+            exclusive_bottom.setVisibility(View.INVISIBLE);
         }
         bottom_progress.setText(progress + "%");
 
@@ -153,7 +158,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
             exclusive_top.setVisibility(View.VISIBLE);
             exclusive_top.setProgress(top_progress_value);
         }else{
-            exclusive_top.setVisibility(View.GONE);
+            exclusive_top.setVisibility(View.INVISIBLE);
         }
         top_progress.setText(top_progress_value + "%");
 
@@ -178,7 +183,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
             condom_use.setVisibility(View.VISIBLE);
             condom_use.setProgress(condomusage_value);
         }else{
-            condom_use.setVisibility(View.GONE);
+            condom_use.setVisibility(View.INVISIBLE);
         }
         condom_use_progress.setText(condomusage_value + "%");
 
@@ -204,7 +209,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
             condom_bottom.setVisibility(View.VISIBLE);
             condom_bottom.setProgress(condombottomusage_value);
         }else{
-            condom_bottom.setVisibility(View.GONE);
+            condom_bottom.setVisibility(View.INVISIBLE);
         }
         condom_bottom_progress.setText(condombottomusage_value + "%");
 
@@ -230,16 +235,132 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
             condom_top.setVisibility(View.VISIBLE);
             condom_top.setProgress(condomtopusage_value);
         }else{
-            condom_top.setVisibility(View.GONE);
+            condom_top.setVisibility(View.INVISIBLE);
         }
         condom_top_progress.setText(condomtopusage_value + "%");
 
+        /*Partner Came in your */
+        TextView partner_came_inyou_progress = (TextView)findViewById(R.id.partner_came_inyou_progress);
+        partner_came_inyou_progress.setTypeface(tf_bold);
+        TextView partner_came_inyou_description = (TextView)findViewById(R.id.partner_came_inyou_description);
+        partner_came_inyou_description.setTypeface(tf_italic);
+        CircularSeekBar partnerCameInYou = (CircularSeekBar)findViewById(R.id.partnerCameInYou);
+
+        int partnerCameInYoucount = 0;
+        encounterSexTypes = db.getAllEncounterSexTypesByName("I bottomed");
+        for (EncounterSexType encounterSexType:encounterSexTypes) {
+            if(encounterSexType.getEjaculation().equals("They came IN me") )
+                partnerCameInYoucount++;
+        }
+        float partnerCameInYou_percent = 0;
+        if(encounterSexTypes.size()>0){
+            partnerCameInYou_percent =(float)partnerCameInYoucount/encounterSexTypes.size();
+        }
+        int partnerCameInYou_value = (int) (partnerCameInYou_percent*100);
+        if(partnerCameInYou_value>0){
+            partnerCameInYou.setVisibility(View.VISIBLE);
+            partnerCameInYou.setProgress(partnerCameInYou_value);
+        }else{
+            partnerCameInYou.setVisibility(View.INVISIBLE);
+        }
+        partner_came_inyou_progress.setText(partnerCameInYou_value + "%");
+
+        /*You Came in*/
+        TextView you_came_in_progress = (TextView)findViewById(R.id.you_came_in_progress);
+        you_came_in_progress.setTypeface(tf_bold);
+        TextView you_came_in_description = (TextView)findViewById(R.id.you_came_in_description);
+        you_came_in_description.setTypeface(tf_italic);
+        CircularSeekBar you_came_in = (CircularSeekBar)findViewById(R.id.you_came_in);
+
+        int you_came_incount = 0;
+        encounterSexTypes = db.getAllEncounterSexTypesByName("I topped");
+        for (EncounterSexType encounterSexType:encounterSexTypes) {
+            if(encounterSexType.getEjaculation().equals("I came IN them") )
+                you_came_incount++;
+        }
+        float you_came_in_percent = 0;
+        if(encounterSexTypes.size()>0){
+            you_came_in_percent =(float)you_came_incount/encounterSexTypes.size();
+        }
+        int you_came_in_value = (int) (you_came_in_percent*100);
+        if(you_came_in_value>0){
+            you_came_in.setVisibility(View.VISIBLE);
+            you_came_in.setProgress(you_came_in_value);
+        }else{
+            you_came_in.setVisibility(View.INVISIBLE);
+        }
+        you_came_in_progress.setText(you_came_in_value + "%");
+
+       /*Swallowed*/
+        TextView you_swallowed_progress = (TextView)findViewById(R.id.you_swallowed_progress);
+        you_swallowed_progress.setTypeface(tf_bold);
+        TextView you_swallowed_description = (TextView)findViewById(R.id.you_swallowed_description);
+        you_swallowed_description.setTypeface(tf_italic);
+        CircularSeekBar you_swallowed = (CircularSeekBar)findViewById(R.id.you_swallowed);
+
+        int you_swallowedcount = 0;
+        encounterSexTypes = db.getAllEncounterSexTypesByName("I sucked her");
+        for (EncounterSexType encounterSexType:encounterSexTypes) {
+            if(encounterSexType.getEjaculation().equals("I swallowed") )
+                you_swallowedcount++;
+        }
+        List<EncounterSexType> altencounterSexTypes = db.getAllEncounterSexTypesByName("I sucked him");
+        for (EncounterSexType encounterSexType:altencounterSexTypes) {
+            if(encounterSexType.getEjaculation().equals("I swallowed") )
+                you_swallowedcount++;
+        }
+        int total_sextype_count = encounterSexTypes.size() + altencounterSexTypes.size();
+        float you_swallowed_percent = 0;
+        if(total_sextype_count>0){
+            you_swallowed_percent =(float)you_swallowedcount/total_sextype_count;
+        }
+        int you_swallowed_value = (int) (you_swallowed_percent*100);
+        if(you_swallowed_value>0){
+            you_swallowed.setVisibility(View.VISIBLE);
+            you_swallowed.setProgress(you_swallowed_value);
+        }else{
+            you_swallowed.setVisibility(View.INVISIBLE);
+        }
+        you_swallowed_progress.setText(you_swallowed_value + "%");
+
+
+       /*Drunk or High*/
+        TextView drunk_or_high_progress = (TextView)findViewById(R.id.drunk_or_high_progress);
+        drunk_or_high_progress.setTypeface(tf_bold);
+        TextView drunk_or_high_description = (TextView)findViewById(R.id.drunk_or_high_description);
+        drunk_or_high_description.setTypeface(tf_italic);
+        CircularSeekBar drunk_or_high = (CircularSeekBar)findViewById(R.id.drunk_or_high);
+
+        int drunk_or_highcount = 0;
+        List<Encounter> encounters_list = db.getAllEncounters();
+        for (Encounter encounter:encounters_list) {
+            if(LynxManager.decryptString(encounter.getIs_drug_used()).equals("Both drunk & high") || LynxManager.decryptString(encounter.getIs_drug_used()).equals("Both drunk and high"))
+                drunk_or_highcount++;
+        }
+        float drunk_or_high_percent = 0;
+        if(encounters_list.size()>0){
+            drunk_or_high_percent =(float)drunk_or_highcount/encounters_list.size();
+        }
+        int drunk_or_high_value = (int) (drunk_or_high_percent*100);
+        if(drunk_or_high_value>0){
+            drunk_or_high.setVisibility(View.VISIBLE);
+            drunk_or_high.setProgress(drunk_or_high_value);
+        }else{
+            drunk_or_high.setVisibility(View.INVISIBLE);
+        }
+        drunk_or_high_progress.setText(drunk_or_high_value + "%");
+
+        /*Second Section*/
         TextView fiveStarEncounters = (TextView)findViewById(R.id.fiveStarEncounters);
         fiveStarEncounters.setTypeface(tf_italic);
         TextView bottomPartners = (TextView)findViewById(R.id.bottomPartners);
         bottomPartners.setTypeface(tf_italic);
         TextView topPartners = (TextView)findViewById(R.id.topPartners);
         topPartners.setTypeface(tf_italic);
+        TextView lastHivElapsedDaysDesc = (TextView)findViewById(R.id.lastHivElapsedDaysDesc);
+        lastHivElapsedDaysDesc.setTypeface(tf_italic);
+        TextView lastStdElapsedDaysDesc = (TextView)findViewById(R.id.lastStdElapsedDaysDesc);
+        lastStdElapsedDaysDesc.setTypeface(tf_italic);
 
         TextView fiveStarEncountersCount= (TextView)findViewById(R.id.fiveStarEncountersCount);
         fiveStarEncountersCount.setText(String.valueOf(db.getFiveStarEncountersCount()));
@@ -268,6 +389,21 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         }
         bottomPartnersCount.setText(String.valueOf(bottomPeopleCount));
         topPartnersCount.setText(String.valueOf(topPeopleCount));
+
+        TextView lastStdElapsedDays = (TextView)findViewById(R.id.lastStdElapsedDays);
+        TextView lastHivElapsedDays = (TextView)findViewById(R.id.lastHivElapsedDays);
+        TestingHistory hiv_testingHistory = db.getLastTestingHistoryByID(1);
+        TestingHistory std_testingHistory = db.getLastTestingHistoryByID(2);
+        if(hiv_testingHistory!=null){
+            int hiv_elapsed_days = getElapsedDays(LynxManager.decryptString(hiv_testingHistory.getTesting_date()));
+            lastHivElapsedDays.setText(String.valueOf(hiv_elapsed_days));
+        }
+        if(std_testingHistory!=null){
+            int std_elapsed_days = getElapsedDays(LynxManager.decryptString(std_testingHistory.getTesting_date()));
+            lastStdElapsedDays.setText(String.valueOf(std_elapsed_days));
+        }
+
+
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
 		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
@@ -316,4 +452,25 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
+    private int getElapsedDays(String dateString){
+        if(dateString!=null){
+            SimpleDateFormat inputDF  = new SimpleDateFormat("yyyy-MM-dd");
+            Calendar calCurrentDate = Calendar.getInstance();
+            Calendar cal = Calendar.getInstance();
+            Date date = null;
+            try {
+                date = inputDF.parse(dateString);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            cal.setTime(date);
+            long milliSeconds2 = calCurrentDate.getTimeInMillis();
+            long milliSeconds1 = cal.getTimeInMillis();
+            long period = milliSeconds2 - milliSeconds1;
+            long days = period / (1000 * 60 * 60 * 24);
+            return (int) days;
+        }return 0;
+
+    }
+
 }

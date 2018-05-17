@@ -2550,7 +2550,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<UserRatingFields> getAllUserRatingFields(int user_id ) {
         List<UserRatingFields> utrs = new ArrayList<UserRatingFields>();
         String selectQuery = "SELECT  * FROM " + TABLE_USER_RATINGFIELDS + " WHERE "
-                + KEY_RATINGFIELD_USERID + " = " + user_id;;
+                + KEY_RATINGFIELD_USERID + " = " + user_id;
 
         Log.e(LOG, selectQuery);
 
@@ -3593,17 +3593,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c != null)
+        if (c != null){
             c.moveToFirst();
 
-        TestingHistory testingHistory = new TestingHistory();
-        testingHistory.setTesting_history_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_ID)));
-        testingHistory.setTesting_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_TESTINGID)));
-        testingHistory.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_USERID)));
-        testingHistory.setTesting_date(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_TESTINGDATE)));
-        testingHistory.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-        c.close();
-        return testingHistory;
+            TestingHistory testingHistory = new TestingHistory();
+            testingHistory.setTesting_history_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_ID)));
+            testingHistory.setTesting_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_TESTINGID)));
+            testingHistory.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_USERID)));
+            testingHistory.setTesting_date(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_TESTINGDATE)));
+            testingHistory.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+            c.close();
+            return testingHistory;
+        }else{
+            return null;
+        }
     }
 
 
@@ -3639,7 +3642,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<TestingHistory> getAllTestingHistoriesByTestingID(int id) {
         List<TestingHistory> testingHistories = new ArrayList<TestingHistory>();
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY + " WHERE "
-                + KEY_TESTING_HISTORY_TESTINGID + " = " + id + " ORDER BY " + KEY_TESTING_HISTORY_ID + " DESC";;
+                + KEY_TESTING_HISTORY_TESTINGID + " = " + id + " ORDER BY " + KEY_TESTING_HISTORY_ID + " DESC";
 
         Log.e(LOG, selectQuery);
 
@@ -3662,6 +3665,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         c.close();
         return testingHistories;
+    }
+
+    public TestingHistory getLastTestingHistoryByID(int id){
+        String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY + " WHERE "
+                + KEY_TESTING_HISTORY_TESTINGID + " = " + id + " ORDER BY " + KEY_TESTING_HISTORY_ID + " DESC LIMIT 1";
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+        if (c.moveToFirst()) {
+            TestingHistory testHistory = new TestingHistory();
+            testHistory.setTesting_history_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_ID)));
+            testHistory.setTesting_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_TESTINGID)));
+            testHistory.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_USERID)));
+            testHistory.setTesting_date(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_TESTINGDATE)));
+            testHistory.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+            return  testHistory;
+        }
+        return null;
     }
 
     /**
@@ -3787,7 +3810,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return test_status_id;
     }
 
+    public TestingHistoryInfo getTestingHistoryInfoById(int id){
 
+        String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY_INFO + " WHERE " + KEY_TESTING_HISTORY_INFO_ID + " = " +id;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+        if (c.moveToFirst()) {
+            TestingHistoryInfo testingHistoryInfo = new TestingHistoryInfo();
+            testingHistoryInfo.setTesting_history_info_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_ID)));
+            testingHistoryInfo.setTesting_history_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_HISTORYID)));
+            testingHistoryInfo.setSti_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_STIID)));
+            testingHistoryInfo.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_USERID)));
+            testingHistoryInfo.setTest_status(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_STATUS)));
+            testingHistoryInfo.setAttachment(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_ATTACHMENT)));
+            testingHistoryInfo.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+            return testingHistoryInfo;
+        }
+        return null;
+    }
     /**
      * getting all TESTING HISTORY INFO by testingHistory Id
      */

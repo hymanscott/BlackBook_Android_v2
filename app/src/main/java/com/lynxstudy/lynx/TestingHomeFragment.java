@@ -1523,8 +1523,8 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                         Log.d("Response: ", "> testingHistoriesOnlineError. " + jsonObj.getString("message"));
                     } else {
                         //JSONArray chatArray = jsonObj.getJSONArray("ticketChat");
-                        db.deleteTestingHistories();
-                        db.deleteTestingHistoryInfos();
+                        //db.deleteTestingHistories();
+                        //db.deleteTestingHistoryInfos();
                         JSONArray testingHistoryInfo = jsonObj.getJSONArray("TestingHistory");
                         for(int n = 0; n <testingHistoryInfo.length(); n++) {
                             JSONObject testingHistoryObject = testingHistoryInfo.getJSONObject(n);
@@ -1532,7 +1532,9 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             TestingHistory history = new TestingHistory(testingHistoryObject.getInt("testing_id"),
                                     LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(testingHistoryObject.getString("testing_date")),
                                     String.valueOf(R.string.statusUpdateYes), true);
-                            int id = db.createTestingHistory(history);
+                            if(db.getTestingHistorybyID(testingHistoryObject.getInt("testing_history_id")) == null){
+                                db.createTestingHistory(history);
+                            }
                         }
 
                         //TestingHistoryInfo
@@ -1542,7 +1544,9 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             TestingHistoryInfo history_info = new TestingHistoryInfo(testingHistoryInfoObject.getInt("testing_history_id"), LynxManager.getActiveUser().getUser_id(),
                                     testingHistoryInfoObject.getInt("sti_id"), LynxManager.encryptString(testingHistoryInfoObject.getString("test_status")),
                                     LynxManager.encryptString(testingHistoryInfoObject.getString("attachment")),String.valueOf(R.string.statusUpdateYes), true);
-                            int id = db.createTestingHistoryInfo(history_info);
+                            if(db.getTestingHistoryInfoById(testingHistoryInfoObject.getInt("testing_history_info_id"))==null){
+                                db.createTestingHistoryInfo(history_info);
+                            }
                         }
                         loadTestingHistories();
                     }
