@@ -989,7 +989,7 @@
                                 android:gravity="center_horizontal"
                                 android:layout_marginTop="20dp"
                                 android:lineSpacingMultiplier="1.25"
-                                android:text="# of partners who are undetectable"
+                                android:text="# of undetectable partners"
                                 android:textColor="@color/text_color"
                                 android:textSize="16sp"
                                 android:textStyle="italic" />

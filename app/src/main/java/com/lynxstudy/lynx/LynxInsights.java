@@ -101,7 +101,7 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
         partnersChartTitle = (TextView)findViewById(R.id.partnersChartTitle);
         partnersChartTitle.setTypeface(tf_bold_italic);
         titleStats = (TextView)findViewById(R.id.titleStats);
-        titleStats.setTypeface(tf_italic);
+        titleStats.setTypeface(tf_bold_italic);
         int encounters = db.getEncountersCount();
         int partners = db.getPartnersCount();
         titleStats.setText("For "+encounters+" encounters with "+partners+" partners");

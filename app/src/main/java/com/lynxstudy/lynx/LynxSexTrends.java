@@ -6,7 +6,9 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.zip.Inflater;
 
 import me.tankery.lib.circularseekbar.CircularSeekBar;
 
@@ -83,7 +86,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         pageTitle = (TextView)findViewById(R.id.pageTitle);
         pageTitle.setTypeface(tf_bold);
         titleStats = (TextView)findViewById(R.id.titleStats);
-        titleStats.setTypeface(tf_italic);
+        titleStats.setTypeface(tf_bold_italic);
         int encounters = db.getEncountersCount();
         int partners = db.getPartnersCount();
         titleStats.setText("For "+encounters+" encounters with "+partners+" partners ");
@@ -334,7 +337,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         int drunk_or_highcount = 0;
         List<Encounter> encounters_list = db.getAllEncounters();
         for (Encounter encounter:encounters_list) {
-            if(LynxManager.decryptString(encounter.getIs_drug_used()).equals("Both drunk & high") || LynxManager.decryptString(encounter.getIs_drug_used()).equals("Both drunk and high"))
+            if(!LynxManager.decryptString(encounter.getIs_drug_used()).equals("Neither drunk nor high"))
                 drunk_or_highcount++;
         }
         float drunk_or_high_percent = 0;
@@ -351,6 +354,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         drunk_or_high_progress.setText(drunk_or_high_value + "%");
 
         /*Second Section*/
+        GridLayout gridLayout = (GridLayout)findViewById(R.id.GridLayout1);
         TextView fiveStarEncounters = (TextView)findViewById(R.id.fiveStarEncounters);
         fiveStarEncounters.setTypeface(tf_italic);
         TextView bottomPartners = (TextView)findViewById(R.id.bottomPartners);
@@ -394,15 +398,23 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         TextView lastHivElapsedDays = (TextView)findViewById(R.id.lastHivElapsedDays);
         TestingHistory hiv_testingHistory = db.getLastTestingHistoryByID(1);
         TestingHistory std_testingHistory = db.getLastTestingHistoryByID(2);
+        int hiv_elapsed_days=0,std_elapsed_days =0;
         if(hiv_testingHistory!=null){
-            int hiv_elapsed_days = getElapsedDays(LynxManager.decryptString(hiv_testingHistory.getTesting_date()));
+            hiv_elapsed_days = getElapsedDays(LynxManager.decryptString(hiv_testingHistory.getTesting_date()));
             lastHivElapsedDays.setText(String.valueOf(hiv_elapsed_days));
+        }else{
+            gridLayout.removeViewAt(0);
         }
         if(std_testingHistory!=null){
-            int std_elapsed_days = getElapsedDays(LynxManager.decryptString(std_testingHistory.getTesting_date()));
+            std_elapsed_days = getElapsedDays(LynxManager.decryptString(std_testingHistory.getTesting_date()));
             lastStdElapsedDays.setText(String.valueOf(std_elapsed_days));
+        }else{
+            if(hiv_testingHistory!=null) {
+                gridLayout.removeViewAt(1);
+            }else{
+                gridLayout.removeViewAt(0);
+            }
         }
-
 
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
