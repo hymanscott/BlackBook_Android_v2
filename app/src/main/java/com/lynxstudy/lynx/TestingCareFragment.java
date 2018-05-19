@@ -3,14 +3,18 @@ package com.lynxstudy.lynx;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import org.piwik.sdk.Tracker;
@@ -26,8 +30,11 @@ public class TestingCareFragment extends Fragment {
         // Required empty public constructor
     }
     View view;
-    LinearLayout answerLayout,questionLayout;
-    Typeface tf,tf_bold;
+    LinearLayout questionLayout,callUsNowSection,chatUsNowSection;
+    ScrollView positiveLayoutParent,negativeLayoutParent;
+    RelativeLayout answerLayout;
+    Typeface tf,tf_bold,tf_italic;
+    TextView dontForget,hereAre,useCondoms,pre_exposure,it_can_be,twenty_four,fourty_eight,seven_days,asap;
     private boolean isAnswerShown = false;
     int back_press_count;
     private Tracker tracker;
@@ -42,8 +49,27 @@ public class TestingCareFragment extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        answerLayout = (LinearLayout)view.findViewById(R.id.answerLayout);
+        tf_italic = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Roboto-Italic.ttf");
+        answerLayout = (RelativeLayout)view.findViewById(R.id.answerLayout);
         questionLayout = (LinearLayout)view.findViewById(R.id.questionLayout);
+        positiveLayoutParent = (ScrollView)view.findViewById(R.id.positiveLayoutParent);
+        negativeLayoutParent = (ScrollView)view.findViewById(R.id.negativeLayoutParent);
+        callUsNowSection = (LinearLayout)view.findViewById(R.id.callUsNowSection);
+        chatUsNowSection = (LinearLayout)view.findViewById(R.id.chatUsNowSection);
+        ((TextView)view.findViewById(R.id.webviewTitle)).setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.webviewNegTitle)).setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.callUsNow)).setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.chatwithusnow)).setTypeface(tf_bold);
+        dontForget = (TextView)view.findViewById(R.id.dontForget);
+        hereAre = (TextView)view.findViewById(R.id.hereAre);
+        useCondoms = (TextView)view.findViewById(R.id.useCondoms);
+        pre_exposure = (TextView)view.findViewById(R.id.pre_exposure);
+        it_can_be = (TextView)view.findViewById(R.id.it_can_be);
+        twenty_four = (TextView)view.findViewById(R.id.twenty_four);
+        fourty_eight = (TextView)view.findViewById(R.id.fourty_eight);
+        seven_days = (TextView)view.findViewById(R.id.seven_days);
+        asap = (TextView)view.findViewById(R.id.asap);
         TextView positiveHIVtest = (TextView)view.findViewById(R.id.positiveHIVtest);
         positiveHIVtest.setTypeface(tf);
         positiveHIVtest.setOnClickListener(new View.OnClickListener() {
@@ -112,17 +138,52 @@ public class TestingCareFragment extends Fragment {
         answerLayout.setVisibility(View.VISIBLE);
         questionLayout.setVisibility(View.GONE);
         isAnswerShown = true;
-        //TextView qn = (TextView)view.findViewById(R.id.question);
-       // qn.setTypeface(tf);
-        WebView ans = (WebView)view.findViewById(R.id.webview);
         if(id==0){
             TrackHelper.track().event("Testing Care","View").name("Your HIV test was positive").with(tracker);
            // qn.setText("If your HIV test was positive");
-            ans.loadDataWithBaseURL("","<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto\"></head><body><p style='color:#2E86EF ;font-size:20px;margin-left:14px;margin-right:14px;margin-top:32px;font-family:Roboto, sans-serif;'><b>If your HIV test was positive</b></p><b><p style='text-align:left;margin-left:14px;margin-right:14px;line-height:1.3'><span style='color:#2E86EF ;font-size:18px;font-family:Roboto, sans-serif;'>We&apos;re here for you.</span> If your test was positive please call us at <a style='color:#2E86EF;text-decoration:none' href='tel:14154086096'>415&minus;408&minus;6096</a>. We are available 24/7.</p></b><p style='text-align:left;font-size:16px;margin-top:32px;margin-left:14px;margin-right:14px;font-family:Roboto, sans-serif;line-height:1.6'>It can be very scary to test positive, but you are not alone. Many people find it helpful to talk to a family member or friend; we are also available to talk with you anytime. Also, remember that your home HIV self-test is a preliminary positive, and you will need to have a confirmatory blood test &minus; contact us and we&apos;ll help you get that second test. We&apos;ll also help you if you find out you are HIV infected &minus; we work with &quot;navigators&quot; who can connect you with medical care, social services, insurance coverage, and a number of other resources.<br/></p><table cellpadding='5' style='color:#444444 ;margin-left:14px;margin-right:14px;margin-top:32px;'><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/twenty_four_hr_icon.png' width='85px' /></p></td><td><p style='text-align:left;font-size:16px;font-family:Roboto, sans-serif;line-height:1.4'><span style='color:#2E86EF ;'>Call us</span> within 24hrs of your positive test.</p></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/forty_eight_hr_icon.png' width='100px' /></p></td><td><p style='text-align:left;font-size:16px;font-family:Roboto, sans-serif;line-height:1.4'><span style='color:#2E86EF ;'>Make an appointment</span> to see your medical provider within the first 48 hours.</p></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/seven_days_icon.png'  width='100px' /></p></td><td><p style='text-align:left;font-size:16px;font-family:Roboto, sans-serif;line-height:1.4'><span style='color:#2E86EF ;'>Go to your medical appointment</span> within 7 days of your preliminary positive test.</p></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/asap_icon.png' width='100px' /></p></td><td><p style='text-align:left;font-size:16px;font-family:Roboto, sans-serif;line-height:1.4'>If your positive test result is confirmed, <span style='color:#2E86EF ;'>start HIV treatment.</span></p></td></tr></table></body></html>" , "text/html", "utf-8", "");
+            positiveLayoutParent.setVisibility(View.VISIBLE);
+            negativeLayoutParent.setVisibility(View.GONE);
+            twenty_four.setTypeface(tf);
+            twenty_four.setText(Html.fromHtml("<font color='#2E86EF'>Call us</font> within 24 hours of your positive test."));
+            fourty_eight.setTypeface(tf);
+            fourty_eight.setText(Html.fromHtml("<font color='#2E86EF'>Make an appointment</font> to see your medical provider within the first 48 hours."));
+            seven_days.setTypeface(tf);
+            seven_days.setText(Html.fromHtml("<font color='#2E86EF'>Go to your medical appointment</font> within 7 days of your preliminary positive test."));
+            asap.setTypeface(tf);
+            asap.setText(Html.fromHtml("If your positive test result is confirmed, <font color='#2E86EF'>start HIV treatment.</font>"));
+            callUsNowSection.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:4154086096"));
+                    startActivity(intent);
+                }
+            });
+            //ans.loadDataWithBaseURL("","<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto\"></head><body><p style='color:#2E86EF ;font-size:20px;margin-left:14px;margin-right:14px;margin-top:32px;font-family:Roboto, sans-serif;'><b>If your HIV test was positive</b></p><b><p style='text-align:left;margin-left:14px;margin-right:14px;line-height:1.3'><span style='color:#2E86EF ;font-size:18px;font-family:Roboto, sans-serif;'>We&apos;re here for you.</span> If your test was positive please call us at <a style='color:#2E86EF;text-decoration:none' href='tel:14154086096'>415&minus;408&minus;6096</a>. We are available 24/7.</p></b><p style='text-align:left;font-size:16px;margin-top:32px;margin-left:14px;margin-right:14px;font-family:Roboto, sans-serif;line-height:1.6'>It can be very scary to test positive, but you are not alone. Many people find it helpful to talk to a family member or friend; we are also available to talk with you anytime. Also, remember that your home HIV self-test is a preliminary positive, and you will need to have a confirmatory blood test &minus; contact us and we&apos;ll help you get that second test. We&apos;ll also help you if you find out you are HIV infected &minus; we work with &quot;navigators&quot; who can connect you with medical care, social services, insurance coverage, and a number of other resources.<br/></p><table cellpadding='5' style='color:#444444 ;margin-left:14px;margin-right:14px;margin-top:32px;'><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/twenty_four_hr_icon.png' width='85px' /></p></td><td><p style='text-align:left;font-size:16px;font-family:Roboto, sans-serif;line-height:1.4'><span style='color:#2E86EF ;'>Call us</span> within 24hrs of your positive test.</p></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/forty_eight_hr_icon.png' width='100px' /></p></td><td><p style='text-align:left;font-size:16px;font-family:Roboto, sans-serif;line-height:1.4'><span style='color:#2E86EF ;'>Make an appointment</span> to see your medical provider within the first 48 hours.</p></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/seven_days_icon.png'  width='100px' /></p></td><td><p style='text-align:left;font-size:16px;font-family:Roboto, sans-serif;line-height:1.4'><span style='color:#2E86EF ;'>Go to your medical appointment</span> within 7 days of your preliminary positive test.</p></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/asap_icon.png' width='100px' /></p></td><td><p style='text-align:left;font-size:16px;font-family:Roboto, sans-serif;line-height:1.4'>If your positive test result is confirmed, <span style='color:#2E86EF ;'>start HIV treatment.</span></p></td></tr></table></body></html>" , "text/html", "utf-8", "");
+            //ans.loadDataWithBaseURL("","<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto\"></head><body><p style='text-align:left;font-size:16px;margin-top:32px;margin-left:14px;margin-right:14px;font-family:Roboto, sans-serif;line-height:1.6'>It can be very scary to test positive, but you are not alone. Many people find it helpful to talk to a family member or friend; we are also available to talk with you anytime. Also, remember that your home HIV self-test is a preliminary positive, and you will need to have a confirmatory blood test &minus; contact us and we&apos;ll help you get that second test. We&apos;ll also help you if you find out you are HIV infected &minus; we work with &quot;navigators&quot; who can connect you with medical care, social services, insurance coverage, and a number of other resources.<br/></p><table cellpadding='5' style='color:#444444 ;margin-left:14px;margin-right:14px;margin-top:32px;'><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/twenty_four_hr_icon.png' width='85px' /></p></td><td><p style='text-align:left;font-size:16px;font-family:Roboto, sans-serif;line-height:1.4'><span style='color:#2E86EF ;'>Call us</span> within 24hrs of your positive test.</p></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/forty_eight_hr_icon.png' width='100px' /></p></td><td><p style='text-align:left;font-size:16px;font-family:Roboto, sans-serif;line-height:1.4'><span style='color:#2E86EF ;'>Make an appointment</span> to see your medical provider within the first 48 hours.</p></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/seven_days_icon.png'  width='100px' /></p></td><td><p style='text-align:left;font-size:16px;font-family:Roboto, sans-serif;line-height:1.4'><span style='color:#2E86EF ;'>Go to your medical appointment</span> within 7 days of your preliminary positive test.</p></td></tr><tr><td><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/asap_icon.png' width='100px' /></p></td><td><p style='text-align:left;font-size:16px;font-family:Roboto, sans-serif;line-height:1.4'>If your positive test result is confirmed, <span style='color:#2E86EF ;'>start HIV treatment.</span></p></td></tr></table></body></html>\n" , "text/html", "utf-8", "");
         }else{
             TrackHelper.track().event("Testing Care","View").name("Your HIV test was negative").with(tracker);
             //qn.setText("If your HIV test was negative");
-            ans.loadDataWithBaseURL("","<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto\"></head><body><p style='text-align:left;font-size: 20px;color:#2E86EF;margin-top:32px;margin-left:14px;margin-right:14px;font-family:Roboto, sans-serif;'><b>If your HIV test was negative</b></p><p style='text-align:left;font-size: 16px;color:#444444;margin-top:16px;margin-left:14px;margin-right:14px;font-family:Roboto, sans-serif;line-height:1.6'><i>Don't forget to update your testing log & repeat your test in 3 months. We'll notify you about your next test to remind you.</i></p><p style='text-align:left;font-size: 16px;margin-top:24px;margin-left:14px;margin-right:14px;font-family:Roboto, sans-serif;line-height:1.3'><b>Here are a couple things that you can do to reduce your risk for HIV:</b></p><table cellpadding='5' style=\"margin-left:14px;margin-right:14px;margin-top:16px;\"><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img height='40px'  style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/condom_icon.png'  /></p></td><td><p style=\"font-size:16px;line-height:1.4\"><span style='color:#2E86EF;font-family:Roboto, sans-serif;'>Use condoms. </span> Using condoms is an important strategy to staying HIV negative. If used correctly, and with lube, they give a high level of protection for HIV and other sexually transmitted infections - like gonorrhea, chlamydia, and syphilis.</p></td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img height='40px' style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/prep_icon.png'   /></p></td><td><p style=\"font-size:16px;line-height:1.4\"><span style='color:#2E86EF;font-family:Roboto, sans-serif;'>Pre-Exposure Prophylaxis (PrEP)</span> is another HIV prevention tool that can give you a high level of protection (more than 90% effective if taken daily).</p></td></tr></table><p style='text-align:left;font-size: 16px;margin-top:16px;margin-left:14px;margin-right:14px;font-family:Roboto, sans-serif;line-height:1.6'>It can be hard to figure out whether PrEP is right for you. PrEP is more than &quot;just taking a pill&quot; and is part of a sexual health package that includes talking with your provider about safer sex, condoms, and regular HIV and STD testing. If your Sex Pro score is 15 or lower, PrEP may be right for you. Check out our PrEP Information page and either give us a call or talk with your provider about PrEP.</p><br/></body></html>" , "text/html", "utf-8", "");
+            positiveLayoutParent.setVisibility(View.GONE);
+            negativeLayoutParent.setVisibility(View.VISIBLE);
+            chatUsNowSection.setVisibility(View.VISIBLE);
+            dontForget.setTypeface(tf_italic);
+            hereAre.setTypeface(tf_bold);
+            useCondoms.setTypeface(tf);
+            it_can_be.setTypeface(tf);
+            pre_exposure.setTypeface(tf);
+            dontForget.setText(Html.fromHtml("Don’t forget to update your testing log & repeat your test in 1 month. We’ll notify you about your next test to remind you."));
+            useCondoms.setText(Html.fromHtml("<font color='#2E86EF'>UseCondoms.</font> Using condoms is an important strategy to staying HIV negative. If used correctly, and with lube, they give a high level of protection for HIV and other sexually transmitted infections — like gonorrhea, chlamydia, and syphilis."));
+            pre_exposure.setText(Html.fromHtml("<font color='#2E86EF'>Pre-Exposure Prophylaxis (PrEP)</font> is another HIV prevention tool that can give you a high level of protection (more than 90% effective if taken daily)."));
+            chatUsNowSection.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    LynxManager.goToIntent(getActivity(),"chat",getActivity().getClass().getSimpleName());
+                    getActivity().overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
+                    getActivity().finish();
+                }
+            });
+            //ans1.loadDataWithBaseURL("","<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto\"></head><body><p style='text-align:left;font-size: 20px;color:#2E86EF;margin-top:32px;margin-left:14px;margin-right:14px;font-family:Roboto, sans-serif;'><b>If your HIV test was negative</b></p><p style='text-align:left;font-size: 16px;color:#444444;margin-top:16px;margin-left:14px;margin-right:14px;font-family:Roboto, sans-serif;line-height:1.6'><i>Don't forget to update your testing log & repeat your test in 3 months. We'll notify you about your next test to remind you.</i></p><p style='text-align:left;font-size: 16px;margin-top:24px;margin-left:14px;margin-right:14px;font-family:Roboto, sans-serif;line-height:1.3'><b>Here are a couple things that you can do to reduce your risk for HIV:</b></p><table cellpadding='5' style=\"margin-left:14px;margin-right:14px;margin-top:16px;\"><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img height='40px'  style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/condom_icon.png'  /></p></td><td><p style=\"font-size:16px;line-height:1.4\"><span style='color:#2E86EF;font-family:Roboto, sans-serif;'>Use condoms. </span> Using condoms is an important strategy to staying HIV negative. If used correctly, and with lube, they give a high level of protection for HIV and other sexually transmitted infections - like gonorrhea, chlamydia, and syphilis.</p></td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img height='40px' style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/prep_icon.png'   /></p></td><td><p style=\"font-size:16px;line-height:1.4\"><span style='color:#2E86EF;font-family:Roboto, sans-serif;'>Pre-Exposure Prophylaxis (PrEP)</span> is another HIV prevention tool that can give you a high level of protection (more than 90% effective if taken daily).</p></td></tr></table><p style='text-align:left;font-size: 16px;margin-top:16px;margin-left:14px;margin-right:14px;font-family:Roboto, sans-serif;line-height:1.6'>It can be hard to figure out whether PrEP is right for you. PrEP is more than &quot;just taking a pill&quot; and is part of a sexual health package that includes talking with your provider about safer sex, condoms, and regular HIV and STD testing. If your Sex Pro score is 15 or lower, PrEP may be right for you. Check out our PrEP Information page and either give us a call or talk with your provider about PrEP.</p><br/></body></html>" , "text/html", "utf-8", "");
         }
     }
 }
