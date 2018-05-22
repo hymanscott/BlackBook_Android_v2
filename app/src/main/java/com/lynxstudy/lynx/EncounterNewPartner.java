@@ -2,6 +2,7 @@ package com.lynxstudy.lynx;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.AppAlerts;
 import com.lynxstudy.model.PartnerContact;
 import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.Partners;
@@ -572,6 +574,7 @@ public class EncounterNewPartner extends AppCompatActivity {
                     active_partner_contact.getRelationship_period(),active_partner_contact.getPartner_have_other_partners(),
                     LynxManager.getActivePartner().getIs_added_to_partners(),String.valueOf(R.string.statusUpdateNo), true);
             db.updatePrimaryPartner(priPartner);
+            showAppAlert("Well, okay then. "+ LynxManager.decryptString(active_partner_contact.getName()) +" and you are exchanging more than phone numbers. Good luck in the relationship and make sure you exchange your status info as well.",1,"Primary partner designation");
         }
 
         int i = 0;
@@ -607,5 +610,45 @@ public class EncounterNewPartner extends AppCompatActivity {
         return true;
     }
 
-
+    private void showAppAlert(String message, int no_of_buttons, String name){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(EncounterNewPartner.this);
+        View appAlertLayout = getLayoutInflater().inflate(R.layout.app_alert_template,null);
+        builder1.setView(appAlertLayout);
+        TextView message_tv = (TextView)appAlertLayout.findViewById(R.id.message);
+        TextView maybeLater = (TextView)appAlertLayout.findViewById(R.id.maybeLater);
+        TextView prepInfo = (TextView)appAlertLayout.findViewById(R.id.prepInfo);
+        View verticalBorder = (View)appAlertLayout.findViewById(R.id.verticalBorder);
+        message_tv.setText(message);
+        builder1.setCancelable(false);
+        final AlertDialog alert11 = builder1.create();
+        if(no_of_buttons==1){
+            prepInfo.setVisibility(View.GONE);
+            verticalBorder.setVisibility(View.GONE);
+            maybeLater.setText("Got it!");
+            maybeLater.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                }
+            });
+        }else{
+            prepInfo.setVisibility(View.VISIBLE);
+            verticalBorder.setVisibility(View.VISIBLE);
+            maybeLater.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                }
+            });
+            prepInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                }
+            });
+        }
+        alert11.show();
+        //AppAlerts appAlerts = new AppAlerts(name,LynxManager.getDateTime(),LynxManager.getDateTime());
+        //db.createAppAlert(appAlerts);
+    }
 }
