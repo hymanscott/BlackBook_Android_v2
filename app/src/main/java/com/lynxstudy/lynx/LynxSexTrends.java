@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.helper.ExpandableHeightGridView;
 import com.lynxstudy.helper.TrendsDataPointAdapter;
 import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
@@ -43,7 +44,6 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
     TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,pageTitle,partnerTypeChartTitle,partnerHivChartTitle,partnersChartTitle,titleStats;
     DatabaseHelper db;
-    GridView gridView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -358,7 +358,6 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
 
         /*Second Section*/
       //  GridLayout gridLayout = (GridLayout)findViewById(R.id.GridLayout1);
-        gridView = (GridView)findViewById(R.id.gridView);
         ArrayList<String> progress_values = new ArrayList<String>();
         ArrayList<String> description_values = new ArrayList<String>();
 
@@ -462,7 +461,10 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         progress_values.add(String.valueOf(db.getFiveStarEncountersCount()));
         description_values.add("# of 5 star encounters");
         TrendsDataPointAdapter adapter = new TrendsDataPointAdapter(LynxSexTrends.this,progress_values,description_values);
-        gridView.setAdapter(adapter);
+        ExpandableHeightGridView heightGridView = (ExpandableHeightGridView)findViewById(R.id.heightGridView);
+        heightGridView.setExpanded(true);
+        heightGridView.setAdapter(adapter);
+
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
 		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));

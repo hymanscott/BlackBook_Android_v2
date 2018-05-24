@@ -3593,7 +3593,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c != null){
+        if (c != null && c.getCount()>0){
             c.moveToFirst();
 
             TestingHistory testingHistory = new TestingHistory();

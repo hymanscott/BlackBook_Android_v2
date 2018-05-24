@@ -2,6 +2,7 @@ package com.lynxstudy.lynx;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -28,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.AppAlerts;
 import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.DrugMaster;
 import com.lynxstudy.model.Encounter;
@@ -42,6 +44,10 @@ import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
 import org.w3c.dom.Text;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class EncounterStartActivity extends AppCompatActivity {
@@ -627,6 +633,57 @@ public class EncounterStartActivity extends AppCompatActivity {
             UserBadges allStarBadge = new UserBadges(all_star_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,all_star_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
             db.createUserBadge(allStarBadge);
         }
+        // Show In APP Alerts //
+
+        /* 2 or more sex acts in a week NOT ON PrEP / ON PrEP
+         * Compare current encounter date with all encounters and find difference
+         * if diff less than 7 increase moreThanTwoEncountersCount
+         * */
+        int moreThanTwoEncountersCount = 0;
+        if(db.getEncountersCount()>=2){
+            List<Encounter> encounterList = db.getAllEncounters();
+            for(Encounter encounter:encounterList){
+                if(encounter.getEncounter_id()!=encounterID){
+                    int diff = getElapsedDays(LynxManager.decryptString(LynxManager.getActiveEncounter().getDatetime()),LynxManager.decryptString(encounter.getDatetime()));
+                    if(diff<7){
+                        moreThanTwoEncountersCount++;
+                    }
+                }
+            }
+        }
+        if(moreThanTwoEncountersCount>=2){
+            if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
+                showAppAlert("It's been a busy week for you. Glad to see PrEP is part of your plan. Stay protected and keep having fun.",2,"More Sex Acts On PrEP");
+            }else{
+                showAppAlert("Seems like you've had a good week. PrEP can be a part of that by reducing your HIV risk and any anxiety about it.",2,"More Sex Acts Not On PrEP");
+            }
+        }
+        /*
+         * 1-4 partners in last month
+         * 5+ partners in a month
+         */
+        int partnersCount = 0;
+        if(LynxManager.isNewPartnerEncounter){
+            List<Partners> partnersList = db.getAllPartners();
+            Partners currentPartner = db.getPartnerbyID(LynxManager.getActivePartner().getPartner_id());
+            for (Partners partner : partnersList){
+                if(partner.getPartner_id()!=LynxManager.getActivePartner().getPartner_id()){
+                    int diff = getElapsedDays(currentPartner.getCreated_at(),partner.getCreated_at());
+                    if(diff<30){
+                        partnersCount++;
+                    }
+                    //Log.v("PartnerDiff",currentPartner.getCreated_at()+" - "+partner.getCreated_at()+"->"+diff);
+                }
+
+            }
+
+        }
+        if(partnersCount>=1 && partnersCount<=4){
+            showAppAlert("You've been getting out there. Nice. Use condoms and PrEP so your morning after memories are anxiety-free.",2,"1-4 Partners in last month");
+        }else if(partnersCount >= 5){
+            showAppAlert("Real talk: PrEP can keep the partying (or parties) going. Learn how you can reduce your high risk for HIV and still get your Netflix & Chill on.",2,"5 plus Partners in last month");
+        }
+
         // Clear Condomuse list//
         LynxManager.activeEncCondomUsed.clear();
         LynxManager.isNewPartnerEncounter= false;
@@ -726,5 +783,74 @@ public class EncounterStartActivity extends AppCompatActivity {
             finish();
         }
         return true;
+    }
+
+    private int getElapsedDays(String fromdate, String todate){
+        if(todate!=null && fromdate!=null){
+            SimpleDateFormat inputDF  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Calendar calCurrentDate = Calendar.getInstance();
+            Calendar cal = Calendar.getInstance();
+            Date date = null;
+            Date date1 = null;
+            try {
+                date = inputDF.parse(fromdate);
+                date1 = inputDF.parse(todate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            calCurrentDate.setTime(date);
+            cal.setTime(date1);
+            long milliSeconds2 = calCurrentDate.getTimeInMillis();
+            long milliSeconds1 = cal.getTimeInMillis();
+            long period = Math.abs(milliSeconds2 - milliSeconds1);
+            long days = period / (1000 * 60 * 60 * 24);
+            return (int) days;
+        }return 0;
+
+    }
+
+    private void showAppAlert(String message,int no_of_buttons,String name){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(EncounterStartActivity.this);
+        View appAlertLayout = getLayoutInflater().inflate(R.layout.app_alert_template,null);
+        builder1.setView(appAlertLayout);
+        TextView message_tv = (TextView)appAlertLayout.findViewById(R.id.message);
+        TextView maybeLater = (TextView)appAlertLayout.findViewById(R.id.maybeLater);
+        TextView prepInfo = (TextView)appAlertLayout.findViewById(R.id.prepInfo);
+        View verticalBorder = (View)appAlertLayout.findViewById(R.id.verticalBorder);
+        message_tv.setText(message);
+        builder1.setCancelable(false);
+        final AlertDialog alert11 = builder1.create();
+        if(no_of_buttons==1){
+            prepInfo.setVisibility(View.GONE);
+            verticalBorder.setVisibility(View.GONE);
+            maybeLater.setText("Got it!");
+            maybeLater.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                }
+            });
+        }else{
+            prepInfo.setVisibility(View.VISIBLE);
+            verticalBorder.setVisibility(View.VISIBLE);
+            maybeLater.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                }
+            });
+            prepInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                    Intent intent = new Intent(EncounterStartActivity.this,LynxPrep.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+        }
+        alert11.show();
+        AppAlerts appAlerts = new AppAlerts(name,LynxManager.getDateTime(),LynxManager.getDateTime());
+        db.createAppAlert(appAlerts);
     }
 }
