@@ -116,7 +116,11 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
         // Piwik Analytics //
         tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
 		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
-        TrackHelper.track().screen("/Lynxtesting/Locations").title("Lynxtesting/Locations").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+		if(getActivity().getClass().getSimpleName().equals("LynxPrep")){
+            TrackHelper.track().screen("/Lynxprep/Locations").title("Lynxprep/Locations").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+        }else{
+            TrackHelper.track().screen("/Lynxtesting/Locations").title("Lynxtesting/Locations").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+        }
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");

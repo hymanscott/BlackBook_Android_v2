@@ -53,6 +53,47 @@
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="48dp"
+                    android:visibility="gone"
+                    android:id="@+id/contextualTipsLayout"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/clipboard"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_marginLeft="48dp"
+                        android:layout_marginRight="48dp"
+                        android:layout_marginTop="32dp"
+                        android:lineSpacingMultiplier="1.50"
+                        android:textSize="16sp"
+                        android:textColor="@color/text_color"
+                        android:textStyle="bold"
+                        android:text="Test yourself."
+                        android:id="@+id/contextualTipsTitle"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_marginLeft="48dp"
+                        android:layout_marginRight="48dp"
+                        android:layout_marginTop="16dp"
+                        android:lineSpacingMultiplier="1.50"
+                        android:id="@+id/contextualTipsDesc"
+                        android:textSize="16sp"
+                        android:textColor="@color/text_color"
+                        android:text="Take care of your business without having anyone in your business.
+Add a new test to get started."/>
+                </LinearLayout>
                 <TableLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"

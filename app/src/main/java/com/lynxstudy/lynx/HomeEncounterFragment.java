@@ -126,7 +126,7 @@ public class HomeEncounterFragment extends Fragment {
         int j = 0;
 
         if(allEncounters.isEmpty()){
-            TableRow encounterRow = new TableRow(getActivity());
+            /*TableRow encounterRow = new TableRow(getActivity());
             encounterRow.setPadding(0, 0, 10, 0);
             encounterRow.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
             TextView Info = new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);
@@ -134,9 +134,13 @@ public class HomeEncounterFragment extends Fragment {
             Info.setTypeface(tf);
             Info.setTextColor(getResources().getColor(R.color.text_color));
             encounterRow.addView(Info);
-            encounterTable.addView(encounterRow);
+            encounterTable.addView(encounterRow);*/
+            ((TextView) view.findViewById(R.id.contextualTipsTitle)).setTypeface(tf_bold);
+            ((TextView) view.findViewById(R.id.contextualTipsDesc)).setTypeface(tf);
+            ((LinearLayout) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.VISIBLE);
         }
         else {
+            ((LinearLayout) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.GONE);
             Collections.sort(allEncounters, new Encounter.CompDate(true));
             for (Encounter encounter : allEncounters) {
                 int enc_partner_id = encounter.getEncounter_partner_id();

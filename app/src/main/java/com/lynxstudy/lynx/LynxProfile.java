@@ -56,6 +56,7 @@ import com.lynxstudy.model.HomeTestingRequest;
 import com.lynxstudy.model.PartnerContact;
 import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.Partners;
+import com.lynxstudy.model.PrepFollowup;
 import com.lynxstudy.model.TestingHistory;
 import com.lynxstudy.model.TestingHistoryInfo;
 import com.lynxstudy.model.TestingReminder;
@@ -960,15 +961,31 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
             // Update Score //
             calculateSexProScore getscore = new calculateSexProScore(LynxProfile.this);
             int final_score = 1;
+            int final_score_alt = 1;
             if(isPrep.equals("Yes")){
                 final_score = Math.round((float) getscore.getAdjustedScore());
+                final_score_alt = Math.round((float) getscore.getUnAdjustedScore());
             }else{
                 final_score = Math.round((float) getscore.getUnAdjustedScore());
+                final_score_alt = Math.round((float) getscore.getAdjustedScore());
             }
             User_baseline_info user_baseline_info = db.getUserBaselineInfobyUserID(LynxManager.getActiveUser().getUser_id());
             String cal_date = user_baseline_info.getSexpro_calculated_date();
             db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), final_score,isPrep, cal_date, String.valueOf(R.string.statusUpdateNo));
-            Log.v("ScoreStat",final_score+"-"+isPrep+"--"+cal_date);
+            //Log.v("ScoreStat",final_score+"-"+isPrep+"--"+cal_date);
+
+            // Create PREP FOLLOWUP //
+            PrepFollowup prepFollowup = new PrepFollowup();
+            prepFollowup.setUser_id(LynxManager.getActiveUser().getUser_id());
+            prepFollowup.setDatetime(LynxManager.encryptString(LynxManager.getUTCDateTime()));
+            prepFollowup.setPrep(LynxManager.encryptString(isPrep));
+            prepFollowup.setScore(LynxManager.encryptString(String.valueOf(final_score)));
+            prepFollowup.setScore_alt(LynxManager.encryptString(String.valueOf(final_score_alt)));
+            prepFollowup.setIs_weekly_checkin(0);
+            prepFollowup.setNo_of_prep_days(LynxManager.encryptString(""));
+            prepFollowup.setHave_encounters_to_report(LynxManager.encryptString(""));
+            prepFollowup.setStatus_update(LynxManager.encryptString(getResources().getString(R.string.statusUpdateNo)));
+            db.createPrepFollowup(prepFollowup);
 
             // Diary Reminder Save //
             String day_of_week = day.getText().toString();

@@ -100,11 +100,18 @@ public class BaselineActivity extends AppCompatActivity {
             textView10.setTypeface(tf);
             textView11.setTypeface(tf);
             next.setTypeface(tf_bold);
-            LynxManager.getActiveUserBaselineInfo().setHiv_negative_count("0");
+            User_baseline_info userBaselineInfo = new User_baseline_info(LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString("0")
+                    , LynxManager.encryptString("0"), LynxManager.encryptString("0"),
+                    "", "0%","","0%","",0,"No",LynxManager.getDateTime(),String.valueOf(R.string.statusUpdateNo),true);
+            LynxManager.setActiveUserBaselineInfo(userBaselineInfo);
+            UserAlcoholUse userAlcoholUse = new UserAlcoholUse(2, LynxManager.getActiveUser().getUser_id(),
+                    LynxManager.encryptString("0"), LynxManager.encryptString("0"), LynxManager.encryptString("Yes"),String.valueOf(R.string.statusUpdateNo),true);
+            LynxManager.setActiveUserAlcoholUse(userAlcoholUse);
+            /*LynxManager.getActiveUserBaselineInfo().setHiv_negative_count("0");
             LynxManager.getActiveUserBaselineInfo().setHiv_positive_count("0");
             LynxManager.getActiveUserBaselineInfo().setHiv_unknown_count("0");
             LynxManager.getActiveUserPrimaryPartner().setName(LynxManager.encryptString(""));
-            LynxManager.getActiveUserAlcoholUse().setNo_alcohol_in_day(LynxManager.encryptString(""));
+            LynxManager.getActiveUserAlcoholUse().setNo_alcohol_in_day(LynxManager.encryptString(""));*/
             // Piwik Analytics //
             Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
 			tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
@@ -718,7 +725,8 @@ public class BaselineActivity extends AppCompatActivity {
                         // Toast.makeText(getApplication().getBaseContext(),"User Baseline Info Added", Toast.LENGTH_SHORT).show();
 
                         // updateBy(baselineID,userID,status)
-                        db.updateUserBaselineInfoByStatus(LynxManager.getActiveUserBaselineInfo().getBaseline_id(), LynxManager.getActiveUser().getUser_id(), String.valueOf(R.string.statusUpdateYes));
+                        // Need to update score immediately after this activity finishes off. Hence Not Updating the status_update field here.
+                        db.updateUserBaselineInfoByStatus(LynxManager.getActiveUserBaselineInfo().getBaseline_id(), LynxManager.getActiveUser().getUser_id(), String.valueOf(R.string.statusUpdateNo));
 
                     }
                     // looping through All Contacts
