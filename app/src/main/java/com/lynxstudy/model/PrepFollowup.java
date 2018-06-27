@@ -1,5 +1,7 @@
 package com.lynxstudy.model;
 
+import com.lynxstudy.lynx.LynxManager;
+
 /**
  * Created by hariprasad on 14/06/18.
  */
@@ -131,5 +133,15 @@ public class PrepFollowup {
 
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
+    }
+
+    public void decryptPrepFollowup(){
+        this.datetime = LynxManager.decryptString(datetime);
+        this.prep = LynxManager.decryptString(prep);
+        this.score = LynxManager.decryptString(score);
+        this.score_alt = LynxManager.decryptString(score_alt);
+        this.no_of_prep_days = LynxManager.decryptString(no_of_prep_days);
+        this.have_encounters_to_report = LynxManager.decryptString(have_encounters_to_report);
+        this.status_update = LynxManager.decryptString(status_update);
     }
 }

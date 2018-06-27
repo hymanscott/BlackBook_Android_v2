@@ -63,6 +63,7 @@ import com.lynxstudy.model.Users;
 
 import net.hockeyapp.android.CrashManager;
 import net.hockeyapp.android.UpdateManager;
+import net.hockeyapp.android.metrics.model.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -1102,8 +1103,10 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         List<PrepFollowup> prepFollowupList = db.getPrepFollowupByStatusUpdate(LynxManager.encryptString(getResources().getString(R.string.statusUpdateNo)));
         for(PrepFollowup prepFollowup: prepFollowupList){
             Gson gson_prep_followup = new Gson();
+            prepFollowup.decryptPrepFollowup();
             String json_prep_followup = gson_prep_followup.toJson(prepFollowup);
             String get_query_string = LynxManager.getQueryString(json_prep_followup);
+            new prepFollowupsOnline(get_query_string).execute();
         }
     }
 

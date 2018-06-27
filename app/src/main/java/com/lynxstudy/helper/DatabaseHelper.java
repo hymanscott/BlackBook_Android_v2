@@ -5143,7 +5143,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_PREP_FUP_PREP_DAYS, prepFollowup.getNo_of_prep_days());
         values.put(KEY_PREP_FUP_ENCOUNTERS_REPORT, prepFollowup.getHave_encounters_to_report());
         values.put(KEY_STATUS_UPDATE, prepFollowup.getStatus_update());
-        values.put(KEY_CREATED_AT, getDateTime());
+        values.put(KEY_CREATED_AT, prepFollowup.getCreated_at());
 
         // insert row
         return (int) db.insert(TABLE_PREP_FUP, null, values);
