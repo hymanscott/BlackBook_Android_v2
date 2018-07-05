@@ -25,9 +25,9 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/welcome_lynx_icon"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginTop="48dp"
                     android:id="@+id/welcome_screen_logo"
-                    android:layout_marginBottom="40dp"/>
+                    android:layout_marginBottom="24dp"/>
                 <TextView
                     android:id="@+id/section_label"
                     android:layout_width="match_parent"
@@ -60,7 +60,7 @@
         android:orientation="horizontal"
         android:id="@+id/indicators"
         android:layout_above="@+id/nextScreen"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="18dp"
         android:gravity="center_horizontal">
         <View
             android:layout_width="8dp"
