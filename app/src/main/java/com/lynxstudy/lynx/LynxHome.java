@@ -48,6 +48,7 @@ import com.lynxstudy.model.HomeTestingRequest;
 import com.lynxstudy.model.PartnerContact;
 import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.Partners;
+import com.lynxstudy.model.PrepFollowup;
 import com.lynxstudy.model.TestingHistory;
 import com.lynxstudy.model.TestingHistoryInfo;
 import com.lynxstudy.model.TestingReminder;
@@ -62,6 +63,7 @@ import com.lynxstudy.model.Users;
 
 import net.hockeyapp.android.CrashManager;
 import net.hockeyapp.android.UpdateManager;
+import net.hockeyapp.android.metrics.model.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -449,7 +451,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 }
             }
             if(db.getTestingHistoriesCountByTestingId(2)==0 && !isPositiveHIVTestLogged()){
-                message = "You haven't entered an HIV test yet. Don't forget to do your first set of test!";
+                message = "You haven't entered an STD test yet. Don't forget to do your first set of test!";
                 if(db.getAppAlertsCountByName("Reminder One")==0){
                     showAppAlert(message,1,"Reminder One");
                 }
@@ -463,13 +465,13 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
 
         }else if(elapsed_reg_days>30){
             if(db.getTestingHistoriesCountByTestingId(1)==0 && !isPositiveHIVTestLogged()){
-                message = "It’s been more than 2 months since your last test. You deserve to know your HIV status. Test time, baby!";
+                message = "It’s been more than 1 month since your last test. You deserve to know your HIV status. Test time, baby!";
                 if(db.getAppAlertsCountByName("Reminder Two")==0){
                     showAppAlert(message,1,"Reminder Two");
                 }
             }
             if(db.getTestingHistoriesCountByTestingId(2)==0 && !isPositiveHIVTestLogged()){
-                message = "It’s been more than 2 months since your last test. Getting tested on the regular is a great habit to have. Speaking of which, it's that time. With STIs and related HIV risk on the rise, stay on track and get tested this week.";
+                message = "It’s been more than 1 month since your last test. Getting tested on the regular is a great habit to have. Speaking of which, it's that time. With STIs and related HIV risk on the rise, stay on track and get tested this week.";
                 if(db.getAppAlertsCountByName("Reminder Two")==0){
                     showAppAlert(message,1,"Reminder Two");
                 }
@@ -780,6 +782,14 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         int drug_use_min = 0;
         if(druguseReminder != null) {
             String drug_use_time = LynxManager.decryptString(druguseReminder.getNotification_time());
+
+            /*
+            * Date time values having empty space when updated by iOS app
+            * eg: *" 10:24 AM"* instead of *"10:24 AM"*
+            * To avoid the crash using trim method
+            * */
+            drug_use_time = drug_use_time.trim();
+
             notes1 = LynxManager.decryptString(druguseReminder.getReminder_notes());
             if(drug_use_time.length()!=8) {
                 String[] a = drug_use_time.split(":");
@@ -1087,6 +1097,16 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             String json_userBadge = gson_userBadge.toJson(userBadge);
             String get_query_string = LynxManager.getQueryString(json_userBadge);
             new userBadgesOnline(get_query_string).execute();
+        }
+
+        // Prep Followups //
+        List<PrepFollowup> prepFollowupList = db.getPrepFollowupByStatusUpdate(LynxManager.encryptString(getResources().getString(R.string.statusUpdateNo)));
+        for(PrepFollowup prepFollowup: prepFollowupList){
+            Gson gson_prep_followup = new Gson();
+            prepFollowup.decryptPrepFollowup();
+            String json_prep_followup = gson_prep_followup.toJson(prepFollowup);
+            String get_query_string = LynxManager.getQueryString(json_prep_followup);
+            new prepFollowupsOnline(get_query_string).execute();
         }
     }
 
@@ -2154,6 +2174,65 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
 
                         int id = Integer.parseInt(jsonObj.getString("id"));
                         db.updateUserBadgeByStatus(id, String.valueOf(R.string.statusUpdateYes));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Log.e("ServiceHandler", "Couldn't get any data from the url");
+            }
+        }
+    }
+
+
+    /**
+     * Async task class to get json by making HTTP call
+     *
+     * Prep Followups
+     */
+
+    private class prepFollowupsOnline extends AsyncTask<Void, Void, Void> {
+
+        String prepFollowupResult;
+        String jsonObj;
+
+
+        prepFollowupsOnline(String jsonObj) {
+            this.jsonObj = jsonObj;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            ServiceHandler sh = new ServiceHandler();
+            String jsonAlcoholUseStr = null;
+            try {
+                jsonAlcoholUseStr = sh.makeServiceCall(LynxManager.getBaseURL() + "PrepFollowups/add?hashkey="+ LynxManager.stringToHashcode(jsonObj + LynxManager.hashKey)+"&timestamp="+ URLEncoder.encode(LynxManager.getDateTime(), "UTF-8"), jsonObj);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            Log.d("Response: ", ">prepFollowup " + jsonAlcoholUseStr);
+            prepFollowupResult = jsonAlcoholUseStr;
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            if (prepFollowupResult != null) {
+                try {
+                    JSONObject jsonObj = new JSONObject(prepFollowupResult);
+                    boolean is_error = jsonObj.getBoolean("is_error");
+                    if (is_error) {
+                        Log.d("Response: ", "> prepFollowupError. " + jsonObj.getString("message"));
+                    } else {
+
+                        int id = Integer.parseInt(jsonObj.getString("id"));
+                        db.updatePrepFolloupByStatus(id, LynxManager.encryptString(getResources().getString(R.string.statusUpdateYes)));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

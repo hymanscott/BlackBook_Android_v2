@@ -75,16 +75,10 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
         dial_layout.setLayoutParams(params);
 
         calculateSexProScore getscore = new calculateSexProScore(BaselineSexproScoreActivity.this);
-        float current_score = (float) getscore.getUnAdjustedScore();
-        if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
-            current_score = (float) getscore.getAdjustedScore();
-        }
         int adjustedScore = Math.round((float) getscore.getAdjustedScore());
         int unAdjustedScore = Math.round((float) getscore.getUnAdjustedScore());
-        int score = Math.round(current_score);
         db =new DatabaseHelper(BaselineSexproScoreActivity.this);
-        db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), score,LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()), LynxManager.getUTCDateTime(), String.valueOf(R.string.statusUpdateNo));
-        reg_sexPro_score_value.setText(" " + score);
+
         final ImageView dial_imgview = (ImageView)findViewById(R.id.imageView);
         int final_score;
         if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
@@ -122,6 +116,8 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
             }
             score_message.setText(message);
         }
+        db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), final_score,LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()), LynxManager.getUTCDateTime(), String.valueOf(R.string.statusUpdateNo));
+        reg_sexPro_score_value.setText(" " + final_score);
         ImageView scoreImage = (ImageView)findViewById(R.id.scoreImage);
         // Score Bottom Image //
         switch (final_score){
@@ -271,20 +267,6 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
         infoLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* int[] location = new int[2];
-                // Get the x, y location and store it in the location[] array
-                // location[0] = x, location[1] = y.
-                btn.getLocationOnScreen(location);
-
-                //Initialize the Point with x, and y positions
-                Point p = new Point();
-                p.x = location[0];
-                p.y = location[1];
-
-                //Open popup window
-
-                if (p != null)
-                    showPopup(v,p);*/
                infolayout.setVisibility(View.VISIBLE);
                main_content.setVisibility(View.GONE);
                isInfoShown = true;
@@ -296,43 +278,6 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
 		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         TrackHelper.track().screen("/Baseline/Sexproscore").title("Baseline/Sexproscore").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
-    /*public void showPopup(View anchorView,Point p) {
-
-
-        View popupView = getLayoutInflater().inflate(R.layout.fragment_partner_ratings_popup, null);
-
-        final PopupWindow popupWindow = new PopupWindow(popupView,
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        TextView first_paragraph = (TextView)popupView.findViewById(R.id.first_paragraph);
-        first_paragraph.setTypeface(tf);
-        first_paragraph.setMinHeight(250);
-        first_paragraph.setText(getResources().getString(R.string.reg_score_summary));
-        TextView second_paragraph = (TextView)popupView.findViewById(R.id.second_paragraph);
-        second_paragraph.setTypeface(tf);
-        second_paragraph.setVisibility(View.GONE);
-        popupWindow.setHeight(500);
-        // If the PopupWindow should be focusable
-        popupWindow.setFocusable(true);
-
-        // If you need the PopupWindow to dismiss when when touched outside
-        popupWindow.setBackgroundDrawable(new ColorDrawable());
-
-        int location[] = new int[2];
-
-        // Get the View's(the one that was clicked in the Fragment) location
-        //anchorView.getLocationOnScreen(location);
-        *//*ImageView btn = (ImageView)findViewById(R.id.imgBtn_partner_ratings);
-        btn.getLocationOnScreen(location);
-        p = new Point();
-        p.x = location[0];
-        p.y = location[1];*//*
-        int OFFSET_X = 10;
-        int OFFSET_Y = 20;
-        // Using location, the PopupWindow will be displayed right under anchorView //Gravity.NO_GRAVITY
-        popupWindow.showAtLocation(anchorView, Gravity.TOP | Gravity.START, p.x - (popupView.getWidth() + OFFSET_X), p.y + OFFSET_Y);
-
-    }*/
     public boolean onSexProScoreClose(View view) {
          /*
         * Scheduling Local Notification

@@ -71,4 +71,7 @@
     <color name="alert_box_btn">#FF256DFF</color>
     <color name="alert_box_border">#C74D4D4D</color>
     <color name="alert_box_text">#FF343434</color>
+
+    <!--Dot Indicators-->
+    <color name="dot_indicator_score_page">#FFA5A5A5</color>
 </resources>

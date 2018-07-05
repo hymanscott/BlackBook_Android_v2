@@ -83,7 +83,8 @@
                             android:textCursorDrawable="@drawable/white_cursor"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            android:textSize="@dimen/encounter_tv_textsize" />
+                            android:textSize="@dimen/encounter_tv_textsize"
+                            android:maxLength="255"/>
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
@@ -112,77 +113,3 @@
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>
-<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/encounter_bg">
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/scrollView"
-        android:fillViewport="false">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:text="@string/AddPartnerTitle"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/colorAccent"
-                android:layout_alignParentTop="true"
-                android:id="@+id/add_partner_title"
-                android:layout_centerHorizontal="true" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Nick name"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:textSize="20sp"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:background="@drawable/lynx_button_dark"
-                android:gravity="center_vertical|center_horizontal"
-                android:id="@+id/new_partner_nickname" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Partner Notes"
-                android:textSize="20sp"
-                android:textColor="@color/text_color"
-                android:id="@+id/partnerNotesTitle"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"/>
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:textSize="18sp"
-                android:textColor="@color/text_color"
-                android:ems="10"
-                android:id="@+id/partnerNotes"
-                android:layout_gravity="center_horizontal" />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Next"
-                android:layout_gravity="center_horizontal|bottom"
-                android:textStyle="bold"
-                android:layout_margin="10dp"
-                android:background="@drawable/lynx_button"
-                android:textColor="@color/white"
-                android:id="@+id/next"
-                android:onClick="onPartnerNotesNext" />
-        </LinearLayout>
-    </ScrollView>
-</RelativeLayout>-->

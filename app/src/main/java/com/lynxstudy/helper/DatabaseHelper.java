@@ -21,6 +21,7 @@ import com.lynxstudy.model.HomeTestingRequest;
 import com.lynxstudy.model.PartnerContact;
 import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.Partners;
+import com.lynxstudy.model.PrepFollowup;
 import com.lynxstudy.model.PrepInformation;
 import com.lynxstudy.model.STIMaster;
 import com.lynxstudy.model.Statistics;
@@ -94,6 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_STATISTICS = "Statistics";
     private static final String TABLE_USER_BADGES = "UserBadges";
     private static final String TABLE_APP_ALERTS = "AppAlerts";
+    private static final String TABLE_PREP_FUP = "prep_followup";
 
     // Common column names
     private static final String KEY_CREATED_AT = "created_at";
@@ -357,6 +359,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_APP_ALERT_MODIFIED = "app_alert_modified";
     private static final String KEY_APP_ALERT_CREATEDAT = "app_alert_createdat";
 
+    // PrEP Follow up table //
+    private static final String KEY_PREP_FUP_ID = "prep_follow_id";
+    private static final String KEY_PREP_FUP_DATE = "datetime";
+    private static final String KEY_PREP_FUP_PREP = "prep";
+    private static final String KEY_PREP_FUP_SCORE = "score";
+    private static final String KEY_PREP_FUP_SCORE_ALT = "score_alt";
+    private static final String KEY_PREP_FUP_WEEKLY_CHECKIN = "is_weekly_checkin";
+    private static final String KEY_PREP_FUP_PREP_DAYS = "no_of_prep_days";
+    private static final String KEY_PREP_FUP_ENCOUNTERS_REPORT = "have_encounters_to_report";
+
     // Table Create Statements
     // Users table create statement
     private static final String CREATE_TABLE_USERS = "CREATE TABLE "
@@ -517,6 +529,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + TABLE_APP_ALERTS + "(" + KEY_APP_ALERT_ID + " INTEGER PRIMARY KEY," + KEY_APP_ALERT_NAME + " TEXT,"
             + KEY_APP_ALERT_MODIFIED + " TEXT," + KEY_APP_ALERT_CREATEDAT + " TEXT)";
 
+    private static final String CREATE_TABLE_PREP_FUP = "CREATE TABLE "
+            + TABLE_PREP_FUP + "( " + KEY_PREP_FUP_ID + " INTEGER PRIMARY KEY," + KEY_USERS_ID + " INTEGER," + KEY_PREP_FUP_DATE + " TEXT,"
+            + KEY_PREP_FUP_PREP + " TEXT,"+ KEY_PREP_FUP_SCORE + " TEXT," + KEY_PREP_FUP_SCORE_ALT + " TEXT,"
+            + KEY_PREP_FUP_PREP_DAYS + " TEXT," + KEY_PREP_FUP_WEEKLY_CHECKIN + " INTEGER," + KEY_PREP_FUP_ENCOUNTERS_REPORT + " TEXT,"
+            + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " TEXT)";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
@@ -557,6 +575,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_STATISTICS);
         db.execSQL(CREATE_TABLE_USER_BADGES);
         db.execSQL(CREATE_TABLE_APP_ALERT);
+        db.execSQL(CREATE_TABLE_PREP_FUP);
 
     }
 
@@ -592,6 +611,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STATISTICS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_BADGES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_APP_ALERTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PREP_FUP);
         // create new tables
         onCreate(db);
         Log.v("Database upgrade","Executed");
@@ -656,6 +676,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_STATISTICS, null, null);
         db.delete(TABLE_USER_BADGES, null, null);
         db.delete(TABLE_APP_ALERTS, null, null);
+        db.delete(TABLE_PREP_FUP, null, null);
     }
 
     // ------------------------ "Users" table methods ----------------//
@@ -3593,7 +3614,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c != null){
+        if (c != null && c.getCount()>0){
             c.moveToFirst();
 
             TestingHistory testingHistory = new TestingHistory();
@@ -5082,6 +5103,139 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // updating row
         return db.update(TABLE_APP_ALERTS, values, KEY_APP_ALERT_ID+ " = ?",
                 new String[]{String.valueOf(id)});
+    }
+
+    // PREP Follow UP table//
+    /**
+     * Creating Method
+     */
+    public int createPrepFollowup(PrepFollowup prepFollowup) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        //values.put(KEY_PREP_FUP_ID, prepFollowup.getPrep_followup_id());
+        values.put(KEY_USERS_ID, prepFollowup.getUser_id());
+        values.put(KEY_PREP_FUP_DATE, prepFollowup.getDatetime());
+        values.put(KEY_PREP_FUP_PREP, prepFollowup.getPrep());
+        values.put(KEY_PREP_FUP_SCORE, prepFollowup.getScore());
+        values.put(KEY_PREP_FUP_SCORE_ALT, prepFollowup.getScore_alt());
+        values.put(KEY_PREP_FUP_WEEKLY_CHECKIN, prepFollowup.getIs_weekly_checkin());
+        values.put(KEY_PREP_FUP_PREP_DAYS, prepFollowup.getNo_of_prep_days());
+        values.put(KEY_PREP_FUP_ENCOUNTERS_REPORT, prepFollowup.getHave_encounters_to_report());
+        values.put(KEY_STATUS_UPDATE, prepFollowup.getStatus_update());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        return (int) db.insert(TABLE_PREP_FUP, null, values);
+    }
+
+    public int createPrepFollowupWithID(PrepFollowup prepFollowup){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_PREP_FUP_ID, prepFollowup.getPrep_followup_id());
+        values.put(KEY_USERS_ID, prepFollowup.getUser_id());
+        values.put(KEY_PREP_FUP_DATE, prepFollowup.getDatetime());
+        values.put(KEY_PREP_FUP_PREP, prepFollowup.getPrep());
+        values.put(KEY_PREP_FUP_SCORE, prepFollowup.getScore());
+        values.put(KEY_PREP_FUP_SCORE_ALT, prepFollowup.getScore_alt());
+        values.put(KEY_PREP_FUP_WEEKLY_CHECKIN, prepFollowup.getIs_weekly_checkin());
+        values.put(KEY_PREP_FUP_PREP_DAYS, prepFollowup.getNo_of_prep_days());
+        values.put(KEY_PREP_FUP_ENCOUNTERS_REPORT, prepFollowup.getHave_encounters_to_report());
+        values.put(KEY_STATUS_UPDATE, prepFollowup.getStatus_update());
+        values.put(KEY_CREATED_AT, prepFollowup.getCreated_at());
+
+        // insert row
+        return (int) db.insert(TABLE_PREP_FUP, null, values);
+    }
+
+    public List<PrepFollowup> getAllPrepFollowup(){
+        List<PrepFollowup> prepFollowupList = new ArrayList<PrepFollowup>();
+        String selectQuery = "SELECT  * FROM " + TABLE_PREP_FUP;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                PrepFollowup prepFollowup = new PrepFollowup();
+                prepFollowup.setPrep_followup_id(c.getInt(c.getColumnIndex(KEY_PREP_FUP_ID)));
+                prepFollowup.setUser_id(c.getInt(c.getColumnIndex(KEY_USERS_ID)));
+                prepFollowup.setDatetime(c.getString(c.getColumnIndex(KEY_PREP_FUP_DATE)));
+                prepFollowup.setPrep(c.getString(c.getColumnIndex(KEY_PREP_FUP_PREP)));
+                prepFollowup.setScore(c.getString(c.getColumnIndex(KEY_PREP_FUP_SCORE)));
+                prepFollowup.setScore_alt(c.getString(c.getColumnIndex(KEY_PREP_FUP_SCORE_ALT)));
+                prepFollowup.setIs_weekly_checkin(c.getInt(c.getColumnIndex(KEY_PREP_FUP_WEEKLY_CHECKIN)));
+                prepFollowup.setNo_of_prep_days(c.getString(c.getColumnIndex(KEY_PREP_FUP_PREP_DAYS)));
+                prepFollowup.setHave_encounters_to_report(c.getString(c.getColumnIndex(KEY_PREP_FUP_ENCOUNTERS_REPORT)));
+                prepFollowup.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+                prepFollowup.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // adding to Users list
+                prepFollowupList.add(prepFollowup);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return prepFollowupList;
+    }
+    public List<PrepFollowup> getPrepFollowupByStatusUpdate(String status){
+        List<PrepFollowup> prepFollowupList = new ArrayList<PrepFollowup>();
+        String selectQuery = "SELECT  * FROM " + TABLE_PREP_FUP + " WHERE " + KEY_STATUS_UPDATE + " = '" + status + "'";
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                PrepFollowup prepFollowup = new PrepFollowup();
+                prepFollowup.setPrep_followup_id(c.getInt(c.getColumnIndex(KEY_PREP_FUP_ID)));
+                prepFollowup.setUser_id(c.getInt(c.getColumnIndex(KEY_USERS_ID)));
+                prepFollowup.setDatetime(c.getString(c.getColumnIndex(KEY_PREP_FUP_DATE)));
+                prepFollowup.setPrep(c.getString(c.getColumnIndex(KEY_PREP_FUP_PREP)));
+                prepFollowup.setScore(c.getString(c.getColumnIndex(KEY_PREP_FUP_SCORE)));
+                prepFollowup.setScore_alt(c.getString(c.getColumnIndex(KEY_PREP_FUP_SCORE_ALT)));
+                prepFollowup.setIs_weekly_checkin(c.getInt(c.getColumnIndex(KEY_PREP_FUP_WEEKLY_CHECKIN)));
+                prepFollowup.setNo_of_prep_days(c.getString(c.getColumnIndex(KEY_PREP_FUP_PREP_DAYS)));
+                prepFollowup.setHave_encounters_to_report(c.getString(c.getColumnIndex(KEY_PREP_FUP_ENCOUNTERS_REPORT)));
+                prepFollowup.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+                prepFollowup.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // adding to Users list
+                prepFollowupList.add(prepFollowup);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return prepFollowupList;
+    }
+    /**
+     * Updating a User Badges by status
+     */
+    public int updatePrepFolloupByStatus(int id,String status) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_STATUS_UPDATE,status);
+        // updating row
+        return db.update(TABLE_PREP_FUP, values, KEY_PREP_FUP_ID + " = ?",
+                new String[]{String.valueOf(id)});
+    }
+
+    public int getPrepFolloupCount(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_PREP_FUP;
+
+        android.database.Cursor cursor = db.rawQuery(selectQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
     }
 }
 

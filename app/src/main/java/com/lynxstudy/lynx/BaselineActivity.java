@@ -100,11 +100,13 @@ public class BaselineActivity extends AppCompatActivity {
             textView10.setTypeface(tf);
             textView11.setTypeface(tf);
             next.setTypeface(tf_bold);
-            LynxManager.getActiveUserBaselineInfo().setHiv_negative_count("0");
-            LynxManager.getActiveUserBaselineInfo().setHiv_positive_count("0");
-            LynxManager.getActiveUserBaselineInfo().setHiv_unknown_count("0");
-            LynxManager.getActiveUserPrimaryPartner().setName(LynxManager.encryptString(""));
-            LynxManager.getActiveUserAlcoholUse().setNo_alcohol_in_day(LynxManager.encryptString(""));
+            User_baseline_info userBaselineInfo = new User_baseline_info(LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString("0")
+                    , LynxManager.encryptString("0"), LynxManager.encryptString("0"),
+                    "", "0%","","0%","",0,"No",LynxManager.getDateTime(),String.valueOf(R.string.statusUpdateNo),true);
+            LynxManager.setActiveUserBaselineInfo(userBaselineInfo);
+            UserAlcoholUse userAlcoholUse = new UserAlcoholUse(2, LynxManager.getActiveUser().getUser_id(),
+                    LynxManager.encryptString("0"), LynxManager.encryptString("0"), LynxManager.encryptString("Yes"),String.valueOf(R.string.statusUpdateNo),true);
+            LynxManager.setActiveUserAlcoholUse(userAlcoholUse);
             // Piwik Analytics //
             Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
 			tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
@@ -629,25 +631,6 @@ public class BaselineActivity extends AppCompatActivity {
         startActivity(home);
         finish();
     }
-    /*public boolean onSexProScoreClose(View view) {
-         *//*
-        * Scheduling Local Notification
-        **//*
-        String notes = "You have a new message!";
-        SimpleDateFormat inputDF1  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date1 = null;
-        try {
-            date1 = inputDF1.parse(LynxManager.getActiveUser().getCreated_at());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        String dayOfTheWeek = (String) android.text.format.DateFormat.format("EEEE", date1);
-        Intent home = new Intent(this, LynxSexPro.class);
-        home.putExtra("fromactivity",BaselineActivity.this.getClass().getSimpleName());
-        startActivity(home);
-        finish();
-        return true;
-    }*/
     /**
      * Async task class to get json by making HTTP call
      *
@@ -718,7 +701,8 @@ public class BaselineActivity extends AppCompatActivity {
                         // Toast.makeText(getApplication().getBaseContext(),"User Baseline Info Added", Toast.LENGTH_SHORT).show();
 
                         // updateBy(baselineID,userID,status)
-                        db.updateUserBaselineInfoByStatus(LynxManager.getActiveUserBaselineInfo().getBaseline_id(), LynxManager.getActiveUser().getUser_id(), String.valueOf(R.string.statusUpdateYes));
+                        // Need to update score immediately after this activity finishes off. Hence Not Updating the status_update field here.
+                        db.updateUserBaselineInfoByStatus(LynxManager.getActiveUserBaselineInfo().getBaseline_id(), LynxManager.getActiveUser().getUser_id(), String.valueOf(R.string.statusUpdateNo));
 
                     }
                     // looping through All Contacts

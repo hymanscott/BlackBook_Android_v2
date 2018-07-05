@@ -128,6 +128,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
     int back_press_count = 0;
     private View view;
     private  Tracker tracker;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -299,133 +300,140 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
          */
         Collections.sort(histories, new TestingHistory.CompDate(true));
         int j = 0;
-        for (TestingHistory history : histories) {
-            TestNameMaster name = db.getTestingNamebyID(history.getTesting_id());
-            Log.v("Date & ID",history.getTesting_history_id() + "" + name.getTestName());
+        if(histories.isEmpty()){
+            ((TextView) view.findViewById(R.id.contextualTipsTitle)).setTypeface(tf_bold);
+            ((TextView) view.findViewById(R.id.contextualTipsDesc)).setTypeface(tf);
+            ((LinearLayout) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.VISIBLE);
+        }else{
+            ((LinearLayout) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.GONE);
+            for (TestingHistory history : histories) {
+                TestNameMaster name = db.getTestingNamebyID(history.getTesting_id());
+                Log.v("Date & ID",history.getTesting_history_id() + "" + name.getTestName());
 
-            if(name.getTestName().equals("HIV Test")) {
-                TableRow tr = new TableRow(getActivity());
-                final View v = LayoutInflater.from(getActivity()).inflate(R.layout.testing_history_row, tr, false);
-                //want to get childs of row for example TextView, get it like this:
-                TextView date = (TextView) v.findViewById(R.id.date);
-                date.setTypeface(tf);
-                date.setTextColor(getResources().getColor(R.color.text_color));
-                TextView testname = (TextView) v.findViewById(R.id.testname);
-                testname.setTypeface(tf);
-                testname.setTextColor(getResources().getColor(R.color.text_color));
-                TextView teststatus = (TextView) v.findViewById(R.id.teststatus);
-                teststatus.setTypeface(tf);
-                teststatus.setTextColor(getResources().getColor(R.color.text_color));
-                ImageView testimage = (ImageView)v.findViewById(R.id.imageView);
-                date.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
-                testname.setText(name.getTestName());
-                List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(history.getTesting_history_id());
-                for (TestingHistoryInfo historyInfo : testinghistoryInfoList) {
-                    if(historyInfo.getSti_id()==0){
-                        if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
-                            teststatus.setText("Positive");
-                        }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
-                            teststatus.setText("Negative");
-                        }else {
-                            teststatus.setText("Didn't Test");
-                        }
-                        String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
-                        if(!historyInfoAttachment.equals("")){
-                            String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
-                            File mediaFile = new File(imgDir+historyInfoAttachment);
-                            if(mediaFile.exists()){
-                                Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfoAttachment);
-                                int h = 50; // height in pixels
-                                int w = 50; // width in pixels
-                                Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
-                                testimage.setImageBitmap(scaled);
-                            }else{
-                                //  ***********set url from server*********** //
-                                testimage.setImageResource(R.drawable.photocamera);
-                                LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                                testimage.setLayoutParams(p);
-                                new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(testimage);
-                                new DownloadFileFromURL(testimage).execute(LynxManager.getTestImageBaseUrl()+historyInfoAttachment);
+                if(name.getTestName().equals("HIV Test")) {
+                    TableRow tr = new TableRow(getActivity());
+                    final View v = LayoutInflater.from(getActivity()).inflate(R.layout.testing_history_row, tr, false);
+                    //want to get childs of row for example TextView, get it like this:
+                    TextView date = (TextView) v.findViewById(R.id.date);
+                    date.setTypeface(tf);
+                    date.setTextColor(getResources().getColor(R.color.text_color));
+                    TextView testname = (TextView) v.findViewById(R.id.testname);
+                    testname.setTypeface(tf);
+                    testname.setTextColor(getResources().getColor(R.color.text_color));
+                    TextView teststatus = (TextView) v.findViewById(R.id.teststatus);
+                    teststatus.setTypeface(tf);
+                    teststatus.setTextColor(getResources().getColor(R.color.text_color));
+                    ImageView testimage = (ImageView)v.findViewById(R.id.imageView);
+                    date.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
+                    testname.setText(name.getTestName());
+                    List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(history.getTesting_history_id());
+                    for (TestingHistoryInfo historyInfo : testinghistoryInfoList) {
+                        if(historyInfo.getSti_id()==0){
+                            if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
+                                teststatus.setText("Positive");
+                            }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
+                                teststatus.setText("Negative");
+                            }else {
+                                teststatus.setText("Didn't Test");
+                            }
+                            String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
+                            if(!historyInfoAttachment.equals("")){
+                                String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
+                                File mediaFile = new File(imgDir+historyInfoAttachment);
+                                if(mediaFile.exists()){
+                                    Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfoAttachment);
+                                    int h = 50; // height in pixels
+                                    int w = 50; // width in pixels
+                                    Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
+                                    testimage.setImageBitmap(scaled);
+                                }else{
+                                    //  ***********set url from server*********** //
+                                    testimage.setImageResource(R.drawable.photocamera);
+                                    LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                                    testimage.setLayoutParams(p);
+                                    new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(testimage);
+                                    new DownloadFileFromURL(testimage).execute(LynxManager.getTestImageBaseUrl()+historyInfoAttachment);
+                                }
+
                             }
 
                         }
-
                     }
-                }
-                v.setId(history.getTesting_history_id());
-                v.setClickable(true);
-                v.setFocusable(true);
-                v.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view1) {
-                        testRowClick(v);
-                    }
-                });
-                testing_history_table.addView(v);
-                j++;
-            }else{
-                List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(history.getTesting_history_id());
-                Log.v("testinghistoryInfoList",history.getTesting_history_id() + "" +testinghistoryInfoList.size());
-                for (TestingHistoryInfo historyInfo : testinghistoryInfoList) {
-                    if (historyInfo.getSti_id() != 0) {
-                        TableRow tr = new TableRow(getActivity());
-                        final View v = LayoutInflater.from(getActivity()).inflate(R.layout.testing_history_row, tr, false);
-                        //want to get childs of row for example TextView, get it like this:
-                        TextView date = (TextView) v.findViewById(R.id.date);
-                        date.setTypeface(tf);
-                        date.setTextColor(getResources().getColor(R.color.text_color));
-                        TextView testname = (TextView) v.findViewById(R.id.testname);
-                        testname.setTypeface(tf);
-                        testname.setTextColor(getResources().getColor(R.color.text_color));
-                        TextView teststatus = (TextView) v.findViewById(R.id.teststatus);
-                        teststatus.setTypeface(tf);
-                        teststatus.setTextColor(getResources().getColor(R.color.text_color));
-                        ImageView testimage = (ImageView) v.findViewById(R.id.imageView);
-                        date.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
-                        STIMaster stiName = db.getSTIbyID(historyInfo.getSti_id());
-                        testname.setText(stiName.getstiName());
-
-                        if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
-                            teststatus.setText("Positive");
-                        } else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
-                            teststatus.setText("Negative");
-                        } else {
-                            teststatus.setText("Didn't Test");
+                    v.setId(history.getTesting_history_id());
+                    v.setClickable(true);
+                    v.setFocusable(true);
+                    v.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view1) {
+                            testRowClick(v);
                         }
-                        String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
-                        if (!historyInfoAttachment.equals("")) {
-                            String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
-                            File mediaFile = new File(imgDir + historyInfoAttachment);
-                            if (mediaFile.exists()) {
-                                Bitmap bmp = BitmapFactory.decodeFile(imgDir + historyInfoAttachment);
-                                int h = 50; // height in pixels
-                                int w = 50; // width in pixels
-                                Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
-                                testimage.setImageBitmap(scaled);
-                                //Log.v("ImagepathExists",imgDir+historyInfoAttachment);
+                    });
+                    testing_history_table.addView(v);
+                    j++;
+                }else{
+                    List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(history.getTesting_history_id());
+                    Log.v("testinghistoryInfoList",history.getTesting_history_id() + "" +testinghistoryInfoList.size());
+                    for (TestingHistoryInfo historyInfo : testinghistoryInfoList) {
+                        if (historyInfo.getSti_id() != 0) {
+                            TableRow tr = new TableRow(getActivity());
+                            final View v = LayoutInflater.from(getActivity()).inflate(R.layout.testing_history_row, tr, false);
+                            //want to get childs of row for example TextView, get it like this:
+                            TextView date = (TextView) v.findViewById(R.id.date);
+                            date.setTypeface(tf);
+                            date.setTextColor(getResources().getColor(R.color.text_color));
+                            TextView testname = (TextView) v.findViewById(R.id.testname);
+                            testname.setTypeface(tf);
+                            testname.setTextColor(getResources().getColor(R.color.text_color));
+                            TextView teststatus = (TextView) v.findViewById(R.id.teststatus);
+                            teststatus.setTypeface(tf);
+                            teststatus.setTextColor(getResources().getColor(R.color.text_color));
+                            ImageView testimage = (ImageView) v.findViewById(R.id.imageView);
+                            date.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
+                            STIMaster stiName = db.getSTIbyID(historyInfo.getSti_id());
+                            testname.setText(stiName.getstiName());
+
+                            if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
+                                teststatus.setText("Positive");
+                            } else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
+                                teststatus.setText("Negative");
                             } else {
-                                //  ***********set url from server*********** //
-                                testimage.setImageResource(R.drawable.photocamera);
-                                new DownloadImagesTask(LynxManager.getTestImageBaseUrl() + historyInfoAttachment).execute(testimage);
-                                new DownloadFileFromURL(testimage).execute(LynxManager.getTestImageBaseUrl() + historyInfoAttachment);
+                                teststatus.setText("Didn't Test");
                             }
+                            String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
+                            if (!historyInfoAttachment.equals("")) {
+                                String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
+                                File mediaFile = new File(imgDir + historyInfoAttachment);
+                                if (mediaFile.exists()) {
+                                    Bitmap bmp = BitmapFactory.decodeFile(imgDir + historyInfoAttachment);
+                                    int h = 50; // height in pixels
+                                    int w = 50; // width in pixels
+                                    Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
+                                    testimage.setImageBitmap(scaled);
+                                    //Log.v("ImagepathExists",imgDir+historyInfoAttachment);
+                                } else {
+                                    //  ***********set url from server*********** //
+                                    testimage.setImageResource(R.drawable.photocamera);
+                                    new DownloadImagesTask(LynxManager.getTestImageBaseUrl() + historyInfoAttachment).execute(testimage);
+                                    new DownloadFileFromURL(testimage).execute(LynxManager.getTestImageBaseUrl() + historyInfoAttachment);
+                                }
 
-                        }
-                        v.setId(history.getTesting_history_id());
-                        v.setClickable(true);
-                        v.setFocusable(true);
-                        v.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view1) {
-                                testRowClick(v);
                             }
-                        });
-                        testing_history_table.addView(v);
-                        j++;
+                            v.setId(history.getTesting_history_id());
+                            v.setClickable(true);
+                            v.setFocusable(true);
+                            v.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view1) {
+                                    testRowClick(v);
+                                }
+                            });
+                            testing_history_table.addView(v);
+                            j++;
+                        }
                     }
                 }
+                j++;
             }
-            j++;
         }
     }
     private void setNewTestContent(String testname) {

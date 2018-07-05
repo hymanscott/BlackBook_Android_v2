@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -147,6 +148,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 case 3:
                     label.setText(getResources().getString(R.string.screen_three_label));
                     description.setText(getResources().getString(R.string.screen_three_description));
+                    description.setText(Html.fromHtml("Take care of your business without having anyone in your business. Get testing reminders & test locations that’s easiest for you – yep, even at home."));
                     indicator3.setBackground(getResources().getDrawable(R.drawable.dot_indicator_active));
                     welcome_screen_logo.setImageDrawable(getResources().getDrawable(R.drawable.welcome_check_icon));
                     TrackHelper.track().screen("/Welcomescreen/Check").title("Welcomescreen/Check").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);

@@ -7,7 +7,6 @@ import android.net.NetworkInfo;
 import android.net.ParseException;
 import android.util.Base64;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
@@ -98,10 +97,10 @@ public class LynxManager {
     //static Context context;
     /*private static String baseURL  =   "http://test.chipware.in:8080/Lynxportal/";
     private static String testImageBaseUrl = "http://test.chipware.in:8080/Lynxportal/testimages/";*/
-    /*private static String baseURL  =   "https://dev.chipware.in/LynxPortal/";
-    private static String testImageBaseUrl = "https://dev.chipware.in/LynxPortal/testimages/";*/
-    private static String baseURL  =   "https://lynxstudy.com/";
-    private static String testImageBaseUrl = "https://lynxstudy.com/testimages/";
+    private static String baseURL  =   "https://dev.chipware.in/hari/LynxPortal/";
+    private static String testImageBaseUrl = "https://dev.chipware.in/hari/LynxPortal/testimages/";
+    /*private static String baseURL  =   "https://lynxstudy.com/";
+    private static String testImageBaseUrl = "https://lynxstudy.com/testimages/";*/
     private LynxManager() {
     }
 

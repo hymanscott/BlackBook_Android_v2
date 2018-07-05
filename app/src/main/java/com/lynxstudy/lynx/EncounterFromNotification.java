@@ -22,6 +22,7 @@ import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.DrugMaster;
 import com.lynxstudy.model.Encounter;
+import com.lynxstudy.model.PrepFollowup;
 import com.lynxstudy.model.UserAlcoholUse;
 import com.lynxstudy.model.UserBadges;
 import com.lynxstudy.model.UserDrugUse;
@@ -31,6 +32,7 @@ public class EncounterFromNotification extends AppCompatActivity {
 
     Button yes,no;
     TextView encounter_report_title;
+    private String prep_val="",prep_days_val="",score="",score_alt="",report_val="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +89,7 @@ public class EncounterFromNotification extends AppCompatActivity {
         RadioGroup is_prep_grp = (RadioGroup)findViewById(R.id.taking_prep_rg);
         RadioButton is_prep = (RadioButton)findViewById(is_prep_grp.getCheckedRadioButtonId());
         DatabaseHelper db = new DatabaseHelper(EncounterFromNotification.this);
+        TextView prepDays = (TextView)findViewById(R.id.prepDays);
         // Checking whether User is eligible for PrEP badge or not //
         if(is_prep.getText().toString().equals("Yes")){
             if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("PrEP").getBadge_id())==0){
@@ -102,12 +105,21 @@ public class EncounterFromNotification extends AppCompatActivity {
 
         // Updating Score //
         calculateSexProScore getscore = new calculateSexProScore(EncounterFromNotification.this);
-        int final_score = 1;
+        int final_score = 1,final_score_alt=1;
         if(is_prep.getText().toString().equals("Yes")){
             final_score = Math.round((float) getscore.getAdjustedScore());
+            final_score_alt = Math.round((float) getscore.getUnAdjustedScore());
+            score = String.valueOf(final_score);
+            score_alt = String.valueOf(final_score_alt);
+
         }else{
             final_score = Math.round((float) getscore.getUnAdjustedScore());
+            final_score_alt= Math.round((float) getscore.getAdjustedScore());
+            score = String.valueOf(final_score);
+            score_alt = String.valueOf(final_score_alt);
         }
+        prep_val = is_prep.getText().toString();
+        prep_days_val = prepDays.getText().toString();
         User_baseline_info user_baseline_info = db.getUserBaselineInfobyUserID(LynxManager.getActiveUser().getUser_id());
         String cal_date = user_baseline_info.getSexpro_calculated_date();
         db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), final_score,is_prep.getText().toString(), cal_date, String.valueOf(R.string.statusUpdateNo));
@@ -162,6 +174,7 @@ public class EncounterFromNotification extends AppCompatActivity {
     public boolean weeklyCheckInReportNext(View view){
         RadioGroup enc_report_grp = (RadioGroup)findViewById(R.id.encounter_report_rg);
         RadioButton have_encounter = (RadioButton)findViewById(enc_report_grp.getCheckedRadioButtonId());
+        report_val = have_encounter.getText().toString();
         if(have_encounter.getText().toString().equals("Yes"))
             LynxManager.haveWeeklyEncounter = true;
         else
@@ -180,6 +193,17 @@ public class EncounterFromNotification extends AppCompatActivity {
         for(UserDrugUse drugUse: LynxManager.getActiveUserDrugUse()){
             db.createDrugUser(drugUse);
         }
+        PrepFollowup prepFollowup = new PrepFollowup();
+        prepFollowup.setPrep(LynxManager.encryptString(prep_val));
+        prepFollowup.setScore(LynxManager.encryptString(score));
+        prepFollowup.setScore_alt(LynxManager.encryptString(score_alt));
+        prepFollowup.setDatetime(LynxManager.encryptString(LynxManager.getUTCDateTime()));
+        prepFollowup.setIs_weekly_checkin(1);
+        prepFollowup.setHave_encounters_to_report(LynxManager.encryptString(report_val));
+        prepFollowup.setNo_of_prep_days(LynxManager.encryptString(prep_days_val));
+        prepFollowup.setStatus_update(LynxManager.encryptString(getResources().getString(R.string.statusUpdateNo)));
+        prepFollowup.setUser_id(LynxManager.getActiveUser().getUser_id());
+        db.createPrepFollowup(prepFollowup);
 
         if(LynxManager.haveWeeklyEncounter){
             Intent diary = new Intent(EncounterFromNotification.this,LynxDiary.class);

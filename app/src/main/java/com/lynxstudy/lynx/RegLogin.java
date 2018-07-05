@@ -47,6 +47,7 @@ import com.lynxstudy.model.HomeTestingRequest;
 import com.lynxstudy.model.PartnerContact;
 import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.Partners;
+import com.lynxstudy.model.PrepFollowup;
 import com.lynxstudy.model.PrepInformation;
 import com.lynxstudy.model.STIMaster;
 import com.lynxstudy.model.TestNameMaster;
@@ -1696,6 +1697,30 @@ public class RegLogin extends AppCompatActivity {
                                 db.createDrugUser(userDrugUse);
                             }
                         }
+
+                        // PrepFollowups //
+
+                        JSONArray prepFollowUpInfo = parentObject.getJSONArray("PrepFollowup");
+                        for(int n = 0; n <prepFollowUpInfo.length(); n++) {
+                            JSONObject prepFupObject = prepFollowUpInfo.getJSONObject(n);
+
+                            String is_weekly_check_in =  prepFupObject.getString("is_weekly_checkin");
+                            int weekly_check_in;
+                            if(is_weekly_check_in.isEmpty()||is_weekly_check_in==""){
+                                weekly_check_in = 0;
+                            }else{
+                                weekly_check_in = 1;
+                            }
+                            PrepFollowup prepFollowup = new PrepFollowup(prepFupObject.getInt("prep_followup_id") , prepFupObject.getInt("user_id"),
+                                    weekly_check_in, LynxManager.encryptString(prepFupObject.getString("datetime")),
+                                    LynxManager.encryptString(prepFupObject.getString("prep")),LynxManager.encryptString(prepFupObject.getString("score")),
+                                    LynxManager.encryptString(prepFupObject.getString("score_alt")),LynxManager.encryptString(prepFupObject.getString("no_of_prep_days")),
+                                    LynxManager.encryptString(prepFupObject.getString("have_encounters_to_report")),
+                                    LynxManager.encryptString(getResources().getString(R.string.statusUpdateYes)),"true",
+                                    prepFupObject.getString("created_at"));
+                            db.createPrepFollowupWithID(prepFollowup);
+                        }
+
                         //Log.v("userBaselineArray", String.valueOf(userBaselineArray.length()));
                         if(testingRemindersInfo.length()==0){
                             Intent home = new Intent(RegLogin.this, RemindersActivity.class);

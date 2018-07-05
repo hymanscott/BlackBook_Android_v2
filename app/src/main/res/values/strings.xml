@@ -167,8 +167,8 @@
     <string name="screen_three_label">Check</string>
     <string name="screen_four_label">Protect</string>
     <string name="screen_one_description">Lynx is all about blending pleasure with HIV prevention. It’ll help you track, check, and protect so you can focus on the pleasure of sex.</string>
-    <string name="screen_two_description">Lynx will make it easy to track your sexual encounters. With a few simple steps, you’ll build your sexual history and insights on what gets you going.</string>
-    <string name="screen_three_description">Lynx makes it possible to take care of your business without having anyone in your business. We’ll remind you to get tested for HIV and STDs every three months at a location that’s easiest for you – yep, even at home.</string>
-    <string name="screen_four_description">Lynx makes sure you know how much of a pro you are at protecting your sexual health. We calculate your Sexual Health Protection (Sex Pro) Score and help you access PrEP.</string>
+    <string name="screen_two_description">Track your sexual encounters with ease. With a few simple steps, you’ll build your sexual history and get insights on what gets you going.</string>
+    <string name="screen_three_description">Take care of your business without having anyone in your business. Get testing reminders and test locations that’s easiest for you – yep, even at home.</string>
+    <string name="screen_four_description">Know how much of a pro you are at protecting your sexual health. We calculate your Sexual Health Protection (Sex Pro) Score and help you access PrEP.</string>
 
 </resources>

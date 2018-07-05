@@ -1143,18 +1143,14 @@
                         </LinearLayout>
 
                     </GridLayout>-->
-                    <GridView
+                    <com.lynxstudy.helper.ExpandableHeightGridView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:numColumns="2"
-                        android:gravity="center"
-                        android:columnWidth="200dp"
-                        android:stretchMode="columnWidth"
-                        android:layout_width="fill_parent"
-                        android:layout_height="600dp"
-                        android:minHeight="400dp"
-                        android:id="@+id/gridView"
-                        android:layout_marginBottom="40dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"/>
+                        android:id="@+id/heightGridView"
+                        android:layout_margin="16dp">
+
+                    </com.lynxstudy.helper.ExpandableHeightGridView>
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>

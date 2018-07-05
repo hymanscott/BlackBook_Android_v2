@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/sexpro_main_parent"
+    android:background="@color/white"
+    tools:context="com.lynxstudy.lynx.LynxSexPro">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:id="@+id/sexProMainContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="?android:attr/actionBarSize">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/update_score_bg"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.9"
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal"
+                            android:paddingBottom="16dp"
+                            android:paddingTop="16dp">
+
+                            <TextView
+                                android:id="@+id/score_update"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="CALCULATED ON "
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/score_update_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" 07/28/2018"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Score with PrEP"
+                        android:textColor="@color/faq_blue"
+                        android:textStyle="bold"
+                        android:textSize="24sp"
+                        android:layout_marginTop="24dp"
+                        android:gravity="center"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@color/grey_border"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginTop="32dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:id="@+id/myscore_framelayout"
+                            android:layout_width="225dp"
+                            android:layout_height="225dp"
+                            android:background="@drawable/sexprodial"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/imageView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                android:rotation="0"
+                                android:layout_marginBottom="5dp"
+                                android:layout_alignStart="@+id/myscore_framelayout"
+                                android:layout_gravity="center_horizontal|center_vertical"
+                                android:src="@drawable/sexpro_needle" />
+
+                            <ImageView
+                                android:id="@+id/scoreImage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:layout_marginBottom="20dp"
+                                android:src="@drawable/score_one" />
+                        </FrameLayout>
+
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/indicators"
+                        android:layout_above="@+id/nextScreen"
+                        android:layout_marginTop="24dp"
+                        android:gravity="center_horizontal">
+                        <View
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_margin="4dp"
+                            android:id="@+id/screen_indicator_one"
+                            android:background="@drawable/dot_indicator_score_page_active"/>
+                        <View
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_margin="4dp"
+                            android:id="@+id/screen_indicator_two"
+                            android:background="@drawable/dot_indicator_score_page"/>
+                        <View
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_margin="4dp"
+                            android:id="@+id/screen_indicator_three"
+                            android:background="@drawable/dot_indicator_score_page"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/additionalMessageTitle"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:text="Want to get into the green? PrEP is a great way to make it happen and protect your sexual health. Hit us up, we can help."
+                        android:lineSpacingMultiplier="1.36"
+                        android:gravity="center"
+                        android:background="@color/chart_blue"
+                        android:layout_marginTop="24dp"
+                        android:paddingLeft="24dp"
+                        android:paddingRight="24dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"/>
+                    <TextView
+                        android:id="@+id/whyDidIgetThisScore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="40dp"
+                        android:gravity="center_horizontal"
+                        android:text="Why did I get this score?"
+                        android:textColor="@color/chart_blue"
+                        android:textSize="24sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/infoLink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingMultiplier="1.5"
+                        android:text="* Learn why these matter"
+                        android:textColor="@color/chart_blue"
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:background="@color/grey_border"
+                        android:layout_margin="16dp"/>
+                    <TextView
+                        android:id="@+id/current_score_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingMultiplier="1.31"
+                        android:text="Score Description"
+                        android:textColor="@color/text_color"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/additionalTriggerMessage"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginBottom="40dp"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sexProInfoContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:visibility="gone">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="?android:attr/actionBarSize">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="24dp"
+                        android:src="@drawable/diallargeblue" />
+
+                    <TextView
+                        android:id="@+id/info_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="Sex Pro Score"
+                        android:textColor="@color/text_color"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/info_para_one"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="24dp"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingMultiplier="1.31"
+                        android:text="Your Sex Pro score is based on the last three months of your diary entries."
+                        android:textColor="@color/text_color"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/info_para_two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingMultiplier="1.31"
+                        android:text="This is a red light/green light deal.  The closer your needle gets to the green or further into the green it gets, the higher your levels of HIV protection. Green is good and a red score can always become a green score."
+                        android:textColor="@color/text_color"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/info_para_three"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="24dp"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingMultiplier="1.31"
+                        android:text="But even a perfect score of 20 (strongest protection rating) doesn’t mean you can’t get HIV.  It does mean that you are lowering your risk by protecting yourself!"
+                        android:textColor="@color/text_color"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
