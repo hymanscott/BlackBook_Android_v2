@@ -87,44 +87,48 @@ public class EncounterFromNotification extends AppCompatActivity {
     public boolean weeklyCheckInPrepNext(View view){
         EncounterWeeklyCheckinDrug drugScreeen = new EncounterWeeklyCheckinDrug();
         RadioGroup is_prep_grp = (RadioGroup)findViewById(R.id.taking_prep_rg);
-        RadioButton is_prep = (RadioButton)findViewById(is_prep_grp.getCheckedRadioButtonId());
-        DatabaseHelper db = new DatabaseHelper(EncounterFromNotification.this);
-        TextView prepDays = (TextView)findViewById(R.id.prepDays);
-        // Checking whether User is eligible for PrEP badge or not //
-        if(is_prep.getText().toString().equals("Yes")){
-            if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("PrEP").getBadge_id())==0){
-                BadgesMaster prep_badge = db.getBadgesMasterByName("PrEP");
-                int shown = 0;
-                UserBadges prepBadge = new UserBadges(prep_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,prep_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
-                db.createUserBadge(prepBadge);
+        if(is_prep_grp.getCheckedRadioButtonId()==-1){
+            Toast.makeText(EncounterFromNotification.this,getResources().getString(R.string.select_prep_status),Toast.LENGTH_SHORT).show();
+        }else {
+            RadioButton is_prep = (RadioButton) findViewById(is_prep_grp.getCheckedRadioButtonId());
+            DatabaseHelper db = new DatabaseHelper(EncounterFromNotification.this);
+            TextView prepDays = (TextView) findViewById(R.id.prepDays);
+            // Checking whether User is eligible for PrEP badge or not //
+            if (is_prep.getText().toString().equals("Yes")) {
+                if (db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("PrEP").getBadge_id()) == 0) {
+                    BadgesMaster prep_badge = db.getBadgesMasterByName("PrEP");
+                    int shown = 0;
+                    UserBadges prepBadge = new UserBadges(prep_badge.getBadge_id(), LynxManager.getActiveUser().getUser_id(), shown, prep_badge.getBadge_notes(), String.valueOf(R.string.statusUpdateNo));
+                    db.createUserBadge(prepBadge);
+                }
             }
-        }
-        // Updating User PrEP status //
-        LynxManager.getActiveUser().setIs_prep(LynxManager.encryptString(is_prep.getText().toString()));
-        db.updateUsers(LynxManager.getActiveUser());
+            // Updating User PrEP status //
+            LynxManager.getActiveUser().setIs_prep(LynxManager.encryptString(is_prep.getText().toString()));
+            db.updateUsers(LynxManager.getActiveUser());
 
-        // Updating Score //
-        calculateSexProScore getscore = new calculateSexProScore(EncounterFromNotification.this);
-        int final_score = 1,final_score_alt=1;
-        if(is_prep.getText().toString().equals("Yes")){
-            final_score = Math.round((float) getscore.getAdjustedScore());
-            final_score_alt = Math.round((float) getscore.getUnAdjustedScore());
-            score = String.valueOf(final_score);
-            score_alt = String.valueOf(final_score_alt);
+            // Updating Score //
+            calculateSexProScore getscore = new calculateSexProScore(EncounterFromNotification.this);
+            int final_score = 1, final_score_alt = 1;
+            if (is_prep.getText().toString().equals("Yes")) {
+                final_score = Math.round((float) getscore.getAdjustedScore());
+                final_score_alt = Math.round((float) getscore.getUnAdjustedScore());
+                score = String.valueOf(final_score);
+                score_alt = String.valueOf(final_score_alt);
 
-        }else{
-            final_score = Math.round((float) getscore.getUnAdjustedScore());
-            final_score_alt= Math.round((float) getscore.getAdjustedScore());
-            score = String.valueOf(final_score);
-            score_alt = String.valueOf(final_score_alt);
+            } else {
+                final_score = Math.round((float) getscore.getUnAdjustedScore());
+                final_score_alt = Math.round((float) getscore.getAdjustedScore());
+                score = String.valueOf(final_score);
+                score_alt = String.valueOf(final_score_alt);
+            }
+            prep_val = is_prep.getText().toString();
+            prep_days_val = prepDays.getText().toString();
+            User_baseline_info user_baseline_info = db.getUserBaselineInfobyUserID(LynxManager.getActiveUser().getUser_id());
+            String cal_date = user_baseline_info.getSexpro_calculated_date();
+            db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), final_score, is_prep.getText().toString(), cal_date, String.valueOf(R.string.statusUpdateNo));
+            Log.v("ScoreStat", final_score + "-" + is_prep.getText().toString() + "--" + cal_date);
+            pushFragments("EncounterFromNotification", drugScreeen, true);
         }
-        prep_val = is_prep.getText().toString();
-        prep_days_val = prepDays.getText().toString();
-        User_baseline_info user_baseline_info = db.getUserBaselineInfobyUserID(LynxManager.getActiveUser().getUser_id());
-        String cal_date = user_baseline_info.getSexpro_calculated_date();
-        db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), final_score,is_prep.getText().toString(), cal_date, String.valueOf(R.string.statusUpdateNo));
-        Log.v("ScoreStat",final_score+"-"+is_prep.getText().toString()+"--"+cal_date);
-        pushFragments("EncounterFromNotification", drugScreeen, true);
         return true;
     }
 
@@ -155,13 +159,15 @@ public class EncounterFromNotification extends AppCompatActivity {
 
     public boolean weeklyCheckInAlcoholNext(View view){
         EncounterWeeklyCheckinReport reportScreeen = new EncounterWeeklyCheckinReport();
-        RadioButton alcDaysCountPerWeek = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.alcoholCalculation)).getCheckedRadioButtonId());
         EditText alcCountPerDay = (EditText) findViewById(R.id.no_of_drinks);
+        RadioGroup RG_Alcohol = (RadioGroup) findViewById(R.id.alcoholCalculation);
         if(alcCountPerDay.getText().toString().isEmpty()){
             Toast.makeText(EncounterFromNotification.this,"Enter how many drinks you had on a typical day",Toast.LENGTH_SHORT).show();
             alcCountPerDay.requestFocus();
+        }else if(RG_Alcohol.getCheckedRadioButtonId()==-1){
+            Toast.makeText(EncounterFromNotification.this,getResources().getString(R.string.how_often_did_you_drink),Toast.LENGTH_SHORT).show();
         }else{
-
+            RadioButton alcDaysCountPerWeek = (RadioButton) findViewById(RG_Alcohol.getCheckedRadioButtonId());
             UserAlcoholUse userAlcoholUse = new UserAlcoholUse(2, LynxManager.getActiveUser().getUser_id(),
                     LynxManager.encryptString(alcDaysCountPerWeek.getText().toString()), LynxManager.encryptString(alcCountPerDay.getText().toString()), LynxManager.encryptString("No"),String.valueOf(R.string.statusUpdateNo),true);
             LynxManager.setActiveUserAlcoholUse(userAlcoholUse);
@@ -173,14 +179,18 @@ public class EncounterFromNotification extends AppCompatActivity {
 
     public boolean weeklyCheckInReportNext(View view){
         RadioGroup enc_report_grp = (RadioGroup)findViewById(R.id.encounter_report_rg);
-        RadioButton have_encounter = (RadioButton)findViewById(enc_report_grp.getCheckedRadioButtonId());
-        report_val = have_encounter.getText().toString();
-        if(have_encounter.getText().toString().equals("Yes"))
-            LynxManager.haveWeeklyEncounter = true;
-        else
-            LynxManager.haveWeeklyEncounter = false;
-        EncounterWeeklyCheckinSummary summaryScreeen = new EncounterWeeklyCheckinSummary();
-        pushFragments("EncounterFromNotification", summaryScreeen, true);
+        if (enc_report_grp.getCheckedRadioButtonId()==-1) {
+            Toast.makeText(EncounterFromNotification.this,getResources().getString(R.string.select_any_one),Toast.LENGTH_SHORT).show();
+        } else {
+            RadioButton have_encounter = (RadioButton)findViewById(enc_report_grp.getCheckedRadioButtonId());
+            report_val = have_encounter.getText().toString();
+            if(have_encounter.getText().toString().equals("Yes"))
+                LynxManager.haveWeeklyEncounter = true;
+            else
+                LynxManager.haveWeeklyEncounter = false;
+            EncounterWeeklyCheckinSummary summaryScreeen = new EncounterWeeklyCheckinSummary();
+            pushFragments("EncounterFromNotification", summaryScreeen, true);
+        }
         return true;
     }
 

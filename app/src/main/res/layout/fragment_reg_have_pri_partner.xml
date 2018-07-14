@@ -77,7 +77,6 @@ This is someone you consider a boy/girlfriend, partner, husband, wife, spouse, l
                             android:id="@+id/PSP_Yes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:checked="true"
                             android:text="Yes"
                             android:buttonTint="@color/white"
                             android:button="@drawable/radiobutton_white"

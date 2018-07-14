@@ -78,7 +78,6 @@
                         android:buttonTint="@color/white"
                         android:button="@drawable/radiobutton_white"
                         android:paddingLeft="12dp"
-                        android:checked="true"
                         android:text="5-7 days a week"
                         android:textColor="@color/white"
                         android:textSize="14sp" />

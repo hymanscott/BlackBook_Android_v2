@@ -322,7 +322,6 @@
                     android:button="@drawable/radiobutton_white"
                     android:paddingLeft="12dp"
                     android:layout_marginTop="12dp"
-                    android:checked="true"
                     android:text="Hook-up"
                     android:textColor="@color/white"
                     android:textSize="@dimen/encounter_radio_btn_textsize" />
@@ -382,7 +381,6 @@
                         android:button="@drawable/radiobutton_white"
                         android:paddingLeft="12dp"
                         android:layout_marginTop="12dp"
-                        android:checked="true"
                         android:text="Yes"
                         android:textColor="@color/white"
                         android:textSize="@dimen/encounter_radio_btn_textsize" />
@@ -456,7 +454,6 @@
                         android:button="@drawable/radiobutton_white"
                         android:paddingLeft="12dp"
                         android:layout_marginTop="12dp"
-                        android:checked="true"
                         android:text="Less than 6 months"
                         android:textColor="@color/white"
                         android:textSize="@dimen/encounter_radio_btn_textsize" />

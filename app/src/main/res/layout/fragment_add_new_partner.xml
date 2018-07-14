@@ -141,6 +141,7 @@
                             android:buttonTint="@color/white"
                             android:button="@drawable/radiobutton_white"
                             android:paddingLeft="12dp"
+                            android:checked="true"
                             android:id="@+id/radio_gender_man" />
 
                         <RadioButton
@@ -175,7 +176,6 @@
                             android:paddingLeft="12dp"
                             android:layout_marginTop="12dp"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
-                            android:checked="true"
                             android:id="@+id/radio_gender_transman" />
                     </RadioGroup>
                 </LinearLayout>
@@ -243,7 +243,6 @@
                             android:paddingLeft="12dp"
                             android:layout_marginTop="12dp"
                             android:textSize="@dimen/encounter_radio_btn_textsize"
-                            android:checked="true"
                             android:id="@+id/radio_hiv_idk" />
                         <RadioButton
                             android:layout_width="wrap_content"
@@ -334,7 +333,6 @@
                             android:paddingLeft="12dp"
                             android:layout_marginTop="12dp"
                             android:text="I don't know/unsure"
-                            android:checked="true"
                             android:id="@+id/radio_undetectable_iDontKnow" />
                     </RadioGroup>
                     <View

@@ -96,6 +96,7 @@ public class NewPartnerAddFragment extends Fragment {
         /*undetectable for past 6 months layout*/
 
         final RadioGroup radioGrp_hivstatus = (RadioGroup)rootview.findViewById(R.id.radio_hivstatus);
+        final RadioGroup radioGrp_undetectable = (RadioGroup)rootview.findViewById(R.id.radio_undetectable);
         final LinearLayout undetectable_layout = (LinearLayout)rootview.findViewById(R.id.linearLayout_undetectable);
         // Default
         LynxManager.undetectableLayoutHidden = true;
@@ -107,6 +108,7 @@ public class NewPartnerAddFragment extends Fragment {
                 RadioButton rd_btn = (RadioButton) rootview.findViewById(selectedId);
                 String btn_text = rd_btn.getText().toString();
                 if (btn_text.equals("HIV positive & undetectable")){
+                    radioGrp_undetectable.clearCheck();
                     undetectable_layout.setVisibility(View.VISIBLE);
                     LynxManager.undetectableLayoutHidden = false;
                 }

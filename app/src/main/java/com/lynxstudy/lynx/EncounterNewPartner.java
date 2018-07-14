@@ -196,17 +196,23 @@ public class EncounterNewPartner extends AppCompatActivity {
         //validation of Add new Partner
         EditText nickName_et = (EditText) findViewById(R.id.nick_name);
         String nickName = nickName_et.getText().toString();
+        RadioGroup RG_HIVstatus = (RadioGroup) findViewById(R.id.radio_hivstatus);
+        RadioGroup RG_Undetectable = (RadioGroup) findViewById(R.id.radio_undetectable);
         if (nickName.isEmpty()) {
             Toast.makeText(getApplication(), "Please Enter the Nick name", Toast.LENGTH_SHORT).show();
             nickName_et.requestFocus();
+        }else if(RG_HIVstatus.getCheckedRadioButtonId() == -1){
+            Toast.makeText(EncounterNewPartner.this,getResources().getString(R.string.select_hiv_status),Toast.LENGTH_SHORT).show();
+        }else if(RG_HIVstatus.getCheckedRadioButtonId() == R.id.radio_hiv_und && RG_Undetectable.getCheckedRadioButtonId()==-1){
+            Toast.makeText(EncounterNewPartner.this,getResources().getString(R.string.answer_all_questions),Toast.LENGTH_SHORT).show();
         } else {
             RadioButton gender_btn = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_gender)).getCheckedRadioButtonId());
             String gender = gender_btn.getText().toString();
-            RadioButton hiv_status_btn = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_hivstatus)).getCheckedRadioButtonId());
+            RadioButton hiv_status_btn = (RadioButton) findViewById(RG_HIVstatus.getCheckedRadioButtonId());
             String hiv_status = hiv_status_btn.getText().toString();
             RadioButton is_list_btn = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_is_listed)).getCheckedRadioButtonId());
             String is_listed = is_list_btn.getText().toString();
-            RadioButton radioUndetectable = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_undetectable)).getCheckedRadioButtonId());
+            RadioButton radioUndetectable = (RadioButton) findViewById(RG_Undetectable.getCheckedRadioButtonId());
             String partUndetectable ="";
             if (!LynxManager.undetectableLayoutHidden){
                 partUndetectable = radioUndetectable.getText().toString();
@@ -232,27 +238,19 @@ public class EncounterNewPartner extends AppCompatActivity {
         EditText newPartner_emailET = (EditText) findViewById(R.id.newPartnerEmail);
         EditText newPartner_phoneET = (EditText) findViewById(R.id.newPartnerPhone);
         EditText newPartner_CityET = (EditText) findViewById(R.id.newPartnerCity);
-        /*EditText newPartner_StreetET = (EditText) findViewById(R.id.newPartnerStreet);
-        EditText newPartner_StateET = (EditText) findViewById(R.id.newPartnerState);
-        EditText newPartner_ZipET = (EditText) findViewById(R.id.newPartnerZip);*/
         EditText newPartner_MetAtET = (EditText) findViewById(R.id.newPartnerMetAt);
         EditText newPartner_HandleET = (EditText) findViewById(R.id.newPartnerHandle);
-        RadioGroup newPartnerType_grp = (RadioGroup) findViewById(R.id.newPartnerType);
-        int newPartnerTypeID = newPartnerType_grp.getCheckedRadioButtonId();
-        RadioButton newPartnerType_btn = (RadioButton) findViewById(newPartnerTypeID);
+        RadioGroup RG_PartnerType = (RadioGroup) findViewById(R.id.newPartnerType);
         String newPartnerEmail = newPartner_emailET.getText().toString();
         String newPartner_phone = newPartner_phoneET.getText().toString();
         String newPartner_City = newPartner_CityET.getText().toString();
-        /*String newPartner_Street = newPartner_StreetET.getText().toString();
-        String newPartner_State = newPartner_StateET.getText().toString();
-        String newPartner_Zip = newPartner_ZipET.getText().toString();*/
         String newPartner_MetAt = newPartner_MetAtET.getText().toString();
         String newPartner_Handle = newPartner_HandleET.getText().toString();
-        String newPartnerType = newPartnerType_btn.getText().toString();
+
+        RadioGroup RG_OtherPartner = (RadioGroup) findViewById(R.id.radio_partner);
+        RadioGroup RG_Relationship = (RadioGroup) findViewById(R.id.radio_relationshipPeriod);
         String newPartnerHaveOtherPartner = "";
         String newPartnerRltnPeriod = "";
-        RadioButton radioRelationshipPeriod = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_relationshipPeriod)).getCheckedRadioButtonId());
-        RadioButton radioOtherPartner = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_partner)).getCheckedRadioButtonId());
         // Partner Notes
         String newPartnerNotes = "";
         Pattern pattern;
@@ -261,30 +259,33 @@ public class EncounterNewPartner extends AppCompatActivity {
         pattern = Pattern.compile(EMAIL_PATTERN);
         matcher = pattern.matcher(newPartnerEmail);
 
-        if (!LynxManager.partnerHaveOtherPartnerLayoutHidden){
-            newPartnerHaveOtherPartner = radioOtherPartner.getText().toString();
-            /*if (newPartnerHaveOtherPartner.equals("Less than 6 months") ){
-                newPartnerHaveOtherPartner = "Yes";
-            }
-            else{
-                newPartnerHaveOtherPartner = "No";
-            }*/
-        }
-
-        if (!LynxManager.partnerRelationshipLayoutHidden){
-            newPartnerRltnPeriod = radioRelationshipPeriod.getText().toString();
-            if (newPartnerRltnPeriod.equals("Less than 6 months") ){
-                newPartnerRltnPeriod = "Yes";
-            }
-            else{
-                newPartnerRltnPeriod = "No";
-            }
-        }
         if (!newPartnerEmail.isEmpty() && !matcher.matches()) {
             Toast.makeText(EncounterNewPartner.this,"Please enter valid email",Toast.LENGTH_SHORT).show();
         }else if(newPartner_phone.length()!= 0 && (newPartner_phone.length()<10 || newPartner_phone.length()>11)){
             Toast.makeText(EncounterNewPartner.this,"Please enter valid mobile number",Toast.LENGTH_SHORT).show();
+        }else if(RG_PartnerType.getCheckedRadioButtonId()==-1){
+            Toast.makeText(EncounterNewPartner.this,getResources().getString(R.string.select_partner_type),Toast.LENGTH_SHORT).show();
+        }else if(RG_PartnerType.getCheckedRadioButtonId()==R.id.newPartnerPrimary && RG_OtherPartner.getCheckedRadioButtonId()==-1){
+            Toast.makeText(EncounterNewPartner.this,getResources().getString(R.string.answer_all_questions),Toast.LENGTH_SHORT).show();
+        }else if(RG_OtherPartner.getCheckedRadioButtonId()==R.id.radio_partner_no && RG_Relationship.getCheckedRadioButtonId() ==-1){
+            Toast.makeText(EncounterNewPartner.this,getResources().getString(R.string.answer_all_questions),Toast.LENGTH_SHORT).show();
         }else{
+            RadioButton radioRelationshipPeriod = (RadioButton) findViewById(RG_Relationship.getCheckedRadioButtonId());
+            if (!LynxManager.partnerRelationshipLayoutHidden){
+                newPartnerRltnPeriod = radioRelationshipPeriod.getText().toString();
+                if (newPartnerRltnPeriod.equals("Less than 6 months") ){
+                    newPartnerRltnPeriod = "Yes";
+                }
+                else{
+                    newPartnerRltnPeriod = "No";
+                }
+            }
+            RadioButton radioOtherPartner = (RadioButton) findViewById(RG_OtherPartner.getCheckedRadioButtonId());
+            if (!LynxManager.partnerHaveOtherPartnerLayoutHidden){
+                newPartnerHaveOtherPartner = radioOtherPartner.getText().toString();
+            }
+            RadioButton newPartnerType_btn = (RadioButton) findViewById(RG_PartnerType.getCheckedRadioButtonId());
+            String newPartnerType = newPartnerType_btn.getText().toString();
             PartnerContact newPartnerContact = new PartnerContact(LynxManager.getActivePartner().getPartner_id(),
                     LynxManager.getActiveUser().getUser_id(),
                     LynxManager.getActivePartner().getNickname(), LynxManager.encryptString(""),

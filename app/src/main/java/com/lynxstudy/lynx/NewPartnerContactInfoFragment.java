@@ -98,41 +98,47 @@ public class NewPartnerContactInfoFragment extends Fragment {
         final LinearLayout partnerHaveOtherPartner_layout = (LinearLayout)rootview.findViewById(R.id.partnerHaveOtherPartner_layout);
         final LinearLayout partnerRelationship_layout = (LinearLayout)rootview.findViewById(R.id.partnerRelationshipPeriodLayout);
         final RadioGroup radioGrp_partnerType = (RadioGroup)rootview.findViewById(R.id.newPartnerType);
+        final RadioGroup radioGrp_partner = (RadioGroup)rootview.findViewById(R.id.radio_partner);
+        final RadioGroup radioGrp_relationship = (RadioGroup)rootview.findViewById(R.id.radio_relationshipPeriod);
         LynxManager.partnerHaveOtherPartnerLayoutHidden = true;
         LynxManager.partnerRelationshipLayoutHidden = true;
         radioGrp_partnerType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 int selectedPartnerType = radioGrp_partnerType.getCheckedRadioButtonId();
-                RadioButton partnerType_btn = (RadioButton) rootview.findViewById(selectedPartnerType);
-                String partnerType = partnerType_btn.getText().toString();
-                if (partnerType.equals("Primary")){
-                    partnerHaveOtherPartner_layout.setVisibility(View.VISIBLE);
-                    LynxManager.partnerHaveOtherPartnerLayoutHidden = false;
-                }
-                else {
-                    partnerHaveOtherPartner_layout.setVisibility(View.GONE);
-                    partnerRelationship_layout.setVisibility(View.GONE);
-                    LynxManager.partnerHaveOtherPartnerLayoutHidden = true;
+                if (selectedPartnerType!=-1) {
+                    RadioButton partnerType_btn = (RadioButton) rootview.findViewById(selectedPartnerType);
+                    String partnerType = partnerType_btn.getText().toString();
+                    if (partnerType.equals("Primary")){
+                        radioGrp_partner.clearCheck();
+                        partnerHaveOtherPartner_layout.setVisibility(View.VISIBLE);
+                        LynxManager.partnerHaveOtherPartnerLayoutHidden = false;
+                    }
+                    else {
+                        partnerHaveOtherPartner_layout.setVisibility(View.GONE);
+                        partnerRelationship_layout.setVisibility(View.GONE);
+                        LynxManager.partnerHaveOtherPartnerLayoutHidden = true;
+                    }
                 }
             }
         });
 
-
-        final RadioGroup radioGrp_partner = (RadioGroup)rootview.findViewById(R.id.radio_partner);
         radioGrp_partner.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 int selectedId = radioGrp_partner.getCheckedRadioButtonId();
-                RadioButton rd_btn = (RadioButton) rootview.findViewById(selectedId);
-                String btn_text = rd_btn.getText().toString();
-                if (btn_text.equals("No")){
-                    partnerRelationship_layout.setVisibility(View.VISIBLE);
-                    LynxManager.partnerRelationshipLayoutHidden = false;
-                }
-                else {
-                    partnerRelationship_layout.setVisibility(View.GONE);
-                    LynxManager.partnerRelationshipLayoutHidden = true;
+                if (selectedId!=-1) {
+                    RadioButton rd_btn = (RadioButton) rootview.findViewById(selectedId);
+                    String btn_text = rd_btn.getText().toString();
+                    if (btn_text.equals("No")){
+                        radioGrp_relationship.clearCheck();
+                        partnerRelationship_layout.setVisibility(View.VISIBLE);
+                        LynxManager.partnerRelationshipLayoutHidden = false;
+                    }
+                    else {
+                        partnerRelationship_layout.setVisibility(View.GONE);
+                        LynxManager.partnerRelationshipLayoutHidden = true;
+                    }
                 }
             }
         });

@@ -64,7 +64,6 @@
                         android:id="@+id/taking_prep_yes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="true"
                         android:text="Yes"
                         android:buttonTint="@color/white"
                         android:button="@drawable/radiobutton_white"
@@ -88,6 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:visibility="gone"
                     android:id="@+id/last7daysLayout">
                     <View
                         android:layout_width="match_parent"
@@ -98,7 +98,7 @@
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:background="@color/edittext_bg" />
                     <TextView
-                        android:id="@+id/taking_prep"
+                        android:id="@+id/textView8"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="24dp"

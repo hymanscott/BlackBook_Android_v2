@@ -100,8 +100,8 @@ public class BaselineActivity extends AppCompatActivity {
             textView10.setTypeface(tf);
             textView11.setTypeface(tf);
             next.setTypeface(tf_bold);
-            User_baseline_info userBaselineInfo = new User_baseline_info(LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString("0")
-                    , LynxManager.encryptString("0"), LynxManager.encryptString("0"),
+            User_baseline_info userBaselineInfo = new User_baseline_info(LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString("")
+                    , LynxManager.encryptString(""), LynxManager.encryptString(""),
                     "", "0%","","0%","",0,"No",LynxManager.getDateTime(),String.valueOf(R.string.statusUpdateNo),true);
             LynxManager.setActiveUserBaselineInfo(userBaselineInfo);
             UserAlcoholUse userAlcoholUse = new UserAlcoholUse(2, LynxManager.getActiveUser().getUser_id(),
@@ -251,14 +251,18 @@ public class BaselineActivity extends AppCompatActivity {
         RegistrationPartnerInfo fragPartnerInfo = new RegistrationPartnerInfo();
         RadioGroup pri_partner = (RadioGroup) findViewById(R.id.primary_sex_partner);
         int selectedId = pri_partner.getCheckedRadioButtonId();
-        RadioButton rd_btn = (RadioButton) findViewById(selectedId);
-        String pri_partner_value = rd_btn.getText().toString();
-        LynxManager.getActiveUserBaselineInfo().setIs_primary_partner(LynxManager.encryptString(pri_partner_value));
-        if (pri_partner_value.equals("Yes")) {
-            pushFragments("Home", fragPartnerInfo, true);
-        } else {
-            RegistrationDrugContent fragDrugUsage = new RegistrationDrugContent();
-            pushFragments("Home", fragDrugUsage, true);
+        if(selectedId == -1){
+            Toast.makeText(BaselineActivity.this,getResources().getString(R.string.select_any_one),Toast.LENGTH_SHORT).show();
+        }else {
+            RadioButton rd_btn = (RadioButton) findViewById(selectedId);
+            String pri_partner_value = rd_btn.getText().toString();
+            LynxManager.getActiveUserBaselineInfo().setIs_primary_partner(LynxManager.encryptString(pri_partner_value));
+            if (pri_partner_value.equals("Yes")) {
+                pushFragments("Home", fragPartnerInfo, true);
+            } else {
+                RegistrationDrugContent fragDrugUsage = new RegistrationDrugContent();
+                pushFragments("Home", fragDrugUsage, true);
+            }
         }
         return true;
     }
@@ -268,18 +272,30 @@ public class BaselineActivity extends AppCompatActivity {
         String partRelationshipPeriod;
         String partUndetectable;
 
+        RadioGroup RG_HIVstatus = (RadioGroup) findViewById(R.id.radio_hivstatus);
+        RadioGroup RG_Partner = (RadioGroup) findViewById(R.id.radio_partner);
+        RadioGroup RG_BlackBook = (RadioGroup) findViewById(R.id.radio_blackbook);
+        RadioGroup RG_RelationshipPeriod = (RadioGroup) findViewById(R.id.radio_relationshipPeriod);
+        RadioGroup RG_Undetectable = (RadioGroup) findViewById(R.id.radio_undetectable);
+
         if (partnerNickName.isEmpty()){
             Toast.makeText(this, "Please enter your partner's Nick name", Toast.LENGTH_SHORT).show();
             nick_name.requestFocus();
+        }else if(RG_HIVstatus.getCheckedRadioButtonId()==-1 || RG_BlackBook.getCheckedRadioButtonId()==-1 || RG_Partner.getCheckedRadioButtonId()==-1){
+            Toast.makeText(this, getResources().getString(R.string.answer_all_questions), Toast.LENGTH_SHORT).show();
+        }else if(RG_HIVstatus.getCheckedRadioButtonId() == R.id.radio_hiv_und && RG_Undetectable.getCheckedRadioButtonId()==-1){
+            Toast.makeText(this, getResources().getString(R.string.answer_all_questions), Toast.LENGTH_SHORT).show();
+        }else if(RG_Partner.getCheckedRadioButtonId() == R.id.radio_partner_no && RG_RelationshipPeriod.getCheckedRadioButtonId()==-1){
+            Toast.makeText(this, getResources().getString(R.string.answer_all_questions), Toast.LENGTH_SHORT).show();
         }
         else {
 
             //RadioButton radioGender = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_gender)).getCheckedRadioButtonId());
-            RadioButton radioHIVStatus = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_hivstatus)).getCheckedRadioButtonId());
-            RadioButton radioOtherPartner = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_partner)).getCheckedRadioButtonId());
-            RadioButton radioAddtoBB = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_blackbook)).getCheckedRadioButtonId());
-            RadioButton radioRelationshipPeriod = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_relationshipPeriod)).getCheckedRadioButtonId());
-            RadioButton radioUndetectable = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_undetectable)).getCheckedRadioButtonId());
+            RadioButton radioHIVStatus = (RadioButton) findViewById(RG_HIVstatus.getCheckedRadioButtonId());
+            RadioButton radioOtherPartner = (RadioButton) findViewById(RG_Partner.getCheckedRadioButtonId());
+            RadioButton radioAddtoBB = (RadioButton) findViewById(RG_BlackBook.getCheckedRadioButtonId());
+            RadioButton radioRelationshipPeriod = (RadioButton) findViewById(RG_RelationshipPeriod.getCheckedRadioButtonId());
+            RadioButton radioUndetectable = (RadioButton) findViewById(RG_Undetectable.getCheckedRadioButtonId());
             if (!LynxManager.relationShipLayoutHidden){
                 partRelationshipPeriod = radioRelationshipPeriod.getText().toString();
                 if (partRelationshipPeriod.equals("Less than 6 months") ){
@@ -351,13 +367,15 @@ public class BaselineActivity extends AppCompatActivity {
     }
     public boolean onHeavyAlcholNext(View view) {
 
-        RadioButton alcDaysCountPerWeek = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.alcoholCalculation)).getCheckedRadioButtonId());
+        RadioGroup RG_Alcohol = (RadioGroup) findViewById(R.id.alcoholCalculation);
         EditText alcCountPerDay = (EditText) findViewById(R.id.no_of_drinks);
-        if(alcCountPerDay.getText().toString().isEmpty()){
+        if(RG_Alcohol.getCheckedRadioButtonId()==-1) {
+            Toast.makeText(BaselineActivity.this,getResources().getString(R.string.how_often_did_you_drink),Toast.LENGTH_SHORT).show();
+        }else if(alcCountPerDay.getText().toString().isEmpty()){
             Toast.makeText(BaselineActivity.this,"Enter how many drinks you had on a typical day",Toast.LENGTH_SHORT).show();
             alcCountPerDay.requestFocus();
         }else{
-
+            RadioButton alcDaysCountPerWeek = (RadioButton) findViewById(RG_Alcohol.getCheckedRadioButtonId());
             UserAlcoholUse userAlcoholUse = new UserAlcoholUse(2, LynxManager.getActiveUser().getUser_id(),
                     LynxManager.encryptString(alcDaysCountPerWeek.getText().toString()), LynxManager.encryptString(alcCountPerDay.getText().toString()), LynxManager.encryptString("Yes"),String.valueOf(R.string.statusUpdateNo),true);
             LynxManager.setActiveUserAlcoholUse(userAlcoholUse);

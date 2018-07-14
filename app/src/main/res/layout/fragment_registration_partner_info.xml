@@ -134,7 +134,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="I don't know/unsure"
-                    android:checked="true"
                     android:textSize="14sp"
                     android:buttonTint="@color/white"
                     android:button="@drawable/radiobutton_white"
@@ -228,7 +227,6 @@
                         android:button="@drawable/radiobutton_white"
                         android:paddingLeft="12dp"
                         android:layout_marginTop="12dp"
-                        android:checked="true"
                         android:textColor="@color/white"
                         android:id="@+id/radio_undetectable_iDontKnow" />
                 </RadioGroup>
@@ -286,7 +284,6 @@
                         android:paddingLeft="12dp"
                         android:layout_marginTop="12dp"
                         android:textColor="@color/white"
-                        android:checked="true"
                         android:id="@+id/radio_partner_no" />
                     <RadioButton
                         android:layout_width="wrap_content"
@@ -298,7 +295,6 @@
                         android:paddingLeft="12dp"
                         android:layout_marginTop="12dp"
                         android:textColor="@color/white"
-                        android:checked="true"
                         android:id="@+id/radio_partner_unsure" />
 
                 </RadioGroup>
@@ -340,7 +336,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Less than 6 months"
-                        android:checked="true"
                         android:textSize="14sp"
                         android:buttonTint="@color/white"
                         android:button="@drawable/radiobutton_white"

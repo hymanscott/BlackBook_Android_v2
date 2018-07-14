@@ -339,27 +339,47 @@ public class EncounterStartActivity extends AppCompatActivity {
                 case "I sucked him":
                 case "I sucked her":
                     RadioGroup whenISuckedHimGroup = (RadioGroup) findViewById(R.id.whenIsucked_group);
-                    RadioButton whenISuckedHim_btn = (RadioButton) findViewById(whenISuckedHimGroup.getCheckedRadioButtonId());
-                    encSexType.setCondom_use(whenISuckedHim_btn.getText().toString());
-                    ejaculationQnsCount++;
+                    if(whenISuckedHimGroup.getCheckedRadioButtonId()==-1){
+                        Toast.makeText(EncounterStartActivity.this,getResources().getString(R.string.answer_all_condom_questions),Toast.LENGTH_SHORT).show();
+                        return true;
+                    }else{
+                        RadioButton whenISuckedHim_btn = (RadioButton) findViewById(whenISuckedHimGroup.getCheckedRadioButtonId());
+                        encSexType.setCondom_use(whenISuckedHim_btn.getText().toString());
+                        ejaculationQnsCount++;
+                    }
                     break;
                 case "I bottomed":
                     RadioGroup whenIBottomedGroup = (RadioGroup) findViewById(R.id.whenIbottomed_group);
-                    RadioButton whenIBottomed_btn = (RadioButton) findViewById(whenIBottomedGroup.getCheckedRadioButtonId());
-                    encSexType.setCondom_use(whenIBottomed_btn.getText().toString());
-                    ejaculationQnsCount++;
+                    if (whenIBottomedGroup.getCheckedRadioButtonId()==-1) {
+                        Toast.makeText(EncounterStartActivity.this,getResources().getString(R.string.answer_all_condom_questions),Toast.LENGTH_SHORT).show();
+                        return true;
+                    } else {
+                        RadioButton whenIBottomed_btn = (RadioButton) findViewById(whenIBottomedGroup.getCheckedRadioButtonId());
+                        encSexType.setCondom_use(whenIBottomed_btn.getText().toString());
+                        ejaculationQnsCount++;
+                    }
                     break;
                 case "I topped":
                     RadioGroup whenItoppedGroup = (RadioGroup) findViewById(R.id.whenItopped_group);
-                    RadioButton whenITopped_btn = (RadioButton) findViewById(whenItoppedGroup.getCheckedRadioButtonId());
-                    encSexType.setCondom_use(whenITopped_btn.getText().toString());
-                    ejaculationQnsCount++;
+                    if (whenItoppedGroup.getCheckedRadioButtonId()==-1) {
+                        Toast.makeText(EncounterStartActivity.this,getResources().getString(R.string.answer_all_condom_questions),Toast.LENGTH_SHORT).show();
+                        return true;
+                    } else {
+                        RadioButton whenITopped_btn = (RadioButton) findViewById(whenItoppedGroup.getCheckedRadioButtonId());
+                        encSexType.setCondom_use(whenITopped_btn.getText().toString());
+                        ejaculationQnsCount++;
+                    }
                     break;
                 case "I fucked her":
                 case "We fucked":
                     RadioGroup whenIfuckedGroup = (RadioGroup) findViewById(R.id.whenIfucked_group);
-                    RadioButton whenIFucked_btn = (RadioButton) findViewById(whenIfuckedGroup.getCheckedRadioButtonId());
-                    encSexType.setCondom_use(whenIFucked_btn.getText().toString());
+                    if (whenIfuckedGroup.getCheckedRadioButtonId()==-1) {
+                        Toast.makeText(EncounterStartActivity.this,getResources().getString(R.string.answer_all_condom_questions),Toast.LENGTH_SHORT).show();
+                        return true;
+                    } else {
+                        RadioButton whenIFucked_btn = (RadioButton) findViewById(whenIfuckedGroup.getCheckedRadioButtonId());
+                        encSexType.setCondom_use(whenIFucked_btn.getText().toString());
+                    }
                     break;
             }
         }
@@ -382,18 +402,33 @@ public class EncounterStartActivity extends AppCompatActivity {
                 case "I sucked him":
                 case "I sucked her":
                     RadioGroup RG_whenIsucked = (RadioGroup) findViewById(R.id.RG_whenIsucked);
-                    RadioButton whenISuckedHim_btn = (RadioButton) findViewById(RG_whenIsucked.getCheckedRadioButtonId());
-                    encSexType.setEjaculation(whenISuckedHim_btn.getText().toString());
+                    if (RG_whenIsucked.getCheckedRadioButtonId()==-1) {
+                        Toast.makeText(EncounterStartActivity.this,getResources().getString(R.string.answer_all_ejaculation_questions),Toast.LENGTH_SHORT).show();
+                        return true;
+                    } else {
+                        RadioButton whenISuckedHim_btn = (RadioButton) findViewById(RG_whenIsucked.getCheckedRadioButtonId());
+                        encSexType.setEjaculation(whenISuckedHim_btn.getText().toString());
+                    }
                     break;
                 case "I bottomed":
                     RadioGroup RG_whenIbottomed = (RadioGroup) findViewById(R.id.RG_whenIbottomed);
-                    RadioButton whenIBottomed_btn = (RadioButton) findViewById(RG_whenIbottomed.getCheckedRadioButtonId());
-                    encSexType.setEjaculation(whenIBottomed_btn.getText().toString());
+                    if (RG_whenIbottomed.getCheckedRadioButtonId() == -1) {
+                        Toast.makeText(EncounterStartActivity.this,getResources().getString(R.string.answer_all_ejaculation_questions),Toast.LENGTH_SHORT).show();
+                        return true;
+                    } else {
+                        RadioButton whenIBottomed_btn = (RadioButton) findViewById(RG_whenIbottomed.getCheckedRadioButtonId());
+                        encSexType.setEjaculation(whenIBottomed_btn.getText().toString());
+                    }
                     break;
                 case "I topped":
                     RadioGroup RG_whenItopped = (RadioGroup) findViewById(R.id.RG_whenItopped);
-                    RadioButton whenITopped_btn = (RadioButton) findViewById(RG_whenItopped.getCheckedRadioButtonId());
-                    encSexType.setEjaculation(whenITopped_btn.getText().toString());
+                    if (RG_whenItopped.getCheckedRadioButtonId() == -1) {
+                        Toast.makeText(EncounterStartActivity.this,getResources().getString(R.string.answer_all_ejaculation_questions),Toast.LENGTH_SHORT).show();
+                        return true;
+                    } else {
+                        RadioButton whenITopped_btn = (RadioButton) findViewById(RG_whenItopped.getCheckedRadioButtonId());
+                        encSexType.setEjaculation(whenITopped_btn.getText().toString());
+                    }
                     break;
             }
         }
@@ -411,7 +446,7 @@ public class EncounterStartActivity extends AppCompatActivity {
     public boolean onDrunkStatusNext(View view){
         RadioGroup RG_Drunk = (RadioGroup)findViewById(R.id.RG_drunkStatus);
         if(RG_Drunk.getCheckedRadioButtonId() == -1){
-            Toast.makeText(EncounterStartActivity.this,"Please select any one option",Toast.LENGTH_SHORT).show();
+            Toast.makeText(EncounterStartActivity.this,getResources().getString(R.string.select_any_one),Toast.LENGTH_SHORT).show();
         }else{
             RadioButton RB_drunk = (RadioButton)findViewById(RG_Drunk.getCheckedRadioButtonId());
             LynxManager.activeEncounter.setIs_drug_used(LynxManager.encryptString(RB_drunk.getText().toString()));
@@ -844,6 +879,7 @@ public class EncounterStartActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     alert11.cancel();
                     Intent intent = new Intent(EncounterStartActivity.this,LynxPrep.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK  | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);
                     finish();
                 }

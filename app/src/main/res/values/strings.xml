@@ -171,4 +171,16 @@
     <string name="screen_three_description">Take care of your business without having anyone in your business. Get testing reminders and test locations that’s easiest for you – yep, even at home.</string>
     <string name="screen_four_description">Know how much of a pro you are at protecting your sexual health. We calculate your Sexual Health Protection (Sex Pro) Score and help you access PrEP.</string>
 
+    <!--Validation Messages-->
+    <string name="select_any_one">Please select any one option</string>
+    <string name="answer_all_questions">Please answer all the questions</string>
+    <string name="answer_all_condom_questions">Please answer all condom usage questions</string>
+    <string name="answer_all_ejaculation_questions">Please answer all ejaculation questions</string>
+    <string name="select_partner_type">Please select partner type</string>
+    <string name="select_hiv_status">Please select HIV status</string>
+    <string name="select_hiv_test_result">Please enter your HIV test result</string>
+    <string name="select_std_test_result">Please enter all STD test results</string>
+    <string name="select_prep_status">Please select PrEP status</string>
+    <string name="how_often_did_you_drink">Please select how often did you drink</string>
+
 </resources>

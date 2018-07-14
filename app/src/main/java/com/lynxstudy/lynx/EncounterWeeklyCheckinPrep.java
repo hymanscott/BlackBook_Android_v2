@@ -34,7 +34,7 @@ public class EncounterWeeklyCheckinPrep extends Fragment {
         // Required empty public constructor
     }
 
-    TextView frag_title,taking_prep,prepDays;
+    TextView frag_title,taking_prep,prepDays,textView8;
     Button checkin_prep_next;
     RadioButton taking_prep_yes,taking_prep_no;
     RelativeLayout prep_parent;
@@ -53,6 +53,8 @@ public class EncounterWeeklyCheckinPrep extends Fragment {
         frag_title.setTypeface(tf_bold);
         taking_prep = (TextView) view.findViewById(R.id.taking_prep);
         taking_prep.setTypeface(tf);
+        textView8 = (TextView) view.findViewById(R.id.textView8);
+        textView8.setTypeface(tf);
         prepDays = (TextView) view.findViewById(R.id.prepDays);
         prepDays.setTypeface(tf);
         checkin_prep_next = (Button) view.findViewById(R.id.checkin_prep_next);

@@ -495,7 +495,6 @@ Add a new test to get started."/>
                             android:button="@drawable/radiobutton_black"
                             android:paddingLeft="12dp"
                             android:text="No"
-                            android:checked="true"
                             android:id="@+id/hivTestNo"/>
                         <RadioButton
                             android:layout_width="wrap_content"
@@ -582,7 +581,6 @@ Add a new test to get started."/>
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
                                 android:textColor="@color/profile_text_color"
-                                android:checked="true"
                                 android:buttonTint="@color/profile_text_color"
                                 android:button="@drawable/radiobutton_black"
                                 android:paddingLeft="12dp"
@@ -662,7 +660,6 @@ Add a new test to get started."/>
                                 android:button="@drawable/radiobutton_black"
                                 android:paddingLeft="12dp"
                                 android:text="No"
-                                android:checked="true"
                                 android:layout_marginTop="4dp"
                                 android:id="@+id/syphilisNo" />
                             <RadioButton
@@ -734,7 +731,6 @@ Add a new test to get started."/>
                                 android:layout_height="wrap_content"
                                 android:text="No"
                                 android:textSize="14sp"
-                                android:checked="true"
                                 android:layout_marginTop="4dp"
                                 android:buttonTint="@color/profile_text_color"
                                 android:button="@drawable/radiobutton_black"

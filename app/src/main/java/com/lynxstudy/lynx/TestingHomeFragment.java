@@ -494,7 +494,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         TextView newTest_title = (TextView) view.findViewById(R.id.addNewTestTitle);
         newTest_title.setTypeface(tf_bold);
         newTest_title.setText("Add New " + title);
-        TextView titleText = (TextView) view.findViewById(R.id.titleText);
+        final TextView titleText = (TextView) view.findViewById(R.id.titleText);
         titleText.setText("When was your most recent HIV test?");
         LinearLayout std_layout = (LinearLayout)view.findViewById(R.id.std_layout);
         RadioGroup hivTestStatus = (RadioGroup)view.findViewById(R.id.newhivTestStatus);
@@ -614,6 +614,10 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
 
         add_new_test_ok = (Button) view.findViewById(R.id.addNewTestOk);
         add_new_test_ok.setTypeface(tf_bold);
+        final RadioGroup RG_Chlamydia = (RadioGroup) view.findViewById(R.id.chlamydia);
+        final RadioGroup RG_Gonorrhea = (RadioGroup)view.findViewById(R.id.gonorrhea);
+        final RadioGroup RG_Syphilis = (RadioGroup)view.findViewById(R.id.syphilis);
+        final RadioGroup RG_HIVtest = (RadioGroup)view.findViewById(R.id.newhivTestStatus);
         add_new_test_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -622,15 +626,18 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     Toast.makeText(getActivity(), "Please Select Date", Toast.LENGTH_SHORT).show();
                 } else if(invalid_date){
                     Toast.makeText(getActivity(),"Invalid Date",Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else if(title.equals("STD Test") && (RG_Chlamydia.getCheckedRadioButtonId()==-1 || RG_Gonorrhea.getCheckedRadioButtonId()==-1 || RG_Syphilis.getCheckedRadioButtonId()==-1)){
+                    Toast.makeText(getActivity(),getResources().getString(R.string.select_std_test_result),Toast.LENGTH_SHORT).show();
+                } else if(title.equals("HIV Test") && RG_HIVtest.getCheckedRadioButtonId()==-1){
+                    Toast.makeText(getActivity(),getResources().getString(R.string.select_hiv_test_result),Toast.LENGTH_SHORT).show();
+                } else {
                     String date = LynxManager.getFormatedDate("MM/dd/yyyy",newTestDate.getText().toString(),"yyyy-MM-dd");
                     TestingHistory history = new TestingHistory(testing_id, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(date), String.valueOf(R.string.statusUpdateNo), true);
                     int testingHistoryid = db.createTestingHistory(history);
-                    RadioButton chlamydia = (RadioButton)view.findViewById(((RadioGroup) view.findViewById(R.id.chlamydia)).getCheckedRadioButtonId());
-                    RadioButton gonorrhea = (RadioButton)view.findViewById(((RadioGroup)view.findViewById(R.id.gonorrhea)).getCheckedRadioButtonId());
-                    RadioButton syphilis = (RadioButton)view.findViewById(((RadioGroup)view.findViewById(R.id.syphilis)).getCheckedRadioButtonId());
-                    RadioButton hivTestStatus = (RadioButton)view.findViewById(((RadioGroup)view.findViewById(R.id.newhivTestStatus)).getCheckedRadioButtonId());
+                    RadioButton chlamydia = (RadioButton)view.findViewById(RG_Chlamydia.getCheckedRadioButtonId());
+                    RadioButton gonorrhea = (RadioButton)view.findViewById(RG_Gonorrhea.getCheckedRadioButtonId());
+                    RadioButton syphilis = (RadioButton)view.findViewById(RG_Syphilis.getCheckedRadioButtonId());
+                    RadioButton hivTestStatus = (RadioButton)view.findViewById(RG_HIVtest.getCheckedRadioButtonId());
                     // Adding testing history info
                     if (title.equals("STD Test")){
                         for(int sti_count =1 ; sti_count<=3;sti_count++){

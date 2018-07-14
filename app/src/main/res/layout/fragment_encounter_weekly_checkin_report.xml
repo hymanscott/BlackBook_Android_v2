@@ -64,7 +64,6 @@
                         android:id="@+id/have_encounter_yes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="true"
                         android:text="Yes"
                         android:buttonTint="@color/white"
                         android:button="@drawable/radiobutton_white"

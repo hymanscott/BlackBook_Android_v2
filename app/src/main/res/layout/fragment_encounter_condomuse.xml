@@ -104,7 +104,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/whenIsucked_CondomNotUsed"
-                                    android:checked="true"
                                     android:textSize="@dimen/encounter_radio_btn_textsize"
                                     android:textColor="@color/white"
                                     android:buttonTint="@color/white"
@@ -171,7 +170,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:id="@+id/whenItopped_CondomNotUsed"
-                                    android:checked="true"
                                     android:textSize="@dimen/encounter_radio_btn_textsize"
                                     android:textColor="@color/white"
                                     android:buttonTint="@color/white"
@@ -243,7 +241,6 @@
                                     android:paddingLeft="12dp"
                                     android:layout_marginTop="12dp"
                                     android:id="@+id/whenIbottomed_CondomNotUsed"
-                                    android:checked="true"
                                     android:text="Condom not used"/>
                             </RadioGroup>
                             <View
@@ -309,7 +306,6 @@
                                     android:paddingLeft="12dp"
                                     android:layout_marginTop="12dp"
                                     android:id="@+id/whenIfucked_CondomNotUsed"
-                                    android:checked="true"
                                     android:text="Condom not used"/>
                             </RadioGroup>
                             <View
