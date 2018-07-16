@@ -81,7 +81,7 @@ public class EncounterChoosePartnerFragment extends Fragment {
         }
         else {
             for (Partners partner : partners) {
-                if(partner.getPartner_idle()!=1) {
+                if(partner.getIs_active()!=0) {
                     TableRow partnerRow = new TableRow(getActivity());
                     partnerRow.setPadding(16, 0, 0, 0);
                     partnerRow.setGravity(Gravity.CENTER_VERTICAL);

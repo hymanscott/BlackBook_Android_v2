@@ -145,77 +145,78 @@ public class HomeEncounterFragment extends Fragment {
             for (Encounter encounter : allEncounters) {
                 int enc_partner_id = encounter.getEncounter_partner_id();
                 Partners partner = db.getPartnerbyID(enc_partner_id);
+                if (partner.getIs_active() == 1) {
+                    TableRow encounterRow = new TableRow(getActivity());
+                    View v = LayoutInflater.from(getActivity()).inflate(R.layout.table_encounter_row, encounterRow, false);
+                    if (width == 480 && height == 800)
+                    {
+                        v = LayoutInflater.from(getActivity()).inflate(R.layout.table_encounter_row_alt, encounterRow, false);
+                    }
+                    TextView date = (TextView)v.findViewById(R.id.date);
+                    TextView name = (TextView)v.findViewById(R.id.name);
+                    RatingBar ratingBar = (RatingBar)v.findViewById(R.id.rating);
+                    date.setTypeface(tf);
+                    name.setTypeface(tf);
+                    String format = "MM/dd/yy";
+                    String current_format = "yyyy-MM-dd HH:mm:ss";
+                    date.setText(LynxManager.getFormatedDate(current_format, LynxManager.decryptString(encounter.getDatetime()), format));
+                    name.setText(LynxManager.decryptString(partner.getNickname()));
+                    ratingBar.setRating(Float.parseFloat(LynxManager.decryptString(encounter.getRate_the_sex())));
+                    ratingBar.setNumStars(5);
+                    ratingBar.setRight(10);
+                    float rating_bar_scale = (float) 0.9;
+                    ratingBar.setScaleX(rating_bar_scale);
+                    ratingBar.setScaleY(rating_bar_scale);
+                    LayerDrawable stars4 = (LayerDrawable) ratingBar.getProgressDrawable();
+                    stars4.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);// On State color
+                    stars4.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_IN);// Off State color
+                    stars4.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);// Stroke (On State Stars Only)
+                    int encounterId = encounter.getEncounter_id();
+                    v.setClickable(true);
+                    v.setFocusable(true);
+                    v.setId(encounterId);
+                    v.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            //Highlight selected row
+                            for (int i = 0; i < encounterTable.getChildCount(); i++) {
+                                View row = encounterTable.getChildAt(i);
+                                if (row == view) {
+                                    //row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
+                                    LynxManager.selectedEncounterID = row.getId();
+                                    LynxManager.activePartnerSexType.clear();
 
-                TableRow encounterRow = new TableRow(getActivity());
-                View v = LayoutInflater.from(getActivity()).inflate(R.layout.table_encounter_row, encounterRow, false);
-                if (width == 480 && height == 800)
-                {
-                    v = LayoutInflater.from(getActivity()).inflate(R.layout.table_encounter_row_alt, encounterRow, false);
-                }
-                TextView date = (TextView)v.findViewById(R.id.date);
-                TextView name = (TextView)v.findViewById(R.id.name);
-                RatingBar ratingBar = (RatingBar)v.findViewById(R.id.rating);
-                date.setTypeface(tf);
-                name.setTypeface(tf);
-                String format = "MM/dd/yy";
-                String current_format = "yyyy-MM-dd HH:mm:ss";
-                date.setText(LynxManager.getFormatedDate(current_format, LynxManager.decryptString(encounter.getDatetime()), format));
-                name.setText(LynxManager.decryptString(partner.getNickname()));
-                ratingBar.setRating(Float.parseFloat(LynxManager.decryptString(encounter.getRate_the_sex())));
-                ratingBar.setNumStars(5);
-                ratingBar.setRight(10);
-                float rating_bar_scale = (float) 0.9;
-                ratingBar.setScaleX(rating_bar_scale);
-                ratingBar.setScaleY(rating_bar_scale);
-                LayerDrawable stars4 = (LayerDrawable) ratingBar.getProgressDrawable();
-                stars4.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);// On State color
-                stars4.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_IN);// Off State color
-                stars4.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);// Stroke (On State Stars Only)
-                int encounterId = encounter.getEncounter_id();
-                v.setClickable(true);
-                v.setFocusable(true);
-                v.setId(encounterId);
-                v.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        //Highlight selected row
-                        for (int i = 0; i < encounterTable.getChildCount(); i++) {
-                            View row = encounterTable.getChildAt(i);
-                            if (row == view) {
-                                //row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
-                                LynxManager.selectedEncounterID = row.getId();
-                                LynxManager.activePartnerSexType.clear();
+                                    //Set Active Encounter
+                                    Encounter selectedEncounter = db.getEncounter(row.getId());
+                                    LynxManager.setActiveEncounter(selectedEncounter);
+                                    //Log.v("sextypeID", String.valueOf(selectedEncounter.getEncounter_id()));
+                                    //set Active partner and Contact
+                                    LynxManager.setActivePartner(db.getPartnerbyID(selectedEncounter.getEncounter_partner_id()));
+                                    LynxManager.setActivePartnerContact(db.getPartnerContactbyPartnerID(selectedEncounter.getEncounter_partner_id()));
 
-                                //Set Active Encounter
-                                Encounter selectedEncounter = db.getEncounter(row.getId());
-                                LynxManager.setActiveEncounter(selectedEncounter);
-                                //Log.v("sextypeID", String.valueOf(selectedEncounter.getEncounter_id()));
-                                //set Active partner and Contact
-                                LynxManager.setActivePartner(db.getPartnerbyID(selectedEncounter.getEncounter_partner_id()));
-                                LynxManager.setActivePartnerContact(db.getPartnerContactbyPartnerID(selectedEncounter.getEncounter_partner_id()));
+                                    List<EncounterSexType> selectedSEXtypes = db.getAllEncounterSexTypes(row.getId());
 
-                                List<EncounterSexType> selectedSEXtypes = db.getAllEncounterSexTypes(row.getId());
-
-                                for (EncounterSexType setSextype : selectedSEXtypes) {
-                                    EncounterSexType encounterSexType = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.decryptString(setSextype.getSex_type()), "","", "", String.valueOf(R.string.statusUpdateNo),false);
-                                    //Log.v("sextypes", String.valueOf(encounterSexType));
-                                    LynxManager.activePartnerSexType.add(encounterSexType);
-                                }
-                                //Intent selectedEncounterSumm = new Intent(getActivity(), SelectedEncounterSummary.class);
-                                //Log.v("EncounterID", String.valueOf(row.getId()));
+                                    for (EncounterSexType setSextype : selectedSEXtypes) {
+                                        EncounterSexType encounterSexType = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.decryptString(setSextype.getSex_type()), "","", "", String.valueOf(R.string.statusUpdateNo),false);
+                                        //Log.v("sextypes", String.valueOf(encounterSexType));
+                                        LynxManager.activePartnerSexType.add(encounterSexType);
+                                    }
+                                    //Intent selectedEncounterSumm = new Intent(getActivity(), SelectedEncounterSummary.class);
+                                    //Log.v("EncounterID", String.valueOf(row.getId()));
                                 /*Intent selectedEncounterSumm = new Intent(getActivity(), SelectedEncounterSummary.class);
                                 selectedEncounterSumm.putExtra("EncounterID",row.getId());
                                 startActivity(selectedEncounterSumm);*/
-                                setEncounterSummary(row.getId());
-                            } else {
-                                //Change this to your normal background color.
-                                row.setBackground(getResources().getDrawable(R.drawable.border_bottom));
+                                    setEncounterSummary(row.getId());
+                                } else {
+                                    //Change this to your normal background color.
+                                    row.setBackground(getResources().getDrawable(R.drawable.border_bottom));
+                                }
                             }
                         }
-                    }
-                });
-                v.setBackground(getResources().getDrawable(R.drawable.border_bottom));
-                encounterTable.addView(v);
+                    });
+                    v.setBackground(getResources().getDrawable(R.drawable.border_bottom));
+                    encounterTable.addView(v);
+                }
             }
         }
         back_press_count=0;

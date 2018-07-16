@@ -21,6 +21,7 @@ public class Partners {
     String created_at;
     String status_update;
     int partner_idle;
+    int is_active;
     boolean status_encrypt;
 
     public Partners() {
@@ -56,6 +57,14 @@ public class Partners {
 
     public void setPartner_idle(int partner_idle) {
         this.partner_idle = partner_idle;
+    }
+
+    public int getIs_active() {
+        return is_active;
+    }
+
+    public void setIs_active(int is_active) {
+        this.is_active = is_active;
     }
 
     public String getStatus_update() {

@@ -1586,6 +1586,7 @@ public class RegLogin extends AppCompatActivity {
                                     LynxManager.encryptString(partnersObject.getString("undetectable_for_sixmonth")),
                                     LynxManager.encryptString(partnersObject.getString("is_added_to_partners")),
                                     String.valueOf(R.string.statusUpdateYes),true);
+                            partner.setIs_active(partnersObject.getInt("is_active"));
                             int partner_ID = db.createPartnerWithID(partner);
                         }
 

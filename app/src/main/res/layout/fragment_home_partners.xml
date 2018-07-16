@@ -1437,12 +1437,24 @@
                     android:background="@drawable/buttonbluecornered"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:layout_marginTop="48dp"
-                    android:layout_marginBottom="48dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginBottom="36dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:textSize="@dimen/button_textsize"
                     android:id="@+id/next" />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="48dp"
+                    android:text="Delete Partner"
+                    android:textSize="@dimen/button_textsize"
+                    android:textColor="@color/button_red"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="90dp"
+                    android:layout_marginRight="90dp"
+                    android:id="@+id/deletePartner"
+                    android:background="@drawable/border_full_red"/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

@@ -119,10 +119,10 @@ public class LynxTopFive extends AppCompatActivity implements View.OnClickListen
                 default:
                     rate_image.setImageDrawable(getResources().getDrawable(R.drawable.encounter_rate_one));
             }
-            if(enc_count<=5)
+            if(enc_count<=5 && partner.getIs_active()==1){
                 topFiveEncounterList.addView(v);
-
-            enc_count++;
+                enc_count++;
+            }
         }
 
         /*Top Five Partners*/
@@ -159,10 +159,10 @@ public class LynxTopFive extends AppCompatActivity implements View.OnClickListen
                     default:
                         rate_image.setImageDrawable(getResources().getDrawable(R.drawable.partner_rate_one));
                 }
-                if(partner_count<=5)
+                if(partner_count<=5 && partner.getIs_active()==1){
                     topFivePartnerList.addView(v);
-
-                partner_count++;
+                    partner_count++;
+                }
             }
         }
     }

@@ -286,27 +286,29 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
         if(encountersList.size()!=0 || testingHistoryList.size()!=0){
             no_activity_logged.setVisibility(View.GONE);
             for(final Encounter encounter: encountersList){
-                String dtStart = LynxManager.decryptString(encounter.getDatetime());
-                String curdate[] = dtStart.split(" ");
-                if (curdate[0].equals(date)){
-                    Log.v("EncounterEvent",LynxManager.decryptString(encounter.getDatetime())+"-" + LynxManager.decryptString(encounter.getRate_the_sex()));
-                    Partners partner = db.getPartnerbyID(encounter.getEncounter_partner_id());
-                    TableRow encounterRow = new TableRow(LynxCalendar.this);
-                    View v = LayoutInflater.from(LynxCalendar.this).inflate(R.layout.calendar_event_row, encounterRow, false);
-                    TextView name = (TextView)v.findViewById(R.id.name);
-                    name.setTypeface(tf);
-                    ImageView rate_image = (ImageView)v.findViewById(R.id.rate_image);
-                    name.setText(LynxManager.decryptString(partner.getNickname()));
-                    name.setTypeface(tf);
-                    rate_image.setImageDrawable(getResources().getDrawable(R.drawable.calendardiaryblue));
-                    v.setId(encounter.getEncounter_id());
-                    v.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            setEncounterSummary(encounter.getEncounter_id());
-                        }
-                    });
-                    eventsList.addView(v);
+                Partners partner = db.getPartnerbyID(encounter.getEncounter_partner_id());
+                if (partner.getIs_active() == 1) {
+                    String dtStart = LynxManager.decryptString(encounter.getDatetime());
+                    String curdate[] = dtStart.split(" ");
+                    if (curdate[0].equals(date)) {
+                        Log.v("EncounterEvent", LynxManager.decryptString(encounter.getDatetime()) + "-" + LynxManager.decryptString(encounter.getRate_the_sex()));
+                        TableRow encounterRow = new TableRow(LynxCalendar.this);
+                        View v = LayoutInflater.from(LynxCalendar.this).inflate(R.layout.calendar_event_row, encounterRow, false);
+                        TextView name = (TextView) v.findViewById(R.id.name);
+                        name.setTypeface(tf);
+                        ImageView rate_image = (ImageView) v.findViewById(R.id.rate_image);
+                        name.setText(LynxManager.decryptString(partner.getNickname()));
+                        name.setTypeface(tf);
+                        rate_image.setImageDrawable(getResources().getDrawable(R.drawable.calendardiaryblue));
+                        v.setId(encounter.getEncounter_id());
+                        v.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                setEncounterSummary(encounter.getEncounter_id());
+                            }
+                        });
+                        eventsList.addView(v);
+                    }
                 }
             }/*
             for(TestingHistory testingHistory:db.getAllTestingHistories()){
@@ -352,16 +354,18 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
             }
 
         }
-        for(Encounter encounter:db.getAllEncounters()){
-            String dtStart = LynxManager.decryptString(encounter.getDatetime());
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            try {
-                date = format.parse(dtStart);
-                caldroidFragment.setBackgroundDrawableForDate(img, date);
-            } catch (ParseException e) {
-                e.printStackTrace();
+        for(Encounter encounter:db.getAllEncounters()) {
+            Partners partner = db.getPartnerbyID(encounter.getEncounter_partner_id());
+            if (partner.getIs_active() == 1) {
+                String dtStart = LynxManager.decryptString(encounter.getDatetime());
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                try {
+                    date = format.parse(dtStart);
+                    caldroidFragment.setBackgroundDrawableForDate(img, date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
-
         }
         caldroidFragment.refreshView();
     }

@@ -57,7 +57,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 9;
 
     // Database Name
     private static final String DATABASE_NAME = "phasttDB";
@@ -173,6 +173,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_PARTNER_UNDETECTABLE = "undetectable";
     private static final String KEY_PARTNER_ADDEDTOLIST = "is_added_to_partners";
     private static final String KEY_PARTNER_IDLE = "idle_partner";
+    private static final String KEY_PARTNER_IS_ACTIVE = "is_active";
 
     // User Drug Use Table - Column Names
     private static final String KEY_DRUGUSE_ID = "druguse_id";
@@ -415,7 +416,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_PARTNERS = "CREATE TABLE "
             + TABLE_PARTNERS + "(" + KEY_PARTNER_ID + " INTEGER PRIMARY KEY," + KEY_PARTNER_USERID + " INTEGER,"
             + KEY_PARTNER_NICKNAME + " TEXT," + KEY_PARTNER_GENDER + " TEXT," + KEY_PARTNER_HIVSTATUS + " TEXT," + KEY_PARTNER_UNDETECTABLE + " TEXT,"
-            + KEY_PARTNER_ADDEDTOLIST + " TEXT," + KEY_PARTNER_IDLE + " INTEGER DEFAULT 0," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
+            + KEY_PARTNER_ADDEDTOLIST + " TEXT," + KEY_PARTNER_IDLE + " INTEGER DEFAULT 0," + KEY_PARTNER_IS_ACTIVE + " INTEGER DEFAULT 1," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
 
     private static final String CREATE_TABLE_USER_DRUGUSE = "CREATE TABLE "
             + TABLE_USER_DRUGUSE + "(" + KEY_DRUGUSE_ID + " INTEGER PRIMARY KEY," + KEY_DRUGUSE_USERID + " INTEGER," + KEY_DRUGUSE_DRUGID
@@ -1668,6 +1669,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_PARTNER_UNDETECTABLE,partner.getUndetectable_for_sixmonth());
         values.put(KEY_PARTNER_ADDEDTOLIST, partner.getIs_added_to_partners());
         values.put(KEY_STATUS_UPDATE, partner.getStatus_update());
+        values.put(KEY_PARTNER_IS_ACTIVE, partner.getIs_active());
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
@@ -1703,6 +1705,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         partner.setIs_added_to_partners(c.getString(c.getColumnIndex(KEY_PARTNER_ADDEDTOLIST)));
         partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
         partner.setPartner_idle(c.getInt(c.getColumnIndex(KEY_PARTNER_IDLE)));
+        partner.setIs_active(c.getInt(c.getColumnIndex(KEY_PARTNER_IS_ACTIVE)));
 
         c.close();
         return partner;
@@ -1734,6 +1737,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 partner.setIs_added_to_partners(c.getString(c.getColumnIndex(KEY_PARTNER_ADDEDTOLIST)));
                 partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
                 partner.setPartner_idle(c.getInt(c.getColumnIndex(KEY_PARTNER_IDLE)));
+                partner.setIs_active(c.getInt(c.getColumnIndex(KEY_PARTNER_IS_ACTIVE)));
 
                 // adding to Users list
                 Partners.add(partner);
@@ -1771,6 +1775,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 partner.setIs_added_to_partners(c.getString(c.getColumnIndex(KEY_PARTNER_ADDEDTOLIST)));
                 partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
                 partner.setPartner_idle(c.getInt(c.getColumnIndex(KEY_PARTNER_IDLE)));
+                partner.setIs_active(c.getInt(c.getColumnIndex(KEY_PARTNER_IS_ACTIVE)));
 
                 // adding to Users list
                 Partners.add(partner);
@@ -1792,6 +1797,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // updating row
         return db.update(TABLE_PARTNERS, values, KEY_PARTNER_ID + " = ?",
                 new String[]{String.valueOf(partner.getPartner_id())});
+    }
+
+    public int deletePartner(int partner_id,int is_active,String status){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_PARTNER_IS_ACTIVE,is_active);
+        values.put(KEY_STATUS_UPDATE,status);
+        // updating row
+        return db.update(TABLE_PARTNERS, values, KEY_PARTNER_ID + " = ?",
+                new String[]{String.valueOf(partner_id)});
     }
     /**
      * getting all  Partners by Status
@@ -1819,6 +1835,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 partner.setIs_added_to_partners(c.getString(c.getColumnIndex(KEY_PARTNER_ADDEDTOLIST)));
                 partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
                 partner.setPartner_idle(c.getInt(c.getColumnIndex(KEY_PARTNER_IDLE)));
+                partner.setIs_active(c.getInt(c.getColumnIndex(KEY_PARTNER_IS_ACTIVE)));
 
 
                 // adding to Users list

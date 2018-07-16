@@ -60,7 +60,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
     private boolean isSummaryShown = false;
     private boolean isEditShown = false;
     TextView add_partner_title,edithivStatus,partnerTypeTitle,partnerNotes,editoverAll,undetectableAns,monogamousTitle,undetectableQn,otherPartnerTitle,otherPartner,monogamous,partnerGender,selectedPartner_gender,selectedPartner_undetct,undetct_summ_title;
-    Button next;
+    Button next,BT_DeletePartner;
     RelativeLayout undetectableLayout,undetectableAnsParent,hivStatusParent,partnerTypeParent,monogamousParent,otherPartnerParent;
     LinearLayout monogamousLayout,otherPartnerLayout,undetectSummLayout;
     View rootview;
@@ -104,7 +104,8 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         Collections.sort(partners,new Partners.comparePartner());
         int j = 0;
         for (Partners partner : partners) {
-            if(partner.getPartner_idle()!=1) {
+            Log.v("PartnerStatus","id=>" +partner.getPartner_id()+", "+ partner.getIs_active());
+            if(partner.getIs_active()!=0) {
                 TableRow partnerRow = new TableRow(getActivity());
                 partnerRow.setPadding(10, 30, 0, 30);
                 TextView partner_Name = new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);
@@ -417,7 +418,9 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         PartnerContact partnerContact = db.getPartnerContactbyPartnerID(partner_id);
 
         next = (Button) rootview.findViewById(R.id.next);
+        BT_DeletePartner = (Button) rootview.findViewById(R.id.deletePartner);
         next.setTypeface(tf_bold);
+        BT_DeletePartner.setTypeface(tf);
         edithivStatus = (TextView) rootview.findViewById(R.id.editHivStatus);
         edithivStatus.setTypeface(tf_bold);
         partnerTypeTitle = (TextView) rootview.findViewById(R.id.partnerTypeTitle);
@@ -895,6 +898,41 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                 }
 
 
+            }
+        });
+
+        BT_DeletePartner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+                View appAlertLayout = getActivity().getLayoutInflater().inflate(R.layout.app_alert_template,null);
+                builder1.setView(appAlertLayout);
+                TextView message_tv = (TextView)appAlertLayout.findViewById(R.id.message);
+                TextView dont_delete = (TextView)appAlertLayout.findViewById(R.id.maybeLater);
+                dont_delete.setText("Do not delete");
+                TextView delete = (TextView)appAlertLayout.findViewById(R.id.prepInfo);
+                delete.setText("Delete");
+                View verticalBorder = (View)appAlertLayout.findViewById(R.id.verticalBorder);
+                message_tv.setText("Deleting this partner will delete them from your encounter list and other sections in the app. You cannot undo this action. Are you sure you want to delete this partner?");
+                builder1.setCancelable(false);
+                final AlertDialog alert11 = builder1.create();
+                delete.setVisibility(View.VISIBLE);
+                verticalBorder.setVisibility(View.VISIBLE);
+                dont_delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alert11.cancel();
+                    }
+                });
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Delete action //
+                        db.deletePartner(partner_id,0,String.valueOf(R.string.statusUpdateNo));
+                        alert11.cancel();
+                    }
+                });
+                alert11.show();
             }
         });
     }
