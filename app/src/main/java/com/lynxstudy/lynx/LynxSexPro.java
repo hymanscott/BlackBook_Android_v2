@@ -374,6 +374,10 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
             tv.setText("+ Using condoms to prevent STDs.");
             additionalTriggerMessage.addView(tv);
         }
+        Log.v("NASP",String.valueOf(getscore.getNASP()));
+        Log.v("NASP_POS",String.valueOf(getscore.getNaspPos()));
+        Log.v("NASP_Neg",String.valueOf(getscore.getNaspNeg()));
+        Log.v("NASP_Unk",String.valueOf(getscore.getNaspUnknown()));
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
 		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));

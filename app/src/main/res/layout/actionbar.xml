@@ -26,6 +26,15 @@
             android:layout_margin="0dp"
             android:textSize="18sp" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/back_action"
+        android:layout_width="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:src="@drawable/back_action" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

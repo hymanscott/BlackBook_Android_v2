@@ -91,6 +91,9 @@ public class calculateSexProScore {
 
     private int elapsed_days;
 
+    private String topCondomUsePer;
+    private String botCondomUsePer;
+
     public calculateSexProScore(Context context) {
         db = new DatabaseHelper(context);
         initialize();
@@ -385,11 +388,13 @@ public class calculateSexProScore {
 
 
         String topCondomUse =   LynxManager.decryptString(baselineInfo.getTop_condom_use_percent());
+        topCondomUsePer =   LynxManager.decryptString(baselineInfo.getTop_condom_use_percent());
         topCondomUse        =   topCondomUse.replaceAll("\\s+","");
         /*topCondomUse        =   topCondomUse.length()==3?topCondomUse.substring(0,2):(topCondomUse.substring(0,1));*/
         topCondomUse        =   topCondomUse.substring(0, topCondomUse.length() - 1);
 
         String botCondomUse =   LynxManager.decryptString(baselineInfo.getBottom_condom_use_percent());
+        botCondomUsePer =   LynxManager.decryptString(baselineInfo.getBottom_condom_use_percent());
         botCondomUse        =   botCondomUse.replaceAll("\\s+","");
         /*botCondomUse        =   botCondomUse.length()==3?botCondomUse.substring(0,2):(botCondomUse.substring(0,1));*/
         botCondomUse        =   botCondomUse.substring(0, botCondomUse.length() - 1);
@@ -630,6 +635,30 @@ public class calculateSexProScore {
             return true;
         else
             return false;
+    }
+
+    public int getNaspUnknown(){
+        return NASP_UNKNOWN;
+    }
+
+    public int getNaspPos(){
+        return NASP_POS;
+    }
+
+    public int getNaspNeg(){
+        return NASP_NEG;
+    }
+
+    public String getTopCondomPer(){
+        return topCondomUsePer;
+    }
+
+    public String getBottomCondomPer(){
+        return botCondomUsePer;
+    }
+
+    public int getHEAVYALC(){
+        return HEAVYALC;
     }
 
 }

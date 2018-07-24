@@ -318,7 +318,7 @@ public class BaselineActivity extends AppCompatActivity {
 
 
             // String partGender = radioGender.getText().toString();
-            String partGender = "Male";
+            String partGender = "Man";
             String partHIVStatus = radioHIVStatus.getText().toString();
             String partOtherPartner = radioOtherPartner.getText().toString();
             String partAddtoBB = radioAddtoBB.getText().toString();

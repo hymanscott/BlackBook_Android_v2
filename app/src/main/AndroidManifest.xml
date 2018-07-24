@@ -178,11 +178,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BaselineSexproScoreActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".LynxProfileEdit"
-            android:windowSoftInputMode="stateHidden" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LynxHome"
             android:launchMode="singleTop"
