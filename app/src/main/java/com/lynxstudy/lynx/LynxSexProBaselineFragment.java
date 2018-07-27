@@ -1,52 +1,66 @@
 package com.lynxstudy.lynx;
 
-import android.app.ActionBar;
+
 import android.content.Intent;
-import android.graphics.Point;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.text.Html;
-import android.util.DisplayMetrics;
-import android.view.Gravity;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.lynxstudy.helper.DatabaseHelper;
-import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.PrepFollowup;
-import com.lynxstudy.model.UserBadges;
-
-import org.piwik.sdk.Tracker;
-import org.piwik.sdk.extra.TrackHelper;
+import com.lynxstudy.model.UserAlcoholUse;
+import com.lynxstudy.model.UserDrugUse;
+import com.lynxstudy.model.UserSTIDiag;
+import com.lynxstudy.model.User_baseline_info;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
-public class BaselineSexproScoreActivity extends AppCompatActivity {
 
-    DatabaseHelper db;
-    TextView score_message,reg_sexPro_score_label,reg_sexPro_score_value,infoLink,additionalMessageTitle;
-    /*ImageView dialScoreImage;*/
-    ImageView back_action;
-    LinearLayout infolayout,main_content,additionalTriggerMessage,additionalInfoMessage,indicators;
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class LynxSexProBaselineFragment extends Fragment {
+
+
+    public LynxSexProBaselineFragment() {
+        // Required empty public constructor
+    }
+
+    TextView score_message,reg_sexPro_score_label,infoLink,additionalMessageTitle;
+    LinearLayout infolayout,main_content,additionalTriggerMessage,additionalInfoMessage;
+    RelativeLayout actionBar;
     boolean isInfoShown = false;
     ScrollView mainScrollView;
     Typeface tf,tf_italic,tf_bold;
+    DatabaseHelper db;
+    ImageView scoreImage,dial_imgview,back_action,view_profile;
+    User_baseline_info baseline_info;
+    PrepFollowup prepFollowup;
+    List<UserDrugUse> baselineDrugUse;
+    List<UserSTIDiag>  baselineSTI;
+    int neg_count,pos_count,unk_count;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_registration_sexpro_score);
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        final View view =  inflater.inflate(R.layout.fragment_registration_sexpro_score, container, false);
+        db = new DatabaseHelper(getActivity());
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
@@ -54,93 +68,80 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
                 "fonts/Roboto-Bold.ttf");
         tf_italic = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Italic.ttf");
-        // Custom Action Bar //
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
-        getSupportActionBar().setCustomView(cView);
-        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
-        ((ImageView) cView.findViewById(R.id.viewProfile)).setVisibility(View.INVISIBLE);
-        back_action = (ImageView)cView.findViewById(R.id.back_action);
 
-        reg_sexPro_score_label = (TextView)findViewById(R.id.reg_sexPro_score_label);
+        final LynxSexPro activity = (LynxSexPro)getActivity();
+
+        // DB Entries //
+        baseline_info = db.getUserBaselineInfobyUserID(LynxManager.getActiveUser().getUser_id());
+        neg_count = Integer.parseInt(LynxManager.decryptString(baseline_info.getHiv_negative_count()));
+        pos_count = Integer.parseInt(LynxManager.decryptString(baseline_info.getHiv_positive_count()));
+        unk_count = Integer.parseInt(LynxManager.decryptString(baseline_info.getHiv_unknown_count()));
+        prepFollowup = db.getPrepFollowup(true);
+        baselineDrugUse  =   LynxManager.getActiveUserDrugUse();
+        baselineSTI      =   LynxManager.getActiveUserSTIDiag();
+        
+        //Action Bar//
+        actionBar = (RelativeLayout)view.findViewById(R.id.actionBar);
+        actionBar.setVisibility(View.VISIBLE);
+        back_action = (ImageView)view.findViewById(R.id.back_action);
+        back_action.setVisibility(View.GONE);
+        view_profile = (ImageView)view.findViewById(R.id.viewProfile);
+
+        reg_sexPro_score_label = (TextView)view.findViewById(R.id.reg_sexPro_score_label);
         reg_sexPro_score_label.setTypeface(tf);
-        reg_sexPro_score_label.setText(Html.fromHtml("YOUR SCORE WILL UPDATE IN <b>90 DAYS</b>"));
+        String createdAt = LynxManager.decryptString(prepFollowup.getDatetime());
+        createdAt = LynxManager.getFormatedDate("yyyy-MM-dd HH:mm:ss",createdAt,"MM/dd/yyyy");
+        if(activity.isPreNinety){
+            reg_sexPro_score_label.setText(Html.fromHtml("YOUR SCORE WILL UPDATE IN <b>"+(90 - activity.elapsed_reg_days)+" DAYS</b>"));
+        }else{
+            reg_sexPro_score_label.setText(Html.fromHtml("CALCULATED ON <b>"+createdAt+"</b>"));
+            ((View)view.findViewById(R.id.screen_indicator_two)).setVisibility(View.VISIBLE);
+        }
 
-        ((TextView) findViewById(R.id.pageTitle)).setTypeface(tf_bold);
-        ((Button)findViewById(R.id.sexpro_score_close)).setTypeface(tf_bold);
-        score_message = (TextView)findViewById(R.id.score_message);
+        ((TextView)view.findViewById(R.id.pageTitle)).setTypeface(tf_bold);
+        ((Button)view.findViewById(R.id.sexpro_score_close)).setVisibility(View.GONE); // Hiding Got It! UIButton
+        ImageView swipe_arrow_right = (ImageView)view.findViewById(R.id.swipe_arrow_right);
+        swipe_arrow_right.setVisibility(View.VISIBLE); // Right indicator Imageview
+        ((TextView) view.findViewById(R.id.pageTitle)).setTypeface(tf_bold);
+        ((Button)view.findViewById(R.id.sexpro_score_close)).setTypeface(tf_bold);
+        score_message = (TextView)view.findViewById(R.id.score_message);
         score_message.setTypeface(tf_bold);
-        mainScrollView = (ScrollView)findViewById(R.id.mainScrollView);
-        infoLink = (TextView)findViewById(R.id.infoLink);
+        mainScrollView = (ScrollView)view.findViewById(R.id.mainScrollView);
+        infoLink = (TextView)view.findViewById(R.id.infoLink);
         infoLink.setTypeface(tf_bold);
-        /*dialScoreImage = (ImageView)findViewById(R.id.dialScoreImage);*/
-        ((LinearLayout)findViewById(R.id.indicators)).setVisibility(View.GONE);
-        infolayout = (LinearLayout)findViewById(R.id.infolayout);
-        main_content= (LinearLayout)findViewById(R.id.main_content);
-/*        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        int width = (int) ((metrics.widthPixels / metrics.density) * 1.3);
-        int height = (int) ((metrics.widthPixels / metrics.density) * 1.3);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width,height);
-        FrameLayout dial_layout = (FrameLayout)findViewById(R.id.myscore_framelayout);
-//        dial_layout.setLayoutParams(params);*/
+        infolayout = (LinearLayout)view.findViewById(R.id.infolayout);
+        main_content= (LinearLayout)view.findViewById(R.id.main_content);
+        scoreImage = (ImageView)view.findViewById(R.id.scoreImage);
+        dial_imgview = (ImageView)view.findViewById(R.id.imageView);
+        reg_sexPro_score_label = (TextView)view.findViewById(R.id.reg_sexPro_score_label);
+        ((View)view.findViewById(R.id.screen_indicator_one)).setBackground(getResources().getDrawable(R.drawable.dot_indicator_score_page_active));
 
-        final calculateSexProScore getscore = new calculateSexProScore(BaselineSexproScoreActivity.this);
-        int adjustedScore = Math.round((float) getscore.getAdjustedScore());
-        int unAdjustedScore = Math.round((float) getscore.getUnAdjustedScore());
-        db =new DatabaseHelper(BaselineSexproScoreActivity.this);
-
-        final ImageView dial_imgview = (ImageView)findViewById(R.id.imageView);
-        int final_score;
-        int final_score_alt;
-        if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
-            float angle;
-            final_score = adjustedScore;
-            final_score_alt = unAdjustedScore;
-            if((adjustedScore-1)>=17){
-                angle = (int) ((adjustedScore-1) * 13.76);
-            }else{
-                angle = (int) ((adjustedScore-1) * 13.86);
-            }
-            dial_imgview.setRotation(angle);
-            String message ="";
-            if(adjustedScore>=17){
+        //Log.v("ScoreStat",final_score+"-"+prep_status+"--"+cal_date);
+        final String prep_status = LynxManager.decryptString(prepFollowup.getPrep());
+        int final_score = Integer.parseInt(LynxManager.decryptString(prepFollowup.getScore()));
+        if(prep_status.equals("Yes")){
+            if(final_score>=17){
                 score_message.setText(getResources().getString(R.string.prep_greater17));
             }else{
                 score_message.setText(getResources().getString(R.string.prep_lessthan17));
             }
         }else{
-            float angle;
-            final_score = unAdjustedScore;
-            final_score_alt = adjustedScore;
-            if((unAdjustedScore-1)>=17){
-                angle = (int) ((unAdjustedScore-1) * 13.76);
-            }else{
-                angle = (int) ((unAdjustedScore-1) * 13.86);
-            }
-            dial_imgview.setRotation(angle);
-            String message ="";
-            if(unAdjustedScore <= 8){
+            if(final_score <= 8){
                 score_message.setText(Html.fromHtml("Want to get into the green? PrEP is a great way to make it happen & protect your sexual health. Hit us up, we can help."));
-            }else if(unAdjustedScore>=9 && unAdjustedScore <=16){
+            }else if(final_score>=9 && final_score <=16){
                 score_message.setText(getResources().getString(R.string.non_prep_9_16));
-            }else if(unAdjustedScore>=17 && unAdjustedScore <=20){
+            }else if(final_score>=17 && final_score <=20){
                 score_message.setText(getResources().getString(R.string.non_prep_greater17));
             }
         }
-        db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), final_score,LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()), LynxManager.getUTCDateTime(), String.valueOf(R.string.statusUpdateNo));
-        PrepFollowup prepFollowup = new PrepFollowup();
-        prepFollowup.setUser_id(LynxManager.getActiveUser().getUser_id());
-        prepFollowup.setDatetime(LynxManager.encryptString(LynxManager.getUTCDateTime()));
-        prepFollowup.setPrep(LynxManager.getActiveUser().getIs_prep());
-        prepFollowup.setScore(LynxManager.encryptString(String.valueOf(final_score)));
-        prepFollowup.setScore_alt(LynxManager.encryptString(String.valueOf(final_score_alt)));
-        prepFollowup.setIs_weekly_checkin(0);
-        prepFollowup.setNo_of_prep_days(LynxManager.encryptString(""));
-        prepFollowup.setHave_encounters_to_report(LynxManager.encryptString(""));
-        prepFollowup.setStatus_update(LynxManager.encryptString(getResources().getString(R.string.statusUpdateNo)));
-        db.createPrepFollowup(prepFollowup);
+        float angle;/*float angle = (int) ((adjustedScore-1) * 13.86);*/
+        if((final_score-1)>=17){
+            angle = (int) ((final_score-1) * 13.76);
+        }else{
+            angle = (int) ((final_score-1) * 13.86);
+        }
+        dial_imgview.setRotation(angle);
 
-        ImageView scoreImage = (ImageView)findViewById(R.id.scoreImage);
         // Score Bottom Image //
         switch (final_score){
             case 1:
@@ -205,80 +206,80 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
                 break;
         }
         /*Additional Trigger message*/
-        additionalMessageTitle = (TextView)findViewById(R.id.additionalMessageTitle);
+        additionalMessageTitle = (TextView)view.findViewById(R.id.additionalMessageTitle);
         additionalMessageTitle.setTypeface(tf_bold);
 
-        additionalTriggerMessage = (LinearLayout)findViewById(R.id.additionalTriggerMessage);
-        if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
-            View row_view = getLayoutInflater().inflate(R.layout.second_trigger_message_row,null);
+        additionalTriggerMessage = (LinearLayout)view.findViewById(R.id.additionalTriggerMessage);
+        if(prep_status.equals("Yes")){
+            View row_view = inflater.inflate(R.layout.second_trigger_message_row,null);
             ((ImageView)row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_prep));
             ((TextView)row_view.findViewById(R.id.text)).setText("You’re protected by PrEP");
             ((TextView)row_view.findViewById(R.id.text)).setTypeface(tf_italic);
             additionalTriggerMessage.addView(row_view);
         }else{
             int trigger_messages_count = 0;
-            if(getscore.getNASP()){
-                View row_view = getLayoutInflater().inflate(R.layout.second_trigger_message_row,null);
+            if(getNASP()){
+                View row_view = inflater.inflate(R.layout.second_trigger_message_row,null);
                 ((ImageView)row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_person));
-                int count = getscore.getNaspPos()+getscore.getNaspNeg()+getscore.getNaspUnknown();
+                int count = pos_count + neg_count + unk_count ;
                 String text = "You had anal sex with "+ count +" people.";
                 ((TextView)row_view.findViewById(R.id.text)).setText(text);
                 ((TextView)row_view.findViewById(R.id.text)).setTypeface(tf_italic);
                 additionalTriggerMessage.addView(row_view);
                 trigger_messages_count++;
             }
-            if(getscore.getPPIAS()){
-                View row_view = getLayoutInflater().inflate(R.layout.second_trigger_message_row,null);
+            if(getPPIAS()){
+                View row_view = inflater.inflate(R.layout.second_trigger_message_row,null);
                 ((ImageView)row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_top));
-                String text = "You used condoms "+ getscore.getTopCondomPer() +" of the time as a top.";
+                String text = "You used condoms "+ LynxManager.decryptString(baseline_info.getTop_condom_use_percent()) +" of the time as a top.";
                 ((TextView)row_view.findViewById(R.id.text)).setText(text);
                 ((TextView)row_view.findViewById(R.id.text)).setTypeface(tf_italic);
                 additionalTriggerMessage.addView(row_view);
                 trigger_messages_count++;
             }
-            if(getscore.getPPRAS()){
-                View row_view = getLayoutInflater().inflate(R.layout.second_trigger_message_row,null);
+            if(getPPRAS()){
+                View row_view = inflater.inflate(R.layout.second_trigger_message_row,null);
                 ((ImageView)row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_bottom));
-                String text = "You used condoms "+ getscore.getBottomCondomPer() +" of the time as a bottom.";
+                String text = "You used condoms "+ LynxManager.decryptString(baseline_info.getBottom_condom_use_percent()) +" of the time as a bottom.";
                 ((TextView)row_view.findViewById(R.id.text)).setText(text);
                 ((TextView)row_view.findViewById(R.id.text)).setTypeface(tf_italic);
                 additionalTriggerMessage.addView(row_view);
                 trigger_messages_count++;
             }
-            if(getscore.getMETH()){
-                View row_view = getLayoutInflater().inflate(R.layout.second_trigger_message_row,null);
+            if(getMETH()){
+                View row_view = inflater.inflate(R.layout.second_trigger_message_row,null);
                 ((ImageView)row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_meth));
                 ((TextView)row_view.findViewById(R.id.text)).setText("You used meth in the last 3 months");
                 ((TextView)row_view.findViewById(R.id.text)).setTypeface(tf_italic);
                 additionalTriggerMessage.addView(row_view);
                 trigger_messages_count++;
             }
-            if(getscore.getCOKE()){
-                View row_view = getLayoutInflater().inflate(R.layout.second_trigger_message_row,null);
+            if(getCOKE()){
+                View row_view = inflater.inflate(R.layout.second_trigger_message_row,null);
                 ((ImageView)row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_cocaine));
                 ((TextView)row_view.findViewById(R.id.text)).setText("You used cocaine or crack in the last 3 months");
                 ((TextView)row_view.findViewById(R.id.text)).setTypeface(tf_italic);
                 additionalTriggerMessage.addView(row_view);
                 trigger_messages_count++;
             }
-            if(getscore.getPOP()){
-                View row_view = getLayoutInflater().inflate(R.layout.second_trigger_message_row,null);
+            if(getPOP()){
+                View row_view = inflater.inflate(R.layout.second_trigger_message_row,null);
                 ((ImageView)row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_poppers));
                 ((TextView)row_view.findViewById(R.id.text)).setText("You used poppers in the last 3 months");
                 ((TextView)row_view.findViewById(R.id.text)).setTypeface(tf_italic);
                 additionalTriggerMessage.addView(row_view);
                 trigger_messages_count++;
             }
-            if(getscore.getSTI()){
-                View row_view = getLayoutInflater().inflate(R.layout.second_trigger_message_row,null);
+            if(getSTI()){
+                View row_view = inflater.inflate(R.layout.second_trigger_message_row,null);
                 ((ImageView)row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_std));
                 ((TextView)row_view.findViewById(R.id.text)).setText("You had an STD in the last three months");
                 ((TextView)row_view.findViewById(R.id.text)).setTypeface(tf_italic);
                 additionalTriggerMessage.addView(row_view);
                 trigger_messages_count++;
             }
-            if(getscore.getHEAVYALC()==1){
-                View row_view = getLayoutInflater().inflate(R.layout.second_trigger_message_row,null);
+            if(getHEAVYALC()==1){
+                View row_view = inflater.inflate(R.layout.second_trigger_message_row,null);
                 ((ImageView)row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_alcohol));
                 ((TextView)row_view.findViewById(R.id.text)).setText("You were drinking heavily in the last three months");
                 ((TextView)row_view.findViewById(R.id.text)).setTypeface(tf_italic);
@@ -290,51 +291,38 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
                 additionalMessageTitle.setVisibility(View.GONE);
             }
         }
-        // Adding User Badge : LYNX Badge, Tool Box and Green Light Badge //
-        BadgesMaster lynx_badge = db.getBadgesMasterByName("LYNX");
-        int shown = 0;
-        UserBadges lynxBadge = new UserBadges(lynx_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,lynx_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
-        db.createUserBadge(lynxBadge);
-        if(final_score >=17){
-            BadgesMaster green_badge = db.getBadgesMasterByName("Green Light");
-            UserBadges greenBadge = new UserBadges(green_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,green_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
-            db.createUserBadge(greenBadge);
-        }else if(final_score>= 10 && final_score<=16){
-            BadgesMaster toolbox_badge = db.getBadgesMasterByName("Toolbox");
-            UserBadges toolBoxBadge = new UserBadges(toolbox_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,toolbox_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
-            db.createUserBadge(toolBoxBadge);
-        }
+        
         /*final ImageView btn = (ImageView)findViewById(R.id.information);*/
         infoLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               infolayout.setVisibility(View.VISIBLE);
-               main_content.setVisibility(View.GONE);
-               back_action.setVisibility(View.VISIBLE);
-               isInfoShown = true;
-                additionalInfoMessage = (LinearLayout)findViewById(R.id.additionalInfoMessage);
+                infolayout.setVisibility(View.VISIBLE);
+                main_content.setVisibility(View.GONE);
+                back_action.setVisibility(View.VISIBLE);
+                isInfoShown = true;
+                additionalInfoMessage = (LinearLayout)view.findViewById(R.id.additionalInfoMessage);
                 additionalInfoMessage.removeAllViews();
-                if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
-                    View row_view = getLayoutInflater().inflate(R.layout.second_info_message_row,null);
+                if(prep_status.equals("Yes")){
+                    View row_view = inflater.inflate(R.layout.second_info_message_row,null);
                     ((ImageView)row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_prep));
                     ((TextView)row_view.findViewById(R.id.question)).setText("You’re protected by PrEP");
                     ((TextView)row_view.findViewById(R.id.question)).setTypeface(tf_bold);
                     ((TextView)row_view.findViewById(R.id.answer)).setVisibility(View.GONE);
                     additionalInfoMessage.addView(row_view);
                 }else{
-                    if(getscore.getNASP()){
-                        View message_row = getLayoutInflater().inflate(R.layout.second_info_message_row,null);
+                    if(getNASP()){
+                        View message_row = inflater.inflate(R.layout.second_info_message_row,null);
                         ((TextView)message_row.findViewById(R.id.question)).setTypeface(tf_bold);
                         ((TextView)message_row.findViewById(R.id.answer)).setTypeface(tf_italic);
                         additionalInfoMessage.addView(message_row);
                     }
 
-                    if(getscore.getPPRAS() || getscore.getPPIAS()){
-                        View message_row = getLayoutInflater().inflate(R.layout.second_info_message_row,null);
-                        if(getscore.getPPRAS()){
+                    if(getPPRAS() || getPPIAS()){
+                        View message_row = inflater.inflate(R.layout.second_info_message_row,null);
+                        if(getPPRAS()){
                             ((ImageView)message_row.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_bottom));
                         }
-                        if(getscore.getPPIAS()){
+                        if(getPPIAS()){
                             ((ImageView)message_row.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_top));
                         }
                         ((TextView)message_row.findViewById(R.id.question)).setText("How does condom use change my risk?");
@@ -344,12 +332,12 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
                         additionalInfoMessage.addView(message_row);
                     }
 
-                    if(getscore.getMETH() || getscore.getCOKE()){
-                        View message_row = getLayoutInflater().inflate(R.layout.second_info_message_row,null);
-                        if(getscore.getCOKE()){
+                    if(getMETH() || getCOKE()){
+                        View message_row = inflater.inflate(R.layout.second_info_message_row,null);
+                        if(getCOKE()){
                             ((ImageView)message_row.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_cocaine));
                         }
-                        if(getscore.getMETH()){
+                        if(getMETH()){
                             ((ImageView)message_row.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_meth));
                         }
                         ((TextView)message_row.findViewById(R.id.question)).setText("How does using cocaine or meth change my risk?");
@@ -359,8 +347,8 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
                         additionalInfoMessage.addView(message_row);
                     }
 
-                    if(getscore.getPOP()){
-                        View message_row = getLayoutInflater().inflate(R.layout.second_info_message_row,null);
+                    if(getPOP()){
+                        View message_row = inflater.inflate(R.layout.second_info_message_row,null);
                         ((ImageView)message_row.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_poppers));
                         ((TextView)message_row.findViewById(R.id.question)).setText("How does using poppers change my risk?");
                         ((TextView)message_row.findViewById(R.id.question)).setTypeface(tf_bold);
@@ -369,8 +357,8 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
                         additionalInfoMessage.addView(message_row);
                     }
 
-                    if(getscore.getSTI()){
-                        View message_row = getLayoutInflater().inflate(R.layout.second_info_message_row,null);
+                    if(getSTI()){
+                        View message_row = inflater.inflate(R.layout.second_info_message_row,null);
                         ((ImageView)message_row.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_std));
                         ((TextView)message_row.findViewById(R.id.question)).setText("How do STDs increase my HIV risk?");
                         ((TextView)message_row.findViewById(R.id.question)).setTypeface(tf_bold);
@@ -379,8 +367,8 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
                         additionalInfoMessage.addView(message_row);
                     }
 
-                    if(getscore.getHEAVYALC()==1){
-                        View message_row = getLayoutInflater().inflate(R.layout.second_info_message_row,null);
+                    if(getHEAVYALC()==1){
+                        View message_row = inflater.inflate(R.layout.second_info_message_row,null);
                         ((ImageView)message_row.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_alcohol));
                         ((TextView)message_row.findViewById(R.id.question)).setText("Does alcohol affect my HIV risk?");
                         ((TextView)message_row.findViewById(R.id.question)).setTypeface(tf_bold);
@@ -407,28 +395,163 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
                 isInfoShown = false;
             }
         });
-        // Piwik Analytics //
-        Tracker tracker = ((lynxApplication) getApplication()).getTracker();
-		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
-        TrackHelper.track().screen("/Baseline/Sexproscore").title("Baseline/Sexproscore").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+        view_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent profile = new Intent(getActivity(),LynxProfile.class);
+                startActivity(profile);
+                getActivity().finish();
+            }
+        });
+
+        swipe_arrow_right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activity.container.setCurrentItem(1);
+            }
+        });
+
+        return view;
     }
-    public boolean onSexProScoreClose(View view) {
-        Intent home = new Intent(this, LynxHome.class);
-        startActivity(home);
-        finish();
-        return true;
+
+
+    private boolean getPPRAS() {
+        String botCondomUse =   LynxManager.decryptString(baseline_info.getBottom_condom_use_percent());
+        botCondomUse        =   botCondomUse.replaceAll("\\s+","");
+        botCondomUse        =   botCondomUse.substring(0, botCondomUse.length() - 1);
+        int PPRAS_POS_UNK   = (int) (Integer.parseInt(botCondomUse) * 0.01);
+        return PPRAS_POS_UNK < 1;
     }
-    @Override
-    public void onBackPressed() {
-        if(isInfoShown){
-            infolayout.setVisibility(View.GONE);
-            main_content.setVisibility(View.VISIBLE);
-            back_action.setVisibility(View.GONE);
-            isInfoShown = false;
-        }else{
-            Intent home = new Intent(this, LynxHome.class);
-            startActivity(home);
-            finish();
+
+    private boolean getPPIAS() {
+        String topCondomUse =   LynxManager.decryptString(baseline_info.getTop_condom_use_percent());
+        topCondomUse        =   topCondomUse.replaceAll("\\s+","");
+        topCondomUse        =   topCondomUse.substring(0, topCondomUse.length() - 1);
+        int PPIAS_POS_UNK   = (int) (Integer.parseInt(topCondomUse) * 0.01);
+        return PPIAS_POS_UNK < 1;
+    }
+
+    private boolean getMETH() {
+        int METH =0;
+        for(UserDrugUse drugUse: baselineDrugUse){
+            int id = drugUse.getDrug_id();
+            if(LynxManager.decryptString(drugUse.getIs_baseline()).equals("Yes")){
+                if(db.getDrugNamebyID(id).equals("Meth / Speed")){
+                    METH    =   1;
+                }
+            }
         }
+        return METH>0;
     }
+
+    private boolean getCOKE() {
+        int COKE =0;
+        for(UserDrugUse drugUse: baselineDrugUse){
+            int id = drugUse.getDrug_id();
+            if(LynxManager.decryptString(drugUse.getIs_baseline()).equals("Yes")){
+                if(db.getDrugNamebyID(id).equals("Cocaine")){
+                    COKE    =   1;
+                }
+            }
+        }
+        return COKE>0;
+    }
+
+    private boolean getPOP() {
+        int POP =0;
+        for(UserDrugUse drugUse: baselineDrugUse){
+            int id = drugUse.getDrug_id();
+            if(LynxManager.decryptString(drugUse.getIs_baseline()).equals("Yes")){
+                if(db.getDrugNamebyID(id).equals("Poppers")){
+                    POP = 1;
+                }
+            }
+        }
+        return POP>0;
+    }
+
+    private boolean getSTI() {
+        int STI =0;
+        for(UserSTIDiag stiDiag: baselineSTI){
+            stiDiag.getCreated_at();
+            if(LynxManager.decryptString(stiDiag.getIs_baseline()).equals("Yes")){
+                int id = stiDiag.getSti_id();
+                Date startdate = null;
+                Date  enddate  =   new Date();
+                SimpleDateFormat inputDF1  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                try {
+                    startdate = inputDF1.parse(stiDiag.getCreated_at());
+                } catch (ParseException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                if(getMonthsDifference(startdate,enddate)<=3){
+                    STI  = 1;
+                    break;
+                }
+            }
+        }
+        return STI>0;
+    }
+    public int getMonthsDifference(Date date1, Date date2) {
+        int m1 = Calendar.getInstance().get(Calendar.YEAR) * 12 + Calendar.getInstance().get(Calendar.MONTH);
+        int m2 = Calendar.getInstance().get(Calendar.YEAR) * 12 + Calendar.getInstance().get(Calendar.MONTH);
+        return m2 - m1;
+    }
+    private int getHEAVYALC() {
+        int HEAVYALC=0;
+        int DFREQ =0;
+        int DPD =0;
+        List<UserAlcoholUse> alcoholUsesList =db.getAllAlcoholUse();
+        UserAlcoholUse userAlcoholUse = null;
+        if(alcoholUsesList!=null){
+            for(UserAlcoholUse alcoholUse : alcoholUsesList){
+                //Log.v("BaselineCheck",alcoholUse.getAlcohol_use_id() + "--" + alcoholUse.getIs_baseline());
+                if(alcoholUse.getIs_baseline()!=null && LynxManager.decryptString(alcoholUse.getIs_baseline()).equals("No")){
+                    userAlcoholUse = alcoholUse;
+                }
+            }
+        }
+        
+        if(userAlcoholUse!=null) {
+
+            String no_of_DaysinWeek = LynxManager.decryptString(userAlcoholUse.getNo_alcohol_in_week());
+            String no_of_drinks = LynxManager.decryptString(userAlcoholUse.getNo_alcohol_in_day());
+            if(no_of_DaysinWeek !=null){
+                switch (no_of_DaysinWeek){
+                    case "Never":
+                        DFREQ   =   0;
+                        break;
+                    case "5-7 days a week":
+                        DFREQ   =   6;
+                        break;
+                    case "1-4 days a week":
+                        DFREQ   =   3;
+                        break;
+                    case "Less than once a week":
+                        DFREQ   =   1;
+                        break;
+                }
+            }
+            else{ DFREQ   =   0;}
+
+            if (no_of_drinks==null){
+                DPD     =   0;
+            }
+            else {
+                DPD = Integer.parseInt(LynxManager.decryptString(userAlcoholUse.getNo_alcohol_in_day()));
+            }
+        }
+        
+        
+        if((DFREQ>=5 && DFREQ<=7 && DPD>=4) || (DFREQ>=1 && DFREQ<=4 && DPD>=6)){
+            HEAVYALC = 1;
+        }
+        return HEAVYALC;
+    }
+
+    private boolean getNASP() {
+        return unk_count > 1 && neg_count> 1 && pos_count> 1;
+    }
+
 }

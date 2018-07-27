@@ -1733,7 +1733,6 @@ public class RegLogin extends AppCompatActivity {
                             finish();
                         }else{
                             Intent home = new Intent(RegLogin.this, LynxHome.class);
-                            home.putExtra("fromactivity",RegLogin.this.getClass().getSimpleName());
                             startActivity(home);
                             finish();
                         }

@@ -35,15 +35,6 @@
             android:layout_centerVertical="true"
             android:layout_height="wrap_content"
             android:src="@drawable/icon_person_white" />
-        <!--<LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical|end"
-            android:orientation="horizontal">
-
-        </LinearLayout>-->
-
     </RelativeLayout>
     <ScrollView
         android:layout_width="match_parent"
@@ -64,7 +55,7 @@
                     android:textSize="@dimen/reg_tv_textsize"
                     android:textColor="@color/white"
                     android:padding="16dp"
-                    android:text="YOUR SCORE WILL UPDATE IN 90 DAYS"
+                    android:text="Calculated on"
                     android:id="@+id/reg_sexPro_score_label"
                     android:layout_marginBottom="26dp"
                     android:textStyle="normal"
@@ -73,7 +64,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Baseline Score"
+                    android:text="Score with PrEP"
                     android:textColor="@color/profile_title_text_color"
                     android:textSize="24sp"
                     android:textStyle="bold"
@@ -163,23 +154,13 @@
                         android:id="@+id/screen_indicator_three"
                         android:background="@drawable/dot_indicator_score_page"/>
                 </LinearLayout>
-                <TextView
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:background="@color/profile_title_text_color"
-                    android:paddingLeft="40dp"
-                    android:paddingRight="40dp"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="16dp"
-                    android:lineSpacingMultiplier="1.31"
-                    android:gravity="center_horizontal"
-                    android:text="Want to get into the green? PrEP is a great way to make it happen and protect your sexual health. Hit us up, we can help."
-                    android:id="@+id/score_message" />
+                    android:layout_height="2dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@color/border_grey"/>
                 <TextView
                     android:id="@+id/additionalMessageTitle"
                     android:layout_width="match_parent"
@@ -188,73 +169,57 @@
                     android:layout_margin="24dp"
                     android:lineSpacingMultiplier="1.31"
                     android:gravity="center_horizontal"
-                    android:text="Why did I get this score?"
+                    android:text="What’s the difference?"
                     android:textColor="@color/profile_title_text_color"
                     android:textSize="24sp"
                     android:textStyle="bold"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <LinearLayout android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:id="@+id/additionalTriggerMessage"
-                    android:orientation="vertical">
-
+                    android:gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/icon"
+                        android:src="@drawable/trigger_prep"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PrEP is the difference."
+                        android:textColor="@color/text_color"
+                        android:layout_marginLeft="6dp"
+                        android:lineSpacingMultiplier="1.25"
+                        android:id="@+id/PrepIsDiff"
+                        android:textStyle="italic|bold"
+                        android:textSize="16sp"/>
                 </LinearLayout>
                 <TextView
-                    android:id="@+id/infoLink"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_margin="48dp"
-                    android:gravity="center_horizontal"
-                    android:lineSpacingMultiplier="1.5"
-                    android:text="* Learn why these matter "
-                    android:textColor="@color/chart_blue"
-                    android:textSize="14sp"
-                    android:textStyle="bold"/>
-                <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="GOT IT!"
-                    android:id="@+id/sexpro_score_close"
-                    android:textStyle="bold"
-                    android:background="@color/btn_blue"
-                    android:textColor="@color/white"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_alignParentBottom="true"
-                    android:onClick="onSexProScoreClose" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/infolayout"
-                android:visibility="gone"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_margin="24dp"
-                    android:src="@drawable/diallargeblue"/>
+                    android:textSize="16sp"
+                    android:textStyle="italic"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/text_color"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:id="@+id/notesParaOne"
+                    android:text="If taken daily, PrEP acts like a shield to protect you during sex."/>
                 <TextView
-                    android:id="@+id/info_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:lineSpacingMultiplier="1.31"
+                    android:textSize="16sp"
+                    android:textStyle="italic"
                     android:gravity="center_horizontal"
-                    android:text="Learn why these matter"
-                    android:textColor="@color/profile_title_text_color"
-                    android:textSize="24sp"
-                    android:textStyle="bold"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/additionalInfoMessage"
-                    android:layout_marginBottom="54dp"
-                    android:orientation="vertical">
-                </LinearLayout>
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/text_color"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginBottom="48dp"
+                    android:id="@+id/notesParaTwo"
+                    android:text="If you were not on PrEP, your Sex Pro score would be lower and you would be less protected."/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

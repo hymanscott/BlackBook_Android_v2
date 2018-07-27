@@ -24,7 +24,6 @@ import com.lynxstudy.model.Partners;
 import com.lynxstudy.model.PrepFollowup;
 import com.lynxstudy.model.PrepInformation;
 import com.lynxstudy.model.STIMaster;
-import com.lynxstudy.model.Statistics;
 import com.lynxstudy.model.TestNameMaster;
 import com.lynxstudy.model.TestingHistory;
 import com.lynxstudy.model.TestingHistoryInfo;
@@ -57,7 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 10;
 
     // Database Name
     private static final String DATABASE_NAME = "phasttDB";
@@ -92,7 +91,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_CLOUD_MESSAGES = "CloudMessages";
     private static final String TABLE_VIDEOS = "Videos";
     private static final String TABLE_CHAT_MESSAGES = "ChatMessages";
-    private static final String TABLE_STATISTICS = "Statistics";
     private static final String TABLE_USER_BADGES = "UserBadges";
     private static final String TABLE_APP_ALERTS = "AppAlerts";
     private static final String TABLE_PREP_FUP = "prep_followup";
@@ -339,15 +337,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_CHAT_MESSAGE_SENDER_PIC = "sender_pic";
     private static final String KEY_CHAT_MESSAGE_DATETIME = "datetime";
 
-    // Statistics Column Names //
-    private static final String KEY_STATISTICS_ID = "id";
-    private static final String KEY_STATISTICS_ACTIVITY = "activity";
-    private static final String KEY_STATISTICS_FROM_ACTIVITY = "from_activity";
-    private static final String KEY_STATISTICS_TO_ACTIVITY ="to_activity";
-    private static final String KEY_STATISTICS_ACTION = "action";
-    private static final String KEY_STATISTICS_START_TIME = "starttime";
-    private static final String KEY_STATISTICS_END_TIME = "endtime";
-
     // User Badges Column Names //
 
     private static final String KEY_USER_BADGE_ID = "id";
@@ -515,12 +504,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             KEY_CHAT_MESSAGE_ID + " INTEGER PRIMARY KEY," + KEY_CHAT_MESSAGE + " TEXT," + KEY_CHAT_MESSAGE_SENDER + " TEXT," +
             KEY_CHAT_MESSAGE_SENDER_PIC + " TEXT," + KEY_CHAT_MESSAGE_DATETIME + " TEXT," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
 
-
-    private static final String CREATE_TABLE_STATISTICS = "CREATE TABLE " + TABLE_STATISTICS + "(" +
-            KEY_STATISTICS_ID + " INTEGER PRIMARY KEY," + KEY_STATISTICS_ACTIVITY + " TEXT," + KEY_STATISTICS_FROM_ACTIVITY + " TEXT," +
-            KEY_STATISTICS_TO_ACTIVITY + " TEXT," + KEY_STATISTICS_ACTION + " TEXT," + KEY_STATISTICS_START_TIME + " TEXT," +
-            KEY_STATISTICS_END_TIME + " TEXT," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
-
     private static final String CREATE_TABLE_USER_BADGES = "CREATE TABLE "
             + TABLE_USER_BADGES + "(" + KEY_USER_BADGE_ID + " INTEGER PRIMARY KEY," + KEY_USERS_ID + " INTEGER,"
             + KEY_USER_BADGE_BADGEID + " INTEGER,"+ KEY_USER_BADGE_ISSHOWN + " INTEGER,"+ KEY_USER_BADGE_NOTES + " TEXT,"
@@ -573,7 +556,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_CLOUD_MESSAGES);
         db.execSQL(CREATE_TABLE_VIDEOS);
         db.execSQL(CREATE_TABLE_CHAT_MESSAGES);
-        db.execSQL(CREATE_TABLE_STATISTICS);
         db.execSQL(CREATE_TABLE_USER_BADGES);
         db.execSQL(CREATE_TABLE_APP_ALERT);
         db.execSQL(CREATE_TABLE_PREP_FUP);
@@ -609,7 +591,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CLOUD_MESSAGES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_VIDEOS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CHAT_MESSAGES);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_STATISTICS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_BADGES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_APP_ALERTS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PREP_FUP);
@@ -674,7 +655,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_CLOUD_MESSAGES, null, null);
         db.delete(TABLE_VIDEOS, null, null);
         db.delete(TABLE_CHAT_MESSAGES, null, null);
-        db.delete(TABLE_STATISTICS, null, null);
         db.delete(TABLE_USER_BADGES, null, null);
         db.delete(TABLE_APP_ALERTS, null, null);
         db.delete(TABLE_PREP_FUP, null, null);
@@ -3799,7 +3779,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * getting Statistics count
+     * getting TestingHistories count
      */
     public int getTestingHistoriesCount() {
         String countQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY;
@@ -4592,66 +4572,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_CHAT_MESSAGES, null, null);
         return true;
     }
-
-    //*****************Statistics Table Methods *******************//
-
-    /**
-     *  Create Statistics
-     */
-
-    public int createStatistics(Statistics statistics) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_STATISTICS_ACTIVITY,statistics.getActivity());
-        values.put(KEY_STATISTICS_FROM_ACTIVITY, statistics.getFrom_activity());
-        values.put(KEY_STATISTICS_TO_ACTIVITY, statistics.getTo_activity());
-        values.put(KEY_STATISTICS_ACTION, statistics.getAction());
-        values.put(KEY_STATISTICS_START_TIME,statistics.getStarttime());
-        values.put(KEY_STATISTICS_END_TIME,statistics.getEndtime());
-        values.put(KEY_STATUS_UPDATE,statistics.getStatusUpdate());
-        values.put(KEY_CREATED_AT, getDateTime());
-
-        // insert row
-        return (int) db.insert(TABLE_STATISTICS, null, values);
-    }
-    /**
-     * getting all ChatMessages
-     */
-    public List<Statistics> getAllStatistics() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        List<Statistics> messageList = new ArrayList<Statistics>();
-        String selectQuery = "SELECT  * FROM " + TABLE_STATISTICS;
-        android.database.Cursor c = db.rawQuery(selectQuery, null);
-        if (c.moveToFirst()) {
-            do {
-                Statistics statistics = new Statistics();
-                statistics.setStatistics_id(c.getInt(c.getColumnIndex(KEY_STATISTICS_ID)));
-                statistics.setAction(c.getString(c.getColumnIndex(KEY_STATISTICS_ACTION)));
-                statistics.setActivity(c.getString(c.getColumnIndex(KEY_STATISTICS_ACTIVITY)));
-                statistics.setFrom_activity(c.getString(c.getColumnIndex(KEY_STATISTICS_FROM_ACTIVITY)));
-                statistics.setTo_activity(c.getString(c.getColumnIndex(KEY_STATISTICS_TO_ACTIVITY)));
-                statistics.setStarttime(c.getString(c.getColumnIndex(KEY_STATISTICS_START_TIME)));
-                statistics.setEndtime(c.getString(c.getColumnIndex(KEY_STATISTICS_END_TIME)));
-                statistics.setStatusUpdate(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
-                messageList.add(statistics);
-            } while (c.moveToNext());
-        }
-        c.close();
-        return messageList;
-    }
-
-    /**
-     * getting Statistics count
-     */
-    public int getStatisticsCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_STATISTICS;
-        SQLiteDatabase db = this.getReadableDatabase();
-        android.database.Cursor cursor = db.rawQuery(countQuery, null);
-        int count = cursor.getCount();
-        cursor.close();
-        return count;
-    }
     // ------------------------ "BADGES  Master" table methods ----------------//
 
     /**
@@ -5164,6 +5084,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // insert row
         return (int) db.insert(TABLE_PREP_FUP, null, values);
+    }
+
+    public PrepFollowup getPrepFollowup(boolean needFirstEntry){
+        String selectQuery = null;
+
+        if(needFirstEntry){
+            selectQuery = "SELECT  * FROM " + TABLE_PREP_FUP +  " ORDER BY " + KEY_PREP_FUP_ID + " ASC LIMIT 1";
+        }else{
+            selectQuery = "SELECT  * FROM " + TABLE_PREP_FUP +  " ORDER BY " + KEY_PREP_FUP_ID + " DESC LIMIT 1";
+        }
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+        Log.e(LOG, selectQuery);
+
+        if (c != null && c.getCount()>0) {
+            c.moveToFirst();
+            PrepFollowup prepFollowup = new PrepFollowup();
+            prepFollowup.setPrep_followup_id(c.getInt(c.getColumnIndex(KEY_PREP_FUP_ID)));
+            prepFollowup.setUser_id(c.getInt(c.getColumnIndex(KEY_USERS_ID)));
+            prepFollowup.setDatetime(c.getString(c.getColumnIndex(KEY_PREP_FUP_DATE)));
+            prepFollowup.setPrep(c.getString(c.getColumnIndex(KEY_PREP_FUP_PREP)));
+            prepFollowup.setScore(c.getString(c.getColumnIndex(KEY_PREP_FUP_SCORE)));
+            prepFollowup.setScore_alt(c.getString(c.getColumnIndex(KEY_PREP_FUP_SCORE_ALT)));
+            prepFollowup.setIs_weekly_checkin(c.getInt(c.getColumnIndex(KEY_PREP_FUP_WEEKLY_CHECKIN)));
+            prepFollowup.setNo_of_prep_days(c.getString(c.getColumnIndex(KEY_PREP_FUP_PREP_DAYS)));
+            prepFollowup.setHave_encounters_to_report(c.getString(c.getColumnIndex(KEY_PREP_FUP_ENCOUNTERS_REPORT)));
+            prepFollowup.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+            prepFollowup.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+            return prepFollowup;
+        }
+        return null;
     }
 
     public List<PrepFollowup> getAllPrepFollowup(){

@@ -1,5 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sexpro_main_parent"
+    android:background="@color/white"
+    tools:context="com.lynxstudy.lynx.LynxSexPro"
+    android:orientation="vertical">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginBottom="?android:attr/actionBarSize"/>
+    <!--Bottom Navigation-->
+    <LinearLayout
+        android:id="@+id/bot_nav"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/bot_nav_bg"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:id="@+id/bot_nav_sexpro"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_weight="0.2"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="5dp">
+
+            <ImageView
+                android:id="@+id/bot_nav_sexpro_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/nav_icon_home_white" />
+
+            <TextView
+                android:id="@+id/bot_nav_sexpro_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bot_nav_diary"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="5dp">
+
+            <ImageView
+                android:id="@+id/bot_nav_diary_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/nav_icon_diary" />
+
+            <TextView
+                android:id="@+id/bot_nav_diary_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Diary" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bot_nav_testing"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="5dp">
+
+            <ImageView
+                android:id="@+id/bot_nav_testing_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/nav_icon_testing" />
+
+            <TextView
+                android:id="@+id/bot_nav_testing_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Testing" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bot_nav_prep"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="5dp">
+
+            <ImageView
+                android:id="@+id/bot_nav_prep_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/nav_icon_prep" />
+
+            <TextView
+                android:id="@+id/bot_nav_prep_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PrEP" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bot_nav_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="5dp">
+
+            <ImageView
+                android:id="@+id/bot_nav_chat_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/nav_icon_chat" />
+
+            <TextView
+                android:id="@+id/bot_nav_chat_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chat" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
+<!--<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,7 +153,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true">
-
         <LinearLayout
             android:id="@+id/sexProMainContent"
             android:layout_width="match_parent"
@@ -30,52 +168,35 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
-                    <LinearLayout
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/update_score_bg"
-                        android:orientation="horizontal"
-                        android:weightSum="1">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.9"
-                            android:gravity="center_horizontal"
-                            android:orientation="horizontal"
-                            android:paddingBottom="16dp"
-                            android:paddingTop="16dp">
-
-                            <TextView
-                                android:id="@+id/score_update"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Your Score will update in"
-                                android:textColor="@color/white"
-                                android:textSize="14sp" />
-
-                            <TextView
-                                android:id="@+id/score_update_date"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text=" 90 days"
-                                android:textColor="@color/white"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <ImageView
-                            android:id="@+id/infoIcon"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            android:visibility="gone"
-                            android:layout_weight="0"
-                            android:src="@drawable/info_white" />
-                    </LinearLayout>
-
+                        android:textSize="@dimen/reg_tv_textsize"
+                        android:textColor="@color/white"
+                        android:padding="16dp"
+                        android:text="YOUR SCORE WILL UPDATE IN 90 DAYS"
+                        android:id="@+id/score_update_date"
+                        android:layout_marginBottom="26dp"
+                        android:textStyle="normal"
+                        android:gravity="center_horizontal"
+                        android:background="@color/update_score_bg"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Baseline Score"
+                        android:textColor="@color/profile_title_text_color"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="26dp"
+                        android:gravity="center_horizontal"
+                        android:id="@+id/pageTitle"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginBottom="26dp"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:background="@color/border_grey"/>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -97,28 +218,6 @@
                             android:textColor="@color/white"
                             android:textSize="18sp"
                             android:textStyle="bold" />
-                        <!--<TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="1"
-                            android:text="Your SexPro Score:"
-                            android:textColor="@color/white"
-                            android:background="@drawable/lynx_ripple_effect"
-                            android:textSize="24sp"
-                            custom:fontAssetName="OpenSansRegular.ttf" />
-
-                        <TextView
-                            android:id="@+id/textProgress_id1_toplabel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_weight="1"
-                            android:text="10"
-                            android:textColor="@color/white"
-                            android:textSize="24sp"
-                            custom:fontAssetName="OpenSansRegular.ttf" />-->
                     </LinearLayout>
 
                     <RelativeLayout
@@ -212,7 +311,6 @@
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
-
         <LinearLayout
             android:id="@+id/sexProInfoContent"
             android:layout_width="match_parent"
@@ -283,7 +381,6 @@
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
-
         <LinearLayout
             android:id="@+id/bot_nav"
             android:layout_width="match_parent"
@@ -409,4 +506,4 @@
 
     </RelativeLayout>
 
-</LinearLayout>
+</LinearLayout>-->

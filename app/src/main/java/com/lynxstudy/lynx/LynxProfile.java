@@ -112,15 +112,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
             View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
             getSupportActionBar().setCustomView(cView);
             getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
-        /*ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
-        //viewProfile.setVisibility(View.GONE);
-        viewProfile.setImageDrawable(getResources().getDrawable(R.drawable.icon_quit));
-        viewProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signOut();
-            }
-        });*/
+            ((ImageView) cView.findViewById(R.id.viewProfile)).setVisibility(View.INVISIBLE);
 
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),

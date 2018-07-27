@@ -645,7 +645,6 @@ public class BaselineActivity extends AppCompatActivity {
         /*RegistrationSexproScore fragsexProScore = new RegistrationSexproScore();
         pushFragments("Reg",fragsexProScore,true);*/
         Intent home = new Intent(this, BaselineSexproScoreActivity.class);
-        home.putExtra("fromactivity",BaselineActivity.this.getClass().getSimpleName());
         startActivity(home);
         finish();
     }

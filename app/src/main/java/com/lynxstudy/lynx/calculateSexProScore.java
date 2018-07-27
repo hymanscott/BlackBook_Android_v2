@@ -589,52 +589,31 @@ public class calculateSexProScore {
     }
 
     public boolean getPOP() {
-        if (POP>0)
-            return true;
-        else
-            return false;
+        return POP > 0;
     }
 
     public boolean getMETH(){
-        if (METH>0)
-            return true;
-        else
-            return false;
+        return METH > 0;
     }
 
     public boolean getCOKE(){
-        if (COKE>0)
-            return true;
-        else
-            return false;
+        return COKE > 0;
     }
 
     public boolean getSTI(){
-        if (STI>0)
-            return true;
-        else
-            return false;
+        return STI > 0;
     }
 
     public boolean getPPRAS(){
-        if (PPRAS_POS_UNK<1)
-            return true;
-        else
-            return false;
+        return PPRAS_POS_UNK < 1;
     }
 
     public boolean getPPIAS(){
-        if (PPIAS_POS_UNK<1)
-            return true;
-        else
-            return false;
+        return PPIAS_POS_UNK < 1;
     }
 
     public boolean getNASP(){
-        if (NASP_UNKNOWN > 1 && NASP_NEG > 1 && NASP_POS > 1)
-            return true;
-        else
-            return false;
+        return NASP_UNKNOWN > 1 && NASP_NEG > 1 && NASP_POS > 1;
     }
 
     public int getNaspUnknown(){

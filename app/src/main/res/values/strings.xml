@@ -183,4 +183,9 @@
     <string name="select_prep_status">Please select PrEP status</string>
     <string name="how_often_did_you_drink">Please select how often did you drink</string>
 
+    <!--Trigger Messages-->
+    <string name="prep_greater17">Wow. Look at you! You’re seriously taking good care of your sexual health. Taking PrEP daily can keep you in the green.</string>
+    <string name="prep_lessthan17">You haven’t reached the green because you’re not taking PrEP daily. Taking it every day will really further protect your sexual health. Hit us up, we can help!</string>
+    <string name="non_prep_9_16">PrEP can help protect you, and get you into the green. Talk to us about your options.</string>
+    <string name="non_prep_greater17">Well, alright! You’re in the green and doing great. PrEP can offer even more protection with similar convenience.</string>
 </resources>
