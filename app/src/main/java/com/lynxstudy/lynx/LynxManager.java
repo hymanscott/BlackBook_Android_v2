@@ -93,6 +93,8 @@ public class LynxManager {
     private String lastImageName = "";
     public static boolean isNewPartnerEncounter = false;
     public static boolean haveWeeklyEncounter = false;
+    public static boolean isRegCodeValidated = false;
+    public static String regCode = "";
 
     //static Context context;
     /*private static String baseURL  =   "http://test.chipware.in:8080/Lynxportal/";

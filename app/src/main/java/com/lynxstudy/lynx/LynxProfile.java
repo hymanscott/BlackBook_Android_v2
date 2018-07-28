@@ -866,6 +866,8 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
                 db.deleteAllTables();
                 LynxManager.signOut = true;
                 TrackHelper.track().event("Navigation","Click").name("Log Out").with(tracker);
+                LynxManager.regCode="";
+                LynxManager.isRegCodeValidated = false;
                 finish();
             }
         });

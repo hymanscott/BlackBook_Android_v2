@@ -28,6 +28,7 @@ public class Users {
     String status_update;
     boolean status_encrypt;
     String created_at;
+    String registration_code;
 
 
     // constructors
@@ -242,6 +243,14 @@ public class Users {
 
     public void setStatus_encrypt(boolean status_encrypt) {
         this.status_encrypt = status_encrypt;
+    }
+
+    public String getRegistration_code() {
+        return registration_code;
+    }
+
+    public void setRegistration_code(String registration_code) {
+        this.registration_code = registration_code;
     }
 
     public void decryptUser(){

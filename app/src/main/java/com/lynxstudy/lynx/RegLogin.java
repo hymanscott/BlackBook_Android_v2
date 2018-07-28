@@ -133,8 +133,8 @@ public class RegLogin extends AppCompatActivity {
         }
 
         int user_count = db.getUsersCount();
-        PrefManager prefManager = new PrefManager(this);
-        if (!prefManager.isFirstTimeLaunch()) {
+       /* PrefManager prefManager = new PrefManager(this);
+        if (!prefManager.isFirstTimeLaunch()) {*/
             if (user_count > 0) {
                 int userBaselineInfoCount = db.getUserBaselineInfoCount();
                 List<Users> allUsers = db.getAllUsers();
@@ -172,12 +172,12 @@ public class RegLogin extends AppCompatActivity {
                             .commit();
                 }
             }
-        }else{
+        /*}else{
             prefManager.setFirstTimeLaunch(false);
             Intent appTour = new Intent(RegLogin.this,WelcomeActivity.class);
             startActivity(appTour);
             finish();
-        }
+        }*/
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
@@ -776,6 +776,7 @@ public class RegLogin extends AppCompatActivity {
             loginOBJ.put("email",loginEmail);
             loginOBJ.put("password",loginPassword);
             loginOBJ.put("badge_in","badge_in");
+            loginOBJ.put("registration_code",LynxManager.regCode);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1014,6 +1015,7 @@ public class RegLogin extends AppCompatActivity {
         }else{
             /*RegistrationBaselineIntro regPrimaryPartner = new RegistrationBaselineIntro();*/
             Users user = LynxManager.getActiveUser();
+            user.setRegistration_code(LynxManager.regCode);
             Gson gson = new Gson();
             user.setStatus_encrypt(true);
             user.decryptUser();
@@ -1148,6 +1150,16 @@ public class RegLogin extends AppCompatActivity {
             // Piwik Analytics //
             // Added as event
             //TrackHelper.track().screen("/Login").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+            PrefManager prefManager = new PrefManager(getActivity());
+            if(!LynxManager.isRegCodeValidated || LynxManager.regCode.equals("")){
+                startActivity(new Intent(getActivity(),RegistrationCode.class));
+                getActivity().finish();
+            }else if(prefManager.isFirstTimeLaunch()){
+                prefManager.setFirstTimeLaunch(false);
+                Intent appTour = new Intent(getActivity(),WelcomeActivity.class);
+                startActivity(appTour);
+                getActivity().finish();
+            }
             return view;
         }
 

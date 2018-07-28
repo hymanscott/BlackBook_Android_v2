@@ -498,7 +498,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             }
         }
 //        Log.v("FCMToken",LynxManager.decryptString(db.getCloudMessaging().getToken_id()));
-        //startActivity(new Intent(LynxHome.this,BaselineSexproScoreActivity.class));
+        //startActivity(new Intent(LynxHome.this,RegistrationCode.class));
     }
     private boolean isPositiveHIVTestLogged(){
         /*
