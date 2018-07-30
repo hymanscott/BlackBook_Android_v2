@@ -713,10 +713,14 @@ public class EncounterStartActivity extends AppCompatActivity {
             }
 
         }
-        if(partnersCount>=1 && partnersCount<=4){
-            showAppAlert("You've been getting out there. Nice. Use condoms and PrEP so your morning after memories are anxiety-free.",2,"1-4 Partners in last month");
+        if(partnersCount>=1 && partnersCount<=4 && LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("No")){
+            if(db.getAppAlertsCountByName("1-4 Partners in last month")==0){
+                showAppAlert("You've been getting out there. Nice. Use condoms and PrEP so your morning after memories are anxiety-free.",2,"1-4 Partners in last month");
+            }
         }else if(partnersCount >= 5){
-            showAppAlert("Real talk: PrEP can keep the partying (or parties) going. Learn how you can reduce your high risk for HIV and still get your Netflix & Chill on.",2,"5 plus Partners in last month");
+            if(db.getAppAlertsCountByName("5 plus Partners in last month")==0) {
+                showAppAlert("Real talk: PrEP can keep the partying (or parties) going. Learn how you can reduce your high risk for HIV and still get your Netflix & Chill on.", 2, "5 plus Partners in last month");
+            }
         }
 
         // Clear Condomuse list//

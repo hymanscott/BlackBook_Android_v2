@@ -542,10 +542,10 @@ public class LynxInsights extends AppCompatActivity implements OnChartValueSelec
         TextView positivePartnersCount = (TextView)findViewById(R.id.positivePartnersCount);
         positivePartnersCount.setTypeface(tf_bold);
 
-        positivePartnersCount.setText(String.valueOf(posDBCount));
+        positivePartnersCount.setText(String.valueOf(posDBCount+undetectableDBCount));
         TextView negativePartnersCount = (TextView)findViewById(R.id.negativePartnersCount);
         negativePartnersCount.setTypeface(tf_bold);
-        negativePartnersCount.setText(String.valueOf(negDBCount));
+        negativePartnersCount.setText(String.valueOf(negDBCount+negprepDBCount));
         TextView unknownPartnersCount = (TextView)findViewById(R.id.unknownPartnersCount);
         unknownPartnersCount.setTypeface(tf_bold);
         unknownPartnersCount.setText(String.valueOf(db.getPartnersCountByHivStatus("I don't know/unsure")));

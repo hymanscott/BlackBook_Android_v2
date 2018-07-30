@@ -451,7 +451,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 }
             }
             if(db.getTestingHistoriesCountByTestingId(2)==0 && !isPositiveHIVTestLogged()){
-                message = "You haven't entered an STD test yet. Don't forget to do your first set of test!";
+                message = "You haven't entered an STD tests yet. Don't forget to do your first set of tests!";
                 if(db.getAppAlertsCountByName("Reminder One")==0){
                     showAppAlert(message,1,"Reminder One");
                 }

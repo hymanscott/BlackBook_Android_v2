@@ -101,7 +101,7 @@
                     android:layout_weight="9"
                     android:layout_margin="16dp"
                     android:id="@+id/it_can_be_very_easy"
-                    android:text="It can be very scary to test positive, but you are not alone. Many people find it helpful to talk to a family member or friend; we are also available to talk to you anytime. Also, remember that your home HIV self-test is a preliminary positive, and you will need to have a confirmatory blood test — contact us and we’ll help you get that second test. We’ll also help you if you find out you are HIV infected - we will work with “navigators” who can connect you with medical care, social services, insurance coverage, and a number of other resources."/>
+                    android:text="It can be very scary to test positive, but you are not alone. Many people find it helpful to talk to a family member or friend; we are also available to talk to you anytime. Also, remember that your home HIV self-test is a preliminary positive, and you will need to have a confirmatory blood test — contact us and we’ll help you get that second test. We’ll also help you if you find out you are HIV infected. - we will work with “navigators” who can connect you with medical care, social services, insurance coverage, and a number of other resources."/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -313,7 +313,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
                         android:background="@android:color/transparent"
-                        android:text="CHAT US NOW"
+                        android:text="CHAT WITH US NOW"
                         android:textStyle="bold"
                         android:textSize="16dp"
                         android:id="@+id/chatwithusnow"

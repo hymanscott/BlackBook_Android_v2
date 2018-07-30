@@ -173,7 +173,7 @@ public class TestingCareFragment extends Fragment {
             it_can_be.setTypeface(tf);
             pre_exposure.setTypeface(tf);
             dontForget.setText(Html.fromHtml("Don’t forget to update your testing log & repeat your test in 1 month. We’ll notify you about your next test to remind you."));
-            useCondoms.setText(Html.fromHtml("<font color='#2E86EF'>UseCondoms.</font> Using condoms is an important strategy to staying HIV negative. If used correctly, and with lube, they give a high level of protection for HIV and other sexually transmitted infections — like gonorrhea, chlamydia, and syphilis."));
+            useCondoms.setText(Html.fromHtml("<font color='#2E86EF'>Use Condoms.</font> Using condoms is an important strategy to staying HIV negative. If used correctly, and with lube, they give a high level of protection for HIV and other sexually transmitted infections — like gonorrhea, chlamydia, and syphilis."));
             pre_exposure.setText(Html.fromHtml("<font color='#2E86EF'>Pre-Exposure Prophylaxis (PrEP)</font> is another HIV prevention tool that can give you a high level of protection (more than 90% effective if taken daily)."));
             chatUsNowSection.setOnClickListener(new View.OnClickListener() {
                 @Override
