@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.User_baseline_info;
 
+import net.hockeyapp.android.metrics.model.User;
+
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
 
@@ -53,7 +55,11 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);*/
-        User_baseline_info baseline_info = db.getUserBaselineInfobyUserID(LynxManager.getActiveUser().getUser_id());
+        //User_baseline_info baseline_info = db.getUserBaselineInfobyUserID(LynxManager.getActiveUser().getUser_id());
+        User_baseline_info baseline_info = LynxManager.getActiveUserBaselineInfo();
+        for(User_baseline_info user_baseline_info : db.getAllUserBaselineInfo()){
+            baseline_info = user_baseline_info;
+        }
 
         elapsed_reg_days = getElapsedDays(baseline_info.getCreated_at());
         isPreNinety = elapsed_reg_days < 90;

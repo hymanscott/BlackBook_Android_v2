@@ -1391,7 +1391,7 @@ public class RegLogin extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... arg0) {
             publishProgress();
-            pDialog.setProgress(50);
+            pDialog.setProgress(10);
             // Creating service handler class instance
             ServiceHandler sh = new ServiceHandler();
             // Making a request to url and getting response
@@ -1403,7 +1403,7 @@ public class RegLogin extends AppCompatActivity {
             }
             //Log.d("Response: ", ">loginResult " + jsonStr);
             loginResult = jsonStr;
-            pDialog.setProgress(100);
+            pDialog.setProgress(50);
             // Dismiss the progress dialog
             if (pDialog.isShowing())
                 pDialog.dismiss();
@@ -1465,17 +1465,16 @@ public class RegLogin extends AppCompatActivity {
                                     user_baseline_object.getString("sexpro_prep"),
                                     user_baseline_object.getString("sexpro_calculated_date"),
                                     String.valueOf(R.string.statusUpdateYes), true);
-                            int createBaselineID = db.createbaseline(userBaselineInfo);
+                            userBaselineInfo.setBaseline_id(user_baseline_object.getInt("baseline_id"));
+                            db.createbaselineWithID(userBaselineInfo);
                             db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), user_baseline_object.getInt("sexpro_score"),user_baseline_object.getString("sexpro_prep"), user_baseline_object.getString("sexpro_calculated_date"), String.valueOf(R.string.statusUpdateNo));
-                            db.updateUserBaselineCreatedDate(user_baseline_object.getString("created_at"),createBaselineID);
-                            userBaselineInfo.setBaseline_id(createBaselineID);
+                            db.updateUserBaselineCreatedDate(user_baseline_object.getString("created_at"),user_baseline_object.getInt("baseline_id"));
                             userBaselineInfo.setCreated_at(db.getUserBaselineCreatedAtByUserId(LynxManager.getActiveUser().getUser_id()));
                             //Log.v("BaselineCreatedDate",userBaselineInfo.getCreated_at());
                             LynxManager.setActiveUserBaselineInfo(userBaselineInfo);
                             //Log.v("BaselineCreatedDate",LynxManager.getActiveUserBaselineInfo().getCreated_at());
 
                         }
-
 
                         // Getting UserPrimaryPartnerInfo
                         JSONArray userPrimaryPartnerInfo = parentObject.getJSONArray("UserPrimaryPartner");
@@ -1719,7 +1718,7 @@ public class RegLogin extends AppCompatActivity {
 
                             String is_weekly_check_in =  prepFupObject.getString("is_weekly_checkin");
                             int weekly_check_in;
-                            if(is_weekly_check_in.isEmpty()||is_weekly_check_in==""){
+                            if(is_weekly_check_in.isEmpty()||is_weekly_check_in.equals("")){
                                 weekly_check_in = 0;
                             }else{
                                 weekly_check_in = 1;

@@ -19,6 +19,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
@@ -218,6 +219,11 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             }
         });
         db = new DatabaseHelper(this);
+        List<Users> allUsers = db.getAllUsers();
+        LynxManager.setActiveUser(allUsers.get(0));
+        for(User_baseline_info user_baseline_info : db.getAllUserBaselineInfo()){
+            LynxManager.setActiveUserBaselineInfo(user_baseline_info);
+        }
         if ( Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission(LynxHome.this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
                 ContextCompat.checkSelfPermission(LynxHome.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -451,7 +457,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 }
             }
             if(db.getTestingHistoriesCountByTestingId(2)==0 && !isPositiveHIVTestLogged()){
-                message = "You haven't entered an STD tests yet. Don't forget to do your first set of tests!";
+                message = "You haven't entered an STD test yet. Don't forget to do your first set of tests!";
                 if(db.getAppAlertsCountByName("Reminder One")==0){
                     showAppAlert(message,1,"Reminder One");
                 }

@@ -993,6 +993,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return user_baseline_id;
     }
+    public int createbaselineWithID(User_baseline_info user) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_BASE_ID, user.getBaseline_id());
+        values.put(KEY_BASE_USERID, user.getUser_id());
+        values.put(KEY_BASE_HIVNEG_COUNT, user.getHiv_negative_count());
+        values.put(KEY_BASE_HIVPOS_COUNT, user.getHiv_positive_count());
+        values.put(KEY_BASE_HIVUNK_COUNT, user.getHiv_unknown_count());
+        values.put(KEY_BASE_TOP_HIVPOS_COUNT, user.getNo_of_times_top_hivposs());
+        values.put(KEY_BASE_TOPCONDOMUSE_COUNT, user.getTop_condom_use_percent());
+        values.put(KEY_BASE_BOT_HIVPOS_COUNT, user.getNo_of_times_bot_hivposs());
+        values.put(KEY_BASE_BOTCONDOMUSE_COUNT, user.getBottom_condom_use_percent());
+        values.put(KEY_BASE_IS_PRIM_PARTNER, user.getIs_primary_partner());
+        values.put(KEY_STATUS_UPDATE, user.getStatus_update());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        int user_baseline_id = (int) db.insert(TABLE_USER_BASE_INFO, null, values);
+
+
+        return user_baseline_id;
+    }
     public int updateUserBaselineCreatedDate(String date, int id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -1016,27 +1039,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c != null)
+        if (c != null && c.getCount()>0){
             c.moveToFirst();
+            User_baseline_info user = new User_baseline_info();
+            user.setBaseline_id(c.getInt(c.getColumnIndex(KEY_BASE_ID)));
+            user.setUser_id(c.getInt(c.getColumnIndex(KEY_BASE_USERID)));
+            user.setHiv_negative_count(c.getString(c.getColumnIndex(KEY_BASE_HIVNEG_COUNT)));
+            user.setHiv_positive_count(c.getString(c.getColumnIndex(KEY_BASE_HIVPOS_COUNT)));
+            user.setHiv_unknown_count(c.getString(c.getColumnIndex(KEY_BASE_HIVUNK_COUNT)));
+            user.setNo_of_times_top_hivposs(c.getString(c.getColumnIndex(KEY_BASE_TOP_HIVPOS_COUNT)));
+            user.setTop_condom_use_percent(c.getString(c.getColumnIndex(KEY_BASE_TOPCONDOMUSE_COUNT)));
+            user.setNo_of_times_bot_hivposs(c.getString(c.getColumnIndex(KEY_BASE_BOT_HIVPOS_COUNT)));
+            user.setBottom_condom_use_percent(c.getString(c.getColumnIndex(KEY_BASE_BOTCONDOMUSE_COUNT)));
+            user.setIs_primary_partner(c.getString(c.getColumnIndex(KEY_BASE_IS_PRIM_PARTNER)));
+            user.setSexpro_score(c.getInt(c.getColumnIndex(KEY_BASE_SEXPRO_SCORE)));
+            user.setSexpro_prep(c.getString(c.getColumnIndex(KEY_BASE_SEXPRO_PREP)));
+            user.setSexpro_calculated_date(c.getString(c.getColumnIndex(KEY_BASE_SEXPRO_CALCULATED_DATE)));
+            user.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
-        User_baseline_info user = new User_baseline_info();
-        user.setBaseline_id(c.getInt(c.getColumnIndex(KEY_BASE_ID)));
-        user.setUser_id(c.getInt(c.getColumnIndex(KEY_BASE_USERID)));
-        user.setHiv_negative_count(c.getString(c.getColumnIndex(KEY_BASE_HIVNEG_COUNT)));
-        user.setHiv_positive_count(c.getString(c.getColumnIndex(KEY_BASE_HIVPOS_COUNT)));
-        user.setHiv_unknown_count(c.getString(c.getColumnIndex(KEY_BASE_HIVUNK_COUNT)));
-        user.setNo_of_times_top_hivposs(c.getString(c.getColumnIndex(KEY_BASE_TOP_HIVPOS_COUNT)));
-        user.setTop_condom_use_percent(c.getString(c.getColumnIndex(KEY_BASE_TOPCONDOMUSE_COUNT)));
-        user.setNo_of_times_bot_hivposs(c.getString(c.getColumnIndex(KEY_BASE_BOT_HIVPOS_COUNT)));
-        user.setBottom_condom_use_percent(c.getString(c.getColumnIndex(KEY_BASE_BOTCONDOMUSE_COUNT)));
-        user.setIs_primary_partner(c.getString(c.getColumnIndex(KEY_BASE_IS_PRIM_PARTNER)));
-        user.setSexpro_score(c.getInt(c.getColumnIndex(KEY_BASE_SEXPRO_SCORE)));
-        user.setSexpro_prep(c.getString(c.getColumnIndex(KEY_BASE_SEXPRO_PREP)));
-        user.setSexpro_calculated_date(c.getString(c.getColumnIndex(KEY_BASE_SEXPRO_CALCULATED_DATE)));
-        user.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
+            return user;
+        }
         c.close();
-        return user;
+        return null;
     }
 
     //get user baseline createdAt by user_id
@@ -1117,6 +1141,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String selectQuery = "SELECT  * FROM " + TABLE_USER_BASE_INFO + " WHERE " + KEY_STATUS_UPDATE + " = '" + status + "'";
+
+        Log.e(LOG, selectQuery);
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c!=null) {
+        if (c.moveToFirst()) {
+            do {
+                User_baseline_info user = new User_baseline_info();
+                user.setBaseline_id(c.getInt(c.getColumnIndex(KEY_BASE_ID)));
+                user.setUser_id(c.getInt(c.getColumnIndex(KEY_BASE_USERID)));
+                user.setHiv_negative_count(c.getString(c.getColumnIndex(KEY_BASE_HIVNEG_COUNT)));
+                user.setHiv_positive_count(c.getString(c.getColumnIndex(KEY_BASE_HIVPOS_COUNT)));
+                user.setHiv_unknown_count(c.getString(c.getColumnIndex(KEY_BASE_HIVUNK_COUNT)));
+                user.setNo_of_times_top_hivposs(c.getString(c.getColumnIndex(KEY_BASE_TOP_HIVPOS_COUNT)));
+                user.setTop_condom_use_percent(c.getString(c.getColumnIndex(KEY_BASE_TOPCONDOMUSE_COUNT)));
+                user.setNo_of_times_bot_hivposs(c.getString(c.getColumnIndex(KEY_BASE_BOT_HIVPOS_COUNT)));
+                user.setBottom_condom_use_percent(c.getString(c.getColumnIndex(KEY_BASE_BOTCONDOMUSE_COUNT)));
+                user.setIs_primary_partner(c.getString(c.getColumnIndex(KEY_BASE_IS_PRIM_PARTNER)));
+                user.setSexpro_score(c.getInt(c.getColumnIndex(KEY_BASE_SEXPRO_SCORE)));
+                user.setSexpro_prep(c.getString(c.getColumnIndex(KEY_BASE_SEXPRO_PREP)));
+                user.setSexpro_calculated_date(c.getString(c.getColumnIndex(KEY_BASE_SEXPRO_CALCULATED_DATE)));
+                user.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // adding to Users list
+                users.add(user);
+            } while (c.moveToNext());
+        }
+        }
+        c.close();
+        return users;
+    }
+
+    public List<User_baseline_info> getAllUserBaselineInfo(){
+        List<User_baseline_info> users = new ArrayList<User_baseline_info>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_USER_BASE_INFO;
 
         Log.e(LOG, selectQuery);
         android.database.Cursor c = db.rawQuery(selectQuery, null);

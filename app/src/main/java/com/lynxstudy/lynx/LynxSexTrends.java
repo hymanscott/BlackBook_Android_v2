@@ -339,10 +339,13 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
 
         int drunk_or_highcount = 0;
         List<Encounter> encounters_list = db.getAllEncounters();
-        for (Encounter encounter:encounters_list) {
-            if(!LynxManager.decryptString(encounter.getIs_drug_used()).equals("Neither drunk nor high"))
-                drunk_or_highcount++;
+        if(encounters_list.size()!=0){
+            for (Encounter encounter:encounters_list) {
+                if(!LynxManager.decryptString(encounter.getIs_drug_used()).equals("Neither drunk nor high"))
+                    drunk_or_highcount++;
+            }
         }
+
         float drunk_or_high_percent = 0;
         if(encounters_list.size()>0){
             drunk_or_high_percent =(float)drunk_or_highcount/encounters_list.size();
