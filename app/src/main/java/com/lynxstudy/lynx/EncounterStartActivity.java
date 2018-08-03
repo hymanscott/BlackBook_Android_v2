@@ -34,6 +34,7 @@ import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.DrugMaster;
 import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
+import com.lynxstudy.model.PartnerContact;
 import com.lynxstudy.model.PartnerRating;
 import com.lynxstudy.model.Partners;
 import com.lynxstudy.model.UserAlcoholUse;
@@ -46,6 +47,7 @@ import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -578,6 +580,7 @@ public class EncounterStartActivity extends AppCompatActivity {
         if(LynxManager.isNewPartnerEncounter){
             Partners p = db.getPartnerbyID(LynxManager.activeEncounter.getEncounter_partner_id());
             PartnerRating partnerRating = db.getPartnerRatingbyPartnerID(p.getPartner_id(),1);
+            PartnerContact partnerContact = db.getPartnerContactbyPartnerID(p.getPartner_id());
             switch (LynxManager.decryptString(partnerRating.getRating())){
                 case "1.0":
                 case "1.5":
@@ -591,6 +594,13 @@ public class EncounterStartActivity extends AppCompatActivity {
                 case "5.0":
                     all_star_count++;
                     break;
+            }
+            if(LynxManager.decryptString(partnerContact.getPartner_type()).equals("Primary")){
+                List<String> showAppAlert = new ArrayList<String>();
+                showAppAlert.add(0,"Well, okay then. "+ LynxManager.decryptString(partnerContact.getName()) +" and you are exchanging more than phone numbers. Good luck in the relationship and make sure you exchange your status info as well.");
+                showAppAlert.add(1,"Two");
+                showAppAlert.add(2,"Primary partner designation");
+                LynxManager.showAppAlertList.add(showAppAlert);
             }
         }
         TrackHelper.track().event("Encounter","Add").name("New Encounter Added").with(tracker);
@@ -688,9 +698,17 @@ public class EncounterStartActivity extends AppCompatActivity {
         }
         if(moreThanTwoEncountersCount>=2){
             if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
-                showAppAlert("It's been a busy week for you. Glad to see PrEP is part of your plan. Stay protected and keep having fun.",2,"More Sex Acts On PrEP");
+                List<String> showAppAlert = new ArrayList<String>();
+                showAppAlert.add(0,"It's been a busy week for you. Glad to see PrEP is part of your plan. Stay protected and keep having fun.");
+                showAppAlert.add(1,"Two");
+                showAppAlert.add(2,"More Sex Acts On PrEP");
+                LynxManager.showAppAlertList.add(showAppAlert);
             }else{
-                showAppAlert("Seems like you've had a good week. PrEP can be a part of that by reducing your HIV risk and any anxiety about it.",2,"More Sex Acts Not On PrEP");
+                List<String> showAppAlert = new ArrayList<String>();
+                showAppAlert.add(0,"Seems like you've had a good week. PrEP can be a part of that by reducing your HIV risk and any anxiety about it.");
+                showAppAlert.add(1,"Two");
+                showAppAlert.add(2,"More Sex Acts Not On PrEP");
+                LynxManager.showAppAlertList.add(showAppAlert);
             }
         }
         /*
@@ -715,14 +733,21 @@ public class EncounterStartActivity extends AppCompatActivity {
         }
         if(partnersCount>=1 && partnersCount<=4 && LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("No")){
             if(db.getAppAlertsCountByName("1-4 Partners in last month")==0){
-                showAppAlert("You've been getting out there. Nice. Use condoms and PrEP so your morning after memories are anxiety-free.",2,"1-4 Partners in last month");
+                List<String> showAppAlert = new ArrayList<String>();
+                showAppAlert.add(0,"You've been getting out there. Nice. Use condoms and PrEP so your morning after memories are anxiety-free.");
+                showAppAlert.add(1,"Two");
+                showAppAlert.add(2,"1-4 Partners in last month");
+                LynxManager.showAppAlertList.add(showAppAlert);
             }
         }else if(partnersCount >= 5){
             if(db.getAppAlertsCountByName("5 plus Partners in last month")==0) {
-                showAppAlert("Real talk: PrEP can keep the partying (or parties) going. Learn how you can reduce your high risk for HIV and still get your Netflix & Chill on.", 2, "5 plus Partners in last month");
+                List<String> showAppAlert = new ArrayList<String>();
+                showAppAlert.add(0,"Real talk: PrEP can keep the partying (or parties) going. Learn how you can reduce your high risk for HIV and still get your Netflix & Chill on.");
+                showAppAlert.add(1,"Two");
+                showAppAlert.add(2,"5 plus Partners in last month");
+                LynxManager.showAppAlertList.add(showAppAlert);
             }
         }
-
         // Clear Condomuse list//
         LynxManager.activeEncCondomUsed.clear();
         LynxManager.isNewPartnerEncounter= false;
@@ -846,51 +871,5 @@ public class EncounterStartActivity extends AppCompatActivity {
             return (int) days;
         }return 0;
 
-    }
-
-    private void showAppAlert(String message,int no_of_buttons,String name){
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(EncounterStartActivity.this);
-        View appAlertLayout = getLayoutInflater().inflate(R.layout.app_alert_template,null);
-        builder1.setView(appAlertLayout);
-        TextView message_tv = (TextView)appAlertLayout.findViewById(R.id.message);
-        TextView maybeLater = (TextView)appAlertLayout.findViewById(R.id.maybeLater);
-        TextView prepInfo = (TextView)appAlertLayout.findViewById(R.id.prepInfo);
-        View verticalBorder = (View)appAlertLayout.findViewById(R.id.verticalBorder);
-        message_tv.setText(message);
-        builder1.setCancelable(false);
-        final AlertDialog alert11 = builder1.create();
-        if(no_of_buttons==1){
-            prepInfo.setVisibility(View.GONE);
-            verticalBorder.setVisibility(View.GONE);
-            maybeLater.setText("Got it!");
-            maybeLater.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    alert11.cancel();
-                }
-            });
-        }else{
-            prepInfo.setVisibility(View.VISIBLE);
-            verticalBorder.setVisibility(View.VISIBLE);
-            maybeLater.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    alert11.cancel();
-                }
-            });
-            prepInfo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    alert11.cancel();
-                    Intent intent = new Intent(EncounterStartActivity.this,LynxPrep.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK  | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    startActivity(intent);
-                    finish();
-                }
-            });
-        }
-        alert11.show();
-        AppAlerts appAlerts = new AppAlerts(name,LynxManager.getDateTime(),LynxManager.getDateTime());
-        db.createAppAlert(appAlerts);
     }
 }

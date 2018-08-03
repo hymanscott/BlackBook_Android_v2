@@ -216,6 +216,19 @@ public class NewPartnerSummaryFragment extends Fragment {
                 rating7.setRating(Float.parseFloat(rating_values.get(6)));
             }
         },500);
+
+        if(rating_fields.get(4).equals("") || rating_fields.get(4)==null){
+            newPartnerSumm_rate5.setVisibility(View.GONE);
+            rating5.setVisibility(View.GONE);
+        }
+        if(rating_fields.get(5).equals("") || rating_fields.get(5)==null){
+            newPartnerSumm_rate6.setVisibility(View.GONE);
+            rating6.setVisibility(View.GONE);
+        }
+        if(rating_fields.get(6).equals("") || rating_fields.get(6)==null){
+            newPartnerSumm_rate7.setVisibility(View.GONE);
+            rating7.setVisibility(View.GONE);
+        }
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
 		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));

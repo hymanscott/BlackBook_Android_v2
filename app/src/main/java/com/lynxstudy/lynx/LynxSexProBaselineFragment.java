@@ -54,7 +54,7 @@ public class LynxSexProBaselineFragment extends Fragment {
     PrepFollowup prepFollowup;
     List<UserDrugUse> baselineDrugUse;
     List<UserSTIDiag>  baselineSTI;
-    int neg_count,pos_count,unk_count;
+    int neg_count,pos_count,unk_count,times_top,times_bottom;
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -76,6 +76,8 @@ public class LynxSexProBaselineFragment extends Fragment {
         neg_count = Integer.parseInt(LynxManager.decryptString(baseline_info.getHiv_negative_count()));
         pos_count = Integer.parseInt(LynxManager.decryptString(baseline_info.getHiv_positive_count()));
         unk_count = Integer.parseInt(LynxManager.decryptString(baseline_info.getHiv_unknown_count()));
+        times_bottom =  Integer.parseInt(LynxManager.decryptString(baseline_info.getNo_of_times_bot_hivposs()));
+        times_top = Integer.parseInt(LynxManager.decryptString(baseline_info.getNo_of_times_top_hivposs()));
         prepFollowup = db.getPrepFollowup(true);
         baselineDrugUse  =   LynxManager.getActiveUserDrugUse();
         baselineSTI      =   LynxManager.getActiveUserSTIDiag();
@@ -491,6 +493,9 @@ public class LynxSexProBaselineFragment extends Fragment {
                 }
             }
         }
+        if(times_bottom==0 && times_top==0){
+            STI = 0;
+        }
         return STI>0;
     }
     public int getMonthsDifference(Date date1, Date date2) {
@@ -546,6 +551,9 @@ public class LynxSexProBaselineFragment extends Fragment {
         
         if((DFREQ>=5 && DFREQ<=7 && DPD>=4) || (DFREQ>=1 && DFREQ<=4 && DPD>=6)){
             HEAVYALC = 1;
+        }
+        if(times_bottom==0 && times_top==0){
+            HEAVYALC = 0;
         }
         return HEAVYALC;
     }

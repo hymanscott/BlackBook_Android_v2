@@ -95,6 +95,7 @@ public class LynxManager {
     public static boolean haveWeeklyEncounter = false;
     public static boolean isRegCodeValidated = false;
     public static String regCode = "";
+    public static List<List<String>> showAppAlertList = new ArrayList<List<String>>();
 
     //static Context context;
     /*private static String baseURL  =   "http://104.211.95.9/";

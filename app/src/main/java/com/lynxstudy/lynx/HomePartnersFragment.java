@@ -364,6 +364,18 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
             rating5.setRating(Float.parseFloat(rating_values.get(4)));
             rating6.setRating(Float.parseFloat(rating_values.get(5)));
             rating7.setRating(Float.parseFloat(rating_values.get(6)));
+            if(rating_fields.get(4).equals("") || rating_fields.get(4)==null){
+                newPartnerSumm_rate5.setVisibility(View.GONE);
+                rating5.setVisibility(View.GONE);
+            }
+            if(rating_fields.get(5).equals("") || rating_fields.get(5)==null){
+                newPartnerSumm_rate6.setVisibility(View.GONE);
+                rating6.setVisibility(View.GONE);
+            }
+            if(rating_fields.get(6).equals("") || rating_fields.get(6)==null){
+                newPartnerSumm_rate7.setVisibility(View.GONE);
+                rating7.setVisibility(View.GONE);
+            }
         }
 
         LayerDrawable stars1 = (LayerDrawable) rating1.getProgressDrawable();
@@ -506,20 +518,6 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         }
         partnerNotes.setText(LynxManager.decryptString(partnerContact.getPartner_notes()));
         partnerNotes.setTypeface(tf);
-        partnerNotes.setOnKeyListener(this);
-       /* partnerNotes.setOnKeyListener(new View.OnKeyListener() {
-            public boolean onKey(View view, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK) {
-                    *//*InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(URLText.getWindowToken(), 0);*//*
-                    partnerNotes.setFocusable(false);
-                    partnerNotes.setFocusableInTouchMode(true);
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        });*/
         // HIV STATUS CHANGE //
         final List<String> hiv_status_list= Arrays.asList(getResources().getStringArray(R.array.hiv_status_list));
         final ArrayAdapter<String> adapterHIV = new ArrayAdapter<String>(getActivity(),
@@ -761,6 +759,15 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         rating5.setRating(Float.parseFloat(rating_values.get(4)));
         rating6.setRating(Float.parseFloat(rating_values.get(5)));
         rating7.setRating(Float.parseFloat(rating_values.get(6)));
+        if(rating_fields.get(4).equals("") || rating_fields.get(4)==null){
+            rating5.setRating(1);
+        }
+        if(rating_fields.get(5).equals("") || rating_fields.get(5)==null){
+            rating6.setRating(1);
+        }
+        if(rating_fields.get(6).equals("") || rating_fields.get(6)==null){
+            rating7.setRating(1);
+        }
         LayerDrawable stars1 = (LayerDrawable) rating1.getProgressDrawable();
         stars1.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
         stars1.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
@@ -810,8 +817,6 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                     Toast.makeText(getActivity(),"Please enter valid email",Toast.LENGTH_SHORT).show();
                 }else if(newPartner_phone.length()!= 0 && (newPartner_phone.length()<10 || newPartner_phone.length()>11)){
                     Toast.makeText(getActivity(),"Please enter valid mobile number",Toast.LENGTH_SHORT).show();
-                }if(newPartnerSumm_rate5.getText().toString().trim().equals("") || newPartnerSumm_rate6.getText().toString().trim().equals("") || newPartnerSumm_rate7.getText().toString().trim().equals("")){
-                    Toast.makeText(getActivity(),"Please enter all rating fields",Toast.LENGTH_SHORT).show();
                 }else{
                     Partners updatedPartner = new Partners();
                     updatedPartner.setPartner_id(partner_id);

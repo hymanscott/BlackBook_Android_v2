@@ -35,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.AppAlerts;
 import com.lynxstudy.model.UserBadges;
 
 import org.piwik.sdk.Tracker;
@@ -68,7 +69,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lynx_diary);
-
+        db = new DatabaseHelper(LynxDiary.this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
@@ -168,7 +169,6 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
 
             }
         });
-        db = new DatabaseHelper(LynxDiary.this);
         // Show If Encounter Badges Available //
         List<UserBadges> userBadgesList = db.getAllUserBadgesByTypeAndShownStatus("Encounter",0);
         int i=0;
@@ -183,8 +183,59 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
             }
             i++;
         }
+
+        if(LynxManager.showAppAlertList.size()>0) {
+            for (List<String> stringList : LynxManager.showAppAlertList) {
+                showAppAlert(stringList.get(0), stringList.get(1), stringList.get(2));
+            }
+        }
+        LynxManager.showAppAlertList.clear();
     }
 
+    private void showAppAlert(String message,String no_of_buttons,String name){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(LynxDiary.this);
+        View appAlertLayout = getLayoutInflater().inflate(R.layout.app_alert_template,null);
+        builder1.setView(appAlertLayout);
+        TextView message_tv = (TextView)appAlertLayout.findViewById(R.id.message);
+        TextView maybeLater = (TextView)appAlertLayout.findViewById(R.id.maybeLater);
+        TextView prepInfo = (TextView)appAlertLayout.findViewById(R.id.prepInfo);
+        View verticalBorder = (View)appAlertLayout.findViewById(R.id.verticalBorder);
+        message_tv.setText(message);
+        builder1.setCancelable(false);
+        final AlertDialog alert11 = builder1.create();
+        if(!no_of_buttons.equals("Two")){
+            prepInfo.setVisibility(View.GONE);
+            verticalBorder.setVisibility(View.GONE);
+            maybeLater.setText("Got it!");
+            maybeLater.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                }
+            });
+        }else{
+            prepInfo.setVisibility(View.VISIBLE);
+            verticalBorder.setVisibility(View.VISIBLE);
+            maybeLater.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                }
+            });
+            prepInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert11.cancel();
+                    LynxManager.goToIntent(LynxDiary.this,"prep",LynxDiary.this.getClass().getSimpleName());
+                    overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
+                    finish();
+                }
+            });
+        }
+        alert11.show();
+        AppAlerts appAlerts = new AppAlerts(name,LynxManager.getDateTime(),LynxManager.getDateTime());
+        db.createAppAlert(appAlerts);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

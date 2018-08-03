@@ -327,57 +327,51 @@ public class EncounterNewPartner extends AppCompatActivity {
         String ratingFieldValue6 = ratingField6.getText().toString().trim();
         EditText ratingField7 = (EditText)findViewById(R.id.newPartner_rate7);
         String ratingFieldValue7 = ratingField7.getText().toString().trim();
-        if(ratingFieldValue5.equals("")||ratingFieldValue6.equals("")||ratingFieldValue7.equals("")){
-            Toast.makeText(EncounterNewPartner.this,"Please enter all rating fields",Toast.LENGTH_SHORT).show();
-        }else {
-            RatingBar ratingBar1 = (RatingBar) findViewById(R.id.ratingBar1);
-            String ratingValue1 = String.valueOf((ratingBar1.getRating()));
-            RatingBar ratingBar2 = (RatingBar) findViewById(R.id.ratingBar2);
-            String ratingValue2 = String.valueOf((ratingBar2.getRating()));
-            RatingBar ratingBar3 = (RatingBar) findViewById(R.id.ratingBar3);
-            String ratingValue3 = String.valueOf((ratingBar3.getRating()));
-            RatingBar ratingBar4 = (RatingBar) findViewById(R.id.ratingBar4);
-            String ratingValue4 = String.valueOf((ratingBar4.getRating()));
-            RatingBar ratingBar5 = (RatingBar) findViewById(R.id.ratingBar5);
-            String ratingValue5 = String.valueOf((ratingBar5.getRating()));
-            RatingBar ratingBar6 = (RatingBar) findViewById(R.id.ratingBar6);
-            String ratingValue6 = String.valueOf((ratingBar6.getRating()));
-            RatingBar ratingBar7 = (RatingBar) findViewById(R.id.ratingBar7);
-            String ratingValue7 = String.valueOf((ratingBar7.getRating()));
-            List<String> rating_values = new ArrayList<String>();
-            rating_values.add(ratingValue1);
-            rating_values.add(ratingValue2);
-            rating_values.add(ratingValue3);
-            rating_values.add(ratingValue4);
-            rating_values.add(ratingValue5);
-            rating_values.add(ratingValue6);
-            rating_values.add(ratingValue7);
-            List<String> rating_fields = new ArrayList<String>();
-            rating_fields.add(ratingFieldValue1);
-            rating_fields.add(ratingFieldValue2);
-            rating_fields.add(ratingFieldValue3);
-            rating_fields.add(ratingFieldValue4);
-            rating_fields.add(ratingFieldValue5);
-            rating_fields.add(ratingFieldValue6);
-            rating_fields.add(ratingFieldValue7);
+        RatingBar ratingBar1 = (RatingBar) findViewById(R.id.ratingBar1);
+        String ratingValue1 = String.valueOf((ratingBar1.getRating()));
+        RatingBar ratingBar2 = (RatingBar) findViewById(R.id.ratingBar2);
+        String ratingValue2 = String.valueOf((ratingBar2.getRating()));
+        RatingBar ratingBar3 = (RatingBar) findViewById(R.id.ratingBar3);
+        String ratingValue3 = String.valueOf((ratingBar3.getRating()));
+        RatingBar ratingBar4 = (RatingBar) findViewById(R.id.ratingBar4);
+        String ratingValue4 = String.valueOf((ratingBar4.getRating()));
+        RatingBar ratingBar5 = (RatingBar) findViewById(R.id.ratingBar5);
+        String ratingValue5 = String.valueOf((ratingBar5.getRating()));
+        RatingBar ratingBar6 = (RatingBar) findViewById(R.id.ratingBar6);
+        String ratingValue6 = String.valueOf((ratingBar6.getRating()));
+        RatingBar ratingBar7 = (RatingBar) findViewById(R.id.ratingBar7);
+        String ratingValue7 = String.valueOf((ratingBar7.getRating()));
+        List<String> rating_values = new ArrayList<String>();
+        rating_values.add(ratingValue1);
+        rating_values.add(ratingValue2);
+        rating_values.add(ratingValue3);
+        rating_values.add(ratingValue4);
+        rating_values.add(ratingValue5);
+        rating_values.add(ratingValue6);
+        rating_values.add(ratingValue7);
+        List<String> rating_fields = new ArrayList<String>();
+        rating_fields.add(ratingFieldValue1);
+        rating_fields.add(ratingFieldValue2);
+        rating_fields.add(ratingFieldValue3);
+        rating_fields.add(ratingFieldValue4);
+        rating_fields.add(ratingFieldValue5);
+        rating_fields.add(ratingFieldValue6);
+        rating_fields.add(ratingFieldValue7);
 
-            LynxManager.partnerRatingValues.clear();
-            LynxManager.partnerRatingFields.clear();
-            LynxManager.setPartnerRatingValues(rating_values);
-            LynxManager.setPartnerRatingFields(rating_fields);
-            //Log.v("SETPhas-Rating Values", Arrays.toString(rating_values.toArray()));
+        LynxManager.partnerRatingValues.clear();
+        LynxManager.partnerRatingFields.clear();
+        LynxManager.setPartnerRatingValues(rating_values);
+        LynxManager.setPartnerRatingFields(rating_fields);
+        //Log.v("SETPhas-Rating Values", Arrays.toString(rating_values.toArray()));
 
-            LynxManager.setPartnerRatingIds(rating_field_id);
-            LynxManager.activePartnerRating.clear();
-            for (Integer field_id : rating_field_id) {
-            /*System.out.println("FIELD ID"+field_id);
-            System.out.println(rating_values.get(field_id - 1));*/
-                PartnerRating partner_rating = new PartnerRating(LynxManager.getActiveUser().getUser_id(), LynxManager.getActivePartner().getPartner_id(),
-                        field_id, String.valueOf(rating_values.get(field_id - 1)), rating_fields.get(field_id - 1), String.valueOf(R.string.statusUpdateNo));
-                LynxManager.setActivePartnerRating(partner_rating);
-            }
-            pushFragments("Encounter", fragNewPartnerNotes, true);
+        LynxManager.setPartnerRatingIds(rating_field_id);
+        LynxManager.activePartnerRating.clear();
+        for (Integer field_id : rating_field_id) {
+            PartnerRating partner_rating = new PartnerRating(LynxManager.getActiveUser().getUser_id(), LynxManager.getActivePartner().getPartner_id(),
+                    field_id, String.valueOf(rating_values.get(field_id - 1)), rating_fields.get(field_id - 1), String.valueOf(R.string.statusUpdateNo));
+            LynxManager.setActivePartnerRating(partner_rating);
         }
+        pushFragments("Encounter", fragNewPartnerNotes, true);
         return true;
 
     }
@@ -385,49 +379,6 @@ public class EncounterNewPartner extends AppCompatActivity {
     public boolean showEditDetails(View view){
         NewPartnerSummaryEditFragment fragPartnerSummaryEdit = new NewPartnerSummaryEditFragment();
         pushFragments("Encounter", fragPartnerSummaryEdit, true);
-        return true;
-    }
-
-    /*public boolean showHivStatusEdit(View view){
-        NewPartnerHivStatusEditFragment frag = new NewPartnerHivStatusEditFragment();
-        pushFragments("Encounter", frag, true);
-        return true;
-    }*/
-
-    public boolean changeHivStatus(View view) {
-        RadioButton hiv_status_btn = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_hivstatus)).getCheckedRadioButtonId());
-        String hiv_status = hiv_status_btn.getText().toString();
-        RadioButton radioUndetectable = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_undetectable)).getCheckedRadioButtonId());
-        String partUndetectable ="";
-        if (!LynxManager.undetectableLayoutHidden){  partUndetectable = radioUndetectable.getText().toString();} else { partUndetectable = ""; }
-        LynxManager.getActivePartner().setHiv_status(LynxManager.encryptString(hiv_status));
-        LynxManager.getActivePartner().setUndetectable_for_sixmonth(partUndetectable);
-        popFragment();
-        return true;
-    }
-
-    /*public boolean showPartnerTypeEdit(View view){
-        NewPartnerEditTypeFragment frag = new NewPartnerEditTypeFragment();
-        pushFragments("Encounter", frag, true);
-        return true;
-    }*/
-
-    public boolean changePartnerType(View view){
-        RadioButton radioPartnerType= (RadioButton) findViewById(((RadioGroup) findViewById(R.id.newPartnerType)).getCheckedRadioButtonId());
-        RadioButton radioRelationshipPeriod = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_relationshipPeriod)).getCheckedRadioButtonId());
-        RadioButton radioOtherPartner = (RadioButton) findViewById(((RadioGroup) findViewById(R.id.radio_partner)).getCheckedRadioButtonId());
-        String newPartnerType = radioPartnerType.getText().toString();
-        String newPartnerHaveOtherPartner = "";
-        String newPartnerRltnPeriod = "";
-        if (!LynxManager.partnerHaveOtherPartnerLayoutHidden){newPartnerHaveOtherPartner = radioOtherPartner.getText().toString();}
-        if (!LynxManager.partnerRelationshipLayoutHidden){
-            newPartnerRltnPeriod = radioRelationshipPeriod.getText().toString();
-            if (newPartnerRltnPeriod.equals("Less than 6 months") ){ newPartnerRltnPeriod = "Yes";}else{newPartnerRltnPeriod = "No";}
-        }
-        LynxManager.getActivePartnerContact().setPartner_type(LynxManager.encryptString(newPartnerType));
-        LynxManager.getActivePartnerContact().setRelationship_period(LynxManager.encryptString(newPartnerRltnPeriod));
-        LynxManager.getActivePartnerContact().setPartner_have_other_partners(LynxManager.encryptString(newPartnerHaveOtherPartner));
-        popFragment();
         return true;
     }
 
@@ -545,8 +496,6 @@ public class EncounterNewPartner extends AppCompatActivity {
             Toast.makeText(EncounterNewPartner.this,"Please enter valid email",Toast.LENGTH_SHORT).show();
         }else if(newPartner_phone.length()!= 0 && (newPartner_phone.length()<10 || newPartner_phone.length()>11)){
             Toast.makeText(EncounterNewPartner.this,"Please enter valid mobile number",Toast.LENGTH_SHORT).show();
-        }else if(ratingFieldValue5.trim().equals("")||ratingFieldValue6.trim().equals("")||ratingFieldValue7.trim().equals("")){
-            Toast.makeText(EncounterNewPartner.this,"Please enter all rating fields",Toast.LENGTH_SHORT).show();
         }else{
             LynxManager.getActivePartnerContact().setEmail(LynxManager.encryptString(newPartnerEmail));
             LynxManager.getActivePartnerContact().setPhone(LynxManager.encryptString(newPartner_phone));
@@ -575,7 +524,6 @@ public class EncounterNewPartner extends AppCompatActivity {
                     active_partner_contact.getRelationship_period(),active_partner_contact.getPartner_have_other_partners(),
                     LynxManager.getActivePartner().getIs_added_to_partners(),String.valueOf(R.string.statusUpdateNo), true);
             db.updatePrimaryPartner(priPartner);
-            showAppAlert("Well, okay then. "+ LynxManager.decryptString(active_partner_contact.getName()) +" and you are exchanging more than phone numbers. Good luck in the relationship and make sure you exchange your status info as well.",1,"Primary partner designation");
         }
 
         int i = 0;
@@ -609,47 +557,5 @@ public class EncounterNewPartner extends AppCompatActivity {
         finish();
         db.close();
         return true;
-    }
-
-    private void showAppAlert(String message, int no_of_buttons, String name){
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(EncounterNewPartner.this);
-        View appAlertLayout = getLayoutInflater().inflate(R.layout.app_alert_template,null);
-        builder1.setView(appAlertLayout);
-        TextView message_tv = (TextView)appAlertLayout.findViewById(R.id.message);
-        TextView maybeLater = (TextView)appAlertLayout.findViewById(R.id.maybeLater);
-        TextView prepInfo = (TextView)appAlertLayout.findViewById(R.id.prepInfo);
-        View verticalBorder = (View)appAlertLayout.findViewById(R.id.verticalBorder);
-        message_tv.setText(message);
-        builder1.setCancelable(false);
-        final AlertDialog alert11 = builder1.create();
-        if(no_of_buttons==1){
-            prepInfo.setVisibility(View.GONE);
-            verticalBorder.setVisibility(View.GONE);
-            maybeLater.setText("Got it!");
-            maybeLater.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    alert11.cancel();
-                }
-            });
-        }else{
-            prepInfo.setVisibility(View.VISIBLE);
-            verticalBorder.setVisibility(View.VISIBLE);
-            maybeLater.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    alert11.cancel();
-                }
-            });
-            prepInfo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    alert11.cancel();
-                }
-            });
-        }
-        alert11.show();
-        //AppAlerts appAlerts = new AppAlerts(name,LynxManager.getDateTime(),LynxManager.getDateTime());
-        //db.createAppAlert(appAlerts);
     }
 }
