@@ -396,7 +396,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
-                        android:id="@+id/dropDownIcon1"
+                        android:id="@+id/dropDown_Icon"
                         android:src="@drawable/dropdownicon"/>
                 </RelativeLayout>
             </RelativeLayout>

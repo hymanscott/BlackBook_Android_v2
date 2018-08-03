@@ -136,7 +136,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDe-RP8wn4NK3-JipjvhLEgPO3baWVyjxo" />
+            android:value="AIzaSyAXJkS6D82v1BEyv4fPi8Bvmg1Dw9RFi6Y" />
         <!--
              Set custom default icon. This is used when no icon is set for incoming notification messages.
              See README(https://goo.gl/l4GJaQ) for more.

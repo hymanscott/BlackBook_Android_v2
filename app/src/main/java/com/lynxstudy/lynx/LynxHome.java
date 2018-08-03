@@ -42,6 +42,7 @@ import com.google.gson.Gson;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.AppAlerts;
 import com.lynxstudy.model.BadgesMaster;
+import com.lynxstudy.model.ChatMessage;
 import com.lynxstudy.model.CloudMessages;
 import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
@@ -52,6 +53,7 @@ import com.lynxstudy.model.Partners;
 import com.lynxstudy.model.PrepFollowup;
 import com.lynxstudy.model.TestingHistory;
 import com.lynxstudy.model.TestingHistoryInfo;
+import com.lynxstudy.model.TestingLocations;
 import com.lynxstudy.model.TestingReminder;
 import com.lynxstudy.model.UserAlcoholUse;
 import com.lynxstudy.model.UserBadges;
@@ -66,6 +68,7 @@ import net.hockeyapp.android.CrashManager;
 import net.hockeyapp.android.UpdateManager;
 import net.hockeyapp.android.metrics.model.User;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.piwik.sdk.Tracker;
@@ -353,7 +356,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         checkForUpdates();
 
         // Add OnBoarding Badge for already registered users //
-        Log.v("OnboardingBadge", String.valueOf(db.getUserBadgesCountByBadgeID(1)));
+        /*Log.v("OnboardingBadge", String.valueOf(db.getUserBadgesCountByBadgeID(1)));*/
         if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("LYNX").getBadge_id())==0){
             // Adding User Badge : LYNX Badge //
             BadgesMaster lynx_badge = db.getBadgesMasterByName("LYNX");
@@ -503,6 +506,28 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 db.updateAppAlertModifiedDate(appAlerts.getId());
             }
         }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Sync Testing Locations //
+                JSONObject loginOBJ = new JSONObject();
+                try {
+                    loginOBJ.put("email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail()));
+                    loginOBJ.put("password",LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
+                    loginOBJ.put("user_id",LynxManager.getActiveUser().getUser_id());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                final String login_query_string = LynxManager.getQueryString(loginOBJ.toString());
+
+                if(LynxManager.haveNetworkConnection(LynxHome.this)){
+                    new TestingCentersOnline(login_query_string).execute();
+                }
+
+            }
+        },10000);
 //        Log.v("FCMToken",LynxManager.decryptString(db.getCloudMessaging().getToken_id()));
         //startActivity(new Intent(LynxHome.this,RegistrationCode.class));
     }
@@ -2248,5 +2273,82 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
+    }
+
+    private class TestingCentersOnline extends AsyncTask<Void, Void, Void> {
+
+        String TestingCentersOnline;
+        String jsonTestingCentersObj;
+
+
+        TestingCentersOnline(String jsonTestingCentersObj) {
+            this.jsonTestingCentersObj = jsonTestingCentersObj;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Showing progress dialog
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+
+            // Creating service handler class instance
+            ServiceHandler sh = new ServiceHandler();
+            // Making a request to url and getting response
+            String jsonChatListStr = null;
+            try {
+                jsonChatListStr = sh.makeServiceCall(LynxManager.getBaseURL() + "CdcTestingcenters/getTestingCenters/"+LynxManager.getActiveUser().getUser_id()+"?hashkey="+ LynxManager.stringToHashcode(jsonTestingCentersObj + LynxManager.hashKey)+"&timestamp="+ URLEncoder.encode(LynxManager.getDateTime(), "UTF-8"), jsonTestingCentersObj);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            Log.d("Response: ", ">TestingCentersOnline " + jsonChatListStr);
+            TestingCentersOnline = jsonChatListStr;
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            if (TestingCentersOnline != null) {
+                try {
+                    JSONObject jsonObj = new JSONObject(TestingCentersOnline);
+
+                    // Getting JSON Array node
+                    boolean is_error = jsonObj.getBoolean("is_error");
+                    // Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
+                    if (is_error) {
+                        Log.d("Response: ", "> TestingCentersOnlineError. " + jsonObj.getString("message"));
+                    } else {
+                        JSONArray locationsArray = jsonObj.getJSONArray("locations");
+                        for(int i=0;i<locationsArray.length();i++){
+                            JSONObject childObj = locationsArray.getJSONObject(i);
+                            int id = Integer.parseInt(childObj.getString("testing_location_id"));
+                            if(db.getTestingLocationbyID(id)==null){
+                                Log.v("Org_id",childObj.getString("testing_location_id"));
+                                TestingLocations testingLocation = new TestingLocations(childObj.getString("name"),
+                                        childObj.getString("address"),childObj.getString("phone_number"),
+                                        childObj.getString("latitude"),childObj.getString("longitude"),
+                                        childObj.getString("url"),childObj.getString( "type"),
+                                        childObj.getString("prep_clinic"),childObj.getString("hiv_clinic"),
+                                        childObj.getString("sti_clinic"),childObj.getString("under_eighteen"),
+                                        childObj.getString("operation_hours"),childObj.getString("insurance"),
+                                        childObj.getString("ages"));
+                                testingLocation.setTesting_location_id(id);
+                                db.createTestingLocationWithID(testingLocation);
+                            }
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Log.e("ServiceHandler", "Couldn't get any data from the url");
+            }
+        }
+
     }
 }

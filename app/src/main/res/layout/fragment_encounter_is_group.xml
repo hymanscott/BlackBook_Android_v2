@@ -73,7 +73,7 @@
                         android:textSize="@dimen/encounter_radio_btn_textsize" />
 
                     <RadioButton
-                        android:id="@+id/isGroupSexNo"
+                        android:id="@+id/isGroupSexYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/white"
@@ -98,7 +98,6 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginTop="@dimen/button_top_margin"
                     android:background="@color/encounter_btn_bg"
-                    android:onClick="onNumOfPeopleNext"
                     android:text="NEXT"
                     android:textColor="@color/white"
                     android:textSize="@dimen/button_textsize"

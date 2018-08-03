@@ -4098,6 +4098,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return test_loc_id;
     }
+    public int createTestingLocationWithID(TestingLocations testingLocations) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TESTING_LOCATION_ID, testingLocations.getTesting_location_id());
+        values.put(KEY_TESTING_LOCATION_NAME, testingLocations.getName());
+        values.put(KEY_TESTING_LOCATION_ADDRESS, testingLocations.getAddress());
+        values.put(KEY_TESTING_LOCATION_PHONE, testingLocations.getPhone_number());
+        values.put(KEY_TESTING_LOCATION_LATITUDE, testingLocations.getLatitude());
+        values.put(KEY_TESTING_LOCATION_LONGITUDE, testingLocations.getLongitude());
+        values.put(KEY_TESTING_LOCATION_URL, testingLocations.getUrl());
+        values.put(KEY_TESTING_LOCATION_TYPE,testingLocations.getType());
+        values.put(KEY_TESTING_LOCATION_PREP,testingLocations.getPrep_clinic());
+        values.put(KEY_TESTING_LOCATION_HIV,testingLocations.getHiv_clinic());
+        values.put(KEY_TESTING_LOCATION_STI,testingLocations.getSti_clinic());
+        values.put(KEY_TESTING_LOCATION_UNDER_EIGHTEEN,testingLocations.getUnder_eighteen());
+        values.put(KEY_TESTING_LOCATION_OPERATION_HOURS,testingLocations.getOperation_hours());
+        values.put(KEY_TESTING_LOCATION_INSURANCE,testingLocations.getInsurance());
+        values.put(KEY_TESTING_LOCATION_AGES,testingLocations.getAges());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        int test_loc_id = (int) db.insert(TABLE_TESTING_LOCATION, null, values);
+
+
+        return test_loc_id;
+    }
 
     /**
      * get single Testing LOCATION by Id
@@ -4112,27 +4139,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c != null)
+        if (c != null && c.getCount()>0) {
             c.moveToFirst();
 
-        TestingLocations testingLocations = new TestingLocations();
-        testingLocations.setTesting_location_id(c.getInt(c.getColumnIndex(KEY_TESTING_LOCATION_ID)));
-        testingLocations.setName(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_NAME)));
-        testingLocations.setAddress(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_ADDRESS)));
-        testingLocations.setPhone_number(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_PHONE)));
-        testingLocations.setLatitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LATITUDE)));
-        testingLocations.setLongitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LONGITUDE)));
-        testingLocations.setUrl(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_URL)));
-        testingLocations.setType(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_TYPE)));
-        testingLocations.setPrep_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_PREP)));
-        testingLocations.setHiv_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_HIV)));
-        testingLocations.setSti_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_STI)));
-        testingLocations.setUnder_eighteen(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_UNDER_EIGHTEEN)));
-        testingLocations.setOperation_hours(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_OPERATION_HOURS)));
-        testingLocations.setInsurance(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_INSURANCE)));
-        testingLocations.setAges(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_AGES)));
-        c.close();
-        return testingLocations;
+            TestingLocations testingLocations = new TestingLocations();
+            testingLocations.setTesting_location_id(c.getInt(c.getColumnIndex(KEY_TESTING_LOCATION_ID)));
+            testingLocations.setName(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_NAME)));
+            testingLocations.setAddress(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_ADDRESS)));
+            testingLocations.setPhone_number(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_PHONE)));
+            testingLocations.setLatitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LATITUDE)));
+            testingLocations.setLongitude(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_LONGITUDE)));
+            testingLocations.setUrl(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_URL)));
+            testingLocations.setType(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_TYPE)));
+            testingLocations.setPrep_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_PREP)));
+            testingLocations.setHiv_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_HIV)));
+            testingLocations.setSti_clinic(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_STI)));
+            testingLocations.setUnder_eighteen(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_UNDER_EIGHTEEN)));
+            testingLocations.setOperation_hours(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_OPERATION_HOURS)));
+            testingLocations.setInsurance(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_INSURANCE)));
+            testingLocations.setAges(c.getString(c.getColumnIndex(KEY_TESTING_LOCATION_AGES)));
+            c.close();
+            return testingLocations;
+        }else{
+            return null;
+        }
     }
 
 
@@ -4176,7 +4206,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.close();
         return testingLocationsList;
     }
-
+    public int getTestingLocationsCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_TESTING_LOCATION;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
     // ------------------------ " PREP INFORMATION" table methods ----------------//
 
     /**
