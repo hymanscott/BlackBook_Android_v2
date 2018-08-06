@@ -1068,6 +1068,9 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
             if(time.length()!=8) {
                 String[] a = time.split(":");
                 hour = Integer.parseInt(a[0]);
+                a[1] = a[1].replace("PM","");
+                a[1] = a[1].replace("AM","");
+                a[1] = a[1].replace(" ","");
                 min = Integer.parseInt(a[1]);
             }else{
                 String[] a = time.split(" ");

@@ -790,6 +790,9 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             if(time.length()!=8) {
                 String[] a = time.split(":");
                 hour = Integer.parseInt(a[0]);
+                a[1] = a[1].replace("PM","");
+                a[1] = a[1].replace("AM","");
+                a[1] = a[1].replace(" ","");
                 min = Integer.parseInt(a[1]);
             }else{
                 String[] a = time.split(" ");
@@ -826,6 +829,9 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             if(drug_use_time.length()!=8) {
                 String[] a = drug_use_time.split(":");
                 drug_use_hour = Integer.parseInt(a[0]);
+                a[1] = a[1].replace("PM","");
+                a[1] = a[1].replace("AM","");
+                a[1] = a[1].replace(" ","");
                 drug_use_min = Integer.parseInt(a[1]);
             }else{
                 String[] a = drug_use_time.split(" ");

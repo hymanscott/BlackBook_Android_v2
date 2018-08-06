@@ -79,8 +79,8 @@ public class LynxSexProBaselineFragment extends Fragment {
         times_bottom =  Integer.parseInt(LynxManager.decryptString(baseline_info.getNo_of_times_bot_hivposs()));
         times_top = Integer.parseInt(LynxManager.decryptString(baseline_info.getNo_of_times_top_hivposs()));
         prepFollowup = db.getPrepFollowup(true);
-        baselineDrugUse  =   LynxManager.getActiveUserDrugUse();
-        baselineSTI      =   LynxManager.getActiveUserSTIDiag();
+        baselineDrugUse  =   db.getDrugUsesbyUserID(LynxManager.getActiveUser().getUser_id());
+        baselineSTI      =   db.getSTIDiagbyUserID(LynxManager.getActiveUser().getUser_id());
         
         //Action Bar//
         actionBar = (RelativeLayout)view.findViewById(R.id.actionBar);
