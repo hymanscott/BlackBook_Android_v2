@@ -4125,7 +4125,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return test_loc_id;
     }
+    public int updateTestingLocation(TestingLocations testingLocations) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(KEY_TESTING_LOCATION_ID, testingLocations.getTesting_location_id());
+        values.put(KEY_TESTING_LOCATION_NAME, testingLocations.getName());
+        values.put(KEY_TESTING_LOCATION_ADDRESS, testingLocations.getAddress());
+        values.put(KEY_TESTING_LOCATION_PHONE, testingLocations.getPhone_number());
+        values.put(KEY_TESTING_LOCATION_LATITUDE, testingLocations.getLatitude());
+        values.put(KEY_TESTING_LOCATION_LONGITUDE, testingLocations.getLongitude());
+        values.put(KEY_TESTING_LOCATION_URL, testingLocations.getUrl());
+        values.put(KEY_TESTING_LOCATION_TYPE,testingLocations.getType());
+        values.put(KEY_TESTING_LOCATION_PREP,testingLocations.getPrep_clinic());
+        values.put(KEY_TESTING_LOCATION_HIV,testingLocations.getHiv_clinic());
+        values.put(KEY_TESTING_LOCATION_STI,testingLocations.getSti_clinic());
+        values.put(KEY_TESTING_LOCATION_UNDER_EIGHTEEN,testingLocations.getUnder_eighteen());
+        values.put(KEY_TESTING_LOCATION_OPERATION_HOURS,testingLocations.getOperation_hours());
+        values.put(KEY_TESTING_LOCATION_INSURANCE,testingLocations.getInsurance());
+        values.put(KEY_TESTING_LOCATION_AGES,testingLocations.getAges());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        return db.update(TABLE_TESTING_LOCATION, values, KEY_TESTING_LOCATION_ID + " = ?",
+                new String[]{String.valueOf(testingLocations.getTesting_location_id())});
+    }
     /**
      * get single Testing LOCATION by Id
      */

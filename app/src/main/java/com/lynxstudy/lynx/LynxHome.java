@@ -2333,18 +2333,21 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                         for(int i=0;i<locationsArray.length();i++){
                             JSONObject childObj = locationsArray.getJSONObject(i);
                             int id = Integer.parseInt(childObj.getString("testing_location_id"));
+                            TestingLocations testingLocation = new TestingLocations(childObj.getString("name"),
+                                    childObj.getString("address"),childObj.getString("phone_number"),
+                                    childObj.getString("latitude"),childObj.getString("longitude"),
+                                    childObj.getString("url"),childObj.getString( "type"),
+                                    childObj.getString("prep_clinic"),childObj.getString("hiv_clinic"),
+                                    childObj.getString("sti_clinic"),childObj.getString("under_eighteen"),
+                                    childObj.getString("operation_hours"),childObj.getString("insurance"),
+                                    childObj.getString("ages"));
+                            testingLocation.setTesting_location_id(id);
                             if(db.getTestingLocationbyID(id)==null){
-                                Log.v("Org_id",childObj.getString("testing_location_id"));
-                                TestingLocations testingLocation = new TestingLocations(childObj.getString("name"),
-                                        childObj.getString("address"),childObj.getString("phone_number"),
-                                        childObj.getString("latitude"),childObj.getString("longitude"),
-                                        childObj.getString("url"),childObj.getString( "type"),
-                                        childObj.getString("prep_clinic"),childObj.getString("hiv_clinic"),
-                                        childObj.getString("sti_clinic"),childObj.getString("under_eighteen"),
-                                        childObj.getString("operation_hours"),childObj.getString("insurance"),
-                                        childObj.getString("ages"));
-                                testingLocation.setTesting_location_id(id);
+                                Log.v("Created_Org_id",childObj.getString("testing_location_id"));
                                 db.createTestingLocationWithID(testingLocation);
+                            }else{
+                                Log.v("updated_Org_id",childObj.getString("testing_location_id"));
+                                db.updateTestingLocation(testingLocation);
                             }
                         }
                     }
