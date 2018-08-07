@@ -24,6 +24,7 @@ import com.lynxstudy.model.UserAlcoholUse;
 import com.lynxstudy.model.UserDrugUse;
 import com.lynxstudy.model.UserSTIDiag;
 import com.lynxstudy.model.User_baseline_info;
+import com.lynxstudy.model.Users;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -79,6 +80,33 @@ public class LynxSexProBaselineFragment extends Fragment {
         times_bottom =  Integer.parseInt(LynxManager.decryptString(baseline_info.getNo_of_times_bot_hivposs()));
         times_top = Integer.parseInt(LynxManager.decryptString(baseline_info.getNo_of_times_top_hivposs()));
         prepFollowup = db.getPrepFollowup(true);
+        if(prepFollowup==null){
+            // Generate PrepFollowp incase not found //
+            calculateSexProScore getscore = new calculateSexProScore(getActivity());
+            int adjustedScore = Math.round((float) getscore.getAdjustedScore());
+            int unAdjustedScore = Math.round((float) getscore.getUnAdjustedScore());
+            int final_score;
+            int final_score_alt;
+            if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
+                final_score = adjustedScore;
+                final_score_alt = unAdjustedScore;
+            }else{
+                final_score = unAdjustedScore;
+                final_score_alt = adjustedScore;
+            }
+            PrepFollowup prepFollowup1 = new PrepFollowup();
+            prepFollowup1.setUser_id(LynxManager.getActiveUser().getUser_id());
+            prepFollowup1.setDatetime(LynxManager.encryptString(LynxManager.getUTCDateTime()));
+            prepFollowup1.setPrep(LynxManager.getActiveUser().getIs_prep());
+            prepFollowup1.setScore(LynxManager.encryptString(String.valueOf(final_score)));
+            prepFollowup1.setScore_alt(LynxManager.encryptString(String.valueOf(final_score_alt)));
+            prepFollowup1.setIs_weekly_checkin(0);
+            prepFollowup1.setNo_of_prep_days(LynxManager.encryptString(""));
+            prepFollowup1.setHave_encounters_to_report(LynxManager.encryptString(""));
+            prepFollowup1.setStatus_update(LynxManager.encryptString(getResources().getString(R.string.statusUpdateNo)));
+            db.createPrepFollowup(prepFollowup1);
+            prepFollowup = prepFollowup1;
+        }
         baselineDrugUse  =   db.getDrugUsesbyUserID(LynxManager.getActiveUser().getUser_id());
         baselineSTI      =   db.getSTIDiagbyUserID(LynxManager.getActiveUser().getUser_id());
         
@@ -511,8 +539,7 @@ public class LynxSexProBaselineFragment extends Fragment {
         UserAlcoholUse userAlcoholUse = null;
         if(alcoholUsesList!=null){
             for(UserAlcoholUse alcoholUse : alcoholUsesList){
-                //Log.v("BaselineCheck",alcoholUse.getAlcohol_use_id() + "--" + alcoholUse.getIs_baseline());
-                if(alcoholUse.getIs_baseline()!=null && LynxManager.decryptString(alcoholUse.getIs_baseline()).equals("No")){
+                if(alcoholUse.getIs_baseline()!=null && LynxManager.decryptString(alcoholUse.getIs_baseline()).equals("Yes")){
                     userAlcoholUse = alcoholUse;
                 }
             }
@@ -549,7 +576,7 @@ public class LynxSexProBaselineFragment extends Fragment {
         }
         
         
-        if((DFREQ>=5 && DFREQ<=7 && DPD>=4) || (DFREQ>=1 && DFREQ<=4 && DPD>=6)){
+        if((DFREQ>=5 && DPD>=4) || (DFREQ>=1 && DFREQ<=4 && DPD>=6)){
             HEAVYALC = 1;
         }
         if(times_bottom==0 && times_top==0){

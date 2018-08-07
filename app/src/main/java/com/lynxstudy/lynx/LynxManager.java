@@ -201,17 +201,6 @@ public class LynxManager {
         return activeUser;
     }
 
-    public static Users getActiveUser(int mode){
-        Users users = activeUser;
-        if(mode == 0){
-
-            users.setAddress(LynxManager.decryptString(activeUser.getAddress()));
-        }
-        else if(mode == 1){
-
-        }
-        return users;
-    }
 
     public static void setActiveUser(Users activeUser) {
         LynxManager.activeUser = activeUser;
