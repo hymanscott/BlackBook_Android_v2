@@ -249,7 +249,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                             /*Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(testingLocations.getUrl()));
                             startActivity(browserIntent);*/
                             infoWindow_distance.setText(marker.getSnippet());
-
+                            Log.v("MarkerTitle",testingLocations.getName());
                             mBottomSheetBehavior.setPeekHeight(200);
                             mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         }
