@@ -11,6 +11,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
@@ -97,7 +98,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
 
         db = new DatabaseHelper(getActivity());
         LynxManager.selectedPartnerID = 0;
-
+        LynxManager.isFromDeletePartner = false; // clearing delete partner variable
         // Adding Listable partners to partner table
 
         List<Partners> partners = db.getListablePartners();
@@ -935,6 +936,9 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                         // Delete action //
                         db.deletePartner(partner_id,0,String.valueOf(R.string.statusUpdateNo));
                         alert11.cancel();
+                        startActivity(getActivity().getIntent());
+                        LynxManager.isFromDeletePartner = true;
+                        getActivity().finish();
                     }
                 });
                 alert11.show();

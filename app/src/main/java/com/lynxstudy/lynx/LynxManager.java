@@ -95,13 +95,14 @@ public class LynxManager {
     public static boolean haveWeeklyEncounter = false;
     public static boolean isRegCodeValidated = false;
     public static String regCode = "";
+    public static boolean isFromDeletePartner= false;
     public static List<List<String>> showAppAlertList = new ArrayList<List<String>>();
 
     //static Context context;
-    private static String baseURL  =   "http://104.211.95.9/";
-    private static String testImageBaseUrl = "http://104.211.95.9/testimages/";
-    /*private static String baseURL  =   "https://dev.chipware.in/hari/LynxPortal/";
-    private static String testImageBaseUrl = "https://dev.chipware.in/hari/LynxPortal/testimages/";*/
+    /*private static String baseURL  =   "http://104.211.95.9/";
+    private static String testImageBaseUrl = "http://104.211.95.9/testimages/";*/
+    private static String baseURL  =   "https://dev.chipware.in/hari/LynxPortal/";
+    private static String testImageBaseUrl = "https://dev.chipware.in/hari/LynxPortal/testimages/";
     /*private static String baseURL  =   "https://lynxstudy.com/";
     private static String testImageBaseUrl = "https://lynxstudy.com/testimages/";*/
     private LynxManager() {

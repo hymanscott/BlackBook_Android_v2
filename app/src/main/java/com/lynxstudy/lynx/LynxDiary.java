@@ -114,7 +114,9 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
+        if(LynxManager.isFromDeletePartner){
+            mViewPager.setCurrentItem(1);
+        }
         // Custom tab views //
         final TextView tab1 = new TextView(LynxDiary.this);
         tab1.setText("SEXUAL HISTORY");

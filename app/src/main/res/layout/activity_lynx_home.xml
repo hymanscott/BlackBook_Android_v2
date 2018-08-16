@@ -100,16 +100,74 @@
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:id="@+id/row_two">
+                        android:id="@+id/row_three">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical"
                             android:gravity="center"
-                            android:id="@+id/badges"
+                            android:id="@+id/trends"
                             android:layout_marginRight="@dimen/activity_horizontal_margin_half"
                             android:background="@drawable/grey_home_full">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="13dp"
+                                android:layout_marginRight="13dp"
+                                android:src="@drawable/trends_home_new"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Trends"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:id="@+id/trendsTitle"
+                                android:textColor="@color/lynx_home_white"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:id="@+id/insights"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin_half"
+                            android:background="@drawable/grey_home_full">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="10dp"
+                                android:src="@drawable/insights_home_new"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Insights"
+                                android:textSize="20sp"
+                                android:id="@+id/insightsTitle"
+                                android:textStyle="bold"
+                                android:textColor="@color/lynx_home_white"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginBottom="40dp"
+                        android:id="@+id/row_two">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:id="@+id/badges"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin_half"
+                            android:background="@drawable/grey_home_half">
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -129,11 +187,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical"
+                            android:orientation="horizontal"
                             android:gravity="center"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin_half"
                             android:id="@+id/topFive"
-                            android:background="@drawable/grey_home_full">
+                            android:background="@drawable/grey_home_half">
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -149,66 +207,7 @@
                                 android:textColor="@color/lynx_home_white"/>
                         </LinearLayout>
                     </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:layout_marginBottom="40dp"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:id="@+id/row_three">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:gravity="center"
-                            android:id="@+id/trends"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin_half"
-                            android:background="@drawable/grey_home_half">
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="13dp"
-                                android:layout_marginRight="13dp"
-                                android:src="@drawable/trends_home_new"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Sex Trends"
-                                android:textSize="20sp"
-                                android:layout_marginRight="10dp"
-                                android:textStyle="bold"
-                                android:id="@+id/trendsTitle"
-                                android:textColor="@color/lynx_home_white"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:gravity="center"
-                            android:id="@+id/insights"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin_half"
-                            android:background="@drawable/grey_home_half">
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:layout_marginRight="10dp"
-                                android:src="@drawable/insights_home_new"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Partner Insights"
-                                android:textSize="20sp"
-                                android:layout_marginRight="8dp"
-                                android:id="@+id/insightsTitle"
-                                android:textStyle="bold"
-                                android:textColor="@color/lynx_home_white"/>
-                        </LinearLayout>
-                    </LinearLayout>
+
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>

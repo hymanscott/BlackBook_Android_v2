@@ -113,6 +113,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         notificationBuilder.setLights(Color.BLUE, 1000, 300);
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notificationBuilder.build());
+        if(pushnotification_flag!=3){
+            if (notificationManager != null) {
+                notificationManager.notify(0, notificationBuilder.build());
+            }
+        }
     }
 }
