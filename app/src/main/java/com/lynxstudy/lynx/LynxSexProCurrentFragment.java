@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.PrepFollowup;
+import com.lynxstudy.model.UserBadges;
 import com.lynxstudy.model.UserDrugUse;
 import com.lynxstudy.model.UserSTIDiag;
 import com.lynxstudy.model.User_baseline_info;
@@ -403,6 +406,26 @@ public class LynxSexProCurrentFragment extends Fragment {
                 activity.container.setCurrentItem(0);
             }
         });
+
+        /*
+        * Showing Green Light and Tool Box badges
+        * Only one time after 90 days
+        * */
+        int shown = 0;
+        if(final_score >=17){
+            BadgesMaster green_badge = db.getBadgesMasterByName("Green Light");
+            if(db.getUserBadgesCountByBadgeID(green_badge.getBadge_id()) < 2){
+                UserBadges greenBadge = new UserBadges(green_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,green_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+                db.createUserBadge(greenBadge);
+            }
+        }else if(final_score>= 10 && final_score<=16){
+            BadgesMaster toolbox_badge = db.getBadgesMasterByName("Toolbox");
+            Log.v("BadgesCountTool","->"+db.getUserBadgesCountByBadgeID(toolbox_badge.getBadge_id()) );
+            if(db.getUserBadgesCountByBadgeID(toolbox_badge.getBadge_id()) < 2) {
+                UserBadges toolBoxBadge = new UserBadges(toolbox_badge.getBadge_id(), LynxManager.getActiveUser().getUser_id(), shown, toolbox_badge.getBadge_notes(), String.valueOf(R.string.statusUpdateNo));
+                db.createUserBadge(toolBoxBadge);
+            }
+        }
         return view;
     }
 

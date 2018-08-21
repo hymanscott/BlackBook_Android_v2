@@ -73,16 +73,9 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
         mainScrollView = (ScrollView)findViewById(R.id.mainScrollView);
         infoLink = (TextView)findViewById(R.id.infoLink);
         infoLink.setTypeface(tf_bold);
-        /*dialScoreImage = (ImageView)findViewById(R.id.dialScoreImage);*/
         ((LinearLayout)findViewById(R.id.indicators)).setVisibility(View.GONE);
         infolayout = (LinearLayout)findViewById(R.id.infolayout);
         main_content= (LinearLayout)findViewById(R.id.main_content);
-/*        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        int width = (int) ((metrics.widthPixels / metrics.density) * 1.3);
-        int height = (int) ((metrics.widthPixels / metrics.density) * 1.3);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width,height);
-        FrameLayout dial_layout = (FrameLayout)findViewById(R.id.myscore_framelayout);
-//        dial_layout.setLayoutParams(params);*/
 
         final calculateSexProScore getscore = new calculateSexProScore(BaselineSexproScoreActivity.this);
         int adjustedScore = Math.round((float) getscore.getAdjustedScore());

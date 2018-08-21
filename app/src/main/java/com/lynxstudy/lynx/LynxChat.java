@@ -270,10 +270,10 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         //chatTableLayout.scrollTo(0,chatTableLayout.getBottom());
         scrolltolastmessage();
        // Log.v("ChatMessageCount",db.getChatMessagesCount() + ", APPALertCount=>" + db.getAppAlertsCountByName("Chat Used"));
-        // Showing APP Alert box //
+        /*// Showing APP Alert box //
         if(db.getChatMessagesCount() == 1 && db.getAppAlertsCountByName("Chat Used")==0){
             showAppAlert("Great to see you working the chat feature. We're always one click away.",1,"Chat Used");
-        }
+        }*/
     }
     public void scrolltolastmessage(){
         final int index = chatTableLayout.getChildCount() - 1;

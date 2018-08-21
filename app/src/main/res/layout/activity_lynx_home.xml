@@ -115,13 +115,15 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="13dp"
                                 android:layout_marginRight="13dp"
-                                android:src="@drawable/trends_home_new"/>
+                                android:src="@drawable/insights_home_new"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Trends"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
+                                android:layout_marginTop="10dp"
+                                android:layout_gravity="center_horizontal|bottom"
                                 android:id="@+id/trendsTitle"
                                 android:textColor="@color/lynx_home_white"/>
                         </LinearLayout>
@@ -139,12 +141,14 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
                                 android:layout_marginRight="10dp"
-                                android:src="@drawable/insights_home_new"/>
+                                android:src="@drawable/trends_home_new"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Insights"
                                 android:textSize="20sp"
+                                android:layout_marginTop="10dp"
+                                android:layout_gravity="center_horizontal|bottom"
                                 android:id="@+id/insightsTitle"
                                 android:textStyle="bold"
                                 android:textColor="@color/lynx_home_white"/>
@@ -178,8 +182,7 @@
                                 android:text="Badges"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
-                                android:layout_marginTop="10dp"
-                                android:layout_gravity="center_horizontal|bottom"
+                                android:layout_gravity="center"
                                 android:id="@+id/badgesTitle"
                                 android:textColor="@color/lynx_home_white"/>
                         </LinearLayout>
@@ -199,9 +202,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Top Five"
+                                android:text="Top 5"
                                 android:textSize="20sp"
-                                android:layout_marginTop="10dp"
                                 android:textStyle="bold"
                                 android:id="@+id/topFiveTitle"
                                 android:textColor="@color/lynx_home_white"/>

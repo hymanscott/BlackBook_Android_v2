@@ -458,9 +458,9 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
             }
         }
         progress_values.add(String.valueOf(topPeopleCount));
-        description_values.add("# of partners you topped with");
+        description_values.add("# of times you topped");
         progress_values.add(String.valueOf(bottomPeopleCount));
-        description_values.add("# of partners you bottomed with");
+        description_values.add("# of times you bottomed");
         progress_values.add(String.valueOf(db.getFiveStarEncountersCount()));
         description_values.add("# of 5 star encounters");
         TrendsDataPointAdapter adapter = new TrendsDataPointAdapter(LynxSexTrends.this,progress_values,description_values);

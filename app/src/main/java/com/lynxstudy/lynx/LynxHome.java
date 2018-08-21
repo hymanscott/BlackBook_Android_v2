@@ -465,12 +465,13 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     showAppAlert(message,1,"Reminder One");
                 }
             }
+            /* Removed this alert
             if(db.getTestingHistoriesCountByTestingId(1)==0 && db.getTestingHistoriesCountByTestingId(2)==0){
                 message = "You haven't entered an HIV or STD test yet. Don't forget to do your first set of tests!";
                 if(db.getAppAlertsCountByName("Reminder One")==0){
                     showAppAlert(message,1,"Reminder One");
                 }
-            }
+            }*/
 
         }else if(elapsed_reg_days>30){
             if(db.getTestingHistoriesCountByTestingId(1)==0 && !isPositiveHIVTestLogged()){
@@ -2343,10 +2344,10 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                                     childObj.getString("ages"));
                             testingLocation.setTesting_location_id(id);
                             if(db.getTestingLocationbyID(id)==null){
-                                Log.v("Created_Org_id",childObj.getString("testing_location_id"));
+                                //Log.v("Created_Org_id",childObj.getString("testing_location_id"));
                                 db.createTestingLocationWithID(testingLocation);
                             }else{
-                                Log.v("updated_Org_id",childObj.getString("testing_location_id"));
+                                //Log.v("updated_Org_id",childObj.getString("testing_location_id"));
                                 db.updateTestingLocation(testingLocation);
                             }
                         }
