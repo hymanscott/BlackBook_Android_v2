@@ -41,9 +41,9 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/insights_home_new" />
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:src="@drawable/trends_home_new" />
 
                         <TextView
                             android:id="@+id/pageTitle"
