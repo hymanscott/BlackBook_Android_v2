@@ -56,7 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 11;
 
     // Database Name
     private static final String DATABASE_NAME = "phasttDB";
@@ -94,6 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_USER_BADGES = "UserBadges";
     private static final String TABLE_APP_ALERTS = "AppAlerts";
     private static final String TABLE_PREP_FUP = "prep_followup";
+    private static final String TABLE_TL_SYNC = "TestingLocationSync";
 
     // Common column names
     private static final String KEY_CREATED_AT = "created_at";
@@ -359,6 +360,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_PREP_FUP_PREP_DAYS = "no_of_prep_days";
     private static final String KEY_PREP_FUP_ENCOUNTERS_REPORT = "have_encounters_to_report";
 
+    private static final String KEY_TL_SYNC_ID = "id";
+    private static final String KEY_TL_SYNC_PAGE = "page";
+
     // Table Create Statements
     // Users table create statement
     private static final String CREATE_TABLE_USERS = "CREATE TABLE "
@@ -519,6 +523,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_PREP_FUP_PREP_DAYS + " TEXT," + KEY_PREP_FUP_WEEKLY_CHECKIN + " INTEGER," + KEY_PREP_FUP_ENCOUNTERS_REPORT + " TEXT,"
             + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " TEXT)";
 
+    private static final String CREATE_TABLE_TL_SYNC = "CREATE TABLE "
+            + TABLE_TL_SYNC + "(" + KEY_TL_SYNC_ID + " INTEGER PRIMARY KEY," + KEY_TL_SYNC_PAGE + " INTEGER,"
+            + KEY_USERS_ID + " INTEGER," + KEY_CREATED_AT + " TEXT)";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
@@ -559,6 +567,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_USER_BADGES);
         db.execSQL(CREATE_TABLE_APP_ALERT);
         db.execSQL(CREATE_TABLE_PREP_FUP);
+        db.execSQL(CREATE_TABLE_TL_SYNC);
 
     }
 
@@ -3660,6 +3669,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int test_history_id = (int) db.insert(TABLE_TESTING_HISTORY, null, values);
         return test_history_id;
     }
+    public int createTestingHistoryWithID(TestingHistory testingHistory) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TESTING_HISTORY_ID, testingHistory.getTesting_history_id());
+        values.put(KEY_TESTING_HISTORY_TESTINGID, testingHistory.getTesting_id());
+        values.put(KEY_TESTING_HISTORY_TESTINGDATE, testingHistory.getTesting_date());
+        values.put(KEY_TESTING_HISTORY_USERID, testingHistory.getUser_id());
+        values.put(KEY_STATUS_UPDATE, testingHistory.getStatus_update());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        int test_history_id = (int) db.insert(TABLE_TESTING_HISTORY, null, values);
+        return test_history_id;
+    }
 
     /**
      * get single Testing History by Id
@@ -3876,6 +3900,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(KEY_TESTING_HISTORY_INFO_HISTORYID, testingHistoryInfo.getTesting_history_id());
+        values.put(KEY_TESTING_HISTORY_INFO_USERID, testingHistoryInfo.getUser_id());
+        values.put(KEY_TESTING_HISTORY_INFO_STIID, testingHistoryInfo.getSti_id());
+        values.put(KEY_TESTING_HISTORY_INFO_STATUS, testingHistoryInfo.getTest_status());
+        values.put(KEY_TESTING_HISTORY_INFO_ATTACHMENT, testingHistoryInfo.getAttachment());
+        values.put(KEY_STATUS_UPDATE, testingHistoryInfo.getStatus_update());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        int test_status_id = (int) db.insert(TABLE_TESTING_HISTORY_INFO, null, values);
+
+
+        return test_status_id;
+    }
+    public int createTestingHistoryInfoWithID(TestingHistoryInfo testingHistoryInfo) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TESTING_HISTORY_INFO_ID, testingHistoryInfo.getTesting_history_info_id());
         values.put(KEY_TESTING_HISTORY_INFO_HISTORYID, testingHistoryInfo.getTesting_history_id());
         values.put(KEY_TESTING_HISTORY_INFO_USERID, testingHistoryInfo.getUser_id());
         values.put(KEY_TESTING_HISTORY_INFO_STIID, testingHistoryInfo.getSti_id());
@@ -5330,6 +5373,67 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int count = cursor.getCount();
         cursor.close();
         return count;
+    }
+
+    public int createTLSync(int user_id,int page){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_USERS_ID, user_id);
+        values.put(KEY_TL_SYNC_PAGE, page);
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        return (int) db.insert(TABLE_TL_SYNC, null, values);
+    }
+    public int updateTLSync(int user_id,int page){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_USERS_ID, user_id);
+        values.put(KEY_TL_SYNC_PAGE, page);
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        return db.update(TABLE_TL_SYNC, values, KEY_TL_SYNC_ID + " = ?",
+                new String[]{String.valueOf(1)});
+    }
+
+    public String getLastTLSyncDate(){
+        String selectQuery = "SELECT  * FROM " + TABLE_TL_SYNC + " ORDER BY "+ KEY_TL_SYNC_ID + " DESC LIMIT 1";
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if(c != null && c.getCount()>0){
+            if (c.moveToFirst()) {
+                return c.getString(c.getColumnIndex(KEY_CREATED_AT));
+            }
+            c.close();
+        }
+        return null;
+    }
+    public int getLastTLSyncPage(){
+        String selectQuery = "SELECT  * FROM " + TABLE_TL_SYNC + " ORDER BY "+ KEY_TL_SYNC_ID + " DESC LIMIT 1";
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if(c != null && c.getCount()>0){
+            if (c.moveToFirst()) {
+                return c.getInt(c.getColumnIndex(KEY_TL_SYNC_PAGE));
+            }
+            c.close();
+        }
+        return 0;
+    }
+    public void deleteTLSync(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_TL_SYNC, null, null);
     }
 }
 

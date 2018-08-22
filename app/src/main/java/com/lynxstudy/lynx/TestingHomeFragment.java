@@ -334,7 +334,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
                                 teststatus.setText("Negative");
                             }else {
-                                teststatus.setText("Didn't Test");
+                                teststatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
                             }
                             String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
                             if(!historyInfoAttachment.equals("")){
@@ -397,7 +397,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             } else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
                                 teststatus.setText("Negative");
                             } else {
-                                teststatus.setText("Didn't Test");
+                                teststatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
                             }
                             String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
                             if (!historyInfoAttachment.equals("")) {
@@ -626,7 +626,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     Toast.makeText(getActivity(), "Please Select Date", Toast.LENGTH_SHORT).show();
                 } else if(invalid_date){
                     Toast.makeText(getActivity(),"Invalid Date",Toast.LENGTH_SHORT).show();
-                } else if(title.equals("STD Test") && (RG_Chlamydia.getCheckedRadioButtonId()==-1 || RG_Gonorrhea.getCheckedRadioButtonId()==-1 || RG_Syphilis.getCheckedRadioButtonId()==-1)){
+                } else if(title.equals("STD Test") && (RG_Chlamydia.getCheckedRadioButtonId()==-1 && RG_Gonorrhea.getCheckedRadioButtonId()==-1 && RG_Syphilis.getCheckedRadioButtonId()==-1)){
                     Toast.makeText(getActivity(),getResources().getString(R.string.select_std_test_result),Toast.LENGTH_SHORT).show();
                 } else if(title.equals("HIV Test") && RG_HIVtest.getCheckedRadioButtonId()==-1){
                     Toast.makeText(getActivity(),getResources().getString(R.string.select_hiv_test_result),Toast.LENGTH_SHORT).show();
@@ -634,9 +634,18 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     String date = LynxManager.getFormatedDate("MM/dd/yyyy",newTestDate.getText().toString(),"yyyy-MM-dd");
                     TestingHistory history = new TestingHistory(testing_id, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(date), String.valueOf(R.string.statusUpdateNo), true);
                     int testingHistoryid = db.createTestingHistory(history);
-                    RadioButton chlamydia = (RadioButton)view.findViewById(RG_Chlamydia.getCheckedRadioButtonId());
-                    RadioButton gonorrhea = (RadioButton)view.findViewById(RG_Gonorrhea.getCheckedRadioButtonId());
-                    RadioButton syphilis = (RadioButton)view.findViewById(RG_Syphilis.getCheckedRadioButtonId());
+                    String chlamydia_test_status = "Test Not Reported";
+                    String gonorrhea_test_status = "Test Not Reported";
+                    String syphilis_test_status = "Test Not Reported";
+                    if(RG_Chlamydia.getCheckedRadioButtonId()!=-1){
+                        chlamydia_test_status = ((RadioButton)view.findViewById(RG_Chlamydia.getCheckedRadioButtonId())).getText().toString();
+                    }
+                    if(RG_Gonorrhea.getCheckedRadioButtonId()!=-1){
+                        gonorrhea_test_status = ((RadioButton)view.findViewById(RG_Gonorrhea.getCheckedRadioButtonId())).getText().toString();
+                    }
+                    if(RG_Syphilis.getCheckedRadioButtonId()!=-1){
+                        syphilis_test_status = ((RadioButton)view.findViewById(RG_Syphilis.getCheckedRadioButtonId())).getText().toString();
+                    }
                     RadioButton hivTestStatus = (RadioButton)view.findViewById(RG_HIVtest.getCheckedRadioButtonId());
                     // Adding testing history info
                     if (title.equals("STD Test")){
@@ -646,17 +655,17 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             String name="";
                             switch (sti_count){
                                 case 1:
-                                    test_status = LynxManager.encryptString(gonorrhea.getText().toString());
+                                    test_status = LynxManager.encryptString(gonorrhea_test_status);
                                     name = gonorrheaImageName.substring(gonorrheaImageName.lastIndexOf("/") + 1);
                                     full_path = gonorrheaImageName;
                                     break;
                                 case 2:
-                                    test_status = LynxManager.encryptString(syphilis.getText().toString());
+                                    test_status = LynxManager.encryptString(syphilis_test_status);
                                     name = syphilisImageName.substring(syphilisImageName.lastIndexOf("/") + 1);
                                     full_path = syphilisImageName;
                                     break;
                                 case 3:
-                                    test_status = LynxManager.encryptString(chlamydia.getText().toString());
+                                    test_status = LynxManager.encryptString(chlamydia_test_status);
                                     name = chlamydiaImageName.substring(chlamydiaImageName.lastIndexOf("/") + 1);
                                     full_path = chlamydiaImageName;
                                     break;
@@ -822,7 +831,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     hivTestStatus.setText("Negative");
                     hivIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
                 }else{
-                    hivTestStatus.setText("Didn't Test");
+                    hivTestStatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
                     hivIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
                 }
                 String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
@@ -868,7 +877,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             gonorrheaStatus.setText("Negative");
                             gonorrheaIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
                         } else {
-                            gonorrheaStatus.setText("Didn't Test");
+                            gonorrheaStatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
                             gonorrheaIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
                         }
                         String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
@@ -905,7 +914,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             syphilisStatus.setText("Negative");
                             syphilisIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
                         } else {
-                            syphilisStatus.setText("Didn't Test");
+                            syphilisStatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
                             syphilisIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
                         }
                         String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
@@ -940,7 +949,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             chlamydiaStatus.setText("Negative");
                             chlamydiaIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
                         } else {
-                            chlamydiaStatus.setText("Didn't Test");
+                            chlamydiaStatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
                             chlamydiaIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
                         }
                         String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
@@ -1548,7 +1557,8 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                                     LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(testingHistoryObject.getString("testing_date")),
                                     String.valueOf(R.string.statusUpdateYes), true);
                             if(db.getTestingHistorybyID(testingHistoryObject.getInt("testing_history_id")) == null){
-                                db.createTestingHistory(history);
+                                history.setTesting_history_id(testingHistoryObject.getInt("testing_history_id"));
+                                db.createTestingHistoryWithID(history);
                             }
                         }
 
@@ -1560,7 +1570,8 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                                     testingHistoryInfoObject.getInt("sti_id"), LynxManager.encryptString(testingHistoryInfoObject.getString("test_status")),
                                     LynxManager.encryptString(testingHistoryInfoObject.getString("attachment")),String.valueOf(R.string.statusUpdateYes), true);
                             if(db.getTestingHistoryInfoById(testingHistoryInfoObject.getInt("testing_history_info_id"))==null){
-                                db.createTestingHistoryInfo(history_info);
+                                history_info.setTesting_history_info_id(testingHistoryInfoObject.getInt("testing_history_info_id"));
+                                db.createTestingHistoryInfoWithID(history_info);
                             }
                         }
                         loadTestingHistories();

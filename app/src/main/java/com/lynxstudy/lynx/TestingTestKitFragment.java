@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,11 +47,13 @@ public class TestingTestKitFragment extends Fragment {
     public TestingTestKitFragment() {
         // Required empty public constructor
     }
-    TextView frag_title,title;
-    CheckBox oraQuickTestKit,analSwab,chlamydia;
-    Button refresh;
+    TextView frag_title,title,orderKit,registerKit;
+    LinearLayout LL_webviewParent,LL_mainLayout;
+    /*Button refresh;*/
     WebView testkitWebview;
+    int back_press_count;
     private Tracker tracker;
+    boolean isWebViewLoaded = false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,25 +64,84 @@ public class TestingTestKitFragment extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
+        LL_mainLayout = (LinearLayout)view.findViewById(R.id.LL_mainLayout);
+        LL_mainLayout.setVisibility(View.VISIBLE);
+        LL_webviewParent = (LinearLayout)view.findViewById(R.id.LL_webviewParent);
+        LL_webviewParent.setVisibility(View.GONE);
         testkitWebview = (WebView)view.findViewById(R.id.testkitWebview);
-        refresh = (Button)view.findViewById(R.id.refresh);
-        if(!LynxManager.haveNetworkConnection(getActivity())){
-            refresh.setVisibility(View.VISIBLE);
-        }else {
-            refresh.setVisibility(View.GONE);
-            loadTestKitURL();
-        }
-        refresh.setOnClickListener(new View.OnClickListener() {
+        /*refresh = (Button)view.findViewById(R.id.refresh);*/
+        orderKit = (TextView)view.findViewById(R.id.orderKit);
+        orderKit.setTypeface(tf);
+        registerKit = (TextView)view.findViewById(R.id.registerKit);
+        registerKit.setTypeface(tf);
+
+        orderKit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!LynxManager.haveNetworkConnection(getActivity())){
+                    Toast.makeText(getActivity(),"Please enable internet connection",Toast.LENGTH_SHORT).show();
+                }else {
+                    LL_webviewParent.setVisibility(View.VISIBLE);
+                    LL_mainLayout.setVisibility(View.GONE);
+                    loadOrderTestKitURL(true);
+                }
+            }
+        });
+
+        registerKit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!LynxManager.haveNetworkConnection(getActivity())){
+                    Toast.makeText(getActivity(),"Please enable internet connection",Toast.LENGTH_SHORT).show();
+                }else {
+                    LL_webviewParent.setVisibility(View.VISIBLE);
+                    LL_mainLayout.setVisibility(View.GONE);
+                    loadOrderTestKitURL(false);
+                }
+            }
+        });
+
+        /*refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (LynxManager.haveNetworkConnection(getActivity())){
-                    loadTestKitURL();
+                    loadOrderTestKitURL();
                     refresh.setVisibility(View.GONE);
                 }else{
                     Toast.makeText(getActivity(),"Please enable internet connection",Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
+        /*BackPress*/
+        back_press_count  =0;
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener( new View.OnKeyListener()
+        {
+            @Override
+            public boolean onKey( View v, int keyCode, KeyEvent event )
+            {
+                if( keyCode == KeyEvent.KEYCODE_BACK )
+                {
+                    if(isWebViewLoaded){
+                        LL_webviewParent.setVisibility(View.GONE);
+                        LL_mainLayout.setVisibility(View.VISIBLE);
+                        isWebViewLoaded = false;
+                        back_press_count = 0;
+                    }else{
+                        if(back_press_count>1){
+                            LynxManager.goToIntent(getActivity(),"home",getActivity().getClass().getSimpleName());
+                            getActivity().overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
+                            getActivity().finish();
+                        }else{
+                            back_press_count++;
+                        }
+                    }
+                    return true;
+                }
+                return false;
+            }
+        } );
 
         // Piwik Analytics //
         tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
@@ -88,12 +150,18 @@ public class TestingTestKitFragment extends Fragment {
         return view;
     }
 
-    public void loadTestKitURL(){
+    public void loadOrderTestKitURL(boolean isOrderTestkit){
         int appID = LynxManager.getActiveUser().getUser_id();
-        testkitWebview.loadUrl("https://www.surveygizmo.com/s3/3731988/Care-Kit-Order-Form?study=Lynx&appID="+appID);
+        testkitWebview.loadUrl("about:blank");
+        testkitWebview.clearView();
+        if(isOrderTestkit){
+            testkitWebview.loadUrl("https://www.surveygizmo.com/s3/3731988/Care-Kit-Order-Form?study=Lynx&appID="+appID);
+        }else{
+            testkitWebview.loadUrl("https://www.surveygizmo.com/s3/4068281/iTech-Box-Code?study=LYNX&test=&appID="+appID);
+        }
         testkitWebview.setWebChromeClient(new WebChromeClient());
         testkitWebview.getSettings().setJavaScriptEnabled(true);
         testkitWebview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        refresh.setVisibility(View.GONE);
+        isWebViewLoaded = true;
     }
 }

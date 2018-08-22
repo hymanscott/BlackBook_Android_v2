@@ -76,13 +76,15 @@
                         android:textSize="15sp"
                         android:textStyle="italic|bold"
                         android:textColor="@color/text_color"/>
+                    <!--Row 1-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:weightSum="1"
                         android:layout_marginLeft="32dp"
                         android:layout_marginRight="32dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:baselineAligned="false">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -143,11 +145,89 @@
                                 android:layout_gravity="center_horizontal"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingMultiplier="1.25"
-                                android:text="Exclusively a bottom"
+                                android:text="Exclusively
+a bottom"
                                 android:textColor="@color/text_color"
                                 android:textSize="16sp"
                                 android:textStyle="italic"/>
                         </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <me.tankery.lib.circularseekbar.CircularSeekBar
+                                    android:layout_width="110dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                    app:cs_circle_color="@color/profile_edittext_hint"
+                                    app:cs_circle_progress_color="@color/profile_title_text_color"
+                                    app:cs_circle_stroke_width="1dp"
+                                    app:cs_circle_style="round"
+                                    app:cs_disable_pointer="true"
+                                    app:cs_negative_enabled="false"
+                                    app:cs_progress="100" />
+
+                                <me.tankery.lib.circularseekbar.CircularSeekBar
+                                    android:id="@+id/condom_bottom"
+                                    android:layout_width="120dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                    app:cs_circle_color="@android:color/transparent"
+                                    app:cs_circle_progress_color="@color/profile_title_text_color"
+                                    app:cs_circle_stroke_width="10dp"
+                                    app:cs_circle_style="square"
+                                    app:cs_disable_pointer="true"
+                                    app:cs_negative_enabled="false"
+                                    app:cs_progress="0" />
+
+                                <TextView
+                                    android:id="@+id/condom_bottom_progress"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:text="0%"
+                                    android:textColor="@color/profile_title_text_color"
+                                    android:textSize="30sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+                            <TextView
+                                android:id="@+id/condom_bottom_description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:gravity="center_horizontal"
+                                android:lineSpacingMultiplier="1.25"
+                                android:text="Used condom
+as a bottom"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                android:textStyle="italic" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--Row 2-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="1"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="32dp"
+                        android:orientation="horizontal"
+                        android:baselineAligned="false">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -209,12 +289,79 @@
                                 android:layout_gravity="center_horizontal"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingMultiplier="1.25"
-                                android:text="Exclusively a top"
+                                android:text="Exclusively
+a top"
                                 android:textColor="@color/text_color"
                                 android:textSize="16sp"
                                 android:textStyle="italic"/>
                         </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <me.tankery.lib.circularseekbar.CircularSeekBar
+                                    android:layout_width="110dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                    app:cs_circle_color="@color/profile_edittext_hint"
+                                    app:cs_circle_progress_color="@color/profile_title_text_color"
+                                    app:cs_circle_stroke_width="1dp"
+                                    app:cs_circle_style="round"
+                                    app:cs_disable_pointer="true"
+                                    app:cs_negative_enabled="false"
+                                    app:cs_progress="100" />
+
+                                <me.tankery.lib.circularseekbar.CircularSeekBar
+                                    android:id="@+id/condom_top"
+                                    android:layout_width="120dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                    app:cs_circle_color="@android:color/transparent"
+                                    app:cs_circle_progress_color="@color/profile_title_text_color"
+                                    app:cs_circle_stroke_width="10dp"
+                                    app:cs_circle_style="square"
+                                    app:cs_disable_pointer="true"
+                                    app:cs_negative_enabled="false"
+                                    app:cs_progress="0" />
+
+                                <TextView
+                                    android:id="@+id/condom_top_progress"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:text="0%"
+                                    android:textColor="@color/profile_title_text_color"
+                                    android:textSize="30sp"
+                                    android:textStyle="bold" />
+                            </RelativeLayout>
+                            <TextView
+                                android:id="@+id/condom_top_description"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:gravity="center_horizontal"
+                                android:lineSpacingMultiplier="1.25"
+                                android:text="Used condom
+as a top"
+                                android:textColor="@color/text_color"
+                                android:textSize="16sp"
+                                android:textStyle="italic" />
+                        </LinearLayout>
                     </LinearLayout>
+                    <!--Row 3-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -223,7 +370,8 @@
                         android:layout_marginRight="32dp"
                         android:gravity="center_horizontal"
                         android:layout_marginTop="32dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:baselineAligned="false">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -291,8 +439,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
                             android:layout_weight="0.5"
+                            android:gravity="center_horizontal"
                             android:orientation="vertical">
                             <RelativeLayout
                                 android:layout_width="wrap_content"
@@ -314,7 +462,7 @@
                                     app:cs_progress="100" />
 
                                 <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:id="@+id/condom_use"
+                                    android:id="@+id/you_swallowed"
                                     android:layout_width="120dp"
                                     android:layout_height="wrap_content"
                                     android:layout_centerHorizontal="true"
@@ -330,7 +478,7 @@
                                     app:cs_progress="0" />
 
                                 <TextView
-                                    android:id="@+id/condom_use_progress"
+                                    android:id="@+id/you_swallowed_progress"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerHorizontal="true"
@@ -341,18 +489,19 @@
                                     android:textStyle="bold" />
                             </RelativeLayout>
                             <TextView
-                                android:id="@+id/condom_use_description"
+                                android:id="@+id/you_swallowed_description"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingMultiplier="1.25"
-                                android:text="Used condom during sex"
+                                android:text="You swallowed"
                                 android:textColor="@color/text_color"
                                 android:textSize="16sp"
                                 android:textStyle="italic" />
                         </LinearLayout>
                     </LinearLayout>
+                    <!--Row 4-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -361,145 +510,8 @@
                         android:layout_marginRight="32dp"
                         android:gravity="center_horizontal"
                         android:layout_marginTop="32dp"
-                        android:orientation="horizontal">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:layout_width="110dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@color/profile_edittext_hint"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="1dp"
-                                    app:cs_circle_style="round"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="100" />
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:id="@+id/condom_bottom"
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@android:color/transparent"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="10dp"
-                                    app:cs_circle_style="square"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="0" />
-
-                                <TextView
-                                    android:id="@+id/condom_bottom_progress"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:text="0%"
-                                    android:textColor="@color/profile_title_text_color"
-                                    android:textSize="30sp"
-                                    android:textStyle="bold" />
-                            </RelativeLayout>
-                            <TextView
-                                android:id="@+id/condom_bottom_description"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="Used condom as a bottom"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:layout_width="110dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@color/profile_edittext_hint"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="1dp"
-                                    app:cs_circle_style="round"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="100" />
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:id="@+id/condom_top"
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@android:color/transparent"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="10dp"
-                                    app:cs_circle_style="square"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="0" />
-
-                                <TextView
-                                    android:id="@+id/condom_top_progress"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:text="0%"
-                                    android:textColor="@color/profile_title_text_color"
-                                    android:textSize="30sp"
-                                    android:textStyle="bold" />
-                            </RelativeLayout>
-                            <TextView
-                                android:id="@+id/condom_top_description"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="Used condom as a top"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:weightSum="1"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginRight="32dp"
-                        android:gravity="center_horizontal"
-                        android:layout_marginTop="32dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:baselineAligned="false">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -559,7 +571,8 @@
                                 android:layout_gravity="center_horizontal"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingMultiplier="1.25"
-                                android:text="Your partner came in you"
+                                android:text="Your partner
+came in you"
                                 android:textColor="@color/text_color"
                                 android:textSize="16sp"
                                 android:textStyle="italic" />
@@ -623,12 +636,14 @@
                                 android:layout_gravity="center_horizontal"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingMultiplier="1.25"
-                                android:text="You came in your partner"
+                                android:text="You came in
+your partner"
                                 android:textColor="@color/text_color"
                                 android:textSize="16sp"
                                 android:textStyle="italic" />
                         </LinearLayout>
                     </LinearLayout>
+                    <!--Row 5-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -638,70 +653,7 @@
                         android:gravity="center_horizontal"
                         android:layout_marginTop="32dp"
                         android:orientation="horizontal">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
 
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:layout_width="110dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@color/profile_edittext_hint"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="1dp"
-                                    app:cs_circle_style="round"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="100" />
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:id="@+id/you_swallowed"
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@android:color/transparent"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="10dp"
-                                    app:cs_circle_style="square"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="0" />
-
-                                <TextView
-                                    android:id="@+id/you_swallowed_progress"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:text="0%"
-                                    android:textColor="@color/profile_title_text_color"
-                                    android:textSize="30sp"
-                                    android:textStyle="bold" />
-                            </RelativeLayout>
-                            <TextView
-                                android:id="@+id/you_swallowed_description"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="You swallowed"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -761,10 +713,19 @@
                                 android:layout_gravity="center_horizontal"
                                 android:gravity="center_horizontal"
                                 android:lineSpacingMultiplier="1.25"
-                                android:text="You had sex drunk and/or high"
+                                android:text="You had sex
+drunk and/or high"
                                 android:textColor="@color/text_color"
                                 android:textSize="16sp"
                                 android:textStyle="italic" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+                            <!--Empty Layout to make previous element left aligned-->
                         </LinearLayout>
                     </LinearLayout>
                     <View
@@ -774,375 +735,6 @@
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="24dp"
                         android:background="@color/grey_border" />
-                    <!--<LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:weightSum="1"
-                        android:layout_margin="32dp"
-                        android:gravity="center_horizontal"
-                        android:orientation="horizontal">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/lastHivElapsedDays"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-                            <TextView
-                                android:id="@+id/lastHivElapsedDaysDesc"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# days since last HIV test"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/lastStdElapsedDays"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-                            <TextView
-                                android:id="@+id/lastStdElapsedDaysDesc"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# days since last STD test"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:weightSum="1"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginRight="32dp"
-                        android:gravity="center_horizontal"
-                        android:orientation="horizontal">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/topPartnersCount"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-                            <TextView
-                                android:id="@+id/topPartners"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# of partners you topped with"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/bottomPartnersCount"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-                            <TextView
-                                android:id="@+id/bottomPartners"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# of partners you bottomed with "
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:weightSum="1"
-                        android:layout_margin="32dp"
-                        android:gravity="center_horizontal"
-                        android:orientation="horizontal">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/fiveStarEncountersCount"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-                            <TextView
-                                android:id="@+id/fiveStarEncounters"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# of 5 star encounters"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                        </LinearLayout>
-                    </LinearLayout>
-                    <GridLayout
-                        android:id="@+id/GridLayout1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:columnCount="2"
-                        android:rowCount="3"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:alignmentMode="alignMargins"
-                        android:columnOrderPreserved="false">
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:layout_rowWeight="1"
-                            android:layout_marginTop="32dp"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/lastHivElapsedDays"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-                            <TextView
-                                android:id="@+id/lastHivElapsedDaysDesc"
-                                android:layout_width="150dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# days since last HIV test"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:layout_rowWeight="1"
-                            android:layout_marginTop="32dp"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/lastStdElapsedDays"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-                            <TextView
-                                android:id="@+id/lastStdElapsedDaysDesc"
-                                android:layout_width="150dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# days since last STD test"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:layout_rowWeight="1"
-                            android:layout_marginTop="32dp"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/topPartnersCount"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-                            <TextView
-                                android:id="@+id/topPartners"
-                                android:layout_width="150dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# of partners you topped with"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:layout_rowWeight="1"
-                            android:layout_marginTop="32dp"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/bottomPartnersCount"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-                            <TextView
-                                android:id="@+id/bottomPartners"
-                                android:layout_width="150dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# of partners you bottomed with"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_columnWeight="1"
-                            android:layout_rowWeight="1"
-                            android:layout_marginTop="32dp"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/fiveStarEncountersCount"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-                            <TextView
-                                android:id="@+id/fiveStarEncounters"
-                                android:layout_width="150dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# of 5 star encounters"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-
-                    </GridLayout>-->
                     <com.lynxstudy.helper.ExpandableHeightGridView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

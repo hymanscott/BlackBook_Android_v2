@@ -1660,7 +1660,8 @@ public class RegLogin extends AppCompatActivity {
                             TestingHistory history = new TestingHistory(testingHistoryObject.getInt("testing_id"),
                                     LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(testingHistoryObject.getString("testing_date")),
                                     String.valueOf(R.string.statusUpdateYes), true);
-                            int id = db.createTestingHistory(history);
+                            history.setTesting_history_id(testingHistoryObject.getInt("testing_history_id"));
+                            int id = db.createTestingHistoryWithID(history);
                         }
 
                         //TestingHistoryInfo
@@ -1670,7 +1671,8 @@ public class RegLogin extends AppCompatActivity {
                             TestingHistoryInfo history_info = new TestingHistoryInfo(testingHistoryInfoObject.getInt("testing_history_id"), LynxManager.getActiveUser().getUser_id(),
                                     testingHistoryInfoObject.getInt("sti_id"), LynxManager.encryptString(testingHistoryInfoObject.getString("test_status")),
                                     LynxManager.encryptString(testingHistoryInfoObject.getString("attachment")),String.valueOf(R.string.statusUpdateYes), true);
-                            int id = db.createTestingHistoryInfo(history_info);
+                            history_info.setTesting_history_info_id(testingHistoryInfoObject.getInt("testing_history_info_id"));
+                            int id = db.createTestingHistoryInfoWithID(history_info);
                         }
 
                         /*// Prep Videos //

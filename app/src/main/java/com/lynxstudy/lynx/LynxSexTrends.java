@@ -169,12 +169,12 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         top_progress.setText(top_progress_value + "%");
 
         /*Condom use Seekbar*/
-        TextView condom_use_progress = (TextView)findViewById(R.id.condom_use_progress);
+        /*TextView condom_use_progress = (TextView)findViewById(R.id.condom_use_progress);
         condom_use_progress.setTypeface(tf_bold);
         TextView condom_use_description = (TextView)findViewById(R.id.condom_use_description);
         condom_use_description.setTypeface(tf_italic);
         CircularSeekBar condom_use = (CircularSeekBar)findViewById(R.id.condom_use);
-        List<EncounterSexType> encounterSexTypes = db.getCondomUsageEncounterSexTypes();
+
         int condomusagecount = 0;
         for (EncounterSexType encounterSexType:encounterSexTypes) {
             if(encounterSexType.getCondom_use().equals("Condom used"))
@@ -191,7 +191,9 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         }else{
             condom_use.setVisibility(View.INVISIBLE);
         }
-        condom_use_progress.setText(condomusage_value + "%");
+        condom_use_progress.setText(condomusage_value + "%");*/
+
+        List<EncounterSexType> encounterSexTypes = db.getCondomUsageEncounterSexTypes();
 
         /*Condom bottom Seekbar*/
         TextView condom_bottom_progress = (TextView)findViewById(R.id.condom_bottom_progress);

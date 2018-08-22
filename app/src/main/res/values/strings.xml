@@ -178,8 +178,8 @@
     <string name="answer_all_ejaculation_questions">Please answer all ejaculation questions</string>
     <string name="select_partner_type">Please select partner type</string>
     <string name="select_hiv_status">Please select HIV status</string>
-    <string name="select_hiv_test_result">Please enter your HIV test result</string>
-    <string name="select_std_test_result">Please enter all STD test results</string>
+    <string name="select_hiv_test_result">Please report your HIV test result</string>
+    <string name="select_std_test_result">Please report minimum of one STD test result</string>
     <string name="select_prep_status">Please select PrEP status</string>
     <string name="how_often_did_you_drink">Please select how often did you drink</string>
 

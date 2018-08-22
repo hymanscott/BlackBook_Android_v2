@@ -5,121 +5,71 @@
     android:background="@color/white"
     tools:context="com.lynxstudy.lynx.TestingTestKitFragment">
 
-    <!--<ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:fillViewport="true"
-        android:id="@+id/scrollView3">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="fill_parent">
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="Request a Home Test Kit"
-                android:id="@+id/frag_title"
-                android:textColor="@color/profile_title_text_color"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:textStyle="bold"
-                android:layout_marginTop="24dp"/>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/text_color"
-                android:id="@+id/title"
-                android:text="Please confirm requested test(s):"
-                android:layout_marginTop="24dp"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin" />
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="fill_parent"
-                android:layout_marginTop="24dp"
-                android:id="@+id/requestHomeKit_checkboxLayout"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_height="wrap_content">
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Gonorrhea"
-                    android:id="@+id/oraQuickTestKit"
-                    android:textSize="14sp"
-                    android:textColor="@color/text_color"
-                    android:checked="true"
-                    android:button="@drawable/checkbox_black"
-                    android:paddingLeft="12dp"
-                    android:layout_marginLeft="8dp"
-                    android:buttonTint="@color/profile_text_color"
-                    android:layout_centerHorizontal="true" />
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Syphilis"
-                    android:id="@+id/analSwab"
-                    android:textSize="14sp"
-                    android:textColor="@color/text_color"
-                    android:buttonTint="@color/profile_text_color"
-                    android:button="@drawable/checkbox_black"
-                    android:paddingLeft="12dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="12dp"
-                    android:checked="true"
-                    android:layout_centerHorizontal="true" />
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chlamydia"
-                    android:id="@+id/chlamydia"
-                    android:textSize="14sp"
-                    android:textColor="@color/text_color"
-                    android:buttonTint="@color/profile_text_color"
-                    android:button="@drawable/checkbox_black"
-                    android:paddingLeft="12dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="12dp"
-                    android:checked="true"
-                    android:layout_centerHorizontal="true" />
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Confirm"
-        android:id="@+id/requestHomeKit_confirm"
-        android:background="@drawable/buttonbluecornered"
-        android:textColor="@color/white"
-        android:layout_marginBottom="30dp"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_alignParentBottom="true"
-        android:textSize="14sp"
-        android:textStyle="bold"/>-->
-    <WebView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/testkitWebview">
-
-    </WebView>
-    <Button
+        android:id="@+id/LL_mainLayout"
+        android:orientation="vertical">
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fillViewport="false"
+            android:layout_alignParentBottom="true" >
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Order a test kit"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/faq_blue"
+                    android:background="@drawable/bottom_border_faq"
+                    android:id="@+id/orderKit"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Register your test kit"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="20dp"
+                    android:textColor="@color/faq_blue"
+                    android:textSize="16sp"
+                    android:paddingBottom="20dp"
+                    android:background="@drawable/bottom_border_faq"
+                    android:id="@+id/registerKit"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Refresh"
-        android:id="@+id/refresh"
-        android:background="@drawable/buttonbluecornered"
-        android:textColor="@color/white"
-        android:layout_marginBottom="30dp"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_alignParentBottom="true"
-        android:textSize="14sp"
+        android:layout_height="match_parent"
         android:visibility="gone"
-        android:textStyle="bold"/>
+        android:id="@+id/LL_webviewParent"
+        android:orientation="vertical">
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/testkitWebview">
+
+        </WebView>
+        <!--<Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Refresh"
+            android:id="@+id/refresh"
+            android:background="@drawable/buttonbluecornered"
+            android:textColor="@color/white"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_alignParentBottom="true"
+            android:textSize="14sp"
+            android:visibility="gone"
+            android:textStyle="bold"/>-->
+    </LinearLayout>
 </RelativeLayout>

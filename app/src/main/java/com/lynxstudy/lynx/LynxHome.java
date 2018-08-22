@@ -96,6 +96,9 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
     private static final int READ_PHONE_STATE = 101;
     private static final int READ_WRITE_PERMISSION = 100;
     private Tracker tracker;
+    SharedPreferences sharedPref;
+    String isTLSyncCompleted = "false";
+    String isTLSyncCompletedDate = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -240,8 +243,10 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
 
         }*/
         // update fcm id //
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String tokenid = sharedPref.getString("lynxfirebasetokenid",null);
+        isTLSyncCompleted = sharedPref.getString("isTLSyncCompleted","false");
+        isTLSyncCompletedDate = sharedPref.getString("isTLSyncCompletedDate",LynxManager.getUTCDateTime());
 
         //Log.v("tokenid",tokenid);
         /*
@@ -345,10 +350,22 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 if (LynxManager.releaseMode != 0) {
                     pushDataToServer();
                     showBadgesifAvailable();
-                    /*// Clear Old Local notifications //
-                    NotificationManager notifManager = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
-                    notifManager.cancelAll();
-                    */
+                    // Sync Testing Locations //
+                    JSONObject loginOBJ = new JSONObject();
+                    try {
+                        loginOBJ.put("email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail()));
+                        loginOBJ.put("password",LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
+                        loginOBJ.put("user_id",LynxManager.getActiveUser().getUser_id());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    final String login_query_string = LynxManager.getQueryString(loginOBJ.toString());
+
+                    if(LynxManager.haveNetworkConnection(LynxHome.this)){
+                        if(isTLSyncCompleted.equals("false") || (isTLSyncCompleted.equals("true") && getElapsedDays(isTLSyncCompletedDate)>30))
+                            new TestingCentersOnline(login_query_string).execute();
+                    }
                 }
             }
         }, 0, 1, TimeUnit.MINUTES);
@@ -508,27 +525,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             }
         }
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // Sync Testing Locations //
-                JSONObject loginOBJ = new JSONObject();
-                try {
-                    loginOBJ.put("email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail()));
-                    loginOBJ.put("password",LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
-                    loginOBJ.put("user_id",LynxManager.getActiveUser().getUser_id());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                final String login_query_string = LynxManager.getQueryString(loginOBJ.toString());
-
-                if(LynxManager.haveNetworkConnection(LynxHome.this)){
-                    new TestingCentersOnline(login_query_string).execute();
-                }
-
-            }
-        },10000);
 //        Log.v("FCMToken",LynxManager.decryptString(db.getCloudMessaging().getToken_id()));
         //startActivity(new Intent(LynxHome.this,RegistrationCode.class));
     }
@@ -2307,7 +2303,15 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             // Making a request to url and getting response
             String jsonChatListStr = null;
             try {
-                jsonChatListStr = sh.makeServiceCall(LynxManager.getBaseURL() + "CdcTestingcenters/getTestingCenters/"+LynxManager.getActiveUser().getUser_id()+"?hashkey="+ LynxManager.stringToHashcode(jsonTestingCentersObj + LynxManager.hashKey)+"&timestamp="+ URLEncoder.encode(LynxManager.getDateTime(), "UTF-8"), jsonTestingCentersObj);
+                if(db.getLastTLSyncDate()!=null){
+                    Log.v("LastSyncDate", db.getLastTLSyncDate());
+                    Log.v("LastSyncPage", String.valueOf(db.getLastTLSyncPage()));
+                }
+                int page = 1;
+                if(db.getLastTLSyncDate()!=null && db.getLastTLSyncPage()>0){
+                        page = db.getLastTLSyncPage()+1;
+                }
+                jsonChatListStr = sh.makeServiceCall(LynxManager.getBaseURL() + "CdcTestingcenters/getTestingCenters/"+page+"?hashkey="+ LynxManager.stringToHashcode(jsonTestingCentersObj + LynxManager.hashKey)+"&timestamp="+ URLEncoder.encode(LynxManager.getDateTime(), "UTF-8"), jsonTestingCentersObj);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -2331,25 +2335,38 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                         Log.d("Response: ", "> TestingCentersOnlineError. " + jsonObj.getString("message"));
                     } else {
                         JSONArray locationsArray = jsonObj.getJSONArray("locations");
-                        for(int i=0;i<locationsArray.length();i++){
-                            JSONObject childObj = locationsArray.getJSONObject(i);
-                            int id = Integer.parseInt(childObj.getString("testing_location_id"));
-                            TestingLocations testingLocation = new TestingLocations(childObj.getString("name"),
-                                    childObj.getString("address"),childObj.getString("phone_number"),
-                                    childObj.getString("latitude"),childObj.getString("longitude"),
-                                    childObj.getString("url"),childObj.getString( "type"),
-                                    childObj.getString("prep_clinic"),childObj.getString("hiv_clinic"),
-                                    childObj.getString("sti_clinic"),childObj.getString("under_eighteen"),
-                                    childObj.getString("operation_hours"),childObj.getString("insurance"),
-                                    childObj.getString("ages"));
-                            testingLocation.setTesting_location_id(id);
-                            if(db.getTestingLocationbyID(id)==null){
-                                //Log.v("Created_Org_id",childObj.getString("testing_location_id"));
-                                db.createTestingLocationWithID(testingLocation);
-                            }else{
-                                //Log.v("updated_Org_id",childObj.getString("testing_location_id"));
-                                db.updateTestingLocation(testingLocation);
+                        if(locationsArray !=null) {
+                            for (int i = 0; i < locationsArray.length(); i++) {
+                                JSONObject childObj = locationsArray.getJSONObject(i);
+                                int id = Integer.parseInt(childObj.getString("testing_location_id"));
+                                TestingLocations testingLocation = new TestingLocations(childObj.getString("name"),
+                                        childObj.getString("address"), childObj.getString("phone_number"),
+                                        childObj.getString("latitude"), childObj.getString("longitude"),
+                                        childObj.getString("url"), childObj.getString("type"),
+                                        childObj.getString("prep_clinic"), childObj.getString("hiv_clinic"),
+                                        childObj.getString("sti_clinic"), childObj.getString("under_eighteen"),
+                                        childObj.getString("operation_hours"), childObj.getString("insurance"),
+                                        childObj.getString("ages"));
+                                testingLocation.setTesting_location_id(id);
+                                if (db.getTestingLocationbyID(id) == null) {
+                                    //Log.v("Created_Org_id",childObj.getString("testing_location_id"));
+                                    db.createTestingLocationWithID(testingLocation);
+                                } else {
+                                    //Log.v("updated_Org_id",childObj.getString("testing_location_id"));
+                                    db.updateTestingLocation(testingLocation);
+                                }
                             }
+                            int page =1;
+                            if(db.getLastTLSyncPage()>0){
+                                page = db.getLastTLSyncPage()+1;
+                            }
+                            db.updateTLSync(LynxManager.getActiveUser().getUser_id(),page);
+                        }else{
+                            //db.deleteTLSync();
+                            SharedPreferences.Editor editor = sharedPref.edit();
+                            editor.putString("isTLSyncCompleted", "true");
+                            editor.putString("isTLSyncCompletedDate", LynxManager.getUTCDateTime());
+
                         }
                     }
                 } catch (JSONException e) {
