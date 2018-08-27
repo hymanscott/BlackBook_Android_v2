@@ -220,23 +220,25 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
                 additionalTriggerMessage.addView(row_view);
                 trigger_messages_count++;
             }
-            if(getscore.getPPIAS()){
-                View row_view = getLayoutInflater().inflate(R.layout.second_trigger_message_row,null);
-                ((ImageView)row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_top));
-                String text = "You used condoms "+ getscore.getTopCondomPer() +" of the time as a top.";
-                ((TextView)row_view.findViewById(R.id.text)).setText(text);
-                ((TextView)row_view.findViewById(R.id.text)).setTypeface(tf_italic);
-                additionalTriggerMessage.addView(row_view);
-                trigger_messages_count++;
-            }
-            if(getscore.getPPRAS()){
-                View row_view = getLayoutInflater().inflate(R.layout.second_trigger_message_row,null);
-                ((ImageView)row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_bottom));
-                String text = "You used condoms "+ getscore.getBottomCondomPer() +" of the time as a bottom.";
-                ((TextView)row_view.findViewById(R.id.text)).setText(text);
-                ((TextView)row_view.findViewById(R.id.text)).setTypeface(tf_italic);
-                additionalTriggerMessage.addView(row_view);
-                trigger_messages_count++;
+            if(getscore.getNaspPos()!=0 && getscore.getNaspUnknown()!=0){
+                if(getscore.getPPIAS()){
+                    View row_view = getLayoutInflater().inflate(R.layout.second_trigger_message_row,null);
+                    ((ImageView)row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_top));
+                    String text = "You used condoms "+ getscore.getTopCondomPer() +" of the time as a top.";
+                    ((TextView)row_view.findViewById(R.id.text)).setText(text);
+                    ((TextView)row_view.findViewById(R.id.text)).setTypeface(tf_italic);
+                    additionalTriggerMessage.addView(row_view);
+                    trigger_messages_count++;
+                }
+                if(getscore.getPPRAS()){
+                    View row_view = getLayoutInflater().inflate(R.layout.second_trigger_message_row,null);
+                    ((ImageView)row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_bottom));
+                    String text = "You used condoms "+ getscore.getBottomCondomPer() +" of the time as a bottom.";
+                    ((TextView)row_view.findViewById(R.id.text)).setText(text);
+                    ((TextView)row_view.findViewById(R.id.text)).setTypeface(tf_italic);
+                    additionalTriggerMessage.addView(row_view);
+                    trigger_messages_count++;
+                }
             }
             if(getscore.getMETH()){
                 View row_view = getLayoutInflater().inflate(R.layout.second_trigger_message_row,null);
@@ -322,19 +324,21 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
                         additionalInfoMessage.addView(message_row);
                     }
 
-                    if(getscore.getPPRAS() || getscore.getPPIAS()){
-                        View message_row = getLayoutInflater().inflate(R.layout.second_info_message_row,null);
-                        if(getscore.getPPRAS()){
-                            ((ImageView)message_row.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_bottom));
+                    if(getscore.getNaspPos()!=0 && getscore.getNaspUnknown()!=0) {
+                        if (getscore.getPPRAS() || getscore.getPPIAS()) {
+                            View message_row = getLayoutInflater().inflate(R.layout.second_info_message_row, null);
+                            if (getscore.getPPRAS()) {
+                                ((ImageView) message_row.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_bottom));
+                            }
+                            if (getscore.getPPIAS()) {
+                                ((ImageView) message_row.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_top));
+                            }
+                            ((TextView) message_row.findViewById(R.id.question)).setText("How does condom use change my risk?");
+                            ((TextView) message_row.findViewById(R.id.question)).setTypeface(tf_bold);
+                            ((TextView) message_row.findViewById(R.id.answer)).setText("Using a condom when you top or bottom can reduce your risk of HIV and other STDs. Not using a condom, even a few times, can increase your risk for HIV a lot. PrEP can be a great option for people who don't use condoms consistently.");
+                            ((TextView) message_row.findViewById(R.id.answer)).setTypeface(tf_italic);
+                            additionalInfoMessage.addView(message_row);
                         }
-                        if(getscore.getPPIAS()){
-                            ((ImageView)message_row.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_top));
-                        }
-                        ((TextView)message_row.findViewById(R.id.question)).setText("How does condom use change my risk?");
-                        ((TextView)message_row.findViewById(R.id.question)).setTypeface(tf_bold);
-                        ((TextView)message_row.findViewById(R.id.answer)).setText("Using a condom when you top or bottom can reduce your risk of HIV and other STDs. Not using a condom, even a few times, can increase your risk for HIV a lot. PrEP can be a great option for people who don't use condoms consistently.");
-                        ((TextView)message_row.findViewById(R.id.answer)).setTypeface(tf_italic);
-                        additionalInfoMessage.addView(message_row);
                     }
 
                     if(getscore.getMETH() || getscore.getCOKE()){

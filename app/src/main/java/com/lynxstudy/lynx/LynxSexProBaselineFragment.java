@@ -258,23 +258,25 @@ public class LynxSexProBaselineFragment extends Fragment {
                 additionalTriggerMessage.addView(row_view);
                 trigger_messages_count++;
             }
-            if(getPPIAS()){
-                View row_view = inflater.inflate(R.layout.second_trigger_message_row,null);
-                ((ImageView)row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_top));
-                String text = "You used condoms "+ LynxManager.decryptString(baseline_info.getTop_condom_use_percent()) +" of the time as a top.";
-                ((TextView)row_view.findViewById(R.id.text)).setText(text);
-                ((TextView)row_view.findViewById(R.id.text)).setTypeface(tf_italic);
-                additionalTriggerMessage.addView(row_view);
-                trigger_messages_count++;
-            }
-            if(getPPRAS()){
-                View row_view = inflater.inflate(R.layout.second_trigger_message_row,null);
-                ((ImageView)row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_bottom));
-                String text = "You used condoms "+ LynxManager.decryptString(baseline_info.getBottom_condom_use_percent()) +" of the time as a bottom.";
-                ((TextView)row_view.findViewById(R.id.text)).setText(text);
-                ((TextView)row_view.findViewById(R.id.text)).setTypeface(tf_italic);
-                additionalTriggerMessage.addView(row_view);
-                trigger_messages_count++;
+            if(pos_count!=0 && neg_count!=0) {
+                if (getPPIAS()) {
+                    View row_view = inflater.inflate(R.layout.second_trigger_message_row, null);
+                    ((ImageView) row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_top));
+                    String text = "You used condoms " + LynxManager.decryptString(baseline_info.getTop_condom_use_percent()) + " of the time as a top.";
+                    ((TextView) row_view.findViewById(R.id.text)).setText(text);
+                    ((TextView) row_view.findViewById(R.id.text)).setTypeface(tf_italic);
+                    additionalTriggerMessage.addView(row_view);
+                    trigger_messages_count++;
+                }
+                if (getPPRAS()) {
+                    View row_view = inflater.inflate(R.layout.second_trigger_message_row, null);
+                    ((ImageView) row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_bottom));
+                    String text = "You used condoms " + LynxManager.decryptString(baseline_info.getBottom_condom_use_percent()) + " of the time as a bottom.";
+                    ((TextView) row_view.findViewById(R.id.text)).setText(text);
+                    ((TextView) row_view.findViewById(R.id.text)).setTypeface(tf_italic);
+                    additionalTriggerMessage.addView(row_view);
+                    trigger_messages_count++;
+                }
             }
             if(getMETH()){
                 View row_view = inflater.inflate(R.layout.second_trigger_message_row,null);
@@ -346,20 +348,21 @@ public class LynxSexProBaselineFragment extends Fragment {
                         ((TextView)message_row.findViewById(R.id.answer)).setTypeface(tf_italic);
                         additionalInfoMessage.addView(message_row);
                     }
-
-                    if(getPPRAS() || getPPIAS()){
-                        View message_row = inflater.inflate(R.layout.second_info_message_row,null);
-                        if(getPPRAS()){
-                            ((ImageView)message_row.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_bottom));
+                    if(pos_count!=0 && neg_count!=0) {
+                        if (getPPRAS() || getPPIAS()) {
+                            View message_row = inflater.inflate(R.layout.second_info_message_row, null);
+                            if (getPPRAS()) {
+                                ((ImageView) message_row.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_bottom));
+                            }
+                            if (getPPIAS()) {
+                                ((ImageView) message_row.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_top));
+                            }
+                            ((TextView) message_row.findViewById(R.id.question)).setText("How does condom use change my risk?");
+                            ((TextView) message_row.findViewById(R.id.question)).setTypeface(tf_bold);
+                            ((TextView) message_row.findViewById(R.id.answer)).setText("Using a condom when you top or bottom can reduce your risk of HIV and other STDs. Not using a condom, even a few times, can increase your risk for HIV a lot. PrEP can be a great option for people who don't use condoms consistently.");
+                            ((TextView) message_row.findViewById(R.id.answer)).setTypeface(tf_italic);
+                            additionalInfoMessage.addView(message_row);
                         }
-                        if(getPPIAS()){
-                            ((ImageView)message_row.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_top));
-                        }
-                        ((TextView)message_row.findViewById(R.id.question)).setText("How does condom use change my risk?");
-                        ((TextView)message_row.findViewById(R.id.question)).setTypeface(tf_bold);
-                        ((TextView)message_row.findViewById(R.id.answer)).setText("Using a condom when you top or bottom can reduce your risk of HIV and other STDs. Not using a condom, even a few times, can increase your risk for HIV a lot. PrEP can be a great option for people who don't use condoms consistently.");
-                        ((TextView)message_row.findViewById(R.id.answer)).setTypeface(tf_italic);
-                        additionalInfoMessage.addView(message_row);
                     }
 
                     if(getMETH() || getCOKE()){
@@ -496,6 +499,9 @@ public class LynxSexProBaselineFragment extends Fragment {
                     POP = 1;
                 }
             }
+        }
+        if(times_bottom==0 && times_top==0){
+            POP = 0;
         }
         return POP>0;
     }

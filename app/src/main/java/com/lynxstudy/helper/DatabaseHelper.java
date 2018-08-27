@@ -603,6 +603,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_BADGES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_APP_ALERTS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PREP_FUP);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TL_SYNC);
         // create new tables
         onCreate(db);
         Log.v("Database upgrade","Executed");
@@ -667,6 +668,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_USER_BADGES, null, null);
         db.delete(TABLE_APP_ALERTS, null, null);
         db.delete(TABLE_PREP_FUP, null, null);
+        db.delete(TABLE_TL_SYNC, null, null);
     }
 
     // ------------------------ "Users" table methods ----------------//
@@ -5188,6 +5190,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // looping through all rows and adding to list
         if (c != null && c.getCount()>0) {
+            AppAlerts appAlerts = new AppAlerts();
+            appAlerts.setId(c.getInt(c.getColumnIndex(KEY_APP_ALERT_ID)));
+            appAlerts.setName(c.getString(c.getColumnIndex(KEY_APP_ALERT_NAME)));
+            appAlerts.setCreated_date(c.getString(c.getColumnIndex(KEY_APP_ALERT_CREATEDAT)));
+            appAlerts.setModified_date(c.getString(c.getColumnIndex(KEY_APP_ALERT_MODIFIED)));
+            return appAlerts;
+        }
+        c.close();
+        return null;
+    }
+    public AppAlerts getLastAppAlertByName(String name){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_APP_ALERTS + " WHERE "
+                + KEY_APP_ALERT_NAME + " = '" + name + "' ORDER BY " + KEY_APP_ALERT_ID + " DESC LIMIT 1";
+
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c != null && c.getCount()>0) {
+            c.moveToFirst();
             AppAlerts appAlerts = new AppAlerts();
             appAlerts.setId(c.getInt(c.getColumnIndex(KEY_APP_ALERT_ID)));
             appAlerts.setName(c.getString(c.getColumnIndex(KEY_APP_ALERT_NAME)));

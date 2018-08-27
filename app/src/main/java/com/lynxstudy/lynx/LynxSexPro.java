@@ -49,12 +49,6 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
                 "fonts/Roboto-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        /*// Custom Action Bar //
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
-        getSupportActionBar().setCustomView(cView);
-        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
-        ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);*/
         //User_baseline_info baseline_info = db.getUserBaselineInfobyUserID(LynxManager.getActiveUser().getUser_id());
         User_baseline_info baseline_info = LynxManager.getActiveUserBaselineInfo();
         for(User_baseline_info user_baseline_info : db.getAllUserBaselineInfo()){

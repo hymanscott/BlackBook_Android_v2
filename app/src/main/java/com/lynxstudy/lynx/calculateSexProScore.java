@@ -311,7 +311,7 @@ public class calculateSexProScore {
             else{ DFREQ   =   0;}
             //if elapsed day ends
         }
-        // Validating 90 days ends
+        // PRE 90 Days
         else{
             NASP_NEG        = Integer.parseInt(LynxManager.decryptString(baselineInfo.getHiv_negative_count()));
             NASP_POS        = Integer.parseInt(LynxManager.decryptString(baselineInfo.getHiv_positive_count()));

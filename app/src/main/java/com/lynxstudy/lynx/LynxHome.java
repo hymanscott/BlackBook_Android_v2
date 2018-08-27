@@ -97,8 +97,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
     private static final int READ_WRITE_PERMISSION = 100;
     private Tracker tracker;
     SharedPreferences sharedPref;
-    String isTLSyncCompleted = "false";
-    String isTLSyncCompletedDate = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -245,8 +243,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         // update fcm id //
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String tokenid = sharedPref.getString("lynxfirebasetokenid",null);
-        isTLSyncCompleted = sharedPref.getString("isTLSyncCompleted","false");
-        isTLSyncCompletedDate = sharedPref.getString("isTLSyncCompletedDate",LynxManager.getUTCDateTime());
 
         //Log.v("tokenid",tokenid);
         /*
@@ -363,8 +359,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     final String login_query_string = LynxManager.getQueryString(loginOBJ.toString());
 
                     if(LynxManager.haveNetworkConnection(LynxHome.this)){
-                        if(isTLSyncCompleted.equals("false") || (isTLSyncCompleted.equals("true") && getElapsedDays(isTLSyncCompletedDate)>30))
-                            new TestingCentersOnline(login_query_string).execute();
+                        new TestingCentersOnline(login_query_string).execute();
                     }
                 }
             }
@@ -492,13 +487,13 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
 
         }else if(elapsed_reg_days>30){
             if(db.getTestingHistoriesCountByTestingId(1)==0 && !isPositiveHIVTestLogged()){
-                message = "It’s been more than 1 month since your last test. You deserve to know your HIV status. Test time, baby!";
+                message = "It’s been more than 1 month since you've started Lynx. You deserve to know your HIV status. Test time, baby!";
                 if(db.getAppAlertsCountByName("Reminder Two")==0){
                     showAppAlert(message,1,"Reminder Two");
                 }
             }
             if(db.getTestingHistoriesCountByTestingId(2)==0 && !isPositiveHIVTestLogged()){
-                message = "It’s been more than 1 month since your last test. Getting tested on the regular is a great habit to have. Speaking of which, it's that time. With STIs and related HIV risk on the rise, stay on track and get tested this week.";
+                message = "It’s been more than 1 month since you've started Lynx. Getting tested on the regular is a great habit to have. Speaking of which, it's that time. With STIs and related HIV risk on the rise, stay on track and get tested this week.";
                 if(db.getAppAlertsCountByName("Reminder Two")==0){
                     showAppAlert(message,1,"Reminder Two");
                 }
@@ -2303,10 +2298,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             // Making a request to url and getting response
             String jsonChatListStr = null;
             try {
-                if(db.getLastTLSyncDate()!=null){
-                    Log.v("LastSyncDate", db.getLastTLSyncDate());
-                    Log.v("LastSyncPage", String.valueOf(db.getLastTLSyncPage()));
-                }
                 int page = 1;
                 if(db.getLastTLSyncDate()!=null && db.getLastTLSyncPage()>0){
                         page = db.getLastTLSyncPage()+1;
@@ -2335,7 +2326,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                         Log.d("Response: ", "> TestingCentersOnlineError. " + jsonObj.getString("message"));
                     } else {
                         JSONArray locationsArray = jsonObj.getJSONArray("locations");
-                        if(locationsArray !=null) {
+                        if(locationsArray !=null && locationsArray.length()!=0) {
                             for (int i = 0; i < locationsArray.length(); i++) {
                                 JSONObject childObj = locationsArray.getJSONObject(i);
                                 int id = Integer.parseInt(childObj.getString("testing_location_id"));
@@ -2360,13 +2351,16 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                             if(db.getLastTLSyncPage()>0){
                                 page = db.getLastTLSyncPage()+1;
                             }
-                            db.updateTLSync(LynxManager.getActiveUser().getUser_id(),page);
+                            db.createTLSync(LynxManager.getActiveUser().getUser_id(),page);
                         }else{
-                            //db.deleteTLSync();
-                            SharedPreferences.Editor editor = sharedPref.edit();
+                            //Log.v("TLSyncElapsedDays", String.valueOf(getElapsedDays(db.getLastTLSyncDate())));
+                            if(db.getLastTLSyncDate()!=null && getElapsedDays(db.getLastTLSyncDate())>30){
+                                db.deleteTLSync();
+                            }
+                            /*SharedPreferences.Editor editor = sharedPref.edit();
                             editor.putString("isTLSyncCompleted", "true");
                             editor.putString("isTLSyncCompletedDate", LynxManager.getUTCDateTime());
-
+                            editor.apply();*/
                         }
                     }
                 } catch (JSONException e) {
