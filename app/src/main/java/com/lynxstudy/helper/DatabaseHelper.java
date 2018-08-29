@@ -56,7 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 12;
 
     // Database Name
     private static final String DATABASE_NAME = "phasttDB";
@@ -3964,6 +3964,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<TestingHistoryInfo> getAllTestingHistoryInfoByHistoryId(int testingHistoryId) {
         List<TestingHistoryInfo> testingHistoryInfoList = new ArrayList<TestingHistoryInfo>();
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY_INFO + " WHERE " + KEY_TESTING_HISTORY_INFO_HISTORYID + " = " +testingHistoryId;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                TestingHistoryInfo testingHistoryInfo = new TestingHistoryInfo();
+                testingHistoryInfo.setTesting_history_info_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_ID)));
+                testingHistoryInfo.setTesting_history_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_HISTORYID)));
+                testingHistoryInfo.setSti_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_STIID)));
+                testingHistoryInfo.setUser_id(c.getInt(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_USERID)));
+                testingHistoryInfo.setTest_status(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_STATUS)));
+                testingHistoryInfo.setAttachment(c.getString(c.getColumnIndex(KEY_TESTING_HISTORY_INFO_ATTACHMENT)));
+                testingHistoryInfo.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // adding to testingHistoryInfo list
+                testingHistoryInfoList.add(testingHistoryInfo);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return testingHistoryInfoList;
+    }
+
+    public List<TestingHistoryInfo> getAllTestingHistoryInfoByStiID(int sti_id){
+        List<TestingHistoryInfo> testingHistoryInfoList = new ArrayList<TestingHistoryInfo>();
+        String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY_INFO + " WHERE " + KEY_TESTING_HISTORY_INFO_STIID + " = " +sti_id;
+
 
         Log.e(LOG, selectQuery);
 

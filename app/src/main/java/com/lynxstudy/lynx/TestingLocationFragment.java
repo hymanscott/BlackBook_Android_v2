@@ -413,15 +413,18 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
         }
 
         if (marker_count == 0) {
+            int temp_count = 0;
             for (LocationsDistance locationsDistance : Locations_DistanceArray) {
-                LatLng latlng = new LatLng(locationsDistance.getLatitude(), locationsDistance.getLongitude());
-                MarkerOptions marker = new MarkerOptions().position(latlng).title(String.valueOf(locationsDistance.getLocation_distance_id())).snippet("Distance in Miles : " + locationsDistance.getDistance());
-                googleMap.addMarker(getMarkerIcon(locationsDistance.getType(),marker));
-                bounds.include(new LatLng(locationsDistance.getLatitude(), locationsDistance.getLongitude()));
-                // Move Camera to very first location //
-                LatLng firstLatLng = new LatLng(Locations_DistanceArray.get(0).getLatitude(),Locations_DistanceArray.get(0).getLongitude());
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(firstLatLng));
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(firstLatLng, (float) 7.6));
+                if(temp_count<100) {
+                    LatLng latlng = new LatLng(locationsDistance.getLatitude(), locationsDistance.getLongitude());
+                    MarkerOptions marker = new MarkerOptions().position(latlng).title(String.valueOf(locationsDistance.getLocation_distance_id())).snippet("Distance in Miles : " + locationsDistance.getDistance());
+                    googleMap.addMarker(getMarkerIcon(locationsDistance.getType(), marker));
+                    bounds.include(new LatLng(locationsDistance.getLatitude(), locationsDistance.getLongitude()));
+                    // Move Camera to very first location //
+                    LatLng firstLatLng = new LatLng(Locations_DistanceArray.get(0).getLatitude(), Locations_DistanceArray.get(0).getLongitude());
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(firstLatLng));
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(firstLatLng, (float) 7.6));
+                }temp_count++;
             }
         }
     }
@@ -664,48 +667,50 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
         Locations_DistanceArray.clear();
         List<TestingLocations> locationsList = db.getAllTestingLocations();
         for (TestingLocations location : locationsList) {
-            Location testingLocation = new Location("Testing Location");
-            testingLocation.setLatitude(Double.valueOf(location.getLatitude()));
-            testingLocation.setLongitude(Double.valueOf(location.getLongitude()));
+            if(!location.getLatitude().equals("") || !location.getLongitude().equals("") || !location.getLatitude().isEmpty() || !location.getLongitude().isEmpty()) {
+                Location testingLocation = new Location("Testing Location");
+                testingLocation.setLatitude(Double.valueOf(location.getLatitude()));
+                testingLocation.setLongitude(Double.valueOf(location.getLongitude()));
 
-            //distance in meters
-            double distance_inMeters = currentlocation.distanceTo(testingLocation);
+                //distance in meters
+                double distance_inMeters = currentlocation.distanceTo(testingLocation);
 
-            // converting into miles (1m = 0.000621371 mi)
-            int distance_inMiles = (int) (distance_inMeters * 0.000621371);
-            if(type==null){
-                LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(),location.getType());
-                Locations_DistanceArray.add(location_distance);
-            }else{
-                switch (type){
-                    case "PrEP":
-                        if(location.getPrep_clinic().equals("Yes")){
-                            LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(),location.getType());
-                            Locations_DistanceArray.add(location_distance);
-                        }
-                        break;
-                    case "HIV Testing":
-                        if(location.getHiv_clinic().equals("Yes")){
-                            LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(),location.getType());
-                            Locations_DistanceArray.add(location_distance);
-                        }
-                        break;
-                    case "STI Testing":
-                        if(location.getSti_clinic().equals("Yes")){
-                            LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(),location.getType());
-                            Locations_DistanceArray.add(location_distance);
-                        }
-                        break;
+                // converting into miles (1m = 0.000621371 mi)
+                int distance_inMiles = (int) (distance_inMeters * 0.000621371);
+                if (type == null) {
+                    LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(), location.getType());
+                    Locations_DistanceArray.add(location_distance);
+                } else {
+                    switch (type) {
+                        case "PrEP":
+                            if (location.getPrep_clinic().equals("Yes")) {
+                                LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(), location.getType());
+                                Locations_DistanceArray.add(location_distance);
+                            }
+                            break;
+                        case "HIV Testing":
+                            if (location.getHiv_clinic().equals("Yes")) {
+                                LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(), location.getType());
+                                Locations_DistanceArray.add(location_distance);
+                            }
+                            break;
+                        case "STI Testing":
+                            if (location.getSti_clinic().equals("Yes")) {
+                                LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(), location.getType());
+                                Locations_DistanceArray.add(location_distance);
+                            }
+                            break;
                         case "Under 18":
-                        if(location.getUnder_eighteen().equals("Yes")){
-                            LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(),location.getType());
+                            if (location.getUnder_eighteen().equals("Yes")) {
+                                LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(), location.getType());
+                                Locations_DistanceArray.add(location_distance);
+                                Log.v("Under18", location.getName());
+                            }
+                            break;
+                        default:
+                            LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(), location.getType());
                             Locations_DistanceArray.add(location_distance);
-                            Log.v("Under18",location.getName());
-                        }
-                        break;
-                    default:
-                        LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(),location.getType());
-                        Locations_DistanceArray.add(location_distance);
+                    }
                 }
             }
         }

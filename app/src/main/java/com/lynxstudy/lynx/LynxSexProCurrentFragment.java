@@ -28,6 +28,10 @@ import com.lynxstudy.model.User_baseline_info;
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -414,14 +418,14 @@ public class LynxSexProCurrentFragment extends Fragment {
         int shown = 0;
         if(final_score >=17){
             BadgesMaster green_badge = db.getBadgesMasterByName("Green Light");
-            if(db.getUserBadgesCountByBadgeID(green_badge.getBadge_id()) < 2){
+            if(db.getUserBadgesCountByBadgeID(green_badge.getBadge_id())==0 || (db.getUserBaselineInfobyID(1).getSexpro_score()>=17 && db.getUserBadgesCountByBadgeID(green_badge.getBadge_id())==1)){
                 UserBadges greenBadge = new UserBadges(green_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,green_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
                 db.createUserBadge(greenBadge);
             }
-        }else if(final_score>= 10 && final_score<=16){
+        }else if(final_score >= 10){
             BadgesMaster toolbox_badge = db.getBadgesMasterByName("Toolbox");
-            Log.v("BadgesCountTool","->"+db.getUserBadgesCountByBadgeID(toolbox_badge.getBadge_id()) );
-            if(db.getUserBadgesCountByBadgeID(toolbox_badge.getBadge_id()) < 2) {
+            int baseline_score = db.getUserBaselineInfobyID(1).getSexpro_score();
+            if(db.getUserBadgesCountByBadgeID(toolbox_badge.getBadge_id())==0 || (baseline_score>=10 && baseline_score<17 && db.getUserBadgesCountByBadgeID(toolbox_badge.getBadge_id())==1)) {
                 UserBadges toolBoxBadge = new UserBadges(toolbox_badge.getBadge_id(), LynxManager.getActiveUser().getUser_id(), shown, toolbox_badge.getBadge_notes(), String.valueOf(R.string.statusUpdateNo));
                 db.createUserBadge(toolBoxBadge);
             }

@@ -4,6 +4,7 @@ package com.lynxstudy.lynx;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -95,6 +96,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
     public TestingHomeFragment() {
         // Required empty public constructor
     }
+    private Context mContext = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -287,6 +289,12 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         return view;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
     private void loadTestingHistories(){
         // Testing History Table //
         final TableLayout testing_history_table = (TableLayout) view.findViewById(R.id.testingHistoryTable);
@@ -375,7 +383,12 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     Log.v("testinghistoryInfoList",history.getTesting_history_id() + "" +testinghistoryInfoList.size());
                     for (TestingHistoryInfo historyInfo : testinghistoryInfoList) {
                         if (historyInfo.getSti_id() != 0) {
-                            TableRow tr = new TableRow(getActivity());
+                            TableRow tr = null;
+                            if(getActivity()!=null){
+                                tr = new TableRow(getActivity());
+                            }else if(mContext != null){
+                                tr = new TableRow(mContext);
+                            }
                             final View v = LayoutInflater.from(getActivity()).inflate(R.layout.testing_history_row, tr, false);
                             //want to get childs of row for example TextView, get it like this:
                             TextView date = (TextView) v.findViewById(R.id.date);
@@ -634,9 +647,9 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     String date = LynxManager.getFormatedDate("MM/dd/yyyy",newTestDate.getText().toString(),"yyyy-MM-dd");
                     TestingHistory history = new TestingHistory(testing_id, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(date), String.valueOf(R.string.statusUpdateNo), true);
                     int testingHistoryid = db.createTestingHistory(history);
-                    String chlamydia_test_status = "Test Not Reported";
-                    String gonorrhea_test_status = "Test Not Reported";
-                    String syphilis_test_status = "Test Not Reported";
+                    String chlamydia_test_status = getResources().getString(R.string.testNotReported);
+                    String gonorrhea_test_status = getResources().getString(R.string.testNotReported);
+                    String syphilis_test_status = getResources().getString(R.string.testNotReported);
                     if(RG_Chlamydia.getCheckedRadioButtonId()!=-1){
                         chlamydia_test_status = ((RadioButton)view.findViewById(RG_Chlamydia.getCheckedRadioButtonId())).getText().toString();
                     }

@@ -195,7 +195,7 @@ public class EncounterStartActivity extends AppCompatActivity {
             fm.popBackStack();
     }
 
-    public void popFragmentUntill(Fragment fra) {
+ /*   public void popFragmentUntill(Fragment fra) {
         // pop back stack all the way
         final FragmentManager fm = getSupportFragmentManager();
         int entryCount = fm.getBackStackEntryCount();
@@ -214,7 +214,7 @@ public class EncounterStartActivity extends AppCompatActivity {
                 return fragment;
         }
         return null;
-    }
+    }*/
 
 
     public boolean onCancelEnctime(View view) {
@@ -645,7 +645,7 @@ public class EncounterStartActivity extends AppCompatActivity {
             db.createUserBadge(lynxBadge);
         }
         // Adding User Badge : I Love Anal Badge //
-        if(anal_badge_cause_count>0){
+        if(anal_badge_cause_count>0 && db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("I Love Anal").getBadge_id())==0){
             BadgesMaster anal_badge = db.getBadgesMasterByName("I Love Anal");
             UserBadges analBadge = new UserBadges(anal_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,anal_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
             db.createUserBadge(analBadge);
@@ -653,10 +653,19 @@ public class EncounterStartActivity extends AppCompatActivity {
         // Adding User Badge : Magnum Badge //
         int distinct_condom_used_times = 0;
         for (Encounter encounter:db.getAllEncounters()){
-            if(db.getEncSexTypeCountByEncIDandCondomStatus(encounter.getEncounter_id(),"Condom used")>0){
+            /*if(db.getEncSexTypeCountByEncIDandCondomStatus(encounter.getEncounter_id(),"Condom used")>0){
                 distinct_condom_used_times++;
+            }*/
+            for(EncounterSexType encounterSexType:db.getAllEncounterSexTypes(encounter.getEncounter_id())){
+                if(LynxManager.decryptString(encounterSexType.getSex_type()).equals("We fucked") || LynxManager.decryptString(encounterSexType.getSex_type()).equals("I bottomed") || LynxManager.decryptString(encounterSexType.getSex_type()).equals("I topped")){
+                    if(encounterSexType.getCondom_use().equals("Condom used")){
+                        distinct_condom_used_times++;
+                        break;
+                    }
+                }
             }
         }
+        Log.v("distinctCondomUsedTimes", String.valueOf(distinct_condom_used_times));
         if(distinct_condom_used_times==5){
             BadgesMaster magnum_badge = db.getBadgesMasterByName("Magnum");
             UserBadges magnumBadge = new UserBadges(magnum_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,magnum_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
@@ -664,7 +673,7 @@ public class EncounterStartActivity extends AppCompatActivity {
         }
 
         // Adding User Badge : Galaxy, Gold and All Star Badge //
-        if(galaxy_count>0){
+        if(galaxy_count>0 && db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("Galaxy").getBadge_id())==0){
             BadgesMaster galaxy_badge = db.getBadgesMasterByName("Galaxy");
             UserBadges galaxyBadge = new UserBadges(galaxy_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,galaxy_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
             db.createUserBadge(galaxyBadge);
@@ -742,7 +751,7 @@ public class EncounterStartActivity extends AppCompatActivity {
                 showAppAlert.add(1,"Two");
                 showAppAlert.add(2,"1-4 Partners in last month");
                 AppAlerts appAlerts =  db.getLastAppAlertByName("1-4 Partners in last month");
-                if(db.getAppAlertsCountByName("1-4 Partners in last month")==0 || getElapsedDays(appAlerts.getCreated_date())>30)
+                if(db.getAppAlertsCountByName("1-4 Partners in last month")==0 || !isCalendarMonth(appAlerts.getCreated_date()))
                     LynxManager.showAppAlertList.add(showAppAlert);
 
         }else if(partnersCount >= 5){
@@ -752,7 +761,7 @@ public class EncounterStartActivity extends AppCompatActivity {
                 showAppAlert.add(1,"Two");
                 showAppAlert.add(2,"5 plus Partners in last month");
                 AppAlerts appAlerts =  db.getLastAppAlertByName("5 plus Partners in last month");
-                if(db.getAppAlertsCountByName("5 plus Partners in last month")==0 || getElapsedDays(appAlerts.getCreated_date())>30)
+                if(db.getAppAlertsCountByName("5 plus Partners in last month")==0 || !isCalendarMonth(appAlerts.getCreated_date()))
                     LynxManager.showAppAlertList.add(showAppAlert);
             }
         }
@@ -898,6 +907,22 @@ public class EncounterStartActivity extends AppCompatActivity {
             long days = period / (1000 * 60 * 60 * 24);
             return (int) days;
         }return 0;
+
+    }
+    private boolean isCalendarMonth(String dateString){
+        if(dateString!=null){
+            SimpleDateFormat inputDF  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Calendar calCurrentDate = Calendar.getInstance();
+            Calendar cal = Calendar.getInstance();
+            Date date = null;
+            try {
+                date = inputDF.parse(dateString);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            cal.setTime(date);
+            return calCurrentDate.get(Calendar.MONTH) == cal.get(Calendar.MONTH);
+        }return false;
 
     }
 }
