@@ -3,10 +3,8 @@ package com.lynxstudy.lynx;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,7 +28,7 @@ public class LynxTopFive extends AppCompatActivity implements View.OnClickListen
 
     Typeface tf,tf_bold,tf_bold_italic;
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
-    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,top_five_title_partner,top_five_title_enc;
+    TextView top_five_title_partner,top_five_title_enc;
     TableLayout topFiveEncounterList,topFivePartnerList;
     DatabaseHelper db;
     @Override
@@ -57,16 +55,11 @@ public class LynxTopFive extends AppCompatActivity implements View.OnClickListen
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
-        bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
-        bot_nav_sexpro_tv.setTypeface(tf);
-        bot_nav_diary_tv = (TextView)findViewById(R.id.bot_nav_diary_tv);
-        bot_nav_diary_tv.setTypeface(tf);
-        bot_nav_testing_tv = (TextView)findViewById(R.id.bot_nav_testing_tv);
-        bot_nav_testing_tv.setTypeface(tf);
-        bot_nav_prep_tv = (TextView)findViewById(R.id.bot_nav_prep_tv);
-        bot_nav_prep_tv.setTypeface(tf);
-        bot_nav_chat_tv = (TextView)findViewById(R.id.bot_nav_chat_tv);
-        bot_nav_chat_tv.setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_sexpro_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_diary_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_testing_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_prep_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_chat_tv)).setTypeface(tf);
         btn_testing = (LinearLayout)findViewById(R.id.bot_nav_testing);
         btn_diary = (LinearLayout) findViewById(R.id.bot_nav_diary);
         btn_prep = (LinearLayout) findViewById(R.id.bot_nav_prep);
@@ -96,8 +89,6 @@ public class LynxTopFive extends AppCompatActivity implements View.OnClickListen
             name.setTypeface(tf);
             ImageView rate_image = (ImageView)v.findViewById(R.id.rate_image);
             Partners partner = db.getPartnerbyID(encounter.getEncounter_partner_id());
-            PartnerRating partnerRating = db.getPartnerRatingbyPartnerID(partner.getPartner_id(),1);
-
             name.setText(LynxManager.decryptString(partner.getNickname()));
 
             switch (LynxManager.decryptString(encounter.getRate_the_sex())){
@@ -132,7 +123,6 @@ public class LynxTopFive extends AppCompatActivity implements View.OnClickListen
             Collections.sort(partnerRatings,new PartnerRating.comparePartnerRating());
             int partner_count = 1;
             for (PartnerRating rating : partnerRatings){
-                //Log.v("RatingAftSort",rating.getRating());
                 TableRow encounterRow = new TableRow(LynxTopFive.this);
                 View v = LayoutInflater.from(LynxTopFive.this).inflate(R.layout.top_five_list_row, encounterRow, false);
                 TextView name = (TextView)v.findViewById(R.id.name);
@@ -201,8 +191,6 @@ public class LynxTopFive extends AppCompatActivity implements View.OnClickListen
     }
     @Override
     public void onBackPressed() {
-        // do something on back.
-
         Intent home = new Intent(LynxTopFive.this,LynxHome.class);
         startActivity(home);
         finish();

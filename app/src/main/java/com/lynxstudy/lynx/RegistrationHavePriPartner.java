@@ -20,9 +20,7 @@ import org.piwik.sdk.extra.TrackHelper;
 public class RegistrationHavePriPartner extends Fragment {
     public RegistrationHavePriPartner() {
     }
-    TextView frag_title,textview9,textview10;
     RadioButton PSP_Yes,PSP_No;
-    Button regAuthNext;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,17 +31,13 @@ public class RegistrationHavePriPartner extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        frag_title = (TextView)view.findViewById(R.id.frag_title);
-        textview10 = (TextView)view.findViewById(R.id.textview10);
         PSP_Yes = (RadioButton)view.findViewById(R.id.PSP_Yes);
         PSP_No = (RadioButton)view.findViewById(R.id.PSP_No);
-        regAuthNext = (Button)view.findViewById(R.id.regAuthNext);
-
-        frag_title.setTypeface(tf_bold);
-        textview10.setTypeface(tf);
+        ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.textview10)).setTypeface(tf);
         PSP_Yes.setTypeface(tf);
         PSP_No.setTypeface(tf);
-        regAuthNext.setTypeface(tf_bold);
+        ((Button)view.findViewById(R.id.regAuthNext)).setTypeface(tf_bold);
 
         // Set Back Values //
         if(LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getIs_primary_partner())!=null){

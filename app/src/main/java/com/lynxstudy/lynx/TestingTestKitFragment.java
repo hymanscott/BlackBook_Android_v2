@@ -47,9 +47,8 @@ public class TestingTestKitFragment extends Fragment {
     public TestingTestKitFragment() {
         // Required empty public constructor
     }
-    TextView frag_title,title,orderKit,registerKit;
+    TextView orderKit,registerKit;
     LinearLayout LL_webviewParent,LL_mainLayout;
-    /*Button refresh;*/
     WebView testkitWebview;
     int back_press_count;
     private Tracker tracker;

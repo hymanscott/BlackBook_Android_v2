@@ -289,12 +289,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            int page_id = getArguments().getInt(ARG_SECTION_NUMBER);
-            //Log.v("page_id ", String.valueOf(page_id));
-            View rootView = inflater.inflate(R.layout.fragment_lynx_diary, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
+            return inflater.inflate(R.layout.fragment_lynx_diary, container, false);
         }
     }
 
@@ -404,37 +399,6 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
     public void onBackPressed() {
         // do something on back.
         if (onPause_count > 0) {
-            /*final View popupView = getLayoutInflater().inflate(R.layout.popup_alert_dialog_template, null);
-            final PopupWindow signOut = new PopupWindow(popupView, LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
-            TextView title = (TextView)popupView.findViewById(R.id.alertTitle);
-            TextView message = (TextView)popupView.findViewById(R.id.alertMessage);
-            Button positive_btn = (Button) popupView.findViewById(R.id.alertPositiveButton);
-            Button negative_btn = (Button) popupView.findViewById(R.id.alertNegativeButton);
-            title.setVisibility(View.GONE);
-            message.setText("Are you sure, you want to exit?");
-            message.setTypeface(tf);
-            positive_btn.setTypeface(tf);
-            negative_btn.setTypeface(tf);
-
-            positive_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    System.exit(0);
-                }
-            });
-            negative_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    signOut.dismiss();
-                }
-            });
-
-            // If the PopupWindow should be focusable
-            signOut.setFocusable(true);
-
-            // If you need the PopupWindow to dismiss when when touched outside
-            signOut.setBackgroundDrawable(new ColorDrawable());
-            signOut.showAtLocation(popupView, Gravity.CENTER,0,0);*/
             LynxManager.goToIntent(LynxDiary.this,"home",LynxDiary.this.getClass().getSimpleName());
             overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
             finish();
@@ -443,6 +407,5 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
             Toast.makeText(this,"Press Back one more time to exit",Toast.LENGTH_SHORT).show();
         }
         onPause_count++;
-        return;
     }
 }

@@ -227,41 +227,6 @@
                                 android:layout_marginBottom="24dp"
                                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                                 android:layout_marginRight="@dimen/activity_horizontal_margin"/>
-                            <!--<com.aptmobility.phastt.CustomTextView
-                                custom:fontAssetName="OpenSansRegular.ttf"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:text="He came in me:"
-                                android:layout_marginLeft="30dp"
-                                android:layout_marginTop="10dp"/>
-                            <RadioGroup
-                                android:layout_width="wrap_content"
-                                android:id="@+id/whenIbottomed_cameInMe"
-                                android:layout_marginLeft="60dp"
-                                android:layout_height="wrap_content">
-                                <com.aptmobility.phastt.CustomRadioButton                     style="@style/Phastt.Radiobutton"
-                                    custom:fontAssetName="OpenSansRegular.ttf"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/whenIbottomed_cameInMeYes"
-                                    android:text="Yes"/>
-                                <com.aptmobility.phastt.CustomRadioButton
-                                     style="@style/Phastt.Radiobutton"
-                                    custom:fontAssetName="OpenSansRegular.ttf"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/whenIbottomed_cameInMeNo"
-                                    android:checked="true"
-                                    android:text="No"/>
-                                <com.aptmobility.phastt.CustomRadioButton
-                                   style="@style/Phastt.Radiobutton"
-                                    custom:fontAssetName="OpenSansRegular.ttf"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/whenIbottomed_cameInMeDontknow"
-                                    android:text="Don't know"/>
-                            </RadioGroup>-->
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="fill_parent"

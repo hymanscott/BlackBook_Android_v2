@@ -4,7 +4,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,22 +38,17 @@ public class RegistrationTimesBottom extends Fragment implements SeekBar.OnSeekB
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
         seek_textviewone = (TextView)view.findViewById(R.id.textProgress_id2);
-        TextView frag_title = (TextView) view.findViewById(R.id.frag_title);
-        TextView textview9 = (TextView)view.findViewById(R.id.textview9);
-        TextView textview10 = (TextView)view.findViewById(R.id.textview10);
-        TextView textview11 = (TextView)view.findViewById(R.id.textview11);
-        TextView textview12 = (TextView)view.findViewById(R.id.textview12);
         TextView Progress_minvalue2 = (TextView)view.findViewById(R.id.Progress_minvalue2);
         TextView Progress_maxvalue2 = (TextView)view.findViewById(R.id.Progress_maxvalue2);
         editText = (EditText) view.findViewById(R.id.editText);
         regAuthNext = (Button) view.findViewById(R.id.regAuthNext);
 
         seek_textviewone.setTypeface(tf);
-        frag_title.setTypeface(tf_bold);
-        textview9.setTypeface(tf);
-        textview10.setTypeface(tf);
-        textview11.setTypeface(tf);
-        textview12.setTypeface(tf);
+        ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView) view.findViewById(R.id.textview9)).setTypeface(tf);
+        ((TextView) view.findViewById(R.id.textview10)).setTypeface(tf);
+        ((TextView) view.findViewById(R.id.textview11)).setTypeface(tf);
+        ((TextView) view.findViewById(R.id.textview12)).setTypeface(tf);
         Progress_minvalue2.setTypeface(tf);
         Progress_maxvalue2.setTypeface(tf);
         editText.setTypeface(tf);
@@ -81,26 +75,8 @@ public class RegistrationTimesBottom extends Fragment implements SeekBar.OnSeekB
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
-                // TODO Auto-generated method stub
                 progress = ((int)Math.round(progress/stepSize))*stepSize;
-                //seekBar.setProgress(progress);
-
                 setSeekBarText(progress);
-                /*// seek_textviewoneLabel = (TextView) view.findViewById(R.id.textProgress_id1_toplabel);
-                seek_textviewone.setText(progress + "%");
-                //seek_textviewoneLabel.setText(progress + "%");
-                //int seek_label_pos = (int) ((float) (seek_bartwo.getMeasuredWidth()) * ((float) progress / 100));
-                //int seek_label_pos = seek_bartwo.getThumb().getBounds().left;
-                int seek_label_pos = (int) ((float) (seek_bartwo.getMeasuredWidth()) * ((float) progress / 100));
-                if(progress==80){
-                    seek_label_pos = (int) ((float) (seek_bartwo.getMeasuredWidth()) * ((float) 75 / 100));
-                }else if(progress>=90){
-                    seek_label_pos = (int) ((float) (seek_bartwo.getMeasuredWidth()) * ((float) 85 / 100));
-                }else{
-                    seek_label_pos = (int) ((float) (seek_bartwo.getMeasuredWidth()) * ((float) progress / 100));
-                }
-                Log.v("seek_label_pos", String.valueOf(seek_label_pos));
-                seek_textviewone.setX(seek_label_pos);*/
             }
         });
         editText.setText(LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getNo_of_times_bot_hivposs()));

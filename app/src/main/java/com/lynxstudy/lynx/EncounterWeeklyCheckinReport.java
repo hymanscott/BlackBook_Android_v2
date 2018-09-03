@@ -25,10 +25,6 @@ public class EncounterWeeklyCheckinReport extends Fragment {
         // Required empty public constructor
     }
 
-    TextView frag_title,intro_paragraph;
-    RadioButton have_encounter_yes,have_encounter_no;
-    Button checkin_report_next;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,17 +35,11 @@ public class EncounterWeeklyCheckinReport extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-
-        frag_title = (TextView) view.findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf_bold);
-        intro_paragraph = (TextView) view.findViewById(R.id.intro_paragraph);
-        intro_paragraph.setTypeface(tf);
-        have_encounter_yes = (RadioButton) view.findViewById(R.id.have_encounter_yes);
-        have_encounter_yes.setTypeface(tf);
-        have_encounter_no = (RadioButton) view.findViewById(R.id.have_encounter_no);
-        have_encounter_no.setTypeface(tf);
-        checkin_report_next = (Button) view.findViewById(R.id.checkin_report_next);
-        checkin_report_next.setTypeface(tf_bold);
+        ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView) view.findViewById(R.id.intro_paragraph)).setTypeface(tf);
+        ((RadioButton) view.findViewById(R.id.have_encounter_yes)).setTypeface(tf);
+        ((RadioButton) view.findViewById(R.id.have_encounter_no)).setTypeface(tf);
+        ((Button) view.findViewById(R.id.checkin_report_next)).setTypeface(tf_bold);
 
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();

@@ -1,15 +1,10 @@
 package com.lynxstudy.lynx;
 
-import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -20,8 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
@@ -43,7 +36,6 @@ import com.lynxstudy.model.UserDrugUse;
 
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
-import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -61,8 +53,6 @@ public class EncounterStartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encounter_start);
-        //  setContentView(R.layout.fragment_encounter_enctime);
-
         db = new DatabaseHelper(this);
 
         if (this.getIntent().getExtras() !=null) {
@@ -89,7 +79,6 @@ public class EncounterStartActivity extends AppCompatActivity {
 
         if (resultCode == Activity.RESULT_OK) {
             // TODO Extract the data returned from the child Activity.
-            String id = data.getStringExtra("partnerID");
             LynxManager.selectedPartnerID = LynxManager.getActivePartner().getPartner_id();
             EncounterSexTypeFragment fragSexType = new EncounterSexTypeFragment();
             pushFragments("Encounter", fragSexType, true);
@@ -116,30 +105,15 @@ public class EncounterStartActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    public String getVersion() {
-        String versionName = "Version not found";
-
-        try {
-            versionName = this.getPackageManager().getPackageInfo(this.getPackageName(), 0).versionName;
-            Log.i("Version", "Version Name: " + versionName);
-        } catch (PackageManager.NameNotFoundException e) {
-            // TODO Auto-generated catch block
-            Log.e("Version", "Exception Version Name: " + e.getLocalizedMessage());
-        }
-        return versionName;
-    }
     @Override
     public void onStart() {
         super.onStart();
-
-
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (LynxManager.onPause == true){
+        if (LynxManager.onPause){
             Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);
             startActivity(lockscreen);
         }
@@ -152,7 +126,6 @@ public class EncounterStartActivity extends AppCompatActivity {
 
     }
 
-
     public void pushFragments(String tag, android.support.v4.app.Fragment fragment, Boolean addToStack) {
 
         FragmentManager manager = getSupportFragmentManager();
@@ -164,26 +137,9 @@ public class EncounterStartActivity extends AppCompatActivity {
         imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
 
         ft.replace(android.R.id.content, fragment);
-        if (addToStack == true)
+        if (addToStack)
             ft.addToBackStack(null);
         ft.commit();
-
-
-    }
-
-
-    /*
-    * remove the fragment to the FrameLayout
-    */
-    public void removeFragments(String tag, android.support.v4.app.Fragment fragment) {
-
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction ft = manager.beginTransaction();
-
-        ft.remove(fragment);
-        //    ft.addToBackStack(null);
-        ft.commit();
-
     }
 
     // pop Fragment
@@ -193,34 +149,6 @@ public class EncounterStartActivity extends AppCompatActivity {
         // Toast.makeText(Tabbar_activity.this, "Stack Count "+String.valueOf(stackcount), Toast.LENGTH_LONG).show();
         if (stackcount > 1)
             fm.popBackStack();
-    }
-
- /*   public void popFragmentUntill(Fragment fra) {
-        // pop back stack all the way
-        final FragmentManager fm = getSupportFragmentManager();
-        int entryCount = fm.getBackStackEntryCount();
-        while (entryCount-- > 0) {
-            if (fra == getVisibleFragment())
-                break;
-            fm.popBackStackImmediate();
-        }
-    }
-
-    public Fragment getVisibleFragment() {
-        FragmentManager fragmentManager = this.getSupportFragmentManager();
-        List<Fragment> fragments = fragmentManager.getFragments();
-        for (Fragment fragment : fragments) {
-            if (fragment != null && fragment.isVisible())
-                return fragment;
-        }
-        return null;
-    }*/
-
-
-    public boolean onCancelEnctime(View view) {
-        popFragment();
-        finish();
-        return true;
     }
 
     public boolean onNextEnctime(View view) {
@@ -237,7 +165,6 @@ public class EncounterStartActivity extends AppCompatActivity {
             Toast.makeText(this, "Invalid Time", Toast.LENGTH_LONG).show();
         }else{
             String encounter_datetime = LynxManager.getFormatedDate("MM/dd/yy hh:mm a", encdate.getText().toString() + " " + enctime.getText().toString(), "yyyy-MM-dd HH:mm:ss");
-            //Log.v("encounter datetime",encounter_datetime);
             LynxManager.activeEncounter.setDatetime(LynxManager.encryptString(encounter_datetime));
             EncounterChoosePartnerFragment fragEncChoosePartner = new EncounterChoosePartnerFragment();
             pushFragments("Encounter", fragEncChoosePartner, true);
@@ -249,18 +176,11 @@ public class EncounterStartActivity extends AppCompatActivity {
 
     public boolean onClickaddNewPartner(View view) {
         Intent addNewPartner = new Intent(this, EncounterNewPartner.class);
-        // startActivity(addNewPartner);
         startActivityForResult(addNewPartner, 11);
         return true;
     }
 
-    public boolean onChoosePartnerPrev(View view) {
-        popFragment();
-        finish();
-        return true;
-    }
-
-    public boolean onChooseEncPartner(){
+    public void onChooseEncPartner(){
         // From encounter choose partner fragment //
         if (LynxManager.selectedPartnerID > 0) {
             LynxManager.setActivePartner(db.getPartnerbyID(LynxManager.selectedPartnerID));
@@ -276,44 +196,19 @@ public class EncounterStartActivity extends AppCompatActivity {
             pushFragments("Encounter", fragSexType, true);
             LynxManager.isNewPartnerEncounter = false;
         }
-        return true;
-    }
-    public boolean onChoosePartnerNext(View view) {
-        if (LynxManager.selectedPartnerID > 0) {
-            LynxManager.setActivePartner(db.getPartnerbyID(LynxManager.selectedPartnerID));
-            LynxManager.setActivePartnerContact(db.getPartnerContactbyID(LynxManager.selectedPartnerID));
-            LynxManager.activePartnerRating.clear();
-            LynxManager.activeEncounter.setEncounter_partner_id(LynxManager.selectedPartnerID);
-
-
-            for (PartnerRating partnerRating : db.getPartnerRatingbyPartnerID(LynxManager.selectedPartnerID)) {
-                LynxManager.setActivePartnerRating(partnerRating);
-            }
-
-            EncounterSexTypeFragment fragSexType = new EncounterSexTypeFragment();
-            pushFragments("Encounter", fragSexType, true);
-        } else {
-            Toast.makeText(getApplication(), "Please choose partner from the list or Click add new Partner to Continue", Toast.LENGTH_LONG).show();
-        }
-        return true;
     }
 
     public boolean onSexTypeNext(View view) {
         EncounterCondomuseFragment fragSextypeCondomuse = new EncounterCondomuseFragment();
         EncounterDrunkStatusFragment fragEncNotes = new EncounterDrunkStatusFragment();
         RatingBar rate_of_sex = (RatingBar) findViewById(R.id.sexType_RateTheSex);
-
-        //Log.v("Rate of sex", String.valueOf(rate_of_sex.getRating()));
         LynxManager.encRateofSex = String.valueOf(rate_of_sex.getRating());
-
         LynxManager.activeEncounter.setRate_the_sex(LynxManager.encryptString(String.valueOf(rate_of_sex.getRating())));
-
         LynxManager.activeEncounter.setEncounter_partner_id(LynxManager.getActivePartner().getPartner_id());
 
         if (LynxManager.getActivePartnerSexType().size() == 0) {
-            Toast.makeText(this, "Please select Type of sex", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EncounterStartActivity.this, "Please select Type of sex", Toast.LENGTH_SHORT).show();
         } else {
-
             for (EncounterSexType partnerSexType : LynxManager.getActivePartnerSexType()) {
                 String sexTypeText = LynxManager.decryptString(partnerSexType.getSex_type());
                 if (sexTypeText.equals("I sucked him") || sexTypeText.equals("I sucked her") || sexTypeText.equals("I bottomed") || sexTypeText.equals("I topped") || sexTypeText.equals("I fucked her") || sexTypeText.equals("We fucked")) {
@@ -322,21 +217,13 @@ public class EncounterStartActivity extends AppCompatActivity {
                 }
             }
             pushFragments("Encounter", fragEncNotes, true);
-
         }
-
-        return true;
-    }
-
-    public boolean onSexTypePrev(View view) {
-        popFragment();
         return true;
     }
 
     public boolean onEncCondomUseNext(View view) {
         int ejaculationQnsCount=0;
         for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
-
             switch (LynxManager.decryptString(encSexType.getSex_type())) {
                 case "I sucked him":
                 case "I sucked her":
@@ -391,8 +278,8 @@ public class EncounterStartActivity extends AppCompatActivity {
             return true;
         }
         else{
-            EncounterNotesFragment fragEncNotes = new EncounterNotesFragment();
-            pushFragments("encounter", fragEncNotes, true);
+            EncounterDrunkStatusFragment fragEncDrunk = new EncounterDrunkStatusFragment();
+            pushFragments("encounter", fragEncDrunk, true);
             return true;
         }
     }
@@ -440,11 +327,6 @@ public class EncounterStartActivity extends AppCompatActivity {
         return true;
     }
 
-    public boolean onEncCondomUsePrev(View view) {
-        popFragment();
-        return true;
-    }
-
     public boolean onDrunkStatusNext(View view){
         RadioGroup RG_Drunk = (RadioGroup)findViewById(R.id.RG_drunkStatus);
         if(RG_Drunk.getCheckedRadioButtonId() == -1){
@@ -468,10 +350,6 @@ public class EncounterStartActivity extends AppCompatActivity {
         return true;
     }
 
-    public boolean onEncNotesPrev(View view) {
-        popFragment();
-        return true;
-    }
     public boolean showEditDetails(View view){
         EncounterSummaryEditFragment fragEncounterEdit = new EncounterSummaryEditFragment();
         pushFragments("encounter", fragEncounterEdit, true);
@@ -484,7 +362,6 @@ public class EncounterStartActivity extends AppCompatActivity {
     }
     public boolean onEncCondomUseEditNext(View view){
         for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
-
             switch (LynxManager.decryptString(encSexType.getSex_type())) {
                 case "I sucked him":
                 case "I sucked her":
@@ -535,7 +412,6 @@ public class EncounterStartActivity extends AppCompatActivity {
         LynxManager.activeEncounter.setEncounter_notes(LynxManager.encryptString(encNotes));
         TextView drunk = (TextView)findViewById(R.id.drunk);
         LynxManager.activeEncounter.setIs_drug_used(LynxManager.encryptString(drunk.getText().toString()));
-
         for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
 
             switch (LynxManager.decryptString(encSexType.getSex_type())) {
@@ -607,7 +483,6 @@ public class EncounterStartActivity extends AppCompatActivity {
         TrackHelper.track().event("Encounter","Add").name("New Encounter Added").with(tracker);
         int anal_badge_cause_count = 0;
         for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
-            //Log.v("condomUseText",LynxManager.decryptString(encSexType.getSex_type())+"--"+encSexType.getCondom_use());
             encSexType.setEncounter_id(encounterID);
             db.createEncounterSexType(encSexType);
             if(encSexType.getCondom_use().equals("Condom used")){
@@ -615,7 +490,6 @@ public class EncounterStartActivity extends AppCompatActivity {
                     anal_badge_cause_count++;
                 }
             }
-            //Log.v("Encounter Created", "Encounter ID : " + encounterID);
         }
         int shown = 0;
         if(db.getEncountersCount()==1){
@@ -653,9 +527,6 @@ public class EncounterStartActivity extends AppCompatActivity {
         // Adding User Badge : Magnum Badge //
         int distinct_condom_used_times = 0;
         for (Encounter encounter:db.getAllEncounters()){
-            /*if(db.getEncSexTypeCountByEncIDandCondomStatus(encounter.getEncounter_id(),"Condom used")>0){
-                distinct_condom_used_times++;
-            }*/
             for(EncounterSexType encounterSexType:db.getAllEncounterSexTypes(encounter.getEncounter_id())){
                 if(LynxManager.decryptString(encounterSexType.getSex_type()).equals("We fucked") || LynxManager.decryptString(encounterSexType.getSex_type()).equals("I bottomed") || LynxManager.decryptString(encounterSexType.getSex_type()).equals("I topped")){
                     if(encounterSexType.getCondom_use().equals("Condom used")){
@@ -665,7 +536,6 @@ public class EncounterStartActivity extends AppCompatActivity {
                 }
             }
         }
-        Log.v("distinctCondomUsedTimes", String.valueOf(distinct_condom_used_times));
         if(distinct_condom_used_times==5){
             BadgesMaster magnum_badge = db.getBadgesMasterByName("Magnum");
             UserBadges magnumBadge = new UserBadges(magnum_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,magnum_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
@@ -739,7 +609,6 @@ public class EncounterStartActivity extends AppCompatActivity {
                     if(diff<30){
                         partnersCount++;
                     }
-                    //Log.v("PartnerDiff",currentPartner.getCreated_at()+" - "+partner.getCreated_at()+"->"+diff);
                 }
 
             }
@@ -770,14 +639,9 @@ public class EncounterStartActivity extends AppCompatActivity {
         LynxManager.isNewPartnerEncounter= false;
         EncounterLoggedFragment fragEncounterLogged = new EncounterLoggedFragment();
         pushFragments("encounter", fragEncounterLogged, true);
-        // finish();
         return true;
     }
 
-    public boolean onEncSummPrev(View view) {
-        popFragment();
-        return true;
-    }
     public boolean newPartnerLoggedNext(View view) {
         EncounterSexReportFragment fragEncounterSexReport = new EncounterSexReportFragment();
         pushFragments("encounter", fragEncounterSexReport, true);
@@ -791,9 +655,6 @@ public class EncounterStartActivity extends AppCompatActivity {
     }
     public boolean onSexReportNo(View view) {
         if(drug_frag){
-            /*encounter_drug_report fragEncounterDrugReport = new encounter_drug_report();
-            pushFragments("encounter", fragEncounterDrugReport, true);*/
-            /*Drug Report question screen removed*/
             EncounterDrugContentFragment fragNewEncounterDrug = new EncounterDrugContentFragment();
             pushFragments("encounter", fragNewEncounterDrug, true);
             LynxManager.notificationActions =null;
@@ -829,8 +690,6 @@ public class EncounterStartActivity extends AppCompatActivity {
                 isAlcoholSelected = true;
                 LynxManager.curDurgUseID = -1;
             }
-
-            ////Log.v("Drug Info Next", drugName + " - " + drugName.equals(searchString));
             LynxManager.setActiveUserDrugUse(userDrugUse);
         }
 

@@ -23,8 +23,6 @@ public class EncounterLoggedFragment extends Fragment {
     public EncounterLoggedFragment() {
         // Required empty public constructor
     }
-    TextView thankyou,encloggedText;
-    Button newPartnerLoggedNext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,12 +34,9 @@ public class EncounterLoggedFragment extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        newPartnerLoggedNext = (Button)view.findViewById(R.id.newPartnerLoggedNext);
-        newPartnerLoggedNext.setTypeface(tf_bold);
-        thankyou = (TextView)view.findViewById(R.id.thankyou);
-        thankyou.setTypeface(tf_bold);
-        encloggedText = (TextView)view.findViewById(R.id.encloggedText);
-        encloggedText.setTypeface(tf);
+        ((Button)view.findViewById(R.id.newPartnerLoggedNext)).setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.thankyou)).setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.encloggedText)).setTypeface(tf);
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
 		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));

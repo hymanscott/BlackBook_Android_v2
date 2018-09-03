@@ -34,9 +34,7 @@ public class EncounterWeeklyCheckinPrep extends Fragment {
         // Required empty public constructor
     }
 
-    TextView frag_title,taking_prep,prepDays,textView8;
-    Button checkin_prep_next;
-    RadioButton taking_prep_yes,taking_prep_no;
+    TextView prepDays;
     RelativeLayout prep_parent;
     LinearLayout last7daysLayout;
     RadioGroup taking_prep_rg;
@@ -49,20 +47,14 @@ public class EncounterWeeklyCheckinPrep extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        frag_title = (TextView) view.findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf_bold);
-        taking_prep = (TextView) view.findViewById(R.id.taking_prep);
-        taking_prep.setTypeface(tf);
-        textView8 = (TextView) view.findViewById(R.id.textView8);
-        textView8.setTypeface(tf);
+        ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView) view.findViewById(R.id.taking_prep)).setTypeface(tf);
+        ((TextView) view.findViewById(R.id.textView8)).setTypeface(tf);
         prepDays = (TextView) view.findViewById(R.id.prepDays);
         prepDays.setTypeface(tf);
-        checkin_prep_next = (Button) view.findViewById(R.id.checkin_prep_next);
-        checkin_prep_next.setTypeface(tf_bold);
-        taking_prep_yes = (RadioButton) view.findViewById(R.id.taking_prep_yes);
-        taking_prep_yes.setTypeface(tf);
-        taking_prep_no = (RadioButton) view.findViewById(R.id.taking_prep_no);
-        taking_prep_no.setTypeface(tf);
+        ((Button) view.findViewById(R.id.checkin_prep_next)).setTypeface(tf_bold);
+        ((RadioButton) view.findViewById(R.id.taking_prep_yes)).setTypeface(tf);
+        ((RadioButton) view.findViewById(R.id.taking_prep_no)).setTypeface(tf);
 
         taking_prep_rg = (RadioGroup) view.findViewById(R.id.taking_prep_rg);
         last7daysLayout = (LinearLayout) view.findViewById(R.id.last7daysLayout);

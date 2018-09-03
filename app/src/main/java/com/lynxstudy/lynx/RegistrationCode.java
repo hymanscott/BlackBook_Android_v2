@@ -15,8 +15,6 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.piwik.sdk.Tracker;
-import org.piwik.sdk.extra.TrackHelper;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -26,7 +24,6 @@ public class RegistrationCode extends Activity {
     Typeface tf,tf_bold;
     Button BT_Submit;
     EditText ET_RegCode;
-    Tracker tracker;
     private String regCode ="";
 
     @Override
@@ -65,10 +62,6 @@ public class RegistrationCode extends Activity {
                 }
             }
         });
-
-        /*tracker = ((lynxApplication) getApplication()).getTracker();
-        tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
-        TrackHelper.track().screen("/Registration").title("Onboarding").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);*/
     }
     /**
      * Async task class to get json by making HTTP call
@@ -122,7 +115,6 @@ public class RegistrationCode extends Activity {
             if (registrationResult != null) {
                 try {
                     JSONObject jsonObj = new JSONObject(registrationResult);
-                    Log.v("registrationResult",registrationResult);
                     // Getting JSON Array node
                     String is_error = jsonObj.getString("is_error");
                     String message = jsonObj.getString("message");

@@ -41,7 +41,6 @@ import java.util.regex.Pattern;
 
 public class EncounterNewPartner extends AppCompatActivity {
     DatabaseHelper db;
-    List<Integer> rating_values = new ArrayList<Integer>();
     List<Integer> rating_field_id = new ArrayList<Integer>();
 
     @Override
@@ -50,16 +49,6 @@ public class EncounterNewPartner extends AppCompatActivity {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-
-       /* // Custom Action Bar //
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
-        getSupportActionBar().setCustomView(cView);
-        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
-        ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
-        viewProfile.setVisibility(View.INVISIBLE);*/
-
-
         rating_field_id.add(1);
         rating_field_id.add(2);
         rating_field_id.add(3);
@@ -102,24 +91,10 @@ public class EncounterNewPartner extends AppCompatActivity {
         imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
 
         ft.replace(android.R.id.content, fragment);
-        if (addToStack == true)
+        if (addToStack)
             ft.addToBackStack(null);
         ft.commit();
 
-
-    }
-
-    /*
-    * remove the fragment to the FrameLayout
-    */
-    public void removeFragments(String tag, android.support.v4.app.Fragment fragment) {
-
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction ft = manager.beginTransaction();
-
-        ft.remove(fragment);
-        //    ft.addToBackStack(null);
-        ft.commit();
 
     }
 
@@ -127,7 +102,6 @@ public class EncounterNewPartner extends AppCompatActivity {
     public void popFragment() {
         FragmentManager fm = getSupportFragmentManager();
         int stackcount = fm.getBackStackEntryCount();
-        // Toast.makeText(Tabbar_activity.this, "Stack Count "+String.valueOf(stackcount), Toast.LENGTH_LONG).show();
         if (stackcount > 1)
             fm.popBackStack();
     }
@@ -153,18 +127,6 @@ public class EncounterNewPartner extends AppCompatActivity {
         return null;
     }
 
-    public String getVersion() {
-        String versionName = "Version not found";
-
-        try {
-            versionName = this.getPackageManager().getPackageInfo(this.getPackageName(), 0).versionName;
-            Log.i("Version", "Version Name: " + versionName);
-        } catch (PackageManager.NameNotFoundException e) {
-            // TODO Auto-generated catch block
-            Log.e("Version", "Exception Version Name: " + e.getLocalizedMessage());
-        }
-        return versionName;
-    }
     @Override
     public void onStart() {
         super.onStart();
@@ -175,7 +137,7 @@ public class EncounterNewPartner extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        if (LynxManager.onPause == true){
+        if (LynxManager.onPause){
             Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);
             startActivity(lockscreen);
         }
@@ -232,7 +194,6 @@ public class EncounterNewPartner extends AppCompatActivity {
     }
 
     public boolean onContactInfoNext(View view) {
-        /*NewPartnerNotesFragment fragNewPartnerNotes = new NewPartnerNotesFragment();*/
         NewPartnerRatingsFragment fragPartnerRatings = new NewPartnerRatingsFragment();
         // Contact info validation
         EditText newPartner_emailET = (EditText) findViewById(R.id.newPartnerEmail);
@@ -302,7 +263,6 @@ public class EncounterNewPartner extends AppCompatActivity {
     }
 
     public boolean onPartnerNotesNext(View view) {
-        /*NewPartnerRatingsFragment fragPartnerRatings = new NewPartnerRatingsFragment();*/
         NewPartnerSummaryFragment fragPartnerSummary = new NewPartnerSummaryFragment();
         String partnerNotes = String.valueOf(((EditText) findViewById(R.id.partnerNotes)).getText());
         LynxManager.getActivePartnerContact().setPartner_notes(partnerNotes);
@@ -311,7 +271,6 @@ public class EncounterNewPartner extends AppCompatActivity {
     }
 
     public boolean onPartnerRatingsNext(View view) {
-        /*NewPartnerSummaryFragment fragPartnerSummary = new NewPartnerSummaryFragment();*/
         NewPartnerNotesFragment fragNewPartnerNotes = new NewPartnerNotesFragment();
         TextView ratingField1 = (TextView)findViewById(R.id.newPartner_rate1);
         String ratingFieldValue1 = ratingField1.getText().toString();
@@ -515,7 +474,6 @@ public class EncounterNewPartner extends AppCompatActivity {
         LynxManager.getActivePartnerContact().setPartner_contact_id(partner_contact_ID);
 
         // Adding To primary partner table
-
         String partner_trpe = LynxManager.decryptString(LynxManager.getActivePartnerContact().getPartner_type());
         if(partner_trpe.equals("Primary")){
             UserPrimaryPartner priPartner = new UserPrimaryPartner(LynxManager.getActiveUserPrimaryPartner().getPrimarypartner_id(),
@@ -531,8 +489,6 @@ public class EncounterNewPartner extends AppCompatActivity {
             partnerRating.setPartner_id(partner_ID);
             int partner_rating_ID = db.createPartnerRating(partnerRating);
             LynxManager.getActivePartnerRating().get(i++).setPartner_rating_id(partner_rating_ID);
-
-            //Log.v("Adding Partner", partner_ID + "  " + partner_rating_ID + " " + i);
         }
 
         EncounterChoosePartnerFragment choosePartner = new EncounterChoosePartnerFragment();
@@ -541,11 +497,6 @@ public class EncounterNewPartner extends AppCompatActivity {
 
         pushFragments("Encounter", fragnewpartnerLogged, true);
         LynxManager.isNewPartnerEncounter = true;
-        return true;
-    }
-
-    public boolean onPartnerSummaryPrev(View view) {
-        popFragment();
         return true;
     }
 

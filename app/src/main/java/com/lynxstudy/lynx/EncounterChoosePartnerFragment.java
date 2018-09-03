@@ -34,8 +34,6 @@ public class EncounterChoosePartnerFragment extends Fragment {
 
 
     DatabaseHelper db;
-    TextView newEncounter,textView12;
-    Button addNewPartner,next,revise;
     public EncounterChoosePartnerFragment() {
         // Required empty public constructor
     }
@@ -50,13 +48,9 @@ public class EncounterChoosePartnerFragment extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        newEncounter = (TextView)rootview.findViewById(R.id.newEncounter);
-        newEncounter.setTypeface(tf_bold);
-        textView12 = (TextView)rootview.findViewById(R.id.textView12);
-        textView12.setTypeface(tf);
-
-        addNewPartner = (Button)rootview.findViewById(R.id.addNewPartner);
-        addNewPartner.setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.newEncounter)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.textView12)).setTypeface(tf);
+        ((Button)rootview.findViewById(R.id.addNewPartner)).setTypeface(tf_bold);
         final TableLayout partnerTable = (TableLayout) rootview.findViewById(R.id.partnerTable);
         partnerTable.removeAllViews();
 
@@ -88,7 +82,6 @@ public class EncounterChoosePartnerFragment extends Fragment {
                     TextView partner_Name = new TextView(getActivity());
                     RatingBar partner_Rating_Bar = new RatingBar(getActivity(), null, android.R.attr.ratingBarStyleIndicator);
                     TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f);
-                    /*TextView partner_date = new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);*/
                     partner_Name.setText(LynxManager.decryptString(partner.getNickname()));
                     partner_Name.setLayoutParams(params);
                     partner_Name.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);

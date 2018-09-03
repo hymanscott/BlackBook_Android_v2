@@ -85,21 +85,16 @@ public class BaselineActivity extends AppCompatActivity {
 
             // Inflate the layout for this fragment
             View view = inflater.inflate(R.layout.fragment_baseline_intro, container, false);
-            TextView textView8 =(TextView)view.findViewById(R.id.textView8);
-            TextView textView9 =(TextView)view.findViewById(R.id.textView9);
-            TextView textView10 =(TextView)view.findViewById(R.id.textView10);
-            TextView textView11 =(TextView)view.findViewById(R.id.textView11);
-            Button next =(Button)view.findViewById(R.id.next);
             //Type face
             Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                     "fonts/Roboto-Regular.ttf");
             Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                     "fonts/Roboto-Bold.ttf");
-            textView8.setTypeface(tf_bold);
-            textView9.setTypeface(tf);
-            textView10.setTypeface(tf);
-            textView11.setTypeface(tf);
-            next.setTypeface(tf_bold);
+            ((TextView)view.findViewById(R.id.textView8)).setTypeface(tf_bold);
+            ((TextView)view.findViewById(R.id.textView9)).setTypeface(tf);
+            ((TextView)view.findViewById(R.id.textView10)).setTypeface(tf);
+            ((TextView)view.findViewById(R.id.textView11)).setTypeface(tf);
+            ((Button)view.findViewById(R.id.next)).setTypeface(tf_bold);
             User_baseline_info userBaselineInfo = new User_baseline_info(LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString("")
                     , LynxManager.encryptString(""), LynxManager.encryptString(""),
                     "", "0%","","0%","",0,"No",LynxManager.getDateTime(),String.valueOf(R.string.statusUpdateNo),true);
@@ -160,20 +155,6 @@ public class BaselineActivity extends AppCompatActivity {
 
     }
 
-    /*
-    * remove the fragment to the FrameLayout
-    */
-    public void removeFragments(String tag, Fragment fragment) {
-
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction ft = manager.beginTransaction();
-
-        ft.remove(fragment);
-        //    ft.addToBackStack(null);
-        ft.commit();
-
-    }
-
     // pop Fragment
     public void popFragment() {
         FragmentManager fm = getSupportFragmentManager();
@@ -194,9 +175,7 @@ public class BaselineActivity extends AppCompatActivity {
         EditText HIVUnknownCount = (EditText) findViewById(R.id.unknownPartners);
         String strHIVNegativeCount = HIVNegativeCount.getText().toString();
         String strHIVPossitiveCount = HIVPossitiveCount.getText().toString();
-        int intHIVPossitiveCount = Integer.parseInt(strHIVPossitiveCount);
         String strHIVUnknownCount = HIVUnknownCount.getText().toString();
-        int intHIVUnknownCount = Integer.parseInt(strHIVUnknownCount);
         int score =1;
         String prep = "No";
         User_baseline_info userBaselineInfo = new User_baseline_info(LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(strHIVNegativeCount)
@@ -212,7 +191,7 @@ public class BaselineActivity extends AppCompatActivity {
         }else if(strHIVUnknownCount.isEmpty()){
             Toast.makeText(BaselineActivity.this,"Enter the number of unknown HIV partners",Toast.LENGTH_SHORT).show();
             HIVUnknownCount.requestFocus();
-        }else if(intHIVPossitiveCount<1 && intHIVUnknownCount<1){
+        }else if(Integer.parseInt(strHIVPossitiveCount)<1 && Integer.parseInt(strHIVUnknownCount)<1){
             RegistrationHavePriPartner priPartner = new RegistrationHavePriPartner();
             LynxManager.getActiveUserBaselineInfo().setNo_of_times_top_hivposs(LynxManager.encryptString("0"));
             LynxManager.getActiveUserBaselineInfo().setTop_condom_use_percent(LynxManager.encryptString("0 %"));
@@ -286,16 +265,19 @@ public class BaselineActivity extends AppCompatActivity {
         RadioGroup RG_BlackBook = (RadioGroup) findViewById(R.id.radio_blackbook);
         RadioGroup RG_RelationshipPeriod = (RadioGroup) findViewById(R.id.radio_relationshipPeriod);
         RadioGroup RG_Undetectable = (RadioGroup) findViewById(R.id.radio_undetectable);
-
+        String neg_count = LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getHiv_negative_count());
+        String pos_count = LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getHiv_positive_count());
+        String unk_count = LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getHiv_unknown_count());
+        int partners_count = Integer.parseInt(neg_count) + Integer.parseInt(pos_count) + Integer.parseInt(unk_count);
         if (partnerNickName.isEmpty()){
             Toast.makeText(this, "Please enter your partner's Nick name", Toast.LENGTH_SHORT).show();
             nick_name.requestFocus();
         }else if(RG_HIVstatus.getCheckedRadioButtonId()==-1 || RG_BlackBook.getCheckedRadioButtonId()==-1 || RG_Partner.getCheckedRadioButtonId()==-1){
             Toast.makeText(this, getResources().getString(R.string.answer_all_questions), Toast.LENGTH_SHORT).show();
         }else if(RG_HIVstatus.getCheckedRadioButtonId() == R.id.radio_hiv_und && RG_Undetectable.getCheckedRadioButtonId()==-1){
-            Toast.makeText(this, getResources().getString(R.string.answer_all_questions), Toast.LENGTH_SHORT).show();
-        }else if(RG_Partner.getCheckedRadioButtonId() == R.id.radio_partner_no && RG_RelationshipPeriod.getCheckedRadioButtonId()==-1){
-            Toast.makeText(this, getResources().getString(R.string.answer_all_questions), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.select_how_long_undetectable), Toast.LENGTH_SHORT).show();
+        }else if(RG_Partner.getCheckedRadioButtonId() == R.id.radio_partner_no && partners_count==1 && RG_RelationshipPeriod.getCheckedRadioButtonId()==-1){
+            Toast.makeText(this, getResources().getString(R.string.select_how_long_been_with_partner), Toast.LENGTH_SHORT).show();
         }
         else {
 
@@ -362,12 +344,6 @@ public class BaselineActivity extends AppCompatActivity {
 
             LynxManager.setActiveUserDrugUse(userDrugUse);
         }
-       /* LynxManager.lastSelectedDrugs.clear();
-        LynxManager.lastSelectedDrugs = LynxManager.selectedDrugs;
-        for (int i = 0; i < LynxManager.lastSelectedDrugs.size(); i++) {
-            Log.v("LastSelectedDrugs",LynxManager.lastSelectedDrugs.get(i));
-        }
-        */
         if (isAlcoholSelected)
             pushFragments("Home", regHeavyAlcoholUse, true);
         else
@@ -402,8 +378,6 @@ public class BaselineActivity extends AppCompatActivity {
             UserSTIDiag userSTIDiag = new UserSTIDiag(LynxManager.getActiveUser().getUser_id(), stiMaster.getSti_id(), LynxManager.encryptString("Yes"),String.valueOf(R.string.statusUpdateNo),true);
             LynxManager.setActiveUserSTIDiag(userSTIDiag);
         }
-        /*RegistrationSummary fragRegSummary = new RegistrationSummary();
-        pushFragments("home", fragRegSummary, true);*/
         finishBaseline();
         return true;
     }
@@ -537,11 +511,6 @@ public class BaselineActivity extends AppCompatActivity {
         return true;
     }
 
-    public boolean onRegSummaryConfirm(View view) throws JSONException {
-        finishBaseline();
-        return true;
-
-    }
     public void finishBaseline(){
         //Create BaseLine
         User_baseline_info activeBaselineInfo = LynxManager.getActiveUserBaselineInfo();
@@ -606,12 +575,8 @@ public class BaselineActivity extends AppCompatActivity {
                     partner_rating.setPartner_rating_id(partner_rating_ID);
                     LynxManager.setActivePartnerRating(partner_rating);
                 }
-
-                int i = 0;
                 for (PartnerRating partnerRating : LynxManager.getActivePartnerRating()) {
                     partnerRating.setPartner_id(pri_partner_partnerID);
-                    //int partner_rating_ID = db.createPartnerRating(partnerRating);
-                    //LynxManager.getActivePartnerRating().get(i++).setPartner_rating_id(partner_rating_ID);
                 }
             }
         }
@@ -650,9 +615,6 @@ public class BaselineActivity extends AppCompatActivity {
         String json_AlcoholUse = gson_alcoholUse.toJson(activeAlcoholUse);
         String get_query_string = LynxManager.getQueryString(json_AlcoholUse);
         new userAlcoholUseOnline(get_query_string).execute();
-
-        /*RegistrationSexproScore fragsexProScore = new RegistrationSexproScore();
-        pushFragments("Reg",fragsexProScore,true);*/
         Intent home = new Intent(this, BaselineSexproScoreActivity.class);
         startActivity(home);
         finish();
@@ -684,8 +646,6 @@ public class BaselineActivity extends AppCompatActivity {
             pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             pDialog.setIndeterminate(true);
             pDialog.setProgress(0);
-
-            //pDialog.show();
         }
 
         @Override
@@ -700,7 +660,7 @@ public class BaselineActivity extends AppCompatActivity {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">BaselineResult " + jsonBaseLineStr);
+            //Log.d("Response: ", ">BaselineResult " + jsonBaseLineStr);
             userBaseLineResult = jsonBaseLineStr;
             pDialog.setProgress(100);
             return null;
@@ -710,10 +670,6 @@ public class BaselineActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            // Dismiss the progress dialog
-            /*if (pDialog.isShowing())
-                pDialog.dismiss(); */
-
             if (userBaseLineResult != null) {
                 try {
                     JSONObject jsonObj = new JSONObject(userBaseLineResult);
@@ -722,21 +678,17 @@ public class BaselineActivity extends AppCompatActivity {
                     boolean is_error = jsonObj.getBoolean("is_error");
                     //Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
                     if (is_error) {
-                        Log.d("Response: ", "> UserBaseLineError. " + jsonObj.getString("message"));
+                        //Log.d("Response: ", "> UserBaseLineError. " + jsonObj.getString("message"));
                     } else {
-                        // Toast.makeText(getApplication().getBaseContext(),"User Baseline Info Added", Toast.LENGTH_SHORT).show();
-
-                        // updateBy(baselineID,userID,status)
                         // Need to update score immediately after this activity finishes off. Hence Not Updating the status_update field here.
                         db.updateUserBaselineInfoByStatus(LynxManager.getActiveUserBaselineInfo().getBaseline_id(), LynxManager.getActiveUser().getUser_id(), String.valueOf(R.string.statusUpdateNo));
 
                     }
-                    // looping through All Contacts
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
 
 
@@ -778,7 +730,7 @@ public class BaselineActivity extends AppCompatActivity {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">PrimaryPartner " + jsonPrimaryPartnerStr);
+            //Log.d("Response: ", ">PrimaryPartner " + jsonPrimaryPartnerStr);
             userPrimaryPartnerResult = jsonPrimaryPartnerStr;
             return null;
         }
@@ -787,29 +739,20 @@ public class BaselineActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            // Dismiss the progress dialog
-            /*if (pDialog.isShowing())
-                pDialog.dismiss(); */
-
             if (userPrimaryPartnerResult != null) {
                 try {
                     JSONObject jsonObj = new JSONObject(userPrimaryPartnerResult);
-
-                    // Getting JSON Array node
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    // Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
                     if (is_error) {
-                        Log.d("Response: ", "> UserPrimaryPartnerError. " + jsonObj.getString("message"));
+                        //Log.d("Response: ", "> UserPrimaryPartnerError. " + jsonObj.getString("message"));
                     } else {
-                        //Toast.makeText(getApplication().getBaseContext(),"User Primary Partner Added", Toast.LENGTH_SHORT).show();
                         db.updatePrimaryPartnerbyStatus(LynxManager.getActiveUserPrimaryPartner().getPrimarypartner_id(), LynxManager.getActiveUser().getUser_id(), String.valueOf(R.string.statusUpdateYes));
                     }
-                    // looping through All Contacts
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
 
 
@@ -845,7 +788,7 @@ public class BaselineActivity extends AppCompatActivity {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response:Druguse ", ">DrugUse " + jsonDrugUseStr);
+            //Log.d("Response:Druguse ", ">DrugUse " + jsonDrugUseStr);
             userDrugUseResult = jsonDrugUseStr;
             return null;
         }
@@ -858,7 +801,7 @@ public class BaselineActivity extends AppCompatActivity {
                     JSONObject jsonObj = new JSONObject(userDrugUseResult);
                     boolean is_error = jsonObj.getBoolean("is_error");
                     if (is_error) {
-                        Log.d("Response: ", "> UserDrugUseError. " + jsonObj.getString("message"));
+                        //Log.d("Response: ", "> UserDrugUseError. " + jsonObj.getString("message"));
                     } else {
                         int druguse_id = Integer.parseInt(jsonObj.getString("id"));
                         db.updateDrugUsesByStatus(druguse_id, String.valueOf(R.string.statusUpdateYes));
@@ -867,7 +810,7 @@ public class BaselineActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
     }
@@ -901,7 +844,7 @@ public class BaselineActivity extends AppCompatActivity {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">STIDiag " + jsonSTIDiagStr);
+            //Log.d("Response: ", ">STIDiag " + jsonSTIDiagStr);
             userSTIDiagResult = jsonSTIDiagStr;
             return null;
         }
@@ -914,7 +857,7 @@ public class BaselineActivity extends AppCompatActivity {
                     JSONObject jsonObj = new JSONObject(userSTIDiagResult);
                     boolean is_error = jsonObj.getBoolean("is_error");
                     if (is_error) {
-                        Log.d("Response: ", "> UserSTIDiagError. " + jsonObj.getString("message"));
+                        //Log.d("Response: ", "> UserSTIDiagError. " + jsonObj.getString("message"));
                     } else {
                         int stiDiag_id = Integer.parseInt(jsonObj.getString("id"));
                         db.updateSTIDiagsByStatus(stiDiag_id, String.valueOf(R.string.statusUpdateYes));
@@ -923,7 +866,7 @@ public class BaselineActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
 
@@ -959,7 +902,7 @@ public class BaselineActivity extends AppCompatActivity {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">AlcoholUse " + jsonAlcoholUseStr);
+            //Log.d("Response: ", ">AlcoholUse " + jsonAlcoholUseStr);
             userAlcoholUseResult = jsonAlcoholUseStr;
             return null;
         }
@@ -972,7 +915,7 @@ public class BaselineActivity extends AppCompatActivity {
                     JSONObject jsonObj = new JSONObject(userAlcoholUseResult);
                     boolean is_error = jsonObj.getBoolean("is_error");
                     if (is_error) {
-                        Log.d("Response: ", "> UserAlcoholUseError. " + jsonObj.getString("message"));
+                        //Log.d("Response: ", "> UserAlcoholUseError. " + jsonObj.getString("message"));
                     } else {
 
                         int alcUse_id = Integer.parseInt(jsonObj.getString("id"));
@@ -982,7 +925,7 @@ public class BaselineActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
     }

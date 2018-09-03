@@ -39,12 +39,9 @@ public class RegistrationEdit extends Fragment {
 
     public RegistrationEdit() {
     }
-    TextView frag_title,tv,confirm_sec_qn;
+    TextView tv,confirm_sec_qn;
     EditText regFirstName,regLastName,regPhone,confirm_dob,confirm_email,confirm_password,confirm_sec_ans,c_passcode;
-    Button save;
-
     private PopupWindow pw;
-    private boolean expanded;
     public static boolean[] checkSelected;
     RelativeLayout layout1;
     View view1;
@@ -61,8 +58,7 @@ public class RegistrationEdit extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        frag_title = (TextView) view.findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf_bold);
+        ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
         confirm_dob = (EditText) view.findViewById(R.id.confirm_dob);
         confirm_dob.setTypeface(tf);
         tv = (TextView) view.findViewById(R.id.confirm_race);
@@ -83,8 +79,7 @@ public class RegistrationEdit extends Fragment {
         confirm_sec_ans.setTypeface(tf);
         c_passcode = (EditText) view.findViewById(R.id.c_passcode);
         c_passcode.setTypeface(tf);
-        save = (Button) view.findViewById(R.id.save);
-        save.setTypeface(tf_bold);
+        ((Button) view.findViewById(R.id.save)).setTypeface(tf_bold);
         layout1 = (RelativeLayout)view.findViewById(R.id.relativeLayout1);
 
         final Calendar myCalendar = Calendar.getInstance();

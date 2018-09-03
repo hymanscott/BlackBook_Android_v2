@@ -1,17 +1,12 @@
 package com.lynxstudy.lynx;
 
 import android.*;
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -29,14 +24,9 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.vision.text.Text;
 import com.google.gson.Gson;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.BadgesMaster;
@@ -64,7 +54,6 @@ import com.lynxstudy.model.UserRatingFields;
 import com.lynxstudy.model.UserSTIDiag;
 import com.lynxstudy.model.User_baseline_info;
 import com.lynxstudy.model.Users;
-import com.lynxstudy.model.Videos;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -75,10 +64,7 @@ import org.piwik.sdk.extra.TrackHelper;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -133,13 +119,10 @@ public class RegLogin extends AppCompatActivity {
         }
 
         int user_count = db.getUsersCount();
-       /* PrefManager prefManager = new PrefManager(this);
-        if (!prefManager.isFirstTimeLaunch()) {*/
             if (user_count > 0) {
                 int userBaselineInfoCount = db.getUserBaselineInfoCount();
                 List<Users> allUsers = db.getAllUsers();
                 LynxManager.setActiveUser(allUsers.get(0));
-                //Log.v("userBaselineInfoCount", String.valueOf(userBaselineInfoCount));
                 if (userBaselineInfoCount == 0) {
 
                     if (savedInstanceState == null) {
@@ -147,9 +130,6 @@ public class RegLogin extends AppCompatActivity {
                                 .add(R.id.container, new PlaceholderFragment())
                                 .commit();
                     }
-
-                /*RegistrationBaselineIntro regPrimaryPartner = new RegistrationBaselineIntro();
-                pushFragments("home", regPrimaryPartner, true);*/
                     TestingReminder testing_Reminder = db.getTestingReminderByFlag(1);
                     TestingReminder diary_Reminder = db.getTestingReminderByFlag(0);
                     Intent baseline;
@@ -172,12 +152,6 @@ public class RegLogin extends AppCompatActivity {
                             .commit();
                 }
             }
-        /*}else{
-            prefManager.setFirstTimeLaunch(false);
-            Intent appTour = new Intent(RegLogin.this,WelcomeActivity.class);
-            startActivity(appTour);
-            finish();
-        }*/
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
@@ -541,12 +515,7 @@ public class RegLogin extends AppCompatActivity {
         prepInformationList.add(prepinformation5);
         //Testing Instruction Entries
         List<TestingInstructions> testingInstructionsList = new ArrayList<TestingInstructions>();
-
-        // testing_instruction (testing_id,question,textAnswer,videoAnswer,pdfAnswer,)
         TestingInstructions instruction1 = new TestingInstructions(0,"OraQuick Instructional video", "","https://www.youtube.com/watch?v=010yO9iQYOc","");
-        /*TestingInstructions instruction2 = new TestingInstructions(0,"Anal swab Instructions", "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto\"></head><body><p style='font-size:20px;margin:16px 16px 0px 16px;color:#2E86EF;font-family:Roboto, sans-serif;'><b>Anal swab Instructions?</b></p><p style='font-size:16px;margin:16px 16px 0px 16px;font-family:Roboto, sans-serif;line-height:1.6'><i>Please carefully read the directions below before using the penile swab. Sample collection should not be painful or cause bleeding. If you experience either of these problems, please call us as soon as possible <a href='tel:14153276425'>415&minus;327&minus;6425</a></i></p><table cellpadding='5' style='font-size: 16px;color:#444444;margin:16px 16px 0px 16px;font-family:Roboto, sans-serif;'><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab1.jpg' width='100%' /></p></td><td><p style='text-align:left;'><b style='font-size:18px;line-height:1.3'>Getting started:</b><br/><br/>Step 1: Wash your hands with soap and water.<br /><br />Step 2: Either squat down on the toilet or lift one leg on the toilet, ledge, or chair.<br/><br/></p></td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align:text-top;' src='file:///android_asset/analswab2.jpg' width='100%' /></p></td><td> <p style='text-align:left;'><b style='font-size:18px;line-height:1.3'>Collecting the anal swab sample:</b><br /><br />Step 3: Open the swab. Twist off the cap and pull the swab out of the container.<br /><br />DO NOT throw away the plastic holder.<br /><br />Step 4: Step 4: Lift one cheek for easy access to your anus.<br/><br/></p></td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center;'><img style='margin-right:5px;margin-bottom:5px;vertical-align:text-top;' src='file:///android_asset/analswab4.jpg' width='100%' /></p></td><td style='text-align:center;vertical-align:top;'> <p style='text-align:left;line-height:1.3'>Step 5: Making sure not to touch the soft tip of the swab, insert the swab 1.5 inches into your anus.</td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center;'><img style='margin-right:5px;margin-bottom:5px;vertical-align:text-top;' src='file:///android_asset/analswab5.jpg' width='100%' /></p></td><td> <p style='text-align:left;line-height:1.3'>Step 6:The swab should be dry.DO NOT use water or lube while collecting the swab.<br /><br />Step 7: Rotate the swab in a circular motion for 5 to 10 seconds.</p></td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center;'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab6.jpg' width='100%'  /></p></td><td> <p style='text-align:left;line-height:1.3'>Step 8: Gently remove the swab.<br /><br />Step 9: Gently remove the swab, turning it in a circle as you pull it out.</p></td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align:text-top;' src='file:///android_asset/analswab3.jpg' width='100%' /></p></td><td> <p style='text-align:left;line-height:1.3'>Step 10: Place the swab back into the plastic holder.   Close it tightly to prevent leakage.<br /><br />  Step 11: Wash your hands with soap and water.<br /><br /><b style='font-size:18px;'>Mailing the swab:</b><br /><br/>Step 12:  Place the closed tub into the red plastic zip-lock bag. Seal the bag.<br /><br />Step 13: Place the sealed back into the return mailer, seal the envelope and drop in any mailbox within 72 hours of collecting the sample.<br /></p></td></tr></table></body></html>","","");
-        TestingInstructions instruction3 = new TestingInstructions(0,"Penile swab Instructions", "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto\"></head><body><p style='font-size:20px;margin:32px 16px 0px 16px;color:#2E86EF;font-family:Roboto, sans-serif;'><b>Penile swab Instructions</b></p><p style='font-size:16px;margin:16px 16px 0px 16px;font-family:Roboto, sans-serif;line-height:1.6'><i>Please carefully read the directions below before using the penile swab. Sample collection should not be painful or cause bleeding. If you experience either of these problems, please call us as soon as possible <a href='tel:14153276425'>415&minus;327&minus;6425</a></i></p><p style='color:#2E86FF;margin:32px 16px 0px 16px;font-size:16px;font-family:Roboto, sans-serif;line-height:1.6'><b>DO NOT pee for 2 hours before the sample collection</b></p><table cellpadding='5' style='font-size:16px;color: #444444;margin:16px 16px 0px 16px;font-family:Roboto, sans-serif;'><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab1.jpg' width='100%' /></p></td><td style='text-align:center;vertical-align:top;'><p style='text-align:left;line-height:1.3'><b style='font-size:18px;'>Getting started:</b><br/><br/>Step 1:  Wash your hands with soap and water.<br/><br/></p></td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab2.jpg' width='100%' /></p></td><td> <p style='text-align:left;'><b style='font-size:18px;line-height:1.3'>Collecting the penile swab sample:</b></br><br/>Step 2:Open the swab. Twist off the cap and pull the swab out of the container.<br/><br/>DO NOT throw away the plastic holder <br/><br/></p></td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab7.jpg' width='100%' /></p></td><td> <p style='text-align:left;line-height:1.3'>Step 3:  If needed, gently pull back your foreskin.<br/><br/>Making sure NOT to touch the soft tip of the swab, place the swab on the opening of your penis (the pee hole).</p><p style='text-align:left;line-height:1.3'>Step 4:  Gently roll the swab completely around the opening of your penis to get the best sample.<br/><br/>DO NOT stick the swab inside the opening of your penis.<br/><br/></p></td></tr><tr><td style='text-align:center;vertical-align:top;'><p style='text-align:center'><img style='margin-right:5px;margin-bottom:5px;vertical-align: text-top;' src='file:///android_asset/analswab3.jpg' width='100%' /></p></td><td> <p style='text-align:left;line-height:1.3'>Step 5:  Place the swab back into the plastic holder. Close it tightly to prevent leakage.<br/><br/>Step 6: Wash your hands with soap and water.<br/><br/><b style='font-size:18px;'>Mailing the swab:</b><br/><br/>Step 7:  Place the close tube into the red plastic zip lock bag. Seal the bag.<br/><br/>Step 8:Place the sealed bag into the return mailer, then seal the envelope and drop in any mailbox within 72 hours of collecting the sample<br/></p></td></tr></table></body></html>","","");
-        TestingInstructions instruction5 = new TestingInstructions(0,"Word Doc instruction","","","wordpress.docx");*/
         TestingInstructions instruction2 = new TestingInstructions(0,"Rectal Swab Instructions","","","rectal_swab_instructions.pdf");
         TestingInstructions instruction3 = new TestingInstructions(0,"Throat Swab Instructions","","","throat_swab_instructions.pdf");
         TestingInstructions instruction4 = new TestingInstructions(0,"Urine Collection Instructions","","","urine_collection_instructions.pdf");
@@ -683,24 +652,10 @@ public class RegLogin extends AppCompatActivity {
         imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
 
         ft.replace(R.id.container, fragment);
-        if (addToStack == true)
+        if (addToStack)
             ft.addToBackStack(null);
         ft.commit();
 
-
-    }
-
-    /*
-    * remove the fragment to the FrameLayout
-    */
-    public void removeFragments(String tag, Fragment fragment) {
-
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction ft = manager.beginTransaction();
-
-        ft.remove(fragment);
-        //    ft.addToBackStack(null);
-        ft.commit();
 
     }
 
@@ -861,9 +816,6 @@ public class RegLogin extends AppCompatActivity {
         } else if (password.isEmpty() || !rep_password.equals(password)) {
             Toast.makeText(RegLogin.this,"Password Mismatching",Toast.LENGTH_SHORT).show();
             pass.requestFocus();
-        } else if (rep_password.isEmpty() || !rep_password.equals(password)) {
-            Toast.makeText(RegLogin.this,"Password Mismatching",Toast.LENGTH_SHORT).show();
-            reppass.requestFocus();
         } else{
             LynxManager.getActiveUser().setEmail(LynxManager.encryptString(e_mail));
             LynxManager.getActiveUser().setPassword(LynxManager.encryptString(password));
@@ -901,9 +853,6 @@ public class RegLogin extends AppCompatActivity {
     }
 
     public boolean backToConfirmScreen (View view){
-        /*RegistrationConfirmFragment fragRegConfirmation = new RegistrationConfirmFragment();
-        pushFragments("home", fragRegConfirmation, true);*/
-
         EditText firstname = (EditText) findViewById(R.id.regFirstName);
         EditText lastname = (EditText) findViewById(R.id.regLastName);
         EditText phonenumber = (EditText) findViewById(R.id.regPhone);
@@ -1040,78 +989,6 @@ public class RegLogin extends AppCompatActivity {
         }
         return true;
     }
-    public boolean showRegistration_change_passcode(View view) {
-        //   registration_change_passcode fragChangePasscode = new registration_change_passcode();
-        //    pushFragments("home", fragChangePasscode, true);
-        return true;
-    }
-
-    public boolean change_passcode(View view) {
-        final EditText passcode = (EditText) findViewById(R.id.newPasscode);
-        final String strPasscode = passcode.getText().toString();
-        final EditText confrim_passcode = (EditText) findViewById(R.id.confirmNewPasscode);
-        final String strConfirmPasscode = confrim_passcode.getText().toString();
-        if (strPasscode.equals(strConfirmPasscode)) {
-            LynxManager.getActiveUser().setPasscode(LynxManager.encryptString(strPasscode));
-            int updateduser = db.updateUsers(LynxManager.getActiveUser());
-            LynxManager.getActiveUser().setUser_id(updateduser);
-            Users user_new = db.getUser(LynxManager.getActiveUser().getUser_id());
-            Intent lockscreen_pass = new Intent(this, PasscodeUnlockActivity.class);
-            startActivity(lockscreen_pass);
-        }
-        return true;
-    }
-
-
-    public void popAllFragment() {
-        // pop back stack all the way
-        final FragmentManager fm = getSupportFragmentManager();
-        int entryCount = fm.getBackStackEntryCount();
-        while (entryCount-- > 0) {
-            fm.popBackStackImmediate();
-        }
-    }
-
-    public Fragment getVisibleFragment() {
-        FragmentManager fragmentManager = this.getSupportFragmentManager();
-        List<Fragment> fragments = fragmentManager.getFragments();
-        for (Fragment fragment : fragments) {
-            if (fragment != null && fragment.isVisible())
-                return fragment;
-        }
-        return null;
-    }
-
-    public boolean revise_registration_confirm(View view) {
-        popFragment();
-        return true;
-    }
-
-    public boolean revise_drug_content(View view) {
-        popFragment();
-        return true;
-    }
-
-    public boolean onPrimaryPartnerPrev(View view) {
-        popFragment();
-        return true;
-    }
-
-    public boolean onHeavyAlcoholPrev(View view) {
-        popFragment();
-        return true;
-    }
-
-    public boolean onSTIInfoPrev(View view) {
-        popFragment();
-        return true;
-    }
-
-    public boolean onRegSummaryPrev(View view) {
-        popFragment();
-        return true;
-    }
-
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -1127,12 +1004,6 @@ public class RegLogin extends AppCompatActivity {
             Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                     "fonts/Roboto-Regular.ttf");
             View view = inflater.inflate(R.layout.fragment_reg_login, container, false);
-            /*TextView regloginIntroLable = (TextView)view.findViewById(R.id.regloginIntroLable);
-            regloginIntroLable.setTypeface(tf);
-            TextView textView2 = (TextView)view.findViewById(R.id.textView2);
-            textView2.setTypeface(tf);
-            Button registration = (Button)view.findViewById(R.id.registration);
-            registration.setTypeface(tf);*/
             TextView registration = (TextView)view.findViewById(R.id.registration);
             registration.setTypeface(tf);
             Button login = (Button)view.findViewById(R.id.login);
@@ -1143,10 +1014,6 @@ public class RegLogin extends AppCompatActivity {
             loginEmail.setTypeface(tf);
             EditText loginPassword = (EditText)view.findViewById(R.id.loginPassword);
             loginPassword.setTypeface(tf);
-            /*ImageView passicon = (ImageView)view.findViewById(R.id.passicon);
-            Bitmap icon = BitmapFactory.decodeResource(getActivity().getResources(),
-                    R.drawable.passicon);
-            passicon.setImageBitmap(crop(icon));*/
             // Piwik Analytics //
             // Added as event
             //TrackHelper.track().screen("/Login").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
@@ -1166,110 +1033,7 @@ public class RegLogin extends AppCompatActivity {
 
     }
 
-    /*public static Bitmap crop (Bitmap bitmap){
-
-        int height = bitmap.getHeight();
-        int width = bitmap.getWidth();
-        int[] empty = new int[width];
-        int[] buffer = new int[width];
-        Arrays.fill(empty,0);
-        int top = 0;
-        int left = 0;
-        int botton = height;
-        int right = width;
-
-        for (int y = 0; y < height; y++) {
-            bitmap.getPixels(buffer, 0, width, 0, y, width, 1);
-            if (!Arrays.equals(empty, buffer)) {
-                top = y;
-                break;
-            }
-        }
-
-        for (int y = height - 1; y > top; y--) {
-            bitmap.getPixels(buffer, 0, width, 0, y, width, 1);
-            if (!Arrays.equals(empty, buffer)) {
-                botton = y;
-                break;
-            }
-        }
-
-        int bufferSize = botton -top +1;
-        empty = new int[bufferSize];
-        buffer = new int[bufferSize];
-        Arrays.fill(empty,0);
-
-        for (int x = 0; x < width; x++) {
-            //bitmap.getPixels(buffer, 0, 1, x, top + 1, 1, bufferSize);
-            bitmap.getPixels(buffer, 0, width, 0, top, width, 1);
-            if (!Arrays.equals(empty, buffer)) {
-                left = x;
-                break;
-            }
-        }
-
-        for (int x = width - 1; x > left; x--) {
-            //bitmap.getPixels(buffer, 0, 1, x, top + 1, 1, bufferSize);
-            bitmap.getPixels(buffer, 0, 1, x, top , 1, bufferSize);
-            if (!Arrays.equals(empty, buffer)) {
-                right = x;
-                break;
-            }
-        }
-
-        Bitmap cropedBitmap = Bitmap.createBitmap(bitmap, left, top, right-left, botton-top);
-        return cropedBitmap;
-    }
-    public static Bitmap eraseColor(Bitmap src, int color) {
-        int width = src.getWidth();
-        int height = src.getHeight();
-        Bitmap b = src.copy(Bitmap.Config.ARGB_8888, true);
-        b.setHasAlpha(true);
-
-        int[] pixels = new int[width * height];
-        src.getPixels(pixels, 0, width, 0, 0, width, height);
-
-        for (int i = 0; i < width * height; i++) {
-            if (pixels[i] == color) {
-                pixels[i] = 0;
-            }
-        }
-
-        b.setPixels(pixels, 0, width, 0, 0, width, height);
-
-        return b;
-    }
-
-    private static Bitmap CropBitmapTransparency(Bitmap sourceBitmap)
-    {
-        int minX = sourceBitmap.getWidth();
-        int minY = sourceBitmap.getHeight();
-        int maxX = -1;
-        int maxY = -1;
-        for(int y = 0; y < sourceBitmap.getHeight(); y++)
-        {
-            for(int x = 0; x < sourceBitmap.getWidth(); x++)
-            {
-                int alpha = (sourceBitmap.getPixel(x, y) >> 24) & 255;
-                if(alpha > 0)   // pixel is not 100% transparent
-                {
-                    if(x < minX)
-                        minX = x;
-                    if(x > maxX)
-                        maxX = x;
-                    if(y < minY)
-                        minY = y;
-                    if(y > maxY)
-                        maxY = y;
-                }
-            }
-        }
-        if((maxX < minX) || (maxY < minY))
-            return null; // Bitmap is entirely transparent
-
-        // crop bitmap to non-transparent area and return:
-        return Bitmap.createBitmap(sourceBitmap, minX, minY, (maxX - minX) + 1, (maxY - minY) + 1);
-    }*/
+    /**/
 
     /**
      * Async task class to get json by making HTTP call
@@ -1314,7 +1078,6 @@ public class RegLogin extends AppCompatActivity {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            //Log.d("Response: ", "> " + jsonStr);
             registrationResult = jsonStr;
             return null;
         }
@@ -1334,24 +1097,18 @@ public class RegLogin extends AppCompatActivity {
                     // Getting JSON Array node
                     boolean is_error = jsonObj.getBoolean("is_error");
                     Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
-                    if (is_error) {
-                        //Log.d("Response: ", "> Registration Failed. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         LynxManager.getActiveUser().setStatus_update(String.valueOf(R.string.statusUpdateYes));
                         int user_local_id = db.createuser(LynxManager.getActiveUser());
                         int user_online_id = Integer.parseInt(jsonObj.getString("id"));
-                        int updated_id = db.updateUserId(user_local_id, user_online_id);
+                        db.updateUserId(user_local_id, user_online_id);
                         db.updateUserByStatus(user_online_id,String.valueOf(R.string.statusUpdateYes));
                         LynxManager.getActiveUser().setUser_id(user_online_id);
-                        //LynxManager.getActiveUser().setCreated_at(LynxManager.getDateTime());
                         LynxManager.getActiveUser().setCreated_at(db.getUserCreatedAt(user_online_id));
-                        /*RegistrationBaselineIntro regPrimaryPartner = new RegistrationBaselineIntro();
-                        pushFragments("Home", regPrimaryPartner, true);*/
                         Intent reminders = new Intent(RegLogin.this, RemindersActivity.class);
                         startActivity(reminders);
                         finish();
                     }
-                    // looping through All Contacts
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -1401,7 +1158,6 @@ public class RegLogin extends AppCompatActivity {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            //Log.d("Response: ", ">loginResult " + jsonStr);
             loginResult = jsonStr;
             pDialog.setProgress(50);
             // Dismiss the progress dialog
@@ -1419,9 +1175,7 @@ public class RegLogin extends AppCompatActivity {
                     // Getting JSON Array node
                     boolean is_error = jsonObj.getBoolean("is_error");
                     Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
-                    if (is_error) {
-                        //Log.d("Response: ", "> login Failed. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
 
                         // Getting User
                         String userInfo = jsonObj.getString("userInfo");
@@ -1470,9 +1224,7 @@ public class RegLogin extends AppCompatActivity {
                             db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), user_baseline_object.getInt("sexpro_score"),user_baseline_object.getString("sexpro_prep"), user_baseline_object.getString("sexpro_calculated_date"), String.valueOf(R.string.statusUpdateNo));
                             db.updateUserBaselineCreatedDate(user_baseline_object.getString("created_at"),user_baseline_object.getInt("baseline_id"));
                             userBaselineInfo.setCreated_at(db.getUserBaselineCreatedAtByUserId(LynxManager.getActiveUser().getUser_id()));
-                            //Log.v("BaselineCreatedDate",userBaselineInfo.getCreated_at());
                             LynxManager.setActiveUserBaselineInfo(userBaselineInfo);
-                            //Log.v("BaselineCreatedDate",LynxManager.getActiveUserBaselineInfo().getCreated_at());
 
                         }
 
@@ -1494,7 +1246,6 @@ public class RegLogin extends AppCompatActivity {
                             userPrimaryPartner.setPrimarypartner_id(primaryPartnerID);
                             userPrimaryPartner.setCreated_at(db.getPriPartnerCreatedAtbyID(primaryPartnerID));
                             LynxManager.setActiveUserPrimaryPartner(userPrimaryPartner);
-                            //Log.v("Login : ","PrimaryPartner Created");
                         }
 
                         // Encounter Sex Info
@@ -1536,7 +1287,6 @@ public class RegLogin extends AppCompatActivity {
                         JSONArray testingReqInfo = parentObject.getJSONArray("HomeTestingRequest");
                         for(int n = 0; n <testingReqInfo.length(); n++) {
                             JSONObject testingReqObject = testingReqInfo.getJSONObject(n);
-                            ////Log.v("jsonTestingReqInfo", testingReqObject.getString(""));
                             HomeTestingRequest testingRequest = new HomeTestingRequest(LynxManager.getActiveUser().getUser_id(),
                                     testingReqObject.getInt("testing_id"),
                                     LynxManager.encryptString(testingReqObject.getString("address")),
@@ -1552,7 +1302,6 @@ public class RegLogin extends AppCompatActivity {
                         JSONArray partnerRatingInfo = parentObject.getJSONArray("PartnerRating");
                         for(int n = 0; n <partnerRatingInfo.length(); n++) {
                             JSONObject partnerRatingObject = partnerRatingInfo.getJSONObject(n);
-                            //Log.v("partnerRatingInfo", partnerRatingObject.getString(""));
                             PartnerRating partner_rating = new PartnerRating(LynxManager.getActiveUser().getUser_id(),
                                     partnerRatingObject.getInt("partner_id"),
                                     partnerRatingObject.getInt("user_rating_field_id"),
@@ -1564,7 +1313,6 @@ public class RegLogin extends AppCompatActivity {
                         JSONArray partnerContactInfo = parentObject.getJSONArray("PartnerContact");
                         for(int n = 0; n <partnerContactInfo.length(); n++) {
                             JSONObject partnerContactObject = partnerContactInfo.getJSONObject(n);
-                            //Log.v("partnerContactInfo", partnerContactObject.getString(""));
                             // Pending : relationShipPeriod, POP
                             PartnerContact PartnerContact = new PartnerContact(partnerContactObject.getInt("partner_id"),
                                     partnerContactObject.getInt("user_id"),
@@ -1582,14 +1330,13 @@ public class RegLogin extends AppCompatActivity {
                                     LynxManager.encryptString(partnerContactObject.getString("relationship_period")),
                                     LynxManager.encryptString(partnerContactObject.getString("partner_notes")),
                                     String.valueOf(R.string.statusUpdateYes),true);
-                            int partner_contact_ID = db.createPartnerContact(PartnerContact);
+                            db.createPartnerContact(PartnerContact);
                         }
 
                         //Partner
                         JSONArray partnersInfo = parentObject.getJSONArray("Partner");
                         for(int n = 0; n <partnersInfo.length(); n++) {
                             JSONObject partnersObject = partnersInfo.getJSONObject(n);
-                            //Log.v("partnersInfo", partnersObject.getString(""));
                             Partners partner = new Partners(partnersObject.getInt("partner_id"), LynxManager.getActiveUser().getUser_id(),
                                     LynxManager.encryptString(partnersObject.getString("nickname")),
                                     LynxManager.encryptString(partnersObject.getString("gender")),
@@ -1598,14 +1345,13 @@ public class RegLogin extends AppCompatActivity {
                                     LynxManager.encryptString(partnersObject.getString("is_added_to_partners")),
                                     String.valueOf(R.string.statusUpdateYes),true);
                             partner.setIs_active(partnersObject.getInt("is_active"));
-                            int partner_ID = db.createPartnerWithID(partner);
+                            db.createPartnerWithID(partner);
                         }
 
                         //TestingReminder
                         JSONArray testingRemindersInfo = parentObject.getJSONArray("TestingReminder");
                         for(int n = 0; n <testingRemindersInfo.length(); n++) {
                             JSONObject testingRemindersObject = testingRemindersInfo.getJSONObject(n);
-                            //Log.v("testingRemindersInfo", testingRemindersObject.getString(""));
                             TestingReminder testingReminder = new TestingReminder(LynxManager.getActiveUser().getUser_id(),
                                     testingRemindersObject.getInt("reminder_flag"), LynxManager.encryptString(testingRemindersObject.getString("notification_day")),
                                     LynxManager.encryptString(testingRemindersObject.getString("notification_time")),
@@ -1618,7 +1364,6 @@ public class RegLogin extends AppCompatActivity {
                         JSONArray userRatingFieldInfo = parentObject.getJSONArray("UserRatingField");
                         for(int n = 0; n <userRatingFieldInfo.length(); n++) {
                             JSONObject userRatingFieldObject = userRatingFieldInfo.getJSONObject(n);
-                            //Log.v("userRatingFieldInfo", userRatingFieldObject.getString(""));
                             UserRatingFields userRatingFields = new UserRatingFields(LynxManager.getActiveUser().getUser_id(),
                                     LynxManager.decryptString(userRatingFieldObject.getString("name")), String.valueOf(R.string.statusUpdateYes),true);
                             db.createUserRatingField(userRatingFields);
@@ -1628,7 +1373,6 @@ public class RegLogin extends AppCompatActivity {
                         JSONArray userStiInfo = parentObject.getJSONArray("UserStiDiagnosis");
                         for(int n = 0; n <userStiInfo.length(); n++) {
                             JSONObject userStiObject = userStiInfo.getJSONObject(n);
-                            //Log.v("userStiInfo", userStiObject.getString(""));
                             UserSTIDiag userSTIDiag = new UserSTIDiag(LynxManager.getActiveUser().getUser_id(),
                                     userStiObject.getInt("sti_id"), LynxManager.encryptString(userStiObject.getString("is_baseline")),String.valueOf(R.string.statusUpdateYes),true);
                             int id = db.createSTIDiag(userSTIDiag);
@@ -1641,7 +1385,6 @@ public class RegLogin extends AppCompatActivity {
                         JSONArray userAlcoholUseInfo = parentObject.getJSONArray("UserAlcholUsage");
                         for(int n = 0; n <userAlcoholUseInfo.length(); n++) {
                             JSONObject userAlcoholUseObject = userAlcoholUseInfo.getJSONObject(n);
-                            //Log.v("userAlcoholUseInfo", userAlcoholUseObject.getString(""));
                             UserAlcoholUse userAlcoholUse = new UserAlcoholUse(userAlcoholUseObject.getInt("user_drug_usage_id"),
                                     LynxManager.getActiveUser().getUser_id(),
                                     LynxManager.encryptString(userAlcoholUseObject.getString("no_alcohol_in_week")),
@@ -1656,7 +1399,6 @@ public class RegLogin extends AppCompatActivity {
                         JSONArray testingHistoryInfo = parentObject.getJSONArray("TestingHistory");
                         for(int n = 0; n <testingHistoryInfo.length(); n++) {
                             JSONObject testingHistoryObject = testingHistoryInfo.getJSONObject(n);
-                            //Log.v("testingHistoryInfo", testingHistoryObject.getString(""));
                             TestingHistory history = new TestingHistory(testingHistoryObject.getInt("testing_id"),
                                     LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(testingHistoryObject.getString("testing_date")),
                                     String.valueOf(R.string.statusUpdateYes), true);
@@ -1672,21 +1414,8 @@ public class RegLogin extends AppCompatActivity {
                                     testingHistoryInfoObject.getInt("sti_id"), LynxManager.encryptString(testingHistoryInfoObject.getString("test_status")),
                                     LynxManager.encryptString(testingHistoryInfoObject.getString("attachment")),String.valueOf(R.string.statusUpdateYes), true);
                             history_info.setTesting_history_info_id(testingHistoryInfoObject.getInt("testing_history_info_id"));
-                            int id = db.createTestingHistoryInfoWithID(history_info);
+                            db.createTestingHistoryInfoWithID(history_info);
                         }
-
-                        /*// Prep Videos //
-                        JSONArray prepVideos = parentObject.getJSONArray("Video");
-                        for(int n=0;n<prepVideos.length();n++){
-                            JSONObject prepVideoObject = prepVideos.getJSONObject(n);
-                            Videos video = new Videos(prepVideoObject.getString("name"),prepVideoObject.getString("description"),prepVideoObject.getString("video_url"),prepVideoObject.getString("video_image_url"),prepVideoObject.getInt("priority"));
-                            if(db.getVideoById(prepVideoObject.getInt("id"))!=null){
-                                db.createVideos(video);
-                            }else{
-                                video.setVideo_id(prepVideoObject.getInt("id"));
-                                db.updateVideos(video);
-                            }
-                        }*/
                         //UserBadges
                         JSONArray userBadges_info = parentObject.getJSONArray("UserBadge");
                         for(int n = 0; n <userBadges_info.length(); n++) {
@@ -1702,7 +1431,6 @@ public class RegLogin extends AppCompatActivity {
                         JSONArray userDrugUsageInfo = parentObject.getJSONArray("UserDrugUsage");
                         for(int n = 0; n <userDrugUsageInfo.length(); n++) {
                             JSONObject userDrugUsageObject = userDrugUsageInfo.getJSONObject(n);
-                            //Log.v("userDrugUsageInfo", userDrugUsageObject.getString(""));
                             String  last_drug_id= userDrugUsageObject.getString("drug_id");
                             if(!last_drug_id.isEmpty()){
                                 UserDrugUse userDrugUse  = new UserDrugUse( LynxManager.getActiveUser().getUser_id(),
@@ -1735,7 +1463,6 @@ public class RegLogin extends AppCompatActivity {
                             db.createPrepFollowupWithID(prepFollowup);
                         }
 
-                        //Log.v("userBaselineArray", String.valueOf(userBaselineArray.length()));
                         if(testingRemindersInfo.length()==0){
                             Intent home = new Intent(RegLogin.this, RemindersActivity.class);
                             startActivity(home);
@@ -1800,7 +1527,6 @@ public class RegLogin extends AppCompatActivity {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            //Log.d("Response:requestTestKit", jsonNewPassStr);
             reqNewPassResult = jsonNewPassStr;
 
             return null;
@@ -1821,20 +1547,11 @@ public class RegLogin extends AppCompatActivity {
             if (reqNewPassResult != null) {
                 try {
                     JSONObject jsonobj = new JSONObject(reqNewPassResult);
-
-                    // Getting JSON Array node
-
                     boolean is_error = jsonobj.getBoolean("is_error");
-                    //Toast.makeText(getApplication().getBaseContext(), " " + jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
                     if (is_error) {
-                        //Log.d("Response: ", "> requestTestKit. " + jsonobj.getString("message"));
                         Toast.makeText(getApplication(),jsonobj.getString("message"),Toast.LENGTH_LONG).show();
-
                     } else {
-                        //Toast.makeText(getApplication(),"Your request is in progress.",Toast.LENGTH_SHORT).show();
-
                         reqNewPassAlertBox.setMessage("Email with instructions to reset password has been sent.");
-
                         reqNewPassAlertBox.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 finish();
@@ -1849,10 +1566,6 @@ public class RegLogin extends AppCompatActivity {
                             pos_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.buttonbluecornered));
                             pos_btn.setTextColor(getResources().getColor(R.color.white));
                         }
-
-
-
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

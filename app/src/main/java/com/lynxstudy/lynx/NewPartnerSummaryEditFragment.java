@@ -40,8 +40,7 @@ public class NewPartnerSummaryEditFragment extends Fragment{
     public NewPartnerSummaryEditFragment() {
     }
     DatabaseHelper db;
-    TextView add_partner_title,hivStatus,partnerTypeTitle,partnerNotes,overAll,undetectableAns,undetectableQn,otherPartnerTitle,otherPartner,monogamous,partnerGender;
-    Button next;
+    TextView undetectableAns,otherPartner,monogamous;
     View rootview;
     RelativeLayout undetectableLayout,undetectableAnsParent,hivStatusParent,partnerTypeParent,monogamousParent,otherPartnerParent,partnerGenderParent;
     LinearLayout monogamousLayout,otherPartnerLayout;
@@ -61,20 +60,13 @@ public class NewPartnerSummaryEditFragment extends Fragment{
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        next = (Button) rootview.findViewById(R.id.next);
-        next.setTypeface(tf_bold);
-        hivStatus = (TextView) rootview.findViewById(R.id.hivStatus);
-        hivStatus.setTypeface(tf_bold);
-        partnerGender = (TextView) rootview.findViewById(R.id.partnerGender);
-        partnerGender.setTypeface(tf_bold);
-        partnerTypeTitle = (TextView) rootview.findViewById(R.id.partnerTypeTitle);
-        partnerTypeTitle.setTypeface(tf_bold);
-        partnerNotes = (TextView) rootview.findViewById(R.id.partnerNotes);
-        partnerNotes.setTypeface(tf_bold);
-        overAll = (TextView) rootview.findViewById(R.id.overAll);
-        overAll.setTypeface(tf);
-        add_partner_title = (TextView) rootview.findViewById(R.id.add_partner_title);
-        add_partner_title.setTypeface(tf_bold);
+        ((Button) rootview.findViewById(R.id.next)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.hivStatus)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.partnerGender)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.partnerTypeTitle)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.partnerNotes)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.overAll)).setTypeface(tf);
+        ((TextView) rootview.findViewById(R.id.add_partner_title)).setTypeface(tf_bold);
         monogamousLayout= (LinearLayout)rootview.findViewById(R.id.monogamousLayout);
         otherPartnerLayout = (LinearLayout) rootview.findViewById(R.id.otherPartnerLayout);
         otherPartnerParent = (RelativeLayout) rootview.findViewById(R.id.otherPartnerParent);
@@ -86,10 +78,8 @@ public class NewPartnerSummaryEditFragment extends Fragment{
         monogamousParent = (RelativeLayout)rootview.findViewById(R.id.monogamousParent);
         undetectableAns= (TextView) rootview.findViewById(R.id.undetectableAns);
         undetectableAns.setTypeface(tf);
-        undetectableQn= (TextView) rootview.findViewById(R.id.undetectableQn);
-        undetectableQn.setTypeface(tf_bold);
-        otherPartnerTitle = (TextView) rootview.findViewById(R.id.otherPartnerTitle);
-        otherPartnerTitle.setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.undetectableQn)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.otherPartnerTitle)).setTypeface(tf_bold);
         TextView monogamousTitle = (TextView) rootview.findViewById(R.id.monogamousTitle);
         monogamousTitle.setTypeface(tf_bold);
         otherPartner = (TextView) rootview.findViewById(R.id.otherPartner);
@@ -335,7 +325,7 @@ public class NewPartnerSummaryEditFragment extends Fragment{
                         .setAdapter(adapterOtherPartner, new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int which) {
-                                String text = yes_no.get(which).toString();
+                                String text = yes_no.get(which);
                                 otherPartner.setText(text);
                                 if(text.equals("No")){
                                     monogamousLayout.setVisibility(View.VISIBLE);
@@ -354,7 +344,7 @@ public class NewPartnerSummaryEditFragment extends Fragment{
                         .setAdapter(adapterOtherPartner, new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int which) {
-                                String text = yes_no.get(which).toString();
+                                String text = yes_no.get(which);
                                 otherPartner.setText(text);
                                 if(text.equals("No")){
                                     monogamousLayout.setVisibility(View.VISIBLE);
@@ -378,7 +368,7 @@ public class NewPartnerSummaryEditFragment extends Fragment{
                         .setAdapter(adapterMonogamous, new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int which) {
-                                monogamous.setText(monogamous_list.get(which).toString());
+                                monogamous.setText(monogamous_list.get(which));
                                 dialog.dismiss();
                             }
                         }).create().show();
@@ -391,7 +381,7 @@ public class NewPartnerSummaryEditFragment extends Fragment{
                         .setAdapter(adapterMonogamous, new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int which) {
-                                monogamous.setText(yes_no_idk.get(which).toString());
+                                monogamous.setText(yes_no_idk.get(which));
                                 dialog.dismiss();
                             }
                         }).create().show();
@@ -400,18 +390,6 @@ public class NewPartnerSummaryEditFragment extends Fragment{
         //   Setting Rating field name
         db= new DatabaseHelper(getActivity());
         db = new DatabaseHelper(getActivity().getBaseContext());
-        /*List<UserRatingFields> field = db.getAllUserRatingFields(LynxManager.getActiveUser().getUser_id());
-        int field_size = field.size();
-        TextView[] txtview = new TextView[field_size];
-        for (int i = 1; i < field.size(); i++) {
-            UserRatingFields field_loc = field.get(i);
-            String textview_id = "newPartnerSumm_rate" + (i + 1);
-            int txt_id = getResources().getIdentifier(textview_id, "id", getActivity().getPackageName());
-            txtview[i] = (TextView) rootview.findViewById(txt_id);
-            String titletext = LynxManager.decryptString(field_loc.getName()) + " :";
-            txtview[i].setText(titletext);
-            txtview[i].setTypeface(tf);
-        }*/
         TextView overAll = (TextView) rootview.findViewById(R.id.overAll);
         TextView newPartnerSumm_rate2 = (TextView) rootview.findViewById(R.id.newPartnerSumm_rate2);
         TextView newPartnerSumm_rate3 = (TextView) rootview.findViewById(R.id.newPartnerSumm_rate3);

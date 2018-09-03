@@ -1,6 +1,5 @@
 package com.lynxstudy.lynx;
 
-
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.LayerDrawable;
@@ -11,14 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.google.android.gms.vision.text.Text;
 import com.lynxstudy.helper.DatabaseHelper;
-import com.lynxstudy.model.UserRatingFields;
 
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
@@ -35,8 +31,6 @@ public class NewPartnerSummaryFragment extends Fragment {
     public NewPartnerSummaryFragment() {
     }
 
-    TextView add_partner_title,hivStatus,partnerTypeTitle,partnerNotes,overAll,partnerGender,newPartnerSumm_gender,partnerUndectTitle,newPartnerSumm_undect;
-    Button next;
     LinearLayout undetectable_layout;
 
     @Override
@@ -50,26 +44,18 @@ public class NewPartnerSummaryFragment extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        next = (Button)rootview.findViewById(R.id.next);
-        next.setTypeface(tf_bold);
-        partnerGender = (TextView)rootview.findViewById(R.id.partnerGender);
-        partnerGender.setTypeface(tf_bold);
-        hivStatus = (TextView)rootview.findViewById(R.id.hivStatus);
-        hivStatus.setTypeface(tf_bold);
-        partnerTypeTitle = (TextView)rootview.findViewById(R.id.partnerTypeTitle);
-        partnerTypeTitle.setTypeface(tf_bold);
-        partnerNotes = (TextView)rootview.findViewById(R.id.partnerNotes);
-        partnerNotes.setTypeface(tf_bold);
-        overAll = (TextView)rootview.findViewById(R.id.overAll);
-        overAll.setTypeface(tf);
-        add_partner_title = (TextView)rootview.findViewById(R.id.add_partner_title);
-        add_partner_title.setTypeface(tf_bold);
+        ((Button)rootview.findViewById(R.id.next)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.partnerGender)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.hivStatus)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.partnerTypeTitle)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.partnerNotes)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.overAll)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.add_partner_title)).setTypeface(tf_bold);
         undetectable_layout = (LinearLayout) rootview.findViewById(R.id.undetectable_layout);
 
         // Display Summary
         TextView new_partner_Summ_nickname = (TextView) rootview.findViewById(R.id.new_partner_Summ_nickname);
         new_partner_Summ_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        //new_partner_Summ_nickname.setAllCaps(true);
         new_partner_Summ_nickname.setTypeface(tf_bold);
         TextView nickName = (TextView) rootview.findViewById(R.id.newPartnerSumm_nickName);
         TextView hivStatus = (TextView) rootview.findViewById(R.id.newPartnerSumm_hivStatus);
@@ -116,18 +102,6 @@ public class NewPartnerSummaryFragment extends Fragment {
         //   Setting Rating field name
         db= new DatabaseHelper(getActivity());
         db = new DatabaseHelper(getActivity().getBaseContext());
-        /*List<UserRatingFields> field = db.getAllUserRatingFields(LynxManager.getActiveUser().getUser_id());
-        int field_size = field.size();
-        TextView[] txtview = new TextView[field_size];
-        for (int i = 1; i < field.size(); i++) {
-            UserRatingFields field_loc = field.get(i);
-            String textview_id = "newPartnerSumm_rate" + (i + 1);
-            int txt_id = getResources().getIdentifier(textview_id, "id", getActivity().getPackageName());
-            txtview[i] = (TextView) rootview.findViewById(txt_id);
-            String titletext = LynxManager.decryptString(field_loc.getName()) + " :";
-            txtview[i].setText(titletext);
-            txtview[i].setTypeface(tf);
-        }*/
         TextView overAll = (TextView) rootview.findViewById(R.id.overAll);
         TextView newPartnerSumm_rate2 = (TextView) rootview.findViewById(R.id.newPartnerSumm_rate2);
         TextView newPartnerSumm_rate3 = (TextView) rootview.findViewById(R.id.newPartnerSumm_rate3);

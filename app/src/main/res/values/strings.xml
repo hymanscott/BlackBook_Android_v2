@@ -154,7 +154,6 @@
 
     <string name="AddPartnerTitle">New Partner</string>
     <string name="title_activity_lynx_diary">LynxDiary</string>
-    <string name="section_format">Hello World from section: %1$d</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -179,6 +178,8 @@
     <string name="answer_all_ejaculation_questions">Please answer all ejaculation questions</string>
     <string name="select_partner_type">Please select partner type</string>
     <string name="select_hiv_status">Please select HIV status</string>
+    <string name="select_how_long_been_with_partner">Please select how long you’ve been with this partner.</string>
+    <string name="select_how_long_undetectable">Please select how long they’ve been Undetectable.</string>
     <string name="select_hiv_test_result">Please report your HIV test result</string>
     <string name="select_std_test_result">Please report minimum of one STD test result</string>
     <string name="select_prep_status">Please select PrEP status</string>
@@ -189,4 +190,10 @@
     <string name="prep_lessthan17">You haven’t reached the green because you’re not taking PrEP daily. Taking it every day will really further protect your sexual health. Hit us up, we can help!</string>
     <string name="non_prep_9_16">PrEP can help protect you, and get you into the green. Talk to us about your options.</string>
     <string name="non_prep_greater17">Well, alright! You’re in the green and doing great. PrEP can offer even more protection with similar convenience.</string>
+    <string name="checked_videos">We see that you checked out our videos. Get informed by watching the rest.</string>
+
+    <string name="btn_got_it">Got it!</string>
+    <string name="app_exit_message">Are you sure, you want to exit?</string>
+    <string name="sign_out_message">Are you sure, you want to sign out?</string>
+    <string name="sign_out_continue_message">Your entries are still being recorded. Select No to allow your entries to be saved, and sign-out at a later time. Choosing Yes will delete your unsaved entries. Are you sure you want to continue?</string>
 </resources>

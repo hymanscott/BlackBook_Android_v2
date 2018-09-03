@@ -22,9 +22,14 @@ public class lynxApplication extends MultiDexApplication {
     private Tracker tracker;
 
     public synchronized Tracker getTracker(){
-        if(tracker==null)
-            tracker = Piwik.getInstance(this).newTracker(new TrackerConfig("https://analytics.lynxstudy.com/piwik.php", 2,"LYNX"));
-            //tracker = Piwik.getInstance(this).newTracker(new TrackerConfig("https://analytics.chipware.in/piwik.php", 2,"LYNX"));
+        if(tracker==null){
+            /*if(LynxManager.releaseMode ==2){
+                tracker = Piwik.getInstance(this).newTracker(new TrackerConfig("https://analytics.lynxstudy.com/piwik.php", 2,"LYNX"));
+            }else{
+                tracker = Piwik.getInstance(this).newTracker(new TrackerConfig("https://analytics.chipware.in/piwik.php", 2,"LYNX"));
+            }*/
+            tracker = Piwik.getInstance(this).newTracker(new TrackerConfig("https://analytics.chipware.in/piwik.php", 2,"LYNX"));
+        }
         return tracker;
     }
 
@@ -52,7 +57,6 @@ public class lynxApplication extends MultiDexApplication {
             ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
             List<ActivityManager.RunningTaskInfo> tasks = activityManager.getRunningTasks(Integer.MAX_VALUE);
             for (ActivityManager.RunningTaskInfo task : tasks) {
-                Log.v("Activities", task.baseActivity.getClassName());
                 if("com.lynxstudy.lynx.PasscodeUnlockActivity".equals(task.baseActivity.getClassName())){
                     System.exit(0);
                 }

@@ -21,11 +21,8 @@ import org.piwik.sdk.extra.TrackHelper;
  */
 public class RegistrationAlcoholCalculation extends Fragment {
 
-    TextView reg_alc_baseline_title,drinksTitle,drinksdefine,no_of_days_text;
     RadioButton alcCal_1to4days,alcCal_5to7days,alcCal_lessThanOnce,alcCal_never;
     EditText no_of_drinks;
-    Button enc_alcoholCal_nextbtn,alcohol_cal_nextbtn,alcohol_cal_revisebtn;
-    //private Spinner spinner_no_of_drinks;
     public RegistrationAlcoholCalculation() {
         // Required empty public constructor
     }
@@ -40,35 +37,19 @@ public class RegistrationAlcoholCalculation extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-
         View view = inflater.inflate(R.layout.fragment_registration_alcohol_calculation, container, false);
-
-       /* List<String> number_of_drinks = new ArrayList<>();
-        for (int i = 1; i < 100; i++) {
-            number_of_drinks.add(String.valueOf(i));
-        }
-        spinner_no_of_drinks = (Spinner) view.findViewById(R.id.no_of_drinks);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                R.layout.spinner_row, R.id.txtView, number_of_drinks);
-        spinner_no_of_drinks.setAdapter(adapter);
-        */
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        reg_alc_baseline_title = (TextView)view.findViewById(R.id.reg_alc_baseline_title);
-        reg_alc_baseline_title.setTypeface(tf_bold);
-        no_of_days_text = (TextView)view.findViewById(R.id.no_of_days_text);
-        no_of_days_text.setTypeface(tf);
-        drinksTitle = (TextView)view.findViewById(R.id.drinksTitle);
-        drinksTitle.setTypeface(tf);
-        drinksdefine = (TextView)view.findViewById(R.id.drinksdefine);
-        drinksdefine.setTypeface(tf);
+        ((TextView)view.findViewById(R.id.reg_alc_baseline_title)).setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.no_of_days_text)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.drinksTitle)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.drinksdefine)).setTypeface(tf);
         no_of_drinks = (EditText) view.findViewById(R.id.no_of_drinks);
         no_of_drinks.setTypeface(tf);
-        alcohol_cal_nextbtn = (Button) view.findViewById(R.id.alcohol_cal_nextbtn);
-        alcohol_cal_nextbtn.setTypeface(tf_bold);
+        ((Button) view.findViewById(R.id.alcohol_cal_nextbtn)).setTypeface(tf_bold);
         alcCal_5to7days = (RadioButton) view.findViewById(R.id.alcCal_5to7days);
         alcCal_5to7days.setTypeface(tf);
         alcCal_1to4days = (RadioButton) view.findViewById(R.id.alcCal_1to4days);

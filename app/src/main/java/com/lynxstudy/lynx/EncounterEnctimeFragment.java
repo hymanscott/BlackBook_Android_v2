@@ -39,9 +39,7 @@ public class EncounterEnctimeFragment extends Fragment {
     public EncounterEnctimeFragment() {
         // Required empty public constructor
     }
-    TextView textView14,textView13;
-    Button next;
-
+    TextView textView13;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,13 +51,11 @@ public class EncounterEnctimeFragment extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        textView14 = (TextView) rootview.findViewById(R.id.textView14);
-        textView14.setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.textView14)).setTypeface(tf_bold);
         textView13 = (TextView) rootview.findViewById(R.id.textView13);
         textView13.setTypeface(tf);
         textView13.setText("Enter date of new encounter");
-        next = (Button) rootview.findViewById(R.id.next);
-        next.setTypeface(tf_bold);
+        ((Button) rootview.findViewById(R.id.next)).setTypeface(tf_bold);
         //Date Picker
         final EditText encdate = (EditText) rootview.findViewById(R.id.encDate);
         final EditText enctime = (EditText) rootview.findViewById(R.id.encTime);

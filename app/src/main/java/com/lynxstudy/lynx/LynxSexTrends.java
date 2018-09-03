@@ -6,16 +6,11 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.GridLayout;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.helper.ExpandableHeightGridView;
 import com.lynxstudy.helper.TrendsDataPointAdapter;
@@ -26,7 +21,6 @@ import com.lynxstudy.model.TestingHistory;
 
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
-import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,7 +28,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.zip.Inflater;
 
 import me.tankery.lib.circularseekbar.CircularSeekBar;
 
@@ -42,7 +35,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
 
     Typeface tf,tf_bold,tf_italic,tf_bold_italic;
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
-    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,pageTitle,partnerTypeChartTitle,partnerHivChartTitle,partnersChartTitle,titleStats;
+    TextView titleStats;
     DatabaseHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,16 +58,11 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
-        bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
-        bot_nav_sexpro_tv.setTypeface(tf);
-        bot_nav_diary_tv = (TextView)findViewById(R.id.bot_nav_diary_tv);
-        bot_nav_diary_tv.setTypeface(tf);
-        bot_nav_testing_tv = (TextView)findViewById(R.id.bot_nav_testing_tv);
-        bot_nav_testing_tv.setTypeface(tf);
-        bot_nav_prep_tv = (TextView)findViewById(R.id.bot_nav_prep_tv);
-        bot_nav_prep_tv.setTypeface(tf);
-        bot_nav_chat_tv = (TextView)findViewById(R.id.bot_nav_chat_tv);
-        bot_nav_chat_tv.setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_sexpro_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_diary_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_testing_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_prep_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_chat_tv)).setTypeface(tf);
         btn_testing = (LinearLayout)findViewById(R.id.bot_nav_testing);
         btn_diary = (LinearLayout) findViewById(R.id.bot_nav_diary);
         btn_prep = (LinearLayout) findViewById(R.id.bot_nav_prep);
@@ -86,8 +74,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         btn_chat.setOnClickListener(this);
         viewProfile.setOnClickListener(this);
 
-        pageTitle = (TextView)findViewById(R.id.pageTitle);
-        pageTitle.setTypeface(tf_bold);
+        ((TextView)findViewById(R.id.pageTitle)).setTypeface(tf_bold);
         titleStats = (TextView)findViewById(R.id.titleStats);
         titleStats.setTypeface(tf_bold_italic);
         int encounters = db.getEncountersCount();
@@ -134,9 +121,6 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
             int bottom_count = db.getAllEncounterSexTypeCountByName("I bottomed");
             bottom_count = bottom_count-versatileCount;
             bottom_percent =(float)bottom_count/db.getEncountersCount();
-        }
-        for(EncounterSexType encounterSexType:db.getAllEncounterSexTypes()){
-            Log.v("SexType",LynxManager.decryptString(encounterSexType.getSex_type())+"->"+encounterSexType.getEncounter_id());
         }
         int progress = (int) (bottom_percent *100);
         if(progress>0){
@@ -362,70 +346,8 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         drunk_or_high_progress.setText(drunk_or_high_value + "%");
 
         /*Second Section*/
-      //  GridLayout gridLayout = (GridLayout)findViewById(R.id.GridLayout1);
         ArrayList<String> progress_values = new ArrayList<String>();
         ArrayList<String> description_values = new ArrayList<String>();
-
-      /*  TextView lastHivElapsedDaysDesc = (TextView)findViewById(R.id.lastHivElapsedDaysDesc);
-        TextView lastStdElapsedDaysDesc = (TextView)findViewById(R.id.lastStdElapsedDaysDesc);
-        TextView lastStdElapsedDays = (TextView)findViewById(R.id.lastStdElapsedDays);
-        TextView lastHivElapsedDays = (TextView)findViewById(R.id.lastHivElapsedDays);
-        TextView fiveStarEncounters = (TextView)findViewById(R.id.fiveStarEncounters);
-        TextView fiveStarEncountersCount= (TextView)findViewById(R.id.fiveStarEncountersCount);
-        TextView bottomPartners = (TextView)findViewById(R.id.bottomPartners);
-        TextView topPartners = (TextView)findViewById(R.id.topPartners);
-        TextView bottomPartnersCount = (TextView)findViewById(R.id.bottomPartnersCount);
-        TextView topPartnersCount = (TextView)findViewById(R.id.topPartnersCount);
-        fiveStarEncounters.setTypeface(tf_italic);
-        bottomPartners.setTypeface(tf_italic);
-        topPartners.setTypeface(tf_italic);
-        lastHivElapsedDaysDesc.setTypeface(tf_italic);
-        lastStdElapsedDaysDesc.setTypeface(tf_italic);
-        fiveStarEncountersCount.setText(String.valueOf(db.getFiveStarEncountersCount()));
-        int topPeopleCount = 0;
-        int bottomPeopleCount = 0;
-        for (Partners partner:db.getAllPartners()){
-            int topCount = 0;
-            int bottomCount = 0;
-            for (Encounter encounter:db.getAllEncounters()){
-                if (encounter.getEncounter_partner_id()==partner.getPartner_id()){
-                    if(db.getEncSexTypeCountByEncIDandName(encounter.getEncounter_id(),"I topped")>0)
-                        topCount++;
-                    if(db.getEncSexTypeCountByEncIDandName(encounter.getEncounter_id(),"I bottomed")>0)
-                        bottomCount++;
-                }
-            }
-            if(topCount>0){
-                topPeopleCount++;
-            }
-            if(bottomCount>0){
-                bottomPeopleCount++;
-            }
-        }
-        bottomPartnersCount.setText(String.valueOf(bottomPeopleCount));
-        topPartnersCount.setText(String.valueOf(topPeopleCount));
-
-
-        TestingHistory hiv_testingHistory = db.getLastTestingHistoryByID(1);
-        TestingHistory std_testingHistory = db.getLastTestingHistoryByID(2);
-        int hiv_elapsed_days=0,std_elapsed_days =0;
-        if(hiv_testingHistory!=null){
-            hiv_elapsed_days = getElapsedDays(LynxManager.decryptString(hiv_testingHistory.getTesting_date()));
-            lastHivElapsedDays.setText(String.valueOf(hiv_elapsed_days));
-        }else{
-            gridLayout.removeViewAt(0);
-        }
-        if(std_testingHistory!=null){
-            std_elapsed_days = getElapsedDays(LynxManager.decryptString(std_testingHistory.getTesting_date()));
-            lastStdElapsedDays.setText(String.valueOf(std_elapsed_days));
-        }else{
-            if(hiv_testingHistory!=null) {
-                gridLayout.removeViewAt(1);
-            }else{
-                gridLayout.removeViewAt(0);
-            }
-        }
-*/
         TestingHistory hiv_testingHistory = db.getLastTestingHistoryByID(1);
         TestingHistory std_testingHistory = db.getLastTestingHistoryByID(2);
         int hiv_elapsed_days=0,std_elapsed_days =0;

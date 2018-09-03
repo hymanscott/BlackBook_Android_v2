@@ -30,8 +30,7 @@ import com.lynxstudy.model.User_baseline_info;
 
 public class EncounterFromNotification extends AppCompatActivity {
 
-    Button yes,no;
-    TextView encounter_report_title;
+    //Button yes,no;
     private String prep_val="",prep_days_val="",score="",score_alt="",report_val="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +39,9 @@ public class EncounterFromNotification extends AppCompatActivity {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-        encounter_report_title = (TextView)findViewById(R.id.encounter_report_title);
-        encounter_report_title.setTypeface(tf);
-        yes = (Button)findViewById(R.id.yes);
-        yes.setTypeface(tf);
-        no = (Button)findViewById(R.id.no);
-        no.setTypeface(tf);
+        ((TextView)findViewById(R.id.encounter_report_title)).setTypeface(tf);
+        ((Button)findViewById(R.id.yes)).setTypeface(tf);
+        ((Button)findViewById(R.id.no)).setTypeface(tf);
         LynxManager.notificationActions = null;
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -68,14 +64,6 @@ public class EncounterFromNotification extends AppCompatActivity {
         if (addToStack == true)
             ft.addToBackStack(null);
         ft.commit();
-    }
-
-    public void popFragment() {
-        FragmentManager fm = getSupportFragmentManager();
-        int stackcount = fm.getBackStackEntryCount();
-        // Toast.makeText(Tabbar_activity.this, "Stack Count "+String.valueOf(stackcount), Toast.LENGTH_LONG).show();
-        if (stackcount > 1)
-            fm.popBackStack();
     }
 
     public boolean weeklyCheckInIntroNext(View view){
@@ -126,7 +114,7 @@ public class EncounterFromNotification extends AppCompatActivity {
             User_baseline_info user_baseline_info = db.getUserBaselineInfobyUserID(LynxManager.getActiveUser().getUser_id());
             String cal_date = user_baseline_info.getSexpro_calculated_date();
             db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), final_score, is_prep.getText().toString(), cal_date, String.valueOf(R.string.statusUpdateNo));
-            Log.v("ScoreStat", final_score + "-" + is_prep.getText().toString() + "--" + cal_date);
+            //Log.v("ScoreStat", final_score + "-" + is_prep.getText().toString() + "--" + cal_date);
             pushFragments("EncounterFromNotification", drugScreeen, true);
         }
         return true;
@@ -184,10 +172,7 @@ public class EncounterFromNotification extends AppCompatActivity {
         } else {
             RadioButton have_encounter = (RadioButton)findViewById(enc_report_grp.getCheckedRadioButtonId());
             report_val = have_encounter.getText().toString();
-            if(have_encounter.getText().toString().equals("Yes"))
-                LynxManager.haveWeeklyEncounter = true;
-            else
-                LynxManager.haveWeeklyEncounter = false;
+            LynxManager.haveWeeklyEncounter = have_encounter.getText().toString().equals("Yes");
             EncounterWeeklyCheckinSummary summaryScreeen = new EncounterWeeklyCheckinSummary();
             pushFragments("EncounterFromNotification", summaryScreeen, true);
         }

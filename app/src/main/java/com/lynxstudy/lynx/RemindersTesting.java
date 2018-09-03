@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -40,9 +38,8 @@ public class RemindersTesting extends Fragment {
         // Required empty public constructor
     }
 
-    TextView frag_title,time,day,noteText;
+    TextView time,day;
     EditText notificationText;
-    Button testingReminderSave;
     RelativeLayout day_of_week,time_of_day;
     DatabaseHelper db;
     @Override
@@ -56,18 +53,15 @@ public class RemindersTesting extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        frag_title = (TextView)rootview.findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.frag_title)).setTypeface(tf_bold);
         time = (TextView)rootview.findViewById(R.id.time);
         time.setTypeface(tf);
         day = (TextView)rootview.findViewById(R.id.day);
         day.setTypeface(tf);
-        noteText = (TextView)rootview.findViewById(R.id.noteText);
-        noteText.setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.noteText)).setTypeface(tf);
         notificationText = (EditText)rootview.findViewById(R.id.notificationText);
         notificationText.setTypeface(tf);
-        testingReminderSave = (Button)rootview.findViewById(R.id.testingReminderSave);
-        testingReminderSave.setTypeface(tf_bold);
+        ((Button)rootview.findViewById(R.id.testingReminderSave)).setTypeface(tf_bold);
 
         day_of_week = (RelativeLayout)rootview.findViewById(R.id.day_of_week);
         time_of_day = (RelativeLayout)rootview.findViewById(R.id.time_of_day);

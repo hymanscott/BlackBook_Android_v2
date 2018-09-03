@@ -38,7 +38,7 @@ public class RemindersDiary extends Fragment {
         // Required empty public constructor
     }
 
-    TextView frag_title,time,day,noteText;
+    TextView time,day;
     EditText notificationText;
     Button diaryReminderSave;
     RelativeLayout day_of_week,time_of_day;
@@ -53,14 +53,12 @@ public class RemindersDiary extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        frag_title = (TextView)rootview.findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.frag_title)).setTypeface(tf_bold);
         time = (TextView)rootview.findViewById(R.id.time);
         time.setTypeface(tf);
         day = (TextView)rootview.findViewById(R.id.day);
         day.setTypeface(tf);
-        noteText = (TextView)rootview.findViewById(R.id.noteText);
-        noteText.setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.noteText)).setTypeface(tf);
         notificationText = (EditText)rootview.findViewById(R.id.notificationText);
         notificationText.setTypeface(tf);
         diaryReminderSave = (Button)rootview.findViewById(R.id.diaryReminderSave);

@@ -39,10 +39,10 @@ import java.util.List;
 public class EncounterSummaryEditFragment extends Fragment {
     public EncounterSummaryEditFragment() {
     }
-    TextView newEncounter,encounter_summary_nickName,rateSex,hivStatusTitle,hivStatus,encounterNotesTitle,typeSex,condomUsed,whenIsuckedTitle,whenIsucked,whenIbottomTitle,whenItopTitle,whenIbottom,whenItop,drunktitle,drunk;
+    TextView encounter_summary_nickName,rateSex,hivStatus,whenIsucked,whenIbottom,whenItop,drunk;
     EditText encNotes;
     RatingBar sexType_RateTheSex;
-    Button next;
+   // Button next;
     LinearLayout condomUsedContent,whenIsuckedParent,whenIbottomParent,whenItopParent;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,53 +55,37 @@ public class EncounterSummaryEditFragment extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        newEncounter = (TextView)rootview.findViewById(R.id.newEncounter);
-        newEncounter.setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.newEncounter)).setTypeface(tf_bold);
         hivStatus = (TextView)rootview.findViewById(R.id.hivStatus);
         hivStatus.setTypeface(tf);
-        rateSex = (TextView)rootview.findViewById(R.id.rateSex);
-        rateSex.setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.rateSex)).setTypeface(tf);
         encounter_summary_nickName = (TextView)rootview.findViewById(R.id.encounter_summary_nickName);
         encounter_summary_nickName.setTypeface(tf_bold);
-        hivStatusTitle = (TextView)rootview.findViewById(R.id.hivStatusTitle);
-        hivStatusTitle.setTypeface(tf);
-        encounterNotesTitle = (TextView)rootview.findViewById(R.id.encounterNotesTitle);
-        encounterNotesTitle.setTypeface(tf);
-        typeSex = (TextView)rootview.findViewById(R.id.typeSex);
-        typeSex.setTypeface(tf);
-        condomUsed = (TextView)rootview.findViewById(R.id.condomUsed);
-        condomUsed.setTypeface(tf);
-        whenIsuckedTitle = (TextView)rootview.findViewById(R.id.whenIsuckedTitle);
-        whenIsuckedTitle.setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.hivStatusTitle)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.encounterNotesTitle)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.typeSex)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.condomUsed)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.whenIsuckedTitle)).setTypeface(tf);
         whenIsucked = (TextView)rootview.findViewById(R.id.whenIsucked);
         whenIsucked.setTypeface(tf);
-        whenIbottomTitle = (TextView)rootview.findViewById(R.id.whenIbottomTitle);
-        whenIbottomTitle.setTypeface(tf);
-        whenItopTitle = (TextView)rootview.findViewById(R.id.whenItopTitle);
-        whenItopTitle.setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.whenIbottomTitle)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.whenItopTitle)).setTypeface(tf);
         whenIbottom = (TextView)rootview.findViewById(R.id.whenIbottom);
         whenIbottom.setTypeface(tf);
         whenItop = (TextView)rootview.findViewById(R.id.whenItop);
         whenItop.setTypeface(tf);
-        drunktitle= (TextView) rootview.findViewById(R.id.drunktitle);
-        drunktitle.setTypeface(tf);
+        ((TextView) rootview.findViewById(R.id.drunktitle)).setTypeface(tf);
         drunk= (TextView) rootview.findViewById(R.id.drunk);
         drunk.setTypeface(tf);
         encNotes = (EditText) rootview.findViewById(R.id.encNotes);
         encNotes.setTypeface(tf);
-        next = (Button) rootview.findViewById(R.id.next);
-        next.setTypeface(tf_bold);
+        ((Button) rootview.findViewById(R.id.next)).setTypeface(tf_bold);
         condomUsedContent = (LinearLayout)rootview.findViewById(R.id.condomUsedContent);
         whenIsuckedParent = (LinearLayout)rootview.findViewById(R.id.whenIsuckedLayout);
         whenIbottomParent = (LinearLayout)rootview.findViewById(R.id.whenIbottomLayout);
         whenItopParent = (LinearLayout)rootview.findViewById(R.id.whenItopLayout);
-
         encounter_summary_nickName.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        //encounter_summary_nickName.setAllCaps(true);
-
         encNotes.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getEncounter_notes()));
-        /*whenIsucked.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getDid_you_cum()));
-        whenIbottom.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getDid_your_partner_cum()));*/
         drunk.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getIs_drug_used()));
         sexType_RateTheSex = (RatingBar) rootview.findViewById(R.id.sexType_RateTheSex);
         sexType_RateTheSex.setRating(Float.parseFloat(LynxManager.encRateofSex));
@@ -116,7 +100,6 @@ public class EncounterSummaryEditFragment extends Fragment {
 
         LinearLayout sexTypeLayout = (LinearLayout)rootview.findViewById(R.id.sexTypeLayout);
         String gender = LynxManager.decryptString(LynxManager.getActivePartner().getGender());
-        //Log.v("Gender",gender);
         View sextypeView;
         switch (gender){
             case "Woman":
@@ -188,18 +171,14 @@ public class EncounterSummaryEditFragment extends Fragment {
         final EncounterSexType encSexType_iFucked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_ifucked), "", "", "",String.valueOf(R.string.statusUpdateNo),true);
         final EncounterSexType encSexType_iFingered= new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_ifingered), "", "", "",String.valueOf(R.string.statusUpdateNo),true);
         final EncounterSexType encSexType_heFingered= new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(sexType_hefingered), "", "", "",String.valueOf(R.string.statusUpdateNo),true);
-        /*LynxManager.activePartnerSexType.clear();*/
-
         btn_sexType_kissing.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     btn_sexType_kissing.setTextColor(Color.parseColor("#ffffff"));
                     LynxManager.activePartnerSexType.add(encSexType_kissing);
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_kissing);
                     btn_sexType_kissing.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -212,12 +191,10 @@ public class EncounterSummaryEditFragment extends Fragment {
 
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     LynxManager.activePartnerSexType.add(encSexType_iSucked);
                     btn_sexType_iSucked.setTextColor(Color.parseColor("#ffffff"));
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iSucked);
                     btn_sexType_iSucked.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -230,12 +207,10 @@ public class EncounterSummaryEditFragment extends Fragment {
 
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     LynxManager.activePartnerSexType.add(encSexType_heSucked);
                     btn_sexType_heSucked.setTextColor(Color.parseColor("#ffffff"));
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_heSucked);
                     btn_sexType_heSucked.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -248,12 +223,10 @@ public class EncounterSummaryEditFragment extends Fragment {
 
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     LynxManager.activePartnerSexType.add(encSexType_iTopped);
                     btn_sexType_iTopped.setTextColor(Color.parseColor("#ffffff"));
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iTopped);
                     btn_sexType_iTopped.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -266,12 +239,10 @@ public class EncounterSummaryEditFragment extends Fragment {
 
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     LynxManager.activePartnerSexType.add(encSexType_iBottomed);
                     btn_sexType_iBottomed.setTextColor(Color.parseColor("#ffffff"));
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iBottomed);
                     btn_sexType_iBottomed.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -284,12 +255,10 @@ public class EncounterSummaryEditFragment extends Fragment {
 
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     LynxManager.activePartnerSexType.add(encSexType_iJerked);
                     btn_sexType_iJerked.setTextColor(Color.parseColor("#ffffff"));
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iJerked);
                     btn_sexType_iJerked.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -302,12 +271,10 @@ public class EncounterSummaryEditFragment extends Fragment {
 
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     LynxManager.activePartnerSexType.add(encSexType_heJerked);
                     btn_sexType_heJerked.setTextColor(Color.parseColor("#ffffff"));
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_heJerked);
                     btn_sexType_heJerked.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -320,12 +287,10 @@ public class EncounterSummaryEditFragment extends Fragment {
 
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     LynxManager.activePartnerSexType.add(encSexType_iRimmed);
                     btn_sexType_iRimmed.setTextColor(Color.parseColor("#ffffff"));
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iRimmed);
                     btn_sexType_iRimmed.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -337,12 +302,10 @@ public class EncounterSummaryEditFragment extends Fragment {
 
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     LynxManager.activePartnerSexType.add(encSexType_heRimmed);
                     btn_sexType_heRimmed.setTextColor(Color.parseColor("#ffffff"));
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_heRimmed);
                     btn_sexType_heRimmed.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -353,12 +316,10 @@ public class EncounterSummaryEditFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     btn_sexType_iWentDown.setTextColor(Color.parseColor("#ffffff"));
                     LynxManager.activePartnerSexType.add(encSexType_iWentDown);
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iWentDown);
                     btn_sexType_iWentDown.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -369,12 +330,10 @@ public class EncounterSummaryEditFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     btn_sexType_iFucked.setTextColor(Color.parseColor("#ffffff"));
                     LynxManager.activePartnerSexType.add(encSexType_iFucked);
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iFucked);
                     btn_sexType_iFucked.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -385,12 +344,10 @@ public class EncounterSummaryEditFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     btn_sexType_iFingered.setTextColor(Color.parseColor("#ffffff"));
                     LynxManager.activePartnerSexType.add(encSexType_iFingered);
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iFingered);
                     btn_sexType_iFingered.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -401,12 +358,10 @@ public class EncounterSummaryEditFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     btn_sexType_heFingered.setTextColor(Color.parseColor("#ffffff"));
                     LynxManager.activePartnerSexType.add(encSexType_heFingered);
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_heFingered);
                     btn_sexType_heFingered.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -429,9 +384,6 @@ public class EncounterSummaryEditFragment extends Fragment {
                     }
                     whenIsuckedParent.setVisibility(View.VISIBLE);
                     whenIsucked.setText(encSexType.getEjaculation());
-                    /*TextView isucked_txt = (TextView) rootview.findViewById(R.id.encSumm_iSucked_condomuse);
-                    isucked_txt.setVisibility(View.VISIBLE);
-                    isucked_txt.setText("When I sucked him, " + encSexType.getCondom_use() + " \n Did Come in my mouth :" + encSexType.getNote());*/
                     break;
                 case "He sucked me":
                 case "She sucked me":
@@ -514,15 +466,9 @@ public class EncounterSummaryEditFragment extends Fragment {
                                 tv.setText("When "+str);
                                 tv.setPadding(16,16,16,16);
                                 tv.setTextColor(getResources().getColor(R.color.white));
-                                //tv.setBackgroundColor(getResources().getColor(R.color.edittext_bg));
                                 tv.setBackground(getResources().getDrawable(R.drawable.rectangle_bg));
                                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                                 params.setMargins(0,0,0,5);
-
-                                /*LinearLayout ll = new LinearLayout(getActivity());
-                                ll.addView(tv);
-                                ll.setPadding(0,0,0,5);
-                                ll.setBackgroundColor(getResources().getColor(R.color.colorPrimary));*/
                                 tv.setLayoutParams(params);
                                 condomUsedContent.addView(tv);
                             }

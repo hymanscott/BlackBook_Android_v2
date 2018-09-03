@@ -81,8 +81,6 @@ public class LynxSexProPrepFragment extends Fragment {
             }
             createdAt = LynxManager.getUTCDateTime();
         }
-        Log.v("CurrentPrep",current_prep);
-        Log.v("score", String.valueOf(score_to_display));
         reg_sexPro_score_label = (TextView)view.findViewById(R.id.reg_sexPro_score_label);
         reg_sexPro_score_label.setTypeface(tf);
 

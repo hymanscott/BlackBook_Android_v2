@@ -83,7 +83,6 @@ public class HomeEncounterFragment extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        //Log.v("priPartId", String.valueOf(LynxManager.getActiveUserPrimaryPartner().getPrimarypartner_id()));
         encounterListContent = (LinearLayout) view.findViewById(R.id.encounterListContent);
         whenIsuckedParent = (LinearLayout) view.findViewById(R.id.whenIsuckedParent);
         whenIbottomParent = (LinearLayout) view.findViewById(R.id.whenIbottomParent);
@@ -118,23 +117,10 @@ public class HomeEncounterFragment extends Fragment {
         DecryptUser.setStatus_encrypt(true);
         DecryptUser.decryptUser();
         String json = gson.toJson(DecryptUser);
-        //Log.v("Encounter List", json);
         String hashcode = LynxManager.stringToHashcode(json);
-        //Log.v("Encounter hashcode List",hashcode);
 
         List<Encounter> allEncounters = db.getAllEncounters();
-        int j = 0;
-
         if(allEncounters.isEmpty()){
-            /*TableRow encounterRow = new TableRow(getActivity());
-            encounterRow.setPadding(0, 0, 10, 0);
-            encounterRow.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-            TextView Info = new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);
-            Info.setText("No Encounters on list");
-            Info.setTypeface(tf);
-            Info.setTextColor(getResources().getColor(R.color.text_color));
-            encounterRow.addView(Info);
-            encounterTable.addView(encounterRow);*/
             ((TextView) view.findViewById(R.id.contextualTipsTitle)).setTypeface(tf_bold);
             ((TextView) view.findViewById(R.id.contextualTipsDesc)).setTypeface(tf);
             ((LinearLayout) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.VISIBLE);
@@ -146,11 +132,11 @@ public class HomeEncounterFragment extends Fragment {
                 int enc_partner_id = encounter.getEncounter_partner_id();
                 Partners partner = db.getPartnerbyID(enc_partner_id);
                 if (partner.getIs_active() == 1) {
-                    TableRow encounterRow = new TableRow(getActivity());
-                    View v = LayoutInflater.from(getActivity()).inflate(R.layout.table_encounter_row, encounterRow, false);
+                    /*TableRow encounterRow = new TableRow(getActivity());*/
+                    View v = LayoutInflater.from(getActivity()).inflate(R.layout.table_encounter_row, null, false);
                     if (width == 480 && height == 800)
                     {
-                        v = LayoutInflater.from(getActivity()).inflate(R.layout.table_encounter_row_alt, encounterRow, false);
+                        v = LayoutInflater.from(getActivity()).inflate(R.layout.table_encounter_row_alt, null, false);
                     }
                     TextView date = (TextView)v.findViewById(R.id.date);
                     TextView name = (TextView)v.findViewById(R.id.name);
@@ -182,14 +168,12 @@ public class HomeEncounterFragment extends Fragment {
                             for (int i = 0; i < encounterTable.getChildCount(); i++) {
                                 View row = encounterTable.getChildAt(i);
                                 if (row == view) {
-                                    //row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
                                     LynxManager.selectedEncounterID = row.getId();
                                     LynxManager.activePartnerSexType.clear();
 
                                     //Set Active Encounter
                                     Encounter selectedEncounter = db.getEncounter(row.getId());
                                     LynxManager.setActiveEncounter(selectedEncounter);
-                                    //Log.v("sextypeID", String.valueOf(selectedEncounter.getEncounter_id()));
                                     //set Active partner and Contact
                                     LynxManager.setActivePartner(db.getPartnerbyID(selectedEncounter.getEncounter_partner_id()));
                                     LynxManager.setActivePartnerContact(db.getPartnerContactbyPartnerID(selectedEncounter.getEncounter_partner_id()));
@@ -198,14 +182,8 @@ public class HomeEncounterFragment extends Fragment {
 
                                     for (EncounterSexType setSextype : selectedSEXtypes) {
                                         EncounterSexType encounterSexType = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.decryptString(setSextype.getSex_type()), "","", "", String.valueOf(R.string.statusUpdateNo),false);
-                                        //Log.v("sextypes", String.valueOf(encounterSexType));
                                         LynxManager.activePartnerSexType.add(encounterSexType);
                                     }
-                                    //Intent selectedEncounterSumm = new Intent(getActivity(), SelectedEncounterSummary.class);
-                                    //Log.v("EncounterID", String.valueOf(row.getId()));
-                                /*Intent selectedEncounterSumm = new Intent(getActivity(), SelectedEncounterSummary.class);
-                                selectedEncounterSumm.putExtra("EncounterID",row.getId());
-                                startActivity(selectedEncounterSumm);*/
                                     setEncounterSummary(row.getId());
                                 } else {
                                     //Change this to your normal background color.
@@ -236,8 +214,6 @@ public class HomeEncounterFragment extends Fragment {
                         back_press_count = 0;
                     }else{
                         if(back_press_count>1){
-                            /*Intent home = new Intent(getActivity(),LynxSexPro.class);
-                            startActivity(home);*/
                             LynxManager.goToIntent(getActivity(),"home",getActivity().getClass().getSimpleName());
                             getActivity().overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
                             getActivity().finish();
@@ -262,8 +238,6 @@ public class HomeEncounterFragment extends Fragment {
     }
 
     public void reloadFragment() {
-        //Log.v("Fragment Reload", "Reloaded");
-
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .detach(this)
@@ -279,24 +253,6 @@ public class HomeEncounterFragment extends Fragment {
             startActivity(getActivity().getIntent());
             getActivity().finish();
         }
-    }
-
-    public void pushFragments(String tag, Fragment fragment, Boolean addToStack) {
-
-        FragmentManager manager = getFragmentManager();
-
-        FragmentTransaction ft = manager.beginTransaction();
-
-        // Hide Soft Keyboard
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getActivity().getWindow().getDecorView().getWindowToken(), 0);
-
-        ft.replace(R.id.container, fragment);
-        if (addToStack == true)
-            ft.addToBackStack(null);
-        ft.commit();
-
-
     }
 
     private void setEncounterSummary(int encounter_id){
@@ -355,10 +311,8 @@ public class HomeEncounterFragment extends Fragment {
         hivStatus.setTypeface(tf);
 
         LinearLayout sexTypeLayout = (LinearLayout)view.findViewById(R.id.sexTypeLayout);
-        String gender = LynxManager.decryptString(LynxManager.getActivePartner().getGender());
-        //Log.v("Gender",gender);
         View sextypeView;
-        switch (gender){
+        switch (LynxManager.decryptString(LynxManager.getActivePartner().getGender())){
             case "Woman":
                 sextypeView  = getActivity().getLayoutInflater().inflate(R.layout.encounter_sextype_woman,null);
                 break;
@@ -374,7 +328,6 @@ public class HomeEncounterFragment extends Fragment {
         }
         sexTypeLayout.removeAllViews();
         sexTypeLayout.addView(sextypeView);
-        //int encounter_id = getActivity().getIntent().getIntExtra("EncounterID",0);
         final ToggleButton btn_sexType_kissing = (ToggleButton) view.findViewById(R.id.sexType_kissing);
         btn_sexType_kissing.setTypeface(tf);
         final ToggleButton btn_sexType_iSucked = (ToggleButton) view.findViewById(R.id.sexType_iSucked);
@@ -422,7 +375,6 @@ public class HomeEncounterFragment extends Fragment {
                         sexType_iSucked.setClickable(false);
                         sexType_iSucked.setTextColor(Color.parseColor("#ffffff"));
                         sexType_iSucked.setTypeface(tf);
-                        //Log.v("CondomStatus","iSucked "+LynxManager.decryptString(encSexType.getCondom_use()));
                         if(LynxManager.decryptString(encSexType.getCondom_use()).equals("Condom used")&& !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                             LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                         }
@@ -443,7 +395,6 @@ public class HomeEncounterFragment extends Fragment {
                         sexType_iBottomed.setClickable(false);
                         sexType_iBottomed.setTextColor(Color.parseColor("#ffffff"));
                         sexType_iBottomed.setTypeface(tf);
-                        //Log.v("CondomStatus","iBot "+LynxManager.decryptString(encSexType.getCondom_use()));
                         if(LynxManager.decryptString(encSexType.getCondom_use()).equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                             LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                         }
@@ -504,7 +455,6 @@ public class HomeEncounterFragment extends Fragment {
                         if(LynxManager.decryptString(encSexType.getCondom_use()).equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                             LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                         }
-                        //Log.v("CondomStatus","iFucked "+LynxManager.decryptString(encSexType.getCondom_use()));
                         break;
                     case "I fingered her":
                     case "I fingered him":
@@ -535,7 +485,6 @@ public class HomeEncounterFragment extends Fragment {
         }
         LinearLayout condomUsedContent = (LinearLayout)view.findViewById(R.id.condomUsedContent);
         condomUsedContent.removeAllViews();
-        //Log.v("activeCondomUsedSize", String.valueOf(LynxManager.activeEncCondomUsed.size()));
         if(LynxManager.activeEncCondomUsed.size()>0){
             LinearLayout condomUsedLayout = (LinearLayout)view.findViewById(R.id.condomUsedLayout);
             condomUsedLayout.setVisibility(View.VISIBLE);
@@ -546,7 +495,6 @@ public class HomeEncounterFragment extends Fragment {
                 tv.setPadding(0,0,0,16);
                 tv.setTextColor(getResources().getColor(R.color.text_color));
                 condomUsedContent.addView(tv);
-                //Log.v("CondomUsedWhen",str);
             }
         }else{
             LinearLayout condomUsedLayout = (LinearLayout)view.findViewById(R.id.condomUsedLayout);

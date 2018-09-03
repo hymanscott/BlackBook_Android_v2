@@ -245,34 +245,6 @@ public class TestingInstructionFragment extends Fragment {
                 }else{
                     Log.v("PDF File name",filename + " Exist");
                 }
-
-                /*WebSettings settings = instruction_ans_wv.getSettings();
-                settings.setJavaScriptEnabled(true);
-                settings.setAllowFileAccessFromFileURLs(true);
-                settings.setAllowUniversalAccessFromFileURLs(true);
-                settings.setBuiltInZoomControls(true);
-                instruction_ans_wv.setWebChromeClient(new WebChromeClient());
-
-                instruction_ans_wv.loadDataWithBaseURL("","file:///android_asset/"+filename, "", "utf-8", "");
-                instruction_ans_wv.loadUrl("https://dev.chipware.in/LynxPortal/rectal_swab.pdf");
-                instruction_ans_wv.setBackground(getResources().getDrawable(R.drawable.buttonbluecornered));
-                instruction_ans_wv.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        File file = new File(Environment.getExternalStorageDirectory().getPath() +"/"+filename);
-                        Toast.makeText(getActivity(), "NO App found. Please install a pdf reader.", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setDataAndType(Uri.fromFile(file), "application/pdf");
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        try {
-                            startActivity(intent);
-                        } catch (ActivityNotFoundException e) {
-                            Toast.makeText(getActivity(), "NO App found. Please install a pdf reader.", Toast.LENGTH_SHORT).show();
-                        }
-                        return false;
-                    }
-                });*/
                 parentLayout.setVisibility(View.GONE);
                 PDFView pdfView = (PDFView) view.findViewById(R.id.pdfView);
                 pdfView.setVisibility(View.VISIBLE);
@@ -290,10 +262,6 @@ public class TestingInstructionFragment extends Fragment {
                         .spacing(0)
                         .load();
             }
-            /*instruction_ans_wv.setPadding(10, 20, 10, 20);
-            parentLayout.removeAllViews();
-            parentLayout.addView(instruction_ans_wv, new TableLayout.LayoutParams(
-                    TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));*/
         } else {
             video_view.getSettings().setJavaScriptEnabled(true);
             video_view.setWebChromeClient(new WebChromeClient() {

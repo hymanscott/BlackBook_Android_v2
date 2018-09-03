@@ -23,8 +23,7 @@ public class EncounterWeeklyCheckinIntro extends Fragment {
     public EncounterWeeklyCheckinIntro() {
         // Required empty public constructor
     }
-    TextView frag_title,intro_paragraph;
-    Button checkin_intro_next;
+    TextView intro_paragraph;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,14 +35,11 @@ public class EncounterWeeklyCheckinIntro extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-
-        frag_title = (TextView) view.findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf_bold);
+        ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
         intro_paragraph = (TextView) view.findViewById(R.id.intro_paragraph);
         intro_paragraph.setTypeface(tf);
         intro_paragraph.setText("Welcome back "+LynxManager.decryptString(LynxManager.getActiveUser().getFirstname())+"! We have 3 short questions for you and then we’ll get you on your way!");
-        checkin_intro_next = (Button) view.findViewById(R.id.checkin_intro_next);
-        checkin_intro_next.setTypeface(tf_bold);
+        ((Button) view.findViewById(R.id.checkin_intro_next)).setTypeface(tf_bold);
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
 		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));

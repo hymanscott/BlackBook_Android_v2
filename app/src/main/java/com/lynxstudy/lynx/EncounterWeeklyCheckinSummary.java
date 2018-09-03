@@ -24,8 +24,8 @@ public class EncounterWeeklyCheckinSummary extends Fragment {
         // Required empty public constructor
     }
 
-    TextView frag_title,intro_paragraph;
-    Button btn;
+    //TextView frag_title,intro_paragraph;
+    //Button btn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,12 +36,9 @@ public class EncounterWeeklyCheckinSummary extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        frag_title = (TextView) view.findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf_bold);
-        intro_paragraph = (TextView) view.findViewById(R.id.intro_paragraph);
-        intro_paragraph.setTypeface(tf);
-        btn = (Button) view.findViewById(R.id.checkin_summary_next);
-        btn.setTypeface(tf_bold);
+        ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView) view.findViewById(R.id.intro_paragraph)).setTypeface(tf);
+        ((Button) view.findViewById(R.id.checkin_summary_next)).setTypeface(tf_bold);
 
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();

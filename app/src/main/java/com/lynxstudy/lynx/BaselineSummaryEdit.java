@@ -32,11 +32,7 @@ import java.util.List;
 public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarChangeListener {
     public BaselineSummaryEdit() {
     }
-    TextView textview,textview6,textview7,textview8,textview9,textview10,textview11,textview12,addToDiary,drugContentTitle;
-    TextView textProgress_id1,textProgress_id2,textview20,textview21,textview22,textview23,textview24,textview25,textview26,textview27,textview28;
-    TextView Progress_minvalue2,Progress_maxvalue2,Progress_minvalue1,Progress_maxvalue1,hivStatus,undetectableTitle,otherPartnersTitle;
-    TextView no_of_days_text,drinksTitle,drinksdefine;
-    Button save;
+    TextView textProgress_id1,textProgress_id2;
     EditText negativePartners,positivePartners,unknownPartners,editText,editText1,nick_name,no_of_drinks;
     RadioButton PSP_Yes,PSP_No,radio_hiv_neg,radio_hiv_prep,radio_hiv_und,radio_hiv_idk,radio_hiv_pos,radio_undetectable_yes,radio_undetectable_no,radio_undetectable_iDontKnow;
     RadioButton alcCal_5to7days,alcCal_1to4days,alcCal_lessThanOnce,alcCal_never;
@@ -54,17 +50,11 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-
-        textview = (TextView)view.findViewById(R.id.textview);
-        textview.setTypeface(tf);
-        textview8 = (TextView)view.findViewById(R.id.textview8);
-        textview8.setTypeface(tf);
-        textview9 = (TextView)view.findViewById(R.id.textview9);
-        textview9.setTypeface(tf);
-        textview7 = (TextView)view.findViewById(R.id.textview7);
-        textview7.setTypeface(tf);
-        textview6 = (TextView)view.findViewById(R.id.textview6);
-        textview6.setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview8)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview9)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview7)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview6)).setTypeface(tf);
         negativePartners = (EditText)view.findViewById(R.id.negativePartners);
         negativePartners.setTypeface(tf);
         positivePartners = (EditText)view.findViewById(R.id.positivePartners);
@@ -72,39 +62,20 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
         unknownPartners = (EditText)view.findViewById(R.id.unknownPartners);
         unknownPartners.setTypeface(tf);
         textProgress_id1 = (TextView)view.findViewById(R.id.textProgress_id1);
-        textview9 = (TextView)view.findViewById(R.id.textview9);
-        textview10 = (TextView)view.findViewById(R.id.textview10);
-        textview11 = (TextView)view.findViewById(R.id.textview11);
-        textview12 = (TextView)view.findViewById(R.id.textview12);
         editText = (EditText) view.findViewById(R.id.editText);
         textProgress_id1.setTypeface(tf);
-        textview9.setTypeface(tf);
-        textview10.setTypeface(tf);
-        textview11.setTypeface(tf);
-        textview12.setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview10)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview11)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview12)).setTypeface(tf);
         editText.setTypeface(tf);
         textProgress_id2 = (TextView)view.findViewById(R.id.textProgress_id2);
-        textview9 = (TextView)view.findViewById(R.id.textview9);
-        textview10 = (TextView)view.findViewById(R.id.textview10);
-        textview11 = (TextView)view.findViewById(R.id.textview11);
-        textview12 = (TextView)view.findViewById(R.id.textview12);
-        Progress_minvalue2 = (TextView)view.findViewById(R.id.Progress_minvalue2);
-        Progress_maxvalue2 = (TextView)view.findViewById(R.id.Progress_maxvalue2);
         editText1 = (EditText) view.findViewById(R.id.editText1);
         textProgress_id2.setTypeface(tf);
-        textview9.setTypeface(tf);
-        textview10.setTypeface(tf);
-        textview11.setTypeface(tf);
-        textview12.setTypeface(tf);
-        Progress_minvalue2.setTypeface(tf);
-        Progress_maxvalue2.setTypeface(tf);
+        ((TextView)view.findViewById(R.id.Progress_minvalue2)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.Progress_maxvalue2)).setTypeface(tf);
         editText1.setTypeface(tf);
-        textview9 = (TextView)view.findViewById(R.id.textview9);
-        textview10 = (TextView)view.findViewById(R.id.textview10);
         PSP_Yes = (RadioButton)view.findViewById(R.id.PSP_Yes);
         PSP_No = (RadioButton)view.findViewById(R.id.PSP_No);
-        textview9.setTypeface(tf);
-        textview10.setTypeface(tf);
         PSP_Yes.setTypeface(tf);
         PSP_No.setTypeface(tf);
         radio_hiv_neg = (RadioButton)view.findViewById(R.id.radio_hiv_neg);
@@ -133,26 +104,16 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
         radio_blackbook_yes.setTypeface(tf);
         radio_blackbook_no = (RadioButton)view.findViewById(R.id.radio_blackbook_no);
         radio_blackbook_no.setTypeface(tf);
-        hivStatus = (TextView)view.findViewById(R.id.hivStatus);
-        hivStatus.setTypeface(tf);
-        undetectableTitle = (TextView)view.findViewById(R.id.undetectableTitle);
-        undetectableTitle.setTypeface(tf);
-        otherPartnersTitle = (TextView)view.findViewById(R.id.otherPartnersTitle);
-        otherPartnersTitle.setTypeface(tf);
-        textview9 = (TextView)view.findViewById(R.id.textview9);
-        textview9.setTypeface(tf);
-        addToDiary = (TextView)view.findViewById(R.id.addToDiary);
-        addToDiary.setTypeface(tf);
+        ((TextView)view.findViewById(R.id.hivStatus)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.undetectableTitle)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.otherPartnersTitle)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.addToDiary)).setTypeface(tf);
+        ((TextView) view.findViewById(R.id.drugContentTitle)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.no_of_days_text)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.drinksTitle)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.drinksdefine)).setTypeface(tf);
         nick_name = (EditText) view.findViewById(R.id.nick_name);
         nick_name.setTypeface(tf);
-        drugContentTitle= (TextView) view.findViewById(R.id.drugContentTitle);
-        drugContentTitle.setTypeface(tf);
-        no_of_days_text = (TextView)view.findViewById(R.id.no_of_days_text);
-        no_of_days_text.setTypeface(tf);
-        drinksTitle = (TextView)view.findViewById(R.id.drinksTitle);
-        drinksTitle.setTypeface(tf);
-        drinksdefine = (TextView)view.findViewById(R.id.drinksdefine);
-        drinksdefine.setTypeface(tf);
         no_of_drinks = (EditText) view.findViewById(R.id.no_of_drinks);
         no_of_drinks.setTypeface(tf);
         alcCal_5to7days = (RadioButton) view.findViewById(R.id.alcCal_5to7days);
@@ -167,30 +128,18 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
         radio_hiv_prep.setTypeface(tf);
         radio_hiv_und = (RadioButton) view.findViewById(R.id.radio_hiv_und);
         radio_hiv_und.setTypeface(tf);
-        Progress_minvalue1 = (TextView)view.findViewById(R.id.Progress_minvalue1);
-        Progress_minvalue1.setTypeface(tf);
-        Progress_maxvalue1 = (TextView)view.findViewById(R.id.Progress_maxvalue1);
-        Progress_maxvalue1.setTypeface(tf);
-        textview20 = (TextView)view.findViewById(R.id.textview20);
-        textview20.setTypeface(tf);
-        textview21 = (TextView)view.findViewById(R.id.textview21);
-        textview21.setTypeface(tf);
-        textview22 = (TextView)view.findViewById(R.id.textview22);
-        textview22.setTypeface(tf);
-        textview23 = (TextView)view.findViewById(R.id.textview23);
-        textview23.setTypeface(tf);
-        textview24 = (TextView)view.findViewById(R.id.textview24);
-        textview24.setTypeface(tf);
-        textview25 = (TextView)view.findViewById(R.id.textview25);
-        textview25.setTypeface(tf);
-        textview26 = (TextView)view.findViewById(R.id.textview26);
-        textview26.setTypeface(tf);
-        textview27 = (TextView)view.findViewById(R.id.textview27);
-        textview27.setTypeface(tf);
-        textview28 = (TextView)view.findViewById(R.id.textview28);
-        textview28.setTypeface(tf);
-        save = (Button)view.findViewById(R.id.save);
-        save.setTypeface(tf);
+        ((TextView)view.findViewById(R.id.Progress_minvalue1)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.Progress_maxvalue1)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview20)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview21)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview22)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview23)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview24)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview25)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview26)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview27)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview28)).setTypeface(tf);
+        ((Button)view.findViewById(R.id.save)).setTypeface(tf);
         undetectable_layout = (LinearLayout)view.findViewById(R.id.linearLayout_undetectable);
         relationshipPeriod_layout = (LinearLayout)view.findViewById(R.id.linearLayout_relationshipPeriod);
         radioGrp_hivstatus = (RadioGroup)view.findViewById(R.id.radio_hivstatus);
@@ -312,12 +261,10 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
         if(LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getIs_primary_partner())!=null){
             switch (LynxManager.decryptString(LynxManager.getActiveUserBaselineInfo().getIs_primary_partner())){
                 case "Yes":
-                    /*PSP_Yes.setSelected(true);*/
                     primary_sex_partner.check(PSP_Yes.getId());
                     partnerInfoLayout.setVisibility(View.VISIBLE);
                     break;
                 default:
-                    /*PSP_No.setSelected(true);*/
                     primary_sex_partner.check(PSP_No.getId());
                     partnerInfoLayout.setVisibility(View.GONE);
             }
@@ -470,18 +417,15 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
             switch (LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getHiv_status())){
                 case "Yes":
                     radio_undetectable.check(radio_undetectable_yes.getId());
-                    /*radio_undetectable_yes.setSelected(true);*/
                     break;
                 default:
                     radio_undetectable.check(radio_undetectable_iDontKnow.getId());
-                    /*radio_undetectable_iDontKnow.setSelected(true);*/
             }
         }
 
         if(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getPartner_have_other_partners())!=null){
             switch (LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getPartner_have_other_partners())){
                 case "Yes":
-                    /*radio_partner_yes.setSelected(true);*/
                     radioGrp_partner.check(radio_partner_yes.getId());
                     relationshipPeriod_layout.setVisibility(View.GONE);
                     LynxManager.relationShipLayoutHidden = true;
@@ -496,7 +440,6 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
                         relationshipPeriod_layout.setVisibility(View.VISIBLE);
                         LynxManager.relationShipLayoutHidden = false;
                     }
-                    /*radio_partner_no.setSelected(true);*/
                     radioGrp_partner.check(radio_partner_no.getId());
             }
         }
@@ -505,23 +448,19 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
             switch (LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getRelationship_period())){
                 case "6 months or more":
                     radio_relationshipPeriod.check(radio_moreThanSixMonths.getId());
-                    /*radio_moreThanSixMonths.setSelected(true);*/
                     break;
                 default:
                     radio_relationshipPeriod.check(radio_lessThanSixMonths.getId());
-                    /*radio_lessThanSixMonths.setSelected(true);*/
             }
         }
 
         if(LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getIs_added_to_blackbook())!=null){
             switch (LynxManager.decryptString(LynxManager.getActiveUserPrimaryPartner().getIs_added_to_blackbook())){
                 case "No":
-                    /*radio_blackbook_no.setSelected(true);*/
                     radio_blackbook.check(radio_blackbook_no.getId());
                     break;
                 default:
                     radio_blackbook.check(radio_blackbook_yes.getId());
-                    /*radio_blackbook_yes.setSelected(true);*/
             }
         }
 
@@ -530,20 +469,16 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
         if(LynxManager.decryptString(LynxManager.getActiveUserAlcoholUse().getNo_alcohol_in_week())!=null){
             switch (LynxManager.decryptString(LynxManager.getActiveUserAlcoholUse().getNo_alcohol_in_week())){
                 case "1-4 days a week":
-                    /*alcCal_1to4days.setSelected(true);*/
                     alcoholCalculation.check(alcCal_1to4days.getId());
                     break;
                 case "Less than once a week":
-                    /*alcCal_lessThanOnce.setSelected(true);*/
                     alcoholCalculation.check(alcCal_lessThanOnce.getId());
                     break;
                 case "Never":
-                    /*alcCal_never.setSelected(true);*/
                     alcoholCalculation.check(alcCal_never.getId());
                     break;
                 default:
                     alcoholCalculation.check(alcCal_5to7days.getId());
-                    /*alcCal_5to7days.setSelected(true);*/
             }
         }
         return view;

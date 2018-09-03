@@ -917,19 +917,6 @@
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:src="@drawable/shieldiconblue" />
-                    <!--<Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/regSecQuestion"
-                        android:prompt="@string/sec_question_prompt"
-                        android:theme="@style/AppTheme"
-                        android:layout_toEndOf="@+id/shieldicon"
-                        android:spinnerMode="dropdown"
-                        android:visibility="gone"
-                        android:layout_centerVertical="true"
-                        android:background="@android:color/transparent"
-                        android:backgroundTint="@color/white"
-                        android:dropDownSelector="@color/colorAccent" />-->
                     <TextView
                         android:id="@+id/sec_qn"
                         android:layout_width="fill_parent"

@@ -26,8 +26,6 @@ public class RegistrationUserDetails extends Fragment {
     public RegistrationUserDetails() {
     }
 
-    TextView frag_title;
-    Button regBtnNext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,11 +37,8 @@ public class RegistrationUserDetails extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        frag_title = (TextView)view.findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf_bold);
-
-        regBtnNext = (Button) view.findViewById(R.id.regAuthNext);
-        regBtnNext.setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((Button) view.findViewById(R.id.regAuthNext)).setTypeface(tf_bold);
         //email validation
         final EditText email = (EditText) view.findViewById(R.id.regEmail);
         email.setTypeface(tf);

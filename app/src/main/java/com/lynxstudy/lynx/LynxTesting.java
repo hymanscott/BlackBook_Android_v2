@@ -1,11 +1,7 @@
 package com.lynxstudy.lynx;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -15,19 +11,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.UserBadges;
@@ -288,12 +279,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            int page_id = getArguments().getInt(ARG_SECTION_NUMBER);
-            //Log.v("page_id ", String.valueOf(page_id));
-            View rootView = inflater.inflate(R.layout.fragment_lynx_diary, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
+            return inflater.inflate(R.layout.fragment_lynx_diary, container, false);
         }
     }
 
@@ -309,10 +295,6 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            /*Log.v("page_id ", String.valueOf(position));
-            return PlaceholderFragment.newInstance(position + 1);*/
             switch (position) {
                 case 0:
                     return new TestingHomeFragment();
@@ -396,7 +378,6 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
     public void onResume() {
         super.onResume();
         // Closing the App if sign out enabled
-        //Log.v("SignOut", String.valueOf(LynxManager.signOut));
         if(LynxManager.signOut){
             finish();
             System.exit(0);
@@ -404,7 +385,6 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         if (LynxManager.onPause){
             Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);
             startActivity(lockscreen);
-           // Log.v("onResumeusername", LynxManager.getActiveUser().getFirstname());
         }
     }
     int onPause_count =0;
@@ -413,9 +393,6 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
     public void onBackPressed() {
         // do something on back.
         if (onPause_count > 0) {
-            /*LynxManager.goToIntent(LynxTesting.this,"home",LynxTesting.this.getClass().getSimpleName());
-            overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
-            finish();*/
             LynxManager.notificationActions = null;
             Intent home = new Intent(LynxTesting.this,LynxHome.class);
             home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -425,6 +402,5 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
             finish();
         }
         onPause_count++;
-        return;
     }
 }

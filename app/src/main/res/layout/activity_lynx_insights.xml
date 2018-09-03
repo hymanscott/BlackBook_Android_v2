@@ -43,7 +43,7 @@
                         <ImageView
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:src="@drawable/trends_home_new" />
+                            android:src="@drawable/insights_home_new" />
 
                         <TextView
                             android:id="@+id/pageTitle"
@@ -88,14 +88,6 @@
                         android:textColor="@color/text_color"
                         android:textSize="16sp"
                         android:textStyle="italic|bold" />
-
-                    <com.github.mikephil.charting.charts.HorizontalBarChart
-                        android:id="@+id/chart1"
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:layout_marginBottom="8dp"
-                        android:visibility="gone" />
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -276,14 +268,6 @@
                         android:textColor="@color/text_color"
                         android:textSize="16sp"
                         android:textStyle="italic|bold" />
-
-                    <com.github.mikephil.charting.charts.HorizontalBarChart
-                        android:id="@+id/partnerTypes"
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:layout_marginBottom="8dp"
-                        android:visibility="gone" />
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

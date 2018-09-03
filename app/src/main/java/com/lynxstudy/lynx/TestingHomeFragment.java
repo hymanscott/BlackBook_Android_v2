@@ -57,7 +57,6 @@ import com.lynxstudy.model.TestingHistoryInfo;
 import com.lynxstudy.model.UserBadges;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
-import net.gotev.uploadservice.UploadNotificationConfig;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -147,7 +146,8 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         final int width = (int) ((displaymetrics.widthPixels)*0.9);
         if(LynxManager.notificationActions !=null ){
             if(LynxManager.notificationActions.equals("TestingSure")){
-                final View popupView = getLayoutInflater(Bundle.EMPTY).inflate(R.layout.popup_alert_dialog_template, null);
+                //final View popupView = getLayoutInflater(Bundle.EMPTY).inflate(R.layout.popup_alert_dialog_template, null);
+                final View popupView  = LayoutInflater.from(getActivity()).inflate(R.layout.popup_alert_dialog_template, null, false);
                 final PopupWindow testingReminder = new PopupWindow(popupView, LinearLayout.LayoutParams.FILL_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
                 TextView title = (TextView)popupView.findViewById(R.id.alertTitle);
                 TextView message = (TextView)popupView.findViewById(R.id.alertMessage);
@@ -212,10 +212,6 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         addNewHIVtest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //showPopup(v, "HIV Test",width, ViewGroup.LayoutParams.WRAP_CONTENT);
-                /*Intent addtest = new Intent(getActivity(),AddNewTest.class);
-                addtest.putExtra("testname","HIV Test");
-                startActivityForResult(addtest,111);*/
                 TrackHelper.track().event("Navigation","Click").name("Add New HIV Test").with(tracker);
                 setNewTestContent("HIV Test");
             }
@@ -226,10 +222,6 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         addNewSTItest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //showPopup(v, "STD Test", width, height);
-                /*Intent addtest = new Intent(getActivity(),AddNewTest.class);
-                addtest.putExtra("testname","STD Test");
-                startActivityForResult(addtest,111);*/
                 TrackHelper.track().event("Navigation","Click").name("Add New STD Test").with(tracker);
                 setNewTestContent("STD Test");
             }
@@ -301,7 +293,6 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         testing_history_table.removeAllViews();
 
         List<TestingHistory> histories = db.getAllTestingHistories();
-        //Log.v("TestingHistoryCount", String.valueOf(db.getTestingHistoryCount()));
         /*
         *true = Descending order
         * false = ascending order
@@ -316,11 +307,9 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
             ((LinearLayout) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.GONE);
             for (TestingHistory history : histories) {
                 TestNameMaster name = db.getTestingNamebyID(history.getTesting_id());
-                Log.v("Date & ID",history.getTesting_history_id() + "" + name.getTestName());
-
                 if(name.getTestName().equals("HIV Test")) {
-                    TableRow tr = new TableRow(getActivity());
-                    final View v = LayoutInflater.from(getActivity()).inflate(R.layout.testing_history_row, tr, false);
+                    //TableRow tr = new TableRow(getActivity().getBaseContext());
+                    final View v = LayoutInflater.from(getActivity()).inflate(R.layout.testing_history_row, null, false);
                     //want to get childs of row for example TextView, get it like this:
                     TextView date = (TextView) v.findViewById(R.id.date);
                     date.setTypeface(tf);
@@ -380,16 +369,15 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     j++;
                 }else{
                     List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(history.getTesting_history_id());
-                    Log.v("testinghistoryInfoList",history.getTesting_history_id() + "" +testinghistoryInfoList.size());
                     for (TestingHistoryInfo historyInfo : testinghistoryInfoList) {
                         if (historyInfo.getSti_id() != 0) {
-                            TableRow tr = null;
+                            /*TableRow tr = null;
                             if(getActivity()!=null){
                                 tr = new TableRow(getActivity());
                             }else if(mContext != null){
                                 tr = new TableRow(mContext);
-                            }
-                            final View v = LayoutInflater.from(getActivity()).inflate(R.layout.testing_history_row, tr, false);
+                            }*/
+                            final View v = LayoutInflater.from(getActivity()).inflate(R.layout.testing_history_row, null, false);
                             //want to get childs of row for example TextView, get it like this:
                             TextView date = (TextView) v.findViewById(R.id.date);
                             date.setTypeface(tf);
@@ -776,12 +764,6 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         }
     }
     public void testRowClick(View v){
-        /*((TextView) v.findViewById(R.id.date)).setTextColor(getResources().getColor(R.color.colorPrimary));
-        ((TextView) v.findViewById(R.id.testname)).setTextColor(getResources().getColor(R.color.colorPrimary));
-        ((TextView) v.findViewById(R.id.teststatus)).setTextColor(getResources().getColor(R.color.colorPrimary));
-        Intent testSumm = new Intent(getActivity(),TestSummary.class);
-        testSumm.putExtra("testingHistoryID",v.getId());
-        startActivityForResult(testSumm, 001);*/
         setSummaryContent(v.getId());
         mainContentLayout.setVisibility(View.GONE);
         newTestLayout.setVisibility(View.GONE);
@@ -1000,8 +982,6 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         startActivity(intent);
     }
     public void reloadFragment() {
-        //Log.v("Fragment Reload", "Reloaded");
-
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .detach(this)
@@ -1014,12 +994,8 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         switch (requestCode) {
             case FINE_COARSE_PERMISSION_REQUEST_CODE:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Permission Granted
-                    //   insertDummyContact();
-                    //   mMap.setMyLocationEnabled(true);
                     Toast.makeText(getActivity(), "Location Access Granted", Toast.LENGTH_SHORT)
                             .show();
-
                 } else {
                     // Permission Denied
                     Toast.makeText(getActivity(), "Location Access Denied", Toast.LENGTH_SHORT)
@@ -1039,12 +1015,6 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
-    /*public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 111 || requestCode == 001) {
-            reloadFragment();
-            LynxManager.isRefreshRequired = true;
-        }
-    }*/
 
     @Override
     public void onClick(View v) {
@@ -1536,7 +1506,6 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">testingHistoriesOnline " + jsonChatListStr);
             testingHistoriesOnline = jsonChatListStr;
             return null;
         }
@@ -1556,16 +1525,11 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     // Getting JSON Array node
                     boolean is_error = jsonObj.getBoolean("is_error");
                     // Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
-                    if (is_error) {
-                        Log.d("Response: ", "> testingHistoriesOnlineError. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         //JSONArray chatArray = jsonObj.getJSONArray("ticketChat");
-                        //db.deleteTestingHistories();
-                        //db.deleteTestingHistoryInfos();
                         JSONArray testingHistoryInfo = jsonObj.getJSONArray("TestingHistory");
                         for(int n = 0; n <testingHistoryInfo.length(); n++) {
                             JSONObject testingHistoryObject = testingHistoryInfo.getJSONObject(n);
-                            //Log.v("testingHistoryInfo", testingHistoryObject.getString(""));
                             TestingHistory history = new TestingHistory(testingHistoryObject.getInt("testing_id"),
                                     LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(testingHistoryObject.getString("testing_date")),
                                     String.valueOf(R.string.statusUpdateYes), true);

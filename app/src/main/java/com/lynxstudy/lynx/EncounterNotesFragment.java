@@ -25,9 +25,6 @@ public class EncounterNotesFragment extends Fragment {
         // Required empty public constructor
     }
 
-    TextView newEncounter,textView10;
-    EditText encNotes;
-    Button onEncNotesNext;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,20 +35,15 @@ public class EncounterNotesFragment extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        newEncounter = (TextView) rootview.findViewById(R.id.newEncounter);
-        newEncounter.setTypeface(tf_bold);
-        textView10 = (TextView) rootview.findViewById(R.id.textView10);
-        textView10.setTypeface(tf);
-        encNotes = (EditText) rootview.findViewById(R.id.encNotes);
-        encNotes.setTypeface(tf);
-        onEncNotesNext = (Button) rootview.findViewById(R.id.onEncNotesNext);
-        onEncNotesNext.setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.newEncounter)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.textView10)).setTypeface(tf);
+        ((EditText) rootview.findViewById(R.id.encNotes)).setTypeface(tf);
+        ((Button) rootview.findViewById(R.id.onEncNotesNext)).setTypeface(tf_bold);
 
         // Set NickName
 
         TextView nickname = (TextView) rootview.findViewById(R.id.encounter_notes_nickName);
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        //nickname.setAllCaps(true);
         nickname.setTypeface(tf_bold);
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();

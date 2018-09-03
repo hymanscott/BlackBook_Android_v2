@@ -76,9 +76,8 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
     private static final int PICK_IMAGE_REQUEST_AFTER_KITKAT = 5;
     private static final int KITKAT_API_VERSION = 19;
     private static final int READ_WRITE_PERMISSION = 100;
-    TextView titleText,hivPosQn,stdTesPosQn,gonorrheaTitle,syphilisTitle,chlamydiaTitle;
+    TextView titleText;
     EditText addNewTestDate;
-    RadioButton hivTestYes,hivTestNo,hivTestDidntTest,gonorrheaYes,gonorrheaNo,gonorrheaDidntTest,syphilisYes,syphilisNo,syphilisDidntTest;
     RadioButton chlamydiaYes,chlamydiaNo,chlamydiaDidntTest;
     Button add_new_test_ok;
     LinearLayout bot_nav;
@@ -88,14 +87,6 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_test);
-
-        // Custom Action Bar //
-        /*getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
-        getSupportActionBar().setCustomView(cView);
-        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
-        ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
-        viewProfile.setVisibility(View.INVISIBLE);*/
         // Typeface //
         Typeface ty = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
@@ -146,44 +137,26 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
 
         titleText = (TextView)findViewById(R.id.titleText);
         titleText.setTypeface(ty);
-        hivPosQn = (TextView)findViewById(R.id.hivPosQn);
-        hivPosQn.setTypeface(ty);
-        stdTesPosQn = (TextView)findViewById(R.id.stdTesPosQn);
-        stdTesPosQn.setTypeface(ty);
-        gonorrheaTitle = (TextView)findViewById(R.id.gonorrheaTitle);
-        gonorrheaTitle.setTypeface(ty_bold_italic);
-        syphilisTitle = (TextView)findViewById(R.id.syphilisTitle);
-        syphilisTitle.setTypeface(ty_bold_italic);
-        chlamydiaTitle = (TextView)findViewById(R.id.chlamydiaTitle);
-        chlamydiaTitle.setTypeface(ty_bold_italic);
+        ((TextView)findViewById(R.id.hivPosQn)).setTypeface(ty);
+        ((TextView)findViewById(R.id.stdTesPosQn)).setTypeface(ty);
+        ((TextView)findViewById(R.id.gonorrheaTitle)).setTypeface(ty_bold_italic);
+        ((TextView)findViewById(R.id.syphilisTitle)).setTypeface(ty_bold_italic);
+        ((TextView)findViewById(R.id.chlamydiaTitle)).setTypeface(ty_bold_italic);
 
         addNewTestDate = (EditText)findViewById(R.id.addNewTestDate);
         addNewTestDate.setTypeface(ty);
-
-        hivTestYes = (RadioButton)findViewById(R.id.hivTestYes);
-        hivTestYes.setTypeface(ty);
-        hivTestNo = (RadioButton)findViewById(R.id.hivTestNo);
-        hivTestNo.setTypeface(ty);
-        hivTestDidntTest = (RadioButton)findViewById(R.id.hivTestDidntTest);
-        hivTestDidntTest.setTypeface(ty);
-        gonorrheaYes = (RadioButton)findViewById(R.id.gonorrheaYes);
-        gonorrheaYes.setTypeface(ty);
-        gonorrheaNo = (RadioButton)findViewById(R.id.gonorrheaNo);
-        gonorrheaNo.setTypeface(ty);
-        gonorrheaDidntTest = (RadioButton)findViewById(R.id.gonorrheaDidntTest);
-        gonorrheaDidntTest.setTypeface(ty);
-        syphilisYes = (RadioButton)findViewById(R.id.syphilisYes);
-        syphilisYes.setTypeface(ty);
-        syphilisNo = (RadioButton)findViewById(R.id.syphilisNo);
-        syphilisNo.setTypeface(ty);
-        syphilisDidntTest = (RadioButton)findViewById(R.id.syphilisDidntTest);
-        syphilisDidntTest.setTypeface(ty);
-        chlamydiaYes = (RadioButton)findViewById(R.id.chlamydiaYes);
-        chlamydiaYes.setTypeface(ty);
-        chlamydiaNo = (RadioButton)findViewById(R.id.chlamydiaNo);
-        chlamydiaNo.setTypeface(ty);
-        chlamydiaDidntTest = (RadioButton)findViewById(R.id.chlamydiaDidntTest);
-        chlamydiaDidntTest.setTypeface(ty);
+        ((RadioButton)findViewById(R.id.hivTestYes)).setTypeface(ty);
+        ((RadioButton)findViewById(R.id.hivTestNo)).setTypeface(ty);
+        ((RadioButton)findViewById(R.id.hivTestDidntTest)).setTypeface(ty);
+        ((RadioButton)findViewById(R.id.gonorrheaYes)).setTypeface(ty);
+        ((RadioButton)findViewById(R.id.gonorrheaNo)).setTypeface(ty);
+        ((RadioButton)findViewById(R.id.gonorrheaDidntTest)).setTypeface(ty);
+        ((RadioButton)findViewById(R.id.syphilisYes)).setTypeface(ty);
+        ((RadioButton)findViewById(R.id.syphilisNo)).setTypeface(ty);
+        ((RadioButton)findViewById(R.id.syphilisDidntTest)).setTypeface(ty);
+        ((RadioButton)findViewById(R.id.chlamydiaYes)).setTypeface(ty);
+        ((RadioButton)findViewById(R.id.chlamydiaNo)).setTypeface(ty);
+        ((RadioButton)findViewById(R.id.chlamydiaDidntTest)).setTypeface(ty);
 
         if ( Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission(AddNewTest.this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
@@ -209,9 +182,7 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
             hivTestStatusRadio.setVisibility(View.GONE);
             titleText.setText("When was your most recent STD test?");
         }
-
-        final EditText newTestDate = (EditText) findViewById(R.id.addNewTestDate);
-        newTestDate.addTextChangedListener(new TextWatcher() {
+        addNewTestDate.addTextChangedListener(new TextWatcher() {
             private String current = "";
             private String mmddyyyy = "MMDDYYYY";
             private Calendar cal = Calendar.getInstance();
@@ -262,8 +233,8 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
 
                     sel = sel < 0 ? 0 : sel;
                     current = clean;
-                    newTestDate.setText(current);
-                    newTestDate.setSelection(sel < current.length() ? sel : current.length());
+                    addNewTestDate.setText(current);
+                    addNewTestDate.setSelection(sel < current.length() ? sel : current.length());
 
 
                 }
@@ -274,25 +245,6 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
 
             }
         });
-
-        /*ImageView calenderIconNewTestDate = (ImageView)findViewById(R.id.calenderIconNewTestDate);
-        calenderIconNewTestDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment datePickerFragment = new DatePickerFragment() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        //   Log.d(TAG, "onDateSet");
-                        Calendar c = Calendar.getInstance();
-                        c.set(year, month, day);
-                        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-                        newTestDate.setText(df.format(c.getTime()));
-
-                    }
-                };
-                datePickerFragment.show(AddNewTest.this.getFragmentManager(), "datePicker");
-            }
-        });*/
 
         final Calendar myCalendar = Calendar.getInstance();
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -308,11 +260,11 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
                 String myFormat = "MM/dd/yyyy"; //In which you need put here
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-                newTestDate.setText(sdf.format(myCalendar.getTime()));
+                addNewTestDate.setText(sdf.format(myCalendar.getTime()));
             }
 
         };
-        newTestDate.setOnClickListener(new View.OnClickListener() {
+        addNewTestDate.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -331,14 +283,14 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
         add_new_test_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean invalid_date = LynxManager.regDateValidation(newTestDate.getText().toString());
-                if (newTestDate.getText().toString().isEmpty()) {
+                boolean invalid_date = LynxManager.regDateValidation(addNewTestDate.getText().toString());
+                if (addNewTestDate.getText().toString().isEmpty()) {
                     Toast.makeText(AddNewTest.this, "Please Select Date", Toast.LENGTH_SHORT).show();
                 } else if(invalid_date){
                     Toast.makeText(AddNewTest.this,"Invalid Date",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    String date = LynxManager.getFormatedDate("MM/dd/yyyy",newTestDate.getText().toString(),"yyyy-MM-dd");
+                    String date = LynxManager.getFormatedDate("MM/dd/yyyy",addNewTestDate.getText().toString(),"yyyy-MM-dd");
                     TestingHistory history = new TestingHistory(testing_id, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(date), String.valueOf(R.string.statusUpdateNo), true);
                     int testingHistoryid = db.createTestingHistory(history);
                     RadioButton chlamydia = (RadioButton)findViewById(((RadioGroup) findViewById(R.id.chlamydia)).getCheckedRadioButtonId());

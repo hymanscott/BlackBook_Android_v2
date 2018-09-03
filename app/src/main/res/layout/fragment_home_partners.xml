@@ -1160,12 +1160,12 @@
                         android:hint="Add notes about this partner"
                         android:imeOptions="actionDone"
                         android:inputType="textMultiLine"
-                        android:lines="3"
-                        android:maxLines="4"
+                        android:windowSoftInputMode="adjustPan"
                         android:padding="@dimen/edittext_padding"
                         android:textColor="@color/text_color"
                         android:textColorHint="@color/profile_edittext_hint"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
+                        android:maxLength="255"
                         android:textSize="14sp" />
                 </LinearLayout>
                 <LinearLayout

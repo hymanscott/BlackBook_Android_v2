@@ -198,17 +198,6 @@
             </TableRow>
 
         </TableLayout>
-        <!--<Button
-            android:id="@+id/button_none1"
-            style="@style/PasscodeKeyboardButtonStyle"
-            android:clickable="false"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:background="@color/white"
-            android:textColor="@color/text_color"
-            android:layout_margin="3dp"
-            android:visibility="gone"
-            android:text="" />-->
     </LinearLayout>
 
 </ScrollView>

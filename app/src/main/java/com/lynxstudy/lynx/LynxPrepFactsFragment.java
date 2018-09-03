@@ -72,7 +72,6 @@ public class LynxPrepFactsFragment extends Fragment {
 
         prepTable = (TableLayout) rootview.findViewById(R.id.prepTable);
         prepTable.removeAllViews();
-        int j = 0;
         for (final PrepInformation prepInformation : prepInformationList) {
             TableRow prepRow = new TableRow(getActivity());
             LayoutInflater chInflater = (getActivity()).getLayoutInflater();
@@ -92,13 +91,6 @@ public class LynxPrepFactsFragment extends Fragment {
                     for (int i = 0; i < prepTable.getChildCount(); i++) {
                         View row = prepTable.getChildAt(i);
                         if (row == v) {
-
-                            /*row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
-                            ((TextView) ((TableRow) prepTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.profile_text_color));
-                            Intent selectedPartnerSumm = new Intent(getActivity(), PrepFactsAnswer.class);
-                            int prepInformationId = row.getId();
-                            selectedPartnerSumm.putExtra("prepInformationId", prepInformationId);
-                            startActivityForResult(selectedPartnerSumm, 100);*/
                             setAnswerLayout(row.getId());
 
                         } else {
@@ -109,8 +101,6 @@ public class LynxPrepFactsFragment extends Fragment {
                 }
             });
             prepTable.addView(prepRow);
-            j++;
-
         }
 
         back_press_count = 0;
@@ -202,29 +192,6 @@ public class LynxPrepFactsFragment extends Fragment {
             parentLayout.addView(prepInfoAnswer, new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));
         }
-
-        /*if (prepInformation.getPrep_info_question().equals("Getting on PrEP")) {
-            final WebView prepInfoAnswer = new WebView(getActivity());
-            prepInfoAnswer.loadDataWithBaseURL("",prepInformation.getPrep_info_answer() , "text/html", "utf-8", "");
-            prepInfoAnswer.setPadding(20, 10, 20, 10);
-            parentLayout.addView(prepInfoAnswer, new TableLayout.LayoutParams(
-                    TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));
-        } else {
-            //     prepInfoRow_qn.setPadding(0, 0, 10, 0);
-
-            final TextView prepInfoAnswer = new TextView(getActivity());
-            prepInfoAnswer.setText(Html.fromHtml(prepInformation.getPrep_info_answer()));
-            prepInfoAnswer.setAutoLinkMask(Linkify.WEB_URLS);
-            prepInfoAnswer.setMovementMethod(LinkMovementMethod.getInstance());
-            prepInfoAnswer.setTextSize(16);
-            prepInfoAnswer.setTypeface(tf);
-            prepInfoAnswer.setLinkTextColor(getResources().getColor(R.color.colorAccent));
-            prepInfoAnswer.setGravity(Gravity.LEFT);
-            prepInfoAnswer.setPadding(20, 10, 20, 10);
-
-            parentLayout.addView(prepInfoAnswer, new TableLayout.LayoutParams(
-                    TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));
-        }*/
     }
 
     public void reloadFragment() {

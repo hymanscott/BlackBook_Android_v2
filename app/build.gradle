@@ -15,7 +15,8 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -47,7 +48,6 @@ dependencies {
     compile 'com.google.firebase:firebase-core:10.2.4'
     compile 'net.hockeyapp.android:HockeySDK:4.1.4'
     compile 'org.piwik.sdk:piwik-sdk:2.0.0'
-    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     compile 'me.tankery.lib:circularSeekBar:1.1.4'
     compile 'com.roomorama:caldroid:3.0.1'
     compile 'com.github.barteksc:android-pdf-viewer:2.8.2'

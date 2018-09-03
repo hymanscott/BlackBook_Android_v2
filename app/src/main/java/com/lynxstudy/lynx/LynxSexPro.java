@@ -1,6 +1,5 @@
 package com.lynxstudy.lynx;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
@@ -9,16 +8,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.User_baseline_info;
-
-import net.hockeyapp.android.metrics.model.User;
 
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
@@ -27,13 +21,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 public class LynxSexPro extends AppCompatActivity implements View.OnClickListener{
 
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
     DatabaseHelper db;
-    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,score_update_date,info_title,info_para_one,info_para_two,info_para_three,infoLink;
     Typeface tf,tf_bold;
     public ViewPager container;
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -59,16 +51,11 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         isPreNinety = elapsed_reg_days < 90;
 
         /*Bottom Navigation UI&Actions*/
-        bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
-        bot_nav_sexpro_tv.setTypeface(tf);
-        bot_nav_diary_tv = (TextView)findViewById(R.id.bot_nav_diary_tv);
-        bot_nav_diary_tv.setTypeface(tf);
-        bot_nav_testing_tv = (TextView)findViewById(R.id.bot_nav_testing_tv);
-        bot_nav_testing_tv.setTypeface(tf);
-        bot_nav_prep_tv = (TextView)findViewById(R.id.bot_nav_prep_tv);
-        bot_nav_prep_tv.setTypeface(tf);
-        bot_nav_chat_tv = (TextView)findViewById(R.id.bot_nav_chat_tv);
-        bot_nav_chat_tv.setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_sexpro_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_diary_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_testing_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_prep_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_chat_tv)).setTypeface(tf);
         // Click Listners //
         btn_testing = (LinearLayout)findViewById(R.id.bot_nav_testing);
         btn_diary = (LinearLayout) findViewById(R.id.bot_nav_diary);
@@ -97,12 +84,7 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         TrackHelper.track().screen("/Lynxhome/Sexpro").title("Lynxhome/Sexpro").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
-    private String getDate(long time) {
-        Calendar cal = Calendar.getInstance(Locale.US);
-        cal.setTimeInMillis(time);
-        String date = DateFormat.format("dd-MM-yyyy hh:mm:ss", cal).toString();
-        return date;
-    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -190,7 +172,6 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             if(isPreNinety){
                 return 2;
             }else{

@@ -65,7 +65,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
 
     LinearLayout btn_sexpro,btn_diary,btn_prep,btn_testing;
     RelativeLayout needUsNowLayout,mainLayout;
-    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv;
+    //TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv;
     Button needUsNow;
     TableLayout chatTableLayout;
     EditText newMessage;
@@ -100,16 +100,11 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView)cView.findViewById(R.id.viewProfile);
-        bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
-        bot_nav_sexpro_tv.setTypeface(tf);
-        bot_nav_diary_tv = (TextView)findViewById(R.id.bot_nav_diary_tv);
-        bot_nav_diary_tv.setTypeface(tf);
-        bot_nav_testing_tv = (TextView)findViewById(R.id.bot_nav_testing_tv);
-        bot_nav_testing_tv.setTypeface(tf);
-        bot_nav_prep_tv = (TextView)findViewById(R.id.bot_nav_prep_tv);
-        bot_nav_prep_tv.setTypeface(tf);
-        bot_nav_chat_tv = (TextView)findViewById(R.id.bot_nav_chat_tv);
-        bot_nav_chat_tv.setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_sexpro_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_diary_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_testing_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_prep_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_chat_tv)).setTypeface(tf);
         newMessage = (EditText) findViewById(R.id.newMessage);
         newMessage.setTypeface(tf);
         needUsNowLayout = (RelativeLayout)findViewById(R.id.needUsNowLayout);
@@ -244,7 +239,6 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             String msg_date = LynxManager.getFormatedDate("yyyy-MM-dd hh:mm:ss",LynxManager.getLocaltimeFromUTC(msg_utc_date),"MMM dd, hh:mm a");
             View v;
             TextView date;
-            //if(LynxManager.decryptString(chatMessage.getSender()).equals("Lynx Study")){
             if(LynxManager.decryptString(chatMessage.getSender()).equals(LynxManager.decryptString(LynxManager.getActiveUser().getFirstname()))){
                 v = LayoutInflater.from(LynxChat.this).inflate(R.layout.chat_row, tr, false);
                 //date.setText("FEB 22, 9:31 AM");
@@ -267,13 +261,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             v.requestFocus();
             chatTableLayout.addView(v);
         }
-        //chatTableLayout.scrollTo(0,chatTableLayout.getBottom());
         scrolltolastmessage();
-       // Log.v("ChatMessageCount",db.getChatMessagesCount() + ", APPALertCount=>" + db.getAppAlertsCountByName("Chat Used"));
-        /*// Showing APP Alert box //
-        if(db.getChatMessagesCount() == 1 && db.getAppAlertsCountByName("Chat Used")==0){
-            showAppAlert("Great to see you working the chat feature. We're always one click away.",1,"Chat Used");
-        }*/
     }
     public void scrolltolastmessage(){
         final int index = chatTableLayout.getChildCount() - 1;
@@ -286,47 +274,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             }
         });
     }
-    private void showAppAlert(String message, int no_of_buttons, String name){
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(LynxChat.this);
-        View appAlertLayout = getLayoutInflater().inflate(R.layout.app_alert_template,null);
-        builder1.setView(appAlertLayout);
-        TextView message_tv = (TextView)appAlertLayout.findViewById(R.id.message);
-        TextView maybeLater = (TextView)appAlertLayout.findViewById(R.id.maybeLater);
-        TextView prepInfo = (TextView)appAlertLayout.findViewById(R.id.prepInfo);
-        View verticalBorder = (View)appAlertLayout.findViewById(R.id.verticalBorder);
-        message_tv.setText(message);
-        builder1.setCancelable(false);
-        final AlertDialog alert11 = builder1.create();
-        if(no_of_buttons==1){
-            prepInfo.setVisibility(View.GONE);
-            verticalBorder.setVisibility(View.GONE);
-            maybeLater.setText("Got it!");
-            maybeLater.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    alert11.cancel();
-                }
-            });
-        }else{
-            prepInfo.setVisibility(View.VISIBLE);
-            verticalBorder.setVisibility(View.VISIBLE);
-            maybeLater.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    alert11.cancel();
-                }
-            });
-            prepInfo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    alert11.cancel();
-                }
-            });
-        }
-        alert11.show();
-        AppAlerts appAlerts = new AppAlerts(name,LynxManager.getDateTime(),LynxManager.getDateTime());
-        db.createAppAlert(appAlerts);
-    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -379,7 +327,6 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             startActivity(lockscreen);
         }
     }
-    int onPause_count =0;
 
     @Override
     public void onBackPressed() {
@@ -422,7 +369,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">sendnewMessageOnline " + jsonChatListStr);
+            //Log.d("Response: ", ">sendnewMessageOnline " + jsonChatListStr);
             sendNewMessageResult = jsonChatListStr;
             return null;
         }
@@ -431,20 +378,13 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            // Dismiss the progress dialog
-            /*if (pDialog.isShowing())
-                pDialog.dismiss(); */
-
             if (sendNewMessageResult != null) {
                 try {
                     JSONObject jsonObj = new JSONObject(sendNewMessageResult);
 
                     // Getting JSON Array node
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    // Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
                     if (is_error) {
-                        Log.d("Response: ", "> sendnewMessageOnlineError. " + jsonObj.getString("message"));
-                        //currentMessage.setStatusUpdate(String.valueOf(R.string.statusUpdateNo));
                         Toast.makeText(LynxChat.this,"Something went wrong. Please resend again!",Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(LynxChat.this,"Message Sent",Toast.LENGTH_LONG).show();
@@ -454,12 +394,11 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                         TrackHelper.track().event("Chat","Activity").name("New Message Sent").with(tracker);
                     }
                     addChatData();
-                    // looping through All Contacts
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
 
 
@@ -479,8 +418,6 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            // Showing progress dialog
-
         }
 
         @Override
@@ -488,14 +425,13 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
 
             // Creating service handler class instance
             ServiceHandler sh = new ServiceHandler();
-            // Making a request to url and getting response
             String jsonChatListStr = null;
             try {
                 jsonChatListStr = sh.makeServiceCall(LynxManager.getBaseURL() + "TicketChats/getInfo/"+LynxManager.getActiveUser().getUser_id()+"?hashkey="+ LynxManager.stringToHashcode(jsonChatListObj + LynxManager.hashKey)+"&timestamp="+ URLEncoder.encode(LynxManager.getDateTime(), "UTF-8"), jsonChatListObj);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">ChatListOnline " + jsonChatListStr);
+            //Log.d("Response: ", ">ChatListOnline " + jsonChatListStr);
             chatListOnline = jsonChatListStr;
             return null;
         }
@@ -504,22 +440,16 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            // Dismiss the progress dialog
-            /*if (pDialog.isShowing())
-                pDialog.dismiss(); */
-
             if (chatListOnline != null) {
                 try {
                     JSONObject jsonObj = new JSONObject(chatListOnline);
 
                     // Getting JSON Array node
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    // Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
                     if (is_error) {
-                        Log.d("Response: ", "> ChatListOnlineError. " + jsonObj.getString("message"));
+                        //Log.d("Response: ", "> ChatListOnlineError. " + jsonObj.getString("message"));
                     } else {
                         JSONArray chatArray = jsonObj.getJSONArray("ticketChat");
-                        //db.deleteChatData();
                         for(int i=0;i<chatArray.length();i++){
                             JSONObject childObj = chatArray.getJSONObject(i).getJSONObject("TicketChat");
                             if(db.getChatMessagesCountByID(childObj.getInt("id"))==0){
@@ -536,12 +466,11 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                         }
                             addChatData();
                     }
-                    // looping through All Contacts
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
 

@@ -34,8 +34,7 @@ public class EncounterSummaryFragment extends Fragment {
 
     public EncounterSummaryFragment() {
     }
-    TextView newEncounter,partner,hivStatus,edit_details,typeSex,sexRating,partnerNotes,encSumm_partnerNotes,condomUsed,whenIsuckedtitle,whenIbottomedtitle,whenItoppedtitle,whenIsucked,whenIbottom,whenItop,drunktitle,drunk;
-    Button next;
+    TextView whenIsucked,whenIbottom,whenItop,encSumm_partnerNotes,drunk;
     LinearLayout condomUsedContent,whenIsuckedParent,whenIbottomParent,whenItoppedParent;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,40 +46,28 @@ public class EncounterSummaryFragment extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        newEncounter = (TextView)rootview.findViewById(R.id.newEncounter);
-        newEncounter.setTypeface(tf_bold);
-        hivStatus = (TextView)rootview.findViewById(R.id.hivStatus);
-        hivStatus.setTypeface(tf);
-        sexRating = (TextView)rootview.findViewById(R.id.sexRating);
-        sexRating.setTypeface(tf);
-        typeSex = (TextView)rootview.findViewById(R.id.typeSex);
-        typeSex.setTypeface(tf);
-        next = (Button)rootview.findViewById(R.id.next);
-        next.setTypeface(tf_bold);
-        partnerNotes = (TextView) rootview.findViewById(R.id.partnerNotes);
-        partnerNotes.setTypeface(tf);
-        encSumm_partnerNotes = (TextView) rootview.findViewById(R.id.encSumm_partnerNotes);
-        encSumm_partnerNotes.setTypeface(tf);
-        condomUsed = (TextView) rootview.findViewById(R.id.condomUsed);
-        condomUsed.setTypeface(tf);
-        whenIsuckedtitle = (TextView) rootview.findViewById(R.id.whenIsuckedtitle);
-        whenIsuckedtitle.setTypeface(tf);
-        whenIbottomedtitle = (TextView) rootview.findViewById(R.id.whenIbottomedtitle);
-        whenIbottomedtitle.setTypeface(tf);
-        whenItoppedtitle = (TextView) rootview.findViewById(R.id.whenItoppedtitle);
-        whenItoppedtitle.setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.newEncounter)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.hivStatus)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.sexRating)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.typeSex)).setTypeface(tf);
+        ((Button)rootview.findViewById(R.id.next)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.partnerNotes)).setTypeface(tf);
+        encSumm_partnerNotes =(TextView) rootview.findViewById(R.id.encSumm_partnerNotes);
+        encSumm_partnerNotes .setTypeface(tf);
+        ((TextView) rootview.findViewById(R.id.condomUsed)).setTypeface(tf);
+        ((TextView) rootview.findViewById(R.id.whenIsuckedtitle)).setTypeface(tf);
+        ((TextView) rootview.findViewById(R.id.whenIbottomedtitle)).setTypeface(tf);
+        ((TextView) rootview.findViewById(R.id.whenItoppedtitle)).setTypeface(tf);
         whenIsucked= (TextView) rootview.findViewById(R.id.whenIsucked);
         whenIsucked.setTypeface(tf);
         whenIbottom = (TextView) rootview.findViewById(R.id.whenIbottom);
         whenIbottom.setTypeface(tf);
         whenItop= (TextView) rootview.findViewById(R.id.whenItop);
         whenItop.setTypeface(tf);
-        drunktitle= (TextView) rootview.findViewById(R.id.drunktitle);
-        drunktitle.setTypeface(tf);
+        ((TextView) rootview.findViewById(R.id.drunktitle)).setTypeface(tf);
         drunk= (TextView) rootview.findViewById(R.id.drunk);
         drunk.setTypeface(tf);
-        edit_details = (TextView) rootview.findViewById(R.id.edit_details);
-        edit_details.setTypeface(tf);
+        ((TextView) rootview.findViewById(R.id.edit_details)).setTypeface(tf);
         condomUsedContent = (LinearLayout)rootview.findViewById(R.id.condomUsedContent);
         whenIsuckedParent = (LinearLayout)rootview.findViewById(R.id.whenIsuckedParent);
         whenIbottomParent = (LinearLayout)rootview.findViewById(R.id.whenIbottomParent);
@@ -108,7 +95,6 @@ public class EncounterSummaryFragment extends Fragment {
 
         LinearLayout sexTypeLayout = (LinearLayout)rootview.findViewById(R.id.sexTypeLayout);
         String gender = LynxManager.decryptString(LynxManager.getActivePartner().getGender());
-        //Log.v("Gender",gender);
         View sextypeView;
         switch (gender){
             case "Woman":
@@ -173,9 +159,6 @@ public class EncounterSummaryFragment extends Fragment {
                     }
                     whenIsuckedParent.setVisibility(View.VISIBLE);
                     whenIsucked.setText(encSexType.getEjaculation());
-                    /*TextView isucked_txt = (TextView) rootview.findViewById(R.id.encSumm_iSucked_condomuse);
-                    isucked_txt.setVisibility(View.VISIBLE);
-                    isucked_txt.setText("When I sucked him, " + encSexType.getCondom_use() + " \n Did Come in my mouth :" + encSexType.getNote());*/
                     break;
                 case "He sucked me":
                 case "She sucked me":
@@ -196,9 +179,6 @@ public class EncounterSummaryFragment extends Fragment {
                     }
                     whenIbottomParent.setVisibility(View.VISIBLE);
                     whenIbottom.setText(encSexType.getEjaculation());
-                    /*TextView iBottomed_txt = (TextView) rootview.findViewById(R.id.encSumm_iBottomed_condomuse);
-                    iBottomed_txt.setVisibility(View.VISIBLE);
-                    iBottomed_txt.setText("When I Bottomed, " + encSexType.getCondom_use() + " \n Did Come in me :" + encSexType.getNote());*/
                     break;
                 case "I topped":
                     ToggleButton sexType_iTopped = (ToggleButton)rootview.findViewById(R.id.sexType_iTopped);
@@ -211,10 +191,6 @@ public class EncounterSummaryFragment extends Fragment {
                     }
                     whenItoppedParent.setVisibility(View.VISIBLE);
                     whenItop.setText(encSexType.getEjaculation());
-                    /*TextView iTopped_txt = (TextView) rootview.findViewById(R.id.encSumm_iTopped_condomuse);
-                    iTopped_txt.setVisibility(View.VISIBLE);
-                    iTopped_txt.setText("When I Topped him, " + encSexType.getCondom_use());*/
-
                     break;
                 case "I jerked him":
                 case "I jerked her":

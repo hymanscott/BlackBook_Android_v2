@@ -34,8 +34,8 @@ public class EncounterWeeklyCheckinDrug extends Fragment {
     }
 
     DatabaseHelper newdb;
-    Button enc_drugContent_nextbtn;
-    TextView drugContentTitle,frag_title;
+   // Button enc_drugContent_nextbtn;
+    //TextView drugContentTitle,frag_title;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,12 +52,9 @@ public class EncounterWeeklyCheckinDrug extends Fragment {
 
         LynxManager.selectedDrugs.clear();
 
-        frag_title = (TextView)view.findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf_bold);
-        drugContentTitle = (TextView)view.findViewById(R.id.drugContentTitle);
-        drugContentTitle.setTypeface(tf);
-        enc_drugContent_nextbtn = (Button) view.findViewById(R.id.enc_drugContent_nextbtn);
-        enc_drugContent_nextbtn.setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.drugContentTitle)).setTypeface(tf);
+        ((Button) view.findViewById(R.id.enc_drugContent_nextbtn)).setTypeface(tf_bold);
 
         for (int i = 0; i < drug.size(); i++) {
             DrugMaster array_id = drug.get(i);
@@ -67,7 +64,6 @@ public class EncounterWeeklyCheckinDrug extends Fragment {
             View convertView = chInflater.inflate(R.layout.checkbox_row,container,false);
             CheckBox ch = (CheckBox)convertView.findViewById(R.id.checkbox);
             ch.setTypeface(tf);
-            //         ch.setOnClickListener(null);
             ch.setText(drugName);
             ch.setSelected(false);
             drugs_container.addView(ch);

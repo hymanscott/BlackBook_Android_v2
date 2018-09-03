@@ -20,8 +20,8 @@ import org.piwik.sdk.extra.TrackHelper;
 public class ForgetPassword extends Fragment {
     public ForgetPassword() {
     }
-    TextView bannerText,bannerSubText;
-    Button btn;
+    //TextView bannerText,bannerSubText;
+    //Button btn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -32,13 +32,9 @@ public class ForgetPassword extends Fragment {
                 "fonts/Roboto-Regular.ttf");
 
         EditText reqNewPassEmail = (EditText)view.findViewById(R.id.reqNewPassEmail);
-        bannerText = (TextView)view.findViewById(R.id.bannerText);
-        bannerText.setTypeface(tf);
-        bannerSubText = (TextView)view.findViewById(R.id.bannerSubText);
-        bannerSubText.setTypeface(tf);
-        btn = (Button)view.findViewById(R.id.btn);
-        btn.setTypeface(tf);
-
+        ((TextView)view.findViewById(R.id.bannerText)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.bannerSubText)).setTypeface(tf);
+        ((Button)view.findViewById(R.id.btn)).setTypeface(tf);
         Bundle args = getArguments();
         if (args  != null && args.containsKey("login_email")){
             String loginEmail = args.getString("login_email");

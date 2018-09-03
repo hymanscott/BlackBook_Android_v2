@@ -17,7 +17,7 @@ import org.piwik.sdk.extra.TrackHelper;
 public class PasscodeResetActivity extends AppCompatActivity {
 
     Button reset_passcode;
-    TextView frag_title,sec_qn;
+    TextView sec_qn;
     EditText sec_ans;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +27,9 @@ public class PasscodeResetActivity extends AppCompatActivity {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
+        ((TextView)findViewById(R.id.frag_title)).setTypeface(tf);
         reset_passcode = (Button)findViewById(R.id.reset_passcode);
         reset_passcode.setTypeface(tf);
-        frag_title = (TextView)findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf);
         sec_qn = (TextView)findViewById(R.id.sec_qn);
         sec_qn.setTypeface(tf);
         sec_ans = (EditText)findViewById(R.id.sec_ans);

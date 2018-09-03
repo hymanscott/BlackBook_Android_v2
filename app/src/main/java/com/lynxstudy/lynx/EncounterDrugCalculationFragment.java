@@ -19,13 +19,6 @@ import android.widget.TextView;
  * A simple {@link Fragment} subclass.
  */
 public class EncounterDrugCalculationFragment extends Fragment {
-
-    private Spinner spinner_no_of_days;
-    private Spinner spinner_no_of_drinks;
-    TextView drinksTitle,drinksdefine;
-    EditText no_of_drinks;
-    Button alcohol_cal_nextbtn,alcohol_cal_revisebtn;
-    RadioButton alcCal_5to7days,alcCal_1to4days,alcCal_lessThanOnce,alcCal_never;
     public EncounterDrugCalculationFragment() {
     }
 
@@ -43,22 +36,14 @@ public class EncounterDrugCalculationFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-        drinksTitle = (TextView)rootview.findViewById(R.id.drinksTitle);
-        drinksTitle.setTypeface(tf);
-        drinksdefine = (TextView)rootview.findViewById(R.id.drinksdefine);
-        drinksdefine.setTypeface(tf);
-        no_of_drinks = (EditText) rootview.findViewById(R.id.no_of_drinks);
-        no_of_drinks.setTypeface(tf);
-        /*alcohol_cal_revisebtn = (Button) rootview.findViewById(R.id.alcohol_cal_revisebtn);
-        alcohol_cal_revisebtn.setTypeface(tf);*/
-        alcCal_5to7days = (RadioButton) rootview.findViewById(R.id.alcCal_5to7days);
-        alcCal_5to7days.setTypeface(tf);
-        alcCal_1to4days = (RadioButton) rootview.findViewById(R.id.alcCal_1to4days);
-        alcCal_1to4days.setTypeface(tf);
-        alcCal_lessThanOnce = (RadioButton) rootview.findViewById(R.id.alcCal_lessThanOnce);
-        alcCal_lessThanOnce.setTypeface(tf);
-        alcCal_never = (RadioButton) rootview.findViewById(R.id.alcCal_never);
-        alcCal_never.setTypeface(tf);
+        ((Button) rootview.findViewById(R.id.alcohol_cal_nextbtn)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.drinksTitle)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.drinksdefine)).setTypeface(tf);
+        ((EditText) rootview.findViewById(R.id.no_of_drinks)).setTypeface(tf);
+        ((RadioButton) rootview.findViewById(R.id.alcCal_5to7days)).setTypeface(tf);
+        ((RadioButton) rootview.findViewById(R.id.alcCal_1to4days)).setTypeface(tf);
+        ((RadioButton) rootview.findViewById(R.id.alcCal_lessThanOnce)).setTypeface(tf);
+        ((RadioButton) rootview.findViewById(R.id.alcCal_never)).setTypeface(tf);
 
         TextView fragmentTitle= (TextView)rootview.findViewById(R.id.reg_alc_baseline_title);
         fragmentTitle.setVisibility(View.INVISIBLE);
@@ -66,9 +51,7 @@ public class EncounterDrugCalculationFragment extends Fragment {
         TextView no_of_days_text= (TextView)rootview.findViewById(R.id.no_of_days_text);
         no_of_days_text.setText("How many days did you drink alcohol this week?");
         no_of_days_text.setTypeface(tf);
-
-        Button nextButton = (Button)rootview.findViewById(R.id.enc_alcoholCal_nextbtn);
-        nextButton.setVisibility(View.VISIBLE);
+        ((Button)rootview.findViewById(R.id.enc_alcoholCal_nextbtn)).setVisibility(View.VISIBLE);
         return rootview;
     }
 }

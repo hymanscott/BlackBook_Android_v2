@@ -18,7 +18,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -34,7 +33,6 @@ import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.AppAlerts;
 import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.UserBadges;
-import com.lynxstudy.model.User_baseline_info;
 import com.lynxstudy.model.Videos;
 
 import org.json.JSONArray;
@@ -94,26 +92,7 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
         CurrentVideoTitle.setTypeface(tf);
         CurrentVideoDescription = (TextView)rootview.findViewById(R.id.CurrentVideoDescription);
         CurrentVideoDescription.setTypeface(tf);
-
-       /* showDescription = (ImageView) rootview.findViewById(R.id.showDescription);
-        // Toggle description //
-        showDescription.setSelected(false);
-        showDescription.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!showDescription.isSelected()){
-                    CurrentVideoDescription.setVisibility(View.VISIBLE);
-                    showDescription.setImageDrawable(getResources().getDrawable(R.drawable.sortup));
-                    showDescription.setSelected(true);
-                }else {
-                    CurrentVideoDescription.setVisibility(View.GONE);
-                    showDescription.setImageDrawable(getResources().getDrawable(R.drawable.sortdown));
-                    showDescription.setSelected(false);
-                }
-            }
-        });*/
         /*Table layout for PREP Videos */
-
         WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         DisplayMetrics metrics = new DisplayMetrics();
@@ -129,17 +108,6 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
         params.setMargins(24,0,24,16);
         mWebView.setLayoutParams(params);
         mWebView.setOnTouchListener(this);
-        /*mWebView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                int videoid = (int) mWebView.getTag();
-                if(videoid !=0){
-                    db.setVideoWatched(videoid);
-                    mWebView.setOnTouchListener(null);
-                }
-                return false;
-            }
-        });*/
         if(db.getVideosCount()==0){
             getVideosFromServer();
             Videos video1 = new Videos();
@@ -152,7 +120,6 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
             embedCurrentVideo(mWebView,CurrentVideoTitle,CurrentVideoDescription,video1);
         }else{
             setVideoListData();
-            //videosList = db.getAllVideos();
             embedCurrentVideo(mWebView,CurrentVideoTitle,CurrentVideoDescription,videosList.get(0));
             currentVideoId=videosList.get(0).getVideo_id();
         }
@@ -170,9 +137,7 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
             videoTitle.setText(videos.getName());
             videoDescription.setTypeface(tf);
             videoDescription.setText(videos.getDescription());
-            RelativeLayout.LayoutParams params =new RelativeLayout.LayoutParams(thumbnailwidth,(thumbnailwidth/4)*3);
             ImageView thumnail = (ImageView)v.findViewById(R.id.thumnail);
-            //thumnail.setLayoutParams(params);
             if(LynxManager.haveNetworkConnection(getActivity())) {
                 new DownloadImagesTask(videos.getVideo_image_url()).execute(thumnail);
             }
@@ -295,13 +260,13 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
             }else if(db.getWatchedVideosCount()<=3){
                 String appAlertName = "Video " + videoid + " watched" ;
                 if(db.getAppAlertsCountByName(appAlertName)==0){
-                    showAppAlert("We see that you checked out our videos. Get informed by watching the rest.",1,appAlertName);
+                    showAppAlert(appAlertName);
                 }
             }
         }
         return false;
     }
-    private void showAppAlert(String message, int no_of_buttons, String name){
+    private void showAppAlert(String name){
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
         View appAlertLayout = getActivity().getLayoutInflater().inflate(R.layout.app_alert_template,null);
         builder1.setView(appAlertLayout);
@@ -309,35 +274,18 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
         TextView maybeLater = (TextView)appAlertLayout.findViewById(R.id.maybeLater);
         TextView prepInfo = (TextView)appAlertLayout.findViewById(R.id.prepInfo);
         View verticalBorder = (View)appAlertLayout.findViewById(R.id.verticalBorder);
-        message_tv.setText(message);
+        message_tv.setText(getResources().getString(R.string.checked_videos));
         builder1.setCancelable(false);
         final AlertDialog alert11 = builder1.create();
-        if(no_of_buttons==1){
-            prepInfo.setVisibility(View.GONE);
-            verticalBorder.setVisibility(View.GONE);
-            maybeLater.setText("Got it!");
-            maybeLater.setOnClickListener(new View.OnClickListener() {
+        prepInfo.setVisibility(View.GONE);
+        verticalBorder.setVisibility(View.GONE);
+        maybeLater.setText(getResources().getString(R.string.btn_got_it));
+        maybeLater.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     alert11.cancel();
                 }
             });
-        }else{
-            prepInfo.setVisibility(View.VISIBLE);
-            verticalBorder.setVisibility(View.VISIBLE);
-            maybeLater.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    alert11.cancel();
-                }
-            });
-            prepInfo.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    alert11.cancel();
-                }
-            });
-        }
         alert11.show();
         AppAlerts appAlerts = new AppAlerts(name,LynxManager.getDateTime(),LynxManager.getDateTime());
         db.createAppAlert(appAlerts);
@@ -394,8 +342,6 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            // Showing progress dialog
-
         }
 
         @Override
@@ -410,7 +356,6 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">VideosListOnline " + jsonVideosListStr);
             videosListOnlineResult = jsonVideosListStr;
             return null;
         }
@@ -419,23 +364,13 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            // Dismiss the progress dialog
-            /*if (pDialog.isShowing())
-                pDialog.dismiss(); */
-
             if (videosListOnlineResult != null) {
                 try {
                     JSONObject jsonObj = new JSONObject(videosListOnlineResult);
-
-                    // Getting JSON Array node
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    // Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
-                    if (is_error) {
-                        Log.d("Response: ", "> VideosListOnlineError. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         JSONArray videosArray = jsonObj.getJSONArray("videos");
                         for(int i=0;i<videosArray.length();i++){
-                            /*JSONObject videoObject = videosArray.getJSONObject(i);*/
                             JSONObject childObj = videosArray.getJSONObject(i).getJSONObject("Video");
                             Videos video4 = new Videos();
                             video4.setName(childObj.getString("name"));
@@ -449,7 +384,6 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
                         }
                     }
                     reloadFragment();
-                    // looping through All Contacts
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

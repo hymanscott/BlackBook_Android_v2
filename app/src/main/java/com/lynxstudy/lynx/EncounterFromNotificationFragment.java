@@ -20,7 +20,6 @@ import com.lynxstudy.model.TestingReminder;
 public class EncounterFromNotificationFragment extends Fragment {
 
     DatabaseHelper db;
-    Button yes,no;
     public EncounterFromNotificationFragment() {
     }
     @Override
@@ -33,10 +32,8 @@ public class EncounterFromNotificationFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-        yes = (Button)rootview.findViewById(R.id.yes);
-        yes.setTypeface(tf);
-        no = (Button)rootview.findViewById(R.id.no);
-        no.setTypeface(tf);
+        ((Button)rootview.findViewById(R.id.yes)).setTypeface(tf);
+        ((Button)rootview.findViewById(R.id.no)).setTypeface(tf);
 
         TestingReminder testingReminder = db.getTestingReminderByFlag(0);
         String notes;

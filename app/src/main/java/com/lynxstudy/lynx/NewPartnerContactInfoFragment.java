@@ -25,14 +25,9 @@ import org.piwik.sdk.extra.TrackHelper;
 public class NewPartnerContactInfoFragment extends Fragment {
 
     public NewPartnerContactInfoFragment() {
-        // Required empty public constructor
-
     }
 
-    TextView add_partner_title;
-    TextView contactInfoTitle,partnerTypeTitle,otherPartnersTitle,monogamousTitle;
-    RadioButton newPartnerPrimary,newPartnerRegular,newPartnerCasual,newPartnerNSA,newPartnerFriends,radio_partner_yes,radio_partner_unsure,radio_partner_no,radio_lessThanSixMonths,radio_moreThanSixMonths;
-    Button next;
+    TextView contactInfoTitle;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,36 +40,21 @@ public class NewPartnerContactInfoFragment extends Fragment {
                 "fonts/Roboto-Bold.ttf");
         contactInfoTitle = (TextView)rootview.findViewById(R.id.contactInfoTitle);
         contactInfoTitle.setTypeface(tf);
-        add_partner_title = (TextView)rootview.findViewById(R.id.add_partner_title);
-        add_partner_title.setTypeface(tf_bold);
-        partnerTypeTitle = (TextView)rootview.findViewById(R.id.partnerTypeTitle);
-        partnerTypeTitle.setTypeface(tf);
-        otherPartnersTitle = (TextView)rootview.findViewById(R.id.otherPartnersTitle);
-        otherPartnersTitle.setTypeface(tf);
-        monogamousTitle = (TextView)rootview.findViewById(R.id.monogamousTitle);
-        monogamousTitle.setTypeface(tf);
-        next = (Button)rootview.findViewById(R.id.next);
-        next.setTypeface(tf_bold);
-        newPartnerPrimary = (RadioButton)rootview.findViewById(R.id.newPartnerPrimary);
-        newPartnerPrimary.setTypeface(tf);
-        newPartnerRegular = (RadioButton)rootview.findViewById(R.id.newPartnerRegular);
-        newPartnerRegular.setTypeface(tf);
-        newPartnerCasual = (RadioButton)rootview.findViewById(R.id.newPartnerCasual);
-        newPartnerCasual.setTypeface(tf);
-        newPartnerNSA = (RadioButton)rootview.findViewById(R.id.newPartnerNSA);
-        newPartnerNSA.setTypeface(tf);
-        newPartnerFriends = (RadioButton)rootview.findViewById(R.id.newPartnerFriends);
-        newPartnerFriends.setTypeface(tf);
-        radio_partner_yes = (RadioButton)rootview.findViewById(R.id.radio_partner_yes);
-        radio_partner_yes.setTypeface(tf);
-        radio_partner_no = (RadioButton)rootview.findViewById(R.id.radio_partner_no);
-        radio_partner_no.setTypeface(tf);
-        radio_partner_unsure = (RadioButton)rootview.findViewById(R.id.radio_partner_unsure);
-        radio_partner_unsure.setTypeface(tf);
-        radio_lessThanSixMonths = (RadioButton)rootview.findViewById(R.id.radio_lessThanSixMonths);
-        radio_lessThanSixMonths.setTypeface(tf);
-        radio_moreThanSixMonths = (RadioButton)rootview.findViewById(R.id.radio_moreThanSixMonths);
-        radio_moreThanSixMonths.setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.add_partner_title)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.partnerTypeTitle)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.otherPartnersTitle)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.monogamousTitle)).setTypeface(tf);
+        ((Button)rootview.findViewById(R.id.next)).setTypeface(tf_bold);
+        ((RadioButton)rootview.findViewById(R.id.newPartnerPrimary)).setTypeface(tf);
+        ((RadioButton)rootview.findViewById(R.id.newPartnerRegular)).setTypeface(tf);
+        ((RadioButton)rootview.findViewById(R.id.newPartnerCasual)).setTypeface(tf);
+        ((RadioButton)rootview.findViewById(R.id.newPartnerNSA)).setTypeface(tf);
+        ((RadioButton)rootview.findViewById(R.id.newPartnerFriends)).setTypeface(tf);
+        ((RadioButton)rootview.findViewById(R.id.radio_partner_yes)).setTypeface(tf);
+        ((RadioButton)rootview.findViewById(R.id.radio_partner_no)).setTypeface(tf);
+        ((RadioButton)rootview.findViewById(R.id.radio_partner_unsure)).setTypeface(tf);
+        ((RadioButton)rootview.findViewById(R.id.radio_lessThanSixMonths)).setTypeface(tf);
+        ((RadioButton)rootview.findViewById(R.id.radio_moreThanSixMonths)).setTypeface(tf);
 
 
         // Pre filled data
@@ -82,7 +62,6 @@ public class NewPartnerContactInfoFragment extends Fragment {
         contactInfoTitle.setText(Html.fromHtml("What is their contact info?<br/>(enter as much or as little of you’d like)"));
         TextView new_partner_nickname = (TextView) rootview.findViewById(R.id.new_partner_nickname);
         new_partner_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        //new_partner_nickname.setAllCaps(true);
         new_partner_nickname.setTypeface(tf_bold);
         EditText newPartner_emailET = (EditText) rootview.findViewById(R.id.newPartnerEmail);
         newPartner_emailET.setTypeface(tf);

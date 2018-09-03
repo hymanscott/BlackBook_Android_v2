@@ -23,11 +23,10 @@ public class EncounterCondomuseFragmentEdit extends Fragment {
     public EncounterCondomuseFragmentEdit() {
     }
 
-    TextView newEncounter, whenIsucked, whenItopped, whenIbottom, whenIfucked;
+    TextView whenIsucked;
     RadioButton whenIsucked_CondomUsed, whenIsucked_CondomPartTime, whenIsucked_CondomNotUsed, whenItopped_CondomUsed, whenItopped_CondomPartTime, whenItopped_CondomNotUsed;
     RadioButton whenIbottomed_CondomUsed, whenIbottomed_CondomPartTime, whenIbottomed_CondomNotUsed, whenIfucked_CondomUsed, whenIfucked_CondomNotUsed, whenIfucked_CondomPartTime;
     RadioGroup whenIfucked_group,whenIbottomed_group,whenItopped_group,whenIsucked_group;
-    Button next;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,18 +36,13 @@ public class EncounterCondomuseFragmentEdit extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-        next = (Button) rootview.findViewById(R.id.next);
-        next.setTypeface(tf);
-        newEncounter = (TextView) rootview.findViewById(R.id.newEncounter);
-        newEncounter.setTypeface(tf);
+        ((Button) rootview.findViewById(R.id.next)).setTypeface(tf);
+        ((TextView) rootview.findViewById(R.id.newEncounter)).setTypeface(tf);
         whenIsucked = (TextView) rootview.findViewById(R.id.whenIsucked);
         whenIsucked.setTypeface(tf);
-        whenItopped = (TextView) rootview.findViewById(R.id.whenItopped);
-        whenItopped.setTypeface(tf);
-        whenIbottom = (TextView) rootview.findViewById(R.id.whenIbottom);
-        whenIbottom.setTypeface(tf);
-        whenIfucked = (TextView) rootview.findViewById(R.id.whenIfucked);
-        whenIfucked.setTypeface(tf);
+        ((TextView) rootview.findViewById(R.id.whenItopped)).setTypeface(tf);
+        ((TextView) rootview.findViewById(R.id.whenIbottom)).setTypeface(tf);
+        ((TextView) rootview.findViewById(R.id.whenIfucked)).setTypeface(tf);
         whenIsucked_CondomUsed = (RadioButton) rootview.findViewById(R.id.whenIsucked_CondomUsed);
         whenIsucked_CondomUsed.setTypeface(tf);
         whenIsucked_CondomPartTime = (RadioButton) rootview.findViewById(R.id.whenIsucked_CondomPartTime);
@@ -82,15 +76,12 @@ public class EncounterCondomuseFragmentEdit extends Fragment {
         //set Nick name
         TextView nickname = (TextView) rootview.findViewById(R.id.enc_sexType_condomUse_nickName);
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        //nickname.setAllCaps(true);
         nickname.setTypeface(tf);
 
         LinearLayout layout_whenIsucked = (LinearLayout) rootview.findViewById(R.id.whenIsucked_layout);
 
         for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
-            String sexTypeText = LynxManager.decryptString(encSexType.getSex_type());
-            Log.v("sexTypeText",sexTypeText);
-            switch (sexTypeText) {
+            switch (LynxManager.decryptString(encSexType.getSex_type())) {
                 case "I sucked him":
                     whenIsucked.setText("When I sucked him:");
                     layout_whenIsucked.setVisibility(View.VISIBLE);

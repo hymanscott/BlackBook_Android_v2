@@ -23,14 +23,10 @@ import org.piwik.sdk.extra.TrackHelper;
 public class EncounterDrunkStatusFragment extends Fragment {
 
 
-    TextView newEncounter,drunkTitle,encounter_nickName;
-    Button next;
-    RadioButton RB_drunk,RB_high,RB_both_drunk_high,RB_neither_drunk_high;
+    TextView encounter_nickName;
     public EncounterDrunkStatusFragment() {
         // Required empty public constructor
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

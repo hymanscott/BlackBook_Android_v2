@@ -4,7 +4,6 @@ package com.lynxstudy.lynx;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +33,6 @@ public class RegistrationStiInfo extends Fragment {
         public RegistrationStiInfo() {
             // Required empty public constructor
         }
-        TextView frag_title,textview9;
-        Button partner_info_nextbtn;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,12 +44,9 @@ public class RegistrationStiInfo extends Fragment {
                     "fonts/Roboto-Regular.ttf");
             Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                     "fonts/Roboto-Bold.ttf");
-            frag_title = (TextView)rootview.findViewById(R.id.frag_title);
-            frag_title.setTypeface(tf_bold);
-            textview9 = (TextView)rootview.findViewById(R.id.textview9);
-            textview9.setTypeface(tf);
-            partner_info_nextbtn = (Button)rootview.findViewById(R.id.partner_info_nextbtn);
-            partner_info_nextbtn.setTypeface(tf_bold);
+            ((TextView)rootview.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+            ((TextView)rootview.findViewById(R.id.textview9)).setTypeface(tf);
+            ((Button)rootview.findViewById(R.id.partner_info_nextbtn)).setTypeface(tf_bold);
 
             newdb = new DatabaseHelper(getActivity());
             LinearLayout drugs_container = (LinearLayout) rootview.findViewById(R.id.linearLayout_drugs);

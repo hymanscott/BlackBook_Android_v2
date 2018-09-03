@@ -1,11 +1,7 @@
 package com.lynxstudy.lynx;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -15,17 +11,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,7 +42,6 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
     private ViewPager mViewPager;
     LinearLayout btn_sexpro,btn_testing,btn_diary,btn_chat;
     ImageView viewProfile;
-    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv;
     Typeface tf,tf_bold;
     private Tracker tracker;
     @Override
@@ -78,16 +69,11 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
         btn_diary = (LinearLayout) findViewById(R.id.bot_nav_diary);
         btn_chat = (LinearLayout) findViewById(R.id.bot_nav_chat);
 
-        bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
-        bot_nav_sexpro_tv.setTypeface(tf);
-        bot_nav_diary_tv = (TextView)findViewById(R.id.bot_nav_diary_tv);
-        bot_nav_diary_tv.setTypeface(tf);
-        bot_nav_testing_tv = (TextView)findViewById(R.id.bot_nav_testing_tv);
-        bot_nav_testing_tv.setTypeface(tf);
-        bot_nav_prep_tv = (TextView)findViewById(R.id.bot_nav_prep_tv);
-        bot_nav_prep_tv.setTypeface(tf);
-        bot_nav_chat_tv = (TextView)findViewById(R.id.bot_nav_chat_tv);
-        bot_nav_chat_tv.setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_sexpro_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_diary_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_testing_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_prep_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_chat_tv)).setTypeface(tf);
 
         btn_sexpro.setOnClickListener(this);
         btn_testing.setOnClickListener(this);
@@ -219,12 +205,7 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            int page_id = getArguments().getInt(ARG_SECTION_NUMBER);
-            //Log.v("page_id ", String.valueOf(page_id));
-            View rootView = inflater.inflate(R.layout.fragment_lynx_diary, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
+            return inflater.inflate(R.layout.fragment_lynx_diary, container, false);
         }
     }
 
@@ -234,16 +215,12 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            /*//Log.v("page_id ", String.valueOf(position));
-            return PlaceholderFragment.newInstance(position + 1);*/
             switch (position) {
                 case 0:
                     return new LynxPrepFactsFragment();
@@ -316,8 +293,6 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onResume() {
         super.onResume();
-        // Closing the App if sign out enabled
-        //Log.v("SignOut", String.valueOf(LynxManager.signOut));
         if(LynxManager.signOut){
             finish();
             System.exit(0);
@@ -325,7 +300,6 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
         if (LynxManager.onPause){
             Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);
             startActivity(lockscreen);
-            //Log.v("onResumeusername", LynxManager.getActiveUser().getFirstname());
         }
     }
     int onPause_count =0;
@@ -339,9 +313,8 @@ public class LynxPrep extends AppCompatActivity implements View.OnClickListener 
             finish();
         }
         else{
-            Toast.makeText(this,"Press Back one more time to exit",Toast.LENGTH_SHORT).show();
+            Toast.makeText(LynxPrep.this,"Press Back one more time to exit",Toast.LENGTH_SHORT).show();
         }
         onPause_count++;
-        return;
     }
 }

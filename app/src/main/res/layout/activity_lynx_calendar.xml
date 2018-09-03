@@ -246,7 +246,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/condomUsedLayout"
-                            android:layout_marginBottom="40dp"
                             android:orientation="vertical">
                             <LinearLayout
                                 android:layout_width="fill_parent"
@@ -274,19 +273,146 @@
                                 android:layout_height="2dp"
                                 android:background="@color/banner_name_bg"/>
                         </LinearLayout>
-                        <Button
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Back"
-                            android:layout_marginLeft="30dp"
+                            android:id="@+id/whenIsuckedParent"
+                            android:layout_marginTop="24dp"
                             android:visibility="gone"
-                            android:layout_marginTop="20dp"
-                            android:layout_alignParentBottom="true"
-                            android:background="@drawable/lynx_button"
-                            android:textColor="@color/white"
-                            android:layout_marginRight="30dp"
-                            android:textStyle="bold"
-                            android:gravity="center_vertical|center_horizontal" />
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginRight="16dp">
+
+                                <TextView
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/encounter_tv_textsize"
+                                    android:textColor="@color/text_color"
+                                    android:text="When I sucked:"
+                                    android:id="@+id/whenIsuckedtitle"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp"
+                                    android:textColor="@color/text_color"
+                                    android:id="@+id/whenIsucked"
+                                    android:text="x" />
+                            </LinearLayout>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/banner_name_bg"
+                                android:layout_marginTop="24dp"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/whenIbottomParent"
+                            android:layout_marginTop="24dp"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginRight="16dp">
+
+                                <TextView
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/encounter_tv_textsize"
+                                    android:textColor="@color/text_color"
+                                    android:text="When I bottomed:"
+                                    android:id="@+id/whenIbottomedtitle"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp"
+                                    android:textColor="@color/text_color"
+                                    android:id="@+id/whenIbottom"
+                                    android:text="x" />
+                            </LinearLayout>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/banner_name_bg"
+                                android:layout_marginTop="24dp"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/whenItoppedParent"
+                            android:layout_marginTop="24dp"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginRight="16dp">
+
+                                <TextView
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/encounter_tv_textsize"
+                                    android:textColor="@color/text_color"
+                                    android:text="When I topped:"
+                                    android:id="@+id/whenItoppedtitle"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp"
+                                    android:textColor="@color/text_color"
+                                    android:id="@+id/whenItop"
+                                    android:text="x" />
+                            </LinearLayout>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/banner_name_bg"
+                                android:layout_marginTop="24dp"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/drunkParent"
+                            android:layout_marginBottom="40dp"
+                            android:layout_marginTop="24dp"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginRight="16dp">
+
+                                <TextView
+                                    android:layout_width="150dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/encounter_tv_textsize"
+                                    android:textColor="@color/text_color"
+                                    android:text="I was:"
+                                    android:id="@+id/drunktitle"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp"
+                                    android:textColor="@color/text_color"
+                                    android:id="@+id/drunk"
+                                    android:text="x" />
+                            </LinearLayout>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/banner_name_bg"
+                                android:layout_marginTop="24dp"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </ScrollView>
@@ -342,13 +468,6 @@
                             android:layout_weight="1"
                             android:text="date" />
                     </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/grey_border"
-                        android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"/>
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"

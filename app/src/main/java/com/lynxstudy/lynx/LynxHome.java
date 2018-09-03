@@ -109,10 +109,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         //TrackHelper.track().screen("/LynxHome").title("Home").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).with(tracker);
         //TrackHelper.track().screen("/Lynxhome").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,piwikID).with(tracker);
         TrackHelper.track().visitVariables(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).visitVariables(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).screen("/Lynxhome").title("Home").dimension(1,piwikID).with(tracker);
-       /* Log.v("PiwikUserID",tracker.getUserId());
-        Log.v("PiwikUserNAME",tracker.getName());
-        Log.v("PiwikVisitorID",tracker.getVisitorId());
-        Log.v("PiwikAPIUrl", String.valueOf(tracker.getAPIUrl()));*/
 
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
@@ -234,20 +230,10 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             ActivityCompat.requestPermissions(LynxHome.this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, READ_WRITE_PERMISSION);
         }
 
-
-        /*for (Partners partners:db.getAllPartners()) {
-
-            Log.v("Partner Gender",LynxManager.decryptString(partners.getHiv_status()));
-
-        }*/
         // update fcm id //
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String tokenid = sharedPref.getString("lynxfirebasetokenid",null);
-
-        //Log.v("tokenid",tokenid);
-        /*
-            * system Information
-            * */
+        /* system Information */
         String device_info ="";
         if ( Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission(LynxHome.this, android.Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED ) {
@@ -256,7 +242,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             String serviceName = Context.TELEPHONY_SERVICE;
             TelephonyManager m_telephonyManager = (TelephonyManager) getSystemService(serviceName);
             LynxManager.deviceId = m_telephonyManager.getDeviceId();
-            //Log.v("deviceId", LynxManager.deviceId);
 
             JSONObject additional_info = new JSONObject();
             try {
@@ -280,12 +265,10 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     LynxManager.encryptString(device_info), String.valueOf(R.string.statusUpdateNo), true);
             if (db.getCloudMessagingCount() < 1) {
                 db.createCloudMessaging(cloudMessaging);
-                //Log.v("Cloud Messagin", "Token created");
             } else {
                 CloudMessages old_CM = db.getCloudMessaging();
                 if (!tokenid.equals(LynxManager.decryptString(old_CM.getToken_id()))){
                     db.updateCloudMessaging(cloudMessaging);
-                    //Log.v("Cloud Messagin", "Token Updated");
                 }
             }
         }
@@ -333,11 +316,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
 
             }
         }
-        Log.v("allUserBadgesCount", String.valueOf(db.getUserBadgesCount()));
-        List<UserBadges> nonUpdateduserBadgesList =  db.getAllUserBadgesByUserID(LynxManager.getActiveUser().getUser_id());
-        for (UserBadges userBadge:nonUpdateduserBadgesList) {
-           // Log.v("UserBadgesSta",userBadge.getBadge_id()+"--"+userBadge.getUser_badge_id()+"--"+userBadge.getIs_shown()+"--"+userBadge.getStatus_update());
-        }
         ScheduledExecutorService scheduleTaskExecutor = Executors.newScheduledThreadPool(5);
         //Pushing All the Tables to Server
         // This schedule a runnable task every 1 minutes
@@ -368,7 +346,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         checkForUpdates();
 
         // Add OnBoarding Badge for already registered users //
-        /*Log.v("OnboardingBadge", String.valueOf(db.getUserBadgesCountByBadgeID(1)));*/
         if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("LYNX").getBadge_id())==0){
             // Adding User Badge : LYNX Badge //
             BadgesMaster lynx_badge = db.getBadgesMasterByName("LYNX");
@@ -462,47 +439,38 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
 
         int elapsed_reg_days = getElapsedDays(LynxManager.getActiveUserBaselineInfo().getCreated_at());
         String message = "";
-        //Log.v("TokenID",LynxManager.decryptString(db.getCloudMessaging().getToken_id()));
-        if(elapsed_reg_days>2){
-            if(db.getTestingHistoriesCountByTestingId(1)==0 && !isPositiveHIVTestLogged()){
-                message = "You haven't entered an HIV test yet. Don't forget to do your first test!";
-                if(db.getAppAlertsCountByName("Reminder One")==0){
-                    showAppAlert(message,1,"Reminder One");
-                }
-            }
-            if(db.getTestingHistoriesCountByTestingId(2)==0 && !isPositiveHIVTestLogged()){
-                message = "You haven't entered an STD test yet. Don't forget to do your first set of tests!";
-                if(db.getAppAlertsCountByName("Reminder One")==0){
-                    showAppAlert(message,1,"Reminder One");
-                }
-            }
-            /* Removed this alert
-            if(db.getTestingHistoriesCountByTestingId(1)==0 && db.getTestingHistoriesCountByTestingId(2)==0){
-                message = "You haven't entered an HIV or STD test yet. Don't forget to do your first set of tests!";
-                if(db.getAppAlertsCountByName("Reminder One")==0){
-                    showAppAlert(message,1,"Reminder One");
-                }
-            }*/
-
-        }else if(elapsed_reg_days>30){
-            if(db.getTestingHistoriesCountByTestingId(1)==0 && !isPositiveHIVTestLogged()){
-                message = "It’s been more than 1 month since you've started Lynx. You deserve to know your HIV status. Test time, baby!";
-                if(db.getAppAlertsCountByName("Reminder Two")==0){
-                    showAppAlert(message,1,"Reminder Two");
-                }
-            }
-            if(db.getTestingHistoriesCountByTestingId(2)==0 && !isPositiveHIVTestLogged()){
-                message = "It’s been more than 1 month since you've started Lynx. Getting tested on the regular is a great habit to have. Speaking of which, it's that time. With STIs and related HIV risk on the rise, stay on track and get tested this week.";
-                if(db.getAppAlertsCountByName("Reminder Two")==0){
-                    showAppAlert(message,1,"Reminder Two");
-                }
-            }
-        }else if(elapsed_reg_days>90 || firstHIVElapsedDays()>90){
+        if(elapsed_reg_days>90 || firstHIVElapsedDays()>90){
             if(!isPositiveHIVTestLogged()){
                 TestingReminder testingReminder = db.getTestingReminderByFlag(1);
                 message = LynxManager.decryptString(testingReminder.getReminder_notes());
                 if(db.getAppAlertsCountByName("Reminder Three")==0){
                     showAppAlert(message,1,"Reminder Three");
+                }
+            }
+        }else if(elapsed_reg_days>30){
+            if(db.getTestingHistoriesCountByTestingId(1)==0 && !isPositiveHIVTestLogged()){
+                message = "It’s been more than 1 month since you've started Lynx. You deserve to know your HIV status. Test time, baby!";
+                if(db.getAppAlertsCountByName("Thirty Days No HIV")==0){
+                    showAppAlert(message,1,"Thirty Days No HIV");
+                }
+            }
+            if(db.getTestingHistoriesCountByTestingId(2)==0 && !isPositiveHIVTestLogged()){
+                message = "It’s been more than 1 month since you've started Lynx. Getting tested on the regular is a great habit to have. Speaking of which, it's that time. With STIs and related HIV risk on the rise, stay on track and get tested this week.";
+                if(db.getAppAlertsCountByName("Thirty Days No STD")==0){
+                    showAppAlert(message,1,"Thirty Days No STD");
+                }
+            }
+        }else if(elapsed_reg_days>2){
+            if(db.getTestingHistoriesCountByTestingId(1)==0 && !isPositiveHIVTestLogged()){
+                message = "You haven't entered an HIV test yet. Don't forget to do your first test!";
+                if(db.getAppAlertsCountByName("Two Days No HIV")==0){
+                    showAppAlert(message,1,"Two Days No HIV");
+                }
+            }
+            if(db.getTestingHistoriesCountByTestingId(2)==0 && !isPositiveHIVTestLogged()){
+                message = "You haven't entered an STD test yet. Don't forget to do your first set of tests!";
+                if(db.getAppAlertsCountByName("Two Days No STD")==0){
+                    showAppAlert(message,1,"Two Days No STD");
                 }
             }
         }
@@ -518,35 +486,22 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 db.updateAppAlertModifiedDate(appAlerts.getId());
             }
         }
-
-//        Log.v("FCMToken",LynxManager.decryptString(db.getCloudMessaging().getToken_id()));
-        //startActivity(new Intent(LynxHome.this,RegistrationCode.class));
     }
     private boolean isPositiveHIVTestLogged(){
         /*
         * Positive HIV Elapsed Days calculation
         * */
-        int hiv_elapsed_days = 0;
         List<TestingHistory> testingHistoryList = db.getAllTestingHistoriesByTestingID(1);
         Collections.sort(testingHistoryList, new TestingHistory.CompDate(true));
 
-        boolean breakflag = false;
-        String lastHivPosdate = null;
         for(TestingHistory testingHistory2:testingHistoryList){
             List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(testingHistory2.getTesting_history_id());
             for (TestingHistoryInfo historyInfo : testinghistoryInfoList) {
                 if (historyInfo.getSti_id() == 0) {
                     if(LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")){
-                        lastHivPosdate = LynxManager.decryptString(testingHistory2.getTesting_date()) + " 00:00:00";
-                        hiv_elapsed_days = getElapsedDays(lastHivPosdate);
-                        Log.v("LastPositiveHIVTestDate",lastHivPosdate + "--" + hiv_elapsed_days);
-                        breakflag = true;
                         return true;
                     }
                 }
-            }
-            if(breakflag){
-                break;
             }
         }
         return false;
@@ -599,7 +554,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         if(no_of_buttons==1){
             prepInfo.setVisibility(View.GONE);
             verticalBorder.setVisibility(View.GONE);
-            maybeLater.setText("Got it!");
+            maybeLater.setText(getResources().getString(R.string.btn_got_it));
             maybeLater.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -704,7 +659,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
     public void onResume() {
         super.onResume();
         // Closing the App if sign out enabled
-        //Log.v("SignOut", String.valueOf(LynxManager.signOut));
         if(LynxManager.signOut){
             Intent intent = new Intent(LynxHome.this, LynxHome.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK  | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS | Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -716,7 +670,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         if (LynxManager.onPause){
             Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);
             startActivity(lockscreen);
-            //Log.v("onResumeusername", LynxManager.getActiveUser().getFirstname());
         }
         checkForCrashes();
     }
@@ -756,7 +709,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 Button positive_btn = (Button) popupView.findViewById(R.id.alertPositiveButton);
                 Button negative_btn = (Button) popupView.findViewById(R.id.alertNegativeButton);
                 title.setVisibility(View.GONE);
-                message.setText("Are you sure, you want to exit?");
+                message.setText(getResources().getString(R.string.app_exit_message));
                 message.setTypeface(tf);
                 positive_btn.setTypeface(tf);
                 negative_btn.setTypeface(tf);
@@ -786,11 +739,11 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             }
             onPause_count++;
 
-        return;
     }
     private void callNotification(){
         NotificationManager notifManager = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
-        notifManager.cancelAll();
+        if(notifManager!=null)
+            notifManager.cancelAll();
         String notes = "You have a new message!";
         TestingReminder testingReminder = db.getTestingReminderByFlag(1);
         String day = "";
@@ -1190,7 +1143,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", "> " + jsonStr);
             usersResult = jsonStr;
             return null;
         }
@@ -1205,11 +1157,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
 
                     // Getting JSON Array node
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    //Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_LONG).show();
-                    if (is_error) {
-                        Log.d("Response: ", "> Users update Failed. " + jsonObj.getString("message"));
-                    } else {
-                        //Toast.makeText(getApplication().getBaseContext(),"user updated", Toast.LENGTH_LONG).show();
+                    if (!is_error) {
                         int user_id = Integer.parseInt(jsonObj.getString("id"));
                         db.updateUserByStatus(user_id, String.valueOf(R.string.statusUpdateYes));
                     }
@@ -1218,7 +1166,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
 
 
@@ -1258,7 +1206,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">BaselineResult " + jsonBaseLineStr);
+            //Log.d("Response: ", ">BaselineResult " + jsonBaseLineStr);
             userBaseLineResult = jsonBaseLineStr;
             return null;
         }
@@ -1275,9 +1223,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     // Getting JSON Array node
                     boolean is_error = jsonObj.getBoolean("is_error");
                     //Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
-                    if (is_error) {
-                        Log.d("Response: ", "> UserBaseLineError. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         //Toast.makeText(getApplication().getBaseContext(),"User Baseline Info Added", Toast.LENGTH_SHORT).show();
 
                         // updateBy(baselineID,userID,status)
@@ -1290,7 +1236,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
 
 
@@ -1333,7 +1279,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">PrimaryPartner " + jsonPrimaryPartnerStr);
             userPrimaryPartnerResult = jsonPrimaryPartnerStr;
             return null;
         }
@@ -1349,11 +1294,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
 
                     // Getting JSON Array node
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    // Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
-                    if (is_error) {
-                        Log.d("Response: ", "> UserPrimaryPartnerError. " + jsonObj.getString("message"));
-                    } else {
-                        // Toast.makeText(getApplication().getBaseContext(),"User Primary Partner Added", Toast.LENGTH_SHORT).show();
+                    if (!is_error) {
                         int priPart_id = Integer.parseInt(jsonObj.getString("id"));
                         db.updatePrimaryPartnerbyStatus(priPart_id, LynxManager.getActiveUser().getUser_id(), String.valueOf(R.string.statusUpdateYes));
                     }
@@ -1362,7 +1303,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
 
 
@@ -1399,7 +1340,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response:Druguse ", ">DrugUse " + jsonDrugUseStr);
             userDrugUseResult = jsonDrugUseStr;
             return null;
         }
@@ -1411,9 +1351,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 try {
                     JSONObject jsonObj = new JSONObject(userDrugUseResult);
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", "> UserDrugUseError. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         int druguse_id = Integer.parseInt(jsonObj.getString("id"));
                         db.updateDrugUsesByStatus(druguse_id, String.valueOf(R.string.statusUpdateYes));
                     }
@@ -1421,7 +1359,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
     }
@@ -1456,7 +1394,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">AlcoholUse " + jsonAlcoholUseStr);
             userAlcoholUseResult = jsonAlcoholUseStr;
             return null;
         }
@@ -1468,10 +1405,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 try {
                     JSONObject jsonObj = new JSONObject(userAlcoholUseResult);
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", "> UserAlcoholUseError. " + jsonObj.getString("message"));
-                    } else {
-
+                    if (!is_error) {
                         int alcUse_id = Integer.parseInt(jsonObj.getString("id"));
                         db.updateAlcoholUseByStatus(alcUse_id, String.valueOf(R.string.statusUpdateYes));
                     }
@@ -1479,7 +1413,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
     }
@@ -1513,7 +1447,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">STIDiag " + jsonSTIDiagStr);
             userSTIDiagResult = jsonSTIDiagStr;
             return null;
         }
@@ -1525,9 +1458,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 try {
                     JSONObject jsonObj = new JSONObject(userSTIDiagResult);
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", "> UserSTIDiagError. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         int stiDiag_id = Integer.parseInt(jsonObj.getString("id"));
                         db.updateSTIDiagsByStatus(stiDiag_id, String.valueOf(R.string.statusUpdateYes));
                     }
@@ -1535,7 +1466,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
 
@@ -1572,7 +1503,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">>Encounter " + jsonEncounterStr);
             encounterJsonArrayResult = jsonEncounterStr;
             return null;
         }
@@ -1586,9 +1516,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     // Getting JSON Array node
                     boolean is_error = jsonObj.getBoolean("is_error");
                     //Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
-                    if (is_error) {
-                        Log.d("Response: ", "> Registration Failed. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         int enc_id = Integer.parseInt(jsonObj.getString("id"));
                         db.updateEncountersbyStatus(enc_id, String.valueOf(R.string.statusUpdateYes));
                     }
@@ -1596,7 +1524,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
 
@@ -1632,7 +1560,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">EncounterSexType " + jsonEncSexTypeStr);
             encSexTypeResult = jsonEncSexTypeStr;
             return null;
         }
@@ -1644,9 +1571,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 try {
                     JSONObject jsonObj = new JSONObject(encSexTypeResult);
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", "> EncSexTypeError. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         int sexType_id = Integer.parseInt(jsonObj.getString("id"));
                         db.updateEncounterSextypebyStatus(sexType_id, String.valueOf(R.string.statusUpdateYes));
                     }
@@ -1654,7 +1579,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
     }
@@ -1688,7 +1613,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">partner " + jsonpartnerStr);
             partnersResult = jsonpartnerStr;
             return null;
         }
@@ -1700,9 +1624,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 try {
                     JSONObject jsonObj = new JSONObject(partnersResult);
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", "> partnerError. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         int partner_id = Integer.parseInt(jsonObj.getString("id"));
                         db.updatePartnerbyStatus(partner_id, String.valueOf(R.string.statusUpdateYes));
                     }
@@ -1710,7 +1632,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
     }
@@ -1745,7 +1667,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">partnerCon " + jsonpartnerConStr);
             partnerContactResult = jsonpartnerConStr;
             return null;
         }
@@ -1758,9 +1679,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 try {
                     JSONObject jsonObj = new JSONObject(partnerContactResult);
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", ">partnerContactError. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         int partnerCon_id = Integer.parseInt(jsonObj.getString("id"));
                         db.updatePartnerContactByStatus(partnerCon_id, String.valueOf(R.string.statusUpdateYes));
                     }
@@ -1768,7 +1687,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
 
@@ -1807,7 +1726,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">partnerRating " + jsonpartnerRatingStr);
             partnerRatingsResult = jsonpartnerRatingStr;
             return null;
         }
@@ -1819,9 +1737,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 try {
                     JSONObject jsonObj = new JSONObject(partnerRatingsResult);
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", "> partnerRatingError. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         int partnerRating_id = Integer.parseInt(jsonObj.getString("id"));
                         db.updatePartnerRatingsbyStatus(partnerRating_id, String.valueOf(R.string.statusUpdateYes));
                     }
@@ -1829,7 +1745,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
     }
@@ -1863,7 +1779,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">Reminder " + jsonReminderStr);
             testingReminderResult = jsonReminderStr;
             return null;
         }
@@ -1875,9 +1790,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 try {
                     JSONObject jsonObj = new JSONObject(testingReminderResult);
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", "> ReminderError. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         int reminder_id = Integer.parseInt(jsonObj.getString("id"));
                         db.updateTestingReminderbyStatus(reminder_id, String.valueOf(R.string.statusUpdateYes));
                     }
@@ -1885,7 +1798,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
 
@@ -1922,7 +1835,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", "> " + jsontestHistoryStr);
             testingHistoryResult = jsontestHistoryStr;
             return null;
         }
@@ -1935,9 +1847,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 try {
                     JSONObject jsonObj = new JSONObject(testingHistoryResult);
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", "> testHistoryError. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         int history_id = Integer.parseInt(jsonObj.getString("id"));
                         db.updateTestingHistorybyStatus(history_id, String.valueOf(R.string.statusUpdateYes));
                     }
@@ -1945,7 +1855,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
     }
@@ -1981,7 +1891,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", "> " + jsontestHistoryInfoStr);
             testingHistoryInfoResult = jsontestHistoryInfoStr;
             return null;
         }
@@ -1993,9 +1902,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 try {
                     JSONObject jsonObj = new JSONObject(testingHistoryInfoResult);
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", "> testHistoryInfoError. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         int historyInfo_id = Integer.parseInt(jsonObj.getString("id"));
                         db.updatetestingHistoryInfobyStatus(historyInfo_id, String.valueOf(R.string.statusUpdateYes));
                     }
@@ -2003,7 +1910,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
     }
@@ -2036,7 +1943,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", "> " + jsonStr);
             testingRequestResult = jsonStr;
             return null;
         }
@@ -2049,9 +1955,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     JSONObject jsonObj = new JSONObject(testingRequestResult);
                     // Getting JSON Array node
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", "> testRequestError " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         int testingReq_id = Integer.parseInt(jsonObj.getString("id"));
                         db.updateHomeTestingRequest(testingReq_id, String.valueOf(R.string.statusUpdateYes));
                     }
@@ -2059,7 +1963,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
     }
@@ -2090,7 +1994,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", "> " + jsonStr);
             userRatingFieldsResult = jsonStr;
             return null;
         }
@@ -2103,9 +2006,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     JSONObject jsonObj = new JSONObject(userRatingFieldsResult);
                     // Getting JSON Array node
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", "> ratFieldsError. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         int ratingField_id = Integer.parseInt(jsonObj.getString("id"));
                         db.updateUserRatingFieldsByStatus(ratingField_id, String.valueOf(R.string.statusUpdateYes));
                     }
@@ -2113,7 +2014,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
     }
@@ -2147,7 +2048,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">CloudMessaging " + jsonCmStr);
             CloudmessagingResult = jsonCmStr;
             return null;
         }
@@ -2160,9 +2060,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     JSONObject jsonObj = new JSONObject(CloudmessagingResult);
                     // Getting JSON Array node
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", "> cloudMessagingError. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         db.updateCloudMessagingByStatus(LynxManager.getActiveUser().getUser_id(), String.valueOf(R.string.statusUpdateYes));
 
                     }
@@ -2170,7 +2068,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
 
@@ -2206,7 +2104,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">UserBadges " + jsonAlcoholUseStr);
             userBadgesResult = jsonAlcoholUseStr;
             return null;
         }
@@ -2218,10 +2115,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 try {
                     JSONObject jsonObj = new JSONObject(userBadgesResult);
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", "> UserBadgesError. " + jsonObj.getString("message"));
-                    } else {
-
+                    if (!is_error) {
                         int id = Integer.parseInt(jsonObj.getString("id"));
                         db.updateUserBadgeByStatus(id, String.valueOf(R.string.statusUpdateYes));
                     }
@@ -2229,7 +2123,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
     }
@@ -2265,7 +2159,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">prepFollowup " + jsonAlcoholUseStr);
             prepFollowupResult = jsonAlcoholUseStr;
             return null;
         }
@@ -2277,10 +2170,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 try {
                     JSONObject jsonObj = new JSONObject(prepFollowupResult);
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        Log.d("Response: ", "> prepFollowupError. " + jsonObj.getString("message"));
-                    } else {
-
+                    if (!is_error) {
                         int id = Integer.parseInt(jsonObj.getString("id"));
                         db.updatePrepFolloupByStatus(id, LynxManager.encryptString(getResources().getString(R.string.statusUpdateYes)));
                     }
@@ -2288,7 +2178,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
     }
@@ -2306,8 +2196,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            // Showing progress dialog
-
         }
 
         @Override
@@ -2326,7 +2214,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            Log.d("Response: ", ">TestingCentersOnline " + jsonChatListStr);
             TestingCentersOnline = jsonChatListStr;
             return null;
         }
@@ -2341,10 +2228,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
 
                     // Getting JSON Array node
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    // Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
-                    if (is_error) {
-                        Log.d("Response: ", "> TestingCentersOnlineError. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         JSONArray locationsArray = jsonObj.getJSONArray("locations");
                         if(locationsArray !=null && locationsArray.length()!=0) {
                             for (int i = 0; i < locationsArray.length(); i++) {
@@ -2360,10 +2244,8 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                                         childObj.getString("ages"));
                                 testingLocation.setTesting_location_id(id);
                                 if (db.getTestingLocationbyID(id) == null) {
-                                    //Log.v("Created_Org_id",childObj.getString("testing_location_id"));
                                     db.createTestingLocationWithID(testingLocation);
                                 } else {
-                                    //Log.v("updated_Org_id",childObj.getString("testing_location_id"));
                                     db.updateTestingLocation(testingLocation);
                                 }
                             }
@@ -2373,21 +2255,16 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                             }
                             db.createTLSync(LynxManager.getActiveUser().getUser_id(),page);
                         }else{
-                            //Log.v("TLSyncElapsedDays", String.valueOf(getElapsedDays(db.getLastTLSyncDate())));
                             if(db.getLastTLSyncDate()!=null && getElapsedDays(db.getLastTLSyncDate())>30){
                                 db.deleteTLSync();
                             }
-                            /*SharedPreferences.Editor editor = sharedPref.edit();
-                            editor.putString("isTLSyncCompleted", "true");
-                            editor.putString("isTLSyncCompletedDate", LynxManager.getUTCDateTime());
-                            editor.apply();*/
                         }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
+                //Log.e("ServiceHandler", "Couldn't get any data from the url");
             }
         }
 

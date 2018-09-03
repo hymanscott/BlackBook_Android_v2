@@ -103,9 +103,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
 
         List<Partners> partners = db.getListablePartners();
         Collections.sort(partners,new Partners.comparePartner());
-        int j = 0;
         for (Partners partner : partners) {
-            Log.v("PartnerStatus","id=>" +partner.getPartner_id()+", "+ partner.getIs_active());
             if(partner.getIs_active()!=0) {
                 TableRow partnerRow = new TableRow(getActivity());
                 partnerRow.setPadding(10, 30, 0, 30);
@@ -151,23 +149,8 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                         for (int i = 0; i < partnerTable.getChildCount(); i++) {
                             View row = partnerTable.getChildAt(i);
                             if (row == view) {
-
-                                /*row.setBackgroundColor(getResources().getColor(R.color.blue_boxes));
-                                ((TextView) ((TableRow) partnerTable.getChildAt(i)).getChildAt(0)).setTextColor(getResources().getColor(R.color.colorPrimary));
-                                RatingBar r = ((RatingBar) ((TableRow)partnerTable.getChildAt(i)).getChildAt(1));
-                                LayerDrawable stars = (LayerDrawable) r.getProgressDrawable();
-                                stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);*/
-
-                                /*Intent selectedPartnerSumm = new Intent(getActivity(), SelectedPartnerActivity.class);
-                                LynxManager.selectedPartnerID = row.getId();
-                                selectedPartnerSumm.putExtra("PartnerID", LynxManager.selectedPartnerID);
-                                startActivityForResult(selectedPartnerSumm, 100);*/
                                 setPartnerSummary(row.getId());
                             } else {
-                                /*((TextView) ((TableRow) partnerTable.getChildAt(i)).getChildAt(0)).setTextColor(Color.parseColor("#444444"));
-                                RatingBar r = ((RatingBar) ((TableRow)partnerTable.getChildAt(i)).getChildAt(1));
-                                LayerDrawable stars = (LayerDrawable) r.getProgressDrawable();
-                                stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);*/
                                 row.setBackground(getResources().getDrawable(R.drawable.border_bottom));
                             }
                         }
@@ -175,7 +158,6 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                 });
                 partnerTable.addView(partnerRow);
             }
-            j++;
         }
         back_press_count=0;
         rootview.setFocusableInTouchMode(true);
@@ -349,7 +331,6 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
             for (PartnerRating rating : partnerRatingsList) {
                 rating_values.add(rating.getRating());
                 rating_fields.add(rating.getRating_field());
-                //Log.v("ratings", String.valueOf(rating.getRating()));
             }
             overAll.setText(rating_fields.get(0));
             newPartnerSumm_rate2.setText(rating_fields.get(1));
@@ -716,7 +697,6 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         for (PartnerRating rating : partnerRatingsList) {
             rating_values.add(rating.getRating());
             rating_fields.add(rating.getRating_field());
-            //Log.v("ratings", String.valueOf(rating.getRating()));
         }
         db= new DatabaseHelper(getActivity());
         db = new DatabaseHelper(getActivity().getBaseContext());

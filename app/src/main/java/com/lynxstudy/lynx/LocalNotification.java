@@ -35,7 +35,7 @@ public class LocalNotification  {
         mcontext = context;
 	alarm = new AlarmHelper(context);
 	
-	Log.d(PLUGIN_NAME, "Plugin execute called with action: " + action);
+	//Log.d(PLUGIN_NAME, "Plugin execute called with action: " + action);
 
 	String result = null;
 
@@ -85,11 +85,11 @@ public class LocalNotification  {
     public String add(boolean repeatDaily, String alarmTitle, String alarmSubTitle, String alarmTicker,
 	    String alarmId, Calendar cal) {
 	final long triggerTime = cal.getTimeInMillis();
-		Log.v("L_Notif_triggerTime",String.valueOf(triggerTime));
+		//Log.v("L_Notif_triggerTime",String.valueOf(triggerTime));
 	final String recurring = repeatDaily ? "daily" : "onetime";
 
-	Log.d(PLUGIN_NAME, "Adding " + recurring + " notification: '" + alarmTitle + alarmSubTitle + "' with id: "
-		+ alarmId + " at timestamp: " + triggerTime);
+	//Log.d(PLUGIN_NAME, "Adding " + recurring + " notification: '" + alarmTitle + alarmSubTitle + "' with id: "
+		//+ alarmId + " at timestamp: " + triggerTime);
 
 	boolean result = alarm.addAlarm(repeatDaily, alarmTitle, alarmSubTitle, alarmTicker, alarmId, cal);
 	if (result) {
@@ -107,7 +107,7 @@ public class LocalNotification  {
      *            registered using addNotification()
      */
     public String cancelNotification(String notificationId) {
-	Log.d(PLUGIN_NAME, "cancelNotification: Canceling event with id: " + notificationId);
+	//Log.d(PLUGIN_NAME, "cancelNotification: Canceling event with id: " + notificationId);
 
 	boolean result = alarm.cancelAlarm(notificationId);
 	if (result) {
@@ -121,7 +121,7 @@ public class LocalNotification  {
      * Cancel all notifications that were created by this plugin.
      */
     public String cancelAllNotifications() {
-	Log.d(PLUGIN_NAME, "cancelAllNotifications: cancelling all events for this application");
+	//Log.d(PLUGIN_NAME, "cancelAllNotifications: cancelling all events for this application");
 	/*
 	 * Android can only unregister a specific alarm. There is no such thing
 	 * as cancelAll. Therefore we rely on the Shared Preferences which holds

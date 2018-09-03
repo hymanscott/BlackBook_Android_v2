@@ -15,13 +15,10 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.vision.text.Text;
 import com.lynxstudy.helper.DatabaseHelper;
-import com.lynxstudy.lynx.R;
 import com.lynxstudy.model.TestingReminder;
 
 import org.piwik.sdk.Tracker;
@@ -72,19 +69,11 @@ public class RemindersActivity extends AppCompatActivity {
                     "fonts/Roboto-Regular.ttf");
             Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                     "fonts/Roboto-Bold.ttf");
-            TextView frag_title,intro_first_paragraph,intro_second_paragraph,intro_third_paragraph;
-            Button reminderIntroNext;
-
-            frag_title = (TextView)view.findViewById(R.id.frag_title);
-            frag_title.setTypeface(tf_bold);
-            intro_first_paragraph = (TextView)view.findViewById(R.id.intro_first_paragraph);
-            intro_first_paragraph.setTypeface(tf);
-            intro_second_paragraph = (TextView)view.findViewById(R.id.intro_second_paragraph);
-            intro_second_paragraph.setTypeface(tf);
-            intro_third_paragraph = (TextView)view.findViewById(R.id.intro_third_paragraph);
-            intro_third_paragraph.setTypeface(tf);
-            reminderIntroNext = (Button)view.findViewById(R.id.reminderIntroNext);
-            reminderIntroNext.setTypeface(tf_bold);
+            ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+            ((TextView)view.findViewById(R.id.intro_first_paragraph)).setTypeface(tf);
+            ((TextView)view.findViewById(R.id.intro_second_paragraph)).setTypeface(tf);
+            ((TextView)view.findViewById(R.id.intro_third_paragraph)).setTypeface(tf);
+            ((Button)view.findViewById(R.id.reminderIntroNext)).setTypeface(tf_bold);
             // Piwik Analytics //
             Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
 			tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
@@ -104,34 +93,11 @@ public class RemindersActivity extends AppCompatActivity {
         imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
 
         ft.replace(R.id.container, fragment);
-        if (addToStack == true)
+        if (addToStack)
             ft.addToBackStack(null);
         ft.commit();
 
 
-    }
-
-    /*
-    * remove the fragment to the FrameLayout
-    */
-    public void removeFragments(String tag, Fragment fragment) {
-
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction ft = manager.beginTransaction();
-
-        ft.remove(fragment);
-        //    ft.addToBackStack(null);
-        ft.commit();
-
-    }
-
-    // pop Fragment
-    public void popFragment() {
-        FragmentManager fm = getSupportFragmentManager();
-        int stackcount = fm.getBackStackEntryCount();
-        // Toast.makeText(Tabbar_activity.this, "Stack Count "+String.valueOf(stackcount), Toast.LENGTH_SHORT).show();
-        if (stackcount > 1)
-            fm.popBackStack();
     }
 
     public boolean showTestingReminders(View view){

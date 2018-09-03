@@ -4,7 +4,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,22 +39,17 @@ public class RegistrationTimesTop extends Fragment implements SeekBar.OnSeekBarC
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
         seek_textviewone = (TextView)view.findViewById(R.id.textProgress_id1);
-        TextView frag_title = (TextView) view.findViewById(R.id.frag_title);
-        TextView textview9 = (TextView) view.findViewById(R.id.textview9);
-        TextView textview10 = (TextView) view.findViewById(R.id.textview10);
-        TextView textview11 = (TextView) view.findViewById(R.id.textview11);
-        TextView textview12 = (TextView) view.findViewById(R.id.textview12);
         TextView progress_minvalue2 = (TextView) view.findViewById(R.id.Progress_minvalue2);
         TextView progress_maxvalue2 = (TextView) view.findViewById(R.id.Progress_maxvalue2);
         editText = (EditText) view.findViewById(R.id.editText);
         regAuthNext = (Button) view.findViewById(R.id.regAuthNext);
 
         seek_textviewone.setTypeface(tf);
-        frag_title.setTypeface(tf_bold);
-        textview9.setTypeface(tf);
-        textview10.setTypeface(tf);
-        textview11.setTypeface(tf);
-        textview12.setTypeface(tf);
+        ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView) view.findViewById(R.id.textview9)).setTypeface(tf);
+        ((TextView) view.findViewById(R.id.textview10)).setTypeface(tf);
+        ((TextView) view.findViewById(R.id.textview11)).setTypeface(tf);
+        ((TextView) view.findViewById(R.id.textview12)).setTypeface(tf);
         progress_minvalue2.setTypeface(tf);
         progress_maxvalue2.setTypeface(tf);
         editText.setTypeface(tf);

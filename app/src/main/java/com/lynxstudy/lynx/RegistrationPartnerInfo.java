@@ -34,11 +34,9 @@ public class RegistrationPartnerInfo extends Fragment {
 
 
     }
-    TextView frag_title,primaryPartner,hivStatus,undetectableTitle,otherPartnersTitle,textview9,addToDiary;
-    EditText nick_name;
+//    EditText nick_name;
     RadioButton radio_hiv_neg,radio_hiv_idk,radio_hiv_pos,radio_undetectable_yes,radio_undetectable_no,radio_undetectable_iDontKnow;
     RadioButton radio_partner_yes,radio_partner_no,radio_partner_unsure,radio_lessThanSixMonths,radio_moreThanSixMonths,radio_blackbook_yes,radio_blackbook_no;
-    Button partner_info_nextbtn,partner_info_revisebtn;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -80,27 +78,14 @@ public class RegistrationPartnerInfo extends Fragment {
         radio_blackbook_yes.setTypeface(tf);
         radio_blackbook_no = (RadioButton)view.findViewById(R.id.radio_blackbook_no);
         radio_blackbook_no.setTypeface(tf);
-        frag_title = (TextView)view.findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf_bold);
-        /*primaryPartner = (TextView)view.findViewById(R.id.primaryPartner);
-        primaryPartner.setTypeface(tf);*/
-        hivStatus = (TextView)view.findViewById(R.id.hivStatus);
-        hivStatus.setTypeface(tf);
-        undetectableTitle = (TextView)view.findViewById(R.id.undetectableTitle);
-        undetectableTitle.setTypeface(tf);
-        otherPartnersTitle = (TextView)view.findViewById(R.id.otherPartnersTitle);
-        otherPartnersTitle.setTypeface(tf);
-        textview9 = (TextView)view.findViewById(R.id.textview9);
-        textview9.setTypeface(tf);
-        addToDiary = (TextView)view.findViewById(R.id.addToDiary);
-        addToDiary.setTypeface(tf);
-        nick_name = (EditText) view.findViewById(R.id.nick_name);
-        nick_name.setTypeface(tf);
-        partner_info_nextbtn = (Button) view.findViewById(R.id.partner_info_nextbtn);
-        partner_info_nextbtn.setTypeface(tf_bold);
-        /*partner_info_revisebtn = (Button) view.findViewById(R.id.partner_info_revisebtn);
-        partner_info_revisebtn.setTypeface(tf);*/
-
+        ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.hivStatus)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.undetectableTitle)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.otherPartnersTitle)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.textview9)).setTypeface(tf);
+        ((TextView)view.findViewById(R.id.addToDiary)).setTypeface(tf);
+        ((EditText) view.findViewById(R.id.nick_name)).setTypeface(tf);
+        ((Button) view.findViewById(R.id.partner_info_nextbtn)).setTypeface(tf_bold);
         RadioButton hivNegPrep = (RadioButton)view.findViewById(R.id.radio_hiv_prep);
         hivNegPrep.setText(Html.fromHtml("HIV negative & on PrEP"));
         hivNegPrep.setTypeface(tf);

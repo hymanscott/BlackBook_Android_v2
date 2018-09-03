@@ -23,10 +23,8 @@ public class RegistrationConfirmFragment extends Fragment {
     public RegistrationConfirmFragment() {
         // Required empty public constructor
     }
-
-    TextView frag_title,confirm_firstname,confirm_lastname,confirm_email,confirm_password;
+    TextView confirm_firstname,confirm_lastname,confirm_email,confirm_password;
     TextView confirm_phone,edit_details,c_passcode,confirm_sec_qn,confirm_sec_ans,confirm_dob,confirm_race;
-    Button reg_confirmbtn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,8 +35,7 @@ public class RegistrationConfirmFragment extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        frag_title = (TextView)view.findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
         confirm_firstname = (TextView)view.findViewById(R.id.confirm_firstname);
         confirm_firstname.setTypeface(tf);
         confirm_lastname = (TextView)view.findViewById(R.id.confirm_lastname);
@@ -61,8 +58,7 @@ public class RegistrationConfirmFragment extends Fragment {
         confirm_race.setTypeface(tf);
         edit_details = (TextView)view.findViewById(R.id.edit_details);
         edit_details.setTypeface(tf);
-        reg_confirmbtn = (Button)view.findViewById(R.id.reg_confirmbtn);
-        reg_confirmbtn.setTypeface(tf_bold);
+        ((Button)view.findViewById(R.id.reg_confirmbtn)).setTypeface(tf_bold);
 
         confirm_firstname.setText(LynxManager.decryptString(LynxManager.getActiveUser().getFirstname()));
         confirm_lastname.setText(LynxManager.decryptString(LynxManager.getActiveUser().getLastname()));

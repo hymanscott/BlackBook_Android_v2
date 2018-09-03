@@ -57,19 +57,5 @@
             android:id="@+id/testkitWebview">
 
         </WebView>
-        <!--<Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Refresh"
-            android:id="@+id/refresh"
-            android:background="@drawable/buttonbluecornered"
-            android:textColor="@color/white"
-            android:layout_marginBottom="30dp"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_alignParentBottom="true"
-            android:textSize="14sp"
-            android:visibility="gone"
-            android:textStyle="bold"/>-->
     </LinearLayout>
 </RelativeLayout>

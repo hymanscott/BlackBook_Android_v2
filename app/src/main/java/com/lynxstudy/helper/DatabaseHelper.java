@@ -537,7 +537,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // creating required tables
         db.execSQL(CREATE_TABLE_USERS);
-        Log.v(LOG, CREATE_TABLE_USER_BASE_INFO);
+        //Log.v(LOG, CREATE_TABLE_USER_BASE_INFO);
 
         db.execSQL(CREATE_TABLE_USER_BASE_INFO);
         db.execSQL(CREATE_TABLE_DRUG_MASTER);
@@ -606,7 +606,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TL_SYNC);
         // create new tables
         onCreate(db);
-        Log.v("Database upgrade","Executed");
+        //Log.v("Database upgrade","Executed");
     }
 
     public void alterTable() {
@@ -700,10 +700,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int user_id = (int) db.insert(TABLE_USERS, null, values);
-
-
-        return user_id;
+        return (int) db.insert(TABLE_USERS, null, values);
     }
 
     /**
@@ -715,7 +712,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USERS + " WHERE "
                 + KEY_USERS_ID + " = " + user_id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -754,7 +751,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USERS + " WHERE "
                 + KEY_USERS_ID + " = " + user_id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -771,7 +768,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Users> users = new ArrayList<Users>();
         String selectQuery = "SELECT  * FROM " + TABLE_USERS;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -804,8 +801,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 users.add(user);
             } while (c.moveToNext());
         }
+            c.close();
         }
-        c.close();
         return users;
     }
 
@@ -820,7 +817,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         int count = cursor.getCount();
         cursor.close();
-
         // return count
         return count;
     }
@@ -925,7 +921,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -957,8 +953,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 users_list.add(user);
             } while (c.moveToNext());
         }
+            c.close();
         }
-        c.close();
         return users_list;
     }
 
@@ -999,10 +995,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int user_baseline_id = (int) db.insert(TABLE_USER_BASE_INFO, null, values);
-
-
-        return user_baseline_id;
+        return (int) db.insert(TABLE_USER_BASE_INFO, null, values);
     }
     public int createbaselineWithID(User_baseline_info user) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1022,10 +1015,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int user_baseline_id = (int) db.insert(TABLE_USER_BASE_INFO, null, values);
-
-
-        return user_baseline_id;
+        return (int) db.insert(TABLE_USER_BASE_INFO, null, values);
     }
     public int updateUserBaselineCreatedDate(String date, int id) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1046,7 +1036,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_BASE_INFO + " WHERE "
                 + KEY_BASE_USERID + " = " + user_id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -1067,10 +1057,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             user.setSexpro_prep(c.getString(c.getColumnIndex(KEY_BASE_SEXPRO_PREP)));
             user.setSexpro_calculated_date(c.getString(c.getColumnIndex(KEY_BASE_SEXPRO_CALCULATED_DATE)));
             user.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
+            c.close();
             return user;
         }
-        c.close();
         return null;
     }
 
@@ -1082,7 +1071,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_BASE_INFO + " WHERE "
                 + KEY_BASE_USERID + " = " + user_id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -1102,7 +1091,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_BASE_INFO + " WHERE "
                 + KEY_BASE_ID + " = " + id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -1153,7 +1142,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String selectQuery = "SELECT  * FROM " + TABLE_USER_BASE_INFO + " WHERE " + KEY_STATUS_UPDATE + " = '" + status + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -1180,8 +1169,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 users.add(user);
             } while (c.moveToNext());
         }
+            c.close();
         }
-        c.close();
         return users;
     }
 
@@ -1192,7 +1181,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String selectQuery = "SELECT  * FROM " + TABLE_USER_BASE_INFO;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -1219,8 +1208,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 users.add(user);
             } while (c.moveToNext());
         }
+            c.close();
         }
-        c.close();
         return users;
     }
 
@@ -1271,10 +1260,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int drug_id = (int) db.insert(TABLE_DRUG_MASTER, null, values);
-
-
-        return drug_id;
+        return (int) db.insert(TABLE_DRUG_MASTER, null, values);
     }
 
     /**
@@ -1287,15 +1273,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_DRUG_MASTER + " WHERE "
                 + KEY_DRUG_ID + " = " + drugID;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         if (c != null && c.getCount()>0) {
             c.moveToFirst();
-            return c.getString(c.getColumnIndex(KEY_DRUG_NAME));
+            String name =  c.getString(c.getColumnIndex(KEY_DRUG_NAME));
+            c.close();
+            return name;
         }
-        c.close();
         return "";
     }
     /**
@@ -1307,7 +1294,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_DRUG_MASTER + " WHERE "
                 + KEY_DRUG_ID + " = " + drugID;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -1331,7 +1318,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_DRUG_MASTER + " WHERE "
                 + KEY_DRUG_NAME + " = '" + drugName + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -1343,7 +1330,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         drug.setDrugName(c.getString(c.getColumnIndex(KEY_DRUG_NAME)));
         drug.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
-        Log.e(LOG, drug.getDrugName());
+        //Log.e(LOG, drug.getDrugName());
         c.close();
         return drug;
     }
@@ -1355,7 +1342,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<DrugMaster> drugs = new ArrayList<DrugMaster>();
         String selectQuery = "SELECT  * FROM " + TABLE_DRUG_MASTER;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -1373,8 +1360,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 drugs.add(drug);
             } while (c.moveToNext());
         }
+            c.close();
         }
-        c.close();
         return drugs;
     }
 
@@ -1406,10 +1393,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int user_id = (int) db.insert(TABLE_STI_MASTER, null, values);
-
-
-        return user_id;
+        return (int) db.insert(TABLE_STI_MASTER, null, values);
     }
 
     /**
@@ -1421,7 +1405,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_STI_MASTER + " WHERE "
                 + KEY_STI_ID + " = " + stiID;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -1445,7 +1429,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_STI_MASTER + " WHERE "
                 + KEY_STI_NAME + " = '" + stiName + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -1467,7 +1451,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<STIMaster> drugs = new ArrayList<STIMaster>();
         String selectQuery = "SELECT  * FROM " + TABLE_STI_MASTER;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -1485,8 +1469,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 drugs.add(drug);
             } while (c.moveToNext());
         }
+            c.close();
         }
-        c.close();
         return drugs;
     }
 
@@ -1523,10 +1507,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int pripartner_id = (int) db.insert(TABLE_USER_PRIMARY_PARTNER, null, values);
-
-
-        return pripartner_id;
+        return (int) db.insert(TABLE_USER_PRIMARY_PARTNER, null, values);
     }
 
     /**
@@ -1538,7 +1519,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_PRIMARY_PARTNER + " WHERE "
                 + KEY_PRIPARTNER_ID + " = " + id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -1569,7 +1550,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_PRIMARY_PARTNER + " WHERE "
                 + KEY_PRIPARTNER_USERID + " = " + user_id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -1587,9 +1568,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             partner.setPartner_have_other_partners(c.getString(c.getColumnIndex(KEY_PRIPARTNER_OTHERPARTNER)));
             partner.setIs_added_to_blackbook(c.getString(c.getColumnIndex(KEY_PRIPARTNER_ISADDED)));
             partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+            c.close();
             return partner;
         }
-        c.close();
         return null;
     }
 
@@ -1602,7 +1583,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_PRIMARY_PARTNER + " WHERE "
                 + KEY_PRIPARTNER_ID + " = " + id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -1638,7 +1619,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<UserPrimaryPartner> Partners = new ArrayList<UserPrimaryPartner>();
         String selectQuery = "SELECT  * FROM " + TABLE_USER_PRIMARY_PARTNER + " WHERE " + KEY_STATUS_UPDATE + " = '" + status + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -1663,8 +1644,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Partners.add(partner);
             } while (c.moveToNext());
         }
+            c.close();
         }
-        c.close();
         return Partners;
     }
 
@@ -1702,10 +1683,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int Partner_id = (int) db.insert(TABLE_PARTNERS, null, values);
-
-
-        return Partner_id;
+        return (int) db.insert(TABLE_PARTNERS, null, values);
     }
 
     /**
@@ -1727,10 +1705,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int Partner_id = (int) db.insert(TABLE_PARTNERS, null, values);
-
-
-        return Partner_id;
+        return (int) db.insert(TABLE_PARTNERS, null, values);
     }
 
     /**
@@ -1742,7 +1717,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_PARTNERS + " WHERE "
                 + KEY_PARTNER_ID + " = " + id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -1772,7 +1747,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Partners> Partners = new ArrayList<Partners>();
         String selectQuery = "SELECT  * FROM " + TABLE_PARTNERS;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -1797,8 +1772,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Partners.add(partner);
             } while (c.moveToNext());
         }
+            c.close();
         }
-        c.close();
         return Partners;
     }
 
@@ -1810,7 +1785,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Partners> Partners = new ArrayList<Partners>();
         String selectQuery = "SELECT  * FROM " + TABLE_PARTNERS + " WHERE " + KEY_PARTNER_ADDEDTOLIST + " = '"+ LynxManager.encryptString("Yes")+"'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -1835,8 +1810,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Partners.add(partner);
             } while (c.moveToNext());
         }
+            c.close();
         }
-        c.close();
         return Partners;
     }
     // Update partner from new summary screen layout //
@@ -1870,7 +1845,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Partners> Partners = new ArrayList<Partners>();
         String selectQuery = "SELECT  * FROM " + TABLE_PARTNERS + " WHERE " + KEY_STATUS_UPDATE + " = '" + status + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -1896,8 +1871,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Partners.add(partner);
             } while (c.moveToNext());
         }
+            c.close();
         }
-        c.close();
         return Partners;
     }
     /**
@@ -1964,10 +1939,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int druguse_id = (int) db.insert(TABLE_USER_DRUGUSE, null, values);
-
-
-        return druguse_id;
+        return (int) db.insert(TABLE_USER_DRUGUSE, null, values);
     }
 
     /**
@@ -1979,13 +1951,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_DRUGUSE + " WHERE "
                 + KEY_PARTNER_USERID + " = " + user_id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         List<UserDrugUse> drugUses = new ArrayList<UserDrugUse>();
-
-
-        Log.e(LOG, selectQuery);
-
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -2005,8 +1973,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 drugUses.add(drugUse);
             } while (c.moveToNext());
         }
+            c.close();
         }
-        c.close();
         return drugUses;
 
     }
@@ -2017,7 +1985,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<UserDrugUse> drugUses = new ArrayList<UserDrugUse>();
         String selectQuery = "SELECT  * FROM " + TABLE_USER_DRUGUSE + " WHERE " + KEY_STATUS_UPDATE + " = '" + status + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -2075,10 +2043,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int sti_diag_id = (int) db.insert(TABLE_USER_STIDIAG, null, values);
-
-
-        return sti_diag_id;
+        return (int) db.insert(TABLE_USER_STIDIAG, null, values);
     }
 
     /**
@@ -2090,7 +2055,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_STIDIAG + " WHERE "
                 + KEY_STIDIAG_ID + " = " + id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -2113,7 +2078,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_STIDIAG + " WHERE "
                 + KEY_STIDIAG_ID + " = " + id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -2133,14 +2098,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_STIDIAG + " WHERE "
                 + KEY_PARTNER_USERID + " = " + user_id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         List<UserSTIDiag> stiDiags = new ArrayList<UserSTIDiag>();
-
-
-        Log.e(LOG, selectQuery);
-
-
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -2170,7 +2130,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<UserSTIDiag> stiDiags = new ArrayList<UserSTIDiag>();
         String selectQuery = "SELECT  * FROM " + TABLE_USER_STIDIAG + " WHERE " + KEY_STATUS_UPDATE + " = '" + status + "'" ;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -2225,10 +2185,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int alco_use_id = (int) db.insert(TABLE_USER_ALCHOHOLUSE, null, values);
-
-
-        return alco_use_id;
+        return (int) db.insert(TABLE_USER_ALCHOHOLUSE, null, values);
     }
 
     /**
@@ -2240,7 +2197,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_ALCHOHOLUSE + " WHERE "
                 + KEY_ALCOUSE_ID + " = " + id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -2269,14 +2226,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_ALCHOHOLUSE + " WHERE "
                 + KEY_ALCOUSE_ISBASELINE + " = '"+ is_Baseline + "'";
 
-        Log.e(LOG, selectQuery);
-
-
-
-
-        Log.e(LOG, selectQuery);
-
-
+        //Log.e(LOG, selectQuery);
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         if (c != null && c.getCount()>0) {
@@ -2291,9 +2241,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             alcoholUse.setIs_baseline(c.getString(c.getColumnIndex(KEY_ALCOUSE_ISBASELINE)));
             alcoholUse.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
             alcoholUse.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+            c.close();
             return alcoholUse;
         }
-        c.close();
         return null;
 
     }
@@ -2305,7 +2255,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<UserAlcoholUse> alcoholUses = new ArrayList<UserAlcoholUse>();
         String selectQuery = "SELECT  * FROM " + TABLE_USER_ALCHOHOLUSE;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -2343,14 +2293,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_ALCHOHOLUSE + " WHERE "
                 + KEY_STATUS_UPDATE + " = '" + status + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         List<UserAlcoholUse> alcoholUses = new ArrayList<UserAlcoholUse>();
-
-
-        Log.e(LOG, selectQuery);
-
-
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -2419,10 +2364,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int partnerContact_id = (int) db.insert(TABLE_PARTNER_CONTACT, null, values);
-
-
-        return partnerContact_id;
+        return (int) db.insert(TABLE_PARTNER_CONTACT, null, values);
     }
 
     // Update Partner Conatct from New Summary Screen //
@@ -2456,7 +2398,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_PARTNER_CONTACT + " WHERE "
                 + KEY_PARTNER_CONTACT_ID + " = " + id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -2481,9 +2423,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             partnerContact.setPartner_have_other_partners(c.getString(c.getColumnIndex(KEY_PARTNER_OTHERPARTNER)));
             partnerContact.setRelationship_period(c.getString(c.getColumnIndex(KEY_PARTNER_RELATIONSHIP_PERIOD)));
             partnerContact.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+            c.close();
             return partnerContact;
         }
-        c.close();
         return null;
     }
 
@@ -2497,7 +2439,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_PARTNER_CONTACT + " WHERE "
                 + KEY_PARTNERCONTACT_PARTNER_ID + " = " + id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -2521,9 +2463,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             partnerContact.setPartner_have_other_partners(c.getString(c.getColumnIndex(KEY_PARTNER_OTHERPARTNER)));
             partnerContact.setRelationship_period(c.getString(c.getColumnIndex(KEY_PARTNER_RELATIONSHIP_PERIOD)));
             partnerContact.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+            c.close();
             return partnerContact;
         }
-        c.close();
         return null;
 
     }
@@ -2536,14 +2478,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_PARTNER_CONTACT + " WHERE "
                 + KEY_STATUS_UPDATE + " = '" + status + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         List<PartnerContact> Partner_contact_list = new ArrayList<PartnerContact>();
-
-
-        Log.e(LOG, selectQuery);
-
-
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -2629,10 +2566,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_STATUS_UPDATE, urf.getStatus_update());
 
         // insert row
-        int ratingfield_id = (int) db.insert(TABLE_USER_RATINGFIELDS, null, values);
-
-
-        return ratingfield_id;
+        return (int) db.insert(TABLE_USER_RATINGFIELDS, null, values);
     }
 
 
@@ -2644,7 +2578,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_RATINGFIELDS + " WHERE "
                 + KEY_RATINGFIELD_USERID + " = " + user_id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -2676,14 +2610,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_RATINGFIELDS + " WHERE "
                 + KEY_STATUS_UPDATE + " = '" + status + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         List<UserRatingFields> rating_field_list = new ArrayList<UserRatingFields>();
-
-
-        Log.e(LOG, selectQuery);
-
-
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
                 // looping through all rows and adding to list
@@ -2732,10 +2661,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int testing_id = (int) db.insert(TABLE_TESTINGNAME_MASTER, null, values);
-
-
-        return testing_id;
+        return (int) db.insert(TABLE_TESTINGNAME_MASTER, null, values);
     }
 
     /**
@@ -2747,7 +2673,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_TESTINGNAME_MASTER + " WHERE "
                 + KEY_TESTING_ID + " = " + testID;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -2772,7 +2698,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_TESTINGNAME_MASTER + " WHERE "
                 + KEY_TESTING_NAME + " = '" + testingName + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -2785,7 +2711,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         testNameMaster.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
         c.close();
-        Log.e(LOG, testNameMaster.getTestName());
         return testNameMaster;
     }
 
@@ -2808,12 +2733,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int partner_rating_id = (int) db.insert(TABLE_PARTNER_RATINGS, null, values);
-
-        Log.v("Create Partner Ratings", String.valueOf(values) + "  " + partner.getRating());
-
-
-        return partner_rating_id;
+        return (int) db.insert(TABLE_PARTNER_RATINGS, null, values);
     }
     /**
      * get single  Partner Rating by Partner Id
@@ -2826,11 +2746,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_PARTNER_RATINGS + " WHERE "
                 + KEY_PARTNERRATING_PARTNERID + " = " + partner_id + " AND "+KEY_PARTNERRATING_RATINGFIELDID+ " = "+ index;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
-        System.out.println("Single Partnerrating " + partner_id + " -- " + c.getCount() + " --- " + c.toString());
+        //System.out.println("Single Partnerrating " + partner_id + " -- " + c.getCount() + " --- " + c.toString());
 
         if (c != null && c.getCount()>0) {
             c.moveToFirst();
@@ -2843,9 +2763,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             partner.setRating(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATING)));
             partner.setRating_field(c.getString(c.getColumnIndex(KEY_PARTNERRATING_RATINGFIELD)));
             partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+            c.close();
             return partner;
         }
-        c.close();
         return null;
     }
     /**
@@ -2861,7 +2781,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_PARTNER_RATINGS + " WHERE "
                 + KEY_PARTNERRATING_PARTNERID + " = " + partner_id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -2881,9 +2801,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     Partners.add(partner);
                 } while (c.moveToNext());
             }
+            c.close();
             return Partners;
         }
-        c.close();
         return null;
     }
     public List<PartnerRating> getPartnerRatingbyRatingFieldID(int field_id) {
@@ -2893,7 +2813,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_PARTNER_RATINGS + " WHERE "
                 + KEY_PARTNERRATING_RATINGFIELDID + " = " + field_id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -2913,9 +2833,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     Partners.add(partner);
                 } while (c.moveToNext());
             }
+            c.close();
             return Partners;
         }
-        c.close();
         return null;
     }
 
@@ -2947,7 +2867,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_PARTNER_RATINGS + " WHERE "
                 + KEY_STATUS_UPDATE + " = '" + status + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -3017,10 +2937,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int encounter_id = (int) db.insert(TABLE_ENCOUNTER, null, values);
-
-
-        return encounter_id;
+        return (int) db.insert(TABLE_ENCOUNTER, null, values);
     }
 
     /**
@@ -3042,10 +2959,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, encounter.getCreated_at());
 
         // insert row
-        int encounter_id = (int) db.insert(TABLE_ENCOUNTER, null, values);
-
-
-        return encounter_id;
+        return (int) db.insert(TABLE_ENCOUNTER, null, values);
     }
 
 
@@ -3058,7 +2972,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER + " WHERE "
                 + KEY_ENCOUNTER_ID + " = " + encounter_id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -3088,7 +3002,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER + " ORDER BY " + KEY_ENCOUNTER_ID + " DESC";
         String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER ;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -3123,7 +3037,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Encounter> encounters = new ArrayList<Encounter>();
         String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER + " WHERE " + KEY_STATUS_UPDATE + " = '"+ status + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -3157,7 +3071,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Encounter> encounters = new ArrayList<Encounter>();
         String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER + " WHERE " + KEY_ENCOUNTER_DATE + " LIKE '"+ LynxManager.encryptString(date) + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -3252,10 +3166,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int encounter_sexType_id = (int) db.insert(TABLE_ENCOUNTER_SEXTYPE, null, values);
-
-
-        return encounter_sexType_id;
+        return (int) db.insert(TABLE_ENCOUNTER_SEXTYPE, null, values);
     }
     public int createEncounterSexTypeWithDate(EncounterSexType encounterSexType) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -3271,10 +3182,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, encounterSexType.getCreated_at());
 
         // insert row
-        int encounter_sexType_id = (int) db.insert(TABLE_ENCOUNTER_SEXTYPE, null, values);
-
-
-        return encounter_sexType_id;
+        return (int) db.insert(TABLE_ENCOUNTER_SEXTYPE, null, values);
     }
     /**
      * getting all Encounter Sex Type by Encounter_id
@@ -3283,7 +3191,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<EncounterSexType> encounterSexTypes = new ArrayList<EncounterSexType>();
         String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE;// + " GROUP BY " + KEY_ENCSEXTYPE_ENCOUNTERID;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -3315,7 +3223,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<EncounterSexType> encounterSexTypes = new ArrayList<EncounterSexType>();
         String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE + " WHERE " + KEY_ENCSEXTYPE_ENCOUNTERID + " = " +encounter_id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -3348,7 +3256,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<EncounterSexType> encounterSexTypes = new ArrayList<EncounterSexType>();
         String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE + " WHERE " + KEY_STATUS_UPDATE + " = '" + status + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -3492,7 +3400,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE + " WHERE " + KEY_ENCSEXTYPE_CONDOMUSE + " IN ( 'Condom used','Condom used part of the time','Condom not used')";
 
         List<EncounterSexType> encounterSexTypes = new ArrayList<EncounterSexType>();
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -3548,10 +3456,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int testing_reminder_id = (int) db.insert(TABLE_TESTING_REMINDER, null, values);
-
-
-        return testing_reminder_id;
+        return (int) db.insert(TABLE_TESTING_REMINDER, null, values);
     }
 
     /**
@@ -3563,7 +3468,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_REMINDER + " WHERE "
                 + KEY_TESTING_REMINDER_FLAG + " = " + reminder_flag;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -3578,10 +3483,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             testingReminder.setReminder_flag(c.getInt(c.getColumnIndex(KEY_TESTING_REMINDER_FLAG)));
             testingReminder.setReminder_notes(c.getString(c.getColumnIndex(KEY_TESTING_REMINDER_NOTES)));
             testingReminder.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
+            c.close();
             return testingReminder;
         }
-        c.close();
         return null;
     }
 
@@ -3612,7 +3516,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<TestingReminder> testingReminders = new ArrayList<TestingReminder>();
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_REMINDER + " WHERE " + KEY_STATUS_UPDATE + " = '"+ status + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -3668,8 +3572,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int test_history_id = (int) db.insert(TABLE_TESTING_HISTORY, null, values);
-        return test_history_id;
+        return (int) db.insert(TABLE_TESTING_HISTORY, null, values);
     }
     public int createTestingHistoryWithID(TestingHistory testingHistory) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -3683,8 +3586,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int test_history_id = (int) db.insert(TABLE_TESTING_HISTORY, null, values);
-        return test_history_id;
+        return (int) db.insert(TABLE_TESTING_HISTORY, null, values);
     }
 
     /**
@@ -3696,7 +3598,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY + " WHERE "
                 + KEY_TESTING_HISTORY_ID + " = " + id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -3724,7 +3626,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<TestingHistory> testingHistories = new ArrayList<TestingHistory>();
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY + " ORDER BY " + KEY_TESTING_HISTORY_ID + " DESC";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -3751,7 +3653,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY + " WHERE "
                 + KEY_TESTING_HISTORY_TESTINGID + " = " + id + " ORDER BY " + KEY_TESTING_HISTORY_ID + " DESC";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -3777,7 +3679,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public TestingHistory getLastTestingHistoryByID(int id){
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY + " WHERE "
                 + KEY_TESTING_HISTORY_TESTINGID + " = " + id + " ORDER BY " + KEY_TESTING_HISTORY_ID + " DESC LIMIT 1";
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -3801,7 +3703,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<TestingHistory> testingHistories = new ArrayList<TestingHistory>();
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY + " WHERE " + KEY_STATUS_UPDATE + " = '" + status + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -3831,7 +3733,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<TestingHistory> testingHistories = new ArrayList<TestingHistory>();
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY + " WHERE " + KEY_TESTING_HISTORY_TESTINGDATE + " = '" + LynxManager.encryptString(date) + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -3911,10 +3813,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int test_status_id = (int) db.insert(TABLE_TESTING_HISTORY_INFO, null, values);
-
-
-        return test_status_id;
+        return (int) db.insert(TABLE_TESTING_HISTORY_INFO, null, values);
     }
     public int createTestingHistoryInfoWithID(TestingHistoryInfo testingHistoryInfo) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -3930,17 +3829,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int test_status_id = (int) db.insert(TABLE_TESTING_HISTORY_INFO, null, values);
-
-
-        return test_status_id;
+        return (int) db.insert(TABLE_TESTING_HISTORY_INFO, null, values);
     }
 
     public TestingHistoryInfo getTestingHistoryInfoById(int id){
 
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY_INFO + " WHERE " + KEY_TESTING_HISTORY_INFO_ID + " = " +id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -3965,7 +3861,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<TestingHistoryInfo> testingHistoryInfoList = new ArrayList<TestingHistoryInfo>();
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY_INFO + " WHERE " + KEY_TESTING_HISTORY_INFO_HISTORYID + " = " +testingHistoryId;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -3995,7 +3891,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY_INFO + " WHERE " + KEY_TESTING_HISTORY_INFO_STIID + " = " +sti_id;
 
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -4027,7 +3923,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<TestingHistoryInfo> testingHistoryInfoList = new ArrayList<TestingHistoryInfo>();
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY_INFO + " WHERE " + KEY_STATUS_UPDATE + " = '" + status + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -4090,10 +3986,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int test_request_id = (int) db.insert(TABLE_HOME_TESTING_REQUEST, null, values);
-
-
-        return test_request_id;
+        return (int) db.insert(TABLE_HOME_TESTING_REQUEST, null, values);
     }
 
     /**
@@ -4103,7 +3996,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<HomeTestingRequest> homeTestingRequests = new ArrayList<HomeTestingRequest>();
         String selectQuery = "SELECT  * FROM " + TABLE_HOME_TESTING_REQUEST + " WHERE " + KEY_STATUS_UPDATE + " = '" + status + "'" ;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -4168,10 +4061,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int test_loc_id = (int) db.insert(TABLE_TESTING_LOCATION, null, values);
-
-
-        return test_loc_id;
+        return (int) db.insert(TABLE_TESTING_LOCATION, null, values);
     }
     public int createTestingLocationWithID(TestingLocations testingLocations) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -4195,10 +4085,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int test_loc_id = (int) db.insert(TABLE_TESTING_LOCATION, null, values);
-
-
-        return test_loc_id;
+        return (int) db.insert(TABLE_TESTING_LOCATION, null, values);
     }
     public int updateTestingLocation(TestingLocations testingLocations) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -4234,7 +4121,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_LOCATION + " WHERE "
                 + KEY_TESTING_LOCATION_ID + " = " + id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -4272,7 +4159,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<TestingLocations> testingLocationsList = new ArrayList<TestingLocations>();
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_LOCATION;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -4301,8 +4188,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     testingLocationsList.add(testingLocations);
                 } while (c.moveToNext());
             }
+            c.close();
         }
-        c.close();
         return testingLocationsList;
     }
     public int getTestingLocationsCount() {
@@ -4327,10 +4214,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int prep_info_id = (int) db.insert(TABLE_PREP_INFORMATION, null, values);
-
-
-        return prep_info_id;
+        return (int) db.insert(TABLE_PREP_INFORMATION, null, values);
     }
     /**
      * Get All PREP INFORMATION
@@ -4339,7 +4223,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<PrepInformation> prep_information_list = new ArrayList<PrepInformation>();
         String selectQuery = "SELECT  * FROM " + TABLE_PREP_INFORMATION;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -4366,7 +4250,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_PREP_INFORMATION + " WHERE "
                 + KEY_PREP_INFO_ID + " = " + id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -4399,10 +4283,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
-        int prep_id = (int) db.insert(TABLE_TESTING_INSTRUCTION, null, values);
-
-
-        return prep_id;
+        return (int) db.insert(TABLE_TESTING_INSTRUCTION, null, values);
     }
     /**
      * Get All TESTING INSTRUCTION
@@ -4413,7 +4294,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<TestingInstructions> testinginstruction_list = new ArrayList<TestingInstructions>();
         String selectQuery = "SELECT  * FROM " + TABLE_TESTING_INSTRUCTION;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -4445,7 +4326,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      String selectQuery = "SELECT  * FROM " + TABLE_TESTING_INSTRUCTION + " WHERE "
      + KEY_TESTING_INSTRUCTION_ID + " = " + testing_instruction_id;
 
-     Log.e(LOG, selectQuery);
+     //Log.e(LOG, selectQuery);
 
      android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -4494,7 +4375,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String selectQuery = "SELECT  * FROM " + TABLE_CLOUD_MESSAGES ;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -4509,9 +4390,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cloudMessaging.setDevice(c.getString(c.getColumnIndex(KEY_CLOUD_MESSAGING_DEVICE)));
             cloudMessaging.setDevice_info(c.getString(c.getColumnIndex(KEY_CLOUD_MESSAGING_DEVICEINFO)));
             cloudMessaging.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
-
+            c.close();
             return cloudMessaging;
-        }c.close();
+        }
         return null;
     }
 
@@ -4659,7 +4540,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             c.close();
             return video;
         }else{
-            c.close();
             return null;
         }
     }
@@ -4802,7 +4682,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_BADGES_MASTER + " WHERE "
                 + KEY_BADGE_ID+ " = " + id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -4829,7 +4709,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_BADGES_MASTER + " WHERE "
                 + KEY_BADGE_NAME+ " = '" + name + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -4855,7 +4735,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<BadgesMaster> badgesMasterList = new ArrayList<BadgesMaster>();
         String selectQuery = "SELECT  * FROM " + TABLE_BADGES_MASTER;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -4877,8 +4757,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     badgesMasterList.add(badgesMaster);
                 } while (c.moveToNext());
             }
+            c.close();
         }
-        c.close();
         return badgesMasterList;
     }
 
@@ -4935,7 +4815,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE "
                 + KEY_USERS_ID + " = " + user_id +" AND "+ KEY_USER_BADGE_BADGEID + " = " + badge_id +" AND "+KEY_CREATED_AT+" LIKE '"+ date+"%'";
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
         android.database.Cursor c = db.rawQuery(selectQuery, null);
         int count = c.getCount();
         c.close();
@@ -4950,14 +4830,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE "
                 + KEY_USERS_ID + " = " + user_id;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         List<UserBadges> userBadgesList = new ArrayList<UserBadges>();
-
-
-        Log.e(LOG, selectQuery);
-
-
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -4978,8 +4853,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     userBadgesList.add(userBadge);
                 } while (c.moveToNext());
             }
+            c.close();
         }
-        c.close();
         return userBadgesList;
 
     }
@@ -4992,7 +4867,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE "
                 + KEY_USER_BADGE_BADGEID + " = " + badge_id + " ORDER BY " + KEY_USER_BADGE_ID + " DESC";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
@@ -5009,8 +4884,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 userBadge.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
                 return userBadge;
             }
+            c.close();
         }
-        c.close();
         return null;
 
     }
@@ -5021,7 +4896,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<UserBadges> userBadgesList = new ArrayList<UserBadges>();
         String selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE " + KEY_STATUS_UPDATE + " = '" + status + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -5053,7 +4928,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<UserBadges> userBadgesList = new ArrayList<UserBadges>();
         String selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE " + KEY_USER_BADGE_ISSHOWN + " = " + status;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -5094,7 +4969,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             default:
                 selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE " + KEY_USER_BADGE_ISSHOWN + " = " + status;
         }
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -5225,9 +5100,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             appAlerts.setName(c.getString(c.getColumnIndex(KEY_APP_ALERT_NAME)));
             appAlerts.setCreated_date(c.getString(c.getColumnIndex(KEY_APP_ALERT_CREATEDAT)));
             appAlerts.setModified_date(c.getString(c.getColumnIndex(KEY_APP_ALERT_MODIFIED)));
+            c.close();
             return appAlerts;
         }
-        c.close();
         return null;
     }
     public AppAlerts getLastAppAlertByName(String name){
@@ -5246,9 +5121,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             appAlerts.setName(c.getString(c.getColumnIndex(KEY_APP_ALERT_NAME)));
             appAlerts.setCreated_date(c.getString(c.getColumnIndex(KEY_APP_ALERT_CREATEDAT)));
             appAlerts.setModified_date(c.getString(c.getColumnIndex(KEY_APP_ALERT_MODIFIED)));
+            c.close();
             return appAlerts;
         }
-        c.close();
         return null;
     }
     public int updateAppAlertModifiedDate(int id){
@@ -5317,7 +5192,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         if (c != null && c.getCount()>0) {
             c.moveToFirst();
@@ -5333,7 +5208,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             prepFollowup.setHave_encounters_to_report(c.getString(c.getColumnIndex(KEY_PREP_FUP_ENCOUNTERS_REPORT)));
             prepFollowup.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
             prepFollowup.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-
+            c.close();
             return prepFollowup;
         }
         return null;
@@ -5343,7 +5218,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<PrepFollowup> prepFollowupList = new ArrayList<PrepFollowup>();
         String selectQuery = "SELECT  * FROM " + TABLE_PREP_FUP;
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -5375,7 +5250,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<PrepFollowup> prepFollowupList = new ArrayList<PrepFollowup>();
         String selectQuery = "SELECT  * FROM " + TABLE_PREP_FUP + " WHERE " + KEY_STATUS_UPDATE + " = '" + status + "'";
 
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -5454,7 +5329,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public String getLastTLSyncDate(){
         String selectQuery = "SELECT  * FROM " + TABLE_TL_SYNC + " ORDER BY "+ KEY_TL_SYNC_ID + " DESC LIMIT 1";
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);
@@ -5470,7 +5345,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     public int getLastTLSyncPage(){
         String selectQuery = "SELECT  * FROM " + TABLE_TL_SYNC + " ORDER BY "+ KEY_TL_SYNC_ID + " DESC LIMIT 1";
-        Log.e(LOG, selectQuery);
+        //Log.e(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(selectQuery, null);

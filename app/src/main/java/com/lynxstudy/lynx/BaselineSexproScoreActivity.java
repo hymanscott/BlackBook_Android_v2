@@ -36,8 +36,7 @@ import java.util.Date;
 public class BaselineSexproScoreActivity extends AppCompatActivity {
 
     DatabaseHelper db;
-    TextView score_message,reg_sexPro_score_label,reg_sexPro_score_value,infoLink,additionalMessageTitle;
-    /*ImageView dialScoreImage;*/
+    TextView score_message,reg_sexPro_score_label,infoLink,additionalMessageTitle;
     ImageView back_action;
     LinearLayout infolayout,main_content,additionalTriggerMessage,additionalInfoMessage,indicators;
     boolean isInfoShown = false;
@@ -95,7 +94,6 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
                 angle = (int) ((adjustedScore-1) * 13.86);
             }
             dial_imgview.setRotation(angle);
-            String message ="";
             if(adjustedScore>=17){
                 score_message.setText(getResources().getString(R.string.prep_greater17));
             }else{
@@ -111,12 +109,11 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
                 angle = (int) ((unAdjustedScore-1) * 13.86);
             }
             dial_imgview.setRotation(angle);
-            String message ="";
             if(unAdjustedScore <= 8){
                 score_message.setText(Html.fromHtml("Want to get into the green? PrEP is a great way to make it happen & protect your sexual health. Hit us up, we can help."));
-            }else if(unAdjustedScore>=9 && unAdjustedScore <=16){
+            }else if(unAdjustedScore <= 16){
                 score_message.setText(getResources().getString(R.string.non_prep_9_16));
-            }else if(unAdjustedScore>=17 && unAdjustedScore <=20){
+            }else if(unAdjustedScore <= 20){
                 score_message.setText(getResources().getString(R.string.non_prep_greater17));
             }
         }
@@ -294,7 +291,7 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
             BadgesMaster green_badge = db.getBadgesMasterByName("Green Light");
             UserBadges greenBadge = new UserBadges(green_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,green_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
             db.createUserBadge(greenBadge);
-        }else if(final_score>= 10 && final_score<=16){
+        }else if(final_score >= 10){
             BadgesMaster toolbox_badge = db.getBadgesMasterByName("Toolbox");
             UserBadges toolBoxBadge = new UserBadges(toolbox_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,toolbox_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
             db.createUserBadge(toolBoxBadge);

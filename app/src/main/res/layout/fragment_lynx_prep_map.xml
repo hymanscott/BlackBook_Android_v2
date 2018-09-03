@@ -80,20 +80,6 @@
                     android:layout_weight="0.5"
                     android:id="@+id/miles"/>
             </LinearLayout>
-            <!--<Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_alignParentStart="true"
-                android:background="@color/white" />
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:layout_margin="10dp"
-                android:layout_alignParentEnd="true"
-                android:background="@color/white"
-                android:id="@+id/miles"/>-->
         </RelativeLayout>
 
     </LinearLayout>

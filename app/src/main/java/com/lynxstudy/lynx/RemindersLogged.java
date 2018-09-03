@@ -18,9 +18,6 @@ import org.piwik.sdk.extra.TrackHelper;
 
 public class RemindersLogged  extends Fragment {
 
-    Button loggedNext;
-    TextView log_para_two,log_para_one,frag_title;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -31,15 +28,10 @@ public class RemindersLogged  extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-
-        loggedNext = (Button)rootview.findViewById(R.id.loggedNext);
-        loggedNext.setTypeface(tf_bold);
-        frag_title = (TextView)rootview.findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf_bold);
-        log_para_two = (TextView)rootview.findViewById(R.id.log_para_two);
-        log_para_two.setTypeface(tf);
-        log_para_one = (TextView)rootview.findViewById(R.id.log_para_one);
-        log_para_one.setTypeface(tf);
+        ((Button)rootview.findViewById(R.id.loggedNext)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.log_para_two)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.log_para_one)).setTypeface(tf);
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
 		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));

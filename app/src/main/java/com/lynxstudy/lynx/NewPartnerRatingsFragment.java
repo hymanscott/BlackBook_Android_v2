@@ -1,7 +1,5 @@
 package com.lynxstudy.lynx;
 
-
-import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.LayerDrawable;
@@ -16,29 +14,17 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.lynxstudy.helper.DatabaseHelper;
-import com.lynxstudy.model.UserRatingFields;
-
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
-
-import java.util.List;
-
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class NewPartnerRatingsFragment extends Fragment {
 
-    DatabaseHelper db;
-
     public NewPartnerRatingsFragment() {
         // Required empty public constructor
-
     }
-    TextView add_partner_title,rateTitle,newPartner_rate1;
-    Button next;
-    private  int width,height;
     View rootview;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,8 +32,8 @@ public class NewPartnerRatingsFragment extends Fragment {
         // Inflate the layout for this fragment
         rootview = inflater.inflate(R.layout.fragment_new_partner_ratings, container, false);
         Display display = getActivity().getWindowManager().getDefaultDisplay();
-        width = display.getWidth();
-        height = display.getHeight();
+        int width = display.getWidth();
+        int height = display.getHeight();
         if (width == 480 && height == 800) {
             rootview = inflater.inflate(R.layout.fragment_new_partner_ratings_alt, container, false);
         }
@@ -56,48 +42,19 @@ public class NewPartnerRatingsFragment extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        next = (Button)rootview.findViewById(R.id.next);
-        next.setTypeface(tf_bold);
-        rateTitle = (TextView)rootview.findViewById(R.id.rateTitle);
-        rateTitle.setTypeface(tf);
-        add_partner_title = (TextView)rootview.findViewById(R.id.add_partner_title);
-        add_partner_title.setTypeface(tf_bold);
-        newPartner_rate1 = (TextView)rootview.findViewById(R.id.newPartner_rate1);
-        newPartner_rate1.setTypeface(tf);
+        ((Button)rootview.findViewById(R.id.next)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.rateTitle)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.add_partner_title)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.newPartner_rate1)).setTypeface(tf);
         TextView newPartner_rating_nickname = (TextView) rootview.findViewById(R.id.newPartner_rating_nickname);
         newPartner_rating_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
-        //newPartner_rating_nickname.setAllCaps(true);
         newPartner_rating_nickname.setTypeface(tf_bold);
-        db = new DatabaseHelper(getActivity().getBaseContext());
-        /*List<UserRatingFields> field = db.getAllUserRatingFields(LynxManager.getActiveUser().getUser_id());
-        int field_size = field.size();
-        TextView[] txtview = new TextView[field_size];
-        RatingBar[] ratingBars = new RatingBar[field_size];
-        for (int i = 1; i < field.size(); i++) {
-            UserRatingFields field_loc = field.get(i);
-            String textview_id = "newPartner_rate" + (i + 1);
-            int txt_id = getResources().getIdentifier(textview_id, "id", getActivity().getPackageName());
-            txtview[i] = (TextView) rootview.findViewById(txt_id);
-            String titletext = LynxManager.decryptString(field_loc.getName());
-            txtview[i].setText(titletext);
-            txtview[i].setTypeface(tf);
-
-            //   ratingBars[i]  = (RatingBar) rootview.findViewById("ratingBar"+i);
-        }*/
-        TextView newPartner_rate1 = (TextView)rootview.findViewById(R.id.newPartner_rate1);
-        TextView newPartner_rate2 = (TextView)rootview.findViewById(R.id.newPartner_rate2);
-        TextView newPartner_rate3 = (TextView)rootview.findViewById(R.id.newPartner_rate3);
-        TextView newPartner_rate4 = (TextView)rootview.findViewById(R.id.newPartner_rate4);
-        newPartner_rate1.setTypeface(tf);
-        newPartner_rate2.setTypeface(tf);
-        newPartner_rate3.setTypeface(tf);
-        newPartner_rate4.setTypeface(tf);
-        EditText newPartner_rate5 = (EditText)rootview.findViewById(R.id.newPartner_rate5);
-        EditText newPartner_rate6 = (EditText)rootview.findViewById(R.id.newPartner_rate6);
-        EditText newPartner_rate7 = (EditText)rootview.findViewById(R.id.newPartner_rate7);
-        newPartner_rate5.setTypeface(tf);
-        newPartner_rate6.setTypeface(tf);
-        newPartner_rate7.setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.newPartner_rate2)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.newPartner_rate3)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.newPartner_rate4)).setTypeface(tf);
+        ((EditText)rootview.findViewById(R.id.newPartner_rate5)).setTypeface(tf);
+        ((EditText)rootview.findViewById(R.id.newPartner_rate6)).setTypeface(tf);
+        ((EditText)rootview.findViewById(R.id.newPartner_rate7)).setTypeface(tf);
 
         RatingBar ratingbar_1 = (RatingBar) rootview.findViewById(R.id.ratingBar1);
         RatingBar ratingbar_2 = (RatingBar) rootview.findViewById(R.id.ratingBar2);

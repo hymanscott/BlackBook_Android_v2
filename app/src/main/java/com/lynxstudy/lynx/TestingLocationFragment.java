@@ -57,8 +57,6 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.lynxstudy.helper.DatabaseHelper;
-import com.lynxstudy.lynx.LynxManager;
-import com.lynxstudy.lynx.R;
 import com.lynxstudy.model.LocationsDistance;
 import com.lynxstudy.model.TestingLocations;
 
@@ -210,7 +208,6 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                 googleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
                     @Override
                     public boolean onMyLocationButtonClick() {
-                        //Log.v("onMyLocationButtonClick","yes");
                         String filter = null;
                         if(!filterSpinner.getSelectedItem().toString().equals("Filters"))
                             filter = filterSpinner.getSelectedItem().toString();
@@ -249,7 +246,6 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                             /*Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(testingLocations.getUrl()));
                             startActivity(browserIntent);*/
                             infoWindow_distance.setText(marker.getSnippet());
-                            Log.v("MarkerTitle",testingLocations.getName());
                             mBottomSheetBehavior.setPeekHeight(200);
                             mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         }
@@ -704,7 +700,6 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                             if (location.getUnder_eighteen().equals("Yes")) {
                                 LocationsDistance location_distance = new LocationsDistance(location.getTesting_location_id(), Double.parseDouble(location.getLatitude()), Double.parseDouble(location.getLongitude()), distance_inMiles, location.getName(), location.getType());
                                 Locations_DistanceArray.add(location_distance);
-                                Log.v("Under18", location.getName());
                             }
                             break;
                         default:

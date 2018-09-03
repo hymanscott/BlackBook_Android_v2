@@ -31,8 +31,6 @@ public class EncounterSexTypeFragment extends Fragment {
 
     public EncounterSexTypeFragment() {
     }
-    TextView newEncounter,rateSex,typeSex;
-    Button next;
     LinearLayout sexTypeLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,18 +48,13 @@ public class EncounterSexTypeFragment extends Fragment {
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         //nickname.setAllCaps(true);
         nickname.setTypeface(tf_bold);
-        newEncounter = (TextView) rootview.findViewById(R.id.newEncounter);
-        newEncounter.setTypeface(tf_bold);
-        rateSex = (TextView) rootview.findViewById(R.id.rateSex);
-        rateSex.setTypeface(tf);
-        typeSex = (TextView) rootview.findViewById(R.id.typeSex);
-        typeSex.setTypeface(tf);
-        next = (Button)rootview.findViewById(R.id.next);
-        next.setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.newEncounter)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.rateSex)).setTypeface(tf);
+        ((TextView) rootview.findViewById(R.id.typeSex)).setTypeface(tf);
+        ((Button)rootview.findViewById(R.id.next)).setTypeface(tf_bold);
 
         sexTypeLayout = (LinearLayout)rootview.findViewById(R.id.sexTypeLayout);
         String gender = LynxManager.decryptString(LynxManager.getActivePartner().getGender());
-        //Log.v("Gender",gender);
         View sextypeView;
         switch (gender){
             case "Woman":
@@ -163,12 +156,10 @@ public class EncounterSexTypeFragment extends Fragment {
 
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     LynxManager.activePartnerSexType.add(encSexType_iSucked);
                     btn_sexType_iSucked.setTextColor(Color.parseColor("#ffffff"));
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iSucked);
                     btn_sexType_iSucked.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -181,12 +172,10 @@ public class EncounterSexTypeFragment extends Fragment {
 
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     LynxManager.activePartnerSexType.add(encSexType_heSucked);
                     btn_sexType_heSucked.setTextColor(Color.parseColor("#ffffff"));
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_heSucked);
                     btn_sexType_heSucked.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -199,12 +188,10 @@ public class EncounterSexTypeFragment extends Fragment {
 
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     LynxManager.activePartnerSexType.add(encSexType_iTopped);
                     btn_sexType_iTopped.setTextColor(Color.parseColor("#ffffff"));
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iTopped);
                     btn_sexType_iTopped.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -217,12 +204,10 @@ public class EncounterSexTypeFragment extends Fragment {
 
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     LynxManager.activePartnerSexType.add(encSexType_iBottomed);
                     btn_sexType_iBottomed.setTextColor(Color.parseColor("#ffffff"));
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iBottomed);
                     btn_sexType_iBottomed.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -235,12 +220,10 @@ public class EncounterSexTypeFragment extends Fragment {
 
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     LynxManager.activePartnerSexType.add(encSexType_iJerked);
                     btn_sexType_iJerked.setTextColor(Color.parseColor("#ffffff"));
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iJerked);
                     btn_sexType_iJerked.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -253,12 +236,10 @@ public class EncounterSexTypeFragment extends Fragment {
 
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     LynxManager.activePartnerSexType.add(encSexType_heJerked);
                     btn_sexType_heJerked.setTextColor(Color.parseColor("#ffffff"));
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_heJerked);
                     btn_sexType_heJerked.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -271,12 +252,10 @@ public class EncounterSexTypeFragment extends Fragment {
 
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     LynxManager.activePartnerSexType.add(encSexType_iRimmed);
                     btn_sexType_iRimmed.setTextColor(Color.parseColor("#ffffff"));
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iRimmed);
                     btn_sexType_iRimmed.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -288,12 +267,10 @@ public class EncounterSexTypeFragment extends Fragment {
 
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     LynxManager.activePartnerSexType.add(encSexType_heRimmed);
                     btn_sexType_heRimmed.setTextColor(Color.parseColor("#ffffff"));
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_heRimmed);
                     btn_sexType_heRimmed.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -304,12 +281,10 @@ public class EncounterSexTypeFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     btn_sexType_iWentDown.setTextColor(Color.parseColor("#ffffff"));
                     LynxManager.activePartnerSexType.add(encSexType_iWentDown);
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iWentDown);
                     btn_sexType_iWentDown.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -320,12 +295,10 @@ public class EncounterSexTypeFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     btn_sexType_iFucked.setTextColor(Color.parseColor("#ffffff"));
                     LynxManager.activePartnerSexType.add(encSexType_iFucked);
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iFucked);
                     btn_sexType_iFucked.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -336,12 +309,10 @@ public class EncounterSexTypeFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     btn_sexType_iFingered.setTextColor(Color.parseColor("#ffffff"));
                     LynxManager.activePartnerSexType.add(encSexType_iFingered);
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_iFingered);
                     btn_sexType_iFingered.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -352,12 +323,10 @@ public class EncounterSexTypeFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked) {
-                    // The toggle is enabled
                     buttonView.setSelected(true);
                     btn_sexType_heFingered.setTextColor(Color.parseColor("#ffffff"));
                     LynxManager.activePartnerSexType.add(encSexType_heFingered);
                 } else {
-                    // The toggle is disabled
                     buttonView.setSelected(false);
                     LynxManager.activePartnerSexType.remove(encSexType_heFingered);
                     btn_sexType_heFingered.setTextColor(getResources().getColor(R.color.colorPrimary));

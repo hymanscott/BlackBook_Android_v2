@@ -1,13 +1,9 @@
 package com.lynxstudy.lynx;
 
-
-import android.content.res.ColorStateList;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +20,6 @@ import com.lynxstudy.model.DrugMaster;
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -34,10 +29,6 @@ import java.util.List;
 public class RegistrationDrugContent extends Fragment {
 
     DatabaseHelper newdb;
-
-
-    TextView baselineTitle,drugContentTitle;
-    Button drugContent_nextbtn;
     public RegistrationDrugContent() {
         // Required empty public constructor
     }
@@ -61,20 +52,13 @@ public class RegistrationDrugContent extends Fragment {
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        baselineTitle= (TextView) view.findViewById(R.id.frag_title);
-        baselineTitle.setTypeface(tf_bold);
-        drugContentTitle= (TextView) view.findViewById(R.id.drugContentTitle);
-        drugContentTitle.setTypeface(tf);
-        drugContent_nextbtn= (Button) view.findViewById(R.id.drugContent_nextbtn);
-        drugContent_nextbtn.setTypeface(tf_bold);
+        ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView) view.findViewById(R.id.drugContentTitle)).setTypeface(tf);
+        ((Button) view.findViewById(R.id.drugContent_nextbtn)).setTypeface(tf_bold);
 
         newdb = new DatabaseHelper(view.getContext());
         final LinearLayout drugs_container = (LinearLayout) view.findViewById(R.id.linearLayout_drugs);
         final List<DrugMaster> drug = newdb.getAllDrugs();
-        //LynxManager.selectedDrugs.clear();
-
-
-
         for (int i = 0; i < drug.size(); i++) {
             DrugMaster array_id = drug.get(i);
             final String drugName = array_id.getDrugName();
@@ -83,7 +67,6 @@ public class RegistrationDrugContent extends Fragment {
             View convertView = chInflater.inflate(R.layout.checkbox_row,container,false);
             CheckBox ch = (CheckBox)convertView.findViewById(R.id.checkbox);
             ch.setTypeface(tf);
-   //         ch.setOnClickListener(null);
             ch.setText(drugName);
             ch.setSelected(false);
             drugs_container.addView(ch);

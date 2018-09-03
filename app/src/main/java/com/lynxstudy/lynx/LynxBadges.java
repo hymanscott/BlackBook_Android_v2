@@ -28,7 +28,7 @@ public class LynxBadges extends AppCompatActivity implements View.OnClickListene
 
     Typeface tf;
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
-    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,pageTitle,pageSubTitle;
+    TextView pageSubTitle;
     TableLayout badgesTable;
     DatabaseHelper db;
     @Override
@@ -45,16 +45,11 @@ public class LynxBadges extends AppCompatActivity implements View.OnClickListene
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
-        bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
-        bot_nav_sexpro_tv.setTypeface(tf);
-        bot_nav_diary_tv = (TextView)findViewById(R.id.bot_nav_diary_tv);
-        bot_nav_diary_tv.setTypeface(tf);
-        bot_nav_testing_tv = (TextView)findViewById(R.id.bot_nav_testing_tv);
-        bot_nav_testing_tv.setTypeface(tf);
-        bot_nav_prep_tv = (TextView)findViewById(R.id.bot_nav_prep_tv);
-        bot_nav_prep_tv.setTypeface(tf);
-        bot_nav_chat_tv = (TextView)findViewById(R.id.bot_nav_chat_tv);
-        bot_nav_chat_tv.setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_sexpro_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_diary_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_testing_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_prep_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_chat_tv)).setTypeface(tf);
         btn_testing = (LinearLayout)findViewById(R.id.bot_nav_testing);
         btn_diary = (LinearLayout) findViewById(R.id.bot_nav_diary);
         btn_prep = (LinearLayout) findViewById(R.id.bot_nav_prep);
@@ -66,8 +61,7 @@ public class LynxBadges extends AppCompatActivity implements View.OnClickListene
         btn_chat.setOnClickListener(this);
         viewProfile.setOnClickListener(this);
 
-        pageTitle = (TextView)findViewById(R.id.pageTitle);
-        pageTitle.setTypeface(tf);
+        ((TextView)findViewById(R.id.pageTitle)).setTypeface(tf);
         pageSubTitle = (TextView)findViewById(R.id.pageSubTitle);
         pageSubTitle.setTypeface(tf);
         badgesTable = (TableLayout)findViewById(R.id.badgesTable);

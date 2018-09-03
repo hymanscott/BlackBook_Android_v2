@@ -62,7 +62,6 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
     private CaldroidFragment caldroidFragment;
     Date previousSelectedDate = null;
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat,calendarMainContent,encounterSummaryContent,testSummaryContent;
-    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,pageTitle;
     DatabaseHelper db;
     TableLayout eventsList;
     ImageView hivIcon,gonorrheaIcon,syphilisIcon,chlamydiaIcon;
@@ -92,16 +91,11 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
-        bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
-        bot_nav_sexpro_tv.setTypeface(tf);
-        bot_nav_diary_tv = (TextView)findViewById(R.id.bot_nav_diary_tv);
-        bot_nav_diary_tv.setTypeface(tf);
-        bot_nav_testing_tv = (TextView)findViewById(R.id.bot_nav_testing_tv);
-        bot_nav_testing_tv.setTypeface(tf);
-        bot_nav_prep_tv = (TextView)findViewById(R.id.bot_nav_prep_tv);
-        bot_nav_prep_tv.setTypeface(tf);
-        bot_nav_chat_tv = (TextView)findViewById(R.id.bot_nav_chat_tv);
-        bot_nav_chat_tv.setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_sexpro_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_diary_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_testing_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_prep_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_chat_tv)).setTypeface(tf);
         btn_testing = (LinearLayout)findViewById(R.id.bot_nav_testing);
         btn_diary = (LinearLayout) findViewById(R.id.bot_nav_diary);
         btn_prep = (LinearLayout) findViewById(R.id.bot_nav_prep);
@@ -222,10 +216,6 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
 
         };
         caldroidFragment.setCaldroidListener(listener);
-        /*encounterSummaryContent.setVisibility(View.VISIBLE);
-        calendarMainContent.setVisibility(View.GONE);
-        testSummaryContent.setVisibility(View.GONE);
-        isSummaryShown = true;*/
     }
     private void setCustomResourceForDates(Date date) {
         Calendar cal = Calendar.getInstance();
@@ -278,7 +268,6 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
 
     private void addEventsToList(String date){
         String encdate = date + " 00:00:00";
-       // List<Encounter> encountersList = db.getAllEncountersByDate(encdate);
         List<Encounter> encountersList = db.getAllEncounters();
         List<TestingHistory> testingHistoryList = db.getAllTestingHistoriesByDate(date);
         TextView no_activity_logged = (TextView)findViewById(R.id.no_activity_logged);
@@ -291,7 +280,7 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
                     String dtStart = LynxManager.decryptString(encounter.getDatetime());
                     String curdate[] = dtStart.split(" ");
                     if (curdate[0].equals(date)) {
-                        Log.v("EncounterEvent", LynxManager.decryptString(encounter.getDatetime()) + "-" + LynxManager.decryptString(encounter.getRate_the_sex()));
+                        //Log.v("EncounterEvent", LynxManager.decryptString(encounter.getDatetime()) + "-" + LynxManager.decryptString(encounter.getRate_the_sex()));
                         TableRow encounterRow = new TableRow(LynxCalendar.this);
                         View v = LayoutInflater.from(LynxCalendar.this).inflate(R.layout.calendar_event_row, encounterRow, false);
                         TextView name = (TextView) v.findViewById(R.id.name);
@@ -310,13 +299,7 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
                         eventsList.addView(v);
                     }
                 }
-            }/*
-            for(TestingHistory testingHistory:db.getAllTestingHistories()){
-                Log.v("TestingHistories",testingHistory.getTesting_id() + "--" +testingHistory.getTesting_history_id() + "--" +LynxManager.decryptString(testingHistory.getTesting_date()));
-                for(TestingHistoryInfo testingHistoryInfo : db.getAllTestingHistoryInfoByHistoryId(testingHistory.getTesting_history_id())){
-                    Log.v("Info",testingHistoryInfo.getTesting_history_id() + "--"+testingHistoryInfo.getSti_id()+"--"+testingHistoryInfo.getTest_status());
-                }
-            }*/
+            }
             for(final TestingHistory testingHistory:testingHistoryList){
                 TestNameMaster testname =  db.getTestingNamebyID(testingHistory.getTesting_id());
                 TableRow encounterRow = new TableRow(LynxCalendar.this);
@@ -393,10 +376,28 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
         TextView partnerNotes = (TextView) findViewById(R.id.encListSumm_partnerNotes);
         partnerNotes.setText(LynxManager.decryptString(db.getEncounter(encounter_id).getEncounter_notes()));
         partnerNotes.setTypeface(tf);
-
+        TextView whenIsuckedtitle = (TextView)findViewById(R.id.whenIsuckedtitle);
+        whenIsuckedtitle.setTypeface(tf);
+        TextView whenIbottomedtitle = (TextView)findViewById(R.id.whenIbottomedtitle);
+        whenIbottomedtitle.setTypeface(tf);
+        TextView whenItoppedtitle = (TextView)findViewById(R.id.whenItoppedtitle);
+        whenItoppedtitle.setTypeface(tf);
+        TextView drunktitle = (TextView)findViewById(R.id.drunktitle);
+        drunktitle.setTypeface(tf);
+        TextView drunk = (TextView)findViewById(R.id.drunk);
+        drunk.setTypeface(tf);
+        TextView whenIsucked = (TextView)findViewById(R.id.whenIsucked);
+        whenIsucked.setTypeface(tf);
+        TextView whenIbottom = (TextView)findViewById(R.id.whenIbottom);
+        whenIbottom.setTypeface(tf);
+        TextView whenItop = (TextView)findViewById(R.id.whenItop);
+        whenItop.setTypeface(tf);
+        LinearLayout whenIsuckedParent = (LinearLayout) findViewById(R.id.whenIsuckedParent);
+        LinearLayout whenIbottomParent = (LinearLayout) findViewById(R.id.whenIbottomParent);
+        LinearLayout whenItoppedParent = (LinearLayout) findViewById(R.id.whenItoppedParent);
         RatingBar sexRating1 = (RatingBar) findViewById(R.id.encListSumm_sexRating);
         sexRating1.setRating(Float.parseFloat(LynxManager.decryptString(String.valueOf(encounter.getRate_the_sex()))));
-
+        drunk.setText(LynxManager.decryptString(encounter.getIs_drug_used()));
 
         LayerDrawable stars1 = (LayerDrawable) sexRating1.getProgressDrawable();
         stars1.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
@@ -409,10 +410,8 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
         hivStatus.setTypeface(tf);
 
         LinearLayout sexTypeLayout = (LinearLayout)findViewById(R.id.sexTypeLayout);
-        String gender = LynxManager.decryptString(partner.getGender());
-        //Log.v("Gender",gender);
         View sextypeView;
-        switch (gender){
+        switch (LynxManager.decryptString(partner.getGender())){
             case "Woman":
                 sextypeView  = getLayoutInflater().inflate(R.layout.encounter_sextype_woman,null);
                 break;
@@ -476,10 +475,11 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
                         sexType_iSucked.setClickable(false);
                         sexType_iSucked.setTextColor(Color.parseColor("#ffffff"));
                         sexType_iSucked.setTypeface(tf);
-                        //Log.v("CondomStatus","iSucked "+LynxManager.decryptString(encSexType.getCondom_use()));
                         if(LynxManager.decryptString(encSexType.getCondom_use()).equals("Condom used")&& !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                             LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                         }
+                        whenIsuckedParent.setVisibility(View.VISIBLE);
+                        whenIsucked.setText(encSexType.getEjaculation());
                         break;
                     case "He sucked me":
                     case "She sucked me":
@@ -495,10 +495,11 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
                         sexType_iBottomed.setClickable(false);
                         sexType_iBottomed.setTextColor(Color.parseColor("#ffffff"));
                         sexType_iBottomed.setTypeface(tf);
-                        //Log.v("CondomStatus","iBot "+LynxManager.decryptString(encSexType.getCondom_use()));
                         if(LynxManager.decryptString(encSexType.getCondom_use()).equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                             LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                         }
+                        whenIbottomParent.setVisibility(View.VISIBLE);
+                        whenIbottom.setText(encSexType.getEjaculation());
                         break;
                     case "I topped":
                         ToggleButton sexType_iTopped = (ToggleButton)findViewById(R.id.sexType_iTopped);
@@ -509,7 +510,8 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
                         if(LynxManager.decryptString(encSexType.getCondom_use()).equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                             LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                         }
-                        //Log.v("CondomStatus","iTop "+LynxManager.decryptString(encSexType.getCondom_use()));
+                        whenItoppedParent.setVisibility(View.VISIBLE);
+                        whenItop.setText(encSexType.getEjaculation());
                         break;
                     case "I jerked him":
                     case "I jerked her":
@@ -553,7 +555,6 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
                         if(LynxManager.decryptString(encSexType.getCondom_use()).equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
                             LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
                         }
-                        //Log.v("CondomStatus","iFucked "+LynxManager.decryptString(encSexType.getCondom_use()));
                         break;
                     case "I fingered her":
                     case "I fingered him":
@@ -584,7 +585,6 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
         }
         LinearLayout condomUsedContent = (LinearLayout)findViewById(R.id.condomUsedContent);
         condomUsedContent.removeAllViews();
-        //Log.v("activeCondomUsedSize", String.valueOf(LynxManager.activeEncCondomUsed.size()));
         if(LynxManager.activeEncCondomUsed.size()>0){
             LinearLayout condomUsedLayout = (LinearLayout)findViewById(R.id.condomUsedLayout);
             condomUsedLayout.setVisibility(View.VISIBLE);
@@ -595,7 +595,6 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
                 tv.setPadding(0,0,0,16);
                 tv.setTextColor(getResources().getColor(R.color.text_color));
                 condomUsedContent.addView(tv);
-                //Log.v("CondomUsedWhen",str);
             }
         }else{
             LinearLayout condomUsedLayout = (LinearLayout)findViewById(R.id.condomUsedLayout);
@@ -607,7 +606,6 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
         calendarMainContent.setVisibility(View.GONE);
         encounterSummaryContent.setVisibility(View.GONE);
         isSummaryShown = true;
-        int testingHistoryID = id;
         TextView gonorrheaTitle = (TextView) findViewById(R.id.gonorrheaTitle);
         gonorrheaTitle.setTypeface(tf_bold_italic);
         TextView syphilisTitle = (TextView) findViewById(R.id.syphilisTitle);
@@ -642,7 +640,7 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
         syphilisIcon = (ImageView)findViewById(R.id.syphilisIcon);
         chlamydiaIcon = (ImageView)findViewById(R.id.chlamydiaIcon);
 
-        TestingHistory testingHistory = db.getTestingHistorybyID(testingHistoryID);
+        TestingHistory testingHistory = db.getTestingHistorybyID(id);
         String test_name = (db.getTestingNamebyID(testingHistory.getTesting_id())).getTestName();
         testingHistoryTitle.setText(test_name);
         testingHistoryTitle.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -653,15 +651,19 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
             hivLayout.setVisibility(View.VISIBLE);
             List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(testingHistory.getTesting_history_id());
             for (final TestingHistoryInfo historyInfo : testinghistoryInfoList) {
-                if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
-                    hivTestStatus.setText("Positive");
-                    hivIcon.setImageDrawable(getResources().getDrawable(R.drawable.pos_test));
-                }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
-                    hivTestStatus.setText("Negative");
-                    hivIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
-                }else{
-                    hivTestStatus.setText("Didn't Test");
-                    hivIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
+                switch (LynxManager.decryptString(historyInfo.getTest_status())) {
+                    case "Yes":
+                        hivTestStatus.setText("Positive");
+                        hivIcon.setImageDrawable(getResources().getDrawable(R.drawable.pos_test));
+                        break;
+                    case "No":
+                        hivTestStatus.setText("Negative");
+                        hivIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
+                        break;
+                    default:
+                        hivTestStatus.setText("Didn't Test");
+                        hivIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
+                        break;
                 }
                 String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
                 if(!historyInfoAttachment.equals("")){
@@ -686,7 +688,6 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
                         }
                     });
                 }else {
-                    //hivAttachment.setVisibility(View.GONE);
                     hivAttachment.setImageResource(R.drawable.photocamera);
                 }
             }
@@ -695,9 +696,6 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
             hivLayout.setVisibility(View.GONE);
             std_list_parentLayout.setVisibility(View.VISIBLE);
             List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(testingHistory.getTesting_history_id());
-            /*Log.v("testingHistoryID",String.valueOf(testingHistoryID));
-            Log.v("testingHisHistoryID",String.valueOf(testingHistory.getTesting_history_id()));
-            Log.v("STIID",String.valueOf(testinghistoryInfoList.size()));*/
             for (final TestingHistoryInfo historyInfo : testinghistoryInfoList) {
                 if (historyInfo.getSti_id() != 0) {
                     STIMaster stiName = db.getSTIbyID(historyInfo.getSti_id());

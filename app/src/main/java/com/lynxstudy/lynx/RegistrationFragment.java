@@ -54,12 +54,6 @@ public class RegistrationFragment  extends Fragment implements DatePickerDialog.
     public RegistrationFragment() {
         // Required empty public constructor
     }
-    private String[] secQuestions;
-    private Spinner spinner;
-    private MultiSelectionSpinner multiSelectionSpinner;
-    TextView frag_title,textView5,textView4;
-    Button regBtnNext;
-
     private PopupWindow pw;
     private boolean expanded; 		//to  store information whether the selected values are displayed completely or in shortened representatn
     public static boolean[] checkSelected;	// store select/unselect information about the values in the list
@@ -78,10 +72,8 @@ public class RegistrationFragment  extends Fragment implements DatePickerDialog.
                 "fonts/Roboto-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
-        frag_title = (TextView)view.findViewById(R.id.frag_title);
-        frag_title.setTypeface(tf_bold);
-        regBtnNext = (Button) view.findViewById(R.id.regBasicNext);
-        regBtnNext.setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((Button) view.findViewById(R.id.regBasicNext)).setTypeface(tf_bold);
         tv = (TextView) view.findViewById(R.id.SelectBox);
         tv.setTypeface(tf);
         createButton = (ImageView)view.findViewById(R.id.create);
@@ -189,26 +181,6 @@ public class RegistrationFragment  extends Fragment implements DatePickerDialog.
             public void onClick(View v) {
                 initiatePopUp(items,tv);
                 // TODO Auto-generated method stub
-               /* if(!expanded){
-                    //display all selected values
-                    String selected = "";
-                    int flag = 0;
-                    for (int i = 0; i < items.size(); i++) {
-                        if (checkSelected[i] == true) {
-                            selected += items.get(i);
-                            selected += ", ";
-                            flag = 1;
-                        }
-                    }
-                    if(flag==1)
-                        tv.setText(selected);
-                    expanded =true;
-                }
-                else{
-                    //display shortened representation of selected values
-                    tv.setText(DropDownListAdapter.getSelected());
-                    expanded = false;
-                }*/
             }
         });
 
@@ -264,11 +236,6 @@ public class RegistrationFragment  extends Fragment implements DatePickerDialog.
 
         //provide the source layout for drop-down
         pw.setContentView(layout);
-
-       /* //anchor the drop-down to bottom-left corner of 'layout1'
-        if(layout1.getParent()!=null)
-            ((ViewGroup)layout1.getParent()).removeView(layout1); // <- fix*/
-        //pw.showAsDropDown(layout1);
         pw.showAtLocation(layout1, Gravity.CENTER, 0, 0);
 
         //populate the drop-down list

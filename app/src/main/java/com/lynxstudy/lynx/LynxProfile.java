@@ -4,7 +4,6 @@ import android.app.ActionBar;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.DialogFragment;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -13,18 +12,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Point;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -39,10 +34,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -81,19 +73,15 @@ import java.util.Locale;
 
 public class LynxProfile extends AppCompatActivity implements View.OnClickListener {
 
-    private Spinner spinner_upt_sec_questions;
-    private String[] upt_secQuestions;
-    private MultiSelectionSpinner multiSelectionSpinner;
     DatabaseHelper db;
-    private Point p;
     LinearLayout bot_nav;
-    TextView fragTitle,profile_name,profile_lastname,updatePhone,updateDOB,updateRace,profile_email,updatePass,updateSecQn,updateSecAnswer,updatePasscode,prepTitle,prepAnswer;
-    TextView diaryTitle,dairyReminderDay,dairyReminderTime,dairyReminderText,testingTitle,testingReminderDay,testingReminderTime,testingReminderText,edit_details,logout,prepTitle1,diaryTitle1,testingTitle1,app_version;
+    TextView profile_name,profile_lastname,updatePhone,updateDOB,updateRace,profile_email,updatePass,updateSecQn,updateSecAnswer,updatePasscode,prepAnswer;
+    TextView dairyReminderDay,dairyReminderTime,dairyReminderText,testingReminderDay,testingReminderTime,testingReminderText,edit_details,logout,app_version;
     Typeface tf,tf_bold;
     LinearLayout mainContentLayout,editLayout,btn_testing,btn_diary,btn_prep,btn_chat;
     boolean isEditShown = false;
 
-    TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,fragTitle1,tv,sec_qn,time,day,testing_time,testing_day,is_prep;
+    TextView tv,sec_qn,time,day,testing_time,testing_day,is_prep;
     EditText phonenumber,firstname,lastname,dob,email,reppass,pass,sec_ans,newPasscode,notificationText,testing_notificationText;
     ImageView createButton;
     RelativeLayout race_layout,sec_qn_parent,testing_day_of_week,testing_time_of_day,day_of_week,time_of_day;
@@ -120,18 +108,12 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Bold.ttf");
 
-        fragTitle = (TextView)findViewById(R.id.fragTitle);
-        fragTitle.setTypeface(tf_bold);
-        bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
-        bot_nav_sexpro_tv.setTypeface(tf);
-        bot_nav_diary_tv = (TextView)findViewById(R.id.bot_nav_diary_tv);
-        bot_nav_diary_tv.setTypeface(tf);
-        bot_nav_testing_tv = (TextView)findViewById(R.id.bot_nav_testing_tv);
-        bot_nav_testing_tv.setTypeface(tf);
-        bot_nav_prep_tv = (TextView)findViewById(R.id.bot_nav_prep_tv);
-        bot_nav_prep_tv.setTypeface(tf);
-        bot_nav_chat_tv = (TextView)findViewById(R.id.bot_nav_chat_tv);
-        bot_nav_chat_tv.setTypeface(tf);
+        ((TextView)findViewById(R.id.fragTitle)).setTypeface(tf_bold);
+        ((TextView)findViewById(R.id.bot_nav_sexpro_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_diary_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_testing_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_prep_tv)).setTypeface(tf);
+        ((TextView)findViewById(R.id.bot_nav_chat_tv)).setTypeface(tf);
         profile_name = (TextView)findViewById(R.id.profile_name);
         profile_name.setTypeface(tf);
         profile_lastname = (TextView)findViewById(R.id.profile_lastname);
@@ -152,20 +134,17 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         updateSecAnswer.setTypeface(tf);
         updatePasscode = (TextView)findViewById(R.id.updatePasscode);
         updatePasscode.setTypeface(tf);
-        prepTitle = (TextView)findViewById(R.id.prepTitle);
-        prepTitle.setTypeface(tf_bold);
+        ((TextView)findViewById(R.id.prepTitle)).setTypeface(tf_bold);
         prepAnswer = (TextView)findViewById(R.id.prepAnswer);
         prepAnswer.setTypeface(tf);
-        diaryTitle = (TextView)findViewById(R.id.diaryTitle);
-        diaryTitle.setTypeface(tf_bold);
+        ((TextView)findViewById(R.id.diaryTitle)).setTypeface(tf_bold);
         dairyReminderDay = (TextView)findViewById(R.id.dairyReminderDay);
         dairyReminderDay.setTypeface(tf);
         dairyReminderTime = (TextView)findViewById(R.id.dairyReminderTime);
         dairyReminderTime.setTypeface(tf);
         dairyReminderText = (TextView)findViewById(R.id.dairyReminderText);
         dairyReminderText.setTypeface(tf);
-        testingTitle = (TextView)findViewById(R.id.testingTitle);
-        testingTitle.setTypeface(tf_bold);
+        ((TextView)findViewById(R.id.testingTitle)).setTypeface(tf_bold);
         testingReminderDay = (TextView)findViewById(R.id.testingReminderDay);
         testingReminderDay.setTypeface(tf);
         testingReminderTime = (TextView)findViewById(R.id.testingReminderTime);
@@ -189,34 +168,9 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
 
         db = new DatabaseHelper(LynxProfile.this);
         setSelected();
-        /*upt_secQuestions = getResources().getStringArray(R.array.security_questions);
-        spinner_upt_sec_questions = (Spinner) findViewById(R.id.updateSecQuestion);
-
-
-        ArrayAdapter<      String> adapterSecQues = new ArrayAdapter<String>(LynxProfile.this,
-                R.layout.spinner_row, R.id.txtView, upt_secQuestions);
-        spinner_upt_sec_questions.setAdapter(adapterSecQues);
-
-        for (int i=0 ; i<upt_secQuestions.length ; i++ ){
-            if(upt_secQuestions[i].equals(LynxManager.decryptString(LynxManager.getActiveUser().getSecurityquestion()))){
-                spinner_upt_sec_questions.setSelection(i);
-            }
-        }*/
-
-        /*String[] arr= LynxManager.decryptString(LynxManager.getActiveUser().getRace()).split(",\\s+");
-
-        List<String> list_string = new ArrayList<String>();
-        list_string.addAll(Arrays.asList(arr));
-        //multi select Spinner
-        multiSelectionSpinner = (MultiSelectionSpinner) findViewById(R.id.mySpinner);
-        multiSelectionSpinner.setItems(getResources().getStringArray(R.array.races_list));
-        multiSelectionSpinner.setSelection(list_string);*/
         edit_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent updateprofile = new Intent(LynxProfile.this,LynxProfileEdit.class);
-                startActivity(updateprofile);
-                finish();*/
                 setEditLayout();
                 TrackHelper.track().event("Navigation","Click").name("Profile Edit").with(tracker);
             }
@@ -273,14 +227,10 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         editLayout.setVisibility(View.VISIBLE);
         mainContentLayout.setVisibility(View.GONE);
         isEditShown = true;
-        fragTitle1 = (TextView)findViewById(R.id.fragTitle1);
-        fragTitle1.setTypeface(tf_bold);
-        prepTitle1 = (TextView)findViewById(R.id.prepTitle1);
-        prepTitle1.setTypeface(tf_bold);
-        diaryTitle1 = (TextView)findViewById(R.id.diaryTitle1);
-        diaryTitle1.setTypeface(tf_bold);
-        testingTitle1 = (TextView)findViewById(R.id.testingTitle1);
-        testingTitle1.setTypeface(tf_bold);
+        ((TextView)findViewById(R.id.fragTitle1)).setTypeface(tf_bold);
+        ((TextView)findViewById(R.id.prepTitle1)).setTypeface(tf_bold);
+        ((TextView)findViewById(R.id.diaryTitle1)).setTypeface(tf_bold);
+        ((TextView)findViewById(R.id.testingTitle1)).setTypeface(tf_bold);
         tv = (TextView) findViewById(R.id.SelectBox);
         tv.setTypeface(tf);
         firstname = (EditText) findViewById(R.id.regFirstName);
@@ -405,17 +355,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
                 }
             }
         });
-        /*reppass.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    if (!reppass.getText().toString().equals(pass.getText().toString())) {
-                        Toast.makeText(LynxProfile.this,"Password mismatching",Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        });*/
-
         final List<String> secQuestions = Arrays.asList(getResources().getStringArray(R.array.security_questions));
 
 
@@ -614,27 +553,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View v) {
                 initiatePopUp(items,tv);
-                // TODO Auto-generated method stub
-               /* if(!expanded){
-                    //display all selected values
-                    String selected = "";
-                    int flag = 0;
-                    for (int i = 0; i < items.size(); i++) {
-                        if (checkSelected[i] == true) {
-                            selected += items.get(i);
-                            selected += ", ";
-                            flag = 1;
-                        }
-                    }
-                    if(flag==1)
-                        tv.setText(selected);
-                    expanded =true;
-                }
-                else{
-                    //display shortened representation of selected values
-                    tv.setText(DropDownListAdapter.getSelected());
-                    expanded = false;
-                }*/
             }
         });
 
@@ -643,7 +561,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         createButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 initiatePopUp(items,tv);
             }
         });
@@ -684,11 +601,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
 
         //provide the source layout for drop-down
         pw.setContentView(layout);
-
-       /* //anchor the drop-down to bottom-left corner of 'layout1'
-        if(layout1.getParent()!=null)
-            ((ViewGroup)layout1.getParent()).removeView(layout1); // <- fix*/
-        //pw.showAsDropDown(layout1);
         pw.showAtLocation(race_layout, Gravity.CENTER, 0, 0);
 
         //populate the drop-down list
@@ -742,7 +654,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         profile_name.setText(LynxManager.decryptString(LynxManager.getActiveUser().getFirstname()));
         profile_lastname.setText(LynxManager.decryptString(LynxManager.getActiveUser().getLastname()));
         profile_email.setText(LynxManager.decryptString(LynxManager.getActiveUser().getEmail()));
-        //updatePass.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
         String pass = LynxManager.decryptString(LynxManager.getActiveUser().getPassword());
         String asterisk = "";
         if(pass!=null){
@@ -754,7 +665,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         }
         updatePass.setText(asterisk);
         updatePhone.setText(LynxManager.decryptString(LynxManager.getActiveUser().getMobile()));
-        //updatePasscode.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPasscode()));
         updatePasscode.setText("****");
         updateSecAnswer.setText(LynxManager.decryptString(LynxManager.getActiveUser().getSecurityanswer()));
         String dob_user = LynxManager.decryptString(LynxManager.getActiveUser().getDob());
@@ -847,7 +757,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         Button positive_btn = (Button) popupView.findViewById(R.id.alertPositiveButton);
         Button negative_btn = (Button) popupView.findViewById(R.id.alertNegativeButton);
         title.setVisibility(View.GONE);
-        message.setText("Are you sure, you want to sign out?");
+        message.setText(getResources().getString(R.string.sign_out_message));
         message.setTypeface(tf);
         positive_btn.setTypeface(tf);
         negative_btn.setTypeface(tf);
@@ -857,7 +767,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
                 nonUpdatedEncounterSexTypeList.size()!=0 || nonUpdatedPartnersList.size()!=0 || nonUpdatedPartnerContactList.size()!=0 ||
                 nonUpdatedPartnerRatingList.size()!=0 || nonUpdatedTestingRemindersList.size()!=0 || nonUpdatedTestingHistoryList.size()!=0 ||
                 nonUpdatedTestingHistoryInfoList.size()!=0 || nonUpdatedTestingRequestList.size()!=0 || nonUpdatedRatingFieldsList.size()!=0)
-        {message.setText("Your entries are still being recorded. Select No to allow your entries to be saved, and sign-out at a later time. Choosing Yes will delete your unsaved entries. Are you sure you want to continue?");}
+        {message.setText(getResources().getString(R.string.sign_out_continue_message));}
 
         positive_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -902,18 +812,11 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         String races_list = tv.getText().toString();
         String isPrep = is_prep.getText().toString();
 
-        //Log.v("updateraces_list",races_list);
         boolean invalid_dob = LynxManager.regDateValidation(dob_value);
         if (password.isEmpty()) {
             Toast.makeText(LynxProfile.this,"Enter Password",Toast.LENGTH_SHORT).show();
             pass.requestFocus();
-        }/* else if(rep_password.isEmpty()){
-            Toast.makeText(LynxProfile.this,"Please enter your current password",Toast.LENGTH_SHORT).show();
-            reppass.requestFocus();
-        }else if (!rep_password.equals(password)) {
-            Toast.makeText(LynxProfile.this,"Password Mismatching",Toast.LENGTH_SHORT).show();
-            reppass.requestFocus();
-        }*/ else if (phone_number.isEmpty()) {
+        }else if (phone_number.isEmpty()) {
             Toast.makeText(LynxProfile.this,"Enter a valid Phone Number",Toast.LENGTH_SHORT).show();
             phonenumber.requestFocus();
         } else if (pass_code.isEmpty()) {
@@ -930,7 +833,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         } else if(races_list.equals("Race/Ethnicity")){
             Toast.makeText(this,"Please Select Race/Ethnicity",Toast.LENGTH_SHORT).show();
         }else {
-            //Log.v("created Date", LynxManager.getActiveUser().getCreated_at());
             dob_value = LynxManager.getFormatedDate("MM/dd/yyyy",dob_value,"dd-MMM-yyyy");
             Users uptUser = new Users(LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(first_name), LynxManager.encryptString(last_name),
                     LynxManager.encryptString(e_mail), LynxManager.encryptString(password), LynxManager.encryptString(phone_number),
@@ -966,8 +868,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
             User_baseline_info user_baseline_info = db.getUserBaselineInfobyUserID(LynxManager.getActiveUser().getUser_id());
             String cal_date = user_baseline_info.getSexpro_calculated_date();
             db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), final_score,isPrep, cal_date, String.valueOf(R.string.statusUpdateNo));
-            //Log.v("ScoreStat",final_score+"-"+isPrep+"--"+cal_date);
-
             // Create PREP FOLLOWUP //
             PrepFollowup prepFollowup = new PrepFollowup();
             prepFollowup.setUser_id(LynxManager.getActiveUser().getUser_id());
@@ -1012,9 +912,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
 
             Toast.makeText(this, "User Profile Updated", Toast.LENGTH_SHORT).show();
             TrackHelper.track().event("Profile","Update").name("User Profile Updated").with(tracker);
-            /*Intent profile = new Intent(LynxProfileEdit.this,LynxProfile.class);
-            startActivity(profile);
-            finish();*/
             editLayout.setVisibility(View.GONE);
             mainContentLayout.setVisibility(View.VISIBLE);
             isEditShown = false;
