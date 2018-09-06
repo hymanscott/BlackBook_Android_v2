@@ -740,7 +740,11 @@ drunk and/or high"
                         android:layout_height="wrap_content"
                         android:numColumns="2"
                         android:id="@+id/heightGridView"
-                        android:layout_margin="16dp">
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="64dp"
+                        >
 
                     </com.lynxstudy.helper.ExpandableHeightGridView>
                 </LinearLayout>

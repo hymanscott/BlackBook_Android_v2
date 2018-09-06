@@ -4,9 +4,12 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -54,7 +57,20 @@ public class RegistrationTimesTop extends Fragment implements SeekBar.OnSeekBarC
         progress_maxvalue2.setTypeface(tf);
         editText.setTypeface(tf);
         regAuthNext.setTypeface(tf_bold);
-
+/*        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE ||
+                        event != null && event.getAction() == KeyEvent.ACTION_DOWN || event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER || event != null && event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+                    if (event == null || !event.isShiftPressed()) {
+                        // the user is done typing.
+                        Log.v("DoneTyping", textView.getText().toString());
+                        return true; // consume.
+                    }
+                }
+                return false;
+            }
+        });*/
         // Seek Bar codes
         final int stepSize =10;
         seek_barone = (SeekBar) view.findViewById(R.id.seekBar_one); // make seekbar object

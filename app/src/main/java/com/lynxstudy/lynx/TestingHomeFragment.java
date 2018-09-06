@@ -95,8 +95,6 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
     public TestingHomeFragment() {
         // Required empty public constructor
     }
-    private Context mContext = null;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -284,7 +282,6 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mContext = context;
     }
 
     private void loadTestingHistories(){

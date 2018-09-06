@@ -36,8 +36,8 @@ import com.lynxstudy.model.UserPrimaryPartner;
 import com.lynxstudy.model.UserSTIDiag;
 import com.lynxstudy.model.User_baseline_info;
 
-import net.hockeyapp.android.CrashManager;
-import net.hockeyapp.android.UpdateManager;
+/*import net.hockeyapp.android.CrashManager;
+import net.hockeyapp.android.UpdateManager;*/
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -68,7 +68,7 @@ public class BaselineActivity extends AppCompatActivity {
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
 		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         TrackHelper.track().screen("/Baseline").title("Baseline").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
-        checkForUpdates();
+        /*checkForUpdates();*/ // Hockey APP
     }
 
     /**
@@ -112,20 +112,20 @@ public class BaselineActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        checkForCrashes();
+        /*checkForCrashes();*/
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        unregisterManagers();
+        /*unregisterManagers();*/
     }
     @Override
     public void onDestroy() {
         super.onDestroy();
-        unregisterManagers();
+        /*unregisterManagers();*/
     }
-    private void unregisterManagers() {
+    /*private void unregisterManagers() {
         UpdateManager.unregister();
     }
     private void checkForCrashes() {
@@ -135,7 +135,7 @@ public class BaselineActivity extends AppCompatActivity {
     private void checkForUpdates() {
         // Remove this for store builds!
         UpdateManager.register(this);
-    }
+    }*/
 
     public void pushFragments(String tag, Fragment fragment, Boolean addToStack) {
 
@@ -562,9 +562,9 @@ public class BaselineActivity extends AppCompatActivity {
                 rating_fields.add("Chemistry");
                 rating_fields.add("Personality");
                 rating_fields.add("Face");
-                rating_fields.add("Body");
-                rating_fields.add("Cock");
-                rating_fields.add("Butt");
+                rating_fields.add("");
+                rating_fields.add("");
+                rating_fields.add("");
 
                 LynxManager.setPartnerRatingIds(rating_field_id);
                 LynxManager.activePartnerRating.clear();

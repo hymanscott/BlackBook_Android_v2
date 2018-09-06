@@ -69,8 +69,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.hockeyapp.android.CrashManager;
-import net.hockeyapp.android.UpdateManager;
+/*import net.hockeyapp.android.CrashManager;
+import net.hockeyapp.android.UpdateManager;*/
 
 public class RegLogin extends AppCompatActivity {
     DatabaseHelper db;
@@ -155,7 +155,7 @@ public class RegLogin extends AppCompatActivity {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Roboto-Regular.ttf");
-        checkForUpdates();
+        /*checkForUpdates();*/ // HockeyAPP
         // Piwik Analytics //
         tracker = ((lynxApplication) getApplication()).getTracker();
 		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
@@ -615,20 +615,20 @@ public class RegLogin extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        checkForCrashes();
+        /*checkForCrashes();*/
     }
     @Override
     public void onPause() {
         super.onPause();
-        unregisterManagers();
+        /*unregisterManagers();*/
     }
     @Override
     public void onDestroy() {
         super.onDestroy();
-        unregisterManagers();
+        /*unregisterManagers();*/
     }
 
-    private void checkForCrashes() {
+/*    private void checkForCrashes() {
         CrashManager.register(this);
     }
 
@@ -639,7 +639,7 @@ public class RegLogin extends AppCompatActivity {
 
     private void unregisterManagers() {
         UpdateManager.unregister();
-    }
+    }*/
 
     public void pushFragments(String tag, Fragment fragment, Boolean addToStack) {
 

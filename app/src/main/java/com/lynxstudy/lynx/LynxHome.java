@@ -64,9 +64,9 @@ import com.lynxstudy.model.UserSTIDiag;
 import com.lynxstudy.model.User_baseline_info;
 import com.lynxstudy.model.Users;
 
-import net.hockeyapp.android.CrashManager;
+/*import net.hockeyapp.android.CrashManager;
 import net.hockeyapp.android.UpdateManager;
-import net.hockeyapp.android.metrics.model.User;
+import net.hockeyapp.android.metrics.model.User;*/
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -343,7 +343,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             }
         }, 0, 1, TimeUnit.MINUTES);
         callNotification();
-        checkForUpdates();
+        /*checkForUpdates();*/ //Hockey APP
 
         // Add OnBoarding Badge for already registered users //
         if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("LYNX").getBadge_id())==0){
@@ -671,20 +671,20 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             Intent lockscreen = new Intent(this, PasscodeUnlockActivity.class);
             startActivity(lockscreen);
         }
-        checkForCrashes();
+        /*checkForCrashes();*/
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        unregisterManagers();
+        /*unregisterManagers();*/
     }
     @Override
     public void onDestroy() {
         super.onDestroy();
-        unregisterManagers();
+        /*unregisterManagers();*/
     }
-    private void unregisterManagers() {
+    /*private void unregisterManagers() {
         UpdateManager.unregister();
     }
     private void checkForCrashes() {
@@ -694,7 +694,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
     private void checkForUpdates() {
         // Remove this for store builds!
         UpdateManager.register(this);
-    }
+    }*/
 
     int onPause_count =0;
     @Override

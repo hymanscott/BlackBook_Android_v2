@@ -145,7 +145,7 @@
                     android:paddingBottom="5dp"
                     android:windowSoftInputMode="adjustPan"
                     android:textColor="@color/white"
-                    android:imeOptions="actionDone"
+                    android:imeOptions="actionNext"
                     android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="@dimen/edittext_textsize" />
@@ -180,7 +180,7 @@
                     android:paddingBottom="5dp"
                     android:windowSoftInputMode="adjustPan"
                     android:textColor="@color/white"
-                    android:imeOptions="actionDone"
+                    android:imeOptions="actionNext"
                     android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="@dimen/edittext_textsize" />
@@ -215,7 +215,7 @@
                     android:paddingBottom="5dp"
                     android:windowSoftInputMode="adjustPan"
                     android:textColor="@color/white"
-                    android:imeOptions="actionDone"
+                    android:imeOptions="actionNext"
                     android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="@dimen/edittext_textsize" />
@@ -576,7 +576,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="Add choice"
-                        android:imeOptions="actionNext"
+                        android:imeOptions="actionDone"
                         android:textColor="@color/white"
                         android:textColorHint="@color/edittext_hint_color"
                         android:textCursorDrawable="@drawable/white_cursor"

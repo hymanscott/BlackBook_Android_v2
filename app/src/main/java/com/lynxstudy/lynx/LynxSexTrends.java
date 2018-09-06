@@ -361,7 +361,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
             progress_values.add(String.valueOf(std_elapsed_days));
             description_values.add("# days since last STD test");
         }
-        int topPeopleCount = 0;
+        /*int topPeopleCount = 0;
         int bottomPeopleCount = 0;
         for (Partners partner:db.getAllPartners()){
             int topCount = 0;
@@ -380,10 +380,12 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
             if(bottomCount>0){
                 bottomPeopleCount++;
             }
-        }
-        progress_values.add(String.valueOf(topPeopleCount));
+        }*/
+        int topTimesCount = db.getAllEncounterSexTypeCountByName("I topped");
+        int bottomTimesCount = db.getAllEncounterSexTypeCountByName("I bottomed");
+        progress_values.add(String.valueOf(topTimesCount));
         description_values.add("# of times you topped");
-        progress_values.add(String.valueOf(bottomPeopleCount));
+        progress_values.add(String.valueOf(bottomTimesCount));
         description_values.add("# of times you bottomed");
         progress_values.add(String.valueOf(db.getFiveStarEncountersCount()));
         description_values.add("# of 5 star encounters");

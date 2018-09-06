@@ -771,7 +771,7 @@
                         android:paddingBottom="5dp"
                         android:windowSoftInputMode="adjustPan"
                         android:textColor="@color/text_color"
-                        android:imeOptions="actionDone"
+                        android:imeOptions="actionNext"
                         android:textColorHint="@color/profile_edittext_hint"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />
@@ -806,7 +806,7 @@
                         android:paddingBottom="5dp"
                         android:windowSoftInputMode="adjustPan"
                         android:textColor="@color/text_color"
-                        android:imeOptions="actionDone"
+                        android:imeOptions="actionNext"
                         android:textColorHint="@color/profile_edittext_hint"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />
@@ -841,7 +841,7 @@
                         android:paddingBottom="5dp"
                         android:windowSoftInputMode="adjustPan"
                         android:textColor="@color/text_color"
-                        android:imeOptions="actionDone"
+                        android:imeOptions="actionNext"
                         android:textColorHint="@color/profile_edittext_hint"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />

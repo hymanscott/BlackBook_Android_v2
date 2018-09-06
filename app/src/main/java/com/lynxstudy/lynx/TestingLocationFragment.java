@@ -284,6 +284,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(),
                 R.layout.spinner_row, R.id.txtView, miles);
         milesSpinner.setAdapter(adapter1);
+        milesSpinner.setSelection(3);
         milesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -363,6 +364,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
     }
 
     private void showFilteredMarker(LatLng latLng, String filter,String miles){
+        //Log.v("showFilteredMarker", "latlng:"+latLng+", filter:" + filter +", miles:"+miles);
         // Set Location //
         Location l = new Location("");
         if(latLng!=null){
@@ -407,9 +409,8 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                 }
             }
         }
-
+        int temp_count = 0;
         if (marker_count == 0) {
-            int temp_count = 0;
             for (LocationsDistance locationsDistance : Locations_DistanceArray) {
                 if(temp_count<100) {
                     LatLng latlng = new LatLng(locationsDistance.getLatitude(), locationsDistance.getLongitude());
@@ -423,6 +424,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
                 }temp_count++;
             }
         }
+        //Log.v("Marker count", "Markers:"+marker_count+", Temp Count:"+temp_count);
     }
     public MarkerOptions getMarkerIcon(String filter,MarkerOptions marker){
         marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.cityiconblue));
@@ -481,6 +483,11 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
         /**/
         LatLng latlng = new LatLng(mylocation.getLatitude(), mylocation.getLongitude());// This methods gets the users current longitude and latitude.
         if(count==0){
+            String filter = null;
+            if(!filterSpinner.getSelectedItem().toString().equals("Filters"))
+                filter = filterSpinner.getSelectedItem().toString();
+
+            showFilteredMarker(latlng,filter,milesSpinner.getSelectedItem().toString());
             addDraggableMarker(latlng);
             count++;
         }
