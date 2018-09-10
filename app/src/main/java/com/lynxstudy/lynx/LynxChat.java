@@ -446,9 +446,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
 
                     // Getting JSON Array node
                     boolean is_error = jsonObj.getBoolean("is_error");
-                    if (is_error) {
-                        //Log.d("Response: ", "> ChatListOnlineError. " + jsonObj.getString("message"));
-                    } else {
+                    if (!is_error) {
                         JSONArray chatArray = jsonObj.getJSONArray("ticketChat");
                         for(int i=0;i<chatArray.length();i++){
                             JSONObject childObj = chatArray.getJSONObject(i).getJSONObject("TicketChat");
@@ -465,6 +463,8 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                             }
                         }
                             addChatData();
+                    } else {
+                        //Log.d("Response: ", "> ChatListOnlineError. " + jsonObj.getString("message"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

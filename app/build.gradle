@@ -7,16 +7,15 @@ android {
         applicationId "com.lynxstudy.lynx"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 41
-        versionName '3.2.1'
+        versionCode 42
+        versionName '3.2.2'
         testInstrumentationRunner "android.support.bottom_navigation.runner.AndroidJUnitRunner"
         multiDexEnabled true
         manifestPlaceholders = [HOCKEYAPP_APP_ID: "6ab13309fc744956a8571662d0675a9f"]
     }
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
