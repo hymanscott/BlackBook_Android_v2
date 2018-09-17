@@ -509,19 +509,8 @@ public class LynxSexProBaselineFragment extends Fragment {
     private boolean getSTI() {
         int STI =0;
         for(UserSTIDiag stiDiag: baselineSTI){
-            stiDiag.getCreated_at();
             if(LynxManager.decryptString(stiDiag.getIs_baseline()).equals("Yes")){
-                int id = stiDiag.getSti_id();
-                Date startdate = null;
-                Date  enddate  =   new Date();
-                SimpleDateFormat inputDF1  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                try {
-                    startdate = inputDF1.parse(stiDiag.getCreated_at());
-                } catch (ParseException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                if(getMonthsDifference(startdate,enddate)<=3){
+                if(getElapsedDays(stiDiag.getCreated_at())<=90){
                     STI  = 1;
                     break;
                 }
@@ -531,11 +520,6 @@ public class LynxSexProBaselineFragment extends Fragment {
             STI = 0;
         }
         return STI>0;
-    }
-    public int getMonthsDifference(Date date1, Date date2) {
-        int m1 = Calendar.getInstance().get(Calendar.YEAR) * 12 + Calendar.getInstance().get(Calendar.MONTH);
-        int m2 = Calendar.getInstance().get(Calendar.YEAR) * 12 + Calendar.getInstance().get(Calendar.MONTH);
-        return m2 - m1;
     }
     private int getHEAVYALC() {
         int HEAVYALC=0;
@@ -595,4 +579,24 @@ public class LynxSexProBaselineFragment extends Fragment {
         return unk_count > 1 && neg_count> 1 && pos_count> 1;
     }
 
+    private int getElapsedDays(String dateString){
+        if(dateString!=null){
+            SimpleDateFormat inputDF  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Calendar calCurrentDate = Calendar.getInstance();
+            Calendar cal = Calendar.getInstance();
+            Date date = null;
+            try {
+                date = inputDF.parse(dateString);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            cal.setTime(date);
+            long milliSeconds2 = calCurrentDate.getTimeInMillis();
+            long milliSeconds1 = cal.getTimeInMillis();
+            long period = milliSeconds2 - milliSeconds1;
+            long days = period / (1000 * 60 * 60 * 24);
+            return (int) days;
+        }return 0;
+
+    }
 }

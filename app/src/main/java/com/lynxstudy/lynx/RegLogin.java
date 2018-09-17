@@ -800,9 +800,11 @@ public class RegLogin extends AppCompatActivity {
         EditText email = (EditText) findViewById(R.id.regEmail);
         EditText pass = (EditText) findViewById(R.id.regPass);
         EditText reppass = (EditText) findViewById(R.id.regRepPass);
+        EditText regVerficationCode = (EditText) findViewById(R.id.regVerficationCode);
         String e_mail = email.getText().toString();
         String password = pass.getText().toString();
         String rep_password = reppass.getText().toString();
+        String reg_code = regVerficationCode.getText().toString();
 
         Pattern pattern;
         Matcher matcher;
@@ -816,7 +818,12 @@ public class RegLogin extends AppCompatActivity {
         } else if (password.isEmpty() || !rep_password.equals(password)) {
             Toast.makeText(RegLogin.this,"Password Mismatching",Toast.LENGTH_SHORT).show();
             pass.requestFocus();
+        } else if(reg_code.isEmpty() || reg_code.length()<3 || reg_code.length()>20){
+            Toast.makeText(RegLogin.this,"Enter valid verification code",Toast.LENGTH_SHORT).show();
+            regVerficationCode.requestFocus();
         } else{
+            LynxManager.getActiveUser().setRegistration_code(reg_code);
+            LynxManager.regCode = reg_code;
             LynxManager.getActiveUser().setEmail(LynxManager.encryptString(e_mail));
             LynxManager.getActiveUser().setPassword(LynxManager.encryptString(password));
             RegistrationSecurityDetails fragRegistration = new RegistrationSecurityDetails();
@@ -964,7 +971,7 @@ public class RegLogin extends AppCompatActivity {
         }else{
             /*RegistrationBaselineIntro regPrimaryPartner = new RegistrationBaselineIntro();*/
             Users user = LynxManager.getActiveUser();
-            user.setRegistration_code(LynxManager.regCode);
+            /*user.setRegistration_code(LynxManager.regCode);*/
             Gson gson = new Gson();
             user.setStatus_encrypt(true);
             user.decryptUser();
@@ -1018,10 +1025,10 @@ public class RegLogin extends AppCompatActivity {
             // Added as event
             //TrackHelper.track().screen("/Login").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
             PrefManager prefManager = new PrefManager(getActivity());
-            if(!LynxManager.isRegCodeValidated || LynxManager.regCode.equals("")){
+            /*if(!LynxManager.isRegCodeValidated || LynxManager.regCode.equals("")){
                 startActivity(new Intent(getActivity(),RegistrationCode.class));
                 getActivity().finish();
-            }else if(prefManager.isFirstTimeLaunch()){
+            }else */if(prefManager.isFirstTimeLaunch()){
                 prefManager.setFirstTimeLaunch(false);
                 Intent appTour = new Intent(getActivity(),WelcomeActivity.class);
                 startActivity(appTour);

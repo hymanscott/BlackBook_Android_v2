@@ -92,7 +92,7 @@ public class LynxManager {
     private String lastImageName = "";
     public static boolean isNewPartnerEncounter = false;
     public static boolean haveWeeklyEncounter = false;
-    public static boolean isRegCodeValidated = false;
+    /*public static boolean isRegCodeValidated = false;*/
     public static String regCode = "";
     public static boolean isFromDeletePartner= false;
     public static List<List<String>> showAppAlertList = new ArrayList<List<String>>();

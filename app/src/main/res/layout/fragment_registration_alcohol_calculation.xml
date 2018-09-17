@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/main_bg_gradient">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/reg_alcohol_nav_buttons"
         android:fillViewport="true">
 
         <LinearLayout
@@ -197,26 +197,24 @@
                 android:textSize="@dimen/button_textsize"
                 android:textStyle="bold"
                 android:visibility="gone" />
-
-            <LinearLayout
-                android:id="@+id/reg_alcohol_nav_buttons"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
-
-                <Button
-                    android:id="@+id/alcohol_cal_nextbtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="@dimen/button_top_margin"
-                    android:background="@color/btn_blue"
-                    android:onClick="onHeavyAlcholNext"
-                    android:text="NEXT"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/button_textsize"
-                    android:textStyle="bold" />
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/reg_alcohol_nav_buttons"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/alcohol_cal_nextbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/btn_blue"
+            android:onClick="onHeavyAlcholNext"
+            android:text="NEXT"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_textsize"
+            android:textStyle="bold" />
+    </LinearLayout>
+</RelativeLayout>

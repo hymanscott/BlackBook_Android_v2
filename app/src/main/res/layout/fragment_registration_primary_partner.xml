@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/main_bg_gradient">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/primary_partner_nextbtn"
         android:fillViewport="true">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -160,7 +159,7 @@
                 android:background="@drawable/border_full_white"
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
-                android:layout_marginBottom="48dp"
+                android:layout_marginBottom="64dp"
                 android:orientation="horizontal">
                 <EditText
                     android:id="@+id/unknownPartners"
@@ -180,20 +179,17 @@
                     android:textCursorDrawable="@drawable/white_cursor"
                     android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="NEXT"
-                android:background="@color/btn_blue"
-                android:textColor="@color/white"
-                android:layout_marginTop="@dimen/button_top_margin"
-                android:id="@+id/primary_partner_nextbtn"
-                android:onClick="showTimesTop"
-                android:textSize="@dimen/button_textsize"
-                android:layout_alignParentBottom="true"
-                android:textStyle="bold" />
         </LinearLayout>
-
     </ScrollView>
-
-</LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NEXT"
+        android:background="@color/btn_blue"
+        android:textColor="@color/white"
+        android:id="@+id/primary_partner_nextbtn"
+        android:onClick="showTimesTop"
+        android:textSize="@dimen/button_textsize"
+        android:layout_alignParentBottom="true"
+        android:textStyle="bold" />
+</RelativeLayout>

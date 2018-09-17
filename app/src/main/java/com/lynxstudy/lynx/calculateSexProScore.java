@@ -255,17 +255,8 @@ public class calculateSexProScore {
             }
 
             for(UserSTIDiag stiDiag: baselineSTI){
-                stiDiag.getCreated_at();
                 if(LynxManager.decryptString(stiDiag.getIs_baseline()).equals("No")){
-                    int id = stiDiag.getSti_id();
-
-                    try {
-                        startdate = inputDF1.parse(stiDiag.getCreated_at());
-                    } catch (ParseException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                    if(getMonthsDifference(startdate,enddate)<=3){
+                    if(getElapsedDays(stiDiag.getCreated_at())<=90){
                         STI  = 1;
                         break;
                     }
@@ -332,17 +323,8 @@ public class calculateSexProScore {
             }
 
             for(UserSTIDiag stiDiag: baselineSTI){
-                stiDiag.getCreated_at();
                 if(LynxManager.decryptString(stiDiag.getIs_baseline()).equals("Yes")){
-                    int id = stiDiag.getSti_id();
-
-                    try {
-                        startdate = inputDF1.parse(stiDiag.getCreated_at());
-                    } catch (ParseException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                    if(getMonthsDifference(startdate,enddate)<=3){
+                    if(getElapsedDays(stiDiag.getCreated_at())<=90){
                         STI  = 1;
                         break;
                     }
@@ -582,12 +564,58 @@ public class calculateSexProScore {
         }
     }
 
-    public static final int getMonthsDifference(Date date1, Date date2) {
+    /*public static final int getMonthsDifference(Date date1, Date date2) {
         int m1 = Calendar.getInstance().get(Calendar.YEAR) * 12 + Calendar.getInstance().get(Calendar.MONTH);
         int m2 = Calendar.getInstance().get(Calendar.YEAR) * 12 + Calendar.getInstance().get(Calendar.MONTH);
         return m2 - m1;
-    }
+    }*/
+    private int getMonthsDifference(Date startDate, Date endDate){
 
+        Calendar start = Calendar.getInstance();
+        start.setTime(startDate);
+
+        Calendar end = Calendar.getInstance();
+        end.setTime(endDate);
+
+        int monthsBetween = 0;
+        int dateDiff = end.get(Calendar.DAY_OF_MONTH)-start.get(Calendar.DAY_OF_MONTH);
+
+        if(dateDiff<0) {
+            int borrrow = end.getActualMaximum(Calendar.DAY_OF_MONTH);
+            dateDiff = (end.get(Calendar.DAY_OF_MONTH)+borrrow)-start.get(Calendar.DAY_OF_MONTH);
+            monthsBetween--;
+
+            if(dateDiff>0) {
+                monthsBetween++;
+            }
+        }
+        else {
+            monthsBetween++;
+        }
+        monthsBetween += end.get(Calendar.MONTH)-start.get(Calendar.MONTH);
+        monthsBetween  += (end.get(Calendar.YEAR)-start.get(Calendar.YEAR))*12;
+        return monthsBetween;
+    }
+    private int getElapsedDays(String dateString){
+        if(dateString!=null){
+            SimpleDateFormat inputDF  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Calendar calCurrentDate = Calendar.getInstance();
+            Calendar cal = Calendar.getInstance();
+            Date date = null;
+            try {
+                date = inputDF.parse(dateString);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            cal.setTime(date);
+            long milliSeconds2 = calCurrentDate.getTimeInMillis();
+            long milliSeconds1 = cal.getTimeInMillis();
+            long period = milliSeconds2 - milliSeconds1;
+            long days = period / (1000 * 60 * 60 * 24);
+            return (int) days;
+        }return 0;
+
+    }
     public boolean getPOP() {
         return POP > 0;
     }

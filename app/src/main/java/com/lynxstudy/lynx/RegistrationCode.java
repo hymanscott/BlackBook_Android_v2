@@ -122,10 +122,10 @@ public class RegistrationCode extends Activity {
                     if (is_error.equals("true")) {
                         Toast.makeText(RegistrationCode.this, message, Toast.LENGTH_SHORT).show();
                         LynxManager.regCode = "";
-                        LynxManager.isRegCodeValidated = false;
+                        /*LynxManager.isRegCodeValidated = false;*/
                     } else {
                         LynxManager.regCode = regCode;
-                        LynxManager.isRegCodeValidated = true;
+                        /*LynxManager.isRegCodeValidated = true;*/
                         startActivity(new Intent(RegistrationCode.this,RegLogin.class));
                         finish();
                     }

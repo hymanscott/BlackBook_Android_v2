@@ -82,10 +82,13 @@ public class RegistrationUserDetails extends Fragment {
                 }
             }
         });
+        EditText regVerficationCode = (EditText) view.findViewById(R.id.regVerficationCode);
+        regVerficationCode.setTypeface(tf);
         if(LynxManager.releaseMode==0){
             email.setText("test@lynx.com");
             pass.setText("qwerty");
             reppass.setText("qwerty");
+            regVerficationCode.setText("aIfGxhZ4826ZLmvK");
         }else{
             email.setText(LynxManager.decryptString(LynxManager.getActiveUser().getEmail()));
             pass.setText(LynxManager.decryptString(LynxManager.getActiveUser().getPassword()));
