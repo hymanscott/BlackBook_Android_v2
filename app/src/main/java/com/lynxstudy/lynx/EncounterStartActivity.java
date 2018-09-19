@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -141,7 +142,25 @@ public class EncounterStartActivity extends AppCompatActivity {
             ft.addToBackStack(null);
         ft.commit();
     }
-
+    public void popFragmentUntill(Fragment fra) {
+        // pop back stack all the way
+        final FragmentManager fm = getSupportFragmentManager();
+        int entryCount = fm.getBackStackEntryCount();
+        while (entryCount-- > 0) {
+            if (fra == getVisibleFragment())
+                break;
+            fm.popBackStackImmediate();
+        }
+    }
+    public Fragment getVisibleFragment() {
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        List<Fragment> fragments = fragmentManager.getFragments();
+        for (Fragment fragment : fragments) {
+            if (fragment != null && fragment.isVisible())
+                return fragment;
+        }
+        return null;
+    }
     // pop Fragment
     public void popFragment() {
         FragmentManager fm = getSupportFragmentManager();
@@ -177,6 +196,8 @@ public class EncounterStartActivity extends AppCompatActivity {
     public boolean onClickaddNewPartner(View view) {
         Intent addNewPartner = new Intent(this, EncounterNewPartner.class);
         startActivityForResult(addNewPartner, 11);
+        EncounterEnctimeFragment fragEncTime = new EncounterEnctimeFragment();
+        popFragmentUntill(fragEncTime);
         return true;
     }
 

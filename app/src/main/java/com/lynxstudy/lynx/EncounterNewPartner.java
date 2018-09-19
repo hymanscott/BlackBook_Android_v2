@@ -490,11 +490,6 @@ public class EncounterNewPartner extends AppCompatActivity {
             int partner_rating_ID = db.createPartnerRating(partnerRating);
             LynxManager.getActivePartnerRating().get(i++).setPartner_rating_id(partner_rating_ID);
         }
-
-        EncounterChoosePartnerFragment choosePartner = new EncounterChoosePartnerFragment();
-
-        popFragmentUntill(choosePartner);
-
         pushFragments("Encounter", fragnewpartnerLogged, true);
         LynxManager.isNewPartnerEncounter = true;
         return true;

@@ -1,9 +1,12 @@
 package com.lynxstudy.lynx;
 
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +40,24 @@ public class NewPartnerLoggedFragment extends Fragment {
         ((TextView)view.findViewById(R.id.thankyou)).setTypeface(tf_bold);
         ((TextView)view.findViewById(R.id.encloggedText)).setTypeface(tf);
         ((Button)view.findViewById(R.id.newPartnerLoggedNext)).setTypeface(tf_bold);
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener( new View.OnKeyListener()
+        {
+            @Override
+            public boolean onKey( View v, int keyCode, KeyEvent event )
+            {
+                if( keyCode == KeyEvent.KEYCODE_BACK )
+                {
+                    Log.v("Redirection", "Diary");
+                    Intent diary = new Intent(getActivity(),LynxDiary.class);
+                    getActivity().finish();
+                    return true;
+                }
+                return false;
+            }
+        } );
+
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
 		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
