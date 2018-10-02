@@ -258,7 +258,7 @@ public class LynxSexProBaselineFragment extends Fragment {
                 additionalTriggerMessage.addView(row_view);
                 trigger_messages_count++;
             }
-            if(pos_count!=0 && neg_count!=0) {
+            if(pos_count!=0 && unk_count!=0) {
                 if (getPPIAS()) {
                     View row_view = inflater.inflate(R.layout.second_trigger_message_row, null);
                     ((ImageView) row_view.findViewById(R.id.icon)).setImageDrawable(getResources().getDrawable(R.drawable.trigger_condom_top));
@@ -348,7 +348,7 @@ public class LynxSexProBaselineFragment extends Fragment {
                         ((TextView)message_row.findViewById(R.id.answer)).setTypeface(tf_italic);
                         additionalInfoMessage.addView(message_row);
                     }
-                    if(pos_count!=0 && neg_count!=0) {
+                    if(pos_count!=0 && unk_count!=0) {
                         if (getPPRAS() || getPPIAS()) {
                             View message_row = inflater.inflate(R.layout.second_info_message_row, null);
                             if (getPPRAS()) {
