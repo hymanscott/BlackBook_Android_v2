@@ -403,17 +403,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 db.createUserBadge(lynxBadge);
             }
         }
-        // Adding Fencer Badge //
-        if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("Fencer").getBadge_id())==0) {
-            if (db.getTestingHistoriesCountByTestingId(1) > 0 && isFullStdTestLogged()) {
-                BadgesMaster fencer_badge = db.getBadgesMasterByName("Fencer");
-                UserBadges fencerBadge = new UserBadges(fencer_badge.getBadge_id(), LynxManager.getActiveUser().getUser_id(), shown, fencer_badge.getBadge_notes(), String.valueOf(R.string.statusUpdateNo));
-                int userbadge = db.getUserBadgeByIdAndDate(LynxManager.getActiveUser().getUser_id(), fencer_badge.getBadge_id(), date1);
-                if (userbadge == 0) {
-                    db.createUserBadge(fencerBadge);
-                }
-            }
-        }
         // Adding User Badge : Dessert Badge //
         List<Encounter> allEncounters = db.getAllEncounters();
         if(!allEncounters.isEmpty() && db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("Desert").getBadge_id())==0){
@@ -505,27 +494,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             }
         }
         return false;
-    }
-    private boolean isFullStdTestLogged(){
-        int countGonorrhea = 0;
-        int countSyphilis = 0;
-        int countChlamydia = 0;
-        List<TestingHistoryInfo> gonorrheaInfos = db.getAllTestingHistoryInfoByStiID(1);
-        List<TestingHistoryInfo> syphilisInfos = db.getAllTestingHistoryInfoByStiID(2);
-        List<TestingHistoryInfo> chlamydiaInfos = db.getAllTestingHistoryInfoByStiID(3);
-        for(TestingHistoryInfo testingHistoryInfo:gonorrheaInfos){
-            if(!LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals(getResources().getString(R.string.testNotReported)))
-                countGonorrhea++;
-        }
-        for(TestingHistoryInfo testingHistoryInfo:syphilisInfos){
-            if(!LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals(getResources().getString(R.string.testNotReported)))
-                countSyphilis++;
-        }
-        for(TestingHistoryInfo testingHistoryInfo:chlamydiaInfos){
-            if(!LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals(getResources().getString(R.string.testNotReported)))
-                countChlamydia++;
-        }
-        return countGonorrhea > 0 && countSyphilis > 0 && countChlamydia > 0;
     }
     private int firstHIVElapsedDays(){
         List<TestingHistory> testingHistoryList = db.getAllTestingHistoriesByTestingID(1);

@@ -95,6 +95,7 @@ public class LynxManager {
     /*public static boolean isRegCodeValidated = false;*/
     public static String regCode = "";
     public static boolean isFromDeletePartner= false;
+    public static boolean isTestingTabActive = false;
     public static List<List<String>> showAppAlertList = new ArrayList<List<String>>();
 
     //static Context context;

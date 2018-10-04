@@ -4,6 +4,7 @@ package com.lynxstudy.lynx;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -186,6 +187,11 @@ public class LynxPrepFactsFragment extends Fragment {
             secondaryParentLayout.setVisibility(View.GONE);
             parentLayout.removeAllViews();
             final WebView prepInfoAnswer = new WebView(getActivity());
+            if (Build.VERSION.SDK_INT >= 19) {
+                prepInfoAnswer.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+            }else {
+                prepInfoAnswer.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+            }
             TrackHelper.track().event("PrEP Facts","View").name(prepInformation.getPrep_info_question()).with(tracker);
             prepInfoAnswer.loadDataWithBaseURL("",prepInformation.getPrep_info_answer() , "text/html", "utf-8", "");
             prepInfoAnswer.setPadding(20, 10, 20, 10);

@@ -641,7 +641,7 @@ public class calculateSexProScore {
     }
 
     public boolean getNASP(){
-        return NASP_UNKNOWN > 1 && NASP_NEG > 1 && NASP_POS > 1;
+        return (NASP_POS + NASP_NEG + NASP_UNKNOWN) > 1;
     }
 
     public int getNaspUnknown(){

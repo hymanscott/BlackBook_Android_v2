@@ -576,7 +576,7 @@ public class LynxSexProBaselineFragment extends Fragment {
     }
 
     private boolean getNASP() {
-        return unk_count > 1 && neg_count> 1 && pos_count> 1;
+        return (unk_count + neg_count + pos_count) > 1;
     }
 
     private int getElapsedDays(String dateString){

@@ -3966,6 +3966,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_TESTING_HISTORY_INFO, null, null);
         return true;
     }
+
+    /**
+     * getting TestingHistories count
+     */
+    public int getTestingHistoryInfosCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_TESTING_HISTORY_INFO;
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
     // ------------------------ " HOME TESTING REQUEST" table methods ----------------//
 
     /**

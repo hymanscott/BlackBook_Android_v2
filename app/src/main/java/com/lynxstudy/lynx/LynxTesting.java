@@ -297,14 +297,19 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
+                    LynxManager.isTestingTabActive = true;
                     return new TestingHomeFragment();
                 case 1:
+                    LynxManager.isTestingTabActive = true;
                     return new TestingTestKitFragment();
                 case 2:
+                    LynxManager.isTestingTabActive = false;
                     return new TestingLocationFragment();
                 case 3:
+                    LynxManager.isTestingTabActive = false;
                     return new TestingInstructionFragment();
                 case 4:
+                    LynxManager.isTestingTabActive = false;
                     return new TestingCareFragment();
                 default:
                     return null;
@@ -402,5 +407,11 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
             finish();
         }
         onPause_count++;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LynxManager.isTestingTabActive = false;
     }
 }

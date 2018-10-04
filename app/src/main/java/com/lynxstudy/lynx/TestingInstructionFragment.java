@@ -7,6 +7,7 @@ import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -264,13 +265,18 @@ public class TestingInstructionFragment extends Fragment {
             }
         } else {
             video_view.getSettings().setJavaScriptEnabled(true);
+            if (Build.VERSION.SDK_INT >= 19) {
+                video_view.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+            }else {
+                video_view.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+            }
             video_view.setWebChromeClient(new WebChromeClient() {
             });
             video_view.getSettings().setPluginState(WebSettings.PluginState.ON);
             final String mimeType = "text/html";
             final String encoding = "UTF-8";
             DisplayMetrics metrics = getResources().getDisplayMetrics();
-            int width = (int) ((metrics.widthPixels / metrics.density) - 45);
+            int width = (int) ((metrics.widthPixels / metrics.density) - 16);
             int height = width * 3 / 5;
             String link = "http://www.youtube.com/embed/";
             String ss = instruction.getVideo_link();
@@ -281,7 +287,7 @@ public class TestingInstructionFragment extends Fragment {
             parentLayout.setVisibility(View.VISIBLE);
             parentLayout.removeAllViews();
             parentLayout.addView(video_view, new TableLayout.LayoutParams(
-                    TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));
+                    TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT, 1f));
         }
     }
 }
