@@ -428,7 +428,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
 
         int elapsed_reg_days = getElapsedDays(LynxManager.getActiveUserBaselineInfo().getCreated_at());
         String message = "";
-        if(elapsed_reg_days>90 || firstHIVElapsedDays()>90){
+        if(elapsed_reg_days>=90 || firstHIVElapsedDays()>=90){
             if(!isPositiveHIVTestLogged()){
                 TestingReminder testingReminder = db.getTestingReminderByFlag(1);
                 message = LynxManager.decryptString(testingReminder.getReminder_notes());
@@ -436,7 +436,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     showAppAlert(message,1,"Reminder Three");
                 }
             }
-        }else if(elapsed_reg_days>30){
+        }else if(elapsed_reg_days>=30){
             if(db.getTestingHistoriesCountByTestingId(1)==0 && !isPositiveHIVTestLogged()){
                 message = "It’s been more than 1 month since you've started Lynx. You deserve to know your HIV status. Test time, baby!";
                 if(db.getAppAlertsCountByName("Thirty Days No HIV")==0){
@@ -449,7 +449,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     showAppAlert(message,1,"Thirty Days No STD");
                 }
             }
-        }else if(elapsed_reg_days>2){
+        }else if(elapsed_reg_days>=14){
             if(db.getTestingHistoriesCountByTestingId(1)==0 && !isPositiveHIVTestLogged()){
                 message = "You haven't entered an HIV test yet. Don't forget to do your first test!";
                 if(db.getAppAlertsCountByName("Two Days No HIV")==0){

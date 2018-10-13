@@ -112,60 +112,66 @@
                         android:textColor="@color/white"
                         android:textSize="14sp" />
                 </RadioGroup>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginBottom="24dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:background="@color/edittext_bg" />
-                <TextView
-                    android:id="@+id/drinksTitle"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginRight="55dp"
-                    android:text="About how many drinks did you have on a typical day?"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
-                <TextView
-                    android:id="@+id/drinksdefine"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginRight="32dp"
-                    android:layout_marginTop="8dp"
-                    android:lineSpacingMultiplier="1.58"
-                    android:text="One drink is defined as a 12-oz can of beer, a 4-oz glass of wine, a 1.5-oz shot of liquor, or a mixed drink made of 1.5-oz of liquor."
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginBottom="48dp"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:background="@drawable/border_full_white">
-
-                    <EditText
-                        android:id="@+id/no_of_drinks"
+                    android:id="@+id/drinksLayout"
+                    android:orientation="vertical">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="24dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:background="@color/edittext_bg" />
+                    <TextView
+                        android:id="@+id/drinksTitle"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="55dp"
+                        android:text="About how many drinks did you have on a typical day?"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/drinksdefine"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:background="@android:color/transparent"
-                        android:digits="0123456789"
-                        android:ems="4"
-                        android:hint="0"
-                        android:imeOptions="actionDone"
-                        android:inputType="number"
-                        android:maxLength="2"
-                        android:padding="8dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:layout_marginTop="8dp"
+                        android:lineSpacingMultiplier="1.58"
+                        android:text="One drink is defined as a 12-oz can of beer, a 4-oz glass of wine, a 1.5-oz shot of liquor, or a mixed drink made of 1.5-oz of liquor."
                         android:textColor="@color/white"
-                        android:textColorHint="@color/edittext_hint_color"
-                        android:textCursorDrawable="@drawable/white_cursor"
-                        android:textSize="@dimen/edittext_textsize" />
+                        android:textSize="14sp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginBottom="48dp"
+                        android:layout_marginTop="@dimen/activity_vertical_margin"
+                        android:background="@drawable/border_full_white">
+
+                        <EditText
+                            android:id="@+id/no_of_drinks"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:background="@android:color/transparent"
+                            android:digits="0123456789"
+                            android:ems="4"
+                            android:hint="0"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:padding="8dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/edittext_hint_color"
+                            android:textCursorDrawable="@drawable/white_cursor"
+                            android:textSize="@dimen/edittext_textsize" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
             </ScrollView>

@@ -149,15 +149,19 @@ public class EncounterFromNotification extends AppCompatActivity {
         EncounterWeeklyCheckinReport reportScreeen = new EncounterWeeklyCheckinReport();
         EditText alcCountPerDay = (EditText) findViewById(R.id.no_of_drinks);
         RadioGroup RG_Alcohol = (RadioGroup) findViewById(R.id.alcoholCalculation);
-        if(alcCountPerDay.getText().toString().isEmpty()){
+        if(RG_Alcohol.getCheckedRadioButtonId()==-1){
+            Toast.makeText(EncounterFromNotification.this,getResources().getString(R.string.how_often_did_you_drink),Toast.LENGTH_SHORT).show();
+        }else if(RG_Alcohol.getCheckedRadioButtonId()!= R.id.alcCal_never && alcCountPerDay.getText().toString().isEmpty()){
             Toast.makeText(EncounterFromNotification.this,"Enter how many drinks you had on a typical day",Toast.LENGTH_SHORT).show();
             alcCountPerDay.requestFocus();
-        }else if(RG_Alcohol.getCheckedRadioButtonId()==-1){
-            Toast.makeText(EncounterFromNotification.this,getResources().getString(R.string.how_often_did_you_drink),Toast.LENGTH_SHORT).show();
         }else{
+            String count = String.valueOf(0);
+            if(!alcCountPerDay.getText().toString().isEmpty()){
+                count = alcCountPerDay.getText().toString();
+            }
             RadioButton alcDaysCountPerWeek = (RadioButton) findViewById(RG_Alcohol.getCheckedRadioButtonId());
             UserAlcoholUse userAlcoholUse = new UserAlcoholUse(2, LynxManager.getActiveUser().getUser_id(),
-                    LynxManager.encryptString(alcDaysCountPerWeek.getText().toString()), LynxManager.encryptString(alcCountPerDay.getText().toString()), LynxManager.encryptString("No"),String.valueOf(R.string.statusUpdateNo),true);
+                    LynxManager.encryptString(alcDaysCountPerWeek.getText().toString()), LynxManager.encryptString(count), LynxManager.encryptString("No"),String.valueOf(R.string.statusUpdateNo),true);
             LynxManager.setActiveUserAlcoholUse(userAlcoholUse);
 
             pushFragments("EncounterFromNotification", reportScreeen, true);
