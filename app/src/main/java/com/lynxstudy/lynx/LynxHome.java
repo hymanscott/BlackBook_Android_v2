@@ -313,7 +313,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 case "TestingRemindersFromServer":
                     finish();
                     break;
-
             }
         }
         ScheduledExecutorService scheduleTaskExecutor = Executors.newScheduledThreadPool(5);
@@ -545,9 +544,15 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 }
             });
         }
-        alert11.show();
         AppAlerts appAlerts = new AppAlerts(name,LynxManager.getDateTime(),LynxManager.getDateTime());
         db.createAppAlert(appAlerts);
+        if(name.equals("Reminder Four") || name.equals("Reminder Three")){
+            LynxManager.goToIntent(LynxHome.this,"testing",LynxHome.this.getClass().getSimpleName());
+            overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
+            finish();
+        }else{
+            alert11.show();
+        }
     }
     private int getElapsedDays(String dateString){
         if(dateString!=null){
@@ -718,7 +723,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         int hour = 10;
         int min = 0;
         if(testingReminder != null) {
-            String time = LynxManager.decryptString(testingReminder.getNotification_time());
+            String time = LynxManager.convertUTCTimetoLocal(LynxManager.decryptString(testingReminder.getNotification_time()));
             notes = LynxManager.decryptString(testingReminder.getReminder_notes());
             if(time.length()!=8) {
                 String[] a = time.split(":");
@@ -741,7 +746,8 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             day = LynxManager.decryptString(testingReminder.getNotification_day());
 
         }
-        scheduleNotification(getWeeklyNotification(notes),day,hour,min,1); // 1-> Testing Reminder Notification ID
+        // Removed Testing Reminder as DPH Requested
+        //scheduleNotification(getWeeklyNotification(notes),day,hour,min,1); // 1-> Testing Reminder Notification ID
 
         TestingReminder druguseReminder = db.getTestingReminderByFlag(0);
         String notes1 = "You have a new message!";
@@ -749,7 +755,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         int drug_use_hour = 10;
         int drug_use_min = 0;
         if(druguseReminder != null) {
-            String drug_use_time = LynxManager.decryptString(druguseReminder.getNotification_time());
+            String drug_use_time = LynxManager.convertUTCTimetoLocal(LynxManager.decryptString(druguseReminder.getNotification_time()));
 
             /*
             * Date time values having empty space when updated by iOS app

@@ -121,7 +121,7 @@ public class RemindersDiary extends Fragment {
         if(testing_Reminder1 != null){
             day.setText(LynxManager.decryptString(testing_Reminder1.getNotification_day()));
             day.setTextColor(getResources().getColor(R.color.white));
-            time.setText(LynxManager.decryptString(testing_Reminder1.getNotification_time()));
+            time.setText(LynxManager.convertUTCTimetoLocal(LynxManager.decryptString(testing_Reminder1.getNotification_time())));
             time.setTextColor(getResources().getColor(R.color.white));
             notificationText.setText(LynxManager.decryptString(testing_Reminder1.getReminder_notes()));
         }

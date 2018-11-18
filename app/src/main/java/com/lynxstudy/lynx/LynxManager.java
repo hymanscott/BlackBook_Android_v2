@@ -392,6 +392,77 @@ public class LynxManager {
         Date date = new Date();
         return dateFormat.format(date);
     }
+    /*
+    * Converting Local Time as UTC Time
+    * Parameter : Time as String in " hh:mm a " format
+    */
+    public static String convertLocalTimetoUTC(String localtime){
+        String tempArrayToSplitAMPM[] = localtime.split(" ");
+        String timearray[] = tempArrayToSplitAMPM[0].split(":");
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR, Integer.parseInt(timearray[0]));
+        c.set(Calendar.MINUTE, Integer.parseInt(timearray[1]));
+        if(tempArrayToSplitAMPM[1].equals("AM")){
+            c.set(Calendar.AM_PM, 0);
+        }else{
+            c.set(Calendar.AM_PM, 1);
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+        return sdf.format(c.getTimeInMillis());
+    }
+    /*
+     * Converting UTC Time as Local Time
+     * Parameter : Time as String in " hh:mm a " format
+     */
+    public static String convertUTCTimetoLocal(String utctime){
+        String tempArrayToSplitAMPM[] = utctime.split(" ");
+        String timearray[] = tempArrayToSplitAMPM[0].split(":");
+        Calendar c = Calendar.getInstance();
+        TimeZone tz = c.getTimeZone();
+        c.setTimeZone(TimeZone.getTimeZone("UTC"));
+        c.set(Calendar.HOUR, Integer.parseInt(timearray[0]));
+        c.set(Calendar.MINUTE, Integer.parseInt(timearray[1]));
+        if(tempArrayToSplitAMPM[1].equals("AM")){
+            c.set(Calendar.AM_PM, 0);
+        }else{
+            c.set(Calendar.AM_PM, 1);
+        }
+        Log.v("timeInMills", String.valueOf(c.getTimeInMillis()));
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
+        String date = sdf.format(c.getTimeInMillis());
+        ///
+        tempArrayToSplitAMPM = date.split(" ");
+        timearray = tempArrayToSplitAMPM[0].split(":");
+        c = Calendar.getInstance();
+        c.set(Calendar.HOUR, Integer.parseInt(timearray[0]));
+        c.set(Calendar.MINUTE, Integer.parseInt(timearray[1]));
+        if(tempArrayToSplitAMPM[1].equals("AM")){
+            c.set(Calendar.AM_PM, 0);
+        }else{
+            c.set(Calendar.AM_PM, 1);
+        }
+        sdf.setTimeZone(tz);
+        date = sdf.format(c.getTimeInMillis());
+        Log.v("afterConversion", date);
+        return date;
+    }
+    /*public static String convertUTCTimetoLocal(String utctime){
+        SimpleDateFormat parseFormat = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat displayFormat = new SimpleDateFormat("hh:mm a");
+        Date date = null;
+        try {
+            date = displayFormat.parse(utctime);
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        String selected_time = parseFormat.format(date);
+        String timearray[] = selected_time.split(":");
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR, Integer.parseInt(timearray[0]));
+        c.set(Calendar.MINUTE, Integer.parseInt(timearray[1]));
+        return displayFormat.format(c.getTimeInMillis());
+    }*/
     /**
      * get datetime
      */

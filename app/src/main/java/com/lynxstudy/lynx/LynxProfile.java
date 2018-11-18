@@ -64,12 +64,15 @@ import com.lynxstudy.model.Users;
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class LynxProfile extends AppCompatActivity implements View.OnClickListener {
 
@@ -469,7 +472,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         if(testing_Reminder != null){
             day.setText(LynxManager.decryptString(testing_Reminder.getNotification_day()));
             day.setTextColor(getResources().getColor(R.color.profile_text_color));
-            time.setText(LynxManager.decryptString(testing_Reminder.getNotification_time()));
+            time.setText(LynxManager.convertUTCTimetoLocal(LynxManager.decryptString(testing_Reminder.getNotification_time())));
             time.setTextColor(getResources().getColor(R.color.profile_text_color));
             notificationText.setText(LynxManager.decryptString(testing_Reminder.getReminder_notes()));
         }
@@ -523,7 +526,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         if(testing_Reminder1 != null){
             testing_day.setText(LynxManager.decryptString(testing_Reminder1.getNotification_day()));
             testing_day.setTextColor(getResources().getColor(R.color.profile_text_color));
-            testing_time.setText(LynxManager.decryptString(testing_Reminder1.getNotification_time()));
+            testing_time.setText(LynxManager.convertUTCTimetoLocal(LynxManager.decryptString(testing_Reminder1.getNotification_time())));
             testing_time.setTextColor(getResources().getColor(R.color.profile_text_color));
             testing_notificationText.setText(LynxManager.decryptString(testing_Reminder1.getReminder_notes()));
         }
@@ -679,12 +682,12 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         TestingReminder testingReminder = db.getTestingReminderByFlag(1);
         if(diaryReminder!=null){
             dairyReminderDay.setText(LynxManager.decryptString(diaryReminder.getNotification_day()));
-            dairyReminderTime.setText(LynxManager.decryptString(diaryReminder.getNotification_time()));
+            dairyReminderTime.setText(LynxManager.convertUTCTimetoLocal(LynxManager.decryptString(diaryReminder.getNotification_time())));
             dairyReminderText.setText(LynxManager.decryptString(diaryReminder.getReminder_notes()));
         }
         if(testingReminder!=null){
             testingReminderDay.setText(LynxManager.decryptString(testingReminder.getNotification_day()));
-            testingReminderTime.setText(LynxManager.decryptString(testingReminder.getNotification_time()));
+            testingReminderTime.setText(LynxManager.convertUTCTimetoLocal(LynxManager.decryptString(testingReminder.getNotification_time())));
             testingReminderText.setText(LynxManager.decryptString(testingReminder.getReminder_notes()));
         }
     }
@@ -795,7 +798,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         signOut.setBackgroundDrawable(new ColorDrawable());
         signOut.showAtLocation(popupView, Gravity.CENTER,0,0);
     }
-    public boolean updateProfile(View view) {
+    public boolean updateProfile(View view) throws ParseException {
         db = new DatabaseHelper(getBaseContext());
 
         String first_name = LynxManager.decryptString(LynxManager.getActiveUser().getFirstname());
@@ -883,7 +886,8 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
 
             // Diary Reminder Save //
             String day_of_week = day.getText().toString();
-            String lynxRemainderTime = time.getText().toString();
+            String lynxRemainderTime = time.getText().toString(); // Selected Time in Local
+            lynxRemainderTime = LynxManager.convertLocalTimetoUTC(lynxRemainderTime); // UTC time for selected local time
             String reminderTest_notes = notificationText.getText().toString();
             TestingReminder testingReminder = new TestingReminder(LynxManager.getActiveUser().getUser_id(),0, LynxManager.encryptString(day_of_week),
                     LynxManager.encryptString(lynxRemainderTime), LynxManager.encryptString(reminderTest_notes), String.valueOf(R.string.statusUpdateNo), true);
@@ -897,7 +901,8 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
 
             // Testing Reminder Save //
             day_of_week = testing_day.getText().toString();
-            String lynxTestingTime = testing_time.getText().toString();
+            String lynxTestingTime = testing_time.getText().toString(); // Selected Time in Local
+            lynxTestingTime = LynxManager.convertLocalTimetoUTC(lynxTestingTime); // UTC time for selected local time
             String druguseHistory_notes =testing_notificationText.getText().toString();
             TestingReminder testingReminder1 = new TestingReminder(LynxManager.getActiveUser().getUser_id(),1, LynxManager.encryptString(day_of_week),
                     LynxManager.encryptString(lynxTestingTime), LynxManager.encryptString(druguseHistory_notes), String.valueOf(R.string.statusUpdateNo), true);
@@ -960,7 +965,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         int hour = 10;
         int min = 0;
         if(testingReminder != null) {
-            String time = LynxManager.decryptString(testingReminder.getNotification_time());
+            String time = LynxManager.convertUTCTimetoLocal(LynxManager.decryptString(testingReminder.getNotification_time()));
             notes = LynxManager.decryptString(testingReminder.getReminder_notes());
             if(time.length()!=8) {
                 String[] a = time.split(":");
@@ -983,7 +988,8 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
             day = LynxManager.decryptString(testingReminder.getNotification_day());
 
         }
-        scheduleNotification(getWeeklyNotification(notes),day,hour,min,1); // 1-> Testing Reminder Notification ID
+        // Removed Testing Reminder as DPH Requested
+        //scheduleNotification(getWeeklyNotification(notes),day,hour,min,1); // 1-> Testing Reminder Notification ID
 
         TestingReminder druguseReminder = db.getTestingReminderByFlag(0);
         String drug_use_day = "";
@@ -991,7 +997,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         int drug_use_min = 0;
         String notes1 = "You have a new message!";
         if(druguseReminder != null) {
-            String drug_use_time = LynxManager.decryptString(druguseReminder.getNotification_time());
+            String drug_use_time = LynxManager.convertUTCTimetoLocal(LynxManager.decryptString(druguseReminder.getNotification_time()));
             notes1 = LynxManager.decryptString(druguseReminder.getReminder_notes());
             if(drug_use_time.length()!=8) {
                 String[] a = drug_use_time.split(":");

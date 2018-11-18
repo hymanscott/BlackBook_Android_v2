@@ -120,8 +120,10 @@ public class RemindersActivity extends AppCompatActivity {
             if(reminderTest_notes.isEmpty()){
                 reminderTest_notes = "Set your own reminder text";
             }
+            String remainderTime = lynxRemainderTime.getText().toString(); // Selected Local Time
+            remainderTime = LynxManager.convertLocalTimetoUTC(remainderTime); // Convert to UTC
             TestingReminder testingReminder = new TestingReminder(LynxManager.getActiveUser().getUser_id(),1, LynxManager.encryptString(day_of_week),
-                    LynxManager.encryptString(lynxRemainderTime.getText().toString()), LynxManager.encryptString(reminderTest_notes), String.valueOf(R.string.statusUpdateNo), true);
+                    LynxManager.encryptString(remainderTime), LynxManager.encryptString(reminderTest_notes), String.valueOf(R.string.statusUpdateNo), true);
             TestingReminder testing_Reminder = db.getTestingReminderByFlag(1);
             if(testing_Reminder != null){
                 db.updateTestingReminderByFlagandID(testingReminder);
@@ -149,8 +151,10 @@ public class RemindersActivity extends AppCompatActivity {
             if (druguseHistory_notes.isEmpty()) {
                 druguseHistory_notes = "Set your own reminder text";
             }
+            String testingTime = lynxTestingTime.getText().toString(); // Selected Local Time
+            testingTime = LynxManager.convertLocalTimetoUTC(testingTime); // Convert to UTC
             TestingReminder testingReminder1 = new TestingReminder(LynxManager.getActiveUser().getUser_id(),0, LynxManager.encryptString(day_of_week),
-                    LynxManager.encryptString(lynxTestingTime.getText().toString()), LynxManager.encryptString(druguseHistory_notes), String.valueOf(R.string.statusUpdateNo), true);
+                    LynxManager.encryptString(testingTime), LynxManager.encryptString(druguseHistory_notes), String.valueOf(R.string.statusUpdateNo), true);
             TestingReminder testing_Reminder1 = db.getTestingReminderByFlag(0);
             if(testing_Reminder1 != null){
                 db.updateTestingReminderByFlagandID(testingReminder1);

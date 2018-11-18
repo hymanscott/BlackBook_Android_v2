@@ -5107,6 +5107,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // looping through all rows and adding to list
         if (c != null && c.getCount()>0) {
+            c.moveToFirst();
             AppAlerts appAlerts = new AppAlerts();
             appAlerts.setId(c.getInt(c.getColumnIndex(KEY_APP_ALERT_ID)));
             appAlerts.setName(c.getString(c.getColumnIndex(KEY_APP_ALERT_NAME)));
