@@ -6,10 +6,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -824,6 +826,12 @@ public class RegLogin extends AppCompatActivity {
         } else{
             LynxManager.getActiveUser().setRegistration_code(reg_code);
             LynxManager.regCode = reg_code;
+            // Saving in SharedPreferences to use in TestKit Request //
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("lynxregcode", LynxManager.regCode);
+            editor.apply();
+
             LynxManager.getActiveUser().setEmail(LynxManager.encryptString(e_mail));
             LynxManager.getActiveUser().setPassword(LynxManager.encryptString(password));
             RegistrationSecurityDetails fragRegistration = new RegistrationSecurityDetails();
@@ -1470,6 +1478,18 @@ public class RegLogin extends AppCompatActivity {
                             db.createPrepFollowupWithID(prepFollowup);
                         }
 
+                        // Registration Keys //
+                        // Saving Registration Key in sharedPreferences to use in TestKit Request //
+                        JSONArray regKeysInfo = parentObject.getJSONArray("RegistrationKey");
+
+                        for(int n = 0; n <regKeysInfo.length(); n++) {
+                            JSONObject regKeysObject = regKeysInfo.getJSONObject(n);
+                            LynxManager.regCode = regKeysObject.getString("registration_code");
+                        }
+                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(RegLogin.this);
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putString("lynxregcode", LynxManager.regCode);
+                        editor.apply();
                         if(testingRemindersInfo.length()==0){
                             Intent home = new Intent(RegLogin.this, RemindersActivity.class);
                             startActivity(home);

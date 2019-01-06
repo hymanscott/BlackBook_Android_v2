@@ -1,11 +1,13 @@
 package com.lynxstudy.lynx;
 
 
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
@@ -153,10 +155,17 @@ public class TestingTestKitFragment extends Fragment {
         int appID = LynxManager.getActiveUser().getUser_id();
         testkitWebview.loadUrl("about:blank");
         testkitWebview.clearView();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String regCode = sharedPref.getString("lynxregcode",null);
+        LynxManager.regCode = "";
+        if(regCode!=null){
+            LynxManager.regCode = regCode;
+            Log.v("RegistrationCodeUsed", regCode);
+        }
         if(isOrderTestkit){
-            testkitWebview.loadUrl("https://www.surveygizmo.com/s3/3731988/Care-Kit-Order-Form?study=Lynx&appID="+appID);
+            testkitWebview.loadUrl("https://www.surveygizmo.com/s3/3731988/Care-Kit-Order-Form?study=Lynx&appID="+appID+"&app_verify="+LynxManager.regCode);
         }else{
-            testkitWebview.loadUrl("https://www.surveygizmo.com/s3/4068281/iTech-Box-Code?study=LYNX&test=&appID="+appID);
+            testkitWebview.loadUrl("https://www.surveygizmo.com/s3/4068281/iTech-Box-Code?study=LYNX&test=&appID="+appID+"&app_verify="+LynxManager.regCode);
         }
         testkitWebview.setWebChromeClient(new WebChromeClient());
         testkitWebview.getSettings().setJavaScriptEnabled(true);

@@ -233,6 +233,11 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         // update fcm id //
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String tokenid = sharedPref.getString("lynxfirebasetokenid",null);
+        String regCode = sharedPref.getString("lynxregcode",null);
+        if(regCode!=null){
+            LynxManager.regCode = regCode;
+            Log.v("RegistrationCodeUsed", regCode);
+        }
         /* system Information */
         String device_info ="";
         if ( Build.VERSION.SDK_INT >= 23 &&

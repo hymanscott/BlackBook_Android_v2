@@ -19,10 +19,14 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Html;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -172,13 +176,33 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         internet_status = LynxManager.haveNetworkConnection(LynxChat.this);
         addChatData();
         if(!internet_status){
-            Toast.makeText(LynxChat.this, "Please check your internet connection!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(LynxChat.this, "Please check your internet connection!", Toast.LENGTH_SHORT).show();
+            showAppAlert();
         }else{
             new ChatListOnline(login_query_string).execute();
         }
+        // Textwatcher for EditText //
+       newMessage.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(!LynxManager.haveNetworkConnection(LynxChat.this)){
+                    showAppAlert();
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         // Sync Chat for every 5 Seconds //
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5);
-        scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
+       scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
                 if(internet_status){
@@ -188,7 +212,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         },0,5000, TimeUnit.MILLISECONDS);
         // Send New Message to Server //
         newMessageSend = (ImageView)findViewById(R.id.newMessageSend);
-        newMessageSend.setOnClickListener(new View.OnClickListener() {
+       newMessageSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!newMessage.getText().toString().isEmpty()){
@@ -209,7 +233,8 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                     String query_string = LynxManager.getQueryString(newMessageObj.toString());
                     boolean internet_status = LynxManager.haveNetworkConnection(LynxChat.this);
                     if(!internet_status){
-                        Toast.makeText(LynxChat.this, "Internet connection is not available", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(LynxChat.this, "Internet connection is not available", Toast.LENGTH_SHORT).show();
+                        showAppAlert();
                     }else{
                         ChatMessage newmessage = new ChatMessage();
                         newmessage.setMessage(LynxManager.encryptString(newMessage.getText().toString().trim()));
@@ -224,7 +249,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             }
         });
         // Piwik Analytics //
-        TrackHelper.track().screen("/Lynxchat").title("Lynxchat").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
+       TrackHelper.track().screen("/Lynxchat").title("Lynxchat").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
 
     private void addChatData(){
@@ -314,6 +339,46 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         }
 
     }
+
+    private void showAppAlert(){
+        String message = "No internet connection <br/><br/> Check your internet connection or try again later.";
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(LynxChat.this);
+        View appAlertLayout = getLayoutInflater().inflate(R.layout.app_alert_template,null);
+        builder1.setView(appAlertLayout);
+        TextView message_tv = (TextView)appAlertLayout.findViewById(R.id.message);
+        TextView maybeLater = (TextView)appAlertLayout.findViewById(R.id.maybeLater);
+        TextView prepInfo = (TextView)appAlertLayout.findViewById(R.id.prepInfo);
+        View verticalBorder = (View)appAlertLayout.findViewById(R.id.verticalBorder);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            message_tv.setText(Html.fromHtml(message, Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            message_tv.setText(Html.fromHtml(message));
+        }
+        message_tv.setGravity(Gravity.CENTER);
+        builder1.setCancelable(false);
+        final AlertDialog alert11 = builder1.create();
+        prepInfo.setVisibility(View.VISIBLE);
+        prepInfo.setText("Cancel");
+        maybeLater.setText("Retry");
+        verticalBorder.setVisibility(View.VISIBLE);
+        maybeLater.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(LynxManager.haveNetworkConnection(LynxChat.this)){
+                    alert11.cancel();
+                }
+            }
+        });
+        prepInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert11.cancel();
+            }
+        });
+        alert11.show();
+
+    }
+
     @Override
     public void onResume() {
         super.onResume();
