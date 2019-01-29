@@ -398,6 +398,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                                 teststatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
                             }
                             String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
+                            Log.v("historyInfoAttachment", historyInfoAttachment);
                             if (!historyInfoAttachment.equals("")) {
                                 String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
                                 File mediaFile = new File(imgDir + historyInfoAttachment);
@@ -1470,7 +1471,6 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                 imagename = url_string.substring(url_string.lastIndexOf("/") + 1);
                 // Output stream
                 OutputStream output = new FileOutputStream(root + "/" + imagename);
-
                 byte data[] = new byte[1024];
 
                 long total = 0;
@@ -1563,7 +1563,6 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
             if (testingHistoriesOnline != null) {
                 try {
                     JSONObject jsonObj = new JSONObject(testingHistoriesOnline);
-
                     // Getting JSON Array node
                     boolean is_error = jsonObj.getBoolean("is_error");
                     // Toast.makeText(getApplication().getBaseContext(), " "+jsonObj.getString("message"), Toast.LENGTH_SHORT).show();
@@ -1575,7 +1574,13 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             TestingHistory history = new TestingHistory(testingHistoryObject.getInt("testing_id"),
                                     LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(testingHistoryObject.getString("testing_date")),
                                     String.valueOf(R.string.statusUpdateYes), true);
-                            if(db.getTestingHistorybyID(testingHistoryObject.getInt("testing_history_id")) == null){
+                            // Allow 0 because Test added from portal will have id 0 //
+                            if(testingHistoryObject.getInt("testing_history_id") == 0){
+                                if(db.getTestingHistorybyID(testingHistoryObject.getInt("id")) == null){
+                                    history.setTesting_history_id(testingHistoryObject.getInt("id"));
+                                    db.createTestingHistoryWithID(history);
+                                }
+                            } else if(db.getTestingHistorybyID(testingHistoryObject.getInt("testing_history_id")) == null){
                                 history.setTesting_history_id(testingHistoryObject.getInt("testing_history_id"));
                                 db.createTestingHistoryWithID(history);
                             }
@@ -1588,7 +1593,12 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             TestingHistoryInfo history_info = new TestingHistoryInfo(testingHistoryInfoObject.getInt("testing_history_id"), LynxManager.getActiveUser().getUser_id(),
                                     testingHistoryInfoObject.getInt("sti_id"), LynxManager.encryptString(testingHistoryInfoObject.getString("test_status")),
                                     LynxManager.encryptString(testingHistoryInfoObject.getString("attachment")),String.valueOf(R.string.statusUpdateYes), true);
-                            if(db.getTestingHistoryInfoById(testingHistoryInfoObject.getInt("testing_history_info_id"))==null){
+                            if(testingHistoryInfoObject.getInt("testing_history_info_id") == 0){
+                                if(db.getTestingHistoryInfoById(testingHistoryInfoObject.getInt("id"))==null){
+                                    history_info.setTesting_history_info_id(testingHistoryInfoObject.getInt("id"));
+                                    db.createTestingHistoryInfoWithID(history_info);
+                                }
+                            } else if(db.getTestingHistoryInfoById(testingHistoryInfoObject.getInt("testing_history_info_id"))==null){
                                 history_info.setTesting_history_info_id(testingHistoryInfoObject.getInt("testing_history_info_id"));
                                 db.createTestingHistoryInfoWithID(history_info);
                             }
