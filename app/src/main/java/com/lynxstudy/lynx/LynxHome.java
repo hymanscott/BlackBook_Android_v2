@@ -265,16 +265,21 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             device_info = additional_info.toString();
         }
         if (tokenid != null) {
+            Log.v("FCMtoken",tokenid);
             CloudMessages cloudMessaging = new CloudMessages(LynxManager.getActiveUser().getUser_id(),
                     LynxManager.getActiveUser().getEmail(), LynxManager.encryptString(tokenid), LynxManager.encryptString("Android"),
                     LynxManager.encryptString(device_info), String.valueOf(R.string.statusUpdateNo), true);
             if (db.getCloudMessagingCount() < 1) {
                 db.createCloudMessaging(cloudMessaging);
             } else {
+                /*Send to server eventhough token is not changed*/
+                db.updateCloudMessaging(cloudMessaging);
+
+                /*
                 CloudMessages old_CM = db.getCloudMessaging();
                 if (!tokenid.equals(LynxManager.decryptString(old_CM.getToken_id()))){
                     db.updateCloudMessaging(cloudMessaging);
-                }
+                }*/
             }
         }
         if(LynxManager.notificationActions !=null ){
@@ -2041,7 +2046,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                     boolean is_error = jsonObj.getBoolean("is_error");
                     if (!is_error) {
                         db.updateCloudMessagingByStatus(LynxManager.getActiveUser().getUser_id(), String.valueOf(R.string.statusUpdateYes));
-
+                        Log.v("CloudMessaging","Updated to server");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
