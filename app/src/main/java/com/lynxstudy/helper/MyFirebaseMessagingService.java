@@ -1,8 +1,10 @@
 package com.lynxstudy.helper;
 
+import android.app.ActivityManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -26,6 +28,7 @@ import com.lynxstudy.model.ChatMessage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -69,18 +72,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String message="New message from Lynx!";
 
         // pushnotification_flag : 0=> Chat; 1=> Testing; //
+        // Data Handled in RegLogin.Java when app is in Background or Killed state//
         switch (pushnotification_flag){
             case 0:
                 /*intent = new Intent(this, LynxChat.class);*/
                 message = "You received a new chat message from Lynx!";
                 intent.putExtra("subaction","Chat");
-                /*ChatMessage newmessage = new ChatMessage();
-                newmessage.setMessage(LynxManager.encryptString(data.get("subtitle")));
-                newmessage.setSender_pic(LynxManager.encryptString(""));
-                newmessage.setSender(LynxManager.encryptString(data.get("title")));
-                newmessage.setDatetime(LynxManager.encryptString(data.get("date")));
-                newmessage.setStatusUpdate(LynxManager.encryptString(String.valueOf(R.string.statusUpdateYes)));
-                db.createChatMessage(newmessage);*/
                 break;
             case 1:
                 /*intent = new Intent(this, LynxTesting.class);*/
@@ -114,8 +111,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if(pushnotification_flag!=3){
-            if (notificationManager != null) {
-                notificationManager.notify(0, notificationBuilder.build());
+            ActivityManager am = (ActivityManager) this.getSystemService(ACTIVITY_SERVICE);
+            List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
+            if(pushnotification_flag == 0){
+                if(!taskInfo.get(0).topActivity.getClassName().equals("com.lynxstudy.lynx.LynxChat") && notificationManager != null){
+                    notificationManager.notify(0, notificationBuilder.build());
+                }
+            }else{
+                if (notificationManager != null) {
+                    notificationManager.notify(0, notificationBuilder.build());
+                }
             }
         }
     }

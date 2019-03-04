@@ -91,7 +91,7 @@ public class RegLogin extends AppCompatActivity {
         AppLockManager.getInstance().enableDefaultAppLockIfAvailable(this);
         if (this.getIntent().getExtras() !=null) {
             String action = getIntent().getExtras().getString("action");
-            if(action!=null)
+            if(action!=null){
                 switch (action) {
                     case "TestingAlreadyTested":
                         LynxManager.notificationActions = "TestingAlreadyTested";
@@ -109,8 +109,7 @@ public class RegLogin extends AppCompatActivity {
                         LynxManager.notificationActions = "NewSexReportNo";
                         break;
                     case "PushNotification":
-                        String subaction = getIntent().getExtras().getString("subaction");
-                        LynxManager.notificationActions = subaction;
+                        LynxManager.notificationActions = getIntent().getExtras().getString("subaction");
                         break;
                     case "TestingRemindersFromServer":
                         LynxManager.notificationActions = "TestingRemindersFromServer";
@@ -118,6 +117,29 @@ public class RegLogin extends AppCompatActivity {
                     default:
                         LynxManager.notificationActions = null;
                 }
+            }else{
+                /* Adding this else statment to check:
+                 redirection to Testing tab automatically */
+                LynxManager.notificationActions = null;
+            }
+
+            // When APP is in Background or Killed State access pushnotification data //
+            String  pushnotificationFlag = getIntent().getExtras().getString("pushnotification_flag");
+            if(pushnotificationFlag !=null){
+                switch (pushnotificationFlag){
+                    case "0":
+                        LynxManager.notificationActions = "Chat";
+                        break;
+                    case "1":
+                        LynxManager.notificationActions = "Testing";
+                        break;
+                    case "2":
+                        LynxManager.notificationActions = "TestingRemindersFromServer";
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         int user_count = db.getUsersCount();
