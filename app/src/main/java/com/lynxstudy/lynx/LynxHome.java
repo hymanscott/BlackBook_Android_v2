@@ -1068,15 +1068,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             String get_query_string = LynxManager.getQueryString(json_ratingFields);
             new userRatingFieldsOnline(get_query_string).execute();
         }
-        CloudMessages cm = db.getCloudMessaging();
-        if(cm.getStatus_update().equals(String.valueOf(R.string.statusUpdateNo))){
-            Gson gson_cm = new Gson();
-            cm.setStatus_encrypt(true);
-            cm.decryptCloudMessages();
-            String json_cm = gson_cm.toJson(cm);
-            String cmQueryString = LynxManager.getQueryString(json_cm);
-            new cloudMessagingOnline(cmQueryString).execute();
-        }
         //UserBadges
         List<UserBadges> nonUpdateduserBadgesList =  db.getAllUserBadgesByStatus(String.valueOf(R.string.statusUpdateNo));
         for(UserBadges userBadge : nonUpdateduserBadgesList){
@@ -1094,6 +1085,15 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             String json_prep_followup = gson_prep_followup.toJson(prepFollowup);
             String get_query_string = LynxManager.getQueryString(json_prep_followup);
             new prepFollowupsOnline(get_query_string).execute();
+        }
+        CloudMessages cm = db.getCloudMessaging();
+        if(cm.getStatus_update().equals(String.valueOf(R.string.statusUpdateNo))){
+            Gson gson_cm = new Gson();
+            cm.setStatus_encrypt(true);
+            cm.decryptCloudMessages();
+            String json_cm = gson_cm.toJson(cm);
+            String cmQueryString = LynxManager.getQueryString(json_cm);
+            new cloudMessagingOnline(cmQueryString).execute();
         }
     }
 

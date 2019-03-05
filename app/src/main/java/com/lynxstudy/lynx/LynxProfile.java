@@ -870,7 +870,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
             }
             User_baseline_info user_baseline_info = db.getUserBaselineInfobyUserID(LynxManager.getActiveUser().getUser_id());
             String cal_date = user_baseline_info.getSexpro_calculated_date();
-            db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), final_score,isPrep, cal_date, String.valueOf(R.string.statusUpdateNo));
+            //db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), final_score,isPrep, cal_date, String.valueOf(R.string.statusUpdateNo));
             // Create PREP FOLLOWUP //
             PrepFollowup prepFollowup = new PrepFollowup();
             prepFollowup.setUser_id(LynxManager.getActiveUser().getUser_id());

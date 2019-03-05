@@ -113,7 +113,7 @@ public class EncounterFromNotification extends AppCompatActivity {
             prep_days_val = prepDays.getText().toString();
             User_baseline_info user_baseline_info = db.getUserBaselineInfobyUserID(LynxManager.getActiveUser().getUser_id());
             String cal_date = user_baseline_info.getSexpro_calculated_date();
-            db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), final_score, is_prep.getText().toString(), cal_date, String.valueOf(R.string.statusUpdateNo));
+            //db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), final_score, is_prep.getText().toString(), cal_date, String.valueOf(R.string.statusUpdateNo));
             //Log.v("ScoreStat", final_score + "-" + is_prep.getText().toString() + "--" + cal_date);
             pushFragments("EncounterFromNotification", drugScreeen, true);
         }
