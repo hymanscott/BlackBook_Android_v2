@@ -80,6 +80,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
     int chat_bubble_width;
     private Tracker tracker;
     private boolean internet_status;
+    private boolean scrollToBottom = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -286,7 +287,9 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             v.requestFocus();
             chatTableLayout.addView(v);
         }
-        scrolltolastmessage();
+        if(scrollToBottom){
+            scrolltolastmessage();
+        }
     }
     public void scrolltolastmessage(){
         final int index = chatTableLayout.getChildCount() - 1;
@@ -513,6 +516,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                     boolean is_error = jsonObj.getBoolean("is_error");
                     if (!is_error) {
                         JSONArray chatArray = jsonObj.getJSONArray("ticketChat");
+                        scrollToBottom = false; // Disabling scroll and enabling only new message received
                         for(int i=0;i<chatArray.length();i++){
                             JSONObject childObj = chatArray.getJSONObject(i).getJSONObject("TicketChat");
                             if(db.getChatMessagesCountByID(childObj.getInt("id"))==0){
@@ -524,6 +528,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
                                 newmessage.setDatetime(LynxManager.encryptString(childObj.getString("created_at")));
                                 newmessage.setStatusUpdate(LynxManager.encryptString(String.valueOf(R.string.statusUpdateYes)));
                                 db.createChatMessageWithID(newmessage);
+                                scrollToBottom = true;
                                 TrackHelper.track().event("Chat","Activity").name("New Message Received").with(tracker);
                             }
                         }
