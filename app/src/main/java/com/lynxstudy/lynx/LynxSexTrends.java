@@ -26,6 +26,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -348,19 +349,26 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         /*Second Section*/
         ArrayList<String> progress_values = new ArrayList<String>();
         ArrayList<String> description_values = new ArrayList<String>();
-        TestingHistory hiv_testingHistory = db.getLastTestingHistoryByID(1);
-        TestingHistory std_testingHistory = db.getLastTestingHistoryByID(2);
         int hiv_elapsed_days=0,std_elapsed_days =0;
-        if(hiv_testingHistory!=null){
-            hiv_elapsed_days = getElapsedDays(LynxManager.decryptString(hiv_testingHistory.getTesting_date()));
-            progress_values.add(String.valueOf(hiv_elapsed_days));
-            description_values.add("# days since last HIV test");
+        List<TestingHistory> histories = db.getAllTestingHistories();
+        Collections.sort(histories, new TestingHistory.CompDate(false));
+
+        for (TestingHistory history:histories) {
+            if (history.getTesting_id() == 1){
+                hiv_elapsed_days = getElapsedDays(LynxManager.decryptString(history.getTesting_date()));
+            }
         }
-        if(std_testingHistory!=null){
-            std_elapsed_days = getElapsedDays(LynxManager.decryptString(std_testingHistory.getTesting_date()));
-            progress_values.add(String.valueOf(std_elapsed_days));
-            description_values.add("# days since last STD test");
+        progress_values.add(String.valueOf(hiv_elapsed_days));
+        description_values.add("# days since last HIV test");
+
+        for (TestingHistory history:histories) {
+            if (history.getTesting_id() == 2){
+                std_elapsed_days = getElapsedDays(LynxManager.decryptString(history.getTesting_date()));
+            }
         }
+        progress_values.add(String.valueOf(std_elapsed_days));
+        description_values.add("# days since last STD test");
+
         /*int topPeopleCount = 0;
         int bottomPeopleCount = 0;
         for (Partners partner:db.getAllPartners()){
@@ -381,6 +389,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
                 bottomPeopleCount++;
             }
         }*/
+        
         int topTimesCount = db.getAllEncounterSexTypeCountByName("I topped");
         int bottomTimesCount = db.getAllEncounterSexTypeCountByName("I bottomed");
         progress_values.add(String.valueOf(topTimesCount));

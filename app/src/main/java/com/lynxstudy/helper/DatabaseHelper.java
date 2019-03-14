@@ -56,7 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 13;
 
     // Database Name
     private static final String DATABASE_NAME = "phasttDB";
@@ -573,7 +573,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // on upgrade drop older tables
+        /*// on upgrade drop older tables
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_BASE_INFO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DRUG_MASTER);
@@ -605,8 +605,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PREP_FUP);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TL_SYNC);
         // create new tables
-        onCreate(db);
-        //Log.v("Database upgrade","Executed");
+        onCreate(db);*/
+
+       /* version 12 to 13 upgrade
+        * Truncate the Testing Histories & Info Table
+        * */
+        db.execSQL("DELETE FROM " + TABLE_TESTING_HISTORY);
+        db.execSQL("DELETE FROM " + TABLE_TESTING_HISTORY_INFO);
     }
 
     public void alterTable() {

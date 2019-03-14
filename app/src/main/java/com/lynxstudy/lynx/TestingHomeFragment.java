@@ -398,8 +398,8 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                                 teststatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
                             }
                             String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
-                            Log.v("historyInfoAttachment", historyInfoAttachment);
-                            if (!historyInfoAttachment.equals("")) {
+                            //Log.v("historyInfoAttachment", historyInfoAttachment);
+                            if (!historyInfoAttachment.equals("") && !historyInfoAttachment.equals("false")) {
                                 String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
                                 File mediaFile = new File(imgDir + historyInfoAttachment);
                                 if (mediaFile.exists()) {
@@ -413,7 +413,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                                     //  ***********set url from server*********** //
                                     testimage.setImageResource(R.drawable.photocamera);
                                     new DownloadImagesTask(LynxManager.getTestImageBaseUrl() + historyInfoAttachment).execute(testimage);
-                                    new DownloadFileFromURL(testimage).execute(LynxManager.getTestImageBaseUrl() + historyInfoAttachment);
+                                    //new DownloadFileFromURL(testimage).execute(LynxManager.getTestImageBaseUrl() + historyInfoAttachment);
                                 }
 
                             }
@@ -1549,6 +1549,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                 e.printStackTrace();
             }
             testingHistoriesOnline = jsonChatListStr;
+            Log.v("Response", testingHistoriesOnline);
             return null;
         }
 
