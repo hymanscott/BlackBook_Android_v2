@@ -389,7 +389,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
                 bottomPeopleCount++;
             }
         }*/
-        
+
         int topTimesCount = db.getAllEncounterSexTypeCountByName("I topped");
         int bottomTimesCount = db.getAllEncounterSexTypeCountByName("I bottomed");
         progress_values.add(String.valueOf(topTimesCount));

@@ -259,6 +259,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 additional_info.put("imsi",m_telephonyManager.getSubscriberId());
                 additional_info.put("device_sft_version",m_telephonyManager.getDeviceSoftwareVersion());
                 additional_info.put("phone_type",String.valueOf(m_telephonyManager.getPhoneType()));
+                additional_info.put("lynx_app_version",getVersion());
             }catch (JSONException e){
                 e.printStackTrace();
             }
@@ -484,6 +485,18 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 db.updateAppAlertModifiedDate(appAlerts.getId());
             }
         }
+    }
+    public String getVersion() {
+        String versionName = "Version not found";
+
+        try {
+            versionName = this.getPackageManager().getPackageInfo(this.getPackageName(), 0).versionName;
+            Log.i("Version", "Version Name: " + versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            // TODO Auto-generated catch block
+            Log.e("Version", "Exception Version Name: " + e.getLocalizedMessage());
+        }
+        return versionName;
     }
     private boolean isPositiveHIVTestLogged(){
         /*

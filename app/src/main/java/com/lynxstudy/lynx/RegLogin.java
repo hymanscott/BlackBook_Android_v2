@@ -1389,12 +1389,12 @@ public class RegLogin extends AppCompatActivity {
                         JSONArray testingRemindersInfo = parentObject.getJSONArray("TestingReminder");
                         for(int n = 0; n <testingRemindersInfo.length(); n++) {
                             JSONObject testingRemindersObject = testingRemindersInfo.getJSONObject(n);
-                            TestingReminder testingReminder = new TestingReminder(LynxManager.getActiveUser().getUser_id(),
+                            TestingReminder testingReminder = new TestingReminder(testingRemindersObject.getInt("testing_reminder_id"),LynxManager.getActiveUser().getUser_id(),
                                     testingRemindersObject.getInt("reminder_flag"), LynxManager.encryptString(testingRemindersObject.getString("notification_day")),
                                     LynxManager.encryptString(testingRemindersObject.getString("notification_time")),
                                     LynxManager.encryptString(testingRemindersObject.getString("reminder_notes")),
                                     String.valueOf(R.string.statusUpdateYes),true);
-                            db.createTestingReminder(testingReminder);
+                            db.createTestingReminderWithID(testingReminder);
                         }
 
                         //UserRatingField

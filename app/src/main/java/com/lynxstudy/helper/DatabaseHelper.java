@@ -3463,6 +3463,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // insert row
         return (int) db.insert(TABLE_TESTING_REMINDER, null, values);
     }
+    public int createTestingReminderWithID(TestingReminder testingReminder) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TESTING_REMINDER_ID, testingReminder.getTesting_reminder_id());
+        values.put(KEY_TESTING_REMINDER_USERID, testingReminder.getUser_id());
+        values.put(KEY_TESTING_REMINDER_FLAG, testingReminder.getReminder_flag());
+        values.put(KEY_TESTING_REMINDER_NOTES, testingReminder.getReminder_notes());
+        values.put(KEY_TESTING_REMINDER_DAY, testingReminder.getNotification_day());
+        values.put(KEY_TESTING_REMINDER_TIME, testingReminder.getNotification_time());
+        values.put(KEY_STATUS_UPDATE, testingReminder.getStatus_update());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        return (int) db.insert(TABLE_TESTING_REMINDER, null, values);
+    }
 
     /**
      * getting Testing Reminder by REMINDER_FLAG
