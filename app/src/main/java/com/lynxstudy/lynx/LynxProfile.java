@@ -973,6 +973,8 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
                 a[1] = a[1].replace("PM","");
                 a[1] = a[1].replace("AM","");
                 a[1] = a[1].replace(" ","");
+                a[1] = a[1].replace("a.m.","");
+                a[1] = a[1].replace("p.m.","");
                 min = Integer.parseInt(a[1]);
             }else{
                 String[] a = time.split(" ");
@@ -1002,6 +1004,11 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
             if(drug_use_time.length()!=8) {
                 String[] a = drug_use_time.split(":");
                 drug_use_hour = Integer.parseInt(a[0]);
+                a[1] = a[1].replace("PM","");
+                a[1] = a[1].replace("AM","");
+                a[1] = a[1].replace(" ","");
+                a[1] = a[1].replace("a.m.","");
+                a[1] = a[1].replace("p.m.","");
                 drug_use_min = Integer.parseInt(a[1]);
             }else{
                 String[] a = drug_use_time.split(" ");
