@@ -627,11 +627,17 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
                 if (hour < 12 ) {
                     if (hour == 0) hour = 12;
                     am_pm = "AM";
+                    if(Locale.getDefault().getCountry().equals("IE") || Locale.getDefault().getCountry().equals("GB")){
+                        am_pm = "a.m.";
+                    }
                 }
                 else {
                     if (hour != 12)
                         hour-=12;
                     am_pm = "PM";
+                    if(Locale.getDefault().getCountry().equals("IE") || Locale.getDefault().getCountry().equals("GB")){
+                        am_pm = "p.m.";
+                    }
                 }
                 String h = hour+"", m = min+"";
                 if(h.length() == 1) h = "0"+h;
@@ -643,6 +649,11 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
                 //timepicker.setText( selectedHour + ":" + selectedMinute);
             }
         }, hour, minute, false);//Yes 24 hour time
+        /*Log.v("DisplayLanguage", Locale.getDefault().getDisplayLanguage());
+        Log.v("Language", Locale.getDefault().getLanguage());
+        Log.v("country", Locale.getDefault().getCountry());
+        Log.v("Displaycountry", Locale.getDefault().getDisplayCountry());
+        Log.v("ToLanguageTag", Locale.getDefault().toLanguageTag());*/
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
         bot_nav = (LinearLayout)findViewById(R.id.bot_nav);

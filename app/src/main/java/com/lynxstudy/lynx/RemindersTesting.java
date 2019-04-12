@@ -26,6 +26,7 @@ import org.piwik.sdk.extra.TrackHelper;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -147,11 +148,17 @@ public class RemindersTesting extends Fragment {
                 if (hour < 12 ) {
                     if (hour == 0) hour = 12;
                     am_pm = "AM";
+                    if(Locale.getDefault().getCountry().equals("IE") || Locale.getDefault().getCountry().equals("GB")){
+                        am_pm = "a.m.";
+                    }
                 }
                 else {
                     if (hour != 12)
                         hour-=12;
                     am_pm = "PM";
+                    if(Locale.getDefault().getCountry().equals("IE") || Locale.getDefault().getCountry().equals("GB")){
+                        am_pm = "p.m.";
+                    }
                 }
                 String h = hour+"", m = min+"";
                 if(h.length() == 1) h = "0"+h;
