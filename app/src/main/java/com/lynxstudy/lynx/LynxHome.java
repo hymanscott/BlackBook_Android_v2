@@ -793,6 +793,11 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             if(drug_use_time.length()!=8) {
                 String[] a = drug_use_time.split(":");
                 drug_use_hour = Integer.parseInt(a[0]);
+                if(a[1].equals("AM") || a[1].equals("a.m.")){
+                    drug_use_hour = Integer.parseInt(a[0])==12?0:Integer.parseInt(a[0]);
+                }else{
+                    drug_use_hour = Integer.parseInt(a[0])==12?12:Integer.parseInt(a[0])+12;
+                }
                 a[1] = a[1].replace("PM","");
                 a[1] = a[1].replace("AM","");
                 a[1] = a[1].replace(" ","");
