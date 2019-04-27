@@ -99,10 +99,10 @@ public class LynxManager {
     public static List<List<String>> showAppAlertList = new ArrayList<List<String>>();
 
     //static Context context;
-    /*private static String baseURL  =   "https://dev.chipware.in/hari/LynxPortal/";
-    private static String testImageBaseUrl = "https://dev.chipware.in/hari/LynxPortal/testimages/";*/
-    private static String baseURL  =   "https://lynxstudy.com/";
-    private static String testImageBaseUrl = "https://lynxstudy.com/testimages/";
+    private static String baseURL  =   "https://dev.chipware.in/hari/LynxPortal/";
+    private static String testImageBaseUrl = "https://dev.chipware.in/hari/LynxPortal/testimages/";
+    /*private static String baseURL  =   "https://lynxstudy.com/";
+    private static String testImageBaseUrl = "https://lynxstudy.com/testimages/";*/
     public static int releaseMode = 2; //0 - Development, 1 - Internal Release , 2 - Client Release
     private LynxManager() {
     }
@@ -398,13 +398,18 @@ public class LynxManager {
         String tempArrayToSplitAMPM[] = localtime.split(" ");
         String timearray[] = tempArrayToSplitAMPM[0].split(":");
         Calendar c = Calendar.getInstance();
+        //c.set(Calendar.HOUR, Integer.parseInt(timearray[0]));
+        //c.set(Calendar.MINUTE, Integer.parseInt(timearray[1]));
+        c.setTimeZone(TimeZone.getDefault());
+        if(tempArrayToSplitAMPM[1].equals("AM")){
+           // c.set(Calendar.AM_PM, 0);
+            c.set(Calendar.AM_PM, Calendar.AM);
+        }else{
+           // c.set(Calendar.AM_PM, 1);
+            c.set(Calendar.AM_PM, Calendar.PM);
+        }
         c.set(Calendar.HOUR, Integer.parseInt(timearray[0]));
         c.set(Calendar.MINUTE, Integer.parseInt(timearray[1]));
-        if(tempArrayToSplitAMPM[1].equals("AM")){
-            c.set(Calendar.AM_PM, 0);
-        }else{
-            c.set(Calendar.AM_PM, 1);
-        }
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
         sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
         return sdf.format(c.getTimeInMillis());
@@ -419,27 +424,30 @@ public class LynxManager {
         Calendar c = Calendar.getInstance();
         TimeZone tz = c.getTimeZone();
         c.setTimeZone(TimeZone.getTimeZone("UTC"));
-        c.set(Calendar.HOUR, Integer.parseInt(timearray[0]));
-        c.set(Calendar.MINUTE, Integer.parseInt(timearray[1]));
+        //c.set(Calendar.HOUR, Integer.parseInt(timearray[0]));
+        //c.set(Calendar.MINUTE, Integer.parseInt(timearray[1]));
         if(tempArrayToSplitAMPM[1].equals("AM")){
             c.set(Calendar.AM_PM, 0);
         }else{
             c.set(Calendar.AM_PM, 1);
         }
-        Log.v("timeInMills", String.valueOf(c.getTimeInMillis()));
+        c.set(Calendar.HOUR, Integer.parseInt(timearray[0]));
+        c.set(Calendar.MINUTE, Integer.parseInt(timearray[1]));
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
         String date = sdf.format(c.getTimeInMillis());
         ///
         tempArrayToSplitAMPM = date.split(" ");
         timearray = tempArrayToSplitAMPM[0].split(":");
         c = Calendar.getInstance();
-        c.set(Calendar.HOUR, Integer.parseInt(timearray[0]));
-        c.set(Calendar.MINUTE, Integer.parseInt(timearray[1]));
+        //c.set(Calendar.HOUR, Integer.parseInt(timearray[0]));
+        //c.set(Calendar.MINUTE, Integer.parseInt(timearray[1]));
         if(tempArrayToSplitAMPM[1].equals("AM")){
             c.set(Calendar.AM_PM, 0);
         }else{
             c.set(Calendar.AM_PM, 1);
         }
+        c.set(Calendar.HOUR, Integer.parseInt(timearray[0]));
+        c.set(Calendar.MINUTE, Integer.parseInt(timearray[1]));
         sdf.setTimeZone(tz);
         date = sdf.format(c.getTimeInMillis());
         Log.v("afterConversion", date);

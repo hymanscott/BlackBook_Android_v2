@@ -23,12 +23,12 @@ public class lynxApplication extends MultiDexApplication {
 
     public synchronized Tracker getTracker(){
         if(tracker==null){
-            if(LynxManager.releaseMode ==2){
+            /*if(LynxManager.releaseMode ==2){
                 tracker = Piwik.getInstance(this).newTracker(new TrackerConfig("https://analytics.lynxstudy.com/piwik.php", 2,"LYNX"));
             }else{
                 tracker = Piwik.getInstance(this).newTracker(new TrackerConfig("https://analytics.chipware.in/piwik.php", 2,"LYNX"));
-            }
-            //tracker = Piwik.getInstance(this).newTracker(new TrackerConfig("https://analytics.chipware.in/piwik.php", 2,"LYNX"));
+            }*/
+            tracker = Piwik.getInstance(this).newTracker(new TrackerConfig("https://analytics.chipware.in/piwik.php", 2,"LYNX"));
         }
         return tracker;
     }

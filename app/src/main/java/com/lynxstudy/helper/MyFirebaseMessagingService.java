@@ -103,6 +103,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentIntent(pendingIntent)
                 .setContentInfo("LYNX")
                 .setLargeIcon(icon)
+                .setWhen(System.currentTimeMillis())
                 .setColor(getResources().getColor(R.color.faq_blue))
                 .setSmallIcon(R.drawable.ic_silhouette);
 
