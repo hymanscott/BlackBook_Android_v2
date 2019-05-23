@@ -228,7 +228,8 @@ public class EncounterNewPartner extends AppCompatActivity {
             Toast.makeText(EncounterNewPartner.this,getResources().getString(R.string.select_partner_type),Toast.LENGTH_SHORT).show();
         }else if(RG_PartnerType.getCheckedRadioButtonId()==R.id.newPartnerPrimary && RG_OtherPartner.getCheckedRadioButtonId()==-1){
             Toast.makeText(EncounterNewPartner.this,getResources().getString(R.string.answer_all_questions),Toast.LENGTH_SHORT).show();
-        }else if(RG_OtherPartner.getCheckedRadioButtonId()==R.id.radio_partner_no && RG_Relationship.getCheckedRadioButtonId() ==-1){
+        //}else if(RG_OtherPartner.getCheckedRadioButtonId()==R.id.radio_partner_no && RG_Relationship.getCheckedRadioButtonId() ==-1){
+        }else if(RG_PartnerType.getCheckedRadioButtonId()==R.id.newPartnerPrimary && RG_OtherPartner.getCheckedRadioButtonId()==R.id.radio_partner_no && RG_Relationship.getCheckedRadioButtonId() ==-1){
             Toast.makeText(EncounterNewPartner.this,getResources().getString(R.string.answer_all_questions),Toast.LENGTH_SHORT).show();
         }else{
             RadioButton radioRelationshipPeriod = (RadioButton) findViewById(RG_Relationship.getCheckedRadioButtonId());

@@ -82,8 +82,8 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.TimeZone;
+import java.util.Locale;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -817,9 +817,9 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             //Log.v("NotifDrugTime", String.valueOf(drug_use_hour)+"----------"+ drug_use_min);
             drug_use_day = LynxManager.decryptString(druguseReminder.getNotification_day());
         }
-        scheduleNotification(getSexandEncounterNotification(notes1), drug_use_day, drug_use_hour, drug_use_min, 0);// 0 -> DrugUse Reminder Notification ID
+        scheduleNotification(getSexandEncounterNotification(notes1,drug_use_hour,drug_use_min), drug_use_day, drug_use_hour, drug_use_min, 0);// 0 -> DrugUse Reminder Notification ID
     }
-    private Notification getWeeklyNotification(String content) {
+    private Notification getWeeklyNotification(String content ,int drug_use_hour,int drug_use_min) {
 
         Intent intent2 = new Intent(this, RegLogin.class);
         intent2.putExtra("action", "TestingSure");
@@ -828,12 +828,19 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
 
         Notification.Builder builder = new Notification.Builder(this);
         Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        Calendar c = Calendar.getInstance();
+        c.setTimeZone(TimeZone.getDefault());
+        c.set(Calendar.HOUR_OF_DAY,drug_use_hour);
+        c.set(Calendar.MINUTE,drug_use_min);
+
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             builder.setContentTitle("LYNX");
             builder.setContentText(content);
             builder.setAutoCancel(false);
             builder.setSmallIcon(R.mipmap.ic_launcher_round);
             builder.setSound(soundUri);
+            builder.setWhen(c.getTimeInMillis());
             builder.setContentIntent(sure);
 
         } else {
@@ -843,13 +850,14 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             builder.setAutoCancel(false);
             builder.setContentIntent(sure);
             builder.setSmallIcon(R.drawable.ic_silhouette);
+            builder.setWhen(c.getTimeInMillis());
             builder.setColor(getResources().getColor(R.color.profile_title_text_color));
             builder.setSound(soundUri);
         }
         //Toast.makeText(this,"Notification scheduled",Toast.LENGTH_LONG).show();
         return builder.build();
     }
-    private Notification getSexandEncounterNotification(String content) {
+    private Notification getSexandEncounterNotification(String content,int drug_use_hour,int drug_use_min) {
         Intent intentyes = new Intent(this, RegLogin.class);
         intentyes.putExtra("action", "NewSexReportYes");
         intentyes.setAction("drugusereminder");
@@ -858,12 +866,17 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         Notification.Builder builder_Encounter = new Notification.Builder(this);
         Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
+        Calendar c = Calendar.getInstance();
+        c.setTimeZone(TimeZone.getDefault());
+        c.set(Calendar.HOUR_OF_DAY,drug_use_hour);
+        c.set(Calendar.MINUTE,drug_use_min);
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             builder_Encounter.setContentTitle("LYNX");
             builder_Encounter.setContentText(content);
             builder_Encounter.setAutoCancel(true);
             builder_Encounter.setSmallIcon(R.mipmap.ic_launcher_round);
             builder_Encounter.setSound(soundUri);
+            builder_Encounter.setWhen(c.getTimeInMillis());
             builder_Encounter.setContentIntent(yes);
         }else{
             builder_Encounter.setContentTitle("LYNX");
@@ -872,6 +885,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             builder_Encounter.setSmallIcon(R.drawable.ic_silhouette);
             builder_Encounter.setColor(getResources().getColor(R.color.profile_title_text_color));
             builder_Encounter.setSound(soundUri);
+            builder_Encounter.setWhen(c.getTimeInMillis());
             builder_Encounter.setContentIntent(yes);
         }
         return builder_Encounter.build();
