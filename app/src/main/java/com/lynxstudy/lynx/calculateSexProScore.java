@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.EncounterSexType;
 import com.lynxstudy.model.Partners;
 import com.lynxstudy.model.UserAlcoholUse;
 import com.lynxstudy.model.UserDrugUse;
@@ -223,7 +224,8 @@ public class calculateSexProScore {
         int hiv_unknownPeople =0;
 
         if(elapsedDays >=90){
-            for(Partners partner : db.getAllPartners()){
+            /*for(Partners partner : db.getAllPartners()){*/
+            for(Partners partner : db.getLast90DaysPartners()){
                 String partner_hiv_status = LynxManager.decryptString(partner.getHiv_status());
                 if(partner_hiv_status.equals("HIV Negative") || partner_hiv_status.equals("HIV negative")|| partner_hiv_status.equals("HIV Negative & on PrEP") || partner_hiv_status.equals("HIV negative & on PrEP")){
                     hiv_negativePeople += 1 ;
@@ -239,22 +241,26 @@ public class calculateSexProScore {
             NASP_POS = hiv_positivePeople;
             NASP_UNKNOWN = hiv_unknownPeople;
 
-            for(UserDrugUse drugUse: baselineDrugUse){
+            //for(UserDrugUse drugUse: baselineDrugUse){
+            for(UserDrugUse drugUse: db.getLast90daysDrugUsages()){
                 int id = drugUse.getDrug_id();
                 if(LynxManager.decryptString(drugUse.getIs_baseline()).equals("No")){
-                    if(db.getDrugNamebyID(id).equals("Poppers")){
-                        POP = 1;
-                    }
-                    else if(db.getDrugNamebyID(id).equals("Cocaine")){
-                        COKE    =   1;
-                    }
-                    else if(db.getDrugNamebyID(id).equals("Meth / Speed")){
-                        METH    =   1;
+                    switch (db.getDrugNamebyID(id)) {
+                        case "Poppers":
+                            POP = 1;
+                            break;
+                        case "Cocaine":
+                            COKE = 1;
+                            break;
+                        case "Meth / Speed":
+                            METH = 1;
+                            break;
                     }
                 }
             }
 
-            for(UserSTIDiag stiDiag: baselineSTI){
+            //for(UserSTIDiag stiDiag: baselineSTI){
+            for(UserSTIDiag stiDiag: db.getLast90daysSTI()){
                 if(LynxManager.decryptString(stiDiag.getIs_baseline()).equals("No")){
                     if(getElapsedDays(stiDiag.getCreated_at())<=90){
                         STI  = 1;
@@ -262,7 +268,8 @@ public class calculateSexProScore {
                     }
                 }
             }
-            List<UserAlcoholUse> alcoholUsesList =db.getAllAlcoholUse();
+            //List<UserAlcoholUse> alcoholUsesList =db.getAllAlcoholUse();
+            List<UserAlcoholUse> alcoholUsesList = db.getLast90daysAlcoholUse();
             if(alcoholUsesList!=null){
                 for(UserAlcoholUse alcoholUse : alcoholUsesList){
                     //Log.v("BaselineCheck",alcoholUse.getAlcohol_use_id() + "--" + alcoholUse.getIs_baseline());
@@ -367,23 +374,50 @@ public class calculateSexProScore {
             }
 
         }
+        //Condom Usage calculation//
+        String botCondomUse =  botCondomUsePer = LynxManager.decryptString(baselineInfo.getBottom_condom_use_percent());
+        String topCondomUse =  topCondomUsePer = LynxManager.decryptString(baselineInfo.getTop_condom_use_percent());
+        NIAS_POS_UNK    =   Integer.parseInt(LynxManager.decryptString(baselineInfo.getNo_of_times_top_hivposs()));
+        NRAS_POS_UNK    =   Integer.parseInt(LynxManager.decryptString(baselineInfo.getNo_of_times_bot_hivposs()));
+        if(elapsed_days>90){
+            int condombottomusagecount = 0;
+            List<EncounterSexType> encounterSexTypes = db.getLast90daysSexTypesByName("I bottomed");
+            for (EncounterSexType encounterSexType:encounterSexTypes) {
+                if(encounterSexType.getCondom_use().equals("Condom used"))
+                    condombottomusagecount++;
+            }
+            float condombottomusage_percent = 0;
+            if(encounterSexTypes.size()>0){
+                condombottomusage_percent =(float)condombottomusagecount/encounterSexTypes.size();
+            }
+            int condombottomusage_value = (int) (condombottomusage_percent*100);
+            botCondomUsePer =   botCondomUse =   condombottomusage_value + " %";
+            NRAS_POS_UNK = condombottomusagecount;
+            int condomtopusagecount = 0;
+            encounterSexTypes = db.getLast90daysSexTypesByName("I topped");
+            for (EncounterSexType encounterSexType:encounterSexTypes) {
+                if(encounterSexType.getCondom_use().equals("Condom used") )
+                    condomtopusagecount++;
+            }
+            float condomtopusage_percent = 0;
+            if(encounterSexTypes.size()>0){
+                condomtopusage_percent =(float)condomtopusagecount/encounterSexTypes.size();
+            }
+            int condomtopusage_value = (int) (condomtopusage_percent*100);
+            topCondomUsePer = topCondomUse = condomtopusage_value + " %";
+            NIAS_POS_UNK = condomtopusagecount;
+        }
 
-
-        String topCondomUse =   LynxManager.decryptString(baselineInfo.getTop_condom_use_percent());
-        topCondomUsePer =   LynxManager.decryptString(baselineInfo.getTop_condom_use_percent());
         topCondomUse        =   topCondomUse.replaceAll("\\s+","");
         /*topCondomUse        =   topCondomUse.length()==3?topCondomUse.substring(0,2):(topCondomUse.substring(0,1));*/
         topCondomUse        =   topCondomUse.substring(0, topCondomUse.length() - 1);
+        PPIAS_POS_UNK   =   Integer.parseInt(topCondomUse) * 0.01;
 
-        String botCondomUse =   LynxManager.decryptString(baselineInfo.getBottom_condom_use_percent());
-        botCondomUsePer =   LynxManager.decryptString(baselineInfo.getBottom_condom_use_percent());
         botCondomUse        =   botCondomUse.replaceAll("\\s+","");
         /*botCondomUse        =   botCondomUse.length()==3?botCondomUse.substring(0,2):(botCondomUse.substring(0,1));*/
         botCondomUse        =   botCondomUse.substring(0, botCondomUse.length() - 1);
-        NIAS_POS_UNK    =   Integer.parseInt(LynxManager.decryptString(baselineInfo.getNo_of_times_top_hivposs()));
-        PPIAS_POS_UNK   =   Integer.parseInt(topCondomUse) * 0.01;
-        NRAS_POS_UNK    =   Integer.parseInt(LynxManager.decryptString(baselineInfo.getNo_of_times_bot_hivposs()));
         PPRAS_POS_UNK   =   Integer.parseInt(botCondomUse) * 0.01;
+
         if(BMO<=CMO){
             AGE     = CY - BY;
         }

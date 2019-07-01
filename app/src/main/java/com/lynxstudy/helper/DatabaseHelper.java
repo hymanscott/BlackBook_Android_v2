@@ -1707,7 +1707,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_PARTNER_ADDEDTOLIST, partner.getIs_added_to_partners());
         values.put(KEY_STATUS_UPDATE, partner.getStatus_update());
         values.put(KEY_PARTNER_IS_ACTIVE, partner.getIs_active());
-        values.put(KEY_CREATED_AT, getDateTime());
+        values.put(KEY_CREATED_AT, partner.getCreated_at());
 
         // insert row
         return (int) db.insert(TABLE_PARTNERS, null, values);
@@ -1782,6 +1782,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return Partners;
     }
 
+    public List<Partners> getLast90DaysPartners() {
+        List<Partners> Partners = new ArrayList<Partners>();
+        String selectQuery = "SELECT  * FROM " + TABLE_PARTNERS +" WHERE " + KEY_CREATED_AT +" > (SELECT DATETIME('now', '-90 day'))" ;
+
+        //Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c!=null) {
+            if (c.moveToFirst()) {
+                do {
+                    Partners partner = new Partners();
+                    partner.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNER_ID)));
+                    partner.setUser_id(c.getInt(c.getColumnIndex(KEY_PARTNER_USERID)));
+                    partner.setNickname(c.getString(c.getColumnIndex(KEY_PARTNER_NICKNAME)));
+                    partner.setGender(c.getString(c.getColumnIndex(KEY_PARTNER_GENDER)));
+                    partner.setHiv_status(c.getString(c.getColumnIndex(KEY_PARTNER_HIVSTATUS)));
+                    partner.setUndetectable_for_sixmonth(c.getString(c.getColumnIndex(KEY_PARTNER_UNDETECTABLE)));
+                    partner.setIs_added_to_partners(c.getString(c.getColumnIndex(KEY_PARTNER_ADDEDTOLIST)));
+                    partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+                    partner.setPartner_idle(c.getInt(c.getColumnIndex(KEY_PARTNER_IDLE)));
+                    partner.setIs_active(c.getInt(c.getColumnIndex(KEY_PARTNER_IS_ACTIVE)));
+
+                    // adding to Users list
+                    Partners.add(partner);
+                } while (c.moveToNext());
+            }
+            c.close();
+        }
+        return Partners;
+    }
 
     /**
      * getting Listable  Partners with Rating
@@ -1947,6 +1980,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return (int) db.insert(TABLE_USER_DRUGUSE, null, values);
     }
 
+    public int createDrugUserWithTime(UserDrugUse drugUse) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_DRUGUSE_DRUGID, drugUse.getDrug_id());
+        values.put(KEY_DRUGUSE_USERID, drugUse.getUser_id());
+        values.put(KEY_DRUGUSE_ISBASELINE, drugUse.getIs_baseline());
+        values.put(KEY_STATUS_UPDATE, drugUse.getStatus_update());
+        values.put(KEY_CREATED_AT, drugUse.getCreated_at());
+
+        // insert row
+        return (int) db.insert(TABLE_USER_DRUGUSE, null, values);
+    }
     /**
      * get all  Drug Use by User id
      */
@@ -1981,7 +2026,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             c.close();
         }
         return drugUses;
-
+    }
+    public List<UserDrugUse> getLast90daysDrugUsages() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT  * FROM " + TABLE_USER_DRUGUSE + " WHERE "
+                + KEY_CREATED_AT + " > (SELECT DATETIME('now', '-90 day'))";
+        Log.e(LOG, selectQuery);
+        List<UserDrugUse> drugUses = new ArrayList<UserDrugUse>();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+        if (c!=null) {
+            if (c.moveToFirst()) {
+                do {
+                    UserDrugUse drugUse = new UserDrugUse();
+                    drugUse.setDruguse_id(c.getInt(c.getColumnIndex(KEY_DRUGUSE_ID)));
+                    drugUse.setDrug_id(c.getInt(c.getColumnIndex(KEY_DRUGUSE_DRUGID)));
+                    drugUse.setUser_id(c.getInt(c.getColumnIndex(KEY_DRUGUSE_USERID)));
+                    drugUse.setIs_baseline(c.getString(c.getColumnIndex(KEY_DRUGUSE_ISBASELINE)));
+                    drugUse.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+                    drugUses.add(drugUse);
+                } while (c.moveToNext());
+            }
+            c.close();
+        }
+        return drugUses;
     }
     /**
      * getting all  Drug Uses
@@ -2046,11 +2113,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_STIDIAG_ISBASELINE, stiDiag.getIs_baseline());
         values.put(KEY_STATUS_UPDATE, stiDiag.getStatus_update());
         values.put(KEY_CREATED_AT, getDateTime());
-
         // insert row
         return (int) db.insert(TABLE_USER_STIDIAG, null, values);
     }
 
+    public int createSTIDiagWithTime(UserSTIDiag stiDiag) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_STIDIAG_STIID, stiDiag.getSti_id());
+        values.put(KEY_STIDIAG_USERID, stiDiag.getUser_id());
+        values.put(KEY_STIDIAG_ISBASELINE, stiDiag.getIs_baseline());
+        values.put(KEY_STATUS_UPDATE, stiDiag.getStatus_update());
+        values.put(KEY_CREATED_AT, stiDiag.getCreated_at());
+        // insert row
+        return (int) db.insert(TABLE_USER_STIDIAG, null, values);
+    }
     /**
      * get single STI  Diag by Id
      */
@@ -2128,6 +2206,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public List<UserSTIDiag> getLast90daysSTI() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT  * FROM " + TABLE_USER_STIDIAG + " WHERE "
+                + KEY_CREATED_AT + " > (SELECT DATETIME('now', '-90 day'))";
+        List<UserSTIDiag> stiDiags = new ArrayList<UserSTIDiag>();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+        if (c.moveToFirst()) {
+            do {
+                UserSTIDiag stiDiag = new UserSTIDiag();
+                stiDiag.setSti_diag_id(c.getInt(c.getColumnIndex(KEY_STIDIAG_ID)));
+                stiDiag.setSti_id(c.getInt(c.getColumnIndex(KEY_STIDIAG_STIID)));
+                stiDiag.setUser_id(c.getInt(c.getColumnIndex(KEY_STIDIAG_USERID)));
+                stiDiag.setIs_baseline(c.getString(c.getColumnIndex(KEY_STIDIAG_ISBASELINE)));
+                stiDiag.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+                stiDiags.add(stiDiag);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return stiDiags;
+    }
+
     /**
      * getting all STI Diags  by status
      */
@@ -2188,6 +2287,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_ALCOUSE_ISBASELINE, alcoholUse.getIs_baseline());
         values.put(KEY_STATUS_UPDATE, alcoholUse.getStatus_update());
         values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        return (int) db.insert(TABLE_USER_ALCHOHOLUSE, null, values);
+    }
+    public int createAlcoholUserWithTime(UserAlcoholUse alcoholUse) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ALCOUSE_DRUGUSEID, alcoholUse.getDrugusage_id());
+        values.put(KEY_ALCOUSE_USERID, alcoholUse.getUser_id());
+        values.put(KEY_ALCOUSE_WEEKCOUNT, alcoholUse.getNo_alcohol_in_week());
+        values.put(KEY_ALCOUSE_DAYCOUNT, alcoholUse.getNo_alcohol_in_day());
+        values.put(KEY_ALCOUSE_ISBASELINE, alcoholUse.getIs_baseline());
+        values.put(KEY_STATUS_UPDATE, alcoholUse.getStatus_update());
+        values.put(KEY_CREATED_AT, alcoholUse.getCreated_at());
 
         // insert row
         return (int) db.insert(TABLE_USER_ALCHOHOLUSE, null, values);
@@ -2288,7 +2402,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return null;
     }
-
+    public List<UserAlcoholUse> getLast90daysAlcoholUse() {
+        List<UserAlcoholUse> alcoholUses = new ArrayList<UserAlcoholUse>();
+        String selectQuery = "SELECT  * FROM " + TABLE_USER_ALCHOHOLUSE + " WHERE " + KEY_CREATED_AT + " > (SELECT DATETIME('now', '-90 day'))";
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+        if (c != null && c.getCount()>0) {
+            if (c.moveToFirst()) {
+                do {
+                    UserAlcoholUse alcoholUse = new UserAlcoholUse();
+                    alcoholUse.setAlcohol_use_id(c.getInt(c.getColumnIndex(KEY_ALCOUSE_ID)));
+                    alcoholUse.setDrugusage_id(c.getInt(c.getColumnIndex(KEY_ALCOUSE_DRUGUSEID)));
+                    alcoholUse.setUser_id(c.getInt(c.getColumnIndex(KEY_ALCOUSE_USERID)));
+                    alcoholUse.setNo_alcohol_in_week(c.getString(c.getColumnIndex(KEY_ALCOUSE_WEEKCOUNT)));
+                    alcoholUse.setNo_alcohol_in_day(c.getString(c.getColumnIndex(KEY_ALCOUSE_DAYCOUNT)));
+                    alcoholUse.setIs_baseline(c.getString(c.getColumnIndex(KEY_ALCOUSE_ISBASELINE)));
+                    alcoholUse.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
+                    alcoholUse.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+                    alcoholUses.add(alcoholUse);
+                } while (c.moveToNext());
+            }
+            c.close();
+            return alcoholUses;
+        }
+        return null;
+    }
     /**
      * get all  Alcohol Use by status
      */
@@ -3361,6 +3499,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.close();
         return encounterSexTypes;
     }
+
+    public List<EncounterSexType> getLast90daysSexTypesByName(String type) {
+        String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE + " WHERE " + KEY_ENCSEXTYPE_SEXTYPE + " = '"+LynxManager.encryptString(type)+"' AND " + KEY_CREATED_AT + " > (SELECT DATETIME('now', '-90 day'))";
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(countQuery, null);
+        // looping through all rows and adding to list
+        List<EncounterSexType> encounterSexTypes = new ArrayList<EncounterSexType>();
+        if (c.moveToFirst()) {
+            do {
+                EncounterSexType encounterSexType = new EncounterSexType();
+                encounterSexType.setEncounter_sex_type_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_ID)));
+                encounterSexType.setEncounter_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_ENCOUNTERID)));
+                encounterSexType.setUser_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_USERID)));
+                encounterSexType.setSex_type(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_SEXTYPE)));
+                encounterSexType.setCondom_use(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_CONDOMUSE)));
+                encounterSexType.setEjaculation(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_EJACULATION)));
+                encounterSexType.setNote(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_NOTE)));
+                encounterSexType.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // adding to Users list
+                encounterSexTypes.add(encounterSexType);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return encounterSexTypes;
+    }
+
     public List<EncounterSexType> getAllEncounterSexTypesByNameAndDate(String type, String date) {
         String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE + " WHERE " + KEY_ENCSEXTYPE_SEXTYPE + " = '"+LynxManager.encryptString(type)+"' AND " + KEY_CREATED_AT + " LIKE '"+ date + "%'";
         SQLiteDatabase db = this.getReadableDatabase();

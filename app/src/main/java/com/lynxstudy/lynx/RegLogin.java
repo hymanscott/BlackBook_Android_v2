@@ -1382,6 +1382,7 @@ public class RegLogin extends AppCompatActivity {
                                     LynxManager.encryptString(partnersObject.getString("is_added_to_partners")),
                                     String.valueOf(R.string.statusUpdateYes),true);
                             partner.setIs_active(partnersObject.getInt("is_active"));
+                            partner.setCreated_at(partnersObject.getString("created_at"));
                             db.createPartnerWithID(partner);
                         }
 
@@ -1412,9 +1413,10 @@ public class RegLogin extends AppCompatActivity {
                             JSONObject userStiObject = userStiInfo.getJSONObject(n);
                             UserSTIDiag userSTIDiag = new UserSTIDiag(LynxManager.getActiveUser().getUser_id(),
                                     userStiObject.getInt("sti_id"), LynxManager.encryptString(userStiObject.getString("is_baseline")),String.valueOf(R.string.statusUpdateYes),true);
-                            int id = db.createSTIDiag(userSTIDiag);
+                            userSTIDiag.setCreated_at(userStiObject.getString("created_at"));
+                            int id = db.createSTIDiagWithTime(userSTIDiag);
                             userSTIDiag.setSti_diag_id(id);
-                            userSTIDiag.setCreated_at(db.getSTIDiagCreatedAtbyID(id));
+                            //userSTIDiag.setCreated_at(db.getSTIDiagCreatedAtbyID(id));
                             LynxManager.setActiveUserSTIDiag(userSTIDiag);
                         }
 
@@ -1428,7 +1430,8 @@ public class RegLogin extends AppCompatActivity {
                                     LynxManager.encryptString(userAlcoholUseObject.getString("no_alcohol_in_day")),
                                     LynxManager.encryptString(userAlcoholUseObject.getString("is_baseline")),
                                     String.valueOf(R.string.statusUpdateYes),true);
-                            db.createAlcoholUser(userAlcoholUse);
+                            userAlcoholUse.setCreated_at(userAlcoholUseObject.getString("created_at"));
+                            db.createAlcoholUserWithTime(userAlcoholUse);
                             LynxManager.setActiveUserAlcoholUse(userAlcoholUse);
                         }
 
@@ -1473,7 +1476,8 @@ public class RegLogin extends AppCompatActivity {
                                 UserDrugUse userDrugUse  = new UserDrugUse( LynxManager.getActiveUser().getUser_id(),
                                         userDrugUsageObject.getInt("drug_id") , LynxManager.encryptString(userDrugUsageObject.getString("is_baseline")) ,
                                         String.valueOf(R.string.statusUpdateYes),true);
-                                db.createDrugUser(userDrugUse);
+                                userDrugUse.setCreated_at(userDrugUsageObject.getString("created_at"));
+                                db.createDrugUserWithTime(userDrugUse);
                             }
                         }
 
