@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
 import com.lynxstudy.model.Partners;
 import com.lynxstudy.model.UserAlcoholUse;
@@ -381,27 +382,39 @@ public class calculateSexProScore {
         NRAS_POS_UNK    =   Integer.parseInt(LynxManager.decryptString(baselineInfo.getNo_of_times_bot_hivposs()));
         if(elapsed_days>90){
             int condombottomusagecount = 0;
-            List<EncounterSexType> encounterSexTypes = db.getLast90daysSexTypesByName("I bottomed");
-            for (EncounterSexType encounterSexType:encounterSexTypes) {
-                if(encounterSexType.getCondom_use().equals("Condom used"))
-                    condombottomusagecount++;
-            }
+            int bottomsextypecount = 0;
             float condombottomusage_percent = 0;
-            if(encounterSexTypes.size()>0){
-                condombottomusage_percent =(float)condombottomusagecount/encounterSexTypes.size();
+            for (EncounterSexType encounterSexType:db.getLast90daysSexTypesByName("I bottomed")) {
+                Partners partner = db.getPartnerbyID(db.getEncounter(encounterSexType.getEncounter_id()).getEncounter_partner_id());
+                String partner_hiv_status = LynxManager.decryptString(partner.getHiv_status());
+                if(partner_hiv_status.equals("HIV Positive") || partner_hiv_status.equals("HIV positive") || partner_hiv_status.equals("HIV Positive & Undetectable") || partner_hiv_status.equals("HIV positive & undetectable")){
+                    bottomsextypecount++;
+                    if(encounterSexType.getCondom_use().equals("Condom used"))
+                        condombottomusagecount++;
+                }
+            }
+            if(bottomsextypecount>0){
+                condombottomusage_percent =(float)condombottomusagecount/bottomsextypecount;
             }
             int condombottomusage_value = (int) (condombottomusage_percent*100);
             botCondomUsePer =   botCondomUse =   condombottomusage_value + " %";
             NRAS_POS_UNK = condombottomusagecount;
+
+
             int condomtopusagecount = 0;
-            encounterSexTypes = db.getLast90daysSexTypesByName("I topped");
-            for (EncounterSexType encounterSexType:encounterSexTypes) {
-                if(encounterSexType.getCondom_use().equals("Condom used") )
-                    condomtopusagecount++;
-            }
+            int topsextypecount = 0;
             float condomtopusage_percent = 0;
-            if(encounterSexTypes.size()>0){
-                condomtopusage_percent =(float)condomtopusagecount/encounterSexTypes.size();
+            for (EncounterSexType encounterSexType:db.getLast90daysSexTypesByName("I topped")) {
+                Partners partner = db.getPartnerbyID(db.getEncounter(encounterSexType.getEncounter_id()).getEncounter_partner_id());
+                String partner_hiv_status = LynxManager.decryptString(partner.getHiv_status());
+                if(partner_hiv_status.equals("HIV Positive") || partner_hiv_status.equals("HIV positive") || partner_hiv_status.equals("HIV Positive & Undetectable") || partner_hiv_status.equals("HIV positive & undetectable")){
+                    topsextypecount++;
+                    if(encounterSexType.getCondom_use().equals("Condom used"))
+                        condomtopusagecount++;
+                }
+            }
+            if(topsextypecount>0){
+                condomtopusage_percent =(float)condomtopusagecount/topsextypecount;
             }
             int condomtopusage_value = (int) (condomtopusage_percent*100);
             topCondomUsePer = topCondomUse = condomtopusage_value + " %";

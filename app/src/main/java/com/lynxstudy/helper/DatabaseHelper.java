@@ -3173,6 +3173,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return encounters;
     }
 
+    public List<Encounter> getAllEncountersByPartnerID(int id) {
+        List<Encounter> encounters = new ArrayList<Encounter>();
+        //String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER + " ORDER BY " + KEY_ENCOUNTER_ID + " DESC";
+        String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER + " WHERE " + KEY_ENCOUNTER_PARTNERID + " = " + id;
+
+        //Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                Encounter encounter = new Encounter();
+                encounter.setEncounter_id(c.getInt(c.getColumnIndex(KEY_ENCOUNTER_ID)));
+                encounter.setEncounter_user_id(c.getInt(c.getColumnIndex(KEY_ENCOUNTER_USERID)));
+                encounter.setDatetime((c.getString(c.getColumnIndex(KEY_ENCOUNTER_DATE))));
+                encounter.setEncounter_partner_id(c.getInt(c.getColumnIndex(KEY_ENCOUNTER_PARTNERID)));
+                encounter.setRate_the_sex(c.getString(c.getColumnIndex(KEY_ENCOUNTER_SEXRATING)));
+                encounter.setIs_drug_used((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISDRUGUSED))));
+                encounter.setEncounter_notes((c.getString(c.getColumnIndex(KEY_ENCOUNTER_NOTES))));
+                encounter.setIs_possible_sex_tomorrow((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISSEX_TOMORROW))));
+
+                encounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // adding to Users list
+                encounters.add(encounter);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return encounters;
+    }
+
     /**
      * getting all Encounters by Status
      */

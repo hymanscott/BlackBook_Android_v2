@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -21,6 +22,7 @@ import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.AppAlerts;
@@ -426,6 +428,7 @@ public class EncounterStartActivity extends AppCompatActivity {
         return true;
     }
     public boolean backToEncSummary(View view){
+        boolean isValidationSuccessfull = true;
         RatingBar sexType_RateTheSex = (RatingBar)findViewById(R.id.sexType_RateTheSex);
         LynxManager.activeEncounter.setRate_the_sex(LynxManager.encryptString(String.valueOf(sexType_RateTheSex.getRating())));
         LynxManager.encRateofSex = String.valueOf(sexType_RateTheSex.getRating());
@@ -433,25 +436,80 @@ public class EncounterStartActivity extends AppCompatActivity {
         LynxManager.activeEncounter.setEncounter_notes(LynxManager.encryptString(encNotes));
         TextView drunk = (TextView)findViewById(R.id.drunk);
         LynxManager.activeEncounter.setIs_drug_used(LynxManager.encryptString(drunk.getText().toString()));
-        for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
-
-            switch (LynxManager.decryptString(encSexType.getSex_type())) {
-                case "I sucked him":
-                case "I sucked her":
-                    TextView whenIsucked = (TextView)findViewById(R.id.whenIsucked);
-                    encSexType.setEjaculation(whenIsucked.getText().toString());
-                    break;
-                case "I bottomed":
-                    TextView whenIbottom = (TextView)findViewById(R.id.whenIbottom);
-                    encSexType.setEjaculation(whenIbottom.getText().toString());
-                    break;
-                case "I topped":
-                    TextView whenItop = (TextView)findViewById(R.id.whenItop);
-                    encSexType.setEjaculation(whenItop.getText().toString());
-                    break;
+        ArrayList<ToggleButton> allButtonsOnCurrentLayout = getViewsFromViewGroup(view.getRootView(), ToggleButton.class);
+        LynxManager.activePartnerSexType.clear();
+        LynxManager.activeEncCondomUsed.clear();
+        for (ToggleButton toggleButton:allButtonsOnCurrentLayout){
+            if (toggleButton.isSelected()){
+                switch (toggleButton.getText().toString()) {
+                    case "I sucked him":
+                    case "I sucked her":
+                        TextView ejacWhenIsucked = (TextView) findViewById(R.id.whenIsucked);
+                        RadioGroup whenIsucked_group = (RadioGroup) findViewById(R.id.whenIsucked_group);
+                        if(whenIsucked_group.getCheckedRadioButtonId() == -1 || ejacWhenIsucked.getText().toString().equals("-")){
+                            isValidationSuccessfull = false;
+                        }else{
+                            isValidationSuccessfull = true;
+                            RadioButton RB_whenISuc = (RadioButton)findViewById(whenIsucked_group.getCheckedRadioButtonId());
+                            LynxManager.activePartnerSexType.add(new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(toggleButton.getText().toString()) , RB_whenISuc.getText().toString(), ejacWhenIsucked.getText().toString(), "",String.valueOf(R.string.statusUpdateNo),true));
+                            if(RB_whenISuc.getText().toString().equals("Condom used")){
+                                LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(toggleButton.getText().toString()));
+                            }
+                        }
+                        break;
+                    case "I bottomed":
+                        TextView ejacWhenIbottom = (TextView)findViewById(R.id.whenIbottom);
+                        RadioGroup whenIbottomed_group = (RadioGroup) findViewById(R.id.whenIbottomed_group);
+                        //LynxManager.activePartnerSexType.add(new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(toggleButton.getText().toString()) , "", ejacWhenIbottom.getText().toString(), "",String.valueOf(R.string.statusUpdateNo),true));
+                        if(whenIbottomed_group.getCheckedRadioButtonId()==-1 || ejacWhenIbottom.getText().toString().equals("-")) {
+                            isValidationSuccessfull = false;
+                        }else{
+                            isValidationSuccessfull = true;
+                            RadioButton RB_whenIBot = (RadioButton)findViewById(whenIbottomed_group.getCheckedRadioButtonId());
+                            LynxManager.activePartnerSexType.add(new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(toggleButton.getText().toString()) , RB_whenIBot.getText().toString(), ejacWhenIbottom.getText().toString(), "",String.valueOf(R.string.statusUpdateNo),true));
+                            if(RB_whenIBot.getText().toString().equals("Condom used")){
+                                LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(toggleButton.getText().toString()));
+                            }
+                        }
+                        break;
+                    case "I topped":
+                        TextView ejacWhenItop = (TextView)findViewById(R.id.whenItop);
+                        RadioGroup whenItopped_group = (RadioGroup) findViewById(R.id.whenItopped_group);
+                        if(whenItopped_group.getCheckedRadioButtonId() == -1 || ejacWhenItop.getText().toString().equals("-")){
+                            isValidationSuccessfull = false;
+                        }else {
+                            isValidationSuccessfull = true;
+                            RadioButton RB_whenItop = (RadioButton)findViewById(whenItopped_group.getCheckedRadioButtonId());
+                            LynxManager.activePartnerSexType.add(new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(toggleButton.getText().toString()) , RB_whenItop.getText().toString(), ejacWhenItop.getText().toString(), "",String.valueOf(R.string.statusUpdateNo),true));
+                            if(RB_whenItop.getText().toString().equals("Condom used")){
+                                LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(toggleButton.getText().toString()));
+                            }
+                        }
+                        break;
+                    case "I fucked her":
+                    case "We fucked":
+                        RadioGroup whenIfucked_group = (RadioGroup) findViewById(R.id.whenItopped_group);
+                        if(whenIfucked_group.getCheckedRadioButtonId() == -1){
+                            isValidationSuccessfull = false;
+                        }else {
+                            isValidationSuccessfull = true;
+                            RadioButton RB_whenIfuc = (RadioButton)findViewById(whenIfucked_group.getCheckedRadioButtonId());
+                            LynxManager.activePartnerSexType.add(new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(toggleButton.getText().toString()) , RB_whenIfuc.getText().toString(), "", "",String.valueOf(R.string.statusUpdateNo),true));
+                            if(RB_whenIfuc.getText().toString().equals("Condom used")){
+                                LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(toggleButton.getText().toString()));
+                            }
+                        }
+                        break;
+                    default:
+                        LynxManager.activePartnerSexType.add(new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(toggleButton.getText().toString()) , "", "", "",String.valueOf(R.string.statusUpdateNo),true));
+                }
             }
         }
-        popFragment();
+        if (isValidationSuccessfull){
+            popFragment();
+        }else{
+            Toast.makeText(this, "Please answer all the questions!", Toast.LENGTH_SHORT).show();
+        }
         return true;
     }
     public boolean onEncSummNext(View view) {
@@ -804,5 +862,28 @@ public class EncounterStartActivity extends AppCompatActivity {
             return calCurrentDate.get(Calendar.MONTH) == cal.get(Calendar.MONTH);
         }return false;
 
+    }
+    public static <T> ArrayList<T> getViewsFromViewGroup(View root, Class<T> clazz) {
+        ArrayList<T> result = new ArrayList<T>();
+        for (View view : getAllViewsFromRoots(root))
+            if (clazz.isInstance(view))
+                result.add(clazz.cast(view));
+        return result;
+    }
+
+    public static ArrayList<View> getAllViewsFromRoots(View...roots) {
+        ArrayList<View> result = new ArrayList<View>();
+        for (View root : roots)
+            getAllViews(result, root);
+        return result;
+    }
+
+    private static void getAllViews(ArrayList<View> allviews, View parent) {
+        allviews.add(parent);
+        if (parent instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup)parent;
+            for (int i = 0; i < viewGroup.getChildCount(); i++)
+                getAllViews(allviews, viewGroup.getChildAt(i));
+        }
     }
 }
