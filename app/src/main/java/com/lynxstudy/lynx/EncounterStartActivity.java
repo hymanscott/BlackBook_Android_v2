@@ -439,6 +439,8 @@ public class EncounterStartActivity extends AppCompatActivity {
         ArrayList<ToggleButton> allButtonsOnCurrentLayout = getViewsFromViewGroup(view.getRootView(), ToggleButton.class);
         LynxManager.activePartnerSexType.clear();
         LynxManager.activeEncCondomUsed.clear();
+        int selectedSextypesCount = 0;
+
         for (ToggleButton toggleButton:allButtonsOnCurrentLayout){
             if (toggleButton.isSelected()){
                 switch (toggleButton.getText().toString()) {
@@ -502,10 +504,13 @@ public class EncounterStartActivity extends AppCompatActivity {
                         break;
                     default:
                         LynxManager.activePartnerSexType.add(new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(toggleButton.getText().toString()) , "", "", "",String.valueOf(R.string.statusUpdateNo),true));
+                        selectedSextypesCount++;
+
                 }
             }
         }
-        if (isValidationSuccessfull){
+        /*if (isValidationSuccessfull){*/
+        if (isValidationSuccessfull && selectedSextypesCount > 0){
             popFragment();
         }else{
             Toast.makeText(this, "Please answer all the questions!", Toast.LENGTH_SHORT).show();
