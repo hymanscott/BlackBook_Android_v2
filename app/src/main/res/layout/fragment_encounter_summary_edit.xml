@@ -169,24 +169,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
+                <TextView
+                    android:id="@+id/condomUsed"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:text="Condom Usage :"
                     android:layout_margin="32dp"
-                    android:orientation="horizontal">
-
-
-
-                    <!--<LinearLayout
-                        android:id="@+id/condomUsedContent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:onClick="editCondomUse"
-                        android:orientation="vertical">
-
-                    </LinearLayout>-->
-                </LinearLayout>
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/encounter_tv_textsize" />
                 <!--Condom Usage Questions Starts-->
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -196,16 +186,6 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:id="@+id/cndm_whenIsucked_layout">
-
-                    <TextView
-                        android:id="@+id/condomUsed"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:text="Condom Usage :"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/encounter_tv_textsize" />
-
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -272,16 +252,6 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:id="@+id/cndm_whenItopped_layout">
-
-                    <TextView
-                        android:id="@+id/condomUsed"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:text="Condom Usage :"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/encounter_tv_textsize" />
-
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -348,16 +318,6 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:id="@+id/cndm_whenIbottomed_layout">
-
-                    <TextView
-                        android:id="@+id/condomUsed"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:text="Condom Usage :"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/encounter_tv_textsize" />
-
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -424,16 +384,6 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:id="@+id/cndm_whenIfucked_layout">
-
-                    <TextView
-                        android:id="@+id/condomUsed"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:text="Condom Usage :"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/encounter_tv_textsize" />
-
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
