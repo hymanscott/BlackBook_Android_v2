@@ -1,7 +1,10 @@
 package com.lynxstudy.lynx;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -16,6 +19,8 @@ import com.lynxstudy.model.Users;
 
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by Hari on 2017-04-13.
@@ -68,11 +73,30 @@ public class PasscodeUnlockActivity extends AbstractPasscodeKeyboardActivity {
             }
             if (LynxManager.onPause){
                 LynxManager.onPause = false;
+                ActivityManager m = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE );
+                List<ActivityManager.RunningTaskInfo> runningTaskInfoList =  m.getRunningTasks(10);
+                String topActivity = "";
+                String baseActivity = "";
+                for (ActivityManager.RunningTaskInfo runningTaskInfo : runningTaskInfoList) {
+                    if(!runningTaskInfo.baseActivity.getShortClassName().equals("com.android.launcher2.Launcher") ){
+                        baseActivity = runningTaskInfo.baseActivity.getShortClassName();
+                    }
+                    if(!runningTaskInfo.topActivity.getShortClassName().equals("com.android.launcher2.Launcher")) {
+                        topActivity = runningTaskInfo.topActivity.getShortClassName();
+                    }
+                }
+                //Log.v("TaskList", "baseActivity: " + baseActivity +", topActivity: " + topActivity);
+                if(topActivity.equals(baseActivity)){
+                    Intent home = new Intent(this, LynxHome.class);
+                    //home.putExtra("fromactivity",PasscodeUnlockActivity.this.getClass().getSimpleName());
+                    startActivity(home);
+                    TrackHelper.track().event("Passcode Unlock","Click").name("Success").with(tracker);
+                }
                 finish();
             }
             else{
                 Intent home = new Intent(this, LynxHome.class);
-                home.putExtra("fromactivity",PasscodeUnlockActivity.this.getClass().getSimpleName());
+              //  home.putExtra("fromactivity",PasscodeUnlockActivity.this.getClass().getSimpleName());
                 startActivity(home);
                 TrackHelper.track().event("Passcode Unlock","Click").name("Success").with(tracker);
                 finish();

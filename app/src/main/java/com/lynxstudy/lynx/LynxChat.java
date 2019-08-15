@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -284,6 +285,7 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             TextView message = (TextView) v.findViewById(R.id.message);
             message.setTypeface(tf);
             message.setText(LynxManager.decryptString(chatMessage.getMessage()));
+            message.setMovementMethod(LinkMovementMethod.getInstance());
             v.requestFocus();
             chatTableLayout.addView(v);
         }

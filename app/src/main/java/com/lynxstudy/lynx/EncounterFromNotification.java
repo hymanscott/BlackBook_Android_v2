@@ -207,10 +207,12 @@ public class EncounterFromNotification extends AppCompatActivity {
         if(LynxManager.haveWeeklyEncounter){
             Intent diary = new Intent(EncounterFromNotification.this,LynxDiary.class);
             diary.putExtra("fromNotification",true);
+            diary.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(diary);
             finish();
         }else{
             Intent home = new Intent(EncounterFromNotification.this,LynxHome.class);
+            home.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(home);
             finish();
         }
