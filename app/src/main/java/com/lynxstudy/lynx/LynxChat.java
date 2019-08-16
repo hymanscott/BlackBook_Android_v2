@@ -26,7 +26,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -284,6 +289,12 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
             TextView message = (TextView) v.findViewById(R.id.message);
             message.setTypeface(tf);
             message.setText(LynxManager.decryptString(chatMessage.getMessage()));
+            message.setMovementMethod(LinkMovementMethod.getInstance());
+            URLNoUnderlineSpan mNoUnderlineSpan = new URLNoUnderlineSpan();
+            if (message.getText() instanceof Spannable) {
+                Spannable s = (Spannable) message.getText();
+                s.setSpan(mNoUnderlineSpan, 0, s.length(), Spanned.SPAN_MARK_MARK);
+            }
             v.requestFocus();
             chatTableLayout.addView(v);
         }

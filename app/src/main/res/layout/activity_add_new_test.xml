@@ -193,7 +193,7 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="I Didn't test"
+                        android:text="I don't know"
                         android:textSize="14sp"
                         android:button="@drawable/radiobutton_black"
                         android:paddingLeft="12dp"
