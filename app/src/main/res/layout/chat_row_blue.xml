@@ -31,6 +31,8 @@
                 android:textColorLink="@color/white"
                 android:textColor="@color/white"
                 android:text="Message"
+                android:autoLink="all"
+                android:textColorLink="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
         </LinearLayout>
         <TextView

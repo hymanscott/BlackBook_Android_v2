@@ -30,6 +30,8 @@
                 android:autoLink="all"
                 android:textColorLink="@color/chat_row_text"
                 android:textColor="@color/chat_row_text"
+                android:autoLink="all"
+                android:textColorLink="@color/chat_row_text"
                 android:text="You should have received your test result by now. Let me look and see what I can find."
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
         </LinearLayout>
