@@ -4,9 +4,11 @@ package com.lynxstudy.lynx;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -40,7 +42,10 @@ public class NewPartnerNotesFragment extends Fragment {
         new_partner_nickname.setTypeface(tf_bold);
         ((TextView) rootview.findViewById(R.id.add_partner_title)).setTypeface(tf_bold);
         ((TextView) rootview.findViewById(R.id.partnerNotesTitle)).setTypeface(tf);
-        ((EditText) rootview.findViewById(R.id.partnerNotes)).setTypeface(tf);
+        EditText partnerNotes = (EditText) rootview.findViewById(R.id.partnerNotes);
+        partnerNotes.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        partnerNotes.setRawInputType(InputType.TYPE_CLASS_TEXT);
+        partnerNotes.setTypeface(tf);
         ((Button) rootview.findViewById(R.id.next)).setTypeface(tf_bold);
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
