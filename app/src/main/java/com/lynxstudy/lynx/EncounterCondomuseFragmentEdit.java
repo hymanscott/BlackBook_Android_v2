@@ -23,7 +23,7 @@ public class EncounterCondomuseFragmentEdit extends Fragment {
     public EncounterCondomuseFragmentEdit() {
     }
 
-    TextView whenIsucked;
+    TextView whenIsucked,whenIfucked;
     RadioButton whenIsucked_CondomUsed, whenIsucked_CondomPartTime, whenIsucked_CondomNotUsed, whenItopped_CondomUsed, whenItopped_CondomPartTime, whenItopped_CondomNotUsed;
     RadioButton whenIbottomed_CondomUsed, whenIbottomed_CondomPartTime, whenIbottomed_CondomNotUsed, whenIfucked_CondomUsed, whenIfucked_CondomNotUsed, whenIfucked_CondomPartTime;
     RadioGroup whenIfucked_group,whenIbottomed_group,whenItopped_group,whenIsucked_group;
@@ -43,6 +43,8 @@ public class EncounterCondomuseFragmentEdit extends Fragment {
         ((TextView) rootview.findViewById(R.id.whenItopped)).setTypeface(tf);
         ((TextView) rootview.findViewById(R.id.whenIbottom)).setTypeface(tf);
         ((TextView) rootview.findViewById(R.id.whenIfucked)).setTypeface(tf);
+        whenIfucked = (TextView) rootview.findViewById(R.id.whenIfucked);
+        whenIfucked.setTypeface(tf);
         whenIsucked_CondomUsed = (RadioButton) rootview.findViewById(R.id.whenIsucked_CondomUsed);
         whenIsucked_CondomUsed.setTypeface(tf);
         whenIsucked_CondomPartTime = (RadioButton) rootview.findViewById(R.id.whenIsucked_CondomPartTime);
@@ -143,8 +145,10 @@ public class EncounterCondomuseFragmentEdit extends Fragment {
                     }
                     break;
                 case "I fucked her":
+                case "We fucked":
                     LinearLayout layout_whenIfucked = (LinearLayout) rootview.findViewById(R.id.whenIfucked_layout);
                     layout_whenIfucked.setVisibility(View.VISIBLE);
+                    whenIfucked.setText("When " + LynxManager.decryptString(encSexType.getSex_type())+":");
                     switch (encSexType.getCondom_use()) {
                         case "Condom used":
                             whenIfucked_group.check(whenIfucked_CondomUsed.getId());

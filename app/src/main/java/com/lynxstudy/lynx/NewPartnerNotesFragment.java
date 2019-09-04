@@ -22,7 +22,6 @@ import org.piwik.sdk.extra.TrackHelper;
  */
 public class NewPartnerNotesFragment extends Fragment {
 
-
     public NewPartnerNotesFragment() {
         // Required empty public constructor
     }

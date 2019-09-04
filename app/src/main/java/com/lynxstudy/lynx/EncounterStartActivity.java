@@ -71,7 +71,7 @@ public class EncounterStartActivity extends AppCompatActivity {
                 "fonts/Roboto-Regular.ttf");
         // Piwik Analytics //
         tracker = ((lynxApplication) getApplication()).getTracker();
-		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
+        tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         TrackHelper.track().screen("/Encounter/Start").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
     }
 
@@ -233,6 +233,7 @@ public class EncounterStartActivity extends AppCompatActivity {
             Toast.makeText(EncounterStartActivity.this, "Please select Type of sex", Toast.LENGTH_SHORT).show();
         } else {
             for (EncounterSexType partnerSexType : LynxManager.getActivePartnerSexType()) {
+                //   Log.v( "afterconfirm",LynxManager.decryptString(partnerSexType.getSex_type()));
                 String sexTypeText = LynxManager.decryptString(partnerSexType.getSex_type());
                 if (sexTypeText.equals("I sucked him") || sexTypeText.equals("I sucked her") || sexTypeText.equals("I bottomed") || sexTypeText.equals("I topped") || sexTypeText.equals("I fucked her") || sexTypeText.equals("We fucked")) {
                     pushFragments("encounter", fragSextypeCondomuse, true);
@@ -380,55 +381,97 @@ public class EncounterStartActivity extends AppCompatActivity {
     }
     public boolean editCondomUse(View view){
         EncounterCondomuseFragmentEdit fragEncounterEdit = new EncounterCondomuseFragmentEdit();
-        pushFragments("encounter", fragEncounterEdit, true);
+        pushFragments("encounter", fragEncounterEdit, false);
         return true;
     }
     public boolean onEncCondomUseEditNext(View view){
+        int ejaculationQnsCount=0;
         for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
             switch (LynxManager.decryptString(encSexType.getSex_type())) {
                 case "I sucked him":
                 case "I sucked her":
+                    ejaculationQnsCount++;
                     RadioGroup whenISuckedHimGroup = (RadioGroup) findViewById(R.id.whenIsucked_group);
                     RadioButton whenISuckedHim_btn = (RadioButton) findViewById(whenISuckedHimGroup.getCheckedRadioButtonId());
                     encSexType.setCondom_use(whenISuckedHim_btn.getText().toString());
-                    if(!whenISuckedHim_btn.getText().toString().equals("Condom used")){
-                        LynxManager.activeEncCondomUsed.remove("I sucked her");
-                        LynxManager.activeEncCondomUsed.remove("I sucked him");
-                    }
                     break;
                 case "I bottomed":
+                    ejaculationQnsCount++;
                     RadioGroup whenIBottomedGroup = (RadioGroup) findViewById(R.id.whenIbottomed_group);
                     RadioButton whenIBottomed_btn = (RadioButton) findViewById(whenIBottomedGroup.getCheckedRadioButtonId());
                     encSexType.setCondom_use(whenIBottomed_btn.getText().toString());
-                    if(!whenIBottomed_btn.getText().toString().equals("Condom used")){
-                        LynxManager.activeEncCondomUsed.remove("I bottomed");
-                    }
                     break;
                 case "I topped":
+                    ejaculationQnsCount++;
                     RadioGroup whenItoppedGroup = (RadioGroup) findViewById(R.id.whenItopped_group);
                     RadioButton whenITopped_btn = (RadioButton) findViewById(whenItoppedGroup.getCheckedRadioButtonId());
                     encSexType.setCondom_use(whenITopped_btn.getText().toString());
-                    if(!whenITopped_btn.getText().toString().equals("Condom used")){
-                        LynxManager.activeEncCondomUsed.remove("I topped");
-                    }
                     break;
                 case "I fucked her":
                 case "We fucked":
                     RadioGroup whenIfuckedGroup = (RadioGroup) findViewById(R.id.whenIfucked_group);
                     RadioButton whenIFucked_btn = (RadioButton) findViewById(whenIfuckedGroup.getCheckedRadioButtonId());
                     encSexType.setCondom_use(whenIFucked_btn.getText().toString());
-                    if(!whenIFucked_btn.getText().toString().equals("Condom used")){
-                        LynxManager.activeEncCondomUsed.remove("I fucked her");
-                        LynxManager.activeEncCondomUsed.remove("We fucked");
+                    break;
+            }
+        }
+        if(ejaculationQnsCount>0){
+            EncounterEjaculationFragmentEdit fragEncounterEdit = new EncounterEjaculationFragmentEdit();
+            pushFragments("encounter", fragEncounterEdit, false);
+        }else{
+            EncounterSummaryEditFragment fragEncounterEdit = new EncounterSummaryEditFragment();
+            pushFragments("encounter", fragEncounterEdit, false);
+        }
+        return true;
+    }
+    public boolean editEjaculationUse(View view){
+        EncounterEjaculationFragmentEdit fragEncounterEdit = new EncounterEjaculationFragmentEdit();
+        pushFragments("encounter", fragEncounterEdit, false);
+        return true;
+    }
+    public boolean onEjaculationEditNext(View view){
+        for (EncounterSexType encSexType : LynxManager.getActivePartnerSexType()) {
+
+            switch (LynxManager.decryptString(encSexType.getSex_type())) {
+                case "I sucked him":
+                case "I sucked her":
+                    RadioGroup RG_whenIsucked = (RadioGroup) findViewById(R.id.RG_whenIsucked);
+                    if (RG_whenIsucked.getCheckedRadioButtonId()==-1) {
+                        Toast.makeText(EncounterStartActivity.this,getResources().getString(R.string.answer_all_ejaculation_questions),Toast.LENGTH_SHORT).show();
+                        return true;
+                    } else {
+                        RadioButton whenISuckedHim_btn = (RadioButton) findViewById(RG_whenIsucked.getCheckedRadioButtonId());
+                        encSexType.setEjaculation(whenISuckedHim_btn.getText().toString());
+                    }
+                    break;
+                case "I bottomed":
+                    RadioGroup RG_whenIbottomed = (RadioGroup) findViewById(R.id.RG_whenIbottomed);
+                    if (RG_whenIbottomed.getCheckedRadioButtonId() == -1) {
+                        Toast.makeText(EncounterStartActivity.this,getResources().getString(R.string.answer_all_ejaculation_questions),Toast.LENGTH_SHORT).show();
+                        return true;
+                    } else {
+                        RadioButton whenIBottomed_btn = (RadioButton) findViewById(RG_whenIbottomed.getCheckedRadioButtonId());
+                        encSexType.setEjaculation(whenIBottomed_btn.getText().toString());
+                    }
+                    break;
+                case "I topped":
+                    RadioGroup RG_whenItopped = (RadioGroup) findViewById(R.id.RG_whenItopped);
+                    if (RG_whenItopped.getCheckedRadioButtonId() == -1) {
+                        Toast.makeText(EncounterStartActivity.this,getResources().getString(R.string.answer_all_ejaculation_questions),Toast.LENGTH_SHORT).show();
+                        return true;
+                    } else {
+                        RadioButton whenITopped_btn = (RadioButton) findViewById(RG_whenItopped.getCheckedRadioButtonId());
+                        encSexType.setEjaculation(whenITopped_btn.getText().toString());
                     }
                     break;
             }
         }
-        popFragment();
+        EncounterSummaryEditFragment fragEncounterEdit = new EncounterSummaryEditFragment();
+        pushFragments("encounter", fragEncounterEdit, false);
         return true;
     }
+
     public boolean backToEncSummary(View view){
-        boolean isValidationSuccessfull = true;
         RatingBar sexType_RateTheSex = (RatingBar)findViewById(R.id.sexType_RateTheSex);
         LynxManager.activeEncounter.setRate_the_sex(LynxManager.encryptString(String.valueOf(sexType_RateTheSex.getRating())));
         LynxManager.encRateofSex = String.valueOf(sexType_RateTheSex.getRating());
@@ -436,84 +479,11 @@ public class EncounterStartActivity extends AppCompatActivity {
         LynxManager.activeEncounter.setEncounter_notes(LynxManager.encryptString(encNotes));
         TextView drunk = (TextView)findViewById(R.id.drunk);
         LynxManager.activeEncounter.setIs_drug_used(LynxManager.encryptString(drunk.getText().toString()));
-        ArrayList<ToggleButton> allButtonsOnCurrentLayout = getViewsFromViewGroup(view.getRootView(), ToggleButton.class);
-        LynxManager.activePartnerSexType.clear();
-        LynxManager.activeEncCondomUsed.clear();
-        int selectedSextypesCount = 0;
-
-        for (ToggleButton toggleButton:allButtonsOnCurrentLayout){
-            if (toggleButton.isSelected()){
-                switch (toggleButton.getText().toString()) {
-                    case "I sucked him":
-                    case "I sucked her":
-                        TextView ejacWhenIsucked = (TextView) findViewById(R.id.whenIsucked);
-                        RadioGroup whenIsucked_group = (RadioGroup) findViewById(R.id.whenIsucked_group);
-                        if(whenIsucked_group.getCheckedRadioButtonId() == -1 || ejacWhenIsucked.getText().toString().equals("-")){
-                            isValidationSuccessfull = false;
-                        }else{
-                            isValidationSuccessfull = true;
-                            RadioButton RB_whenISuc = (RadioButton)findViewById(whenIsucked_group.getCheckedRadioButtonId());
-                            LynxManager.activePartnerSexType.add(new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(toggleButton.getText().toString()) , RB_whenISuc.getText().toString(), ejacWhenIsucked.getText().toString(), "",String.valueOf(R.string.statusUpdateNo),true));
-                            if(RB_whenISuc.getText().toString().equals("Condom used")){
-                                LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(toggleButton.getText().toString()));
-                            }
-                        }
-                        break;
-                    case "I bottomed":
-                        TextView ejacWhenIbottom = (TextView)findViewById(R.id.whenIbottom);
-                        RadioGroup whenIbottomed_group = (RadioGroup) findViewById(R.id.whenIbottomed_group);
-                        //LynxManager.activePartnerSexType.add(new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(toggleButton.getText().toString()) , "", ejacWhenIbottom.getText().toString(), "",String.valueOf(R.string.statusUpdateNo),true));
-                        if(whenIbottomed_group.getCheckedRadioButtonId()==-1 || ejacWhenIbottom.getText().toString().equals("-")) {
-                            isValidationSuccessfull = false;
-                        }else{
-                            isValidationSuccessfull = true;
-                            RadioButton RB_whenIBot = (RadioButton)findViewById(whenIbottomed_group.getCheckedRadioButtonId());
-                            LynxManager.activePartnerSexType.add(new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(toggleButton.getText().toString()) , RB_whenIBot.getText().toString(), ejacWhenIbottom.getText().toString(), "",String.valueOf(R.string.statusUpdateNo),true));
-                            if(RB_whenIBot.getText().toString().equals("Condom used")){
-                                LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(toggleButton.getText().toString()));
-                            }
-                        }
-                        break;
-                    case "I topped":
-                        TextView ejacWhenItop = (TextView)findViewById(R.id.whenItop);
-                        RadioGroup whenItopped_group = (RadioGroup) findViewById(R.id.whenItopped_group);
-                        if(whenItopped_group.getCheckedRadioButtonId() == -1 || ejacWhenItop.getText().toString().equals("-")){
-                            isValidationSuccessfull = false;
-                        }else {
-                            isValidationSuccessfull = true;
-                            RadioButton RB_whenItop = (RadioButton)findViewById(whenItopped_group.getCheckedRadioButtonId());
-                            LynxManager.activePartnerSexType.add(new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(toggleButton.getText().toString()) , RB_whenItop.getText().toString(), ejacWhenItop.getText().toString(), "",String.valueOf(R.string.statusUpdateNo),true));
-                            if(RB_whenItop.getText().toString().equals("Condom used")){
-                                LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(toggleButton.getText().toString()));
-                            }
-                        }
-                        break;
-                    case "I fucked her":
-                    case "We fucked":
-                        RadioGroup whenIfucked_group = (RadioGroup) findViewById(R.id.whenItopped_group);
-                        if(whenIfucked_group.getCheckedRadioButtonId() == -1){
-                            isValidationSuccessfull = false;
-                        }else {
-                            isValidationSuccessfull = true;
-                            RadioButton RB_whenIfuc = (RadioButton)findViewById(whenIfucked_group.getCheckedRadioButtonId());
-                            LynxManager.activePartnerSexType.add(new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(toggleButton.getText().toString()) , RB_whenIfuc.getText().toString(), "", "",String.valueOf(R.string.statusUpdateNo),true));
-                            if(RB_whenIfuc.getText().toString().equals("Condom used")){
-                                LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(toggleButton.getText().toString()));
-                            }
-                        }
-                        break;
-                    default:
-                        LynxManager.activePartnerSexType.add(new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(toggleButton.getText().toString()) , "", "", "",String.valueOf(R.string.statusUpdateNo),true));
-                        selectedSextypesCount++;
-
-                }
-            }
-        }
-        /*if (isValidationSuccessfull){*/
-        if (isValidationSuccessfull && selectedSextypesCount > 0){
-            popFragment();
+        if (LynxManager.activePartnerSexType.size() > 0){
+            EncounterSummaryFragment fragSummary = new EncounterSummaryFragment();
+            pushFragments("encounter", fragSummary, false);
         }else{
-            Toast.makeText(this, "Please answer all the questions!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EncounterStartActivity.this, "Please select Type of sex", Toast.LENGTH_SHORT).show();
         }
         return true;
     }
@@ -661,22 +631,24 @@ public class EncounterStartActivity extends AppCompatActivity {
             }
         }
         if(moreThanTwoEncountersCount>=2){
-            if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")){
-                List<String> showAppAlert = new ArrayList<String>();
-                showAppAlert.add(0,"It's been a busy week for you. Glad to see PrEP is part of your plan. Stay protected and keep having fun.");
-                showAppAlert.add(1,"Two");
-                showAppAlert.add(2,"More Sex Acts On PrEP");
-                AppAlerts appAlerts =  db.getLastAppAlertByName("More Sex Acts On PrEP");
-                if(db.getAppAlertsCountByName("More Sex Acts On PrEP")==0 || getElapsedDays(appAlerts.getCreated_date())>7)
-                    LynxManager.showAppAlertList.add(showAppAlert);
-            }else{
-                List<String> showAppAlert = new ArrayList<String>();
-                showAppAlert.add(0,"Seems like you've had a good week. PrEP can be a part of that by reducing your HIV risk and any anxiety about it.");
-                showAppAlert.add(1,"Two");
-                showAppAlert.add(2,"More Sex Acts Not On PrEP");
-                AppAlerts appAlerts =  db.getLastAppAlertByName("More Sex Acts Not On PrEP");
-                if(db.getAppAlertsCountByName("More Sex Acts Not On PrEP")==0 || getElapsedDays(appAlerts.getCreated_date())>7)
-                    LynxManager.showAppAlertList.add(showAppAlert);
+            if(LynxManager.getActiveUser()!=null) {
+                if (LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")) {
+                    List<String> showAppAlert = new ArrayList<String>();
+                    showAppAlert.add(0, "It's been a busy week for you. Glad to see PrEP is part of your plan. Stay protected and keep having fun.");
+                    showAppAlert.add(1, "Two");
+                    showAppAlert.add(2, "More Sex Acts On PrEP");
+                    AppAlerts appAlerts = db.getLastAppAlertByName("More Sex Acts On PrEP");
+                    if (db.getAppAlertsCountByName("More Sex Acts On PrEP") == 0 || getElapsedDays(appAlerts.getCreated_date()) > 7)
+                        LynxManager.showAppAlertList.add(showAppAlert);
+                } else {
+                    List<String> showAppAlert = new ArrayList<String>();
+                    showAppAlert.add(0, "Seems like you've had a good week. PrEP can be a part of that by reducing your HIV risk and any anxiety about it.");
+                    showAppAlert.add(1, "Two");
+                    showAppAlert.add(2, "More Sex Acts Not On PrEP");
+                    AppAlerts appAlerts = db.getLastAppAlertByName("More Sex Acts Not On PrEP");
+                    if (db.getAppAlertsCountByName("More Sex Acts Not On PrEP") == 0 || getElapsedDays(appAlerts.getCreated_date()) > 7)
+                        LynxManager.showAppAlertList.add(showAppAlert);
+                }
             }
         }
         /*
@@ -699,13 +671,13 @@ public class EncounterStartActivity extends AppCompatActivity {
 
         }
         if(partnersCount>=1 && partnersCount<=4 && LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("No")){
-                List<String> showAppAlert = new ArrayList<String>();
-                showAppAlert.add(0,"You've been getting out there. Nice. Use condoms and PrEP so your morning after memories are anxiety-free.");
-                showAppAlert.add(1,"Two");
-                showAppAlert.add(2,"1-4 Partners in last month");
-                AppAlerts appAlerts =  db.getLastAppAlertByName("1-4 Partners in last month");
-                if(db.getAppAlertsCountByName("1-4 Partners in last month")==0 || !isCalendarMonth(appAlerts.getCreated_date()))
-                    LynxManager.showAppAlertList.add(showAppAlert);
+            List<String> showAppAlert = new ArrayList<String>();
+            showAppAlert.add(0,"You've been getting out there. Nice. Use condoms and PrEP so your morning after memories are anxiety-free.");
+            showAppAlert.add(1,"Two");
+            showAppAlert.add(2,"1-4 Partners in last month");
+            AppAlerts appAlerts =  db.getLastAppAlertByName("1-4 Partners in last month");
+            if(db.getAppAlertsCountByName("1-4 Partners in last month")==0 || !isCalendarMonth(appAlerts.getCreated_date()))
+                LynxManager.showAppAlertList.add(showAppAlert);
 
         }else if(partnersCount >= 5){
             if(db.getAppAlertsCountByName("5 plus Partners in last month")==0) {
@@ -718,8 +690,6 @@ public class EncounterStartActivity extends AppCompatActivity {
                     LynxManager.showAppAlertList.add(showAppAlert);
             }
         }
-        // Clear Condomuse list//
-        LynxManager.activeEncCondomUsed.clear();
         LynxManager.isNewPartnerEncounter= false;
         EncounterLoggedFragment fragEncounterLogged = new EncounterLoggedFragment();
         pushFragments("encounter", fragEncounterLogged, true);

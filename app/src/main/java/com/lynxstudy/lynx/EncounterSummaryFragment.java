@@ -34,7 +34,7 @@ public class EncounterSummaryFragment extends Fragment {
 
     public EncounterSummaryFragment() {
     }
-    TextView whenIsucked,whenIbottom,whenItop,encSumm_partnerNotes,drunk;
+    TextView whenIsucked,whenIbottom,whenItop,encSumm_partnerNotes,drunk,condomUsedWhenISuc,condomUsedWhenITop,condomUsedWhenIBot,condomUsedWhenWeFuc;
     LinearLayout condomUsedContent,whenIsuckedParent,whenIbottomParent,whenItoppedParent;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,7 +72,14 @@ public class EncounterSummaryFragment extends Fragment {
         whenIsuckedParent = (LinearLayout)rootview.findViewById(R.id.whenIsuckedParent);
         whenIbottomParent = (LinearLayout)rootview.findViewById(R.id.whenIbottomParent);
         whenItoppedParent = (LinearLayout)rootview.findViewById(R.id.whenItoppedParent);
-
+        condomUsedWhenISuc = (TextView) rootview.findViewById(R.id.condomUsedWhenISuc);
+        condomUsedWhenISuc.setTypeface(tf);
+        condomUsedWhenITop = (TextView) rootview.findViewById(R.id.condomUsedWhenITop);
+        condomUsedWhenITop.setTypeface(tf);
+        condomUsedWhenIBot = (TextView) rootview.findViewById(R.id.condomUsedWhenIBot);
+        condomUsedWhenIBot.setTypeface(tf);
+        condomUsedWhenWeFuc = (TextView) rootview.findViewById(R.id.condomUsedWhenWeFuc);
+        condomUsedWhenWeFuc.setTypeface(tf);
         // Set NickName
         TextView nickname = (TextView) rootview.findViewById(R.id.encounter_summary_nickName);
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
@@ -154,8 +161,11 @@ public class EncounterSummaryFragment extends Fragment {
                     sexType_iSucked.setClickable(false);
                     sexType_iSucked.setTextColor(Color.parseColor("#ffffff"));
                     sexType_iSucked.setTypeface(tf);
-                    if(encSexType.getCondom_use().equals("Condom used")&& !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
-                        LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
+                    if(encSexType.getCondom_use().equals("Condom used")){
+                        condomUsedWhenISuc.setVisibility(View.VISIBLE);
+                        condomUsedWhenISuc.setText("When " + LynxManager.decryptString(encSexType.getSex_type()));
+                    }else{
+                        condomUsedWhenISuc.setVisibility(View.GONE);
                     }
                     whenIsuckedParent.setVisibility(View.VISIBLE);
                     whenIsucked.setText(encSexType.getEjaculation());
@@ -174,8 +184,11 @@ public class EncounterSummaryFragment extends Fragment {
                     sexType_iBottomed.setClickable(false);
                     sexType_iBottomed.setTextColor(Color.parseColor("#ffffff"));
                     sexType_iBottomed.setTypeface(tf);
-                    if(encSexType.getCondom_use().equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
-                        LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
+                    if(encSexType.getCondom_use().equals("Condom used")){
+                        condomUsedWhenIBot.setVisibility(View.VISIBLE);
+                        condomUsedWhenIBot.setText("When " + LynxManager.decryptString(encSexType.getSex_type()));
+                    }else{
+                        condomUsedWhenIBot.setVisibility(View.GONE);
                     }
                     whenIbottomParent.setVisibility(View.VISIBLE);
                     whenIbottom.setText(encSexType.getEjaculation());
@@ -186,8 +199,11 @@ public class EncounterSummaryFragment extends Fragment {
                     sexType_iTopped.setClickable(false);
                     sexType_iTopped.setTextColor(Color.parseColor("#ffffff"));
                     sexType_iTopped.setTypeface(tf);
-                    if(encSexType.getCondom_use().equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
-                        LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
+                    if(encSexType.getCondom_use().equals("Condom used")){
+                        condomUsedWhenITop.setVisibility(View.VISIBLE);
+                        condomUsedWhenITop.setText("When " + LynxManager.decryptString(encSexType.getSex_type()));
+                    }else{
+                        condomUsedWhenITop.setVisibility(View.GONE);
                     }
                     whenItoppedParent.setVisibility(View.VISIBLE);
                     whenItop.setText(encSexType.getEjaculation());
@@ -231,8 +247,11 @@ public class EncounterSummaryFragment extends Fragment {
                     sexType_iFucked.setClickable(false);
                     sexType_iFucked.setTextColor(Color.parseColor("#ffffff"));
                     sexType_iFucked.setTypeface(tf);
-                    if(encSexType.getCondom_use().equals("Condom used") && !LynxManager.activeEncCondomUsed.contains(LynxManager.decryptString(encSexType.getSex_type()))){
-                        LynxManager.activeEncCondomUsed.add(LynxManager.decryptString(encSexType.getSex_type()));
+                    if(encSexType.getCondom_use().equals("Condom used")){
+                        condomUsedWhenWeFuc.setVisibility(View.VISIBLE);
+                        condomUsedWhenWeFuc.setText("When " + LynxManager.decryptString(encSexType.getSex_type()));
+                    }else{
+                        condomUsedWhenWeFuc.setVisibility(View.GONE);
                     }
                     break;
                 case "I fingered her":
@@ -261,28 +280,6 @@ public class EncounterSummaryFragment extends Fragment {
 
             }
         }
-        new Handler().postDelayed(
-                new Runnable()
-                {
-                    @Override
-                    public void run() {
-                        sexRating.setRating(Float.parseFloat(LynxManager.encRateofSex));
-                           condomUsedContent.removeAllViews();
-                           if(LynxManager.activeEncCondomUsed.size()>0){
-                               for (String str : LynxManager.activeEncCondomUsed){
-                                   TextView tv = new TextView(getActivity());
-                                   tv.setTypeface(tf);
-                                   tv.setText("When "+str);
-                                   tv.setPadding(0,0,0,16);
-                                   tv.setTextColor(getResources().getColor(R.color.white));
-                                   condomUsedContent.addView(tv);
-                               }
-                           }else{
-                               LinearLayout condomUsedLayout = (LinearLayout)rootview.findViewById(R.id.condomUsedLayout);
-                               condomUsedLayout.setVisibility(View.GONE);
-                           }
-                    }
-                }, 500);
 
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();

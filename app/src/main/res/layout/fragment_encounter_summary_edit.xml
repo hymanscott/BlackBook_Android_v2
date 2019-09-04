@@ -169,280 +169,67 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/condomUsed"
-                    android:layout_width="150dp"
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Condom Usage :"
                     android:layout_margin="32dp"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/encounter_tv_textsize" />
-                <!--Condom Usage Questions Starts-->
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:id="@+id/cndm_whenIsucked_layout">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/condomUsed"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:text="When I sucked him:"
-                        android:textSize="@dimen/encounter_tv_textsize"
-                        android:layout_marginLeft="24dp"
-                        android:layout_marginRight="24dp"
-                        android:textColor="@color/white" />
-                    <RadioGroup
-                        android:layout_width="wrap_content"
-                        android:id="@+id/whenIsucked_group"
-                        android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:layout_marginLeft="24dp"
-                        android:layout_marginRight="24dp"
-                        android:paddingLeft="8dp"
-                        android:layout_height="wrap_content">
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/encounter_radio_btn_textsize"
-                            android:textColor="@color/white"
-                            android:buttonTint="@color/white"
-                            android:button="@drawable/radiobutton_white"
-                            android:paddingLeft="12dp"
-                            android:id="@+id/whenIsucked_CondomUsed"
-                            android:text="Condom used"/>
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/encounter_radio_btn_textsize"
-                            android:textColor="@color/white"
-                            android:buttonTint="@color/white"
-                            android:button="@drawable/radiobutton_white"
-                            android:paddingLeft="12dp"
-                            android:layout_marginTop="12dp"
-                            android:id="@+id/whenIsucked_CondomPartTime"
-                            android:text="Condom used part of the time"/>
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/whenIsucked_CondomNotUsed"
-                            android:textSize="@dimen/encounter_radio_btn_textsize"
-                            android:textColor="@color/white"
-                            android:buttonTint="@color/white"
-                            android:button="@drawable/radiobutton_white"
-                            android:paddingLeft="12dp"
-                            android:layout_marginTop="12dp"
-                            android:text="Condom not used"/>
-                    </RadioGroup>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/edittext_bg"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginBottom="24dp"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:id="@+id/cndm_whenItopped_layout">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="When I topped:"
-                        android:textSize="@dimen/encounter_tv_textsize"
+                        android:text="Condom Used"
                         android:textColor="@color/white"
-                        android:layout_marginLeft="24dp"
-                        android:layout_marginRight="24dp" />
-                    <RadioGroup
-                        android:layout_width="wrap_content"
-                        android:id="@+id/whenItopped_group"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:layout_marginLeft="24dp"
-                        android:layout_marginRight="24dp"
-                        android:paddingLeft="8dp">
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/encounter_radio_btn_textsize"
-                            android:textColor="@color/white"
-                            android:buttonTint="@color/white"
-                            android:button="@drawable/radiobutton_white"
-                            android:paddingLeft="12dp"
-                            android:id="@+id/whenItopped_CondomUsed"
-                            android:text="Condom used"/>
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/whenItopped_CondomPartTime"
-                            android:textSize="@dimen/encounter_radio_btn_textsize"
-                            android:textColor="@color/white"
-                            android:buttonTint="@color/white"
-                            android:button="@drawable/radiobutton_white"
-                            android:paddingLeft="12dp"
-                            android:layout_marginTop="12dp"
-                            android:text="Condom used part of the time"/>
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/whenItopped_CondomNotUsed"
-                            android:textSize="@dimen/encounter_radio_btn_textsize"
-                            android:textColor="@color/white"
-                            android:buttonTint="@color/white"
-                            android:button="@drawable/radiobutton_white"
-                            android:paddingLeft="12dp"
-                            android:layout_marginTop="12dp"
-                            android:text="Condom not used"/>
-                    </RadioGroup>
-                    <View
+                        android:textSize="@dimen/encounter_tv_textsize" />
+                    <LinearLayout
+                        android:id="@+id/condomUsedContent"
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/edittext_bg"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginBottom="24dp"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:id="@+id/cndm_whenIbottomed_layout">
-                    <TextView
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="When I bottomed:"
-                        android:textSize="@dimen/encounter_tv_textsize"
-                        android:textColor="@color/white"
-                        android:layout_marginLeft="24dp"
-                        android:layout_marginRight="24dp"/>
-                    <RadioGroup
-                        android:layout_width="wrap_content"
-                        android:id="@+id/whenIbottomed_group"
-                        android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:layout_marginLeft="24dp"
-                        android:layout_marginRight="24dp"
-                        android:paddingLeft="8dp"
-                        android:layout_height="wrap_content">
-                        <RadioButton
-                            android:layout_width="wrap_content"
+                        android:onClick="editCondomUse"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/condomUsedWhenISuc"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/encounter_radio_btn_textsize"
+                            android:text="When I sucked"
+                            android:visibility="gone"
+                            android:background="@drawable/rectangle_bg"
                             android:textColor="@color/white"
-                            android:buttonTint="@color/white"
-                            android:button="@drawable/radiobutton_white"
-                            android:paddingLeft="12dp"
-                            android:id="@+id/whenIbottomed_CondomUsed"
-                            android:text="Condom used"/>
-                        <RadioButton
-                            android:layout_width="wrap_content"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/condomUsedWhenITop"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/whenIbottomed_CondomPartTime"
-                            android:textSize="@dimen/encounter_radio_btn_textsize"
+                            android:text="When I toppped"
+                            android:visibility="gone"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/rectangle_bg"
                             android:textColor="@color/white"
-                            android:buttonTint="@color/white"
-                            android:button="@drawable/radiobutton_white"
-                            android:paddingLeft="12dp"
-                            android:layout_marginTop="12dp"
-                            android:text="Condom used part of the time"/>
-                        <RadioButton
-                            android:layout_width="wrap_content"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/condomUsedWhenIBot"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/encounter_radio_btn_textsize"
+                            android:text="When I bottomed"
+                            android:visibility="gone"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/rectangle_bg"
                             android:textColor="@color/white"
-                            android:buttonTint="@color/white"
-                            android:button="@drawable/radiobutton_white"
-                            android:paddingLeft="12dp"
-                            android:layout_marginTop="12dp"
-                            android:id="@+id/whenIbottomed_CondomNotUsed"
-                            android:text="Condom not used"/>
-                    </RadioGroup>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/edittext_bg"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginBottom="24dp"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/condomUsedWhenWeFuc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="When We fucked"
+                            android:layout_marginTop="2dp"
+                            android:visibility="gone"
+                            android:background="@drawable/rectangle_bg"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:id="@+id/cndm_whenIfucked_layout">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="When we fucked :"
-                        android:textSize="@dimen/encounter_tv_textsize"
-                        android:textColor="@color/white"
-                        android:layout_marginLeft="24dp"
-                        android:layout_marginRight="24dp"/>
-                    <RadioGroup
-                        android:layout_width="wrap_content"
-                        android:id="@+id/whenIfucked_group"
-                        android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:layout_marginLeft="24dp"
-                        android:layout_marginRight="24dp"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="8dp">
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/encounter_radio_btn_textsize"
-                            android:textColor="@color/white"
-                            android:buttonTint="@color/white"
-                            android:button="@drawable/radiobutton_white"
-                            android:paddingLeft="12dp"
-                            android:id="@+id/whenIfucked_CondomUsed"
-                            android:text="Condom used"/>
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/whenIfucked_CondomPartTime"
-                            android:textSize="@dimen/encounter_radio_btn_textsize"
-                            android:textColor="@color/white"
-                            android:buttonTint="@color/white"
-                            android:button="@drawable/radiobutton_white"
-                            android:paddingLeft="12dp"
-                            android:layout_marginTop="12dp"
-                            android:text="Condom used part of the time"/>
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/encounter_radio_btn_textsize"
-                            android:textColor="@color/white"
-                            android:buttonTint="@color/white"
-                            android:button="@drawable/radiobutton_white"
-                            android:paddingLeft="12dp"
-                            android:layout_marginTop="12dp"
-                            android:id="@+id/whenIfucked_CondomNotUsed"
-                            android:text="Condom not used"/>
-                    </RadioGroup>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/edittext_bg"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginBottom="24dp"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"/>
-                </LinearLayout>
-                <!--Condom Usage Questions Ends -->
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -468,6 +255,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:id="@+id/whenIsuckedParent"
+                    android:onClick="editEjaculationUse"
                     android:background="@drawable/rectangle_bg">
                     <TextView
                         android:id="@+id/whenIsucked"
@@ -505,6 +293,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:id="@+id/whenIbottomParent"
+                    android:onClick="editEjaculationUse"
                     android:background="@drawable/rectangle_bg">
                     <TextView
                         android:id="@+id/whenIbottom"
@@ -542,6 +331,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:id="@+id/whenItopParent"
+                    android:onClick="editEjaculationUse"
                     android:background="@drawable/rectangle_bg">
                     <TextView
                         android:id="@+id/whenItop"

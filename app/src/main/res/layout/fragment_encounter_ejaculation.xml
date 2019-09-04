@@ -252,6 +252,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/bottomNav"
+                android:orientation="vertical"
                 android:layout_alignParentBottom="true">
                 <Button
                     android:layout_width="match_parent"
@@ -260,6 +261,17 @@
                     android:onClick="onEjaculationNext"
                     android:textStyle="bold"
                     android:id="@+id/onEjaculationNext"
+                    android:textSize="@dimen/button_textsize"
+                    android:background="@color/encounter_btn_bg"
+                    android:textColor="@color/white" />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Next"
+                    android:onClick="onEjaculationEditNext"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    android:id="@+id/onEjaculationEditNext"
                     android:textSize="@dimen/button_textsize"
                     android:background="@color/encounter_btn_bg"
                     android:textColor="@color/white" />

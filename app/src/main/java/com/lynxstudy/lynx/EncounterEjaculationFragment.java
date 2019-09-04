@@ -41,6 +41,7 @@ public class EncounterEjaculationFragment extends Fragment {
         ((TextView) rootview.findViewById(R.id.whenIbottomTitle)).setTypeface(tf);
         ((TextView) rootview.findViewById(R.id.whenItopTitle)).setTypeface(tf);
         ((Button) rootview.findViewById(R.id.onEjaculationNext)).setTypeface(tf_bold);
+        ((Button) rootview.findViewById(R.id.onEjaculationEditNext)).setVisibility(View.GONE);
         ((RadioButton)rootview.findViewById(R.id.RB_whenIsuckedSwallow)).setTypeface(tf);
         ((RadioButton)rootview.findViewById(R.id.RB_whenIsuckedSpit)).setTypeface(tf);
         ((RadioButton)rootview.findViewById(R.id.RB_whenIsuckedNeither)).setTypeface(tf);

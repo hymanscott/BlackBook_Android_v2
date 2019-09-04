@@ -104,6 +104,20 @@ public class LynxManager {
     private static String baseURL  =   "https://lynxstudy.com/";
     private static String testImageBaseUrl = "https://lynxstudy.com/testimages/";
     public static int releaseMode = 2; //0 - Development, 1 - Internal Release , 2 - Client Release
+    public static EncounterSexType encSexType_kissing = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), "" , "",  "", "",String.valueOf(R.string.statusUpdateNo),true);
+    public static EncounterSexType encSexType_iSucked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), "" ,  "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+    public static EncounterSexType encSexType_heSucked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), "",  "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+    public static EncounterSexType encSexType_iTopped = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), "",  "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+    public static EncounterSexType encSexType_iBottomed = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), "",  "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+    public static EncounterSexType encSexType_iJerked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), "",  "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+    public static EncounterSexType encSexType_heJerked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), "",  "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+    public static EncounterSexType encSexType_iRimmed = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), "",  "", "", "",String.valueOf(R.string.statusUpdateNo),true);
+    public static EncounterSexType encSexType_heRimmed = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), "", "", "",  "",String.valueOf(R.string.statusUpdateNo),true);
+    public static EncounterSexType encSexType_iWentDown = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), "", "",  "", "",String.valueOf(R.string.statusUpdateNo),true);
+    public static EncounterSexType encSexType_iFucked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), "", "",  "", "",String.valueOf(R.string.statusUpdateNo),true);
+    public static EncounterSexType encSexType_iFingered= new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), "", "",  "", "",String.valueOf(R.string.statusUpdateNo),true);
+    public static EncounterSexType encSexType_heFingered= new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), "", "",  "", "",String.valueOf(R.string.statusUpdateNo),true);
+
     private LynxManager() {
     }
 

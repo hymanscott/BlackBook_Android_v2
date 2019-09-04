@@ -179,32 +179,65 @@
                 android:id="@+id/condomUsedLayout"
                 android:orientation="vertical">
                 <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="24dp">
-
-                <TextView
-                    android:layout_width="150dp"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/encounter_tv_textsize"
-                    android:textColor="@color/white"
-                    android:text="Condom Used :"
-                    android:id="@+id/condomUsed"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:id="@+id/condomUsedContent">
-
+                    android:orientation="horizontal"
+                    android:layout_margin="24dp">
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/encounter_tv_textsize"
+                        android:textColor="@color/white"
+                        android:text="Condom Used :"
+                        android:id="@+id/condomUsed"/>
+                    <LinearLayout
+                        android:id="@+id/condomUsedContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/condomUsedWhenISuc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="When I sucked"
+                            android:visibility="gone"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/condomUsedWhenITop"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="When I toppped"
+                            android:visibility="gone"
+                            android:layout_marginTop="2dp"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/condomUsedWhenIBot"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="When I bottomed"
+                            android:visibility="gone"
+                            android:layout_marginTop="2dp"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/condomUsedWhenWeFuc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="When We fucked"
+                            android:layout_marginTop="2dp"
+                            android:visibility="gone"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
                 <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/edittext_bg"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/edittext_bg"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

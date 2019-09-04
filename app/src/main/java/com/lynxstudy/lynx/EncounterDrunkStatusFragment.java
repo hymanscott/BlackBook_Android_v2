@@ -50,6 +50,7 @@ public class EncounterDrunkStatusFragment extends Fragment {
         encounter_nickName.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         RadioButton RB_both_drunk_high = (RadioButton)rootview.findViewById(R.id.RB_both_drunk_high);
         RB_both_drunk_high.setText(Html.fromHtml("Both drunk & high"));
+        RB_both_drunk_high.setTypeface(tf);
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
         tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
