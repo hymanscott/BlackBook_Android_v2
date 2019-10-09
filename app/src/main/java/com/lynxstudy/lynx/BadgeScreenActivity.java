@@ -32,9 +32,9 @@ public class BadgeScreenActivity extends AppCompatActivity {
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
 
         db = new DatabaseHelper(BadgeScreenActivity.this);
         int badge_id = getIntent().getIntExtra("badge_id",1);

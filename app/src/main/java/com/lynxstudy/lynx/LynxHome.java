@@ -112,9 +112,9 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
 
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         // Custom Action Bar //
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);

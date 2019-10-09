@@ -41,9 +41,9 @@ public class NewPartnerSummaryFragment extends Fragment {
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         ((Button)rootview.findViewById(R.id.next)).setTypeface(tf_bold);
         ((TextView)rootview.findViewById(R.id.partnerGender)).setTypeface(tf_bold);
         ((TextView)rootview.findViewById(R.id.hivStatus)).setTypeface(tf_bold);

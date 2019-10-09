@@ -89,9 +89,9 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_add_new_test);
         // Typeface //
         Typeface ty = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface ty_bold_italic = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-BoldItalic.ttf");
+                "fonts/Barlow-BoldItalic.ttf");
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 

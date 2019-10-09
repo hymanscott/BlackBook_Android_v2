@@ -30,9 +30,9 @@ public class EncounterSexReportFragment extends Fragment {
         View rootview = inflater.inflate(R.layout.fragment_encounter_sex_report, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         ((Button)rootview.findViewById(R.id.yes)).setTypeface(tf_bold);
         ((Button)rootview.findViewById(R.id.no)).setTypeface(tf_bold);
         ((TextView)rootview.findViewById(R.id.encounter_report_title)).setTypeface(tf);

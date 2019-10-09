@@ -49,9 +49,9 @@ public class TrendsDataPointAdapter extends BaseAdapter {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if(view ==null){
             Typeface tf_bold = Typeface.createFromAsset(mContext.getResources().getAssets(),
-                    "fonts/Roboto-Bold.ttf");
+                    "fonts/Barlow-Bold.ttf");
             Typeface tf_italic = Typeface.createFromAsset(mContext.getResources().getAssets(),
-                    "fonts/Roboto-Italic.ttf");
+                    "fonts/Barlow-Italic.ttf");
             View grid =  inflater.inflate(R.layout.trends_datapoints_item_single,null);
             TextView progressView = (TextView) grid.findViewById(R.id.progress);
             TextView descView = (TextView)grid.findViewById(R.id.description);

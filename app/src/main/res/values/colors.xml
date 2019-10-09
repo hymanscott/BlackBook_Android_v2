@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="backgroundPrimary">#252832</color>
     <color name="colorPrimary">#2196f3</color>
     <color name="colorPrimaryDark">#000</color>
     <color name="colorAccent">#2196f3</color>
@@ -75,4 +76,10 @@
 
     <!--Dot Indicators-->
     <color name="dot_indicator_score_page">#FFA5A5A5</color>
+
+    <!-- Buttons -->
+    <color name="btn_primary">#4DFFFFFF</color>
+    
+    <!-- Inputs -->
+    <color name="input_primary">#1AFFFFFF</color>
 </resources>

@@ -74,11 +74,11 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
 
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         tf_bold_italic = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-BoldItalic.ttf");
+                "fonts/Barlow-BoldItalic.ttf");
 
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();

@@ -38,9 +38,9 @@ public class LynxSexPro extends AppCompatActivity implements View.OnClickListene
         db = new DatabaseHelper(LynxSexPro.this);
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         //User_baseline_info baseline_info = db.getUserBaselineInfobyUserID(LynxManager.getActiveUser().getUser_id());
         User_baseline_info baseline_info = LynxManager.getActiveUserBaselineInfo();
         for(User_baseline_info user_baseline_info : db.getAllUserBaselineInfo()){

@@ -86,9 +86,9 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
 
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         summaryLayout = (LinearLayout) rootview.findViewById(R.id.summaryLayout);
         mainContentLayout = (LinearLayout) rootview.findViewById(R.id.mainContentLayout);
         editLayout = (LinearLayout) rootview.findViewById(R.id.editLayout);

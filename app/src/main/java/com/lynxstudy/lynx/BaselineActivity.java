@@ -87,9 +87,9 @@ public class BaselineActivity extends AppCompatActivity {
             View view = inflater.inflate(R.layout.fragment_baseline_intro, container, false);
             //Type face
             Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                    "fonts/Roboto-Regular.ttf");
+                    "fonts/Barlow-Regular.ttf");
             Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                    "fonts/Roboto-Bold.ttf");
+                    "fonts/Barlow-Bold.ttf");
             ((TextView)view.findViewById(R.id.textView8)).setTypeface(tf_bold);
             ((TextView)view.findViewById(R.id.textView9)).setTypeface(tf);
             ((TextView)view.findViewById(R.id.textView10)).setTypeface(tf);

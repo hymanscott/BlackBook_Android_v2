@@ -40,9 +40,9 @@ public class RegistrationAlcoholCalculation extends Fragment {
         View view = inflater.inflate(R.layout.fragment_registration_alcohol_calculation, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         ((TextView)view.findViewById(R.id.reg_alc_baseline_title)).setTypeface(tf_bold);
         ((TextView)view.findViewById(R.id.no_of_days_text)).setTypeface(tf);
         ((TextView)view.findViewById(R.id.drinksTitle)).setTypeface(tf);

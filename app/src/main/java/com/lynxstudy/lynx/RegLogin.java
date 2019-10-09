@@ -178,7 +178,7 @@ public class RegLogin extends AppCompatActivity {
             }
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         /*checkForUpdates();*/ // HockeyAPP
         // Piwik Analytics //
         tracker = ((lynxApplication) getApplication()).getTracker();
@@ -1039,7 +1039,7 @@ public class RegLogin extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             //Type face
             Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                    "fonts/Roboto-Regular.ttf");
+                    "fonts/Barlow-Regular.ttf");
             View view = inflater.inflate(R.layout.fragment_reg_login, container, false);
             TextView registration = (TextView)view.findViewById(R.id.registration);
             registration.setTypeface(tf);

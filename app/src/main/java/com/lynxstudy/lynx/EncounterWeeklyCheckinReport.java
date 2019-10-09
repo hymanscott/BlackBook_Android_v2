@@ -32,9 +32,9 @@ public class EncounterWeeklyCheckinReport extends Fragment {
         View view = inflater.inflate(R.layout.fragment_encounter_weekly_checkin_report, container, false);
 
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
         ((TextView) view.findViewById(R.id.intro_paragraph)).setTypeface(tf);
         ((RadioButton) view.findViewById(R.id.have_encounter_yes)).setTypeface(tf);

@@ -33,9 +33,9 @@ public class EncounterEjaculationFragment extends Fragment {
         View rootview = inflater.inflate(R.layout.fragment_encounter_ejaculation, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         ((TextView) rootview.findViewById(R.id.newEncounter)).setTypeface(tf_bold);
         ((TextView) rootview.findViewById(R.id.whenISuckedTitle)).setTypeface(tf);
         ((TextView) rootview.findViewById(R.id.whenIbottomTitle)).setTypeface(tf);

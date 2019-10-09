@@ -92,9 +92,9 @@ public class LynxChat extends AppCompatActivity implements View.OnClickListener{
         db = new DatabaseHelper(LynxChat.this);
         //Type face
        tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         tracker = ((lynxApplication) getApplication()).getTracker();
         tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         needUsNow = (Button)findViewById(R.id.needUsNow);

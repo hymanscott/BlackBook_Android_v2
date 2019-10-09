@@ -34,9 +34,9 @@ public class RegistrationUserDetails extends Fragment {
         View view = inflater.inflate(R.layout.fragment_registration_userdetails, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
         ((Button) view.findViewById(R.id.regAuthNext)).setTypeface(tf_bold);
         //email validation

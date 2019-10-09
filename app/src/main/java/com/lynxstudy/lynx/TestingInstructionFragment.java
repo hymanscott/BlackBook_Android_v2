@@ -54,7 +54,7 @@ public class TestingInstructionFragment extends Fragment {
         // Required empty public constructor
     }
     View view;
-    Typeface roboto;
+    Typeface barlow;
     LinearLayout questionLayout,answerLayout;
     private boolean isAnswerShown = false;
     int back_press_count;
@@ -67,8 +67,8 @@ public class TestingInstructionFragment extends Fragment {
         db = new DatabaseHelper(getActivity());
 
         //Type face
-        roboto = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+        barlow = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Barlow-Regular.ttf");
         List<TestingInstructions> testing_instruction_list = db.getAllTestingInstruction();
         questionLayout = (LinearLayout) view.findViewById(R.id.questionLayout);
         answerLayout = (LinearLayout) view.findViewById(R.id.answerLayout);
@@ -81,7 +81,7 @@ public class TestingInstructionFragment extends Fragment {
             LayoutInflater chInflater = (getActivity()).getLayoutInflater();
             View question_view = chInflater.inflate(R.layout.testing_instruction_row,testingInsRow,false);
             TextView textview = (TextView)question_view.findViewById(R.id.textview);
-            textview.setTypeface(roboto);
+            textview.setTypeface(barlow);
             textview.setText(testingInstructions.getQuestion());
             testingInsRow.addView(question_view);
             testingInsRow.setBackground(getResources().getDrawable(R.drawable.bottom_border_faq));
@@ -220,7 +220,7 @@ public class TestingInstructionFragment extends Fragment {
         questionLayout.setVisibility(View.GONE);
         isAnswerShown = true;
         TextView qn = (TextView)view.findViewById(R.id.question);
-        qn.setTypeface(roboto);
+        qn.setTypeface(barlow);
         LinearLayout parentLayout = (LinearLayout)view.findViewById(R.id.parentLayout);
         TestingInstructions instruction = db.getTestingInstruction(id);
         qn.setText(instruction.getQuestion());

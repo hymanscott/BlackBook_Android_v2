@@ -49,7 +49,7 @@ public class BaselineSummaryEdit extends Fragment implements SeekBar.OnSeekBarCh
         final View view = inflater.inflate(R.layout.fragment_baseline_summary_edit, container, false);
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         ((TextView)view.findViewById(R.id.textview)).setTypeface(tf);
         ((TextView)view.findViewById(R.id.textview8)).setTypeface(tf);
         ((TextView)view.findViewById(R.id.textview9)).setTypeface(tf);

@@ -48,11 +48,11 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_registration_sexpro_score);
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         tf_italic = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Italic.ttf");
+                "fonts/Barlow-Italic.ttf");
         // Custom Action Bar //
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);

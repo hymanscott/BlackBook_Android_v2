@@ -200,11 +200,11 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
 
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         tf_bold_italic = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-BoldItalic.ttf");
+                "fonts/Barlow-BoldItalic.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         Button addNewHIVtest = (Button) view.findViewById(R.id.testing_addNewHIVtest);
         addNewHIVtest.setTypeface(tf_bold);
         addNewHIVtest.setOnClickListener(new View.OnClickListener() {

@@ -48,9 +48,9 @@ public class EncounterEnctimeFragment extends Fragment {
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         ((TextView) rootview.findViewById(R.id.textView14)).setTypeface(tf_bold);
         textView13 = (TextView) rootview.findViewById(R.id.textView13);
         textView13.setTypeface(tf);

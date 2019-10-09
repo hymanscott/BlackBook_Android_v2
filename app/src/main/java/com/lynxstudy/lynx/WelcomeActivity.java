@@ -43,7 +43,8 @@ public class WelcomeActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private static ViewPager mViewPager;
-    private static Typeface tf,tf_bold;
+    private static Typeface tf, tf_bold;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,10 +60,10 @@ public class WelcomeActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         //Type face
-         tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+        tf = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Barlow-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
     }
 
 
@@ -120,7 +121,7 @@ public class WelcomeActivity extends AppCompatActivity {
             View indicator1 = (View)rootView.findViewById(R.id.screen_indicator_one);
             View indicator2 = (View)rootView.findViewById(R.id.screen_indicator_two);
             View indicator3 = (View)rootView.findViewById(R.id.screen_indicator_three);
-            View indicator4 = (View)rootView.findViewById(R.id.screen_indicator_four);
+
             TextView label = (TextView) rootView.findViewById(R.id.section_label);
             TextView description = (TextView) rootView.findViewById(R.id.section_description);
             ImageView welcome_screen_logo = (ImageView)rootView.findViewById(R.id.welcome_screen_logo);
@@ -130,6 +131,7 @@ public class WelcomeActivity extends AppCompatActivity {
             nextScreen.setTypeface(tf_bold);
             Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
 			tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
+
             switch (getArguments().getInt(ARG_SECTION_NUMBER)){
                 case 1:
                     label.setText(getResources().getString(R.string.screen_one_label));
@@ -148,24 +150,16 @@ public class WelcomeActivity extends AppCompatActivity {
                 case 3:
                     label.setText(getResources().getString(R.string.screen_three_label));
                     description.setText(getResources().getString(R.string.screen_three_description));
-                    description.setText(Html.fromHtml("Take care of your business without having anyone in your business. Get testing reminders & test locations that’s easiest for you – yep, even at home."));
                     indicator3.setBackground(getResources().getDrawable(R.drawable.dot_indicator_active));
                     welcome_screen_logo.setImageDrawable(getResources().getDrawable(R.drawable.welcome_check_icon));
                     TrackHelper.track().screen("/Welcomescreen/Check").title("Welcomescreen/Check").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
-                    break;
-                case 4:
-                    label.setText(getResources().getString(R.string.screen_four_label));
-                    description.setText(getResources().getString(R.string.screen_four_description));
-                    indicator4.setBackground(getResources().getDrawable(R.drawable.dot_indicator_active));
-                    welcome_screen_logo.setImageDrawable(getResources().getDrawable(R.drawable.welcome_protect_icon));
-                    TrackHelper.track().screen("/Welcomescreen/Protect").title("Welcomescreen/Protect").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
                     break;
             }
 
             nextScreen.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(getArguments().getInt(ARG_SECTION_NUMBER)>=4){
+                    if(getArguments().getInt(ARG_SECTION_NUMBER)>= 3){
                         Intent goback = new Intent(getActivity(),RegLogin.class);
                         startActivity(goback);
                         getActivity().finish();
@@ -174,6 +168,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     }
                 }
             });
+
             return rootView;
         }
     }
@@ -200,8 +195,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 4 total pages.
-            return 4;
+            // Show 3 total pages.
+            return 3;
         }
     }
 }

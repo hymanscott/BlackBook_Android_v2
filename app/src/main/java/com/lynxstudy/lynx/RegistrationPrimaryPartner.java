@@ -46,9 +46,9 @@ public class RegistrationPrimaryPartner extends Fragment{
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
         ((TextView)view.findViewById(R.id.textview8)).setTypeface(tf);
         ((TextView)view.findViewById(R.id.textview9)).setTypeface(tf);

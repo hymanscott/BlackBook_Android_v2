@@ -8,7 +8,7 @@
     <string name="set_time_of_day">Set time of day</string>
     <!-- Passcode Strings-->
     <string name="passcode_manage">Manage passcode</string>
-    <string name="passcode_enter_passcode">Hit us with your passcode.</string>
+    <string name="passcode_enter_passcode">Enter your passcode:</string>
     <string name="passcode_enter_old_passcode">Enter your old passcode</string>
     <string name="passcode_re_enter_passcode">Re-enter your passcode</string>
     <string name="passcode_change_passcode">Change passcode</string>
@@ -36,7 +36,7 @@
     <string name="new_encounter">New Encounter</string>
     <string name="druguse_title">Have you used any of the following <u>at all</u> during the past three months?</string>
     <string name="title_activity_welcome">WelcomeActivity</string>
-    <string name="screen_one_label">Welcome to Lynx</string>
+    <string name="screen_one_label">Welcome to BlackBook!</string>
     <!--<string-array name="gender_list">
         <item>Male</item>
         <item>Female</item>
@@ -46,10 +46,9 @@
     <string name="screen_two_label">Track</string>
     <string name="screen_three_label">Check</string>
     <string name="screen_four_label">Protect</string>
-    <string name="screen_one_description">Lynx is all about blending pleasure with HIV prevention. It’ll help you track, check, and protect so you can focus on the pleasure of sex.</string>
-    <string name="screen_two_description">Track your sexual encounters with ease. With a few simple steps, you’ll build your sexual history and get insights on what gets you going.</string>
-    <string name="screen_three_description">Take care of your business without having anyone in your business. Get testing reminders and test locations that’s easiest for you – yep, even at home.</string>
-    <string name="screen_four_description">Know how much of a pro you are at protecting your sexual health. We calculate your Sexual Health Protection (Sex Pro) Score and help you access PrEP.</string>
+    <string name="screen_one_description">BlackBook is all about promoting your sexual health.</string>
+    <string name="screen_two_description">BlackBook will make it easy to track your sexual encounters. With a few simple steps, you’ll build your sexual history and get insights on what gets you going.</string>
+    <string name="screen_three_description">Take care of your business. Track your testing results with ease and keep them all in one place!</string>
     <string name="select_any_one">Please select any one option</string>
 
     <string name="answer_all_questions">Please answer all the questions</string>

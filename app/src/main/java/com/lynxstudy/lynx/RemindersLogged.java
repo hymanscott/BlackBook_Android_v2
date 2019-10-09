@@ -25,9 +25,9 @@ public class RemindersLogged  extends Fragment {
         View rootview = inflater.inflate(R.layout.fragment_reminders_logged, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         ((Button)rootview.findViewById(R.id.loggedNext)).setTypeface(tf_bold);
         ((TextView)rootview.findViewById(R.id.frag_title)).setTypeface(tf_bold);
         ((TextView)rootview.findViewById(R.id.log_para_two)).setTypeface(tf);

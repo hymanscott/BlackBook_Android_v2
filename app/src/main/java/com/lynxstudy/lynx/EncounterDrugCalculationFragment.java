@@ -35,7 +35,7 @@ public class EncounterDrugCalculationFragment extends Fragment {
         View rootview = inflater.inflate(R.layout.fragment_enc_alcohol_cal, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         ((Button) rootview.findViewById(R.id.alcohol_cal_nextbtn)).setTypeface(tf);
         ((TextView)rootview.findViewById(R.id.drinksTitle)).setTypeface(tf);
         ((TextView)rootview.findViewById(R.id.drinksdefine)).setTypeface(tf);

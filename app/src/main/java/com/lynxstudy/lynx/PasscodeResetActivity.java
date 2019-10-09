@@ -26,7 +26,7 @@ public class PasscodeResetActivity extends AppCompatActivity {
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         ((TextView)findViewById(R.id.frag_title)).setTypeface(tf);
         reset_passcode = (Button)findViewById(R.id.reset_passcode);
         reset_passcode.setTypeface(tf);

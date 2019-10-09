@@ -55,9 +55,9 @@ public class EncounterSummaryEditFragment extends Fragment {
 
         //Type face
         final Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         ((TextView)rootview.findViewById(R.id.newEncounter)).setTypeface(tf_bold);
         hivStatus = (TextView)rootview.findViewById(R.id.hivStatus);
         hivStatus.setTypeface(tf);

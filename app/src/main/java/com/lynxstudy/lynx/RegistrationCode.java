@@ -32,9 +32,9 @@ public class RegistrationCode extends Activity {
         setContentView(R.layout.activity_registration_code);
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
 
         ((TextView)findViewById(R.id.intro_paragraph)).setTypeface(tf);
         BT_Submit = (Button)findViewById(R.id.BT_Submit);

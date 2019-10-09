@@ -46,11 +46,11 @@ public class TestingCareFragment extends Fragment {
 
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         tf_italic = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Italic.ttf");
+                "fonts/Barlow-Italic.ttf");
         answerLayout = (RelativeLayout)view.findViewById(R.id.answerLayout);
         questionLayout = (LinearLayout)view.findViewById(R.id.questionLayout);
         positiveLayoutParent = (ScrollView)view.findViewById(R.id.positiveLayoutParent);

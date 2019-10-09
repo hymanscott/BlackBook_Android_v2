@@ -51,9 +51,9 @@ public class RemindersTesting extends Fragment {
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         ((TextView)rootview.findViewById(R.id.frag_title)).setTypeface(tf_bold);
         time = (TextView)rootview.findViewById(R.id.time);
         time.setTypeface(tf);

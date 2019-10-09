@@ -62,9 +62,9 @@ public class TestingTestKitFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_testing_test_kit, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         LL_mainLayout = (LinearLayout)view.findViewById(R.id.LL_mainLayout);
         LL_mainLayout.setVisibility(View.VISIBLE);
         LL_webviewParent = (LinearLayout)view.findViewById(R.id.LL_webviewParent);

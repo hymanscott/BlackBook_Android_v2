@@ -121,7 +121,7 @@ public class TestingLocationFragment extends Fragment implements GoogleApiClient
         }
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         mMapView.onResume(); // needed to get the map to display immediately
         // Moving MyLocation Button to bottom //
         if(mMapView.findViewById(1) != null){

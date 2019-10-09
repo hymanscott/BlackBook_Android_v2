@@ -55,9 +55,9 @@ public class RegistrationEdit extends Fragment {
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
         confirm_dob = (EditText) view.findViewById(R.id.confirm_dob);
         confirm_dob.setTypeface(tf);

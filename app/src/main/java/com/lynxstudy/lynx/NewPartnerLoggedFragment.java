@@ -34,9 +34,9 @@ public class NewPartnerLoggedFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_new_partner_logged, container, false);
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         ((TextView)view.findViewById(R.id.thankyou)).setTypeface(tf_bold);
         ((TextView)view.findViewById(R.id.encloggedText)).setTypeface(tf);
         ((Button)view.findViewById(R.id.newPartnerLoggedNext)).setTypeface(tf_bold);

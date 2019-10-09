@@ -48,7 +48,7 @@ public class EncounterNewPartner extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         rating_field_id.add(1);
         rating_field_id.add(2);
         rating_field_id.add(3);

@@ -34,9 +34,9 @@ public class RegistrationTimesBottom extends Fragment implements SeekBar.OnSeekB
         final View view = inflater.inflate(R.layout.fragment_reg_times_bottom, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         seek_textviewone = (TextView)view.findViewById(R.id.textProgress_id2);
         TextView Progress_minvalue2 = (TextView)view.findViewById(R.id.Progress_minvalue2);
         TextView Progress_maxvalue2 = (TextView)view.findViewById(R.id.Progress_maxvalue2);

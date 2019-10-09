@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_gravity="center_horizontal"
-    android:background="@drawable/gradient" >
+    android:background="@color/backgroundPrimary" >
 
     <LinearLayout
         android:id="@+id/AppUnlockLinearLayout1"
@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/lynxverticallogo"
+            android:src="@drawable/blackbook_logo"
             android:layout_marginTop="@dimen/banner_logo_top_margin"
             android:layout_marginBottom="@dimen/banner_logo_bottom_margin"
             android:layout_gravity="center"/>
@@ -35,8 +35,9 @@
             android:id="@+id/pin_code_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/passcode_input_margin_top"
+            android:layout_marginLeft="@dimen/passcode_input_margin"
+            android:layout_marginRight="@dimen/passcode_input_margin"
             android:orientation="horizontal" >
 
             <EditText
@@ -76,13 +77,13 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Forgot Passcode?"
+            android:text="Forgot Password?"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:layout_marginTop="@dimen/button_top_margin"
             android:visibility="visible"
             android:lineSpacingMultiplier="1.33"
-            android:textSize="14sp" />
+            android:textSize="13dp" />
         <TableLayout
             android:id="@+id/tableLayout1"
             android:layout_width="match_parent"

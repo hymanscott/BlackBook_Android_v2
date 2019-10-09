@@ -36,9 +36,9 @@ public class NewPartnerAddFragment extends Fragment {
         final View rootview = inflater.inflate(R.layout.fragment_add_new_partner, container, false);
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         ((TextView)rootview.findViewById(R.id.add_partner_title)).setTypeface(tf_bold);
         ((TextView)rootview.findViewById(R.id.whoIsYourPartner)).setTypeface(tf);
         ((TextView)rootview.findViewById(R.id.partnerGenderTitle)).setTypeface(tf);

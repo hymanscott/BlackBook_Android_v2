@@ -28,9 +28,9 @@ public class RegistrationHavePriPartner extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_reg_have_pri_partner, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         PSP_Yes = (RadioButton)view.findViewById(R.id.PSP_Yes);
         PSP_No = (RadioButton)view.findViewById(R.id.PSP_No);
         ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_bold);

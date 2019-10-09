@@ -82,7 +82,7 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
         TrackHelper.track().screen("/Lynxprep/Videos").title("Lynxprep/Videos").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         //TYpe face
         tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
 
         // Inflate the layout for this fragment
         final View rootview = inflater.inflate(R.layout.fragment_lynx_prep_videos, container, false);

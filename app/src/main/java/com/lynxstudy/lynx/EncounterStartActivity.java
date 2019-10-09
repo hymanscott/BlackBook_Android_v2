@@ -68,7 +68,7 @@ public class EncounterStartActivity extends AppCompatActivity {
         }
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         // Piwik Analytics //
         tracker = ((lynxApplication) getApplication()).getTracker();
         tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));

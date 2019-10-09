@@ -29,7 +29,7 @@ public class ForgetPassword extends Fragment {
         View view = inflater.inflate(R.layout.fragment_forget_password, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
 
         EditText reqNewPassEmail = (EditText)view.findViewById(R.id.reqNewPassEmail);
         ((TextView)view.findViewById(R.id.bannerText)).setTypeface(tf);

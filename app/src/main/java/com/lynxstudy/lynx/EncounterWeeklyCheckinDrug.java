@@ -46,9 +46,9 @@ public class EncounterWeeklyCheckinDrug extends Fragment {
         final List<DrugMaster> drug = newdb.getAllDrugs();
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
 
         LynxManager.selectedDrugs.clear();
 

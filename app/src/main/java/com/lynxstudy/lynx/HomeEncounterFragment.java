@@ -80,9 +80,9 @@ public class HomeEncounterFragment extends Fragment {
         TrackHelper.track().screen("/Lynxdiary/History").title("Lynxdiary/History").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         //Type face
        tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         encounterListContent = (LinearLayout) view.findViewById(R.id.encounterListContent);
         whenIsuckedParent = (LinearLayout) view.findViewById(R.id.whenIsuckedParent);
         whenIbottomParent = (LinearLayout) view.findViewById(R.id.whenIbottomParent);

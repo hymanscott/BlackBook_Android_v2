@@ -38,7 +38,7 @@ public class EncounterFromNotification extends AppCompatActivity {
         setContentView(R.layout.activity_encounter_from_notification);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         ((TextView)findViewById(R.id.encounter_report_title)).setTypeface(tf);
         ((Button)findViewById(R.id.yes)).setTypeface(tf);
         ((Button)findViewById(R.id.no)).setTypeface(tf);

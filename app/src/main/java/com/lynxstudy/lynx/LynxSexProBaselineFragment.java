@@ -64,11 +64,11 @@ public class LynxSexProBaselineFragment extends Fragment {
         db = new DatabaseHelper(getActivity());
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         tf_italic = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Italic.ttf");
+                "fonts/Barlow-Italic.ttf");
 
         final LynxSexPro activity = (LynxSexPro)getActivity();
 

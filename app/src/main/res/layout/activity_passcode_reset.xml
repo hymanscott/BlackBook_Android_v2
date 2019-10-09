@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_bg_gradient"
+    android:background="@color/backgroundPrimary"
     android:orientation="vertical">
 
     <ScrollView
@@ -22,21 +22,21 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/banner_logo_bottom_margin"
                 android:layout_marginTop="@dimen/banner_logo_top_margin"
-                android:src="@drawable/lynxverticallogo" />
+                android:src="@drawable/blackbook_logo" />
 
             <TextView
                 android:id="@+id/frag_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:layout_marginLeft="80dp"
-                android:layout_marginRight="80dp"
+                android:layout_marginLeft="85dp"
+                android:layout_marginRight="85dp"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Answer your security question to reset your passcode"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/white"
                 android:lineSpacingMultiplier="1.36"
-                android:textSize="14sp" />
+                android:textSize="16dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,6 +44,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -59,8 +60,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:text="Security Question"
+                    android:hint="[Add security question here]"
                     android:textColor="@color/white"
+                    android:textColorHint="@color/edittext_hint_color"
                     android:textSize="@dimen/edittext_textsize" />
             </LinearLayout>
             <LinearLayout
@@ -69,7 +71,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:background="@color/edittext_bg"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -104,7 +106,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/button_top_margin"
-                android:background="@color/btn_blue"
+                android:background="@drawable/btn_primary_rounded"
                 android:onClick="changePasscode"
                 android:text="RESET PASSCODE"
                 android:textColor="@color/white"

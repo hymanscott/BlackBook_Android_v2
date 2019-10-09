@@ -34,9 +34,9 @@ public class EncounterWeeklyCheckinAlcohol extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_encounter_weekly_checkin_alcohol, container, false);
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
         ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
         ((TextView)view.findViewById(R.id.drinksTitle)).setTypeface(tf);
         ((TextView)view.findViewById(R.id.drinksdefine)).setTypeface(tf);

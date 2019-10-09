@@ -35,7 +35,7 @@ public class EncounterCondomuseFragmentEdit extends Fragment {
         View rootview = inflater.inflate(R.layout.fragment_encounter_condomuse_edit, container, false);
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         ((Button) rootview.findViewById(R.id.next)).setTypeface(tf);
         ((TextView) rootview.findViewById(R.id.newEncounter)).setTypeface(tf);
         whenIsucked = (TextView) rootview.findViewById(R.id.whenIsucked);

@@ -106,9 +106,9 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
 
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Regular.ttf");
+                "fonts/Barlow-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Roboto-Bold.ttf");
+                "fonts/Barlow-Bold.ttf");
 
         ((TextView)findViewById(R.id.fragTitle)).setTypeface(tf_bold);
         ((TextView)findViewById(R.id.bot_nav_sexpro_tv)).setTypeface(tf);
