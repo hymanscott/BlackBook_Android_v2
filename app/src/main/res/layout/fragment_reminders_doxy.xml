@@ -26,7 +26,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Reminders"
+                android:text="DoxyPED"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="20dp"
@@ -36,7 +36,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="We got you! During the study, we’ll send you reminders to add sexual activity to your diary and capture doxycycline use."
+                android:text="Have you been assigned to take doxycycline?"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:layout_marginTop="32dp"
@@ -46,36 +46,37 @@
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:textSize="16dp" />
-            <TextView
-                android:id="@+id/intro_second_paragraph"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="But you’re in charge – so let’s set those now"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="32dp"
-                android:lineSpacingMultiplier="1.43"
-                android:textSize="16dp" />
-            <TextView
-                android:id="@+id/intro_third_paragraph"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="(Don’t worry – you can change these whenever you want in User Settings.)"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:lineSpacingMultiplier="1.43"
-                android:layout_marginTop="32dp"
-                android:textSize="16dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent">
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="48dp"
+                    android:paddingVertical="12dp">
+                    <RadioButton
+                        android:buttonTint="@color/white"
+                        android:checked="true"
+                        android:id="@+id/rbt_confirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:text="Yes"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+                    <RadioButton
+                        android:buttonTint="@color/white"
+                        android:id="@+id/rbt_decline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:text="No"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+                </RadioGroup>
+
                 <Button
                     android:id="@+id/reminderIntroNext"
                     android:layout_width="match_parent"
@@ -84,10 +85,11 @@
                     android:layout_marginTop="@dimen/button_top_margin"
                     android:background="@color/btn_primary"
                     android:onClick="showTestingReminders"
-                    android:text="NEXT"
+                    android:text="SAVE"
                     android:textColor="@color/white"
                     android:textSize="@dimen/button_textsize"
                     android:textStyle="bold" />
+
             </RelativeLayout>
 
         </LinearLayout>

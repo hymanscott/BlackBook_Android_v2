@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_bg_gradient">
+    android:background="@color/backgroundPrimary">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,8 +22,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="32dp"
                     android:layout_marginBottom="32dp"
@@ -36,30 +36,18 @@
                     android:text="Thank you!"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
                 <TextView
                     android:id="@+id/log_para_one"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Great! You’re almost done."
+                    android:text="Great!  Your account is all set!"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:layout_marginTop="32dp"
-                    android:textSize="16sp" />
-                <TextView
-                    android:id="@+id/log_para_two"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:lineSpacingMultiplier="1.43"
-                    android:text="Now we need to calculate your baseline
-Sex Pro score. It will just take a few minutes and then you’ll be on your way!"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="32dp"
-                    android:textSize="16sp" />
+                    android:textSize="16dp" />
                 </LinearLayout>
             <Button
                 android:id="@+id/loggedNext"
@@ -67,9 +55,9 @@ Sex Pro score. It will just take a few minutes and then you’ll be on your way!
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="@dimen/button_top_margin"
-                android:background="@color/btn_blue"
+                android:background="@color/btn_primary"
                 android:onClick="loggedNext"
-                android:text="START SEX PRO"
+                android:text="FINISH"
                 android:textColor="@color/white"
                 android:textSize="@dimen/button_textsize"
                 android:textStyle="bold" />

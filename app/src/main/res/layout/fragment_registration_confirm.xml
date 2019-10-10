@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_bg_gradient">
+    android:background="@color/backgroundPrimary">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,8 +23,7 @@
                 android:text="This all checks out, right?"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="20sp" />
+                android:textSize="16dp" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
@@ -167,7 +166,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:text="Race"
+                    android:text="Asian/Pacific Islander"
                     android:layout_gravity="center_vertical"
                     android:textColor="@color/white"
                     android:textSize="@dimen/reg_tv_textsize" />
@@ -223,7 +222,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:text="password"
+                    android:text="*****"
                     android:layout_gravity="center_vertical"
                     android:textColor="@color/white"
                     android:textSize="@dimen/reg_tv_textsize" />
@@ -251,7 +250,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:text="Security question"
+                    android:text="Name of the city where I was born"
                     android:layout_gravity="center_vertical"
                     android:textColor="@color/white"
                     android:textSize="@dimen/reg_tv_textsize" />
@@ -279,7 +278,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:text="Security answer"
+                    android:text="San Francisco"
                     android:layout_gravity="center_vertical"
                     android:textColor="@color/white"
                     android:textSize="@dimen/reg_tv_textsize" />
@@ -303,7 +302,7 @@
                     android:src="@drawable/passcodeicon"
                     android:layout_gravity="center"/>
                 <TextView
-                    android:text=""
+                    android:text="*****"
                     android:id="@+id/c_passcode"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -330,7 +329,7 @@
                 android:paddingRight="50dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="12sp"
+                android:textSize="13dp"
                 android:background="@drawable/border_full_white"
                 android:text="EDIT"
                 android:onClick="showEditDetails"
@@ -344,7 +343,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/btn_blue"
+        android:background="@color/btn_primary"
         android:onClick="showRegistration_primary_partner"
         android:text="CONFIRM"
         android:textColor="@color/white"

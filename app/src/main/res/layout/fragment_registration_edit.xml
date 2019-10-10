@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_bg_gradient">
+    android:background="@color/backgroundPrimary">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,13 +24,13 @@
                 android:text="Edit your account details"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="32dp"
                 android:orientation="horizontal"
                 android:weightSum="1">
 
@@ -39,7 +39,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_weight="0.5"
-                    android:background="@color/edittext_bg"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/input_primary_rounded"
                     android:orientation="horizontal"
                     android:padding="@dimen/edittext_padding">
 
@@ -70,20 +71,12 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_weight="0.5"
-                    android:background="@color/edittext_bg"
+                    android:background="@drawable/input_primary_rounded"
                     android:orientation="horizontal"
                     android:padding="@dimen/edittext_padding">
-
-                    <ImageView
-                        android:id="@+id/emailicon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@drawable/emailicon"
-                        android:visibility="invisible" />
 
                     <EditText
                         android:id="@+id/regLastName"
@@ -95,6 +88,7 @@
                         android:ems="10"
                         android:hint="Last Name"
                         android:inputType="textPersonName"
+                        android:paddingLeft="10dp"
                         android:textColor="@color/white"
                         android:textColorHint="@color/edittext_hint_color"
                         android:textCursorDrawable="@drawable/white_cursor"
@@ -108,8 +102,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="5dp"
-                android:background="@color/edittext_bg"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -141,8 +135,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="5dp"
-                android:background="@color/edittext_bg"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -205,8 +199,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="5dp"
-                android:background="@color/edittext_bg"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -253,8 +247,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="5dp"
-                android:background="@color/edittext_bg"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -286,8 +280,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="5dp"
-                android:background="@color/edittext_bg"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -320,8 +314,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="5dp"
-                android:background="@color/edittext_bg"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:id="@+id/sec_qn_parent"
                 android:padding="@dimen/edittext_padding">
@@ -338,7 +332,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:text="Security question"
+                    android:text="Name of the city where I was born"
                     android:textColor="@color/white"
                     android:textSize="@dimen/reg_tv_textsize" />
             </LinearLayout>
@@ -348,8 +342,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="5dp"
-                android:background="@color/edittext_bg"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -365,7 +359,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:text="Security answer"
+                    android:text="San Francisco"
                     android:hint="Security question answer"
                     android:inputType="text"
                     android:textColor="@color/white"
@@ -381,9 +375,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="50dp"
-                android:background="@color/edittext_bg"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -417,7 +411,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/btn_blue"
+        android:background="@color/btn_primary"
         android:text="SAVE"
         android:textColor="@color/white"
         android:textSize="@dimen/button_textsize"
