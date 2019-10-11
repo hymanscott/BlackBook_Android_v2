@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/sexpro_main_parent"
-    android:background="@color/white"
+    android:background="@color/backgroundPrimary"
     tools:context="com.lynxstudy.lynx.LynxSexPro">
 
     <RelativeLayout
@@ -27,16 +27,17 @@
                 android:layout_marginBottom="?android:attr/actionBarSize">
 
                 <LinearLayout
+                    android:paddingLeft="-2dp"
+                    android:paddingRight="-2dp"
+                    android:background="@drawable/dashboard_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
                     android:orientation="vertical">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:id="@+id/row_one">
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -45,19 +46,18 @@
                             android:orientation="vertical"
                             android:gravity="center"
                             android:id="@+id/sexpro"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin_half"
-                            android:background="@drawable/grey_home_full">
+                            android:background="@drawable/dashboard_item">
 
                             <ImageView
                                 android:id="@+id/imageView6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/sexpro_home_new" />
+                                android:src="@drawable/trends_home_new" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Sex Pro"
+                                android:text="Trends"
                                 android:textSize="20sp"
                                 android:id="@+id/sexproTitle"
                                 android:textStyle="bold"
@@ -69,9 +69,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin_half"
                             android:layout_weight="1"
-                            android:background="@drawable/grey_home_full"
+                            android:background="@drawable/dashboard_item"
                             android:gravity="center"
                             android:id="@+id/activity"
                             android:orientation="vertical">
@@ -79,13 +78,13 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/calendar_home_new" />
+                                android:src="@drawable/insights_home_new" />
 
                             <TextView
                                 android:id="@+id/activityTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Activity"
+                                android:text="Insights"
                                 android:textStyle="bold"
                                 android:layout_marginTop="10dp"
                                 android:textColor="@color/lynx_home_white"
@@ -97,9 +96,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:id="@+id/row_three">
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -108,18 +104,17 @@
                             android:orientation="vertical"
                             android:gravity="center"
                             android:id="@+id/trends"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin_half"
-                            android:background="@drawable/grey_home_full">
+                            android:background="@drawable/dashboard_item">
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="13dp"
                                 android:layout_marginRight="13dp"
-                                android:src="@drawable/trends_home_new"/>
+                                android:src="@drawable/activity_home_new"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Trends"
+                                android:text="Activity"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:layout_marginTop="10dp"
@@ -134,18 +129,17 @@
                             android:orientation="vertical"
                             android:gravity="center"
                             android:id="@+id/insights"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin_half"
-                            android:background="@drawable/grey_home_full">
+                            android:background="@drawable/dashboard_item">
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="8dp"
                                 android:layout_marginRight="10dp"
-                                android:src="@drawable/insights_home_new"/>
+                                android:src="@drawable/badges_home_new"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Insights"
+                                android:text="Badges"
                                 android:textSize="20sp"
                                 android:layout_marginTop="10dp"
                                 android:layout_gravity="center_horizontal|bottom"
@@ -154,62 +148,6 @@
                                 android:textColor="@color/lynx_home_white"/>
                         </LinearLayout>
                     </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_marginBottom="40dp"
-                        android:id="@+id/row_two">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:gravity="center"
-                            android:id="@+id/badges"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin_half"
-                            android:background="@drawable/grey_home_half">
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/badges_home_new"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Badges"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:layout_gravity="center"
-                                android:id="@+id/badgesTitle"
-                                android:textColor="@color/lynx_home_white"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:gravity="center"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin_half"
-                            android:id="@+id/topFive"
-                            android:background="@drawable/grey_home_half">
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/top_five_home_new"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Top 5"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:id="@+id/topFiveTitle"
-                                android:textColor="@color/lynx_home_white"/>
-                        </LinearLayout>
-                    </LinearLayout>
-
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
@@ -274,6 +212,8 @@
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
+
+        <!-- Navigation -->
         <LinearLayout
             android:id="@+id/bot_nav"
             android:layout_width="match_parent"
@@ -287,8 +227,8 @@
                 android:id="@+id/bot_nav_sexpro"
                 android:layout_width="wrap_content"
                 android:layout_height="?android:attr/actionBarSize"
-                android:layout_weight="0.2"
-                android:background="@color/colorPrimary"
+                android:layout_weight="0.33"
+                android:background="@android:color/transparent"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingTop="5dp">
@@ -297,13 +237,15 @@
                     android:id="@+id/bot_nav_sexpro_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
                     android:src="@drawable/nav_icon_home_white" />
 
                 <TextView
                     android:id="@+id/bot_nav_sexpro_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Home"
+                    android:text="Dashboard"
+                    android:textSize="13dp"
                     android:textColor="@color/white" />
             </LinearLayout>
 
@@ -311,7 +253,7 @@
                 android:id="@+id/bot_nav_diary"
                 android:layout_width="wrap_content"
                 android:layout_height="?android:attr/actionBarSize"
-                android:layout_weight="0.2"
+                android:layout_weight="0.34"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingTop="5dp">
@@ -320,12 +262,15 @@
                     android:id="@+id/bot_nav_diary_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
                     android:src="@drawable/nav_icon_diary" />
 
                 <TextView
                     android:id="@+id/bot_nav_diary_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/input_primary"
+                    android:textSize="13dp"
                     android:text="Diary" />
             </LinearLayout>
 
@@ -333,7 +278,7 @@
                 android:id="@+id/bot_nav_testing"
                 android:layout_width="wrap_content"
                 android:layout_height="?android:attr/actionBarSize"
-                android:layout_weight="0.2"
+                android:layout_weight="0.33"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingTop="5dp">
@@ -342,57 +287,16 @@
                     android:id="@+id/bot_nav_testing_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
                     android:src="@drawable/nav_icon_testing" />
 
                 <TextView
                     android:id="@+id/bot_nav_testing_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/input_primary"
+                    android:textSize="13dp"
                     android:text="Testing" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/bot_nav_prep"
-                android:layout_width="wrap_content"
-                android:layout_height="?android:attr/actionBarSize"
-                android:layout_weight="0.2"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="5dp">
-
-                <ImageView
-                    android:id="@+id/bot_nav_prep_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/nav_icon_prep" />
-
-                <TextView
-                    android:id="@+id/bot_nav_prep_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PrEP" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/bot_nav_chat"
-                android:layout_width="wrap_content"
-                android:layout_height="?android:attr/actionBarSize"
-                android:layout_weight="0.2"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="5dp">
-
-                <ImageView
-                    android:id="@+id/bot_nav_chat_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/nav_icon_chat" />
-
-                <TextView
-                    android:id="@+id/bot_nav_chat_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chat" />
             </LinearLayout>
         </LinearLayout>
 

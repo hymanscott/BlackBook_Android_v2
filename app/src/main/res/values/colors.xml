@@ -60,7 +60,7 @@
     <color name="lynx_home_white">#CCFFFFFF</color>
 
     <!--Bottom Navigations-->
-    <color name="bot_nav_bg">#FFD5D5D5</color>
+    <color name="bot_nav_bg">#1AFFFFFF</color>
 
     <!--Chart Colors-->
     <color name="chart_blue">#FF2E86FF</color>
