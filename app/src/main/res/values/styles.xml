@@ -123,4 +123,18 @@
     <style name="CaldroidDefaultRightButton" parent="CaldroidDefaultArrowButton">
         <item name="android:background">@drawable/calendar_right</item>
     </style>
+
+    <style name="CalendarDashboard" parent="Theme.AppCompat">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/white</item>
+    </style>
+
+    <style name="CalendarDashboardText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:weekNumberColor">@color/colorAccent</item>
+    </style>
+
+    <style name="CalendarDashboardWeekdayText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/dashboard"
+        android:icon="@drawable/nav_icon_home_white"
+        android:title="Dashboard" />
+    <item
+        android:id="@+id/diary"
+        android:icon="@drawable/nav_icon_diary_white"
+        android:title="Diary" />
+    <item
+        android:id="@+id/testing"
+        android:icon="@drawable/nav_icon_testing_white"
+        android:title="Diary" />
+</menu>
