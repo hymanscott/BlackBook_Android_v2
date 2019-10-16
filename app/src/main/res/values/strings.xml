@@ -34,7 +34,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="select_race">Race/Ethnicity</string>
     <string name="new_encounter">New Encounter</string>
-    <string name="druguse_title">Have you used any of the following <u>at all</u> during the past three months?</string>
+    <string name="druguse_title">Have you used any of the following\nthis week?</string>
     <string name="title_activity_welcome">WelcomeActivity</string>
     <string name="screen_one_label">Welcome to BlackBook!</string>
     <!--<string-array name="gender_list">

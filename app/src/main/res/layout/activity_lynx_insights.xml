@@ -1,1122 +1,1170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/badgesMainContent"
+    android:background="@color/backgroundPrimary"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
+    android:layout_height="wrap_content"
     tools:context="com.lynxstudy.lynx.LynxBadges">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
-
+        android:paddingBottom="16dp"
+        android:paddingTop="28dp"
+        android:paddingHorizontal="@dimen/activity_horizontal_margin"
+        android:orientation="vertical">
         <LinearLayout
-            android:id="@+id/badgesMainContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/activity_horizontal_margin_half"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin_half">
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/insights_home_new" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/pageTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:lineSpacingMultiplier="1.40"
+                    android:text="Your Partner Insights"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:id="@+id/titleStats"
+            android:paddingHorizontal="@dimen/activity_horizontal_margin_half"
+            android:text="For [xx] encounters with [xx] partners"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            android:textColor="@color/white"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/input_primary" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_below="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentTop="true">
-
-            <ScrollView
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/PartnersTrend"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="?android:attr/actionBarSize">
-
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/activity_horizontal_margin_half"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/activity_horizontal_margin_half"
+                    android:paddingRight="@dimen/activity_horizontal_margin_half"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
                     android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="24dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="34dp"
-                            android:layout_height="34dp"
-                            android:src="@drawable/insights_home_new" />
-
-                        <TextView
-                            android:id="@+id/pageTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:lineSpacingMultiplier="1.40"
-                            android:text="Your Partner Insights"
-                            android:textColor="@color/profile_title_text_color"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:background="@color/grey_border" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:id="@+id/titleStats"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_marginBottom="32dp"
-                        android:text="For [xx] encounters with [xx] partners: "
-                        android:textSize="15sp"
-                        android:textStyle="italic|bold"
-                        android:textColor="@color/text_color"/>
                     <TextView
                         android:id="@+id/partnersChartTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
                         android:lineSpacingMultiplier="1.50"
                         android:text="Your Partners"
-                        android:textColor="@color/text_color"
-                        android:textSize="16sp"
-                        android:textStyle="italic|bold" />
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:id="@+id/PartnersTrend"
                             android:layout_width="match_parent"
-                            android:layout_height="56dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
                             android:orientation="horizontal"
                             android:weightSum="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.07"
+                                android:text="60%"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/legendMen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.93"
+                                android:text="MEN"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+                        </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="@color/input_primary"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
                             <TextView
                                 android:id="@+id/menPercentage"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.6"
-                                android:background="@color/chart_blue"
-                                android:gravity="center"
+                                android:background="@color/chart_green"
+                                android:layout_weight="0.6"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
-                                android:textSize="18sp" />
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/legendTransMen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.93"
+                                android:text="TRANS MEN"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+                        </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="@color/input_primary"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
                             <TextView
                                 android:id="@+id/transMenPercentage"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.15"
-                                android:background="@color/chart_green"
-                                android:gravity="center"
-                                android:text="15%"
-                                android:textColor="@color/white"
-                                android:textSize="18sp" />
+                                android:background="@color/chart_purple"
+                                android:layout_weight="0.15"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                        android:orientation="vertical">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.07"
+                                android:text="60%"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/legendWomen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.93"
+                                android:text="WOMEN"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="@color/input_primary"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
                             <TextView
                                 android:id="@+id/womenPercentage"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.15"
-                                android:background="@color/chart_orange"
-                                android:gravity="center"
-                                android:text="15%"
-                                android:textColor="@color/white"
-                                android:textSize="18sp" />
+                                android:background="@color/chart_blue"
+                                android:layout_weight="0.55"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                        android:orientation="vertical">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.07"
+                                android:text="60%"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/legendTransWomen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.93"
+                                android:text="TRANS WOMEN"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="@color/input_primary"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
                             <TextView
                                 android:id="@+id/transWomenPercentage"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.1"
-                                android:background="@color/chart_purple"
-                                android:gravity="center"
-                                android:text="10%"
-                                android:textColor="@color/white"
-                                android:textSize="18sp" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/activity_horizontal_margin"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical">
-
-                                <TextView
-                                    android:layout_width="@dimen/legendColorWidthHeight"
-                                    android:layout_height="@dimen/legendColorWidthHeight"
-                                    android:background="@color/chart_blue"
-                                    android:gravity="end"
-                                    android:text=" " />
-
-                                <TextView
-                                    android:id="@+id/legendMen"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:gravity="end"
-                                    android:text="MEN"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:gravity="center_vertical">
-
-                                <TextView
-                                    android:layout_width="@dimen/legendColorWidthHeight"
-                                    android:layout_height="@dimen/legendColorWidthHeight"
-                                    android:background="@color/chart_green"
-                                    android:gravity="end"
-                                    android:text=" " />
-
-                                <TextView
-                                    android:id="@+id/legendTransMen"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:gravity="end"
-                                    android:text="TRANS MEN"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:gravity="center_vertical">
-
-                                <TextView
-                                    android:layout_width="@dimen/legendColorWidthHeight"
-                                    android:layout_height="@dimen/legendColorWidthHeight"
-                                    android:background="@color/chart_orange"
-                                    android:gravity="end"
-                                    android:text=" " />
-
-                                <TextView
-                                    android:id="@+id/legendWomen"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:gravity="end"
-                                    android:text="WOMEN"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:gravity="center_vertical">
-                                <TextView
-                                    android:layout_width="@dimen/legendColorWidthHeight"
-                                    android:layout_height="@dimen/legendColorWidthHeight"
-                                    android:background="@color/chart_purple"
-                                    android:gravity="end"
-                                    android:text=" " />
-
-                                <TextView
-                                    android:id="@+id/legendTransWomen"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:text="TRANS WOMEN"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
+                                android:background="@color/magenta"
+                                android:layout_weight="0.1"/>
                         </LinearLayout>
                     </LinearLayout>
+                </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="32dp"
-                        android:background="@color/grey_border" />
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/input_primary" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/PartnerTypeTrend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/activity_horizontal_margin_half"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/activity_horizontal_margin_half"
+                    android:paddingRight="@dimen/activity_horizontal_margin_half"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical">
                     <TextView
                         android:id="@+id/partnerTypeChartTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="32dp"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
                         android:lineSpacingMultiplier="1.50"
                         android:text="Partners Types"
-                        android:textColor="@color/text_color"
-                        android:textSize="16sp"
-                        android:textStyle="italic|bold" />
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:id="@+id/PartnerTypeTrend"
                             android:layout_width="match_parent"
-                            android:layout_height="56dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
+                            android:orientation="horizontal"
                             android:weightSum="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.07"
+                                android:text="60%"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/legendPrimary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.93"
+                                android:text="PRIMARY"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+                        </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="@color/input_primary"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
                             <TextView
                                 android:id="@+id/primaryPercentage"
                                 android:layout_width="wrap_content"
-                                android:layout_height="56dp"
-                                android:layout_weight="0.35"
-                                android:background="@color/chart_blue"
-                                android:gravity="center"
-                                android:text="35%"
-                                android:textColor="@color/white"
-                                android:textSize="18sp" />
+                                android:layout_height="match_parent"
+                                android:background="@color/chart_green"
+                                android:layout_weight="0.6"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                        android:orientation="vertical">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.07"
+                                android:text="60%"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/legendFriends"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.93"
+                                android:text="FRIENDS WITH BENEFITS"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="@color/input_primary"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
                             <TextView
                                 android:id="@+id/friendsPercentage"
                                 android:layout_width="wrap_content"
-                                android:layout_height="56dp"
-                                android:layout_weight="0.05"
-                                android:background="@color/chart_orange"
-                                android:gravity="center"
-                                android:text="5%"
-                                android:textColor="@color/white"
-                                android:textSize="18sp" />
+                                android:layout_height="match_parent"
+                                android:background="@color/chart_purple"
+                                android:layout_weight="0.15"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                        android:orientation="vertical">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.07"
+                                android:text="60%"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/legendRegular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.93"
+                                android:text="REGULAR"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="@color/input_primary"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
                             <TextView
                                 android:id="@+id/regularPercentage"
                                 android:layout_width="wrap_content"
-                                android:layout_height="56dp"
-                                android:layout_weight="0.3"
-                                android:background="@color/chart_grey"
-                                android:gravity="center"
-                                android:text="30%"
-                                android:textColor="@color/white"
-                                android:textSize="18sp" />
+                                android:layout_height="match_parent"
+                                android:background="@color/chart_blue"
+                                android:layout_weight="0.55"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                        android:orientation="vertical">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.07"
+                                android:text="60%"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/legendHookUp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.93"
+                                android:text="HOOK-UP"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="@color/input_primary"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
                             <TextView
                                 android:id="@+id/hookupPercentage"
                                 android:layout_width="wrap_content"
-                                android:layout_height="56dp"
-                                android:layout_weight="0.1"
-                                android:background="@color/chart_purple"
-                                android:gravity="center"
-                                android:text="10%"
-                                android:textColor="@color/white"
-                                android:textSize="18sp" />
+                                android:layout_height="match_parent"
+                                android:background="@color/magenta"
+                                android:layout_weight="0.1"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                        android:orientation="vertical">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.07"
+                                android:text="60%"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/legendOneNightStand"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.93"
+                                android:text="ONE-NIGHT STAND"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="@color/input_primary"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
                             <TextView
                                 android:id="@+id/NSAPercentage"
                                 android:layout_width="wrap_content"
-                                android:layout_height="56dp"
-                                android:layout_weight="0.2"
-                                android:background="@color/chart_green"
-                                android:gravity="center"
-                                android:text="20%"
-                                android:textColor="@color/white"
-                                android:textSize="18sp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/activity_horizontal_margin"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical">
-
-                                <TextView
-                                    android:layout_width="@dimen/legendColorWidthHeight"
-                                    android:layout_height="@dimen/legendColorWidthHeight"
-                                    android:background="@color/chart_blue"
-                                    android:gravity="end"
-                                    android:text=" " />
-
-                                <TextView
-                                    android:id="@+id/legendPrimary"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:gravity="end"
-                                    android:text="PRIMARY"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:gravity="center_vertical">
-
-                                <TextView
-                                    android:layout_width="@dimen/legendColorWidthHeight"
-                                    android:layout_height="@dimen/legendColorWidthHeight"
-                                    android:background="@color/chart_orange"
-                                    android:gravity="end"
-                                    android:text=" " />
-
-                                <TextView
-                                    android:id="@+id/legendRegular"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:gravity="end"
-                                    android:text="FRIENDS WITH BENEFITS"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:gravity="center_vertical">
-
-                                <TextView
-                                    android:layout_width="@dimen/legendColorWidthHeight"
-                                    android:layout_height="@dimen/legendColorWidthHeight"
-                                    android:background="@color/chart_grey"
-                                    android:gravity="end"
-                                    android:text=" " />
-
-                                <TextView
-                                    android:id="@+id/legendHookUp"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:gravity="start"
-                                    android:text="REGULAR"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical">
-
-                                <TextView
-                                    android:layout_width="@dimen/legendColorWidthHeight"
-                                    android:layout_height="@dimen/legendColorWidthHeight"
-                                    android:background="@color/chart_purple"
-                                    android:gravity="end"
-                                    android:text=" " />
-
-                                <TextView
-                                    android:id="@+id/legendOneNightStand"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:text="HOOK-UP"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:gravity="center_vertical">
-
-                                <TextView
-                                    android:layout_width="@dimen/legendColorWidthHeight"
-                                    android:layout_height="@dimen/legendColorWidthHeight"
-                                    android:background="@color/chart_green"
-                                    android:gravity="end"
-                                    android:text=" " />
-
-                                <TextView
-                                    android:id="@+id/legendFriends"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:text="ONE-NIGHT STAND"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
+                                android:layout_height="match_parent"
+                                android:background="@color/chart_orange"
+                                android:layout_weight="0.70"/>
                         </LinearLayout>
                     </LinearLayout>
+                </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="32dp"
-                        android:background="@color/grey_border" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/input_primary" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/PartnerHivTrend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/activity_horizontal_margin_half"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/activity_horizontal_margin_half"
+                    android:paddingRight="@dimen/activity_horizontal_margin_half"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical">
                     <TextView
                         android:id="@+id/partnerHivChartTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="32dp"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
                         android:lineSpacingMultiplier="1.50"
-                        android:text="Partners HIV Status"
-                        android:textColor="@color/text_color"
-                        android:textSize="16sp"
-                        android:textStyle="italic|bold" />
+                        android:text="Partner HIV Status"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:id="@+id/PartnerHivTrend"
                             android:layout_width="match_parent"
-                            android:layout_height="56dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
+                            android:orientation="horizontal"
                             android:weightSum="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.07"
+                                android:text="60%"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/legendNegative"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.93"
+                                android:text="HIV NEGATIVE"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+                        </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="@color/input_primary"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
                             <TextView
                                 android:id="@+id/negativePercentage"
                                 android:layout_width="wrap_content"
-                                android:layout_height="56dp"
-                                android:layout_weight="0.35"
-                                android:background="@color/chart_blue"
-                                android:gravity="center"
-                                android:text="35%"
-                                android:textColor="@color/white"
-                                android:textSize="18sp" />
+                                android:layout_height="match_parent"
+                                android:background="@color/chart_green"
+                                android:layout_weight="0.6"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                        android:orientation="vertical">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.07"
+                                android:text="60%"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/legendNegPrep"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.93"
+                                android:text="HIV NEGATIVE AND ON PrEP"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="@color/input_primary"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
                             <TextView
                                 android:id="@+id/negPrepPercentage"
                                 android:layout_width="wrap_content"
-                                android:layout_height="56dp"
-                                android:layout_weight="0.05"
-                                android:background="@color/chart_orange"
-                                android:gravity="center"
-                                android:text="5%"
-                                android:textColor="@color/white"
-                                android:textSize="18sp" />
+                                android:layout_height="match_parent"
+                                android:background="@color/chart_purple"
+                                android:layout_weight="0.15"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                        android:orientation="vertical">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.07"
+                                android:text="60%"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/legendUnsure"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.93"
+                                android:text="I DON’T KNOW/UNSURE"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="@color/input_primary"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
                             <TextView
                                 android:id="@+id/unsurePercentage"
                                 android:layout_width="wrap_content"
-                                android:layout_height="56dp"
-                                android:layout_weight="0.3"
-                                android:background="@color/chart_grey"
-                                android:gravity="center"
-                                android:text="30%"
-                                android:textColor="@color/white"
-                                android:textSize="18sp" />
+                                android:layout_height="match_parent"
+                                android:background="@color/chart_blue"
+                                android:layout_weight="0.55"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                        android:orientation="vertical">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.07"
+                                android:text="60%"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/legendPositive"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.93"
+                                android:text="HIV POSITIVE"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="@color/input_primary"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
                             <TextView
                                 android:id="@+id/positivePercentage"
                                 android:layout_width="wrap_content"
-                                android:layout_height="56dp"
-                                android:layout_weight="0.1"
-                                android:background="@color/chart_purple"
-                                android:gravity="center"
-                                android:text="10%"
-                                android:textColor="@color/white"
-                                android:textSize="18sp" />
+                                android:layout_height="match_parent"
+                                android:background="@color/magenta"
+                                android:layout_weight="0.1"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                        android:orientation="vertical">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.07"
+                                android:text="60%"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/legendUndectable"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.93"
+                                android:text="HIV POSITIVE AND UNDETECTABLE"
+                                android:textColor="@color/white"
+                                android:textSize="16dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="@color/input_primary"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
                             <TextView
                                 android:id="@+id/undectablePercentage"
                                 android:layout_width="wrap_content"
-                                android:layout_height="56dp"
-                                android:layout_weight="0.2"
-                                android:background="@color/chart_green"
-                                android:gravity="center"
-                                android:text="20%"
-                                android:textColor="@color/white"
-                                android:textSize="18sp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/activity_horizontal_margin"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical">
-
-                                <TextView
-                                    android:layout_width="@dimen/legendColorWidthHeight"
-                                    android:layout_height="@dimen/legendColorWidthHeight"
-                                    android:background="@color/chart_blue"
-                                    android:gravity="end"
-                                    android:text=" " />
-
-                                <TextView
-                                    android:id="@+id/legendNegative"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:gravity="end"
-                                    android:text="HIV NEGATIVE"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:gravity="center_vertical">
-
-                                <TextView
-                                    android:layout_width="@dimen/legendColorWidthHeight"
-                                    android:layout_height="@dimen/legendColorWidthHeight"
-                                    android:background="@color/chart_orange"
-                                    android:gravity="end"
-                                    android:text=" " />
-
-                                <TextView
-                                    android:id="@+id/legendNegPrep"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:gravity="end"
-                                    android:text="HIV NEGATIVE AND ON PrEP"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical">
-
-                                <TextView
-                                    android:layout_width="@dimen/legendColorWidthHeight"
-                                    android:layout_height="@dimen/legendColorWidthHeight"
-                                    android:background="@color/chart_grey"
-                                    android:gravity="end"
-                                    android:text=" " />
-
-                                <TextView
-                                    android:id="@+id/legendUnsure"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:gravity="end"
-                                    android:text="I DON’T KNOW/UNSURE"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:gravity="center_vertical">
-
-                                <TextView
-                                    android:layout_width="@dimen/legendColorWidthHeight"
-                                    android:layout_height="@dimen/legendColorWidthHeight"
-                                    android:background="@color/chart_purple"
-                                    android:gravity="end"
-                                    android:text=" " />
-
-                                <TextView
-                                    android:id="@+id/legendPositive"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:text="HIV POSITIVE"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical">
-
-                                <TextView
-                                    android:layout_width="@dimen/legendColorWidthHeight"
-                                    android:layout_height="@dimen/legendColorWidthHeight"
-                                    android:background="@color/chart_green"
-                                    android:gravity="end"
-                                    android:text=" " />
-
-                                <TextView
-                                    android:id="@+id/legendUndectable"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="4dp"
-                                    android:text="HIV POSITIVE AND UNDETECTABLE"
-                                    android:textColor="@color/text_color"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginBottom="32dp"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="32dp"
-                        android:background="@color/grey_border" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:weightSum="1"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginRight="32dp"
-                        android:orientation="horizontal">
-                        <!--Negative-->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:layout_marginLeft="4dp"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/negativePartnersCount"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-
-                            <TextView
-                                android:id="@+id/negativePartners"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# of HIV negative partners"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <!--Unknown-->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="4dp"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/unknownPartnersCount"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-
-                            <TextView
-                                android:id="@+id/unknownPartners"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:layout_marginTop="20dp"
-                                android:text="# of unknown status partners"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:weightSum="1"
-                        android:layout_marginTop="32dp"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginRight="32dp"
-                        android:orientation="horizontal">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:layout_marginRight="4dp"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/positivePartnersCount"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-
-                            <TextView
-                                android:id="@+id/postivePartners"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:layout_marginTop="20dp"
-                                android:text="# of HIV postive partners"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:layout_marginRight="4dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/undectablePartnersCount"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-
-                            <TextView
-                                android:id="@+id/undectablePartners"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# of undetectable partners"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:weightSum="1"
-                        android:layout_margin="32dp"
-                        android:orientation="horizontal">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:layout_marginLeft="4dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/partnersOnPrep"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-
-                            <TextView
-                                android:id="@+id/prepPartners"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# of partners on PrEP"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:layout_marginRight="4dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/repeatedPartnersCount"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-
-                            <TextView
-                                android:id="@+id/repeatedPartners"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# of repeat partners"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:weightSum="1"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginRight="32dp"
-                        android:layout_marginBottom="48dp"
-                        android:orientation="horizontal">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:layout_marginLeft="4dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/fiveStarPartnersCount"
-                                android:layout_width="90dp"
-                                android:layout_height="90dp"
-                                android:layout_centerHorizontal="true"
-                                android:layout_centerVertical="true"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="30sp"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:background="@drawable/insights_blue_circle"/>
-
-                            <TextView
-                                android:id="@+id/fiveStarPartners"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:layout_marginTop="20dp"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="# of 5 star partners"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:visibility="invisible"
-                            android:layout_marginLeft="4dp"
-                            android:orientation="vertical">
-
+                                android:layout_height="match_parent"
+                                android:background="@color/chart_orange"
+                                android:layout_weight="0.70"/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-            </ScrollView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/input_primary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!-- Row 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="28dp"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/chart_green"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <TextView
+                                android:id="@+id/negativePartnersCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="3"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/negativePartners"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="# of HIV negative\npartners"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/chart_green"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <TextView
+                                android:id="@+id/unknownPartnersCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="2"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/unknownPartners"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="# of unknown\nstatus partners"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Row 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="28dp"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/chart_green"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <TextView
+                                android:id="@+id/positivePartnersCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="3"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/postivePartners"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="# of HIV positive\npartners"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/chart_green"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <TextView
+                                android:id="@+id/undectablePartnersCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="2"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/undectablePartners"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="# of undetectable\npartners"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Row 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="28dp"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/chart_green"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <TextView
+                                android:id="@+id/partnersOnPrep"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="3"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/prepPartners"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="# of partners\non PrEP"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/chart_green"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <TextView
+                                android:id="@+id/repeatedPartnersCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="2"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/repeatedPartners"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="# of repeat\npartners"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Row 4 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="28dp"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/chart_green"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <TextView
+                                android:id="@+id/fiveStarPartnersCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="3"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/fiveStarPartners"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="# of 5 star\npartners"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-        <LinearLayout
-            android:id="@+id/bot_nav"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:layout_alignParentBottom="true"
-            android:background="@color/bot_nav_bg"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <LinearLayout
-                android:id="@+id/bot_nav_sexpro"
-                android:layout_width="wrap_content"
-                android:layout_height="?android:attr/actionBarSize"
-                android:layout_weight="0.2"
-                android:background="@color/colorPrimary"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="5dp">
-
-                <ImageView
-                    android:id="@+id/bot_nav_sexpro_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/nav_icon_home_white" />
-
-                <TextView
-                    android:id="@+id/bot_nav_sexpro_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Home"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/bot_nav_diary"
-                android:layout_width="wrap_content"
-                android:layout_height="?android:attr/actionBarSize"
-                android:layout_weight="0.2"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="5dp">
-
-                <ImageView
-                    android:id="@+id/bot_nav_diary_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/nav_icon_diary" />
-
-                <TextView
-                    android:id="@+id/bot_nav_diary_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Diary" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/bot_nav_testing"
-                android:layout_width="wrap_content"
-                android:layout_height="?android:attr/actionBarSize"
-                android:layout_weight="0.2"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="5dp">
-
-                <ImageView
-                    android:id="@+id/bot_nav_testing_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/nav_icon_testing" />
-
-                <TextView
-                    android:id="@+id/bot_nav_testing_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Testing" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/bot_nav_prep"
-                android:layout_width="wrap_content"
-                android:layout_height="?android:attr/actionBarSize"
-                android:layout_weight="0.2"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="5dp">
-
-                <ImageView
-                    android:id="@+id/bot_nav_prep_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/nav_icon_prep" />
-
-                <TextView
-                    android:id="@+id/bot_nav_prep_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PrEP" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/bot_nav_chat"
-                android:layout_width="wrap_content"
-                android:layout_height="?android:attr/actionBarSize"
-                android:layout_weight="0.2"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="5dp">
-
-                <ImageView
-                    android:id="@+id/bot_nav_chat_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/nav_icon_chat" />
-
-                <TextView
-                    android:id="@+id/bot_nav_chat_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chat" />
-            </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
-</LinearLayout>
+</RelativeLayout>

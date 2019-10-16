@@ -1,191 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/backgroundPrimary"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/main_bg_gradient">
+    android:layout_height="match_parent">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/checkin_alc_next"
         android:fillViewport="true">
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ScrollView
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="18dp"
+                android:layout_marginTop="46dp"
+                android:src="@drawable/encounterlarge" />
+            <TextView
+                android:id="@+id/frag_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:gravity="center"
+                android:text="Weekly Check-in"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_above="@+id/checkin_alc_next"
-                android:fillViewport="true">
+                android:layout_height="1dp"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@color/input_primary" />
+            <TextView
+                android:id="@+id/intro_paragraph"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:text="On average, how often did you drink alcohol in the past week?"
+                android:textColor="@color/white"
+                android:textSize="17dp" />
+            <RadioGroup
+                android:id="@+id/alcoholCalculation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                <RadioButton
+                    android:id="@+id/alcCal_5to7days"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/radiobutton_white"
+                    android:buttonTint="@color/white"
+                    android:paddingLeft="12dp"
+                    android:text="5-7 days a week"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+
+                <RadioButton
+                    android:id="@+id/alcCal_1to4days"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/white"
+                    android:text="1-4 days a week"
+                    android:button="@drawable/radiobutton_white"
+                    android:paddingLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+
+                <RadioButton
+                    android:id="@+id/alcCal_lessThanOnce"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/white"
+                    android:button="@drawable/radiobutton_white"
+                    android:paddingLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Less than once a week"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+
+                <RadioButton
+                    android:id="@+id/alcCal_never"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/white"
+                    android:button="@drawable/radiobutton_white"
+                    android:paddingLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Never"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+            </RadioGroup>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/drinksLayout"
                 android:orientation="vertical">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="24dp"
-                    android:layout_marginTop="32dp"
-                    android:src="@drawable/encounterlarge" />
-                <TextView
-                    android:id="@+id/frag_title"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:gravity="center"
-                    android:text="Weekly Check-in"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginBottom="24dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:background="@color/edittext_bg" />
+                    android:background="@color/input_primary" />
                 <TextView
-                    android:id="@+id/intro_paragraph"
+                    android:id="@+id/drinksTitle"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="32dp"
-                    android:text="On average, how often did you drink alcohol in the past week?"
+                    android:layout_marginBottom="32dp"
+                    android:text="About how many drinks did you have on a typical day?"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
-                <RadioGroup
-                    android:id="@+id/alcoholCalculation"
+                    android:textSize="17dp" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="32dp"
-                    android:layout_marginRight="32dp"
-                    android:layout_marginTop="@dimen/activity_vertical_margin">
-
-                    <RadioButton
-                        android:id="@+id/alcCal_5to7days"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/border_full_white">
+                    <EditText
+                        android:id="@+id/no_of_drinks"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:button="@drawable/radiobutton_white"
-                        android:buttonTint="@color/white"
-                        android:paddingLeft="12dp"
-                        android:text="5-7 days a week"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
-
-                    <RadioButton
-                        android:id="@+id/alcCal_1to4days"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/white"
-                        android:text="1-4 days a week"
-                        android:button="@drawable/radiobutton_white"
-                        android:paddingLeft="12dp"
-                        android:layout_marginTop="12dp"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
-
-                    <RadioButton
-                        android:id="@+id/alcCal_lessThanOnce"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/white"
-                        android:button="@drawable/radiobutton_white"
-                        android:paddingLeft="12dp"
-                        android:layout_marginTop="12dp"
-                        android:text="Less than once a week"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
-
-                    <RadioButton
-                        android:id="@+id/alcCal_never"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/white"
-                        android:button="@drawable/radiobutton_white"
-                        android:paddingLeft="12dp"
-                        android:layout_marginTop="12dp"
-                        android:text="Never"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
-                </RadioGroup>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/drinksLayout"
-                    android:orientation="vertical">
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginBottom="24dp"
-                        android:layout_marginTop="24dp"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:background="@color/edittext_bg" />
-                    <TextView
-                        android:id="@+id/drinksTitle"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginRight="55dp"
-                        android:text="About how many drinks did you have on a typical day?"
+                        android:background="@android:color/transparent"
+                        android:digits="0123456789"
+                        android:ems="4"
+                        android:hint="0"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:padding="8dp"
                         android:textColor="@color/white"
-                        android:textSize="16sp" />
-                    <TextView
-                        android:id="@+id/drinksdefine"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginRight="32dp"
-                        android:layout_marginTop="8dp"
-                        android:lineSpacingMultiplier="1.58"
-                        android:text="One drink is defined as a 12-oz can of beer, a 4-oz glass of wine, a 1.5-oz shot of liquor, or a mixed drink made of 1.5-oz of liquor."
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginBottom="48dp"
-                        android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:background="@drawable/border_full_white">
-
-                        <EditText
-                            android:id="@+id/no_of_drinks"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                            android:background="@android:color/transparent"
-                            android:digits="0123456789"
-                            android:ems="4"
-                            android:hint="0"
-                            android:imeOptions="actionDone"
-                            android:inputType="number"
-                            android:maxLength="2"
-                            android:padding="8dp"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/edittext_hint_color"
-                            android:textCursorDrawable="@drawable/white_cursor"
-                            android:textSize="@dimen/edittext_textsize" />
-                    </LinearLayout>
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textCursorDrawable="@drawable/white_cursor"
+                        android:textSize="18dp"
+                        android:textStyle="bold"/>
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/drinksdefine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginTop="8dp"
+                    android:lineSpacingMultiplier="1.58"
+                    android:text="One drink is defined as a 12-oz can of beer, a 4-oz glass of wine, a 1.5-oz shot of liquor, or a mixed drink made of 1.5-oz of liquor."
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+
             </LinearLayout>
-            </ScrollView>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Next"
-                android:background="@color/btn_blue"
-                android:textColor="@color/white"
-                android:id="@+id/checkin_alc_next"
-                android:textSize="@dimen/button_textsize"
-                android:onClick="weeklyCheckInAlcoholNext"
-                android:layout_alignParentBottom="true"
-                android:textStyle="bold" />
-        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
-</LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:background="@color/input_primary"
+        android:textColor="@color/white"
+        android:id="@+id/checkin_alc_next"
+        android:textSize="@dimen/button_textsize"
+        android:onClick="weeklyCheckInAlcoholNext"
+        android:layout_alignParentBottom="true"
+        android:textStyle="bold" />
+</RelativeLayout>

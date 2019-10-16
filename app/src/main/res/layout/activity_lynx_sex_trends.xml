@@ -1,877 +1,912 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/trendsMainContent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/backgroundPrimary"
     tools:context="com.lynxstudy.lynx.LynxSexTrends">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:paddingBottom="16dp"
+        android:paddingTop="28dp"
+        android:paddingHorizontal="@dimen/activity_horizontal_margin"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/activity_horizontal_margin_half"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin_half">
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/trends_home_new" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/pageTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:lineSpacingMultiplier="1.40"
+                    android:text="Your Sex Trends"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:id="@+id/titleStats"
+            android:paddingHorizontal="@dimen/activity_horizontal_margin_half"
+            android:text="For [xx] encounters with [xx] partners"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            android:textColor="@color/white"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/white" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_below="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/trendsMainContent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true">
-
-            <ScrollView
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="?android:attr/actionBarSize">
+                android:orientation="vertical">
 
+                <!-- Row 1 -->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="28dp"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginStart="@dimen/activity_horizontal_margin"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="24dp"
-                        android:orientation="horizontal">
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:src="@drawable/trends_home_new" />
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/white"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:id="@+id/exclusive_bottom"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/magenta"
+                                app:cs_circle_stroke_width="10dp"
+                                app:cs_circle_style="square"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="30" />
+
+                            <TextView
+                                android:id="@+id/bottom_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="30%"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
 
                         <TextView
-                            android:id="@+id/pageTitle"
+                            android:id="@+id/bottom_description"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:lineSpacingMultiplier="1.40"
-                            android:text="Your Sex Trends"
-                            android:textColor="@color/profile_title_text_color"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="Exclusively\na bottom"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
                     </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginStart="@dimen/activity_horizontal_margin"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:background="@color/grey_border" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginBottom="32dp"
-                        android:id="@+id/titleStats"
-                        android:layout_marginStart="@dimen/activity_horizontal_margin"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:text="For [xx] encounters with [xx] partners"
-                        android:textSize="15sp"
-                        android:textStyle="italic|bold"
-                        android:textColor="@color/text_color"/>
-                    <!--Row 1-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="1"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginEnd="32dp"
-                        android:orientation="horizontal"
-                        android:baselineAligned="false">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:layout_width="110dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@color/profile_edittext_hint"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="1dp"
-                                    app:cs_circle_style="round"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="100" />
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:id="@+id/exclusive_bottom"
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@android:color/transparent"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="10dp"
-                                    app:cs_circle_style="square"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="0" />
-
-                                <TextView
-                                    android:id="@+id/bottom_progress"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:text="0%"
-                                    android:textColor="@color/profile_title_text_color"
-                                    android:textSize="30sp"
-                                    android:textStyle="bold" />
-                            </RelativeLayout>
-
-                            <TextView
-                                android:id="@+id/bottom_description"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="Exclusively
-a bottom"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:layout_width="110dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@color/profile_edittext_hint"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="1dp"
-                                    app:cs_circle_style="round"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="100" />
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:id="@+id/condom_bottom"
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@android:color/transparent"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="10dp"
-                                    app:cs_circle_style="square"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="0" />
-
-                                <TextView
-                                    android:id="@+id/condom_bottom_progress"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:text="0%"
-                                    android:textColor="@color/profile_title_text_color"
-                                    android:textSize="30sp"
-                                    android:textStyle="bold" />
-                            </RelativeLayout>
-                            <TextView
-                                android:id="@+id/condom_bottom_description"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="Used condom
-as a bottom"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                    </LinearLayout>
-                    <!--Row 2-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:weightSum="1"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginEnd="32dp"
+                        android:layout_weight="0.5"
                         android:gravity="center_horizontal"
-                        android:layout_marginTop="32dp"
-                        android:orientation="horizontal"
-                        android:baselineAligned="false">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:gravity="center_horizontal"
-                            android:layout_weight="0.5">
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/white"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
 
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:layout_width="110dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@color/profile_edittext_hint"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="1dp"
-                                    app:cs_circle_style="round"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="100" />
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:id="@+id/exclusive_top"
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@android:color/transparent"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="10dp"
-                                    app:cs_circle_style="square"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="0" />
-
-                                <TextView
-                                    android:id="@+id/top_progress"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:text="0%"
-                                    android:textColor="@color/profile_title_text_color"
-                                    android:textSize="30sp"
-                                    android:textStyle="bold" />
-                            </RelativeLayout>
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:id="@+id/condom_bottom"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/magenta"
+                                app:cs_circle_stroke_width="10dp"
+                                app:cs_circle_style="square"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="30" />
 
                             <TextView
-                                android:id="@+id/top_description"
+                                android:id="@+id/condom_bottom_progress"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="Exclusively
-a top"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="30%"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/condom_bottom_description"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
+                            android:layout_gravity="center_horizontal"
                             android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:layout_width="110dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@color/profile_edittext_hint"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="1dp"
-                                    app:cs_circle_style="round"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="100" />
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:id="@+id/condom_top"
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@android:color/transparent"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="10dp"
-                                    app:cs_circle_style="square"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="0" />
-
-                                <TextView
-                                    android:id="@+id/condom_top_progress"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:text="0%"
-                                    android:textColor="@color/profile_title_text_color"
-                                    android:textSize="30sp"
-                                    android:textStyle="bold" />
-                            </RelativeLayout>
-                            <TextView
-                                android:id="@+id/condom_top_description"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="Used condom
-as a top"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
+                            android:text="Used condom\nas a bottom"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
                     </LinearLayout>
-                    <!--Row 3-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:weightSum="1"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginEnd="32dp"
-                        android:gravity="center_horizontal"
-                        android:layout_marginTop="32dp"
-                        android:orientation="horizontal"
-                        android:baselineAligned="false">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:layout_width="110dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@color/profile_edittext_hint"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="1dp"
-                                    app:cs_circle_style="round"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="100" />
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:id="@+id/versatile"
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@android:color/transparent"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="10dp"
-                                    app:cs_circle_style="square"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="0" />
-
-                                <TextView
-                                    android:id="@+id/versatile_progress"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:text="0%"
-                                    android:textColor="@color/profile_title_text_color"
-                                    android:textSize="30sp"
-                                    android:textStyle="bold" />
-                            </RelativeLayout>
-                            <TextView
-                                android:id="@+id/versatile_description"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="Versatile"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:layout_width="110dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@color/profile_edittext_hint"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="1dp"
-                                    app:cs_circle_style="round"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="100" />
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:id="@+id/you_swallowed"
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@android:color/transparent"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="10dp"
-                                    app:cs_circle_style="square"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="0" />
-
-                                <TextView
-                                    android:id="@+id/you_swallowed_progress"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:text="0%"
-                                    android:textColor="@color/profile_title_text_color"
-                                    android:textSize="30sp"
-                                    android:textStyle="bold" />
-                            </RelativeLayout>
-                            <TextView
-                                android:id="@+id/you_swallowed_description"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="You swallowed"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                    </LinearLayout>
-                    <!--Row 4-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:weightSum="1"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginEnd="32dp"
-                        android:gravity="center_horizontal"
-                        android:layout_marginTop="32dp"
-                        android:orientation="horizontal"
-                        android:baselineAligned="false">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:layout_width="110dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@color/profile_edittext_hint"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="1dp"
-                                    app:cs_circle_style="round"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="100" />
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:id="@+id/partnerCameInYou"
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@android:color/transparent"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="10dp"
-                                    app:cs_circle_style="square"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="0" />
-
-                                <TextView
-                                    android:id="@+id/partner_came_inyou_progress"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:text="0%"
-                                    android:textColor="@color/profile_title_text_color"
-                                    android:textSize="30sp"
-                                    android:textStyle="bold" />
-                            </RelativeLayout>
-                            <TextView
-                                android:id="@+id/partner_came_inyou_description"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="Your partner
-came in you"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:layout_width="110dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@color/profile_edittext_hint"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="1dp"
-                                    app:cs_circle_style="round"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="100" />
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:id="@+id/you_came_in"
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@android:color/transparent"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="10dp"
-                                    app:cs_circle_style="square"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="0" />
-
-                                <TextView
-                                    android:id="@+id/you_came_in_progress"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:text="0%"
-                                    android:textColor="@color/profile_title_text_color"
-                                    android:textSize="30sp"
-                                    android:textStyle="bold" />
-                            </RelativeLayout>
-                            <TextView
-                                android:id="@+id/you_came_in_description"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="You came in
-your partner"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                    </LinearLayout>
-                    <!--Row 5-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:weightSum="1"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginEnd="32dp"
-                        android:gravity="center_horizontal"
-                        android:layout_marginTop="32dp"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:layout_width="110dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@color/profile_edittext_hint"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="1dp"
-                                    app:cs_circle_style="round"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="100" />
-
-                                <me.tankery.lib.circularseekbar.CircularSeekBar
-                                    android:id="@+id/drunk_or_high"
-                                    android:layout_width="120dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                                    app:cs_circle_color="@android:color/transparent"
-                                    app:cs_circle_progress_color="@color/profile_title_text_color"
-                                    app:cs_circle_stroke_width="10dp"
-                                    app:cs_circle_style="square"
-                                    app:cs_disable_pointer="true"
-                                    app:cs_negative_enabled="false"
-                                    app:cs_progress="0" />
-
-                                <TextView
-                                    android:id="@+id/drunk_or_high_progress"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_centerVertical="true"
-                                    android:text="0%"
-                                    android:textColor="@color/profile_title_text_color"
-                                    android:textSize="30sp"
-                                    android:textStyle="bold" />
-                            </RelativeLayout>
-                            <TextView
-                                android:id="@+id/drunk_or_high_description"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:gravity="center_horizontal"
-                                android:lineSpacingMultiplier="1.25"
-                                android:text="You had sex
-drunk and/or high"
-                                android:textColor="@color/text_color"
-                                android:textSize="16sp"
-                                android:textStyle="italic" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:gravity="center_horizontal"
-                            android:orientation="vertical">
-                            <!--Empty Layout to make previous element left aligned-->
-                        </LinearLayout>
-                    </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginStart="@dimen/activity_horizontal_margin"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="24dp"
-                        android:background="@color/grey_border" />
-                    <com.lynxstudy.helper.ExpandableHeightGridView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:numColumns="2"
-                        android:id="@+id/heightGridView"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="64dp"
-                        >
-
-                    </com.lynxstudy.helper.ExpandableHeightGridView>
                 </LinearLayout>
-            </ScrollView>
+
+                <!-- Row 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="28dp"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/white"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:id="@+id/exclusive_top"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/magenta"
+                                app:cs_circle_stroke_width="10dp"
+                                app:cs_circle_style="square"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="30" />
+
+                            <TextView
+                                android:id="@+id/top_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="30%"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/top_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="Exclusively\na top"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/white"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:id="@+id/condom_top"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/magenta"
+                                app:cs_circle_stroke_width="10dp"
+                                app:cs_circle_style="square"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="30" />
+
+                            <TextView
+                                android:id="@+id/condom_top_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="30%"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/condom_top_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="Used condom\nas a top"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Row 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="28dp"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/white"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:id="@+id/versatile"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/magenta"
+                                app:cs_circle_stroke_width="10dp"
+                                app:cs_circle_style="square"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="30" />
+
+                            <TextView
+                                android:id="@+id/versatile_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="30%"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/versatile_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="Versatile"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/white"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:id="@+id/you_swallowed"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/magenta"
+                                app:cs_circle_stroke_width="10dp"
+                                app:cs_circle_style="square"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="30" />
+
+                            <TextView
+                                android:id="@+id/you_swallowed_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="30%"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/you_swallowed_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="You swallowed"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Row 4 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="28dp"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/white"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:id="@+id/partnerCameInYou"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/magenta"
+                                app:cs_circle_stroke_width="10dp"
+                                app:cs_circle_style="square"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="30" />
+
+                            <TextView
+                                android:id="@+id/partner_came_inyou_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="30%"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/partner_came_inyou_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="Your partner\ncame in you"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/white"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:id="@+id/you_came_in"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/magenta"
+                                app:cs_circle_stroke_width="10dp"
+                                app:cs_circle_style="square"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="30" />
+
+                            <TextView
+                                android:id="@+id/you_came_in_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="30%"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/you_came_in_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="You came in\nyour partner"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Row 5 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="28dp"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/white"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:id="@+id/drunk_or_high"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@android:color/transparent"
+                                app:cs_circle_progress_color="@color/magenta"
+                                app:cs_circle_stroke_width="10dp"
+                                app:cs_circle_style="square"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="30" />
+
+                            <TextView
+                                android:id="@+id/drunk_or_high_progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="30%"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/drunk_or_high_description"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="You had sex\ndrunk and/or high"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Line -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <View
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!-- Row 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="28dp"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/magenta"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <TextView
+                                android:id="@+id/partner_you_topped_with_number"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="3"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="# of partners you\ntopped with"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/magenta"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <TextView
+                                android:id="@+id/partner_you_bottomed_with_number"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="2"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="# of partners you\nbottomed with"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Row 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="28dp"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <me.tankery.lib.circularseekbar.CircularSeekBar
+                                android:layout_width="110dp"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                app:cs_circle_color="@color/profile_edittext_hint"
+                                app:cs_circle_progress_color="@color/magenta"
+                                app:cs_circle_stroke_width="1dp"
+                                app:cs_circle_style="round"
+                                app:cs_disable_pointer="true"
+                                app:cs_negative_enabled="false"
+                                app:cs_progress="100" />
+
+                            <TextView
+                                android:id="@+id/of_5_star_number"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:text="3"
+                                android:textColor="@color/white"
+                                android:textSize="30sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="# of 5 star\nencounters"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Line -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <View
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="@color/white" />
+
+                <com.lynxstudy.helper.ExpandableHeightGridView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="2"
+                    android:id="@+id/heightGridView"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="64dp" />
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/bot_nav"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:layout_alignParentBottom="true"
-            android:background="@color/bot_nav_bg"
-            android:orientation="horizontal"
-            android:weightSum="1">
+    </ScrollView>
 
-            <LinearLayout
-                android:id="@+id/bot_nav_sexpro"
-                android:layout_width="wrap_content"
-                android:layout_height="?android:attr/actionBarSize"
-                android:layout_weight="0.2"
-                android:background="@color/colorPrimary"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="5dp">
-
-                <ImageView
-                    android:id="@+id/bot_nav_sexpro_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/nav_icon_home_white" />
-
-                <TextView
-                    android:id="@+id/bot_nav_sexpro_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Home"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/bot_nav_diary"
-                android:layout_width="wrap_content"
-                android:layout_height="?android:attr/actionBarSize"
-                android:layout_weight="0.2"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="5dp">
-
-                <ImageView
-                    android:id="@+id/bot_nav_diary_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/nav_icon_diary" />
-
-                <TextView
-                    android:id="@+id/bot_nav_diary_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Diary" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/bot_nav_testing"
-                android:layout_width="wrap_content"
-                android:layout_height="?android:attr/actionBarSize"
-                android:layout_weight="0.2"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="5dp">
-
-                <ImageView
-                    android:id="@+id/bot_nav_testing_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/nav_icon_testing" />
-
-                <TextView
-                    android:id="@+id/bot_nav_testing_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Testing" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/bot_nav_prep"
-                android:layout_width="wrap_content"
-                android:layout_height="?android:attr/actionBarSize"
-                android:layout_weight="0.2"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="5dp">
-
-                <ImageView
-                    android:id="@+id/bot_nav_prep_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/nav_icon_prep" />
-
-                <TextView
-                    android:id="@+id/bot_nav_prep_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PrEP" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/bot_nav_chat"
-                android:layout_width="wrap_content"
-                android:layout_height="?android:attr/actionBarSize"
-                android:layout_weight="0.2"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="5dp">
-
-                <ImageView
-                    android:id="@+id/bot_nav_chat_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/nav_icon_chat" />
-
-                <TextView
-                    android:id="@+id/bot_nav_chat_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chat" />
-            </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
-</LinearLayout>
+</RelativeLayout>

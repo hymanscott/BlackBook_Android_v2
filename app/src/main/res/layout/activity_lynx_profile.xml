@@ -2,14 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/backgroundPrimary">
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:fillViewport="false"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="?android:attr/actionBarSize">
+        android:layout_height="fill_parent">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
@@ -23,8 +19,9 @@
                     android:text="Your account details"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/profile_title_text_color"
-                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
                     android:layout_margin="32dp"
                     android:id="@+id/fragTitle"
                     android:gravity="center_horizontal|center_vertical" />
@@ -44,6 +41,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/usericonblue"
+                            android:tint="@color/white"
                             android:id="@+id/usericon1"
                             android:layout_gravity="center"/>
 
@@ -53,7 +51,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_gravity="center_vertical"
-                            android:textColor="@color/profile_text_color"
+                            android:textColor="@color/white"
                             android:text="First name"
                             android:textSize="@dimen/reg_tv_textsize" />
                     </LinearLayout>
@@ -79,17 +77,17 @@
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:text="Last name"
-                            android:textColor="@color/profile_text_color"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/reg_tv_textsize" />
                     </LinearLayout>
 
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/grey_border"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@color/input_primary" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -101,6 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/phoneiconblue"
+                        android:tint="@color/white"
                         android:layout_gravity="center"/>
                     <TextView
                         android:id="@+id/updatePhone"
@@ -109,15 +108,15 @@
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:text="9876543210"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/reg_tv_textsize" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/grey_border"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@color/input_primary" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -129,6 +128,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/calendariconblue"
+                        android:tint="@color/white"
                         android:layout_gravity="center"/>
                     <TextView
                         android:id="@+id/updateDOB"
@@ -137,15 +137,15 @@
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:text="11/25/1992"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/reg_tv_textsize" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/grey_border"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@color/input_primary" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -157,6 +157,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/raceiconblue"
+                        android:tint="@color/white"
                         android:layout_gravity="center"/>
                     <TextView
                         android:id="@+id/updateRace"
@@ -165,15 +166,15 @@
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:text="Race"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/reg_tv_textsize" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/grey_border"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@color/input_primary" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -185,6 +186,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/emailiconblue"
+                        android:tint="@color/white"
                         android:layout_gravity="center"/>
                     <TextView
                         android:id="@+id/profile_email"
@@ -193,15 +195,15 @@
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:text="test@lynx.com"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/reg_tv_textsize" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/grey_border"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@color/input_primary" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -213,6 +215,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/passwordiconblue"
+                        android:tint="@color/white"
                         android:layout_gravity="center"/>
                     <TextView
                         android:id="@+id/updatePass"
@@ -221,15 +224,15 @@
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:text="password"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/reg_tv_textsize" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/grey_border"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@color/input_primary" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -241,6 +244,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/shieldiconblue"
+                        android:tint="@color/white"
                         android:layout_gravity="center"/>
                     <TextView
                         android:id="@+id/updateSecQn"
@@ -249,15 +253,15 @@
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:text="Security question"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/reg_tv_textsize" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/grey_border"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@color/input_primary" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -269,6 +273,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/shieldiconblue"
+                        android:tint="@color/white"
                         android:layout_gravity="center"/>
                     <TextView
                         android:id="@+id/updateSecAnswer"
@@ -277,15 +282,15 @@
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:text="Security answer"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/reg_tv_textsize" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/grey_border"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@color/input_primary" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -297,6 +302,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/passcodeiconblue"
+                        android:tint="@color/white"
                         android:layout_gravity="center"/>
                     <TextView
                         android:text="****"
@@ -305,15 +311,15 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_gravity="center_vertical"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/reg_tv_textsize" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/grey_border"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:background="@color/input_primary" />
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="fill_parent"
@@ -335,9 +341,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="I'm taking Pre-exposure Prophylaxis:"
-                    android:textSize="16sp"
-                    android:textColor="@color/profile_text_color"
+                    android:text="I am taking DoxyPEP:"
+                    android:textSize="17dp"
+                    android:textColor="@color/white"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="32dp"
                     android:textStyle="bold"
@@ -347,26 +353,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Yes"
-                    android:textSize="16sp"
-                    android:textColor="@color/profile_text_color"
+                    android:textSize="17dp"
+                    android:textColor="@color/white"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="32dp"
                     android:id="@+id/prepAnswer"
                     android:layout_marginTop="16dp" />
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/grey_border"
-                    android:layout_marginTop="24dp"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="24dp"
+                    android:background="@color/input_primary" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Diary Reminders"
-                    android:textSize="16sp"
+                    android:textSize="17dp"
                     android:textStyle="bold"
-                    android:textColor="@color/profile_text_color"
+                    android:textColor="@color/white"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="32dp"
                     android:layout_marginTop="24dp"
@@ -382,7 +388,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/calendariconblue" />
+                        android:src="@drawable/calendariconblue"
+                        android:tint="@color/white" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -390,7 +397,7 @@
                         android:text="Monday"
                         android:textSize="16sp"
                         android:layout_gravity="center"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:layout_marginLeft="24dp"
                         android:layout_marginRight="32dp" />
                 </LinearLayout>
@@ -405,7 +412,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/clockiconblue" />
+                        android:src="@drawable/clockiconblue"
+                        android:tint="@color/white" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -413,7 +421,7 @@
                         android:textSize="16sp"
                         android:layout_gravity="center"
                         android:id="@+id/dairyReminderTime"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:layout_marginLeft="24dp"
                         android:layout_marginRight="32dp" />
                 </LinearLayout>
@@ -428,7 +436,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/texticonblue" />
+                        android:src="@drawable/texticonblue"
+                        android:tint="@color/white" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -436,25 +445,25 @@
                         android:textSize="16sp"
                         android:layout_gravity="center"
                         android:id="@+id/dairyReminderText"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:layout_marginLeft="24dp"
                         android:layout_marginRight="32dp" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/grey_border"
-                    android:layout_marginTop="24dp"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="24dp"
+                    android:background="@color/input_primary" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Testing Reminders"
-                    android:textSize="16sp"
+                    android:textSize="17dp"
                     android:textStyle="bold"
                     android:id="@+id/testingTitle"
-                    android:textColor="@color/profile_text_color"
+                    android:textColor="@color/white"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="32dp"
                     android:layout_marginTop="24dp" />
@@ -469,7 +478,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/calendariconblue" />
+                        android:src="@drawable/calendariconblue"
+                        android:tint="@color/white" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -477,7 +487,7 @@
                         android:text="Monday"
                         android:textSize="16sp"
                         android:layout_gravity="center"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:layout_marginLeft="24dp"
                         android:layout_marginRight="32dp" />
                 </LinearLayout>
@@ -492,7 +502,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/clockiconblue" />
+                        android:src="@drawable/clockiconblue"
+                        android:tint="@color/white" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -500,7 +511,7 @@
                         android:textSize="16sp"
                         android:layout_gravity="center"
                         android:id="@+id/testingReminderTime"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:layout_marginLeft="24dp"
                         android:layout_marginRight="32dp" />
                 </LinearLayout>
@@ -515,7 +526,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/texticonblue" />
+                        android:src="@drawable/texticonblue"
+                        android:tint="@color/white" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -523,30 +535,30 @@
                         android:textSize="16sp"
                         android:layout_gravity="center"
                         android:id="@+id/testingReminderText"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:layout_marginLeft="24dp"
                         android:layout_marginRight="32dp" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/grey_border"
-                    android:layout_marginTop="32dp"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="24dp"
+                    android:background="@color/input_primary" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="32dp"
-                    android:layout_marginBottom="40dp"
+                    android:layout_marginBottom="32dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                    android:textColor="@color/profile_text_color"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     android:background="@drawable/border_full_grey"
                     android:text="EDIT ACCOUNT DETAILS"
                     android:id="@+id/edit_details"/>
@@ -554,19 +566,10 @@
                     android:text="Log out of your account"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/profile_title_text_color"
-                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:textSize="13dp"
                     android:id="@+id/logout"
-                    android:layout_marginBottom="48dp"
-                    android:gravity="center_horizontal|center_vertical" />
-                <TextView
-                    android:text="LYNX Version 1.7"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/profile_title_text_color"
-                    android:textSize="14sp"
-                    android:id="@+id/app_version"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="32sp"
                     android:gravity="center_horizontal|center_vertical" />
             </LinearLayout>
             <LinearLayout
@@ -622,7 +625,7 @@
                             android:focusable="false"
                             android:clickable="true"
                             android:inputType="textPersonName"
-                            android:textColor="@color/profile_text_color"
+                            android:textColor="@color/white"
                             android:textColorHint="@color/profile_edittext_hint"
                             android:textCursorDrawable="@drawable/profile_edittext_cursor"
                             android:textSize="@dimen/edittext_textsize" />
@@ -661,7 +664,7 @@
                             android:focusable="false"
                             android:clickable="true"
                             android:inputType="textPersonName"
-                            android:textColor="@color/profile_text_color"
+                            android:textColor="@color/white"
                             android:textColorHint="@color/profile_edittext_hint"
                             android:textCursorDrawable="@drawable/profile_edittext_cursor"
                             android:textSize="@dimen/edittext_textsize" />
@@ -698,7 +701,7 @@
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
                         android:windowSoftInputMode="adjustPan"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:imeOptions="actionDone"
                         android:textColorHint="@color/profile_edittext_hint"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
@@ -734,7 +737,7 @@
                         android:focusable="false"
                         android:hint="Birthday"
                         android:inputType="none"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:textColorHint="@color/profile_edittext_hint"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />
@@ -821,7 +824,7 @@
                         android:paddingBottom="5dp"
                         android:paddingTop="5dp"
                         android:imeOptions="actionNext"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:textColorHint="@color/profile_edittext_hint"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />
@@ -857,7 +860,7 @@
                         android:paddingBottom="5dp"
                         android:imeOptions="actionNext"
                         android:paddingTop="5dp"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:textColorHint="@color/profile_edittext_hint"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />
@@ -894,7 +897,7 @@
                         android:paddingBottom="5dp"
                         android:paddingTop="5dp"
                         android:imeOptions="actionDone"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:textColorHint="@color/profile_edittext_hint"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />
@@ -970,7 +973,7 @@
                         android:paddingBottom="5dp"
                         android:imeOptions="actionNext"
                         android:paddingTop="5dp"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:textColorHint="@color/profile_edittext_hint"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />
@@ -1008,7 +1011,7 @@
                         android:maxLength="4"
                         android:paddingBottom="5dp"
                         android:paddingTop="5dp"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:textColorHint="@color/profile_edittext_hint"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />
@@ -1026,7 +1029,7 @@
                         android:layout_height="wrap_content"
                         android:text="I'm taking Pre-exposure Prophylaxis:"
                         android:textSize="16sp"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:layout_margin="16dp"
                         android:id="@+id/prepTitle1"/>
                     <RelativeLayout
@@ -1046,7 +1049,7 @@
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_marginRight="24dp"
                             android:text="Yes"
-                            android:textColor="@color/profile_text_color"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/edittext_textsize"
                             android:layout_alignTop="@+id/create_is_prep"
                             android:layout_alignParentStart="true"
@@ -1069,7 +1072,7 @@
                     android:text="Diary Reminders"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="@color/profile_text_color"
+                    android:textColor="@color/white"
                     android:background="@color/profile_edittext_bg"
                     android:padding="16dp"
                     android:layout_marginTop="3dp"
@@ -1188,7 +1191,7 @@
                         android:inputType="textMultiLine"
                         android:paddingBottom="5dp"
                         android:paddingTop="5dp"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:textColorHint="@color/profile_edittext_hint"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />
@@ -1199,7 +1202,7 @@
                     android:text="Testing Reminders"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="@color/profile_text_color"
+                    android:textColor="@color/white"
                     android:background="@color/profile_edittext_bg"
                     android:padding="16dp"
                     android:layout_marginTop="3dp"
@@ -1317,7 +1320,7 @@
                         android:inputType="textMultiLine"
                         android:paddingBottom="5dp"
                         android:paddingTop="5dp"
-                        android:textColor="@color/profile_text_color"
+                        android:textColor="@color/white"
                         android:textColorHint="@color/profile_edittext_hint"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />
@@ -1340,125 +1343,4 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-    <LinearLayout
-        android:id="@+id/bot_nav"
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:layout_alignParentBottom="true"
-        android:background="@color/starBG"
-        android:orientation="horizontal"
-        android:weightSum="1">
-
-        <LinearLayout
-            android:id="@+id/bot_nav_sexpro"
-            android:layout_width="wrap_content"
-            android:layout_height="?android:attr/actionBarSize"
-            android:layout_weight="0.2"
-            android:background="@color/colorPrimary"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingTop="5dp">
-
-            <ImageView
-                android:id="@+id/bot_nav_sexpro_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/nav_icon_home_white" />
-
-            <TextView
-                android:id="@+id/bot_nav_sexpro_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Home"
-                android:textColor="@color/white" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/bot_nav_diary"
-            android:layout_width="wrap_content"
-            android:layout_height="?android:attr/actionBarSize"
-            android:layout_weight="0.2"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingTop="5dp">
-
-            <ImageView
-                android:id="@+id/bot_nav_diary_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/nav_icon_diary" />
-
-            <TextView
-                android:id="@+id/bot_nav_diary_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Diary" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/bot_nav_testing"
-            android:layout_width="wrap_content"
-            android:layout_height="?android:attr/actionBarSize"
-            android:layout_weight="0.2"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingTop="5dp">
-
-            <ImageView
-                android:id="@+id/bot_nav_testing_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/nav_icon_testing" />
-
-            <TextView
-                android:id="@+id/bot_nav_testing_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Testing" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/bot_nav_prep"
-            android:layout_width="wrap_content"
-            android:layout_height="?android:attr/actionBarSize"
-            android:layout_weight="0.2"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingTop="5dp">
-
-            <ImageView
-                android:id="@+id/bot_nav_prep_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/nav_icon_prep" />
-
-            <TextView
-                android:id="@+id/bot_nav_prep_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PrEP" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/bot_nav_chat"
-            android:layout_width="wrap_content"
-            android:layout_height="?android:attr/actionBarSize"
-            android:layout_weight="0.2"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingTop="5dp">
-
-            <ImageView
-                android:id="@+id/bot_nav_chat_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/nav_icon_chat" />
-
-            <TextView
-                android:id="@+id/bot_nav_chat_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Chat" />
-        </LinearLayout>
-    </LinearLayout>
 </RelativeLayout>

@@ -240,6 +240,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
+                    android:paddingRight="8dp"
                     android:src="@drawable/dropdownicon" />
             </RelativeLayout>
             <LinearLayout
@@ -376,7 +377,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
@@ -403,6 +404,189 @@
                     android:textSize="@dimen/edittext_textsize"
                     android:background="@drawable/rectangle_edittext"
                     android:backgroundTint="@color/edittext_bg"  />
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/input_primary_rounded"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical"
+                android:paddingTop="16dp"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I am taking DoxyPEP"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    android:id="@+id/doxy_lbl"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp" />
+                <RelativeLayout
+                    android:id="@+id/doxy_dpd_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/edittext_padding">
+                    <TextView
+                        android:id="@+id/doxy_dpd_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:textSize="@dimen/reg_tv_textsize"
+                        android:text="Yes"
+                        android:textColor="@color/white" />
+                    <ImageView
+                        android:id="@+id/doxy_dpd_icon_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:paddingRight="8dp"
+                        android:src="@drawable/dropdownicon" />
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/input_primary_rounded"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="50dp"
+                android:orientation="vertical"
+                android:paddingTop="16dp"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Diary Reminders"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    android:id="@+id/reminder_lbl"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp" />
+                <RelativeLayout
+                    android:id="@+id/reminder_calendar_dpd_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/edittext_padding">
+                    <ImageView
+                        android:id="@+id/reminder_calendar_dpd_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:tint="@color/white"
+                        android:src="@drawable/calendariconblue" />
+                    <TextView
+                        android:id="@+id/reminder_calendar_dpd_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_toEndOf="@+id/reminder_calendar_dpd_icon"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:textSize="@dimen/reg_tv_textsize"
+                        android:text="Monday"
+                        android:textColor="@color/white" />
+                    <ImageView
+                        android:id="@+id/reminder_calendar_icon_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:paddingRight="8dp"
+                        android:src="@drawable/dropdownicon" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/reminder_time_dpd_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/edittext_padding">
+                    <ImageView
+                        android:id="@+id/reminder_time_dpd_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:tint="@color/white"
+                        android:src="@drawable/clockiconblue" />
+                    <TextView
+                        android:id="@+id/reminder_time_dpd_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_toEndOf="@+id/reminder_time_dpd_icon"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:textSize="@dimen/reg_tv_textsize"
+                        android:text="2:00 PM"
+                        android:textColor="@color/white" />
+                    <ImageView
+                        android:id="@+id/reminder_time_dpd_icon_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:paddingRight="8dp"
+                        android:src="@drawable/dropdownicon" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/reminder_message_dpd_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/edittext_padding">
+                    <ImageView
+                        android:id="@+id/reminder_message_dpd_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:tint="@color/white"
+                        android:src="@drawable/texticonblue" />
+                    <TextView
+                        android:id="@+id/reminder_message_dpd_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_toEndOf="@+id/reminder_message_dpd_icon"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:textSize="@dimen/reg_tv_textsize"
+                        android:text="Fill in your Diary"
+                        android:textColor="@color/white" />
+                    <ImageView
+                        android:id="@+id/reminder_message_dpd_icon_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:paddingRight="8dp"
+                        android:src="@drawable/dropdownicon" />
+                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

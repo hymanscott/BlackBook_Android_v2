@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/backgroundPrimary"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundPrimary">
+
     <ScrollView
+        android:layout_above="@+id/enc_drugContent_nextbtn"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/checkin_report_next"
-        android:fillViewport="true">
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
@@ -21,6 +21,7 @@
                 android:layout_marginBottom="18dp"
                 android:layout_marginTop="46dp"
                 android:src="@drawable/encounterlarge" />
+
             <TextView
                 android:id="@+id/frag_title"
                 android:layout_width="fill_parent"
@@ -33,6 +34,7 @@
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -41,57 +43,71 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:background="@color/input_primary" />
+
             <TextView
-                android:id="@+id/intro_paragraph"
+                android:id="@+id/sex_day_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
-                android:text="Do you have encounters to report?"
+                android:text="Mark the days below when you had sex:"
                 android:textColor="@color/white"
                 android:textSize="17dp" />
-            <RadioGroup
-                android:id="@+id/encounter_report_rg"
-                android:layout_width="wrap_content"
+
+            <!-- Container for Dynamic checkbox-->
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
-                android:layout_marginTop="@dimen/activity_vertical_margin">
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="vertical"
+                android:id="@+id/sex_day_checkbox_list">
 
-                <RadioButton
-                    android:id="@+id/have_encounter_yes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@drawable/radiobutton_white"
-                    android:buttonTint="@color/white"
-                    android:paddingLeft="12dp"
-                    android:text="Yes"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
+            </LinearLayout>
 
-                <RadioButton
-                    android:id="@+id/have_encounter_no"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:buttonTint="@color/white"
-                    android:text="No"
-                    android:button="@drawable/radiobutton_white"
-                    android:paddingLeft="12dp"
-                    android:layout_marginTop="12dp"
-                    android:textColor="@color/white"
-                    android:textSize="15dp" />
-            </RadioGroup>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@color/input_primary" />
+
+            <TextView
+                android:id="@+id/doxy_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:text="Mark the days below when you took doxy:"
+                android:textColor="@color/white"
+                android:textSize="17dp" />
+
+            <!-- Container for Dynamic checkbox-->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="vertical"
+                android:id="@+id/doxy_checkbox_list">
+
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:text="NEXT"
         android:background="@color/input_primary"
         android:textColor="@color/white"
-        android:id="@+id/checkin_report_next"
+        android:id="@+id/enc_drugContent_nextbtn"
         android:textSize="@dimen/button_textsize"
-        android:onClick="weeklyCheckInReportNext"
+        android:onClick="weeklyCheckInDrugNext"
         android:layout_alignParentBottom="true"
         android:textStyle="bold" />
 </RelativeLayout>
