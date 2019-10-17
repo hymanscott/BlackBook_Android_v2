@@ -68,6 +68,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_lynx_diary);
         db = new DatabaseHelper(LynxDiary.this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
