@@ -16,6 +16,7 @@
     <dimen name="banner_logo_bottom_margin">110dp</dimen>
 
     <dimen name="encounter_tv_textsize">16sp</dimen>
+    <dimen name="home_textsize">17dp</dimen>
     <dimen name="encounter_radio_btn_textsize">14sp</dimen>
     <dimen name="toggle_btn_textsize">16sp</dimen>
     <dimen name="toggle_btn_height">40dp</dimen>

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/backgroundPrimary"
     android:orientation="vertical"
     android:id="@+id/home_test_screen_layout"
     tools:context="com.lynxstudy.lynx.LynxTesting$PlaceholderFragment">
@@ -14,7 +14,9 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_horizontal_margin_half"
+            android:paddingRight="@dimen/activity_horizontal_margin_half">
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -24,24 +26,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginRight="5dp"
-                    android:id="@+id/testing_addNewHIVtest"
-                    android:background="@drawable/buttonbluecornered"
-                    android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:textSize="14sp"
-                    android:text="Add NEW HIV TEST"/>
+                    android:textSize="14dp"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/testing_addNewSTItest"
+                    android:background="@drawable/btn_purple_rounded"
+                    android:textColor="@color/white"
+                    android:text="ADD NEW STD TEST" />
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textStyle="bold"
-                    android:textSize="14sp"
                     android:layout_marginLeft="5dp"
-                    android:id="@+id/testing_addNewSTItest"
-                    android:background="@drawable/buttonbluecornered"
+                    android:id="@+id/testing_addNewHIVtest"
+                    android:background="@drawable/btn_purple_rounded"
                     android:textColor="@color/white"
-                    android:text="ADD NEW STD TEST" />
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    android:text="Add NEW HIV TEST"/>
             </LinearLayout>
         </LinearLayout>
         <ScrollView
@@ -57,15 +59,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:layout_marginTop="48dp"
+                    android:layout_marginTop="56dp"
                     android:visibility="gone"
                     android:id="@+id/contextualTipsLayout"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:orientation="vertical">
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
                         android:src="@drawable/clipboard"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -75,10 +77,10 @@
                         android:layout_marginRight="48dp"
                         android:layout_marginTop="32dp"
                         android:lineSpacingMultiplier="1.50"
-                        android:textSize="16sp"
-                        android:textColor="@color/text_color"
+                        android:textSize="17dp"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
-                        android:text="Test yourself."
+                        android:text="Take care of your business."
                         android:id="@+id/contextualTipsTitle"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -86,23 +88,23 @@
                         android:gravity="center_horizontal"
                         android:layout_marginLeft="48dp"
                         android:layout_marginRight="48dp"
-                        android:layout_marginTop="16dp"
-                        android:lineSpacingMultiplier="1.50"
+                        android:layout_marginTop="8dp"
+                        android:lineSpacingMultiplier="1.30"
                         android:id="@+id/contextualTipsDesc"
-                        android:textSize="16sp"
-                        android:textColor="@color/text_color"
-                        android:text="Take care of your business without having anyone in your business.
-Add a new test to get started."/>
+                        android:textSize="16dp"
+                        android:textColor="@color/white"
+                        android:text="Add a new test to get started."/>
                 </LinearLayout>
                 <TableLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:id="@+id/testingHistoryTable">
-
                 </TableLayout>
             </RelativeLayout>
         </ScrollView>
     </LinearLayout>
+
+    <!-- HIV -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -372,11 +374,13 @@ Add a new test to get started."/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
+
+    <!--  STD -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/newTestLayout"
-        android:visibility="gone"
+        android:visibility="visible"
         android:orientation="vertical">
         <ScrollView
             android:layout_width="fill_parent"

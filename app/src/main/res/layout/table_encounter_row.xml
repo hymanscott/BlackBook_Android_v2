@@ -8,7 +8,8 @@
     android:paddingTop="16dp"
     android:paddingLeft="5dp"
     android:paddingRight="0dp"
-    android:paddingBottom="16dp">
+    android:paddingBottom="16dp"
+    android:background="@color/backgroundPrimary">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,18 +21,19 @@
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:text="06/06/17"
-            android:textSize="16dp"
+            android:textSize="17dp"
             android:maxWidth="70dp"
-            android:textColor="@color/text_color"
+            android:textColor="@color/white"
             android:layout_weight="0.5"
             android:id="@+id/date"/>
         <TextView
             android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:text="Demoprimary partner "
-            android:textSize="16dp"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/text_color"
+            android:textSize="17dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:textColor="@color/white"
             android:layout_weight="0.5"
             android:maxLines="1"
             android:ellipsize="end"
@@ -48,12 +50,12 @@
                 android:layout_height="wrap_content"
                 android:numStars="5"
                 android:id="@+id/rating"
-                android:rating="5"
+                android:rating="3"
                 android:stepSize="0.5"
                 android:layout_alignParentRight="true"
                 android:minWidth="100dp"
                 android:isIndicator="true"
-                style="?attr/ratingBarStyleIndicator" />
+                style="?android:ratingBarStyleIndicator" />
     </LinearLayout>
 
 </LinearLayout>

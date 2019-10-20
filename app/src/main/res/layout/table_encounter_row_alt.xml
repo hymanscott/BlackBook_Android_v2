@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/backgroundPrimary"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,18 +20,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="06/06/17"
-            android:textSize="16dp"
+            android:textSize="17dp"
             android:layout_weight="0.5"
             android:layout_marginLeft="16dp"
-            android:textColor="@color/text_color"
+            android:textColor="@color/white"
             android:id="@+id/date"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Demoprimary partner "
-            android:textSize="16dp"
+            android:textSize="17dp"
             android:layout_marginLeft="16dp"
-            android:textColor="@color/text_color"
+            android:textColor="@color/white"
             android:layout_weight="0.5"
             android:layout_gravity="right"
             android:maxLines="1"
@@ -52,8 +53,8 @@
                 android:stepSize="0.5"
                 android:layout_alignParentRight="true"
                 android:isIndicator="true"
+                style="?android:ratingBarStyleIndicator"
                 android:scaleX="0.8"
                 android:scaleY="0.8"/>
     </LinearLayout>
-
 </LinearLayout>

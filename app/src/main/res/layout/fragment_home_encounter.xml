@@ -28,7 +28,7 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:textStyle="bold"
             android:gravity="center_horizontal|center_vertical"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
 
         <!-- INTRO -->
         <LinearLayout
@@ -37,7 +37,7 @@
             android:gravity="center_horizontal"
             android:layout_marginTop="48dp"
             android:id="@+id/contextualTipsLayout"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:orientation="vertical">
@@ -116,13 +116,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="32dp"
                     android:layout_marginTop="32dp"
-                    android:background="@color/banner_name_bg"
+                    android:background="#E1E1E1"
                     android:gravity="center_vertical|center_horizontal"
-                    android:text="NICK NAME"
-                    android:padding="5dp"
-                    android:textColor="@color/encounter_btn_bg"
+                    android:text="JHON DODE"
+                    android:padding="12dp"
+                    android:textColor="@color/dark_boxes"
                     android:textStyle="bold"
-                    android:textSize="18sp" />
+                    android:textSize="18dp" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -131,21 +131,22 @@
                     android:orientation="vertical">
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/banner_name_bg"
-                        android:layout_marginBottom="16dp" />
+                        android:layout_height="1dp"
+                        android:background="@color/input_primary" />
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/activity_horizontal_margin"
+                        android:paddingBottom="@dimen/activity_horizontal_margin">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Sex Rating :"
-                            android:textSize="@dimen/encounter_tv_textsize"
-                            android:textColor="@color/text_color"
+                            android:text="Sex Rating:"
+                            android:textSize="17dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
                             android:id="@+id/sexRating"
                             android:layout_gravity="center_vertical|left"/>
                         <LinearLayout
@@ -167,263 +168,362 @@
                         </LinearLayout>
 
                     </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/banner_name_bg"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="24dp" />
+                        android:layout_height="1dp"
+                        android:background="@color/input_primary" />
+
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin">
+                        android:paddingTop="@dimen/activity_horizontal_margin"
+                        android:paddingBottom="@dimen/activity_horizontal_margin">
 
                         <TextView
-                            android:layout_width="150dp"
+                            android:layout_width="130dp"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/encounter_tv_textsize"
-                            android:textColor="@color/text_color"
+                            android:textSize="17dp"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
                             android:text="HIV Status:"
                             android:id="@+id/hivStatus"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textColor="@color/text_color"
+                            android:textSize="17dp"
+                            android:textColor="@color/white"
                             android:id="@+id/encListSumm_hivStatus"
-                            android:text="x"/>
+                            android:text="HIV Positive and Undetectable"/>
                     </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/banner_name_bg"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginBottom="24dp" />
+                        android:layout_height="1dp"
+                        android:background="@color/input_primary" />
+
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:paddingTop="@dimen/activity_horizontal_margin"
+                        android:paddingBottom="@dimen/activity_horizontal_margin"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="150dp"
+                            android:layout_width="130dp"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/encounter_tv_textsize"
-                            android:textColor="@color/text_color"
-                            android:text="Encounter Notes:"
+                            android:textSize="17dp"
+                            android:textColor="@color/white"
+                            android:text="Partner Notes:"
+                            android:textStyle="bold"
                             android:id="@+id/partner"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:id="@+id/encListSumm_partnerNotes"
-                            android:textSize="14sp"
-                            android:textColor="@color/text_color"
-                            android:text="x" />
+                            android:textSize="17dp"
+                            android:textColor="@color/white"
+                            android:text="Cool guy. Shy moving to LA. Will visit SF and call me." />
                     </LinearLayout>
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/banner_name_bg"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginBottom="24dp" />
-                    <TextView
+                        android:layout_height="1dp"
+                        android:background="@color/input_primary" />
+
+                    <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/encounter_tv_textsize"
-                        android:textColor="@color/text_color"
-                        android:id="@+id/typeSex"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_marginBottom="16dp"
-                        android:text="Type of Sex:"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:id="@+id/sexTypeLayout">
-                        <!--Encounter Sex Types-->
-
+                        android:paddingTop="@dimen/activity_horizontal_margin"
+                        android:paddingBottom="@dimen/activity_horizontal_margin"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:id="@+id/typeSex"
+                            android:layout_marginBottom="16dp"
+                            android:text="Type of Sex:"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:id="@+id/sexTypeLayout">
+                            <!-- Encounter Sex Types-->
+                        </LinearLayout>
                     </LinearLayout>
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/banner_name_bg"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginBottom="8dp" />
+                        android:layout_height="1dp"
+                        android:background="@color/input_primary" />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/condomUsedLayout"
-                        android:orientation="vertical">
-                        <LinearLayout
-                            android:layout_width="fill_parent"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/activity_horizontal_margin"
+                        android:paddingBottom="@dimen/activity_horizontal_margin">
+                        <TextView
+                            android:layout_width="130dp"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_margin="16dp">
-
-                            <TextView
-                                android:layout_width="150dp"
-                                android:layout_height="wrap_content"
-                                android:textSize="@dimen/encounter_tv_textsize"
-                                android:textColor="@color/text_color"
-                                android:text="Condom Used :"
-                                android:id="@+id/condomUsed"/>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:id="@+id/condomUsedContent">
-
-                            </LinearLayout>
-                        </LinearLayout>
-                        <View
+                            android:text="Condom Used:"
+                            android:textSize="17dp"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:id="@+id/condomUsed" />
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/banner_name_bg"/>
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:id="@+id/condomUsedContent">
+
+                        </LinearLayout>
                     </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/input_primary" />
+
+                    <!-- Came Inside partner? -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/whenIsuckedParent"
-                        android:layout_marginTop="24dp"
-                        android:visibility="gone"
-                        android:orientation="vertical">
+                        android:id="@+id/came_inside_partner_parent"
+                        android:visibility="visible"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/activity_horizontal_margin">
                         <LinearLayout
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp">
-
+                            android:orientation="horizontal">
                             <TextView
-                                android:layout_width="150dp"
+                                android:layout_width="185dp"
                                 android:layout_height="wrap_content"
-                                android:textSize="@dimen/encounter_tv_textsize"
-                                android:textColor="@color/text_color"
-                                android:text="When I sucked:"
-                                android:id="@+id/whenIsuckedtitle"/>
+                                android:textSize="17dp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:text="Came inside partner?"
+                                android:id="@+id/came_inside_partner_title"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="14sp"
-                                android:textColor="@color/text_color"
-                                android:id="@+id/whenIsucked"
-                                android:text="x" />
+                                android:textSize="17dp"
+                                android:textColor="@color/white"
+                                android:id="@+id/came_inside_partner"
+                                android:text="No" />
                         </LinearLayout>
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/banner_name_bg"
-                            android:layout_marginTop="24dp"/>
+                            android:layout_height="1dp"
+                            android:background="@color/input_primary"
+                            android:layout_marginTop="@dimen/activity_horizontal_margin" />
                     </LinearLayout>
+
+                    <!-- Partner came in me? -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/whenIbottomParent"
-                        android:layout_marginTop="24dp"
-                        android:visibility="gone"
-                        android:orientation="vertical">
+                        android:id="@+id/partner_came_in_me_parent"
+                        android:visibility="visible"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/activity_horizontal_margin">
                         <LinearLayout
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp">
-
+                            android:orientation="horizontal">
                             <TextView
-                                android:layout_width="150dp"
+                                android:layout_width="185dp"
                                 android:layout_height="wrap_content"
-                                android:textSize="@dimen/encounter_tv_textsize"
-                                android:textColor="@color/text_color"
-                                android:text="When I bottomed:"
-                                android:id="@+id/whenIbottomedtitle"/>
+                                android:textSize="17dp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:text="Partner came in me?"
+                                android:id="@+id/partner_came_in_me_title"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="14sp"
-                                android:textColor="@color/text_color"
-                                android:id="@+id/whenIbottom"
-                                android:text="x" />
+                                android:textSize="17dp"
+                                android:textColor="@color/white"
+                                android:id="@+id/partner_came_in_me"
+                                android:text="No" />
                         </LinearLayout>
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/banner_name_bg"
-                            android:layout_marginTop="24dp"/>
+                            android:layout_height="1dp"
+                            android:background="@color/input_primary"
+                            android:layout_marginTop="@dimen/activity_horizontal_margin" />
                     </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/whenItoppedParent"
-                        android:layout_marginTop="24dp"
-                        android:visibility="gone"
-                        android:orientation="vertical">
-                        <LinearLayout
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp">
 
-                            <TextView
-                                android:layout_width="150dp"
-                                android:layout_height="wrap_content"
-                                android:textSize="@dimen/encounter_tv_textsize"
-                                android:textColor="@color/text_color"
-                                android:text="When I topped:"
-                                android:id="@+id/whenItoppedtitle"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="14sp"
-                                android:textColor="@color/text_color"
-                                android:id="@+id/whenItop"
-                                android:text="x" />
-                        </LinearLayout>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/banner_name_bg"
-                            android:layout_marginTop="24dp"/>
-                    </LinearLayout>
+                    <!-- I was -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/drunkParent"
-                        android:layout_marginBottom="40dp"
-                        android:layout_marginTop="24dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/activity_horizontal_margin">
                         <LinearLayout
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp">
-
+                            android:orientation="horizontal">
                             <TextView
-                                android:layout_width="150dp"
+                                android:layout_width="185dp"
                                 android:layout_height="wrap_content"
-                                android:textSize="@dimen/encounter_tv_textsize"
-                                android:textColor="@color/text_color"
+                                android:textSize="17dp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
                                 android:text="I was:"
                                 android:id="@+id/drunktitle"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="14sp"
-                                android:textColor="@color/text_color"
+                                android:textSize="17dp"
+                                android:textColor="@color/white"
                                 android:id="@+id/drunk"
-                                android:text="x" />
+                                android:text="Drunk" />
                         </LinearLayout>
                         <View
                             android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:background="@color/banner_name_bg"
-                            android:layout_marginTop="24dp"/>
+                            android:layout_height="1dp"
+                            android:background="@color/input_primary"
+                            android:layout_marginTop="@dimen/activity_horizontal_margin" />
+                    </LinearLayout>
+
+                    <!-- I took doxy after encounter? -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/took_doxy_parent"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/activity_horizontal_margin">
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="240dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="17dp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:text="I took doxy after encounter?"
+                                android:id="@+id/took_doxy_title"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="17dp"
+                                android:textColor="@color/white"
+                                android:id="@+id/took_doxy"
+                                android:text="Yes" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/input_primary"
+                            android:layout_marginTop="@dimen/activity_horizontal_margin" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/whenIsuckedParent"
+                        android:visibility="visible"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/activity_horizontal_margin">
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="17dp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:text="When I sucked:"
+                                android:id="@+id/whenIsuckedtitle"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="17dp"
+                                android:textColor="@color/white"
+                                android:id="@+id/whenIsucked"
+                                android:text="No" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/input_primary"
+                            android:layout_marginTop="@dimen/activity_horizontal_margin" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/whenIbottomParent"
+                        android:visibility="visible"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/activity_horizontal_margin">
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="17dp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:text="When I bottomed:"
+                                android:id="@+id/whenIbottomedtitle"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="17dp"
+                                android:textColor="@color/white"
+                                android:id="@+id/whenIbottom"
+                                android:text="No" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/input_primary"
+                            android:layout_marginTop="@dimen/activity_horizontal_margin" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/whenItoppedParent"
+                        android:visibility="visible"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/activity_horizontal_margin">
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="17dp"
+                                android:textColor="@color/white"
+                                android:text="When I topped:"
+                                android:textStyle="bold"
+                                android:id="@+id/whenItoppedtitle"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="17dp"
+                                android:textColor="@color/white"
+                                android:id="@+id/whenItop"
+                                android:text="Yes" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/input_primary"
+                            android:layout_marginTop="@dimen/activity_horizontal_margin" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

@@ -44,7 +44,7 @@
     <color name="encounter_btn_bg">#2E86FF</color>
     <color name="encounter_btn_grey">#D6D6D6</color>
     <color name="banner_name_bg">#d5d5d5</color>
-    <color name="toggle_btn_bg">#d5d5d5</color>
+    <color name="toggle_btn_bg">#E1E1E1</color>
 
     <!--Profile update-->
     <color name="profile_title_text_color">#FF2E86FF</color>
