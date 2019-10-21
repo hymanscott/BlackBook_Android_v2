@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:background="@color/encounter_bg">
+    android:background="@color/backgroundPrimary">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,10 +18,10 @@
                 android:orientation="vertical"
                 android:layout_alignParentTop="true">
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:layout_marginTop="32dp"
-                    android:layout_marginBottom="32dp"
+                    android:layout_marginBottom="18dp"
                     android:src="@drawable/encounterlarge" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -32,11 +32,11 @@
                     android:textColor="@color/white"/>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/edittext_bg"
+                    android:layout_height="1dp"
+                    android:background="@color/input_primary"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="24dp" />
+                    android:layout_marginTop="16dp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="32dp"
-                    android:background="@color/edittext_bg"
+                    android:background="@drawable/input_primary_rounded"
                     android:orientation="horizontal"
                     android:padding="@dimen/edittext_padding">
 
@@ -92,7 +92,7 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:visibility="invisible"
-                    android:background="@color/edittext_bg"
+                    android:background="@drawable/input_primary_rounded"
                     android:orientation="horizontal"
                     android:padding="@dimen/edittext_padding">
 
@@ -127,24 +127,18 @@
                         android:textSize="@dimen/encounter_tv_textsize" />
                 </RelativeLayout>
             </LinearLayout>
-            <RelativeLayout
+            <Button
+                android:id="@+id/next"
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true">
-                <Button
-                    android:id="@+id/next"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="@dimen/button_top_margin"
-                    android:background="@color/encounter_btn_bg"
-                    android:onClick="onNextEnctime"
-                    android:text="NEXT"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/button_textsize"
-                    android:textStyle="bold" />
-            </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/button_top_margin"
+                android:background="@color/input_primary"
+                android:onClick="onNextEnctime"
+                android:text="NEXT"
+                android:textColor="@color/white"
+                android:textSize="@dimen/button_textsize"
+                android:textStyle="bold" />
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

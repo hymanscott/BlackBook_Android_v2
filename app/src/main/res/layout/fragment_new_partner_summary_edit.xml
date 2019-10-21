@@ -2,91 +2,123 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/encounter_bg">
+    android:background="@color/backgroundPrimary">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:fillViewport="false"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/next">
         <LinearLayout
             android:layout_width="fill_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
+
             <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="18dp"
                 android:layout_marginTop="32dp"
                 android:src="@drawable/encounterlarge" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="New Partner Profile"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/add_partner_title"
-                android:textColor="@color/white"/>
 
             <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:textSize="20dp"
+                android:text="@string/AddPartnerTitle"
+                android:textColor="@color/white"
+                android:gravity="center_vertical|center_horizontal"
+                android:id="@+id/add_partner_title" />
+
+            <TextView
+                android:id="@+id/new_partner_Summ_nickname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nick name"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:id="@+id/new_partner_Summ_nickname"
-                android:textSize="18sp"
-                android:paddingTop="5dp"
+                android:layout_marginBottom="32dp"
+                android:background="#E1E1E1"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="JOHN DOE"
+                android:padding="12dp"
+                android:textColor="@color/dark_boxes"
                 android:textStyle="bold"
-                android:paddingBottom="5dp"
-                android:layout_marginBottom="40dp"
-                android:textColor="@color/encounter_btn_bg"
-                android:background="@color/banner_name_bg"
-                android:gravity="center_vertical|center_horizontal" />
+                android:textSize="18dp" />
+            
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="2dp"
-                android:background="@drawable/rectangle_bg"
-                android:padding="@dimen/edittext_padding"
-                android:id="@+id/nickNameLayout"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/nick_name_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/usericon" />
-                <EditText
-                    android:id="@+id/newPartnerSumm_nickName"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:background="@drawable/rectangle_edittext"
-                    android:backgroundTint="@color/edittext_bg"
-                    android:ems="10"
-                    android:hint="Nickname"
-                    android:inputType="textPersonName"
-                    android:paddingBottom="5dp"
-                    android:paddingTop="5dp"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/edittext_hint_color"
-                    android:textCursorDrawable="@drawable/white_cursor"
-                    android:textSize="@dimen/edittext_textsize" />
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <LinearLayout
+                    android:background="@drawable/input_primary_rounded"
+                    android:id="@+id/nickNameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin_half"
+                    android:padding="@dimen/edittext_padding">
+                    <ImageView
+                        android:id="@+id/nick_name_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/usericon" />
+                    <EditText
+                        android:id="@+id/newPartnerSumm_nickName"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:background="@drawable/rectangle_edittext"
+                        android:backgroundTint="@color/edittext_bg"
+                        android:ems="10"
+                        android:hint="Names"
+                        android:inputType="textPersonName"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textCursorDrawable="@drawable/white_cursor"
+                        android:textSize="@dimen/edittext_textsize" />
+                </LinearLayout>
+                <LinearLayout
+                    android:background="@drawable/input_primary_rounded"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin_half"
+                    android:layout_weight="0.5"
+                    android:padding="@dimen/edittext_padding">
+                    <EditText
+                        android:id="@+id/newPartnerSumm_lastName"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin_half"
+                        android:background="@drawable/rectangle_edittext"
+                        android:backgroundTint="@color/edittext_bg"
+                        android:ems="10"
+                        android:hint="Last names"
+                        android:inputType="textPersonName"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textCursorDrawable="@drawable/white_cursor"
+                        android:textSize="@dimen/edittext_textsize" />
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
+                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@drawable/rectangle_bg"
+                android:background="@drawable/input_primary_rounded"
                 android:padding="@dimen/edittext_padding"
                 android:orientation="horizontal">
 
@@ -118,10 +150,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
+                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@drawable/rectangle_bg"
+                android:background="@drawable/input_primary_rounded"
                 android:padding="@dimen/edittext_padding"
                 android:orientation="horizontal">
 
@@ -153,10 +185,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
+                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@drawable/rectangle_bg"
+                android:background="@drawable/input_primary_rounded"
                 android:padding="@dimen/edittext_padding"
                 android:orientation="horizontal">
 
@@ -188,10 +220,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
+                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@drawable/rectangle_bg"
+                android:background="@drawable/input_primary_rounded"
                 android:padding="@dimen/edittext_padding"
                 android:orientation="horizontal">
 
@@ -223,10 +255,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
+                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@drawable/rectangle_bg"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -257,12 +289,13 @@
             </LinearLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@drawable/rectangle_bg"
-                android:layout_marginBottom="2dp"
-                android:layout_height="wrap_content">
+                android:background="@drawable/input_primary_rounded"
+                android:layout_marginBottom="16dp"
+                android:paddingHorizontal="@dimen/activity_horizontal_margin">
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
@@ -272,7 +305,7 @@
                     android:layout_centerVertical="true"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:text="Gender :"/>
+                    android:text="Gender:"/>
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -305,12 +338,13 @@
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@drawable/rectangle_bg"
-                android:layout_marginBottom="2dp"
-                android:layout_height="wrap_content">
+                android:background="@drawable/input_primary_rounded"
+                android:layout_marginBottom="16dp"
+                android:paddingHorizontal="@dimen/activity_horizontal_margin">
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
@@ -320,7 +354,7 @@
                     android:layout_centerVertical="true"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:text="HIV Status :"/>
+                    android:text="HIV Status:"/>
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -353,14 +387,16 @@
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@drawable/rectangle_bg"
-                android:layout_marginBottom="2dp"
+                android:background="@drawable/input_primary_rounded"
+                android:layout_marginBottom="16dp"
                 android:visibility="gone"
                 android:id="@+id/undetectableLayout"
-                android:layout_height="wrap_content">
+                android:paddingHorizontal="@dimen/activity_horizontal_margin"
+                android:paddingVertical="@dimen/activity_horizontal_margin_half">
                 <TextView
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
@@ -402,12 +438,14 @@
             </RelativeLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="2dp"
+                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@drawable/rectangle_bg"
-                android:layout_height="wrap_content">
+                android:background="@drawable/input_primary_rounded"
+                android:paddingHorizontal="@dimen/activity_horizontal_margin"
+                android:paddingVertical="@dimen/activity_horizontal_margin_half">
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
@@ -415,7 +453,7 @@
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:id="@+id/partnerTypeTitle"
-                    android:text="Partner Type :"/>
+                    android:text="Partner Type:"/>
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -448,14 +486,15 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="2dp"
+                android:layout_marginBottom="16dp"
                 android:id="@+id/otherPartnerLayout"
                 android:visibility="gone"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@drawable/rectangle_bg"
-                android:layout_height="wrap_content">
+                android:background="@drawable/input_primary_rounded"
+                android:paddingHorizontal="@dimen/activity_horizontal_margin">
                 <TextView
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
@@ -497,14 +536,15 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="2dp"
+                android:layout_marginBottom="16dp"
                 android:id="@+id/monogamousLayout"
                 android:visibility="gone"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@drawable/rectangle_bg"
-                android:layout_height="wrap_content">
+                android:background="@drawable/input_primary_rounded"
+                android:paddingHorizontal="@dimen/activity_horizontal_margin">
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
@@ -545,13 +585,15 @@
                 </RelativeLayout>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="32dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@drawable/rectangle_bg"
-                android:layout_height="wrap_content">
+                android:background="@drawable/input_primary_rounded"
+                android:paddingHorizontal="@dimen/activity_horizontal_margin"
+                android:paddingVertical="@dimen/activity_horizontal_margin_half">
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
@@ -566,6 +608,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin_half"
                     android:background="@drawable/rectangle_edittext"
                     android:backgroundTint="@color/edittext_bg"
                     android:ems="10"
@@ -575,296 +618,298 @@
                     android:textColor="@color/white"
                     android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:maxLength="255"/>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Overall"
-                    android:textSize="@dimen/encounter_tv_textsize"
-                    android:paddingLeft="8dp"
-                    android:textColor="@color/white"
-                    android:id="@+id/overAll"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_vertical"/>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:layout_weight="1">
-                    <RatingBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/newPartnerSumm_ratingBar1"
-                        android:stepSize="0.5"
-                        android:rating="1.0"
-                        android:scaleX="0.8"
-                        android:scaleY="0.8"
-                        style="?android:attr/ratingBarStyle"
-                        android:layout_gravity="center_horizontal|center_vertical|left"/>
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Chemistry"
-                    android:layout_weight="1"
-                    android:maxWidth="100dp"
-                    android:paddingLeft="8dp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/newPartnerSumm_rate2"
-                    android:textSize="@dimen/encounter_tv_textsize"
-                    android:textColor="@color/white" />
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:layout_weight="1">
-                    <RatingBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/newPartnerSumm_ratingBar2"
-                        android:stepSize="0.5"
-                        android:rating="1.0"
-                        android:scaleX="0.8"
-                        android:scaleY="0.8"
-                        android:layout_gravity="center_horizontal|center_vertical"/>
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Personality"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/encounter_tv_textsize"
-                    android:textColor="@color/white"
-                    android:maxWidth="100dp"
-                    android:paddingLeft="8dp"
-                    android:layout_weight="1"
-                    android:id="@+id/newPartnerSumm_rate3"
-                    android:layout_gravity="center_vertical" />
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:layout_weight="1">
-                    <RatingBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/newPartnerSumm_ratingBar3"
-                        android:stepSize="0.5"
-                        android:rating="1.0"
-                        android:scaleX="0.8"
-                        android:scaleY="0.8"
-                        android:layout_gravity="center_horizontal|center_vertical"/>
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/newPartnerSumm_rate4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:maxWidth="100dp"
-                    android:text="Face"
-                    android:textStyle="bold"
-                    android:paddingLeft="8dp"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/encounter_tv_textsize" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:layout_weight="1">
-                    <RatingBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/newPartnerSumm_ratingBar4"
-                        android:stepSize="0.5"
-                        android:scaleX="0.8"
-                        android:scaleY="0.8"
-                        android:rating="1.0"
-                        android:layout_gravity="center_horizontal|center_vertical"/>
-                </LinearLayout>
-            </LinearLayout>
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginBottom="2dp"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:minWidth="100dp"
-                    android:layout_gravity="center_vertical"
-                    android:paddingTop="@dimen/edittext_padding"
-                    android:paddingBottom="@dimen/edittext_padding"
-                    android:background="@color/edittext_bg">
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:hint="Add choice"
-                        android:imeOptions="actionNext"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/edittext_hint_color"
-                        android:textCursorDrawable="@drawable/white_cursor"
-                        android:textSize="@dimen/edittext_textsize"
-                        android:id="@+id/newPartnerSumm_rate5"
-                        android:padding="@dimen/edittext_padding"
-                        android:background="@android:color/transparent"
-                        android:backgroundTint="@android:color/transparent"
-                        android:maxWidth="100dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:layout_weight="1">
-                    <RatingBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/newPartnerSumm_ratingBar5"
-                        android:stepSize="0.5"
-                        android:rating="1.0"
-                        android:scaleX="0.8"
-                        android:scaleY="0.8"
-                        android:layout_gravity="center_horizontal|center_vertical"/>
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginBottom="2dp"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:minWidth="100dp"
-                    android:layout_gravity="center_vertical"
-                    android:paddingTop="@dimen/edittext_padding"
-                    android:paddingBottom="@dimen/edittext_padding"
-                    android:background="@color/edittext_bg">
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="Add choice"
-                        android:textStyle="bold"
-                        android:imeOptions="actionNext"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/edittext_hint_color"
-                        android:textCursorDrawable="@drawable/white_cursor"
-                        android:textSize="@dimen/edittext_textsize"
-                        android:id="@+id/newPartnerSumm_rate6"
-                        android:padding="@dimen/edittext_padding"
-                        android:background="@android:color/transparent"
-                        android:backgroundTint="@android:color/transparent"
-                        android:maxWidth="100dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:layout_weight="1">
-                    <RatingBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/newPartnerSumm_ratingBar6"
-                        android:stepSize="0.5"
-                        android:rating="1.0"
-                        android:scaleX="0.8"
-                        android:scaleY="0.8"
-                        android:layout_gravity="center_horizontal|center_vertical"/>
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:minWidth="100dp"
-                    android:layout_gravity="center_vertical"
-                    android:paddingTop="@dimen/edittext_padding"
-                    android:paddingBottom="@dimen/edittext_padding"
-                    android:background="@color/edittext_bg">
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:hint="Add choice"
-                        android:textStyle="bold"
-                        android:imeOptions="actionDone"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/edittext_hint_color"
-                        android:textCursorDrawable="@drawable/white_cursor"
-                        android:textSize="@dimen/edittext_textsize"
-                        android:id="@+id/newPartnerSumm_rate7"
-                        android:padding="@dimen/edittext_padding"
-                        android:background="@android:color/transparent"
-                        android:backgroundTint="@android:color/transparent"
-                        android:maxWidth="100dp"
-                        android:layout_gravity="center_vertical"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:layout_weight="1">
-                    <RatingBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/newPartnerSumm_ratingBar7"
-                        android:stepSize="0.5"
-                        android:rating="1.0"
-                        android:scaleX="0.8"
-                        android:scaleY="0.8"
-                        android:layout_gravity="center_horizontal|center_vertical"/>
-                </LinearLayout>
-            </LinearLayout>
-            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Save"
-                android:background="@color/encounter_btn_bg"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_marginTop="42dp"
-                android:textSize="@dimen/button_textsize"
-                android:id="@+id/next"
-                android:onClick="backToPartnerSummary" />
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Overall"
+                        android:textSize="@dimen/encounter_tv_textsize"
+                        android:paddingLeft="8dp"
+                        android:textColor="@color/white"
+                        android:id="@+id/overAll"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_vertical"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layout_weight="1">
+                        <RatingBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/newPartnerSumm_ratingBar1"
+                            android:stepSize="0.5"
+                            android:rating="1.0"
+                            android:scaleX="0.8"
+                            android:scaleY="0.8"
+                            style="?android:attr/ratingBarStyle"
+                            android:layout_gravity="center_horizontal|center_vertical|left"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chemistry"
+                        android:layout_weight="1"
+                        android:maxWidth="100dp"
+                        android:paddingLeft="8dp"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/newPartnerSumm_rate2"
+                        android:textSize="@dimen/encounter_tv_textsize"
+                        android:textColor="@color/white" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layout_weight="1">
+                        <RatingBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/newPartnerSumm_ratingBar2"
+                            android:stepSize="0.5"
+                            android:rating="1.0"
+                            android:scaleX="0.8"
+                            android:scaleY="0.8"
+                            android:layout_gravity="center_horizontal|center_vertical"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Personality"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/encounter_tv_textsize"
+                        android:textColor="@color/white"
+                        android:maxWidth="100dp"
+                        android:paddingLeft="8dp"
+                        android:layout_weight="1"
+                        android:id="@+id/newPartnerSumm_rate3"
+                        android:layout_gravity="center_vertical" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layout_weight="1">
+                        <RatingBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/newPartnerSumm_ratingBar3"
+                            android:stepSize="0.5"
+                            android:rating="1.0"
+                            android:scaleX="0.8"
+                            android:scaleY="0.8"
+                            android:layout_gravity="center_horizontal|center_vertical"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/newPartnerSumm_rate4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:maxWidth="100dp"
+                        android:text="Face"
+                        android:textStyle="bold"
+                        android:paddingLeft="8dp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/encounter_tv_textsize" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layout_weight="1">
+                        <RatingBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/newPartnerSumm_ratingBar4"
+                            android:stepSize="0.5"
+                            android:scaleX="0.8"
+                            android:scaleY="0.8"
+                            android:rating="1.0"
+                            android:layout_gravity="center_horizontal|center_vertical"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginBottom="2dp"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:minWidth="100dp"
+                        android:layout_gravity="center_vertical"
+                        android:paddingTop="@dimen/edittext_padding"
+                        android:paddingBottom="@dimen/edittext_padding">
+                        <EditText
+                            android:background="@color/input_primary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:hint="Add choice"
+                            android:imeOptions="actionNext"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/edittext_hint_color"
+                            android:textCursorDrawable="@drawable/white_cursor"
+                            android:textSize="@dimen/edittext_textsize"
+                            android:id="@+id/newPartnerSumm_rate5"
+                            android:padding="@dimen/edittext_padding"
+                            android:maxWidth="100dp"
+                            android:layout_gravity="center_vertical"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layout_weight="1">
+                        <RatingBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/newPartnerSumm_ratingBar5"
+                            android:stepSize="0.5"
+                            android:rating="1.0"
+                            android:scaleX="0.8"
+                            android:scaleY="0.8"
+                            android:layout_gravity="center_horizontal|center_vertical"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginBottom="2dp"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:minWidth="100dp"
+                        android:layout_gravity="center_vertical"
+                        android:paddingTop="@dimen/edittext_padding"
+                        android:paddingBottom="@dimen/edittext_padding">
+                        <EditText
+                            android:background="@color/input_primary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Add choice"
+                            android:textStyle="bold"
+                            android:imeOptions="actionNext"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/edittext_hint_color"
+                            android:textCursorDrawable="@drawable/white_cursor"
+                            android:textSize="@dimen/edittext_textsize"
+                            android:id="@+id/newPartnerSumm_rate6"
+                            android:padding="@dimen/edittext_padding"
+                            android:maxWidth="100dp"
+                            android:layout_gravity="center_vertical"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layout_weight="1">
+                        <RatingBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/newPartnerSumm_ratingBar6"
+                            android:stepSize="0.5"
+                            android:rating="1.0"
+                            android:scaleX="0.8"
+                            android:scaleY="0.8"
+                            android:layout_gravity="center_horizontal|center_vertical"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:minWidth="100dp"
+                        android:layout_gravity="center_vertical"
+                        android:paddingTop="@dimen/edittext_padding"
+                        android:paddingBottom="@dimen/edittext_padding" >
+                        <EditText
+                            android:background="@color/input_primary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Add choice"
+                            android:textStyle="bold"
+                            android:imeOptions="actionDone"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/edittext_hint_color"
+                            android:textCursorDrawable="@drawable/white_cursor"
+                            android:textSize="@dimen/edittext_textsize"
+                            android:id="@+id/newPartnerSumm_rate7"
+                            android:padding="@dimen/edittext_padding"
+                            android:maxWidth="100dp"
+                            android:layout_gravity="center_vertical"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layout_weight="1">
+                        <RatingBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/newPartnerSumm_ratingBar7"
+                            android:stepSize="0.5"
+                            android:rating="1.0"
+                            android:scaleX="0.8"
+                            android:scaleY="0.8"
+                            android:layout_gravity="center_horizontal|center_vertical"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Save"
+        android:background="@color/input_primary"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="@dimen/button_textsize"
+        android:id="@+id/next"
+        android:onClick="backToPartnerSummary" />
 </RelativeLayout>

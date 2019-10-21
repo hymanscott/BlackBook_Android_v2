@@ -7,10 +7,11 @@
     android:id="@+id/home_test_screen_layout"
     tools:context="com.lynxstudy.lynx.LynxTesting$PlaceholderFragment">
     <LinearLayout
+        android:id="@+id/mainContentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/mainContentLayout">
+        android:visibility="gone">
         <LinearLayout
             android:layout_width="fill_parent"
             android:orientation="vertical"
@@ -105,18 +106,16 @@
     </LinearLayout>
 
     <!-- HIV -->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/summaryLayout"
-        android:visibility="gone"
-        android:orientation="vertical">
+        android:visibility="visible">
         <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/scrollView"
-            android:paddingBottom="5dp"
-            android:fillViewport="false" >
+            android:paddingBottom="5dp" >
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -125,13 +124,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/testingHistoryTitle"
-                    android:textSize="20sp"
+                    android:textSize="20dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="24dp"
-                    android:textColor="@color/profile_title_text_color"
+                    android:textColor="@color/white"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:text="HIV Test"/>
+                    android:text="HIV Test"
+                    android:textStyle="bold"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -144,39 +144,49 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/calendariconblue" />
+                        android:src="@drawable/calendariconblue"
+                        android:tint="@color/white"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/testingHistorydate"
-                        android:textSize="16sp"
-                        android:textColor="@color/text_color"
+                        android:textSize="17dp"
+                        android:textColor="@color/white"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_weight="1"
-                        android:text="date" />
+                        android:text="08/07/2019" />
                 </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/input_primary"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/hivLayout"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:orientation="horizontal">
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:id="@+id/hivIcon"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:src="@drawable/didnt_test"/>
+                        android:layout_marginLeft="@dimen/edittext_padding"
+                        android:src="@drawable/didnt_test"
+                        android:tint="@color/white"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
+                        android:textSize="15dp"
                         android:layout_weight="1"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:textColor="@color/text_color"
+                        android:textColor="@color/white"
                         android:layout_gravity="center"
                         android:id="@+id/hivTestStatus"
                         android:text="Test result not reported" />
@@ -206,8 +216,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="16sp"
-                        android:textColor="@color/text_color"
+                        android:textSize="17dp"
+                        android:textColor="@color/white"
                         android:textStyle="bold|italic"
                         android:layout_marginTop="24dp"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -217,22 +227,24 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/gonorrheaLayout"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:orientation="horizontal">
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:id="@+id/gonorrheaIcon"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                            android:src="@drawable/didnt_test"/>
+                            android:layout_marginLeft="@dimen/edittext_padding"
+                            android:src="@drawable/didnt_test"
+                            android:tint="@color/white" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
+                            android:textSize="15dp"
                             android:layout_weight="1"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            android:textColor="@color/text_color"
+                            android:textColor="@color/white"
                             android:layout_gravity="center"
                             android:id="@+id/gonorrheaStatus"
                             android:text="Test result not reported" />
@@ -253,20 +265,22 @@
                                 android:scaleType="centerCrop" />
                         </FrameLayout>
                     </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/grey_border"
+                        android:layout_height="1dp"
+                        android:background="@color/input_primary"
                         android:layout_marginTop="24dp"
                         android:layout_marginBottom="24dp"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="16sp"
-                        android:textColor="@color/text_color"
+                        android:textSize="17dp"
+                        android:textColor="@color/white"
                         android:textStyle="bold|italic"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:id="@+id/syphilisTitle"
@@ -275,22 +289,24 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/syphilisLayout"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:orientation="horizontal">
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:id="@+id/syphilisIcon"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                            android:src="@drawable/didnt_test"/>
+                            android:layout_marginLeft="@dimen/edittext_padding"
+                            android:src="@drawable/didnt_test"
+                            android:tint="@color/white" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
+                            android:textSize="15dp"
                             android:layout_weight="1"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            android:textColor="@color/text_color"
+                            android:textColor="@color/white"
                             android:layout_gravity="center"
                             android:id="@+id/syphilisStatus"
                             android:text="Test result not reported" />
@@ -311,20 +327,22 @@
                                 android:scaleType="centerCrop" />
                         </FrameLayout>
                     </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/grey_border"
+                        android:layout_height="1dp"
+                        android:background="@color/input_primary"
                         android:layout_marginTop="24dp"
                         android:layout_marginBottom="24dp"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="16sp"
-                        android:textColor="@color/text_color"
+                        android:textSize="17dp"
+                        android:textColor="@color/white"
                         android:textStyle="bold|italic"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:id="@+id/chlamydiaTitle"
@@ -334,22 +352,24 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/chlamydiaLayout"
                         android:layout_marginBottom="40dp"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:orientation="horizontal">
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:id="@+id/chlamydiaIcon"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                            android:src="@drawable/didnt_test"/>
+                            android:layout_marginLeft="@dimen/edittext_padding"
+                            android:src="@drawable/didnt_test"
+                            android:tint="@color/white" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
+                            android:textSize="15dp"
                             android:layout_weight="1"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
-                            android:textColor="@color/text_color"
+                            android:textColor="@color/white"
                             android:layout_gravity="center"
                             android:id="@+id/chlamydiaStatus"
                             android:text="Test result not reported" />
@@ -373,20 +393,17 @@
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
-    </LinearLayout>
+    </RelativeLayout>
 
-    <!--  STD -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <RelativeLayout
         android:id="@+id/newTestLayout"
-        android:visibility="visible"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
         <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:fillViewport="false"
-            android:layout_alignParentStart="true">
+            android:layout_above="@+id/addNewTestOk">
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -395,21 +412,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/addNewTestTitle"
-                    android:textSize="20sp"
+                    android:textSize="20dp"
                     android:text="Add New HIV Test"
+                    android:textStyle="bold"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="24dp"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:textColor="@color/colorPrimary"  />
-
+                    android:textColor="@color/white"  />
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/titleText"
-                    android:textSize="16sp"
+                    android:textSize="17dp"
                     android:text="When was your most recent HIV test?"
-                    android:textColor="@color/profile_text_color"
+                    android:textColor="@color/white"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"/>
                 <LinearLayout
@@ -417,17 +434,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="24dp"
-                    android:background="@color/profile_edittext_bg"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="@drawable/input_primary_rounded"
                     android:orientation="horizontal"
                     android:padding="@dimen/edittext_padding">
-
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/calendariconblue" />
-
+                        android:src="@drawable/calendariconblue"
+                        android:tint="@color/white"/>
                     <EditText
                         android:id="@+id/addNewTestDate"
                         android:layout_width="fill_parent"
@@ -441,19 +458,11 @@
                         android:focusable="false"
                         android:hint="MM/DD/YYYY"
                         android:inputType="none"
-                        android:textColor="@color/profile_text_color"
-                        android:textColorHint="@color/profile_edittext_hint"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/edittext_hint_color"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />
                 </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/grey_border"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="24dp"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -465,15 +474,16 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Is your HIV test positive? (optional)"
-                        android:textSize="16sp"
+                        android:textSize="17dp"
                         android:id="@+id/hivPosQn"
-                        android:textColor="@color/profile_text_color"/>
+                        android:textColor="@color/white"/>
                 </LinearLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/hivTestStatusRadio"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
                     <RadioGroup
                         android:id="@+id/newhivTestStatus"
                         android:layout_width="wrap_content"
@@ -486,31 +496,31 @@
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textColor="@color/profile_text_color"
-                            android:buttonTint="@color/profile_text_color"
+                            android:textSize="15dp"
+                            android:textColor="@color/white"
+                            android:buttonTint="@color/white"
                             android:button="@drawable/radiobutton_black"
                             android:paddingLeft="12dp"
-                            android:text="No"
+                            android:text="Negative"
                             android:id="@+id/hivTestNo"/>
                         <RadioButton
+                            android:id="@+id/hivTestYes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textColor="@color/profile_text_color"
-                            android:buttonTint="@color/profile_text_color"
-                            android:button="@drawable/radiobutton_black"
-                            android:paddingLeft="12dp"
                             android:layout_marginTop="12dp"
-                            android:text="Yes"
-                            android:id="@+id/hivTestYes" />
+                            android:button="@drawable/radiobutton_black"
+                            android:buttonTint="@color/white"
+                            android:paddingLeft="12dp"
+                            android:text="Positive"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="I Didn't test"
-                            android:textSize="14sp"
-                            android:textColor="@color/profile_text_color"
-                            android:buttonTint="@color/profile_text_color"
+                            android:text="I don't know/unsure"
+                            android:textSize="15dp"
+                            android:textColor="@color/white"
+                            android:buttonTint="@color/white"
                             android:button="@drawable/radiobutton_black"
                             android:paddingLeft="12dp"
                             android:layout_marginTop="12dp"
@@ -539,15 +549,15 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:id="@+id/std_layout">
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Were any of your STD tests positive?"
-                        android:textSize="16sp"
+                        android:textSize="17dp"
                         android:id="@+id/stdTesPosQn"
-                        android:textColor="@color/profile_text_color" />
+                        android:textColor="@color/white" />
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -556,11 +566,10 @@
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="Gonorrhea"
+                            android:text="Did you test for Gonorrhea?"
                             android:id="@+id/newgonorrheaTitle"
-                            android:textSize="16sp"
-                            android:textStyle="bold|italic"
-                            android:textColor="@color/profile_text_color"/>
+                            android:textSize="17dp"
+                            android:textColor="@color/white"/>
                     </LinearLayout>
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -576,21 +585,21 @@
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="14sp"
-                                android:textColor="@color/profile_text_color"
-                                android:buttonTint="@color/profile_text_color"
+                                android:textSize="15dp"
+                                android:textColor="@color/white"
+                                android:buttonTint="@color/white"
                                 android:button="@drawable/radiobutton_black"
                                 android:paddingLeft="12dp"
-                                android:text="No"
+                                android:text="Negative"
                                 android:layout_marginTop="4dp"
                                 android:id="@+id/gonorrheaNo"/>
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="14sp"
-                                android:textColor="@color/profile_text_color"
-                                android:text="Yes"
-                                android:buttonTint="@color/profile_text_color"
+                                android:textSize="15dp"
+                                android:textColor="@color/white"
+                                android:text="Positive"
+                                android:buttonTint="@color/white"
                                 android:button="@drawable/radiobutton_black"
                                 android:paddingLeft="12dp"
                                 android:layout_marginTop="12dp"
@@ -599,12 +608,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="I Didn't test"
-                                android:textSize="14sp"
-                                android:buttonTint="@color/profile_text_color"
+                                android:textSize="15dp"
+                                android:buttonTint="@color/white"
                                 android:button="@drawable/radiobutton_black"
                                 android:paddingLeft="12dp"
                                 android:layout_marginTop="12dp"
-                                android:textColor="@color/profile_text_color"
+                                android:textColor="@color/white"
                                 android:id="@+id/gonorrheaDidntTest" />
                         </RadioGroup>
                         <FrameLayout
@@ -631,11 +640,10 @@
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="Syphilis"
-                            android:textSize="16sp"
-                            android:textStyle="bold|italic"
+                            android:text="Did you test for Syphilis?"
+                            android:textSize="17dp"
                             android:id="@+id/newsyphilisTitle"
-                            android:textColor="@color/profile_text_color"/>
+                            android:textColor="@color/white"/>
                     </LinearLayout>
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -651,35 +659,35 @@
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="14sp"
-                                android:textColor="@color/profile_text_color"
-                                android:buttonTint="@color/profile_text_color"
+                                android:textSize="15dp"
+                                android:textColor="@color/white"
+                                android:buttonTint="@color/white"
                                 android:button="@drawable/radiobutton_black"
                                 android:paddingLeft="12dp"
-                                android:text="No"
+                                android:text="Negative"
                                 android:layout_marginTop="4dp"
                                 android:id="@+id/syphilisNo" />
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Yes"
-                                android:textSize="14sp"
-                                android:buttonTint="@color/profile_text_color"
+                                android:text="Positive"
+                                android:textSize="15dp"
+                                android:buttonTint="@color/white"
                                 android:button="@drawable/radiobutton_black"
                                 android:paddingLeft="12dp"
                                 android:layout_marginTop="12dp"
-                                android:textColor="@color/profile_text_color"
+                                android:textColor="@color/white"
                                 android:id="@+id/syphilisYes" />
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="I Didn't test"
-                                android:textSize="14sp"
-                                android:buttonTint="@color/profile_text_color"
+                                android:textSize="15dp"
+                                android:buttonTint="@color/white"
                                 android:button="@drawable/radiobutton_black"
                                 android:paddingLeft="12dp"
                                 android:layout_marginTop="12dp"
-                                android:textColor="@color/profile_text_color"
+                                android:textColor="@color/white"
                                 android:id="@+id/syphilisDidntTest" />
                         </RadioGroup>
                         <FrameLayout
@@ -706,11 +714,11 @@
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="Chlamydia"
-                            android:textSize="16sp"
+                            android:text="Did you test for Chlamydia?"
+                            android:textSize="17dp"
                             android:textStyle="bold|italic"
                             android:id="@+id/newchlamydiaTitle"
-                            android:textColor="@color/profile_text_color"/>
+                            android:textColor="@color/white"/>
                     </LinearLayout>
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -726,35 +734,35 @@
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="No"
-                                android:textSize="14sp"
+                                android:text="Negative"
+                                android:textSize="15dp"
                                 android:layout_marginTop="4dp"
-                                android:buttonTint="@color/profile_text_color"
+                                android:buttonTint="@color/white"
                                 android:button="@drawable/radiobutton_black"
                                 android:paddingLeft="12dp"
-                                android:textColor="@color/profile_text_color"
+                                android:textColor="@color/white"
                                 android:id="@+id/chlamydiaNo"/>
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Yes"
-                                android:textSize="14sp"
-                                android:buttonTint="@color/profile_text_color"
+                                android:text="Positive"
+                                android:textSize="15dp"
+                                android:buttonTint="@color/white"
                                 android:button="@drawable/radiobutton_black"
                                 android:paddingLeft="12dp"
                                 android:layout_marginTop="12dp"
-                                android:textColor="@color/profile_text_color"
+                                android:textColor="@color/white"
                                 android:id="@+id/chlamydiaYes"/>
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="I Didn't test"
-                                android:textSize="14sp"
-                                android:buttonTint="@color/profile_text_color"
+                                android:textSize="15dp"
+                                android:buttonTint="@color/white"
                                 android:button="@drawable/radiobutton_black"
                                 android:paddingLeft="12dp"
                                 android:layout_marginTop="12dp"
-                                android:textColor="@color/profile_text_color"
+                                android:textColor="@color/white"
                                 android:id="@+id/chlamydiaDidntTest" />
                         </RadioGroup>
                         <FrameLayout
@@ -773,26 +781,18 @@
                         </FrameLayout>
                     </RelativeLayout>
                 </LinearLayout>
-                <RelativeLayout
-                    android:layout_width="fill_parent"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginBottom="32dp"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_height="wrap_content">
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Save"
-                        android:id="@+id/addNewTestOk"
-                        android:layout_gravity="right"
-                        android:layout_centerInParent="true"
-                        android:layout_alignParentBottom="true"
-                        android:background="@drawable/buttonbluecornered"
-                        android:textStyle="bold"
-                        android:textColor="@color/white" />
-                </RelativeLayout>
             </LinearLayout>
         </ScrollView>
-    </LinearLayout>
+        <Button
+            android:id="@+id/addNewTestOk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/btn_primary"
+            android:text="SAVE"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_textsize"
+            android:onClick="backToConfirmScreen"
+            android:textStyle="bold" />
+    </RelativeLayout>
 </LinearLayout>

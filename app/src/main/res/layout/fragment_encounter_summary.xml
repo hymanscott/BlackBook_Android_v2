@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/encounter_bg">
+    android:background="@color/backgroundPrimary">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_above="@+id/next"
         android:fillViewport="false"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="18dp">
+        android:layout_alignParentStart="true">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
@@ -17,52 +17,54 @@
             android:layout_centerHorizontal="true"
             android:gravity="center_horizontal">
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="18dp"
+                android:layout_marginTop="32dp"
                 android:src="@drawable/encounterlarge" />
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:layout_marginBottom="24dp"
+                android:textSize="20dp"
                 android:text="Encounter Snapshot"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/newEncounter"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:gravity="center_vertical|center_horizontal"
+                android:id="@+id/newEncounter" />
             <TextView
+                android:id="@+id/encounter_summary_nickName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nick name"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:id="@+id/encounter_summary_nickName"
-                android:textSize="18sp"
-                android:paddingTop="5dp"
+                android:background="#E1E1E1"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="JOHN DOE"
+                android:padding="12dp"
+                android:textColor="@color/dark_boxes"
                 android:textStyle="bold"
-                android:paddingBottom="5dp"
-                android:layout_marginBottom="32dp"
-                android:textColor="@color/encounter_btn_bg"
-                android:background="@color/banner_name_bg"
-                android:gravity="center_vertical|center_horizontal" />
+                android:textSize="18dp" />
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/edittext_bg"
+                android:layout_height="1dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/input_primary"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_gravity="left"
-                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
                 android:layout_marginLeft="24dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/encounter_tv_textsize"
+                    android:textStyle="bold"
                     android:id="@+id/sexRating"
                     android:layout_weight="1"
                     android:layout_gravity="center_vertical"
@@ -78,23 +80,26 @@
                         android:id="@+id/encSumm_sexRating"
                         android:numStars="5"
                         android:isIndicator="true"
+                        android:rating="1.0"
                         android:stepSize="0.5"
                         android:scaleX="0.9"
-                        android:scaleY="0.9"/>
+                        android:scaleY="0.9" />
                 </LinearLayout>
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/edittext_bg"
-                android:layout_marginTop="24dp"
+                android:layout_height="1dp"
+                android:background="@color/input_primary"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp">
 
@@ -102,29 +107,32 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/encounter_tv_textsize"
+                    android:textStyle="bold"
                     android:textColor="@color/white"
                     android:text="HIV Status :"
                     android:id="@+id/hivStatus"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:textSize="17dp"
                     android:textColor="@color/white"
                     android:id="@+id/encSumm_hivStatus"
-                    android:text="x" />
+                    android:text="HIV Postive and Undetectable" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="24dp"
-                android:background="@color/edittext_bg"
+                android:layout_height="1dp"
+                android:background="@color/input_primary"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp">
 
@@ -132,28 +140,29 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/encounter_tv_textsize"
+                    android:textStyle="bold"
                     android:textColor="@color/white"
                     android:text="Encounter Notes :"
                     android:id="@+id/partnerNotes"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:textSize="17dp"
                     android:textColor="@color/white"
                     android:id="@+id/encSumm_partnerNotes"
-                    android:text="x" />
+                    android:text="Cool guy. shy. moving to LA. Will visit SF and call me." />
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="24dp"
-                android:background="@color/edittext_bg"
+                android:layout_height="1dp"
+                android:background="@color/input_primary"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"/>
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/encounter_tv_textsize"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_margin="24dp"
                 android:text="Type of Sex:"
@@ -169,8 +178,8 @@
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/edittext_bg"
+                android:layout_height="1dp"
+                android:background="@color/input_primary"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"/>
             <LinearLayout
@@ -187,6 +196,7 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/encounter_tv_textsize"
+                        android:textStyle="bold"
                         android:textColor="@color/white"
                         android:text="Condom Used :"
                         android:id="@+id/condomUsed"/>
@@ -202,7 +212,7 @@
                             android:text="When I sucked"
                             android:visibility="gone"
                             android:textColor="@color/white"
-                            android:textSize="14sp" />
+                            android:textSize="17dp" />
                         <TextView
                             android:id="@+id/condomUsedWhenITop"
                             android:layout_width="match_parent"
@@ -211,7 +221,7 @@
                             android:visibility="gone"
                             android:layout_marginTop="2dp"
                             android:textColor="@color/white"
-                            android:textSize="14sp" />
+                            android:textSize="17dp" />
                         <TextView
                             android:id="@+id/condomUsedWhenIBot"
                             android:layout_width="match_parent"
@@ -220,7 +230,7 @@
                             android:visibility="gone"
                             android:layout_marginTop="2dp"
                             android:textColor="@color/white"
-                            android:textSize="14sp" />
+                            android:textSize="17dp" />
                         <TextView
                             android:id="@+id/condomUsedWhenWeFuc"
                             android:layout_width="match_parent"
@@ -229,13 +239,89 @@
                             android:layout_marginTop="2dp"
                             android:visibility="gone"
                             android:textColor="@color/white"
-                            android:textSize="14sp" />
+                            android:textSize="17dp" />
                     </LinearLayout>
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/edittext_bg"
+                    android:layout_height="1dp"
+                    android:background="@color/input_primary"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/came_inside_partner_parent"
+                android:visibility="gone"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp">
+                    <TextView
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/encounter_tv_textsize"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:text="Came inside partner?"
+                        android:id="@+id/came_inside_partner_title"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="17dp"
+                        android:textColor="@color/white"
+                        android:id="@+id/came_inside_partner"
+                        android:text="Yes" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/input_primary"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/partner_came_in_me_parent"
+                android:visibility="gone"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp">
+                    <TextView
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/encounter_tv_textsize"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:text="Partner came in me?"
+                        android:id="@+id/partner_came_in_me_title"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="17dp"
+                        android:textColor="@color/white"
+                        android:id="@+id/partner_came_in_me"
+                        android:text="No" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/input_primary"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"/>
             </LinearLayout>
@@ -250,6 +336,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
                     android:layout_marginLeft="24dp"
                     android:layout_marginRight="24dp">
 
@@ -257,22 +344,23 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/encounter_tv_textsize"
+                        android:textStyle="bold"
                         android:textColor="@color/white"
                         android:text="When I sucked:"
                         android:id="@+id/whenIsuckedtitle"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
+                        android:textSize="17dp"
                         android:textColor="@color/white"
                         android:id="@+id/whenIsucked"
                         android:text="x" />
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/edittext_bg"
-                    android:layout_marginTop="24dp"
+                    android:layout_height="1dp"
+                    android:background="@color/input_primary"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"/>
             </LinearLayout>
@@ -287,6 +375,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
                     android:layout_marginLeft="24dp"
                     android:layout_marginRight="24dp">
 
@@ -294,22 +383,23 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/encounter_tv_textsize"
+                        android:textStyle="bold"
                         android:textColor="@color/white"
                         android:text="When I bottomed:"
                         android:id="@+id/whenIbottomedtitle"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
+                        android:textSize="17dp"
                         android:textColor="@color/white"
                         android:id="@+id/whenIbottom"
                         android:text="x" />
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/edittext_bg"
-                    android:layout_marginTop="24dp"
+                    android:layout_height="1dp"
+                    android:background="@color/input_primary"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"/>
             </LinearLayout>
@@ -324,6 +414,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
                     android:layout_marginLeft="24dp"
                     android:layout_marginRight="24dp">
 
@@ -331,22 +422,23 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/encounter_tv_textsize"
+                        android:textStyle="bold"
                         android:textColor="@color/white"
                         android:text="When I topped:"
                         android:id="@+id/whenItoppedtitle"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
+                        android:textSize="17dp"
                         android:textColor="@color/white"
                         android:id="@+id/whenItop"
                         android:text="x" />
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/edittext_bg"
-                    android:layout_marginTop="24dp"
+                    android:layout_height="1dp"
+                    android:background="@color/input_primary"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"/>
             </LinearLayout>
@@ -360,6 +452,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
                     android:layout_marginLeft="24dp"
                     android:layout_marginRight="24dp">
 
@@ -367,22 +460,60 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/encounter_tv_textsize"
+                        android:textStyle="bold"
                         android:textColor="@color/white"
                         android:text="I was:"
                         android:id="@+id/drunktitle"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
+                        android:textSize="17dp"
                         android:textColor="@color/white"
                         android:id="@+id/drunk"
-                        android:text="x" />
+                        android:text="Neither drunk nor high" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/edittext_bg"
+                    android:layout_height="1dp"
+                    android:background="@color/input_primary"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/took_doxy_parent"
+                android:visibility="gone"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp">
+                    <TextView
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/encounter_tv_textsize"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:text="I took doxycycline after?"
+                        android:id="@+id/took_doxy_title"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="17dp"
+                        android:textColor="@color/white"
+                        android:id="@+id/took_doxy"
+                        android:text="Yes" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/input_primary"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"/>
             </LinearLayout>
@@ -400,26 +531,22 @@
                 android:textStyle="bold"
                 android:textSize="12sp"
                 android:background="@drawable/border_full_white"
-                android:text="EDIT"
+                android:text="EDIT ENCOUNTER"
                 android:onClick="showEditDetails"
                 android:id="@+id/edit_details"/>
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Confirm"
-                    android:onClick="onEncSummNext"
-                    android:layout_gravity="right"
-                    android:textStyle="bold"
-                    android:id="@+id/next"
-                    android:textSize="@dimen/button_textsize"
-                    android:background="@color/encounter_btn_bg"
-                    android:textColor="@color/white"
-                    android:layout_centerInParent="true" />
-            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Next"
+        android:onClick="onEncSummNext"
+        android:layout_gravity="right"
+        android:textStyle="bold"
+        android:id="@+id/next"
+        android:textSize="@dimen/button_textsize"
+        android:background="@color/input_primary"
+        android:textColor="@color/white"
+        android:layout_centerInParent="true" />
 </RelativeLayout>

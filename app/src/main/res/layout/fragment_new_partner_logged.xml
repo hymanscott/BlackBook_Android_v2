@@ -1,37 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="@color/encounter_bg"
+    android:background="@color/backgroundPrimary"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="18dp"
+        android:layout_marginTop="32dp"
         android:src="@drawable/encounterlarge" />
 
     <TextView
-        android:id="@+id/thankyou"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal"
+        android:layout_marginBottom="24dp"
+        android:textSize="20dp"
         android:text="Thanks for the info!"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:gravity="center_vertical|center_horizontal"
+        android:id="@+id/thankyou" />
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/encloggedText"
-        android:text="Your diary has been updated."
-        android:textSize="16sp"
-        android:textColor="@color/white"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/input_primary"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:gravity="center_vertical|center_horizontal" />
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/encloggedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:text="Your diary has been updated."
+        android:textColor="@color/white"
+        android:textSize="@dimen/encounter_tv_textsize" />
 
     <Button
         android:id="@+id/newPartnerLoggedNext"
@@ -40,11 +48,11 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginTop="24dp"
-        android:background="@color/encounter_btn_grey"
+        android:background="@drawable/btn_purple_rounded"
         android:onClick="newPartnerLoggedNext"
         android:text="Add encounter with this partner"
-        android:textColor="@color/encounter_btn_bg"
-        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:textSize="14dp"
         android:textStyle="bold" />
 
 </LinearLayout>

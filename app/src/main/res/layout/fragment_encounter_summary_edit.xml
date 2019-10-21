@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/encounter_bg">
+    android:background="@color/backgroundPrimary">
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:fillViewport="false">
+        android:fillViewport="false"
+        android:layout_above="@+id/next">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -15,43 +16,48 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="18dp"
                 android:layout_marginTop="32dp"
                 android:src="@drawable/encounterlarge" />
-
             <TextView
-                android:id="@+id/newEncounter"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="24dp"
+                android:textSize="20dp"
                 android:text="Encounter Snapshot"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
-
+                android:gravity="center_vertical|center_horizontal"
+                android:id="@+id/newEncounter" />
             <TextView
                 android:id="@+id/encounter_summary_nickName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="32dp"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:background="@color/banner_name_bg"
+                android:background="#E1E1E1"
                 android:gravity="center_vertical|center_horizontal"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp"
-                android:text="Nick name"
-                android:textColor="@color/encounter_btn_bg"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:text="JOHN DOE"
+                android:padding="12dp"
+                android:textColor="@color/dark_boxes"
+                android:textStyle="bold"
+                android:textSize="18dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/input_primary"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:orientation="horizontal">
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:orientation="horizontal"
+                android:paddingVertical="16dp">
 
                 <TextView
                     android:id="@+id/rateSex"
@@ -61,7 +67,8 @@
                     android:layout_weight="1"
                     android:text="Sex Rating :"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/encounter_tv_textsize" />
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -80,42 +87,53 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/input_primary"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/rectangle_bg"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:paddingVertical="24dp">
 
                 <TextView
-                    android:id="@+id/hivStatusTitle"
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:text="HIV Status :"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:textStyle="bold"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/encounter_tv_textsize" />
-
+                    android:text="HIV Status :"
+                    android:id="@+id/hivStatusTitle"/>
                 <TextView
-                    android:id="@+id/hivStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="HIV positive and undetectable"
+                    android:textSize="17dp"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:id="@+id/hivStatus"
+                    android:text="HIV Postive and Undetectable" />
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/input_primary"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
                 android:layout_marginTop="2dp"
-                android:background="@drawable/rectangle_bg"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                android:paddingVertical="24dp">
 
                 <TextView
                     android:id="@+id/encounterNotesTitle"
@@ -123,25 +141,34 @@
                     android:layout_height="wrap_content"
                     android:text="Encounter Notes :"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/encounter_tv_textsize" />
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/encNotes"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/rectangle_edittext"
-                    android:backgroundTint="@color/edittext_bg"
+                    android:background="@drawable/dashboard_container"
                     android:ems="10"
                     android:hint="Add notes about this partner"
                     android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
+                    android:minLines="2"
+                    android:padding="@dimen/activity_horizontal_margin_half"
                     android:textColor="@color/white"
                     android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
-                    android:textSize="14sp"
+                    android:textSize="17dp"
                     android:maxLength="255"/>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/input_primary"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
 
             <TextView
                 android:id="@+id/typeSex"
@@ -152,28 +179,38 @@
                 android:layout_marginTop="24dp"
                 android:text="Type of sex"
                 android:textColor="@color/white"
-                android:textSize="@dimen/encounter_tv_textsize" />
+                android:textSize="@dimen/encounter_tv_textsize"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/sexTypeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
                 android:orientation="vertical">
                 <!--Encounter Sex Types-->
 
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/input_primary"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
             <LinearLayout
                 android:id="@+id/condomUsedLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:orientation="vertical"
+                android:paddingVertical="24dp">
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="32dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
                     <TextView
@@ -182,7 +219,8 @@
                         android:layout_height="wrap_content"
                         android:text="Condom Used"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/encounter_tv_textsize" />
+                        android:textSize="@dimen/encounter_tv_textsize"
+                        android:textStyle="bold" />
                     <LinearLayout
                         android:id="@+id/condomUsedContent"
                         android:layout_width="match_parent"
@@ -197,7 +235,7 @@
                             android:visibility="gone"
                             android:background="@drawable/rectangle_bg"
                             android:textColor="@color/white"
-                            android:textSize="14sp" />
+                            android:textSize="17dp" />
                         <TextView
                             android:id="@+id/condomUsedWhenITop"
                             android:layout_width="match_parent"
@@ -207,7 +245,7 @@
                             android:layout_marginTop="2dp"
                             android:background="@drawable/rectangle_bg"
                             android:textColor="@color/white"
-                            android:textSize="14sp" />
+                            android:textSize="17dp" />
                         <TextView
                             android:id="@+id/condomUsedWhenIBot"
                             android:layout_width="match_parent"
@@ -217,7 +255,7 @@
                             android:layout_marginTop="2dp"
                             android:background="@drawable/rectangle_bg"
                             android:textColor="@color/white"
-                            android:textSize="14sp" />
+                            android:textSize="17dp" />
                         <TextView
                             android:id="@+id/condomUsedWhenWeFuc"
                             android:layout_width="match_parent"
@@ -227,21 +265,29 @@
                             android:visibility="gone"
                             android:background="@drawable/rectangle_bg"
                             android:textColor="@color/white"
-                            android:textSize="14sp" />
+                            android:textSize="17dp" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/input_primary"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
                 android:layout_marginTop="2dp"
                 android:id="@+id/whenIsuckedLayout"
                 android:visibility="gone"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:padding="16dp">
+                android:paddingVertical="16dp">
 
                 <TextView
                     android:id="@+id/whenIsuckedTitle"
@@ -249,9 +295,10 @@
                     android:layout_height="wrap_content"
                     android:text="When I sucked"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/encounter_tv_textsize" />
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:textStyle="bold" />
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:id="@+id/whenIsuckedParent"
@@ -265,21 +312,29 @@
                         android:background="@drawable/rectangle_edittext"
                         android:text="x"
                         android:textColor="@color/white"
-                        android:textSize="14sp" />
+                        android:textSize="17dp" />
                 </LinearLayout>
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/input_primary"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
                 android:layout_marginTop="2dp"
                 android:orientation="horizontal"
                 android:id="@+id/whenIbottomLayout"
                 android:gravity="center_vertical"
-                android:visibility="gone"
-                android:padding="16dp">
+                android:paddingVertical="16dp"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/whenIbottomTitle"
@@ -287,9 +342,10 @@
                     android:layout_height="wrap_content"
                     android:text="When I bottomed"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/encounter_tv_textsize" />
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:textStyle="bold" />
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:id="@+id/whenIbottomParent"
@@ -303,21 +359,29 @@
                         android:background="@drawable/rectangle_edittext"
                         android:text="x"
                         android:textColor="@color/white"
-                        android:textSize="14sp" />
+                        android:textSize="17dp" />
                 </LinearLayout>
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/input_primary"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
                 android:layout_marginTop="2dp"
                 android:orientation="horizontal"
                 android:visibility="gone"
                 android:id="@+id/whenItopLayout"
                 android:gravity="center_vertical"
-                android:padding="16dp">
+                android:paddingVertical="16dp">
 
                 <TextView
                     android:id="@+id/whenItopTitle"
@@ -325,9 +389,10 @@
                     android:layout_height="wrap_content"
                     android:text="When I topped"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/encounter_tv_textsize" />
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:textStyle="bold" />
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:id="@+id/whenItopParent"
@@ -341,59 +406,265 @@
                         android:background="@drawable/rectangle_edittext"
                         android:text="x"
                         android:textColor="@color/white"
-                        android:textSize="14sp" />
+                        android:textSize="17dp" />
                 </LinearLayout>
 
             </LinearLayout>
-            <LinearLayout
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/input_primary"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="2dp"
+                android:id="@+id/came_inside_partner_layout"
                 android:orientation="horizontal"
-                android:id="@+id/drunkLayout"
-                android:gravity="center_vertical"
-                android:padding="16dp">
-
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/input_primary_rounded"
+                android:paddingHorizontal="@dimen/activity_horizontal_margin">
                 <TextView
-                    android:id="@+id/drunktitle"
-                    android:layout_width="110dp"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:text="I was"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:id="@+id/came_inside_partner_title"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/encounter_tv_textsize" />
-                <LinearLayout
+                    android:textStyle="bold"
+                    android:text="Came inside partner?"/>
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:id="@+id/drunkParent"
-                    android:background="@drawable/rectangle_bg">
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/came_inside_partner_title"
+                    android:id="@+id/came_inside_partner_parent"
+                    android:layout_alignParentRight="true">
                     <TextView
-                        android:id="@+id/drunk"
-                        android:layout_width="fill_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@drawable/rectangle_edittext"
-                        android:text="x"
+                        android:id="@+id/came_inside_partner"
+                        android:textSize="17dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_toLeftOf="@+id/drunkTitle"
+                        android:clickable="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
                         android:textColor="@color/white"
-                        android:textSize="14sp" />
-                </LinearLayout>
+                        android:text="Yes"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/came_inside_partner_dpd"
+                        android:src="@drawable/dropdownicon"/>
+                </RelativeLayout>
+            </RelativeLayout>
 
-            </LinearLayout>
-            <Button
-                android:id="@+id/next"
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/input_primary"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="right"
-                android:layout_marginTop="54dp"
-                android:background="@color/encounter_btn_bg"
-                android:onClick="backToEncSummary"
-                android:text="Save"
-                android:textColor="@color/white"
-                android:textSize="@dimen/button_textsize"
-                android:textStyle="bold" />
+                android:id="@+id/partner_came_in_me_layout"
+                android:orientation="horizontal"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/input_primary_rounded"
+                android:paddingHorizontal="@dimen/activity_horizontal_margin">
+                <TextView
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:id="@+id/partner_came_in_me_title"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="Partner came in me?"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/partner_came_in_me_title"
+                    android:id="@+id/partner_came_in_me_parent"
+                    android:layout_alignParentRight="true">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/partner_came_in_me"
+                        android:textSize="17dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_toLeftOf="@+id/drunkTitle"
+                        android:clickable="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/white"
+                        android:text="No"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/dropDownIcon3"
+                        android:src="@drawable/dropdownicon"/>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/input_primary"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/drunkLayout"
+                android:orientation="horizontal"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/input_primary_rounded"
+                android:paddingHorizontal="@dimen/activity_horizontal_margin">
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:id="@+id/drunktitle"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="I was:"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/drunktitle"
+                    android:id="@+id/drunkParent"
+                    android:layout_alignParentRight="true">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/drunk"
+                        android:textSize="17dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_toLeftOf="@+id/drunkTitle"
+                        android:clickable="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/white"
+                        android:text="Neither drunk nor high"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/dropDownIcon1"
+                        android:src="@drawable/dropdownicon"/>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/input_primary"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/took_doxy_layout"
+                android:orientation="horizontal"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/input_primary_rounded"
+                android:paddingHorizontal="@dimen/activity_horizontal_margin">
+                <TextView
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/encounter_tv_textsize"
+                    android:id="@+id/took_doxy_title"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="I took doxy after encounter?"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/took_doxy_title"
+                    android:id="@+id/took_doxy_parent"
+                    android:layout_alignParentRight="true">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/took_doxy"
+                        android:textSize="17dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_toLeftOf="@+id/drunkTitle"
+                        android:clickable="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/white"
+                        android:text="Yes"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/dropDownIcon4"
+                        android:src="@drawable/dropdownicon"/>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/input_primary"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+    <Button
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/input_primary"
+        android:onClick="backToEncSummary"
+        android:text="Save"
+        android:textColor="@color/white"
+        android:textSize="@dimen/button_textsize"
+        android:textStyle="bold" />
+</RelativeLayout>

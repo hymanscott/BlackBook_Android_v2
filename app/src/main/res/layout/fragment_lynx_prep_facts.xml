@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    android:background="@color/backgroundPrimary"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/answerLayout"
-        android:visibility="gone"
+        android:visibility="visible"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
@@ -62,7 +62,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="left"
             android:id="@+id/question"
-            android:visibility="gone"
+            android:visibility="visible"
             android:textColor="@color/colorPrimary"
             android:layout_margin="20dp"/>
         <LinearLayout

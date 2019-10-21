@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/encounter_bg"
+    android:background="@color/backgroundPrimary"
     tools:context="com.lynxstudy.lynx.EncounterDrunkStatusFragment">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNav"
         android:fillViewport="true">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -16,7 +17,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_above="@+id/bottomNav"
                 android:layout_marginBottom="5dp"
                 android:layout_alignParentTop="true">
                 <ScrollView
@@ -28,34 +28,43 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="18dp"
                             android:layout_marginTop="32dp"
-                            android:layout_marginBottom="32dp"
-                            android:layout_gravity="center_horizontal"
                             android:src="@drawable/encounterlarge" />
+
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="20sp"
-                            android:text="@string/new_encounter"
-                            android:layout_gravity="center_horizontal"
-                            android:id="@+id/newEncounter"
-                            android:textColor="@color/white"/>
+                            android:layout_marginBottom="24dp"
+                            android:textSize="20dp"
+                            android:text="@string/AddPartnerTitle"
+                            android:textColor="@color/white"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:id="@+id/newEncounter" />
+
                         <TextView
+                            android:id="@+id/encounter_nickName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Nick name"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:id="@+id/encounter_nickName"
-                            android:textSize="18sp"
-                            android:paddingTop="5dp"
+                            android:background="#E1E1E1"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="JOHN DOE"
+                            android:padding="12dp"
+                            android:textColor="@color/dark_boxes"
                             android:textStyle="bold"
-                            android:paddingBottom="5dp"
-                            android:layout_marginBottom="48dp"
-                            android:textColor="@color/encounter_btn_bg"
-                            android:background="@color/banner_name_bg"
-                            android:gravity="center_vertical|center_horizontal" />
+                            android:textSize="18dp" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginBottom="32dp"
+                            android:background="@color/input_primary"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
@@ -121,22 +130,22 @@
                     </LinearLayout>
                 </ScrollView>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/bottomNav"
-                android:layout_alignParentBottom="true">
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Next"
-                    android:onClick="onDrunkStatusNext"
-                    android:textStyle="bold"
-                    android:id="@+id/next"
-                    android:textSize="@dimen/button_textsize"
-                    android:background="@color/encounter_btn_bg"
-                    android:textColor="@color/white" />
-            </LinearLayout>
         </RelativeLayout>
     </ScrollView>
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottomNav"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:onClick="onDrunkStatusNext"
+            android:textStyle="bold"
+            android:id="@+id/next"
+            android:textSize="@dimen/button_textsize"
+            android:background="@color/input_primary"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</RelativeLayout>

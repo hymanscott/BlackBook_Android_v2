@@ -2,14 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/encounter_bg">
+    android:background="@color/backgroundPrimary">
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:fillViewport="false">
+        android:layout_above="@+id/next" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -17,43 +15,34 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="18dp"
                 android:layout_marginTop="32dp"
                 android:src="@drawable/encounterlarge" />
 
             <TextView
-                android:id="@+id/add_partner_title"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical|center_horizontal"
+                android:layout_marginBottom="24dp"
+                android:textSize="20dp"
                 android:text="@string/AddPartnerTitle"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:gravity="center_vertical|center_horizontal"
+                android:id="@+id/add_partner_title" />
 
             <TextView
                 android:id="@+id/new_partner_nickname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:background="@color/banner_name_bg"
+                android:background="#E1E1E1"
                 android:gravity="center_vertical|center_horizontal"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp"
-                android:text="Nick name"
-                android:textColor="@color/encounter_btn_bg"
-                android:textSize="18sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="24dp"
-                android:background="@color/edittext_bg" />
+                android:text="JOHN DOE"
+                android:padding="12dp"
+                android:textColor="@color/dark_boxes"
+                android:textStyle="bold"
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/contactInfoTitle"
@@ -62,8 +51,7 @@
                 android:layout_marginBottom="24dp"
                 android:layout_marginTop="24dp"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="What is their contact info?
-(enter as much or as little of you’d like)"
+                android:text="What is their contact info?\n(enter as much or as little of you’d like)"
                 android:textColor="@color/white"
                 android:textSize="@dimen/encounter_tv_textsize" />
 
@@ -72,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@color/edittext_bg"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -109,7 +97,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:background="@color/edittext_bg"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -146,7 +134,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:background="@color/edittext_bg"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -183,7 +171,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:background="@color/edittext_bg"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -220,7 +208,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:background="@color/edittext_bg"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -253,12 +241,12 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:layout_marginBottom="24dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="24dp"
-                android:background="@color/edittext_bg" />
+                android:background="@color/input_primary" />
 
             <TextView
                 android:id="@+id/partnerTypeTitle"
@@ -266,7 +254,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
-                android:text="What kind of partner are they to you?"
+                android:text="Partner type:"
                 android:textColor="@color/white"
                 android:textSize="@dimen/encounter_tv_textsize" />
 
@@ -473,17 +461,16 @@
                 </RadioGroup>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/next"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="40dp"
-                android:background="@drawable/lynx_button"
-                android:onClick="onContactInfoNext"
-                android:text="Next"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
+    <Button
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/input_primary"
+        android:onClick="onContactInfoNext"
+        android:text="Next"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 </RelativeLayout>

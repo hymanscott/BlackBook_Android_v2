@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/main_bg_gradient">
+    android:background="@color/backgroundPrimary">
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -42,7 +42,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical|center_horizontal"
-                        android:text="Baseline Sex Pro Score"
+                        android:text="Baseline BlackBook Score"
                         android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="20sp" />
@@ -55,7 +55,7 @@
                         android:layout_marginTop="32dp"
                         android:gravity="center"
                         android:lineSpacingMultiplier="1.43"
-                        android:text="Sex Pro is a new way to help you better understand your sexual health and HIV risk."
+                        android:text="BlackBook is a new way to help you better understand your sexual health and HIV risk."
                         android:textColor="@color/white"
                         android:textSize="16sp" />
 
@@ -91,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginTop="@dimen/button_top_margin"
-                    android:background="@color/btn_blue"
+                    android:background="@color/input_primary"
                     android:text="LET's GET STARTED!"
                     android:textColor="@color/white"
                     android:onClick="startBaseline"

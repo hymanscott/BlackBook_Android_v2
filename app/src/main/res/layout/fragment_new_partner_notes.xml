@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/encounter_bg">
+    android:background="@color/backgroundPrimary">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,71 +27,67 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="18dp"
                             android:layout_marginTop="32dp"
-                            android:layout_marginBottom="32dp"
-                            android:layout_gravity="center_horizontal"
                             android:src="@drawable/encounterlarge" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="20sp"
-                            android:text="New Partner"
-                            android:layout_gravity="center_horizontal"
-                            android:id="@+id/add_partner_title"
-                            android:textColor="@color/white"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Nick name"
-                            android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:id="@+id/new_partner_nickname"
-                            android:textSize="18sp"
-                            android:paddingTop="5dp"
-                            android:textStyle="bold"
-                            android:paddingBottom="5dp"
-                            android:layout_marginBottom="48dp"
-                            android:textColor="@color/encounter_btn_bg"
-                            android:background="@color/banner_name_bg"
-                            android:gravity="center_vertical|center_horizontal" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:text="Partner notes"
-                            android:textSize="@dimen/encounter_tv_textsize"
+                            android:layout_marginBottom="24dp"
+                            android:textSize="20dp"
+                            android:text="@string/AddPartnerTitle"
                             android:textColor="@color/white"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginBottom="48dp"
-                            android:id="@+id/partnerNotesTitle" />
+                            android:gravity="center_vertical|center_horizontal"
+                            android:id="@+id/add_partner_title" />
+
+                        <TextView
+                            android:id="@+id/new_partner_nickname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#E1E1E1"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="JOHN DOE"
+                            android:padding="12dp"
+                            android:textColor="@color/dark_boxes"
+                            android:textStyle="bold"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/partnerNotesTitle"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="24dp"
+                            android:layout_marginTop="24dp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="Partner notes"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/encounter_tv_textsize" />
 
                         <EditText
                             android:id="@+id/partnerNotes"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
                             android:ems="10"
                             android:inputType="textMultiLine"
                             android:textColorHint="@color/edittext_hint_color"
-                            android:hint="Enter anything else you want to note or remember."
+                            android:hint="Enter anything else you want to note or remember. (Máx 255 characters)"
+                            android:lines="5"
                             android:textColor="@color/white"
                             android:imeOptions="actionDone"
-                            android:background="@drawable/rectangle_edittext"
-                            android:backgroundTint="@color/edittext_bg"
+                            android:background="@drawable/dashboard_container"
                             android:textCursorDrawable="@drawable/white_cursor"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:padding="16dp"
                             android:textSize="@dimen/encounter_tv_textsize"
                             android:maxLength="255"/>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@color/edittext_bg"
-                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                            android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
                     </LinearLayout>
                 </ScrollView>
             </LinearLayout>
@@ -106,8 +102,9 @@
                     android:text="Next"
                     android:onClick="onPartnerNotesNext"
                     android:textStyle="bold"
+                    android:textSize="14dp"
                     android:id="@+id/next"
-                    android:background="@color/encounter_btn_bg"
+                    android:background="@color/input_primary"
                     android:textColor="@color/white" />
             </LinearLayout>
         </RelativeLayout>
