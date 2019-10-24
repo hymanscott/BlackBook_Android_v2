@@ -59,6 +59,8 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
+
+        /*
         ((TextView)findViewById(R.id.bot_nav_sexpro_tv)).setTypeface(tf);
         ((TextView)findViewById(R.id.bot_nav_diary_tv)).setTypeface(tf);
         ((TextView)findViewById(R.id.bot_nav_testing_tv)).setTypeface(tf);
@@ -73,6 +75,8 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         btn_diary.setOnClickListener(this);
         btn_prep.setOnClickListener(this);
         btn_chat.setOnClickListener(this);
+        */
+
         viewProfile.setOnClickListener(this);
 
         ((TextView)findViewById(R.id.pageTitle)).setTypeface(tf_bold);

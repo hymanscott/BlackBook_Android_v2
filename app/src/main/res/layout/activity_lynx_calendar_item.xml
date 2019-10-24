@@ -7,7 +7,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="12dp">
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp">
         <ImageView
             android:id="@+id/ivContactImage"
             android:layout_width="30dp"

@@ -97,6 +97,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
     private static final int READ_WRITE_PERMISSION = 100;
     private Tracker tracker;
     SharedPreferences sharedPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,6 +116,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 "fonts/Barlow-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
+
         // Custom Action Bar //
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
@@ -122,6 +124,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
 
+        /*
         bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
         bot_nav_sexpro_tv.setTypeface(tf);
         bot_nav_diary_tv = (TextView)findViewById(R.id.bot_nav_diary_tv);
@@ -132,19 +135,24 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         bot_nav_prep_tv.setTypeface(tf);
         bot_nav_chat_tv = (TextView)findViewById(R.id.bot_nav_chat_tv);
         bot_nav_chat_tv.setTypeface(tf);
+
         sexproTitle = (TextView)findViewById(R.id.sexproTitle);
         sexproTitle.setTypeface(tf_bold);
+        topFiveTitle = (TextView)findViewById(R.id.topFiveTitle);
+        topFiveTitle.setTypeface(tf_bold);
+         */
+
         activityTitle = (TextView)findViewById(R.id.activityTitle);
         activityTitle.setTypeface(tf_bold);
         badgesTitle = (TextView)findViewById(R.id.badgesTitle);
         badgesTitle.setTypeface(tf_bold);
-        topFiveTitle = (TextView)findViewById(R.id.topFiveTitle);
-        topFiveTitle.setTypeface(tf_bold);
         trendsTitle = (TextView)findViewById(R.id.trendsTitle);
         trendsTitle.setTypeface(tf_bold);
         insightsTitle = (TextView)findViewById(R.id.insightsTitle);
         insightsTitle.setTypeface(tf_bold);
+
         // Click Listners //
+        /*
         btn_testing = (LinearLayout)findViewById(R.id.bot_nav_testing);
         btn_diary = (LinearLayout) findViewById(R.id.bot_nav_diary);
         btn_prep = (LinearLayout) findViewById(R.id.bot_nav_prep);
@@ -154,15 +162,20 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         btn_diary.setOnClickListener(this);
         btn_prep.setOnClickListener(this);
         btn_chat.setOnClickListener(this);
+        */
         viewProfile.setOnClickListener(this);
 
+        /*
         sexpro = (LinearLayout) findViewById(R.id.sexpro);
+        topFive = (LinearLayout) findViewById(R.id.topFive);
+        */
+
         activity = (LinearLayout) findViewById(R.id.activity);
         badges = (LinearLayout) findViewById(R.id.badges);
-        topFive = (LinearLayout) findViewById(R.id.topFive);
         trends = (LinearLayout) findViewById(R.id.trends);
         insights = (LinearLayout) findViewById(R.id.insights);
 
+        /*
         sexpro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,6 +185,16 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 finish();
             }
         });
+        topFive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TrackHelper.track().event("Home Category","Click").name("Top Five").value(1f).with(tracker);
+                Intent five = new Intent(LynxHome.this,LynxTopFive.class);
+                startActivity(five);
+                finish();
+            }
+        });
+        */
         activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -189,15 +212,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 startActivity(badges);
                 finish();
                 /*TrackHelper.track().goal(1).with(tracker);*/
-            }
-        });
-        topFive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TrackHelper.track().event("Home Category","Click").name("Top Five").value(1f).with(tracker);
-                Intent five = new Intent(LynxHome.this,LynxTopFive.class);
-                startActivity(five);
-                finish();
             }
         });
         trends.setOnClickListener(new View.OnClickListener() {

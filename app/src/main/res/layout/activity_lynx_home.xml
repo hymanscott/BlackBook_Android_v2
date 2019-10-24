@@ -8,25 +8,12 @@
     android:id="@+id/sexpro_main_parent"
     tools:context="com.lynxstudy.lynx.LynxSexPro">
 
-    <!-- Top Navigation -->
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/top_nav"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/bot_nav_bg"
-        android:elevation="4dp"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:popupTheme="@style/AppTheme.AppBarOverlay"
-        app:logo="@drawable/blackbook_logo"
-        app:navigationIcon="@drawable/back" />
-
     <!--  Dashboard Content  -->
     <!--  sexProMainContent was LinearLayout  -->
     <ScrollView
         android:id="@+id/sexProMainContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/top_nav"
         android:layout_above="@+id/bot_nav"
         android:fillViewport="true">
         <LinearLayout
@@ -48,7 +35,7 @@
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:id="@+id/sexpro"
+                    android:id="@+id/trends"
                     android:background="@drawable/dashboard_item">
 
                     <ImageView
@@ -62,7 +49,7 @@
                         android:layout_height="wrap_content"
                         android:text="Trends"
                         android:textSize="20sp"
-                        android:id="@+id/sexproTitle"
+                        android:id="@+id/trendsTitle"
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"
                         android:layout_gravity="center_horizontal|bottom"
@@ -75,7 +62,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/dashboard_item"
                     android:gravity="center"
-                    android:id="@+id/activity"
+                    android:id="@+id/insights"
                     android:orientation="vertical">
 
                     <ImageView
@@ -84,7 +71,7 @@
                         android:src="@drawable/insights_home_new" />
 
                     <TextView
-                        android:id="@+id/activityTitle"
+                        android:id="@+id/insightsTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Insights"
@@ -106,7 +93,7 @@
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:id="@+id/trends"
+                    android:id="@+id/activity"
                     android:background="@drawable/dashboard_item">
                     <ImageView
                         android:layout_width="match_parent"
@@ -122,7 +109,7 @@
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"
                         android:layout_gravity="center_horizontal|bottom"
-                        android:id="@+id/trendsTitle"
+                        android:id="@+id/activityTitle"
                         android:textColor="@color/lynx_home_white"/>
                 </LinearLayout>
                 <LinearLayout
@@ -131,7 +118,7 @@
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:id="@+id/insights"
+                    android:id="@+id/badges"
                     android:background="@drawable/dashboard_item">
                     <ImageView
                         android:layout_width="wrap_content"
@@ -146,7 +133,7 @@
                         android:textSize="20sp"
                         android:layout_marginTop="10dp"
                         android:layout_gravity="center_horizontal|bottom"
-                        android:id="@+id/insightsTitle"
+                        android:id="@+id/badgesTitle"
                         android:textStyle="bold"
                         android:textColor="@color/lynx_home_white"/>
                 </LinearLayout>

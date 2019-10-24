@@ -572,6 +572,19 @@
                     android:layout_marginBottom="32sp"
                     android:gravity="center_horizontal|center_vertical" />
             </LinearLayout>
+
+            <!-- DELETE Begin -->
+            <TextView
+                android:text="LYNX Version 1.7"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/profile_title_text_color"
+                android:textSize="14sp"
+                android:id="@+id/app_version"
+                android:layout_marginBottom="8dp"
+                android:gravity="center_horizontal|center_vertical" />
+            <!-- END Begin -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

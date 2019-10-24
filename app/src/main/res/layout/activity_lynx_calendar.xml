@@ -27,6 +27,47 @@
             android:weekDayTextAppearance="@style/CalendarDashboardWeekdayText" />
     </LinearLayout>
 
+    <!-- DELETE Begin -->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        android:id="@+id/eventsList">
+
+    </TableLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/selectedDateTitle"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/text_color"
+        android:layout_marginBottom="24dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="Sunday April 16"/>
+    <LinearLayout
+        android:id="@+id/calendar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/calendar_bottom"
+        android:orientation="vertical">
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/no_activity_logged"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:textSize="16sp"
+        android:visibility="gone"
+        android:text="No activities logged"/>
+    <!-- DELETE End -->
+
     <!--  Calendar Content  -->
     <ScrollView
         android:id="@+id/activity_list"

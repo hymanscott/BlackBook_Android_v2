@@ -101,8 +101,8 @@ public class LynxManager {
     //static Context context;
     /*private static String baseURL  =   "https://dev.chipware.in/hari/LynxPortal/";
     private static String testImageBaseUrl = "https://dev.chipware.in/hari/LynxPortal/testimages/";*/
-    private static String baseURL  =   "https://lynxstudy.com/";
-    private static String testImageBaseUrl = "https://lynxstudy.com/testimages/";
+    private static String baseURL  =   "https://blackbookstudy.com/";
+    private static String testImageBaseUrl = "https://blackbookstudy.com/testimages/";
     public static int releaseMode = 2; //0 - Development, 1 - Internal Release , 2 - Client Release
     public static EncounterSexType encSexType_kissing = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), "" , "",  "", "",String.valueOf(R.string.statusUpdateNo),true);
     public static EncounterSexType encSexType_iSucked = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), "" ,  "", "", "",String.valueOf(R.string.statusUpdateNo),true);

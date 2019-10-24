@@ -295,7 +295,8 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:background="@drawable/input_primary_rounded"
                 android:layout_marginBottom="16dp"
-                android:paddingHorizontal="@dimen/activity_horizontal_margin">
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
@@ -344,7 +345,8 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:background="@drawable/input_primary_rounded"
                 android:layout_marginBottom="16dp"
-                android:paddingHorizontal="@dimen/activity_horizontal_margin">
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
@@ -395,8 +397,10 @@
                 android:layout_marginBottom="16dp"
                 android:visibility="gone"
                 android:id="@+id/undetectableLayout"
-                android:paddingHorizontal="@dimen/activity_horizontal_margin"
-                android:paddingVertical="@dimen/activity_horizontal_margin_half">
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_horizontal_margin_half"
+                android:paddingBottom="@dimen/activity_horizontal_margin_half">
                 <TextView
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
@@ -444,8 +448,10 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:background="@drawable/input_primary_rounded"
-                android:paddingHorizontal="@dimen/activity_horizontal_margin"
-                android:paddingVertical="@dimen/activity_horizontal_margin_half">
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_horizontal_margin_half"
+                android:paddingBottom="@dimen/activity_horizontal_margin_half">
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
@@ -494,7 +500,8 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:background="@drawable/input_primary_rounded"
-                android:paddingHorizontal="@dimen/activity_horizontal_margin">
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
                 <TextView
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
@@ -544,7 +551,8 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:background="@drawable/input_primary_rounded"
-                android:paddingHorizontal="@dimen/activity_horizontal_margin">
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
@@ -592,8 +600,10 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:background="@drawable/input_primary_rounded"
-                android:paddingHorizontal="@dimen/activity_horizontal_margin"
-                android:paddingVertical="@dimen/activity_horizontal_margin_half">
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_horizontal_margin_half"
+                android:paddingBottom="@dimen/activity_horizontal_margin_half">
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
