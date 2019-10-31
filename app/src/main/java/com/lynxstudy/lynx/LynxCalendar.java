@@ -30,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.vision.text.Line;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.Encounter;
 import com.lynxstudy.model.EncounterSexType;
@@ -90,7 +91,13 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
+        LinearLayout backAction = (LinearLayout) cView.findViewById(R.id.backAction);
+        backAction.setOnClickListener(this);
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
+        viewProfile.setOnClickListener(this);
+
+        /*
+        // Bottom navigator
         ((TextView)findViewById(R.id.bot_nav_sexpro_tv)).setTypeface(tf);
         ((TextView)findViewById(R.id.bot_nav_diary_tv)).setTypeface(tf);
         ((TextView)findViewById(R.id.bot_nav_testing_tv)).setTypeface(tf);
@@ -105,7 +112,7 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
         btn_diary.setOnClickListener(this);
         btn_prep.setOnClickListener(this);
         btn_chat.setOnClickListener(this);
-        viewProfile.setOnClickListener(this);
+        * */
 
         calendarMainContent= (LinearLayout)findViewById(R.id.calendarMainContent);
         encounterSummaryContent= (LinearLayout)findViewById(R.id.encounterSummaryContent);
@@ -117,9 +124,11 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
         testSummaryContent.setVisibility(View.GONE);
         isSummaryShown = false;
         db = new DatabaseHelper(LynxCalendar.this);
+
         /*UI*/
         selectedDateTitle = (TextView)findViewById(R.id.selectedDateTitle);
         selectedDateTitle.setTypeface(tf_bold);
+
         // Caldroid Calendar //
         final SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
         caldroidFragment = new CaldroidFragment();
@@ -129,6 +138,7 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
             caldroidFragment.restoreStatesFromKey(savedInstanceState,
                     "CALDROID_SAVED_STATE");
         }
+
         // If activity is created from fresh
         else {
             Bundle args = new Bundle();
@@ -217,6 +227,7 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
         };
         caldroidFragment.setCaldroidListener(listener);
     }
+
     private void setCustomResourceForDates(Date date) {
         Calendar cal = Calendar.getInstance();
 
@@ -814,7 +825,9 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
+            case R.id.backAction:
+                this.onBackPressed();
+                break;
             case R.id.bot_nav_testing:
                 LynxManager.goToIntent(LynxCalendar.this,"testing",LynxCalendar.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);

@@ -269,7 +269,7 @@ public class AddNewTest extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                new DatePickerDialog(AddNewTest.this, date, myCalendar
+                new DatePickerDialog(AddNewTest.this, R.style.DatePicker, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }

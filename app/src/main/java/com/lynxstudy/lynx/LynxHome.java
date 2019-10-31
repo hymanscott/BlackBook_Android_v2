@@ -38,6 +38,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.vision.text.Line;
 import com.google.gson.Gson;
 import com.lynxstudy.helper.DatabaseHelper;
 import com.lynxstudy.model.AppAlerts;
@@ -123,6 +124,9 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
+        LinearLayout backAction = (LinearLayout) cView.findViewById(R.id.backAction);
+
+        backAction.setVisibility(View.INVISIBLE);
 
         /*
         bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);

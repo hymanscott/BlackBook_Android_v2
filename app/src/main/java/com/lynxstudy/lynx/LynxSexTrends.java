@@ -59,6 +59,8 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
+        LinearLayout backAction = (LinearLayout) cView.findViewById(R.id.backAction);
+        backAction.setOnClickListener(this);
 
         /*
         ((TextView)findViewById(R.id.bot_nav_sexpro_tv)).setTypeface(tf);
@@ -425,7 +427,9 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
+            case R.id.backAction:
+                this.onBackPressed();
+                break;
             case R.id.bot_nav_testing:
                 LynxManager.goToIntent(LynxSexTrends.this,"testing",LynxSexTrends.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);

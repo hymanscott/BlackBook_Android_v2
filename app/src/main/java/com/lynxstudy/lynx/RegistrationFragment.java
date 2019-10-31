@@ -1,6 +1,7 @@
 package com.lynxstudy.lynx;
 
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.content.Context;
@@ -106,6 +107,7 @@ public class RegistrationFragment  extends Fragment implements DatePickerDialog.
                 }
             }
         });
+
         //Date Picker
         final EditText dob = (EditText) view.findViewById(R.id.regDOB);
         dob.setTypeface(tf);
@@ -132,7 +134,7 @@ public class RegistrationFragment  extends Fragment implements DatePickerDialog.
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                new DatePickerDialog(getActivity(), date, myCalendar
+                new DatePickerDialog(getActivity(), R.style.DatePicker, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }

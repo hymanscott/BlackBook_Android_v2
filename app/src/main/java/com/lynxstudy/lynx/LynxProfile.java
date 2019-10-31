@@ -80,7 +80,8 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     TextView profile_name,profile_lastname,updatePhone,updateDOB,updateRace,profile_email,updatePass,updateSecQn,updateSecAnswer,updatePasscode,prepAnswer;
     TextView dairyReminderDay,dairyReminderTime,dairyReminderText,testingReminderDay,testingReminderTime,testingReminderText,edit_details,logout,app_version;
     Typeface tf,tf_bold;
-    LinearLayout mainContentLayout,editLayout,btn_testing,btn_diary,btn_prep,btn_chat;
+    LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
+    RelativeLayout editLayout, mainContentLayout;
     boolean isEditShown = false;
 
     TextView tv,sec_qn,time,day,testing_time,testing_day,is_prep;
@@ -97,12 +98,15 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lynx_profile);
-            // Custom Action Bar //
-            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-            View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
-            getSupportActionBar().setCustomView(cView);
-            getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
-            ((ImageView) cView.findViewById(R.id.viewProfile)).setVisibility(View.INVISIBLE);
+
+        // Custom Action Bar //
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
+        getSupportActionBar().setCustomView(cView);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
+        ((ImageView) cView.findViewById(R.id.viewProfile)).setVisibility(View.INVISIBLE);
+        LinearLayout backAction = (LinearLayout) cView.findViewById(R.id.backAction);
+        backAction.setOnClickListener(this);
 
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
@@ -111,11 +115,15 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
                 "fonts/Barlow-Bold.ttf");
 
         ((TextView)findViewById(R.id.fragTitle)).setTypeface(tf_bold);
+
+        /*
         ((TextView)findViewById(R.id.bot_nav_sexpro_tv)).setTypeface(tf);
         ((TextView)findViewById(R.id.bot_nav_diary_tv)).setTypeface(tf);
         ((TextView)findViewById(R.id.bot_nav_testing_tv)).setTypeface(tf);
         ((TextView)findViewById(R.id.bot_nav_prep_tv)).setTypeface(tf);
         ((TextView)findViewById(R.id.bot_nav_chat_tv)).setTypeface(tf);
+        * */
+
         profile_name = (TextView)findViewById(R.id.profile_name);
         profile_name.setTypeface(tf);
         profile_lastname = (TextView)findViewById(R.id.profile_lastname);
@@ -160,8 +168,8 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         app_version = (TextView)findViewById(R.id.app_version);
         app_version.setTypeface(tf);
         app_version.setText("(LYNX version " + getVersion()+")");
-        mainContentLayout = (LinearLayout) findViewById(R.id.mainContentLayout);
-        editLayout = (LinearLayout) findViewById(R.id.editLayout);
+        mainContentLayout = (RelativeLayout) findViewById(R.id.mainContentLayout);
+        editLayout = (RelativeLayout) findViewById(R.id.editLayout);
 
         // Piwik Analytics //
         tracker = ((lynxApplication) getApplication()).getTracker();
@@ -183,17 +191,16 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
                 signOut();
             }
         });
-        // Click Listners //
+        /*
         btn_testing = (LinearLayout)findViewById(R.id.bot_nav_testing);
         btn_diary = (LinearLayout) findViewById(R.id.bot_nav_diary);
         btn_prep = (LinearLayout) findViewById(R.id.bot_nav_prep);
         btn_chat = (LinearLayout) findViewById(R.id.bot_nav_chat);
-        ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
         btn_testing.setOnClickListener(this);
         btn_diary.setOnClickListener(this);
         btn_prep.setOnClickListener(this);
         btn_chat.setOnClickListener(this);
-        viewProfile.setOnClickListener(this);
+        * */
     }
     @Override
     public void onBackPressed() {
@@ -292,9 +299,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         dob.setText(LynxManager.getFormatedDate("dd-MMM-yyyy",dob_user,"MM/dd/yyyy"));
         sec_qn.setText(LynxManager.decryptString(LynxManager.getActiveUser().getSecurityquestion()));
         tv.setText(LynxManager.decryptString(LynxManager.getActiveUser().getRace()));
-        tv.setTextColor(getResources().getColor(R.color.profile_text_color));
-        sec_qn.setTextColor(getResources().getColor(R.color.profile_text_color));
-        sec_ans.setTextColor(getResources().getColor(R.color.profile_text_color));
         is_prep.setText(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()));
 
         //Date Picker
@@ -322,7 +326,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                new DatePickerDialog(LynxProfile.this, date, myCalendar
+                new DatePickerDialog(LynxProfile.this, R.style.DatePicker, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -370,7 +374,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
 
                             public void onClick(DialogInterface dialog, int which) {
                                 sec_qn.setText(secQuestions.get(which).toString());
-                                sec_qn.setTextColor(getResources().getColor(R.color.profile_text_color));
                                 dialog.dismiss();
                             }
                         }).create().show();
@@ -384,7 +387,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
 
                             public void onClick(DialogInterface dialog, int which) {
                                 sec_qn.setText(secQuestions.get(which).toString());
-                                sec_qn.setTextColor(getResources().getColor(R.color.profile_text_color));
                                 dialog.dismiss();
                             }
                         }).create().show();
@@ -432,7 +434,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
 
                             public void onClick(DialogInterface dialog, int which) {
                                 day.setText(daysOfWeek.get(which).toString());
-                                day.setTextColor(getResources().getColor(R.color.profile_text_color));
                                 dialog.dismiss();
                             }
                         }).create().show();
@@ -446,7 +447,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
 
                             public void onClick(DialogInterface dialog, int which) {
                                 day.setText(daysOfWeek.get(which).toString());
-                                day.setTextColor(getResources().getColor(R.color.profile_text_color));
                                 dialog.dismiss();
                             }
                         }).create().show();
@@ -470,9 +470,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         TestingReminder testing_Reminder = db.getTestingReminderByFlag(0);
         if(testing_Reminder != null){
             day.setText(LynxManager.decryptString(testing_Reminder.getNotification_day()));
-            day.setTextColor(getResources().getColor(R.color.profile_text_color));
             time.setText(LynxManager.convertUTCTimetoLocal(LynxManager.decryptString(testing_Reminder.getNotification_time())));
-            time.setTextColor(getResources().getColor(R.color.profile_text_color));
             notificationText.setText(LynxManager.decryptString(testing_Reminder.getReminder_notes()));
         }
 
@@ -485,7 +483,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
 
                             public void onClick(DialogInterface dialog, int which) {
                                 testing_day.setText(daysOfWeek.get(which).toString());
-                                testing_day.setTextColor(getResources().getColor(R.color.profile_text_color));
                                 dialog.dismiss();
                             }
                         }).create().show();
@@ -499,7 +496,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
 
                             public void onClick(DialogInterface dialog, int which) {
                                 testing_day.setText(daysOfWeek.get(which).toString());
-                                testing_day.setTextColor(getResources().getColor(R.color.profile_text_color));
                                 dialog.dismiss();
                             }
                         }).create().show();
@@ -524,9 +520,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         TestingReminder testing_Reminder1 = db.getTestingReminderByFlag(1);
         if(testing_Reminder1 != null){
             testing_day.setText(LynxManager.decryptString(testing_Reminder1.getNotification_day()));
-            testing_day.setTextColor(getResources().getColor(R.color.profile_text_color));
             testing_time.setText(LynxManager.convertUTCTimetoLocal(LynxManager.decryptString(testing_Reminder1.getNotification_time())));
-            testing_time.setTextColor(getResources().getColor(R.color.profile_text_color));
             testing_notificationText.setText(LynxManager.decryptString(testing_Reminder1.getReminder_notes()));
         }
     }
@@ -644,7 +638,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
                 time = h+":"+m+" "+am_pm;
 
                 timepicker.setText( time);
-                timepicker.setTextColor(getResources().getColor(R.color.profile_text_color));
                 //timepicker.setText( selectedHour + ":" + selectedMinute);
             }
         }, hour, minute, false);//Yes 24 hour time
@@ -713,7 +706,9 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
+            case R.id.backAction:
+                this.onBackPressed();
+                break;
             case R.id.bot_nav_testing:
                 TrackHelper.track().event("Navigation","Click").name("Testing").with(tracker);
                 LynxManager.goToIntent(LynxProfile.this,"testing",LynxProfile.this.getClass().getSimpleName());
@@ -737,8 +732,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
                 LynxManager.goToIntent(LynxProfile.this,"chat",LynxProfile.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
                 finish();
-                break;
-            case R.id.viewProfile:
                 break;
             default:
                 break;

@@ -38,12 +38,18 @@ public class LynxInsights extends AppCompatActivity implements View.OnClickListe
                 "fonts/Barlow-Italic.ttf");
         tf_bold_italic = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-BoldItalic.ttf");
+
         // Custom Action Bar //
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
+        viewProfile.setOnClickListener(this);
+        LinearLayout backAction = (LinearLayout) cView.findViewById(R.id.backAction);
+        backAction.setOnClickListener(this);
+
+        /*
         ((TextView)findViewById(R.id.bot_nav_sexpro_tv)).setTypeface(tf);
         ((TextView)findViewById(R.id.bot_nav_diary_tv)).setTypeface(tf);
         ((TextView)findViewById(R.id.bot_nav_testing_tv)).setTypeface(tf);
@@ -53,12 +59,11 @@ public class LynxInsights extends AppCompatActivity implements View.OnClickListe
         btn_diary = (LinearLayout) findViewById(R.id.bot_nav_diary);
         btn_prep = (LinearLayout) findViewById(R.id.bot_nav_prep);
         btn_chat = (LinearLayout) findViewById(R.id.bot_nav_chat);
-
         btn_testing.setOnClickListener(this);
         btn_diary.setOnClickListener(this);
         btn_prep.setOnClickListener(this);
         btn_chat.setOnClickListener(this);
-        viewProfile.setOnClickListener(this);
+        * */
 
         ((TextView)findViewById(R.id.pageTitle)).setTypeface(tf_bold);
         ((TextView)findViewById(R.id.partnerTypeChartTitle)).setTypeface(tf_bold_italic);
@@ -371,7 +376,9 @@ public class LynxInsights extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
+            case R.id.backAction:
+                this.onBackPressed();
+                break;
             case R.id.bot_nav_testing:
                 LynxManager.goToIntent(LynxInsights.this,"testing",LynxInsights.this.getClass().getSimpleName());
                 overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);

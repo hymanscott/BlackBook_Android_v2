@@ -105,7 +105,7 @@ public class RegistrationEdit extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                new DatePickerDialog(getActivity(), date, myCalendar
+                new DatePickerDialog(getActivity(), R.style.DatePicker, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }

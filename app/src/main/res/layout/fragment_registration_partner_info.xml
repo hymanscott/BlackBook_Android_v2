@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/main_bg_gradient">
+    android:background="@color/backgroundPrimary">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/partner_info_nextbtn"
         android:fillViewport="true">
 
         <LinearLayout
@@ -28,7 +29,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Baseline Sex Pro Score"
+                android:text="Baseline BlackBook Score"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:textAlignment="center"
@@ -360,6 +361,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_horizontal_margin"
                 android:orientation="vertical">
                 <View
                     android:layout_width="match_parent"
@@ -417,17 +419,17 @@
                 </RadioGroup>
 
             </LinearLayout>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="NEXT"
-                android:background="@color/btn_blue"
-                android:textColor="@color/white"
-                android:layout_marginTop="@dimen/button_top_margin"
-                android:id="@+id/partner_info_nextbtn"
-                android:textSize="@dimen/button_textsize"
-                android:onClick="onPrimaryPartnerNext"
-                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="NEXT"
+        android:background="@color/input_primary"
+        android:textColor="@color/white"
+        android:id="@+id/partner_info_nextbtn"
+        android:textSize="@dimen/button_textsize"
+        android:onClick="onPrimaryPartnerNext"
+        android:textStyle="bold" />
+</RelativeLayout>

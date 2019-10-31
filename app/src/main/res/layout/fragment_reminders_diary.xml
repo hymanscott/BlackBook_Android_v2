@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/main_bg_gradient">
+    android:background="@color/backgroundPrimary">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,8 +15,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="24dp"
@@ -29,7 +29,7 @@
                 android:text="Diary Reminders"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
             <RelativeLayout
                 android:id="@+id/day_of_week"
@@ -38,7 +38,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="32dp"
-                android:background="@color/edittext_bg"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -71,6 +71,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
+                    android:paddingRight="@dimen/activity_horizontal_margin_half"
                     android:src="@drawable/dropdownicon" />
             </RelativeLayout>
             <RelativeLayout
@@ -80,7 +81,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:background="@color/edittext_bg"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -113,6 +114,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
+                    android:paddingRight="@dimen/activity_horizontal_margin_half"
                     android:src="@drawable/dropdownicon" />
             </RelativeLayout>
             <LinearLayout
@@ -121,7 +123,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:background="@color/edittext_bg"
+                android:background="@drawable/input_primary_rounded"
                 android:orientation="horizontal"
                 android:padding="@dimen/edittext_padding">
 
@@ -156,8 +158,8 @@
                 android:layout_height="wrap_content"
                 android:text="*This message will appear on your phone as a notification."
                 android:textColor="@color/white"
-                android:textSize="14sp"
-                android:layout_marginTop="24dp"
+                android:textSize="13dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginLeft="45dp"
                 android:layout_marginRight="45dp"
                 android:id="@+id/noteText"
@@ -172,16 +174,13 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginTop="@dimen/button_top_margin"
-                    android:background="@color/btn_blue"
+                    android:background="@color/input_primary"
                     android:onClick="diaryReminderSave"
-                    android:text="SAVE"
+                    android:text="NEXT"
                     android:textColor="@color/white"
                     android:textSize="@dimen/button_textsize"
                     android:textStyle="bold" />
             </RelativeLayout>
-
         </LinearLayout>
-
     </ScrollView>
-
 </LinearLayout>

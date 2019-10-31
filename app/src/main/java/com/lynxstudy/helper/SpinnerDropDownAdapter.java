@@ -117,10 +117,6 @@ public class SpinnerDropDownAdapter extends BaseAdapter {
 
         if (selectedCount == 0) {
             mSelectedItems.setText(R.string.select_race);
-            if(is_profile)
-                mSelectedItems.setTextColor(Color.parseColor("#80444444"));
-            else
-                mSelectedItems.setTextColor(Color.parseColor("#80FFFFFF"));
         } else if (selectedCount == 1) {
             for (int i = 0; i < checkSelected.length; i++) {
                 if (checkSelected[i] == true) {
@@ -129,10 +125,6 @@ public class SpinnerDropDownAdapter extends BaseAdapter {
                 }
             }
             mSelectedItems.setText(firstSelected);
-            if(is_profile)
-                mSelectedItems.setTextColor(Color.parseColor("#FF444444"));
-            else
-                mSelectedItems.setTextColor(Color.parseColor("#FFFFFF"));
 
             setSelected(firstSelected);
         } else if (selectedCount > 1) {
@@ -158,10 +150,6 @@ public class SpinnerDropDownAdapter extends BaseAdapter {
                 text = text.substring(0, text.length()-2);
             }
             mSelectedItems.setText(text);
-            if(is_profile)
-                mSelectedItems.setTextColor(Color.parseColor("#FF444444"));
-            else
-                mSelectedItems.setTextColor(Color.parseColor("#FFFFFF"));
             setSelected(text);
         }
     }

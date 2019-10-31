@@ -59,6 +59,7 @@ public class BadgeScreenActivity extends AppCompatActivity {
         if(isAlert.equals("Yes")){
             actionBar.setVisibility(View.GONE);
             alertText.setVisibility(View.VISIBLE);
+            badgeName.setPadding(0, 0, 0, 0);
             got_it.setVisibility(View.VISIBLE);
             // Updating Badge shown status //
             int user_badge_id = getIntent().getIntExtra("user_badge_id",1);
@@ -67,6 +68,7 @@ public class BadgeScreenActivity extends AppCompatActivity {
         }else{
             actionBar.setVisibility(View.VISIBLE);
             alertText.setVisibility(View.GONE);
+            badgeName.setPadding(0, getResources().getDimensionPixelOffset(R.dimen.toggle_btn_height), 0, 0);
             got_it.setVisibility(View.GONE);
             TrackHelper.track().screen("/Lynxhome/Badges/Summary").title("Lynxhome/Badges/Summary").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         }

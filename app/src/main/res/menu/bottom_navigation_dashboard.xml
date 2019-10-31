@@ -11,5 +11,5 @@
     <item
         android:id="@+id/testing"
         android:icon="@drawable/nav_icon_testing_white"
-        android:title="Diary" />
+        android:title="Testing" />
 </menu>

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_bg_gradient">
+    android:background="@color/backgroundPrimary">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:gravity="center"
-                android:text="Baseline Sex Pro Score"
+                android:text="Baseline BlackBook Score"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -210,7 +210,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@color/btn_blue"
+            android:background="@color/input_primary"
             android:onClick="onHeavyAlcholNext"
             android:text="NEXT"
             android:textColor="@color/white"

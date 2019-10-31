@@ -3,17 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundPrimary">
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mainContentLayout"
+        android:visibility="visible">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/mainContentLayout"
                 android:orientation="vertical">
                 <TextView
                     android:text="Your account details"
@@ -569,33 +569,40 @@
                     android:textColor="@color/white"
                     android:textSize="13dp"
                     android:id="@+id/logout"
-                    android:layout_marginBottom="32sp"
+                    android:layout_marginBottom="32dp"
                     android:gravity="center_horizontal|center_vertical" />
+                <!-- DELETE Begin -->
+                <TextView
+                    android:text="LYNX Version 1.7"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp"
+                    android:id="@+id/app_version"
+                    android:layout_marginBottom="32dp"
+                    android:gravity="center_horizontal|center_vertical" />
+                <!-- END Begin -->
             </LinearLayout>
-
-            <!-- DELETE Begin -->
-            <TextView
-                android:text="LYNX Version 1.7"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/profile_title_text_color"
-                android:textSize="14sp"
-                android:id="@+id/app_version"
-                android:layout_marginBottom="8dp"
-                android:gravity="center_horizontal|center_vertical" />
-            <!-- END Begin -->
-
+        </ScrollView>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/editLayout"
+        android:visibility="gone">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/save">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editLayout"
-                android:visibility="gone"
                 android:orientation="vertical">
                 <TextView
                     android:text="Edit your account details "
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/profile_title_text_color"
+                    android:textColor="@color/white"
                     android:textSize="20sp"
                     android:layout_margin="32dp"
                     android:id="@+id/fragTitle1"
@@ -603,15 +610,16 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
                     android:orientation="horizontal"
                     android:weightSum="1">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="4dp"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin_half"
                         android:layout_weight="0.5"
-                        android:background="@color/profile_edittext_bg"
+                        android:background="@drawable/input_primary_rounded"
                         android:orientation="horizontal"
                         android:padding="@dimen/edittext_padding">
 
@@ -620,7 +628,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:src="@drawable/usericonblue" />
+                            android:src="@drawable/usericonblue"
+                            android:tint="@color/white" />
 
                         <EditText
                             android:id="@+id/regFirstName"
@@ -639,7 +648,7 @@
                             android:clickable="true"
                             android:inputType="textPersonName"
                             android:textColor="@color/white"
-                            android:textColorHint="@color/profile_edittext_hint"
+                            android:textColorHint="@color/edittext_hint_color"
                             android:textCursorDrawable="@drawable/profile_edittext_cursor"
                             android:textSize="@dimen/edittext_textsize" />
                     </LinearLayout>
@@ -647,10 +656,10 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin_half"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:layout_weight="0.5"
-                        android:background="@color/profile_edittext_bg"
+                        android:background="@drawable/input_primary_rounded"
                         android:orientation="horizontal"
                         android:padding="@dimen/edittext_padding">
 
@@ -678,7 +687,7 @@
                             android:clickable="true"
                             android:inputType="textPersonName"
                             android:textColor="@color/white"
-                            android:textColorHint="@color/profile_edittext_hint"
+                            android:textColorHint="@color/edittext_hint_color"
                             android:textCursorDrawable="@drawable/profile_edittext_cursor"
                             android:textSize="@dimen/edittext_textsize" />
                     </LinearLayout>
@@ -689,8 +698,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="3dp"
-                    android:background="@color/profile_edittext_bg"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/input_primary_rounded"
                     android:orientation="horizontal"
                     android:padding="@dimen/edittext_padding">
 
@@ -698,7 +707,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/phoneiconblue" />
+                        android:src="@drawable/phoneiconblue"
+                        android:tint="@color/white" />
 
                     <EditText
                         android:id="@+id/regPhone"
@@ -716,7 +726,7 @@
                         android:windowSoftInputMode="adjustPan"
                         android:textColor="@color/white"
                         android:imeOptions="actionDone"
-                        android:textColorHint="@color/profile_edittext_hint"
+                        android:textColorHint="@color/edittext_hint_color"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />
                 </LinearLayout>
@@ -726,8 +736,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="3dp"
-                    android:background="@color/profile_edittext_bg"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/input_primary_rounded"
                     android:orientation="horizontal"
                     android:padding="@dimen/edittext_padding">
 
@@ -735,7 +745,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/calendariconblue" />
+                        android:src="@drawable/calendariconblue"
+                        android:tint="@color/white" />
 
                     <EditText
                         android:id="@+id/regDOB"
@@ -751,7 +762,7 @@
                         android:hint="Birthday"
                         android:inputType="none"
                         android:textColor="@color/white"
-                        android:textColorHint="@color/profile_edittext_hint"
+                        android:textColorHint="@color/edittext_hint_color"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />
                 </LinearLayout>
@@ -762,8 +773,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="3dp"
-                    android:background="@color/profile_edittext_bg"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/input_primary_rounded"
                     android:orientation="horizontal"
                     android:padding="@dimen/edittext_padding">
 
@@ -773,7 +784,8 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:src="@drawable/raceiconblue" />
+                        android:src="@drawable/raceiconblue"
+                        android:tint="@color/white" />
                     <!--<com.lynxstudy.lynx.MultiSelectionSpinner
                         android:id="@+id/mySpinner"
                         android:layout_width="match_parent"
@@ -792,8 +804,9 @@
                         android:paddingBottom="5dp"
                         android:paddingTop="5dp"
                         android:textSize="@dimen/reg_tv_textsize"
-                        android:text="Race/Ethnicity"
-                        android:textColor="@color/profile_edittext_hint" />
+                        android:hint="Race/Ethnicity"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/edittext_hint_color"/>
 
                     <ImageView
                         android:id="@+id/create"
@@ -802,15 +815,17 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:src="@drawable/dropdowngrey" />
+                        android:paddingRight="@dimen/activity_horizontal_margin_half"
+                        android:src="@drawable/dropdowngrey"
+                        android:tint="@android:color/darker_gray" />
                 </RelativeLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="3dp"
-                    android:background="@color/profile_edittext_bg"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/input_primary_rounded"
                     android:orientation="horizontal"
                     android:padding="@dimen/edittext_padding">
 
@@ -819,7 +834,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/emailiconblue" />
+                        android:src="@drawable/emailiconblue"
+                        android:tint="@color/white" />
 
                     <EditText
                         android:id="@+id/regEmail"
@@ -838,7 +854,7 @@
                         android:paddingTop="5dp"
                         android:imeOptions="actionNext"
                         android:textColor="@color/white"
-                        android:textColorHint="@color/profile_edittext_hint"
+                        android:textColorHint="@color/edittext_hint_color"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />
                 </LinearLayout>
@@ -848,8 +864,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="3dp"
-                    android:background="@color/profile_edittext_bg"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/input_primary_rounded"
                     android:orientation="horizontal"
                     android:padding="@dimen/edittext_padding">
 
@@ -857,7 +873,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/passwordiconblue" />
+                        android:src="@drawable/passwordiconblue"
+                        android:tint="@color/white" />
 
                     <EditText
                         android:id="@+id/regPass"
@@ -874,7 +891,7 @@
                         android:imeOptions="actionNext"
                         android:paddingTop="5dp"
                         android:textColor="@color/white"
-                        android:textColorHint="@color/profile_edittext_hint"
+                        android:textColorHint="@color/edittext_hint_color"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />
                 </LinearLayout>
@@ -884,7 +901,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
                     android:visibility="gone"
                     android:background="@color/profile_edittext_bg"
                     android:orientation="horizontal"
@@ -921,8 +938,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="3dp"
-                    android:background="@color/profile_edittext_bg"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/input_primary_rounded"
                     android:orientation="horizontal"
                     android:padding="@dimen/edittext_padding">
 
@@ -932,7 +949,8 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:src="@drawable/shieldiconblue" />
+                        android:src="@drawable/shieldiconblue"
+                        android:tint="@color/white" />
                     <TextView
                         android:id="@+id/sec_qn"
                         android:layout_width="fill_parent"
@@ -942,8 +960,9 @@
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="24dp"
                         android:layout_toEndOf="@+id/shieldicon"
-                        android:text="@string/sec_question_prompt"
-                        android:textColor="@color/profile_edittext_hint"
+                        android:hint="@string/sec_question_prompt"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/edittext_hint_color"
                         android:textSize="@dimen/edittext_textsize" />
 
                     <ImageView
@@ -953,7 +972,9 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:src="@drawable/dropdowngrey" />
+                        android:paddingRight="@dimen/activity_horizontal_margin_half"
+                        android:src="@drawable/dropdowngrey"
+                        android:tint="@android:color/darker_gray" />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -961,8 +982,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="3dp"
-                    android:background="@color/profile_edittext_bg"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/input_primary_rounded"
                     android:orientation="horizontal"
                     android:padding="@dimen/edittext_padding">
 
@@ -971,7 +992,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/shieldiconblue" />
+                        android:src="@drawable/shieldiconblue"
+                        android:tint="@color/white" />
 
                     <EditText
                         android:id="@+id/sec_ans"
@@ -987,7 +1009,7 @@
                         android:imeOptions="actionNext"
                         android:paddingTop="5dp"
                         android:textColor="@color/white"
-                        android:textColorHint="@color/profile_edittext_hint"
+                        android:textColorHint="@color/edittext_hint_color"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />
                 </LinearLayout>
@@ -997,8 +1019,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="3dp"
-                    android:background="@color/profile_edittext_bg"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/input_primary_rounded"
                     android:orientation="horizontal"
                     android:padding="@dimen/edittext_padding">
 
@@ -1007,7 +1029,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/passcodeiconblue" />
+                        android:src="@drawable/passcodeiconblue"
+                        android:tint="@color/white" />
 
                     <EditText
                         android:id="@+id/newPasscode"
@@ -1025,7 +1048,7 @@
                         android:paddingBottom="5dp"
                         android:paddingTop="5dp"
                         android:textColor="@color/white"
-                        android:textColorHint="@color/profile_edittext_hint"
+                        android:textColorHint="@color/edittext_hint_color"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:textSize="@dimen/edittext_textsize" />
                 </LinearLayout>
@@ -1034,8 +1057,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="3dp"
-                    android:background="@color/profile_edittext_bg"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:background="@drawable/input_primary_rounded"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
@@ -1076,284 +1099,288 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/activity_horizontal_margin"
                             android:layout_gravity="center"
-                            android:src="@drawable/dropdowngrey" />
+                            android:src="@drawable/dropdowngrey"
+                            android:tint="@android:color/darker_gray" />
                     </RelativeLayout>
                 </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Diary Reminders"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:background="@color/profile_edittext_bg"
-                    android:padding="16dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:id="@+id/diaryTitle1"/>
-                <RelativeLayout
-                    android:id="@+id/day_of_week"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:background="@color/profile_edittext_bg"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/edittext_padding">
-
-                    <ImageView
-                        android:id="@+id/calendericon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center"
-                        android:src="@drawable/calendariconblue" />
-                    <TextView
-                        android:id="@+id/day"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="24dp"
-                        android:layout_toEndOf="@+id/calendericon"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:text="Monday"
-                        android:textColor="@color/profile_edittext_hint"
-                        android:textSize="@dimen/edittext_textsize" />
-
-                    <ImageView
-                        android:id="@+id/dayIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center"
-                        android:src="@drawable/dropdowngrey" />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/time_of_day"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:background="@color/profile_edittext_bg"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/edittext_padding">
-
-                    <ImageView
-                        android:id="@+id/calendericon1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center"
-                        android:src="@drawable/clockiconblue" />
-                    <TextView
-                        android:id="@+id/time"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="24dp"
-                        android:layout_toEndOf="@+id/calendericon1"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:text="10:00 AM"
-                        android:textColor="@color/profile_edittext_hint"
-                        android:textSize="@dimen/edittext_textsize" />
-
-                    <ImageView
-                        android:id="@+id/timeIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center"
-                        android:src="@drawable/dropdowngrey" />
-                </RelativeLayout>
                 <LinearLayout
+                    android:background="@drawable/input_primary_rounded"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:background="@color/profile_edittext_bg"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/edittext_padding">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@drawable/texticonblue" />
-
-                    <EditText
-                        android:id="@+id/notificationText"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:background="@drawable/rectangle_edittext"
-                        android:backgroundTint="@color/profile_edittext_bg"
-                        android:ems="10"
-                        android:hint="Do you have anything to report this week?"
-                        android:imeOptions="actionDone"
-                        android:minLines="2"
-                        android:inputType="textMultiLine"
-                        android:paddingBottom="5dp"
-                        android:paddingTop="5dp"
+                        android:text="Diary Reminders"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
                         android:textColor="@color/white"
-                        android:textColorHint="@color/profile_edittext_hint"
-                        android:textCursorDrawable="@drawable/profile_edittext_cursor"
-                        android:textSize="@dimen/edittext_textsize" />
+                        android:padding="16dp"
+                        android:id="@+id/diaryTitle1"/>
+                    <RelativeLayout
+                        android:id="@+id/day_of_week"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/edittext_padding">
+
+                        <ImageView
+                            android:id="@+id/calendericon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/calendariconblue"
+                            android:tint="@color/white" />
+                        <TextView
+                            android:id="@+id/day"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="24dp"
+                            android:layout_toEndOf="@+id/calendericon"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:hint="Monday"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/edittext_hint_color"
+                            android:textSize="@dimen/edittext_textsize" />
+
+                        <ImageView
+                            android:id="@+id/dayIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:paddingRight="@dimen/activity_horizontal_margin_half"
+                            android:src="@drawable/dropdowngrey"
+                            android:tint="@android:color/darker_gray" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/time_of_day"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/edittext_padding">
+
+                        <ImageView
+                            android:id="@+id/calendericon1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/clockiconblue"
+                            android:tint="@color/white" />
+                        <TextView
+                            android:id="@+id/time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="24dp"
+                            android:layout_toEndOf="@+id/calendericon1"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:hint="10:00 AM"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/edittext_hint_color"
+                            android:textSize="@dimen/edittext_textsize" />
+
+                        <ImageView
+                            android:id="@+id/timeIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:paddingRight="@dimen/activity_horizontal_margin_half"
+                            android:src="@drawable/dropdowngrey"
+                            android:tint="@android:color/darker_gray" />
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/edittext_padding">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/texticonblue"
+                            android:tint="@color/white" />
+
+                        <EditText
+                            android:id="@+id/notificationText"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:background="@drawable/rectangle_edittext"
+                            android:backgroundTint="@color/profile_edittext_bg"
+                            android:ems="10"
+                            android:hint="Do you have anything to report this week?"
+                            android:imeOptions="actionDone"
+                            android:minLines="2"
+                            android:inputType="textMultiLine"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/edittext_hint_color"
+                            android:textCursorDrawable="@drawable/profile_edittext_cursor"
+                            android:textSize="@dimen/edittext_textsize" />
+                    </LinearLayout>
                 </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Testing Reminders"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:background="@color/profile_edittext_bg"
-                    android:padding="16dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:id="@+id/testingTitle1"/>
-                <RelativeLayout
-                    android:id="@+id/testing_day_of_week"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:background="@color/profile_edittext_bg"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/edittext_padding">
-
-                    <ImageView
-                        android:id="@+id/calendericon2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center"
-                        android:src="@drawable/calendariconblue" />
-                    <TextView
-                        android:id="@+id/testing_day"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="24dp"
-                        android:layout_toEndOf="@+id/calendericon2"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:text="Monday"
-                        android:textColor="@color/profile_edittext_hint"
-                        android:textSize="@dimen/edittext_textsize" />
-
-                    <ImageView
-                        android:id="@+id/testing_dayIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center"
-                        android:src="@drawable/dropdowngrey" />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/testing_time_of_day"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:background="@color/profile_edittext_bg"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/edittext_padding">
-
-                    <ImageView
-                        android:id="@+id/calendericon3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center"
-                        android:src="@drawable/clockiconblue" />
-                    <TextView
-                        android:id="@+id/testing_time"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:layout_marginRight="24dp"
-                        android:layout_toEndOf="@+id/calendericon3"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:text="10:00 AM"
-                        android:textColor="@color/profile_edittext_hint"
-                        android:textSize="@dimen/edittext_textsize" />
-
-                    <ImageView
-                        android:id="@+id/testing_timeIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_gravity="center"
-                        android:src="@drawable/dropdowngrey" />
-                </RelativeLayout>
                 <LinearLayout
+                    android:background="@drawable/input_primary_rounded"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:background="@color/profile_edittext_bg"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/edittext_padding">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@drawable/texticonblue" />
-
-                    <EditText
-                        android:id="@+id/testing_notificationText"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                        android:background="@drawable/rectangle_edittext"
-                        android:backgroundTint="@color/profile_edittext_bg"
-                        android:ems="10"
-                        android:hint="It's time for your test!"
-                        android:imeOptions="actionDone"
-                        android:inputType="textMultiLine"
-                        android:paddingBottom="5dp"
-                        android:paddingTop="5dp"
+                        android:text="Testing Reminders"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
                         android:textColor="@color/white"
-                        android:textColorHint="@color/profile_edittext_hint"
-                        android:textCursorDrawable="@drawable/profile_edittext_cursor"
-                        android:textSize="@dimen/edittext_textsize" />
+                        android:padding="16dp"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:id="@+id/testingTitle1"/>
+                    <RelativeLayout
+                        android:id="@+id/testing_day_of_week"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/edittext_padding">
+
+                        <ImageView
+                            android:id="@+id/calendericon2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/calendariconblue"
+                            android:tint="@color/white" />
+                        <TextView
+                            android:id="@+id/testing_day"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="24dp"
+                            android:layout_toEndOf="@+id/calendericon2"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:hint="Monday"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/edittext_hint_color"
+                            android:textSize="@dimen/edittext_textsize" />
+
+                        <ImageView
+                            android:id="@+id/testing_dayIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/dropdowngrey"
+                            android:tint="@android:color/darker_gray" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/testing_time_of_day"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/edittext_padding">
+
+                        <ImageView
+                            android:id="@+id/calendericon3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/clockiconblue"
+                            android:tint="@color/white" />
+                        <TextView
+                            android:id="@+id/testing_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="24dp"
+                            android:layout_toEndOf="@+id/calendericon3"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:hint="10:00 AM"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/edittext_hint_color"
+                            android:textSize="@dimen/edittext_textsize" />
+
+                        <ImageView
+                            android:id="@+id/testing_timeIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:src="@drawable/dropdowngrey"
+                            android:tint="@android:color/darker_gray" />
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/edittext_padding">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/texticonblue"
+                            android:tint="@color/white" />
+
+                        <EditText
+                            android:id="@+id/testing_notificationText"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:background="@drawable/rectangle_edittext"
+                            android:backgroundTint="@color/profile_edittext_bg"
+                            android:ems="10"
+                            android:hint="It's time for your test!"
+                            android:imeOptions="actionDone"
+                            android:inputType="textMultiLine"
+                            android:minLines="2"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/edittext_hint_color"
+                            android:textCursorDrawable="@drawable/profile_edittext_cursor"
+                            android:textSize="@dimen/edittext_textsize" />
+                    </LinearLayout>
                 </LinearLayout>
-                <Button
-                    android:id="@+id/save"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:background="@drawable/buttonbluecornered"
-                    android:onClick="updateProfile"
-                    android:text="SAVE"
-                    android:layout_marginBottom="48dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/button_textsize"
-                    android:textStyle="bold" />
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+        <Button
+            android:id="@+id/save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/input_primary"
+            android:onClick="updateProfile"
+            android:text="SAVE"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_textsize"
+            android:textStyle="bold" />
+    </RelativeLayout>
 </RelativeLayout>

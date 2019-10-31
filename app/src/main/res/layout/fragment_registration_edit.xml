@@ -397,7 +397,7 @@
                     android:text=""
                     android:hint="4 digit passcode"
                     android:maxLength="4"
-                    android:inputType="number"
+                    android:inputType="numberPassword"
                     android:textColor="@color/white"
                     android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
