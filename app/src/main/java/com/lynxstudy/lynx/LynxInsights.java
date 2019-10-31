@@ -21,7 +21,21 @@ public class LynxInsights extends AppCompatActivity implements View.OnClickListe
     Typeface tf,tf_bold,tf_italic,tf_bold_italic;
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
     TextView titleStats;
-    TextView menPercentage,transMenPercentage,womenPercentage,transWomenPercentage,primaryPercentage,regularPercentage,hookupPercentage,NSAPercentage,friendsPercentage,negativePercentage,negPrepPercentage,unsurePercentage,positivePercentage,undectablePercentage;
+    TextView menPercentage, menPercentageText,
+        transMenPercentage, transMenPercentageText,
+        womenPercentage, womenPercentageText,
+        transWomenPercentage, transWomenPercentageText,
+        primaryPercentage, primaryPercentageText,
+        regularPercentage, regularPercentageText,
+        hookupPercentage,hookupPercentageText,
+        NSAPercentage, NSAPercentageText,
+        friendsPercentage, friendsPercentageText,
+        negativePercentage, negativePercentageText,
+        negPrepPercentage, negPrepPercentageText,
+        unsurePercentage, unsurePercentageText,
+        positivePercentage, positivePercentageText,
+        undectablePercentage, undectablePercentageText;
+
     DatabaseHelper db;
 
     @Override
@@ -91,87 +105,100 @@ public class LynxInsights extends AppCompatActivity implements View.OnClickListe
         ((TextView)findViewById(R.id.legendUndectable)).setTypeface(tf);
 
         menPercentage = (TextView)findViewById(R.id.menPercentage);
+        menPercentageText = (TextView)findViewById(R.id.menPercentageText);
         menPercentage.setTypeface(tf);
         transMenPercentage = (TextView)findViewById(R.id.transMenPercentage);
+        transMenPercentageText = (TextView) findViewById(R.id.transMenPercentageText);
         transMenPercentage.setTypeface(tf);
         womenPercentage = (TextView)findViewById(R.id.womenPercentage);
+        womenPercentageText = (TextView)findViewById(R.id.womenPercentageText);
         womenPercentage.setTypeface(tf);
         transWomenPercentage = (TextView)findViewById(R.id.transWomenPercentage);
+        transWomenPercentageText = (TextView)findViewById(R.id.transWomenPercentageText);
         transWomenPercentage.setTypeface(tf);
+
+        // Partner types
         primaryPercentage = (TextView)findViewById(R.id.primaryPercentage);
+        primaryPercentageText = (TextView)findViewById(R.id.primaryPercentageText);
         primaryPercentage.setTypeface(tf);
+        friendsPercentage = (TextView)findViewById(R.id.friendsPercentage);
+        friendsPercentageText = (TextView)findViewById(R.id.friendsPercentageText);
+        friendsPercentage.setTypeface(tf);
         regularPercentage = (TextView)findViewById(R.id.regularPercentage);
+        regularPercentageText = (TextView)findViewById(R.id.regularPercentageText);
         regularPercentage.setTypeface(tf);
         hookupPercentage = (TextView)findViewById(R.id.hookupPercentage);
+        hookupPercentageText = (TextView)findViewById(R.id.hookupPercentageText);
         hookupPercentage.setTypeface(tf);
         NSAPercentage = (TextView)findViewById(R.id.NSAPercentage);
+        NSAPercentageText = (TextView)findViewById(R.id.NSAPercentageText);
         NSAPercentage.setTypeface(tf);
-        friendsPercentage = (TextView)findViewById(R.id.friendsPercentage);
-        friendsPercentage.setTypeface(tf);
+
+        // Partner HIV status
         negativePercentage = (TextView)findViewById(R.id.negativePercentage);
+        negativePercentageText = (TextView)findViewById(R.id.negativePercentageText);
         negativePercentage.setTypeface(tf);
         negPrepPercentage = (TextView)findViewById(R.id.negPrepPercentage);
+        negPrepPercentageText = (TextView)findViewById(R.id.negPrepPercentageText);
         negPrepPercentage.setTypeface(tf);
         unsurePercentage = (TextView)findViewById(R.id.unsurePercentage);
+        unsurePercentageText = (TextView)findViewById(R.id.unsurePercentageText);
         unsurePercentage.setTypeface(tf);
         positivePercentage = (TextView)findViewById(R.id.positivePercentage);
+        positivePercentageText = (TextView)findViewById(R.id.positivePercentageText);
         positivePercentage.setTypeface(tf);
         undectablePercentage = (TextView)findViewById(R.id.undectablePercentage);
+        undectablePercentageText = (TextView)findViewById(R.id.undectablePercentageText);
         undectablePercentage.setTypeface(tf);
 
         LinearLayout PartnersTrend = (LinearLayout)findViewById(R.id.PartnersTrend);
         int total_gender_count = db.getPartnersCountByGender("Man") + db.getPartnersCountByGender("Woman") + db.getPartnersCountByGender("Trans man")+db.getPartnersCountByGender("Trans woman");
+
         float men_count = (float)db.getPartnersCountByGender("Man")/total_gender_count;
         float woman_count = (float)db.getPartnersCountByGender("Woman")/total_gender_count;
         float trans_men_count = (float)db.getPartnersCountByGender("Trans man")/total_gender_count;
         float trans_woman_count = (float)db.getPartnersCountByGender("Trans woman")/total_gender_count;
-        if(men_count ==0) {
+
+        if(men_count == 0) {
             menPercentage.setVisibility(View.GONE);
-        }
-        else {
-            TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,men_count);
+        } else {
+            TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT, men_count);
             menPercentage.setLayoutParams(params);
             menPercentage.setGravity(Gravity.CENTER);
-            men_count = men_count*100;
-            int final_value = Math.round(men_count);
-            menPercentage.setText(final_value+"%");
         }
+
+        menPercentageText.setText(Math.round(men_count * 100) + "%");
 
         if(woman_count ==0) {
             womenPercentage.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,woman_count);
             womenPercentage.setLayoutParams(params);
             womenPercentage.setGravity(Gravity.CENTER);
-            woman_count = woman_count*100;
-            int final_value = Math.round(woman_count);
-            womenPercentage.setText(final_value+"%");
         }
+
+        womenPercentageText.setText(Math.round(woman_count * 100) + "%");
 
         if(trans_men_count ==0) {
             transMenPercentage.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,trans_men_count);
             transMenPercentage.setLayoutParams(params);
             transMenPercentage.setGravity(Gravity.CENTER);
-            trans_men_count = trans_men_count*100;
-            int final_value = Math.round(trans_men_count);
-            transMenPercentage.setText(final_value+"%");
         }
+
+        transMenPercentageText.setText(Math.round(trans_men_count * 100) + "%");
 
         if(trans_woman_count ==0) {
             transWomenPercentage.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,trans_woman_count);
             transWomenPercentage.setGravity(Gravity.CENTER);
             transWomenPercentage.setLayoutParams(params);
-            trans_woman_count = trans_woman_count*100;
-            int final_value = Math.round(trans_woman_count);
-            transWomenPercentage.setText(final_value+"%");
         }
+
+        transWomenPercentageText.setText(Math.round(trans_woman_count * 100) + "%");
+
         PartnersTrend.setWeightSum(1);
 
         /*Partner Types Chart*/
@@ -183,65 +210,57 @@ public class LynxInsights extends AppCompatActivity implements View.OnClickListe
         float onenight = (float)db.getPartnersContactCountByType("One-night stand")/total;
 
         LinearLayout PartnerTypeTrend = (LinearLayout)findViewById(R.id.PartnerTypeTrend);
+
         if(primary ==0) {
             primaryPercentage.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,primary);
             primaryPercentage.setLayoutParams(params);
             primaryPercentage.setGravity(Gravity.CENTER);
-            primary = primary*100;
-            int final_value = Math.round(primary);
-            primaryPercentage.setText((final_value)+"%");
         }
+
+        primaryPercentageText.setText(Math.round(primary * 100) + "%");
 
         if(regular ==0) {
             regularPercentage.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,regular);
             regularPercentage.setLayoutParams(params);
             regularPercentage.setGravity(Gravity.CENTER);
-            regular = regular*100;
-            int final_value = Math.round(regular);
-            regularPercentage.setText((final_value)+"%");
         }
+
+        regularPercentageText.setText(Math.round(regular * 100) + "%");
 
         if(friends ==0) {
             friendsPercentage.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,friends);
             friendsPercentage.setLayoutParams(params);
             friendsPercentage.setGravity(Gravity.CENTER);
-            friends = friends*100;
-            int final_value = Math.round(friends);
-            friendsPercentage.setText((final_value)+"%");
         }
+
+        friendsPercentageText.setText(Math.round(friends * 100) + "%");
 
         if(hookup ==0) {
             hookupPercentage.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,hookup);
             hookupPercentage.setLayoutParams(params);
             hookupPercentage.setGravity(Gravity.CENTER);
-            hookup = hookup*100;
-            int final_value = Math.round(hookup);
-            hookupPercentage.setText((final_value)+"%");
         }
+
+        hookupPercentageText.setText(Math.round(hookup * 100) + "%");
 
         if(onenight ==0) {
             NSAPercentage.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,onenight);
             NSAPercentage.setLayoutParams(params);
             NSAPercentage.setGravity(Gravity.CENTER);
-            onenight = onenight*100;
-            int final_value = Math.round(onenight);
-            NSAPercentage.setText((final_value)+"%");
         }
+
+        NSAPercentageText.setText(Math.round(onenight * 100) + "%");
+
         PartnerTypeTrend.setWeightSum(1);
 
         /*Partner Hiv Status Chart*/
@@ -258,65 +277,57 @@ public class LynxInsights extends AppCompatActivity implements View.OnClickListe
         float unsure = (float)ununsureDBCount/total_hiv_count;
 
         LinearLayout PartnerHivTrend = (LinearLayout)findViewById(R.id.PartnerHivTrend);
+
         if(negative ==0) {
             negativePercentage.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,negative);
             negativePercentage.setLayoutParams(params);
             negativePercentage.setGravity(Gravity.CENTER);
-            negative = negative*100;
-            int final_value = Math.round(negative);
-            negativePercentage.setText((final_value)+"%");
         }
+
+        negativePercentageText.setText(Math.round(negative * 100) + "%");
 
         if(negprep ==0) {
             negPrepPercentage.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,negprep);
             negPrepPercentage.setLayoutParams(params);
             negPrepPercentage.setGravity(Gravity.CENTER);
-            negprep = negprep*100;
-            int final_value = Math.round(negprep);
-            negPrepPercentage.setText((final_value)+"%");
         }
+
+        negPrepPercentageText.setText(Math.round(negprep * 100) + "%");
 
         if(positive ==0) {
             positivePercentage.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,positive);
             positivePercentage.setLayoutParams(params);
             positivePercentage.setGravity(Gravity.CENTER);
-            positive = positive*100;
-            int final_value = Math.round(positive);
-            positivePercentage.setText((final_value)+"%");
         }
+
+        positivePercentageText.setText(Math.round(positive * 100) + "%");
 
         if(undetectable ==0) {
             undectablePercentage.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,undetectable);
             undectablePercentage.setLayoutParams(params);
             undectablePercentage.setGravity(Gravity.CENTER);
-            undetectable = undetectable*100;
-            int final_value = Math.round(undetectable);
-            undectablePercentage.setText((final_value)+"%");
         }
+
+        undectablePercentageText.setText(Math.round(undetectable * 100) + "%");
 
         if(unsure ==0) {
             unsurePercentage.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.MATCH_PARENT,unsure);
             unsurePercentage.setLayoutParams(params);
             unsurePercentage.setGravity(Gravity.CENTER);
-            unsure = unsure*100;
-            int final_value = Math.round(unsure);
-            unsurePercentage.setText((final_value)+"%");
         }
+
+        unsurePercentageText.setText(Math.round(unsure * 100) + "%");
+
         PartnerHivTrend.setWeightSum(1);
 
         /*Partners HIV Stats*/

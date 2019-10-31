@@ -1,50 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
-    android:paddingTop="16dp"
-    android:paddingLeft="5dp"
-    android:paddingRight="0dp"
-    android:paddingBottom="16dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
     android:background="@color/backgroundPrimary">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="0.5"
-        android:weightSum="1"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="65dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin_half"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="06/06/17"
-            android:textSize="17dp"
-            android:maxWidth="70dp"
-            android:textColor="@color/white"
+            android:layout_gravity="center_vertical"
             android:layout_weight="0.5"
-            android:id="@+id/date"/>
-        <TextView
-            android:layout_width="75dp"
+            android:weightSum="1"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:text="06/06/17"
+                android:textSize="17dp"
+                android:maxWidth="70dp"
+                android:textColor="@color/white"
+                android:layout_weight="0.5"
+                android:id="@+id/date"/>
+            <TextView
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:text="Demoprimary partner "
+                android:textSize="17dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/white"
+                android:layout_weight="0.5"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:maxEms="7"
+                android:id="@+id/name"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Demoprimary partner "
-            android:textSize="17dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:textColor="@color/white"
-            android:layout_weight="0.5"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:maxEms="7"
-            android:id="@+id/name"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="0.5">
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.5">
             <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,6 +60,11 @@
                 android:minWidth="100dp"
                 android:isIndicator="true"
                 style="?android:ratingBarStyleIndicator" />
+        </LinearLayout>
     </LinearLayout>
-
+    <View
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@android:color/darker_gray"/>
 </LinearLayout>

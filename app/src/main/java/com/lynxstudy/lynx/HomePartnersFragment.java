@@ -78,8 +78,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
 
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
         rootview = inflater.inflate(R.layout.fragment_home_partners, container, false);
@@ -92,7 +91,6 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         summaryLayout = (LinearLayout) rootview.findViewById(R.id.summaryLayout);
         mainContentLayout = (LinearLayout) rootview.findViewById(R.id.mainContentLayout);
         editLayout = (LinearLayout) rootview.findViewById(R.id.editLayout);
-
         partnerTable = (TableLayout) rootview.findViewById(R.id.homepartnerTable);
         partnerTable.removeAllViews();
 
@@ -105,45 +103,24 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         Collections.sort(partners,new Partners.comparePartner());
         for (Partners partner : partners) {
             if(partner.getIs_active()!=0) {
-                TableRow partnerRow = new TableRow(getActivity());
-                partnerRow.setPadding(10, 30, 0, 30);
-                TextView partner_Name = new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);
-                RatingBar partner_Rating_Bar = new RatingBar(getActivity(), null, android.R.attr.ratingBarStyleIndicator);
-                TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT, 1f);
+                View v = LayoutInflater.from(getActivity()).inflate(R.layout.table_partner_row, partnerTable, false);
+                TextView partnerName = (TextView) v.findViewById(R.id.partner_name);
+                RatingBar partnerRating = (RatingBar) v.findViewById(R.id.partner_rating);
 
-                partner_Name.setText(LynxManager.decryptString(partner.getNickname()));
-                partner_Name.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
-                partner_Name.setLayoutParams(params);
-                partner_Name.setTypeface(tf);
-                partner_Name.setTextColor(getResources().getColor(R.color.text_color));
-                partner_Name.setTextSize(16);
-                partner_Name.setPadding(10, 15, 10, 15);
+                partnerName.setTypeface(tf);
+                partnerName.setText(LynxManager.decryptString(partner.getNickname()));
+
                 int partner_id = partner.getPartner_id();
-                PartnerRating partnerRating = db.getPartnerRatingbyPartnerID(partner_id, 1);
-
+                PartnerRating partnerRatingObj = db.getPartnerRatingbyPartnerID(partner_id, 1);
 
                 if (partnerRating != null) {
-                    partner_Rating_Bar.setRating(Float.parseFloat(partnerRating.getRating()));
+                    partnerRating.setRating(Float.parseFloat(partnerRatingObj.getRating()));
                 }
-                partner_Rating_Bar.setPadding(0, 5, 0, 5);
-                partner_Rating_Bar.setNumStars(5);
-                partner_Rating_Bar.setRight(10);
 
-                float rating_bar_scale = (float) 0.9;
-                partner_Rating_Bar.setScaleX(rating_bar_scale);
-                partner_Rating_Bar.setScaleY(rating_bar_scale);
-                LayerDrawable stars4 = (LayerDrawable) partner_Rating_Bar.getProgressDrawable();
-                stars4.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
-                stars4.getDrawable(0).setColorFilter(getResources().getColor(R.color.lighter_line), PorterDuff.Mode.SRC_ATOP);
-                stars4.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
-
-                partnerRow.addView(partner_Name);
-                partnerRow.addView(partner_Rating_Bar);
-                partnerRow.setBackground(getResources().getDrawable(R.drawable.border_bottom));
-                partnerRow.setClickable(true);
-                partnerRow.setFocusable(true);
-                partnerRow.setId(partner_id);
-                partnerRow.setOnClickListener(new View.OnClickListener() {
+                v.setClickable(true);
+                v.setFocusable(true);
+                v.setId(partner_id);
+                v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         for (int i = 0; i < partnerTable.getChildCount(); i++) {
@@ -156,7 +133,8 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                         }
                     }
                 });
-                partnerTable.addView(partnerRow);
+
+                partnerTable.addView(v);
             }
         }
         back_press_count=0;
@@ -408,6 +386,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         isEditShown = true;
         summaryLayout.setVisibility(View.GONE);
         isSummaryShown = false;
+
         final Partners partner = db.getPartnerbyID(partner_id);
         PartnerContact partnerContact = db.getPartnerContactbyPartnerID(partner_id);
 
@@ -423,6 +402,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         partnerNotes.setTypeface(tf_bold);
         editoverAll = (TextView) rootview.findViewById(R.id.editOverAll);
         editoverAll.setTypeface(tf_bold);
+
         monogamousLayout= (LinearLayout)rootview.findViewById(R.id.monogamousLayout);
         otherPartnerLayout = (LinearLayout) rootview.findViewById(R.id.otherPartnerLayout);
         otherPartnerParent = (RelativeLayout) rootview.findViewById(R.id.otherPartnerParent);

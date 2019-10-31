@@ -142,15 +142,8 @@
     </ScrollView>
 
     <!-- Bottom Navigation -->
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bot_nav"
-        android:background="@color/bot_nav_bg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:itemIconTint="@color/white"
-        app:itemTextColor="@color/white"
-        app:menu="@menu/bottom_navigation_dashboard" />
+    <include
+        layout="@layout/actionbar_bottom" />
 
     <!-- Log -->
     <LinearLayout

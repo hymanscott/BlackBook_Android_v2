@@ -27,21 +27,13 @@ public class NewPartnerRatingsFragment extends Fragment {
     }
     View rootview;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootview = inflater.inflate(R.layout.fragment_new_partner_ratings, container, false);
-        Display display = getActivity().getWindowManager().getDefaultDisplay();
-        int width = display.getWidth();
-        int height = display.getHeight();
-        if (width == 480 && height == 800) {
-            rootview = inflater.inflate(R.layout.fragment_new_partner_ratings_alt, container, false);
-        }
+
         //Type face
-        Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Barlow-Regular.ttf");
-        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Barlow-Bold.ttf");
+        Typeface tf = Typeface.createFromAsset(getResources().getAssets(),"fonts/Barlow-Regular.ttf");
+        Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),"fonts/Barlow-Bold.ttf");
         ((Button)rootview.findViewById(R.id.next)).setTypeface(tf_bold);
         ((TextView)rootview.findViewById(R.id.rateTitle)).setTypeface(tf);
         ((TextView)rootview.findViewById(R.id.add_partner_title)).setTypeface(tf_bold);

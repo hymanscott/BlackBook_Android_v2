@@ -21,6 +21,8 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
@@ -30,6 +32,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -124,27 +127,36 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         getSupportActionBar().setCustomView(cView);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
         ImageView viewProfile = (ImageView) cView.findViewById(R.id.viewProfile);
+        viewProfile.setOnClickListener(this);
         LinearLayout backAction = (LinearLayout) cView.findViewById(R.id.backAction);
-
         backAction.setVisibility(View.INVISIBLE);
 
-        /*
-        bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
-        bot_nav_sexpro_tv.setTypeface(tf);
-        bot_nav_diary_tv = (TextView)findViewById(R.id.bot_nav_diary_tv);
-        bot_nav_diary_tv.setTypeface(tf);
-        bot_nav_testing_tv = (TextView)findViewById(R.id.bot_nav_testing_tv);
-        bot_nav_testing_tv.setTypeface(tf);
-        bot_nav_prep_tv = (TextView)findViewById(R.id.bot_nav_prep_tv);
-        bot_nav_prep_tv.setTypeface(tf);
-        bot_nav_chat_tv = (TextView)findViewById(R.id.bot_nav_chat_tv);
-        bot_nav_chat_tv.setTypeface(tf);
+        // BottomNavigationView
+        BottomNavigationView bottomNav = (BottomNavigationView) findViewById(R.id.bot_nav);
 
-        sexproTitle = (TextView)findViewById(R.id.sexproTitle);
-        sexproTitle.setTypeface(tf_bold);
-        topFiveTitle = (TextView)findViewById(R.id.topFiveTitle);
-        topFiveTitle.setTypeface(tf_bold);
-         */
+        bottomNav.setOnNavigationItemSelectedListener(
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.bot_nav_diary:
+                            TrackHelper.track().event("Navigation","Click").name("Diary").with(tracker);
+                            LynxManager.goToIntent(LynxHome.this,"diary",LynxHome.this.getClass().getSimpleName());
+                            overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
+                            finish();
+                            break;
+                        case R.id.bot_nav_testing:
+                            TrackHelper.track().event("Navigation","Click").name("Testing").with(tracker);
+                            LynxManager.goToIntent(LynxHome.this,"testing",LynxHome.this.getClass().getSimpleName());
+                            overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
+                            finish();
+                            break;
+                    }
+
+                    return true;
+                }
+            }
+        );
 
         activityTitle = (TextView)findViewById(R.id.activityTitle);
         activityTitle.setTypeface(tf_bold);
@@ -155,25 +167,10 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         insightsTitle = (TextView)findViewById(R.id.insightsTitle);
         insightsTitle.setTypeface(tf_bold);
 
-        // Click Listners //
-        /*
-        btn_testing = (LinearLayout)findViewById(R.id.bot_nav_testing);
-        btn_diary = (LinearLayout) findViewById(R.id.bot_nav_diary);
-        btn_prep = (LinearLayout) findViewById(R.id.bot_nav_prep);
-        btn_chat = (LinearLayout) findViewById(R.id.bot_nav_chat);
-
-        btn_testing.setOnClickListener(this);
-        btn_diary.setOnClickListener(this);
-        btn_prep.setOnClickListener(this);
-        btn_chat.setOnClickListener(this);
-        */
-        viewProfile.setOnClickListener(this);
-
         /*
         sexpro = (LinearLayout) findViewById(R.id.sexpro);
         topFive = (LinearLayout) findViewById(R.id.topFive);
         */
-
         activity = (LinearLayout) findViewById(R.id.activity);
         badges = (LinearLayout) findViewById(R.id.badges);
         trends = (LinearLayout) findViewById(R.id.trends);
@@ -236,12 +233,15 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 finish();
             }
         });
+
         db = new DatabaseHelper(this);
         List<Users> allUsers = db.getAllUsers();
         LynxManager.setActiveUser(allUsers.get(0));
+
         for(User_baseline_info user_baseline_info : db.getAllUserBaselineInfo()){
             LynxManager.setActiveUserBaselineInfo(user_baseline_info);
         }
+
         if ( Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission(LynxHome.this, android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
                 ContextCompat.checkSelfPermission(LynxHome.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -252,10 +252,12 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String tokenid = sharedPref.getString("lynxfirebasetokenid",null);
         String regCode = sharedPref.getString("lynxregcode",null);
+
         if(regCode!=null){
             LynxManager.regCode = regCode;
             Log.v("RegistrationCodeUsed", regCode);
         }
+
         /* system Information */
         String device_info ="";
         if ( Build.VERSION.SDK_INT >= 23 &&
@@ -267,6 +269,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             LynxManager.deviceId = m_telephonyManager.getDeviceId();
 
             JSONObject additional_info = new JSONObject();
+
             try {
                 additional_info.put("kernel_version", System.getProperty("os.version"));
                 additional_info.put("api_level", System.getProperty("APILEVEL", Build.VERSION.SDK));
@@ -281,6 +284,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             }catch (JSONException e){
                 e.printStackTrace();
             }
+
             device_info = additional_info.toString();
         }
         if (tokenid != null) {
@@ -634,31 +638,6 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
-            case R.id.bot_nav_testing:
-                TrackHelper.track().event("Navigation","Click").name("Testing").with(tracker);
-                LynxManager.goToIntent(LynxHome.this,"testing",LynxHome.this.getClass().getSimpleName());
-                overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
-                finish();
-                break;
-            case R.id.bot_nav_diary:
-                TrackHelper.track().event("Navigation","Click").name("Diary").with(tracker);
-                LynxManager.goToIntent(LynxHome.this,"diary",LynxHome.this.getClass().getSimpleName());
-                overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
-                finish();
-                break;
-            case R.id.bot_nav_prep:
-                TrackHelper.track().event("Navigation","Click").name("PrEP").with(tracker);
-                LynxManager.goToIntent(LynxHome.this,"prep",LynxHome.this.getClass().getSimpleName());
-                overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
-                finish();
-                break;
-            case R.id.bot_nav_chat:
-                TrackHelper.track().event("Navigation","Click").name("Chat").with(tracker);
-                LynxManager.goToIntent(LynxHome.this,"chat",LynxHome.this.getClass().getSimpleName());
-                overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
-                finish();
-                break;
             case R.id.viewProfile:
                 TrackHelper.track().event("Navigation","Click").name("Profile").with(tracker);
                 Intent profile = new Intent(LynxHome.this,LynxProfile.class);
@@ -669,6 +648,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
                 break;
         }
     }
+
     @Override
     public void onResume() {
         super.onResume();

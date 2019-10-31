@@ -7,7 +7,9 @@ import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -84,12 +86,44 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
                 "fonts/Barlow-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
+
+        // Action Bar
+        viewProfile = (ImageView)findViewById(R.id.viewProfile);
+        viewProfile.setOnClickListener(this);
+
+        // BottomNavigationView
+        BottomNavigationView bottomNav = (BottomNavigationView) findViewById(R.id.bot_nav);
+
+        bottomNav.setOnNavigationItemSelectedListener(
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.bot_nav_dashboard:
+                            TrackHelper.track().event("Navigation","Click").name("Home").with(tracker);
+                            LynxManager.goToIntent(LynxDiary.this,"home",LynxDiary.this.getClass().getSimpleName());
+                            overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
+                            finish();
+                            break;
+                        case R.id.bot_nav_testing:
+                            TrackHelper.track().event("Navigation","Click").name("Testing").with(tracker);
+                            LynxManager.goToIntent(LynxDiary.this,"testing", LynxDiary.this.getClass().getSimpleName());
+                            overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
+                            finish();
+                            break;
+                    }
+
+                    return true;
+                }
+            }
+        );
+
+        /*
         // Click Listners //
         btn_sexpro = (LinearLayout)findViewById(R.id.bot_nav_sexpro);
         btn_testing = (LinearLayout) findViewById(R.id.bot_nav_testing);
         btn_prep = (LinearLayout) findViewById(R.id.bot_nav_prep);
         btn_chat = (LinearLayout) findViewById(R.id.bot_nav_chat);
-        viewProfile = (ImageView)findViewById(R.id.viewProfile);
 
         bot_nav_sexpro_tv = (TextView)findViewById(R.id.bot_nav_sexpro_tv);
         bot_nav_sexpro_tv.setTypeface(tf);
@@ -106,7 +140,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         btn_testing.setOnClickListener(this);
         btn_prep.setOnClickListener(this);
         btn_chat.setOnClickListener(this);
-        viewProfile.setOnClickListener(this);
+        * */
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -115,19 +149,21 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
         if(LynxManager.isFromDeletePartner){
             mViewPager.setCurrentItem(1);
         }
+
         // Custom tab views //
         final TextView tab1 = new TextView(LynxDiary.this);
         tab1.setText("SEXUAL HISTORY");
-        tab1.setTextColor(getResources().getColor(R.color.text_color));
+        tab1.setTextColor(getResources().getColor(R.color.white));
         tab1.setTypeface(tf_bold);
         tab1.setTextSize(16);
         tab1.setGravity(Gravity.CENTER_HORIZONTAL);
         final TextView tab2 = new TextView(LynxDiary.this);
         tab2.setText("SEXUAL PARTNERS");
-        tab2.setTextColor(getResources().getColor(R.color.text_color));
+        tab2.setTextColor(getResources().getColor(R.color.white));
         tab2.setTypeface(tf);
         tab2.setTextSize(16);
         tab2.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -177,7 +213,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
         int i=0;
         for (UserBadges userBadges: userBadgesList) {
             if(i==0){
-                Intent badgeScreen =  new Intent(LynxDiary.this,BadgeScreenActivity.class);
+                Intent badgeScreen =  new Intent(LynxDiary.this, BadgeScreenActivity.class);
                 badgeScreen.putExtra("badge_id",userBadges.getBadge_id());
                 badgeScreen.putExtra("isAlert","Yes");
                 badgeScreen.putExtra("user_badge_id",userBadges.getUser_badge_id());
@@ -344,31 +380,6 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
-            case R.id.bot_nav_sexpro:
-                TrackHelper.track().event("Navigation","Click").name("Home").with(tracker);
-                LynxManager.goToIntent(LynxDiary.this,"home",LynxDiary.this.getClass().getSimpleName());
-                overridePendingTransition(R.anim.activity_slide_from_left, R.anim.activity_slide_to_right);
-                finish();
-                break;
-            case R.id.bot_nav_testing:
-                TrackHelper.track().event("Navigation","Click").name("Testing").with(tracker);
-                LynxManager.goToIntent(LynxDiary.this,"testing",LynxDiary.this.getClass().getSimpleName());
-                overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
-                finish();
-                break;
-            case R.id.bot_nav_prep:
-                TrackHelper.track().event("Navigation","Click").name("PrEP").with(tracker);
-                LynxManager.goToIntent(LynxDiary.this,"prep",LynxDiary.this.getClass().getSimpleName());
-                overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
-                finish();
-                break;
-            case R.id.bot_nav_chat:
-                TrackHelper.track().event("Navigation","Click").name("Chat").with(tracker);
-                LynxManager.goToIntent(LynxDiary.this,"chat",LynxDiary.this.getClass().getSimpleName());
-                overridePendingTransition(R.anim.activity_slide_from_right, R.anim.activity_slide_to_left);
-                finish();
-                break;
             case R.id.viewProfile:
                 TrackHelper.track().event("Navigation","Click").name("Profile").with(tracker);
                 Intent profile = new Intent(LynxDiary.this,LynxProfile.class);

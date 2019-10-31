@@ -695,7 +695,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/editLayout"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/summaryLayout">
         <ScrollView
@@ -730,6 +730,7 @@
                     android:background="@color/input_primary"
                     android:padding="@dimen/edittext_padding"
                     android:id="@+id/editNickNameLayout"
+                    android:visibility="gone"
                     android:orientation="horizontal">
 
                     <ImageView

@@ -66,8 +66,7 @@ public class HomeEncounterFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
         view = inflater.inflate(R.layout.fragment_home_encounter, container, false);
@@ -82,7 +81,7 @@ public class HomeEncounterFragment extends Fragment {
        tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Barlow-Bold.ttf");
+            "fonts/Barlow-Bold.ttf");
         encounterListContent = (LinearLayout) view.findViewById(R.id.encounterListContent);
         whenIsuckedParent = (LinearLayout) view.findViewById(R.id.whenIsuckedParent);
         whenIbottomParent = (LinearLayout) view.findViewById(R.id.whenIbottomParent);
@@ -91,13 +90,13 @@ public class HomeEncounterFragment extends Fragment {
         Button addNewEncounter = (Button) view.findViewById(R.id.addNewEncounter);
         addNewEncounter.setTypeface(tf_bold);
         addNewEncounter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                TrackHelper.track().event("Navigation","Click").name("Add New Encounter").with(tracker);
-                Intent home = new Intent(getActivity(), EncounterStartActivity.class);
-                home.putExtra("fromNotification",false);
-                startActivityForResult(home, 100);
-            }
+        @Override
+        public void onClick(View arg0) {
+            TrackHelper.track().event("Navigation","Click").name("Add New Encounter").with(tracker);
+            Intent home = new Intent(getActivity(), EncounterStartActivity.class);
+            home.putExtra("fromNotification",false);
+            startActivityForResult(home, 100);
+        }
         });
         boolean isfromNotification = getActivity().getIntent().getBooleanExtra("fromNotification",false);
         if(isfromNotification){
@@ -124,8 +123,7 @@ public class HomeEncounterFragment extends Fragment {
             ((TextView) view.findViewById(R.id.contextualTipsTitle)).setTypeface(tf_bold);
             ((TextView) view.findViewById(R.id.contextualTipsDesc)).setTypeface(tf);
             ((LinearLayout) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.VISIBLE);
-        }
-        else {
+        } else {
             ((LinearLayout) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.GONE);
             Collections.sort(allEncounters, new Encounter.CompDate(true));
             for (Encounter encounter : allEncounters) {
@@ -164,35 +162,32 @@ public class HomeEncounterFragment extends Fragment {
                     v.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            //Highlight selected row
-                            for (int i = 0; i < encounterTable.getChildCount(); i++) {
-                                View row = encounterTable.getChildAt(i);
-                                if (row == view) {
-                                    LynxManager.selectedEncounterID = row.getId();
-                                    LynxManager.activePartnerSexType.clear();
+                        //Highlight selected row
+                        for (int i = 0; i < encounterTable.getChildCount(); i++) {
+                            View row = encounterTable.getChildAt(i);
+                            if (row == view) {
+                                LynxManager.selectedEncounterID = row.getId();
+                                LynxManager.activePartnerSexType.clear();
 
-                                    //Set Active Encounter
-                                    Encounter selectedEncounter = db.getEncounter(row.getId());
-                                    LynxManager.setActiveEncounter(selectedEncounter);
-                                    //set Active partner and Contact
-                                    LynxManager.setActivePartner(db.getPartnerbyID(selectedEncounter.getEncounter_partner_id()));
-                                    LynxManager.setActivePartnerContact(db.getPartnerContactbyPartnerID(selectedEncounter.getEncounter_partner_id()));
+                                //Set Active Encounter
+                                Encounter selectedEncounter = db.getEncounter(row.getId());
+                                LynxManager.setActiveEncounter(selectedEncounter);
+                                //set Active partner and Contact
+                                LynxManager.setActivePartner(db.getPartnerbyID(selectedEncounter.getEncounter_partner_id()));
+                                LynxManager.setActivePartnerContact(db.getPartnerContactbyPartnerID(selectedEncounter.getEncounter_partner_id()));
 
-                                    List<EncounterSexType> selectedSEXtypes = db.getAllEncounterSexTypes(row.getId());
+                                List<EncounterSexType> selectedSEXtypes = db.getAllEncounterSexTypes(row.getId());
 
-                                    for (EncounterSexType setSextype : selectedSEXtypes) {
-                                        EncounterSexType encounterSexType = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.decryptString(setSextype.getSex_type()), "","", "", String.valueOf(R.string.statusUpdateNo),false);
-                                        LynxManager.activePartnerSexType.add(encounterSexType);
-                                    }
-                                    setEncounterSummary(row.getId());
-                                } else {
-                                    //Change this to your normal background color.
-                                    row.setBackground(getResources().getDrawable(R.drawable.border_bottom));
+                                for (EncounterSexType setSextype : selectedSEXtypes) {
+                                    EncounterSexType encounterSexType = new EncounterSexType(0, LynxManager.getActiveUser().getUser_id(), LynxManager.decryptString(setSextype.getSex_type()), "","", "", String.valueOf(R.string.statusUpdateNo),false);
+                                    LynxManager.activePartnerSexType.add(encounterSexType);
                                 }
+                                setEncounterSummary(row.getId());
                             }
                         }
+                        }
                     });
-                    v.setBackground(getResources().getDrawable(R.drawable.border_bottom));
+
                     encounterTable.addView(v);
                 }
             }

@@ -167,7 +167,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         logout.setTypeface(tf);
         app_version = (TextView)findViewById(R.id.app_version);
         app_version.setTypeface(tf);
-        app_version.setText("(LYNX version " + getVersion()+")");
+        app_version.setText("(BlackBook version " + getVersion()+")");
         mainContentLayout = (RelativeLayout) findViewById(R.id.mainContentLayout);
         editLayout = (RelativeLayout) findViewById(R.id.editLayout);
 

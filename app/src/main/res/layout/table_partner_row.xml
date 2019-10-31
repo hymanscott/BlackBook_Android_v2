@@ -19,7 +19,7 @@
             android:layout_marginLeft="10dp"
             android:maxWidth="150dp"
             android:textColor="@color/white"
-            android:id="@+id/name"/>
+            android:id="@+id/partner_name"/>
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,8 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="5"
-            android:id="@+id/rating"
-            android:rating="5"
+            android:id="@+id/partner_rating"
+            android:rating="3"
             android:stepSize="0.5"
             android:layout_alignParentRight="true"
             android:minWidth="100dp"

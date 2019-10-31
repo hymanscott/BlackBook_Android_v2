@@ -11,8 +11,7 @@
         android:layout_height="fill_parent"
         android:id="@+id/encounterListContent"
         android:gravity="center_horizontal"
-        android:paddingTop="32dp"
-        android:visibility="gone">
+        android:paddingTop="32dp">
 
         <Button
             android:layout_width="match_parent"
@@ -27,8 +26,7 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:textStyle="bold"
-            android:gravity="center_horizontal|center_vertical"
-            android:visibility="visible"/>
+            android:gravity="center_horizontal|center_vertical" />
 
         <!-- INTRO -->
         <LinearLayout
@@ -37,7 +35,7 @@
             android:gravity="center_horizontal"
             android:layout_marginTop="48dp"
             android:id="@+id/contextualTipsLayout"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:orientation="vertical">
@@ -95,7 +93,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/encounterSummaryContent">
         <ScrollView
             android:layout_width="fill_parent"
@@ -282,6 +280,7 @@
 
                         </LinearLayout>
                     </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -292,7 +291,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/came_inside_partner_parent"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         android:orientation="vertical"
                         android:paddingTop="@dimen/activity_horizontal_margin">
                         <LinearLayout
@@ -327,7 +326,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/partner_came_in_me_parent"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         android:orientation="vertical"
                         android:paddingTop="@dimen/activity_horizontal_margin">
                         <LinearLayout
@@ -396,6 +395,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/took_doxy_parent"
+                        android:visibility="gone"
                         android:orientation="vertical"
                         android:paddingTop="@dimen/activity_horizontal_margin">
                         <LinearLayout
@@ -429,7 +429,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/whenIsuckedParent"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         android:orientation="vertical"
                         android:paddingTop="@dimen/activity_horizontal_margin">
                         <LinearLayout
@@ -462,7 +462,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/whenIbottomParent"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         android:orientation="vertical"
                         android:paddingTop="@dimen/activity_horizontal_margin">
                         <LinearLayout
@@ -496,7 +496,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/whenItoppedParent"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         android:orientation="vertical"
                         android:paddingTop="@dimen/activity_horizontal_margin">
                         <LinearLayout

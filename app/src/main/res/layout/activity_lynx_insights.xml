@@ -109,6 +109,7 @@
                             android:orientation="horizontal"
                             android:weightSum="1">
                             <TextView
+                                android:id="@+id/menPercentageText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.07"
@@ -153,6 +154,7 @@
                             android:orientation="horizontal"
                             android:weightSum="1">
                             <TextView
+                                android:id="@+id/transMenPercentageText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.07"
@@ -197,6 +199,7 @@
                             android:orientation="horizontal"
                             android:weightSum="1">
                             <TextView
+                                android:id="@+id/womenPercentageText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.07"
@@ -241,6 +244,7 @@
                             android:orientation="horizontal"
                             android:weightSum="1">
                             <TextView
+                                android:id="@+id/transWomenPercentageText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.07"
@@ -317,6 +321,7 @@
                             android:orientation="horizontal"
                             android:weightSum="1">
                             <TextView
+                                android:id="@+id/primaryPercentageText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.07"
@@ -361,6 +366,7 @@
                             android:orientation="horizontal"
                             android:weightSum="1">
                             <TextView
+                                android:id="@+id/friendsPercentageText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.07"
@@ -405,6 +411,7 @@
                             android:orientation="horizontal"
                             android:weightSum="1">
                             <TextView
+                                android:id="@+id/regularPercentageText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.07"
@@ -449,6 +456,7 @@
                             android:orientation="horizontal"
                             android:weightSum="1">
                             <TextView
+                                android:id="@+id/hookupPercentageText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.07"
@@ -493,6 +501,7 @@
                             android:orientation="horizontal"
                             android:weightSum="1">
                             <TextView
+                                android:id="@+id/NSAPercentageText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.07"
@@ -569,6 +578,7 @@
                             android:orientation="horizontal"
                             android:weightSum="1">
                             <TextView
+                                android:id="@+id/negativePercentageText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.07"
@@ -613,6 +623,7 @@
                             android:orientation="horizontal"
                             android:weightSum="1">
                             <TextView
+                                android:id="@+id/negPrepPercentageText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.07"
@@ -657,6 +668,7 @@
                             android:orientation="horizontal"
                             android:weightSum="1">
                             <TextView
+                                android:id="@+id/unsurePercentageText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.07"
@@ -701,6 +713,7 @@
                             android:orientation="horizontal"
                             android:weightSum="1">
                             <TextView
+                                android:id="@+id/positivePercentageText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.07"
@@ -745,6 +758,7 @@
                             android:orientation="horizontal"
                             android:weightSum="1">
                             <TextView
+                                android:id="@+id/undectablePercentageText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.07"

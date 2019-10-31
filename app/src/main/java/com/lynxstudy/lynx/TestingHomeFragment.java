@@ -102,7 +102,8 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
 
     }
     Typeface tf_bold_italic,tf,tf_bold;
-    LinearLayout mainContentLayout,summaryLayout,newTestLayout;
+    RelativeLayout summaryLayout, newTestLayout;
+    LinearLayout mainContentLayout;
     ImageView hivIcon,gonorrheaIcon,syphilisIcon,chlamydiaIcon;
     TextView teststatus,gonorrheaTitle,syphilisTitle,chlamydiaTitle;
     private boolean isSummaryShown = false;
@@ -195,8 +196,8 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         }
 
         mainContentLayout = (LinearLayout)view.findViewById(R.id.mainContentLayout);
-        summaryLayout = (LinearLayout)view.findViewById(R.id.summaryLayout);
-        newTestLayout = (LinearLayout)view.findViewById(R.id.newTestLayout);
+        summaryLayout = (RelativeLayout)view.findViewById(R.id.summaryLayout);
+        newTestLayout = (RelativeLayout) view.findViewById(R.id.newTestLayout);
 
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
@@ -310,13 +311,10 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     //want to get childs of row for example TextView, get it like this:
                     TextView date = (TextView) v.findViewById(R.id.date);
                     date.setTypeface(tf);
-                    date.setTextColor(getResources().getColor(R.color.text_color));
                     TextView testname = (TextView) v.findViewById(R.id.testname);
                     testname.setTypeface(tf);
-                    testname.setTextColor(getResources().getColor(R.color.text_color));
                     TextView teststatus = (TextView) v.findViewById(R.id.teststatus);
                     teststatus.setTypeface(tf);
-                    teststatus.setTextColor(getResources().getColor(R.color.text_color));
                     ImageView testimage = (ImageView)v.findViewById(R.id.imageView);
                     date.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
                     testname.setText(name.getTestName());
@@ -378,13 +376,10 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             //want to get childs of row for example TextView, get it like this:
                             TextView date = (TextView) v.findViewById(R.id.date);
                             date.setTypeface(tf);
-                            date.setTextColor(getResources().getColor(R.color.text_color));
                             TextView testname = (TextView) v.findViewById(R.id.testname);
                             testname.setTypeface(tf);
-                            testname.setTextColor(getResources().getColor(R.color.text_color));
                             TextView teststatus = (TextView) v.findViewById(R.id.teststatus);
                             teststatus.setTypeface(tf);
-                            teststatus.setTextColor(getResources().getColor(R.color.text_color));
                             ImageView testimage = (ImageView) v.findViewById(R.id.imageView);
                             date.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
                             STIMaster stiName = db.getSTIbyID(historyInfo.getSti_id());
@@ -854,7 +849,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         TestingHistory testingHistory = db.getTestingHistorybyID(testingHistoryID);
         String test_name = (db.getTestingNamebyID(testingHistory.getTesting_id())).getTestName();
         testingHistoryTitle.setText(test_name);
-        testingHistoryTitle.setTextColor(getResources().getColor(R.color.colorPrimary));
+
         String test_date = LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(testingHistory.getTesting_date()),"MM/dd/yyyy");
         testingHistorydate.setText(test_date);
         if(test_name.equals("HIV Test")){
