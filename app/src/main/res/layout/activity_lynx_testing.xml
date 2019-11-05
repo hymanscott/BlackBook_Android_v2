@@ -61,7 +61,8 @@
             app:tabIndicatorColor="@color/colorAccent"
             app:tabTextColor="#DEDEDE"
             app:tabSelectedTextColor="@color/white"
-            app:tabTextAppearance="@style/MineCustomTabText" />
+            app:tabTextAppearance="@style/MineCustomTabText"
+            android:visibility="gone"/>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager

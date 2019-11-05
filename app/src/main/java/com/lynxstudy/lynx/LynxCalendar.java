@@ -52,6 +52,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -137,10 +138,8 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
         if (savedInstanceState != null) {
             caldroidFragment.restoreStatesFromKey(savedInstanceState,
                     "CALDROID_SAVED_STATE");
-        }
-
-        // If activity is created from fresh
-        else {
+        } else {
+            // If activity is created from fresh
             Bundle args = new Bundle();
             Calendar cal = Calendar.getInstance();
             args.putInt(CaldroidFragment.MONTH, cal.get(Calendar.MONTH) + 1);
@@ -149,9 +148,9 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
             args.putBoolean(CaldroidFragment.SIX_WEEKS_IN_CALENDAR, false);
             args.putBoolean(CaldroidFragment.ENABLE_CLICK_ON_DISABLED_DATES, false);
             args.putInt(CaldroidFragment.THEME_RESOURCE, com.caldroid.R.style.CaldroidDefaultDark);
+
             // Uncomment this to customize startDayOfWeek
-            args.putInt(CaldroidFragment.START_DAY_OF_WEEK,
-                    CaldroidFragment.SUNDAY);
+            args.putInt(CaldroidFragment.START_DAY_OF_WEEK, CaldroidFragment.SUNDAY);
 
             // Uncomment this line to use Caldroid in compact mode
              //args.putBoolean(CaldroidFragment.SQUARE_TEXT_VIEW_CELL, false);
@@ -179,15 +178,15 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
                 String date1 = (String) DateFormat.format("yyyy-MM-dd",  date);
                 addEventsToList(date1);
                 if(previousSelectedDate!=null && previousSelectedDate!=date){ // Reset the Previous selection
-                    ColorDrawable white = new ColorDrawable(getResources().getColor(R.color.white));
-                    caldroidFragment.setBackgroundDrawableForDate(white, previousSelectedDate);
+                    ColorDrawable backgroundPrimary = new ColorDrawable(getResources().getColor(R.color.backgroundPrimary));
+                    caldroidFragment.setBackgroundDrawableForDate(backgroundPrimary, previousSelectedDate);
                     Calendar cal1 = Calendar.getInstance();
                     Calendar cal2 = Calendar.getInstance();
                     cal1.setTime(previousSelectedDate);
                     cal2.setTime(new Date());
                     if(cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)) {
                         // the date falls in current month
-                        caldroidFragment.setTextColorForDate(R.color.text_color, previousSelectedDate);
+                        caldroidFragment.setTextColorForDate(R.color.white, previousSelectedDate);
                     }else{
                         caldroidFragment.setTextColorForDate(R.color.gray, previousSelectedDate);
                     }
@@ -195,13 +194,14 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
                 if (caldroidFragment != null) { // set selection
                     setCurrentDateResource(false);
                     setEventIndicator();
-                    ColorDrawable blue = new ColorDrawable(getResources().getColor(R.color.chart_blue));
+
                     Drawable img = getResources().getDrawable(R.drawable.calendar_selected);
                     caldroidFragment.setBackgroundDrawableForDate(img, date);
                     caldroidFragment.setTextColorForDate(R.color.white, date);
                     selectedDateTitle.setText(dayOfTheWeek + " " + monthString + " " + day);
                 }
                 caldroidFragment.refreshView();
+
                 previousSelectedDate = date;
             }
 
@@ -246,8 +246,8 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
         Date greenDate = cal.getTime();
 
         if (caldroidFragment != null) {
-            ColorDrawable white = new ColorDrawable(getResources().getColor(R.color.white));
-            caldroidFragment.setBackgroundDrawableForDate(white, curDate);
+            ColorDrawable backgroundPrimary = new ColorDrawable(getResources().getColor(R.color.backgroundPrimary));
+            caldroidFragment.setBackgroundDrawableForDate(backgroundPrimary, curDate);
             caldroidFragment.setTextColorForDate(R.color.chart_blue, curDate);
             selectedDateTitle.setText(dayOfTheWeek + " "+ monthString + " " + day);
 
@@ -267,8 +267,8 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
 
         String date = (String) DateFormat.format("yyyy-MM-dd",  curDate);
         if (caldroidFragment != null) {
-            ColorDrawable white = new ColorDrawable(getResources().getColor(R.color.white));
-            caldroidFragment.setBackgroundDrawableForDate(white, curDate);
+            ColorDrawable backgroundPrimary = new ColorDrawable(getResources().getColor(R.color.backgroundPrimary));
+            caldroidFragment.setBackgroundDrawableForDate(backgroundPrimary, curDate);
             caldroidFragment.setTextColorForDate(R.color.chart_blue, curDate);
             selectedDateTitle.setText(dayOfTheWeek + " "+ monthString + " " + day);
             if(isOnCreate){
@@ -278,43 +278,59 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
     }
 
     private void addEventsToList(String date){
-        String encdate = date + " 00:00:00";
-        List<Encounter> encountersList = db.getAllEncounters();
+        List<Encounter>
+            encountersList = new ArrayList<Encounter>(),
+            allEncounters = db.getAllEncounters();
         List<TestingHistory> testingHistoryList = db.getAllTestingHistoriesByDate(date);
+
+        // Filtering encounter list
+        for(final Encounter encounter: allEncounters){
+            Partners partner = db.getPartnerbyID(encounter.getEncounter_partner_id());
+            String dtStart = LynxManager.decryptString(encounter.getDatetime());
+            String curDate[] = dtStart.split(" ");
+
+            if(partner.getIs_active() == 1 && curDate[0].equals(date)) {
+                encountersList.add(encounter);
+            }
+        }
+
+        // Filling the view
         TextView no_activity_logged = (TextView)findViewById(R.id.no_activity_logged);
         eventsList.removeAllViews();
-        if(encountersList.size()!=0 || testingHistoryList.size()!=0){
+
+        System.out.println(encountersList.size());
+        System.out.println(testingHistoryList.size());
+
+        if(encountersList.size() != 0 || testingHistoryList.size() != 0){
             no_activity_logged.setVisibility(View.GONE);
             for(final Encounter encounter: encountersList){
                 Partners partner = db.getPartnerbyID(encounter.getEncounter_partner_id());
-                if (partner.getIs_active() == 1) {
-                    String dtStart = LynxManager.decryptString(encounter.getDatetime());
-                    String curdate[] = dtStart.split(" ");
-                    if (curdate[0].equals(date)) {
-                        //Log.v("EncounterEvent", LynxManager.decryptString(encounter.getDatetime()) + "-" + LynxManager.decryptString(encounter.getRate_the_sex()));
-                        TableRow encounterRow = new TableRow(LynxCalendar.this);
-                        View v = LayoutInflater.from(LynxCalendar.this).inflate(R.layout.calendar_event_row, encounterRow, false);
-                        TextView name = (TextView) v.findViewById(R.id.name);
-                        name.setTypeface(tf);
-                        ImageView rate_image = (ImageView) v.findViewById(R.id.rate_image);
-                        name.setText(LynxManager.decryptString(partner.getNickname()));
-                        name.setTypeface(tf);
-                        rate_image.setImageDrawable(getResources().getDrawable(R.drawable.calendardiaryblue));
-                        v.setId(encounter.getEncounter_id());
-                        v.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                setEncounterSummary(encounter.getEncounter_id());
-                            }
-                        });
-                        eventsList.addView(v);
+                String dtStart = LynxManager.decryptString(encounter.getDatetime());
+
+                //Log.v("EncounterEvent", LynxManager.decryptString(encounter.getDatetime()) + "-" + LynxManager.decryptString(encounter.getRate_the_sex()));
+                TableRow encounterRow = new TableRow(LynxCalendar.this);
+                View v = LayoutInflater.from(LynxCalendar.this).inflate(R.layout.activity_lynx_calendar_item, encounterRow, false);
+                TextView name = (TextView) v.findViewById(R.id.name);
+                name.setTypeface(tf);
+                ImageView rate_image = (ImageView) v.findViewById(R.id.rate_image);
+                name.setText(LynxManager.decryptString(partner.getNickname()));
+                name.setTypeface(tf);
+                rate_image.setImageDrawable(getResources().getDrawable(R.drawable.calendardiaryblue));
+                v.setId(encounter.getEncounter_id());
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                    setEncounterSummary(encounter.getEncounter_id());
                     }
-                }
+                });
+
+                eventsList.addView(v);
             }
+
             for(final TestingHistory testingHistory:testingHistoryList){
                 TestNameMaster testname =  db.getTestingNamebyID(testingHistory.getTesting_id());
                 TableRow encounterRow = new TableRow(LynxCalendar.this);
-                View v = LayoutInflater.from(LynxCalendar.this).inflate(R.layout.calendar_event_row, encounterRow, false);
+                View v = LayoutInflater.from(LynxCalendar.this).inflate(R.layout.activity_lynx_calendar_item, encounterRow, false);
                 TextView name = (TextView)v.findViewById(R.id.name);
                 name.setTypeface(tf);
                 ImageView rate_image = (ImageView)v.findViewById(R.id.rate_image);
@@ -330,7 +346,7 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
                 });
                 eventsList.addView(v);
             }
-        }else{
+        } else {
             no_activity_logged.setVisibility(View.VISIBLE);
         }
     }
@@ -654,7 +670,6 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
         TestingHistory testingHistory = db.getTestingHistorybyID(id);
         String test_name = (db.getTestingNamebyID(testingHistory.getTesting_id())).getTestName();
         testingHistoryTitle.setText(test_name);
-        testingHistoryTitle.setTextColor(getResources().getColor(R.color.colorPrimary));
         String test_date = LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(testingHistory.getTesting_date()),"MM/dd/yyyy");
         testingHistorydate.setText(test_date);
         if(test_name.equals("HIV Test")){

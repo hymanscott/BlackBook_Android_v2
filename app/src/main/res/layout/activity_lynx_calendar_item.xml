@@ -10,13 +10,13 @@
         android:paddingTop="12dp"
         android:paddingBottom="12dp">
         <ImageView
-            android:id="@+id/ivContactImage"
+            android:id="@+id/rate_image"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="18dp"
             android:src="@drawable/nav_icon_diary"
-            android:tint="@color/colorAccent"/>
+            android:tint="@color/chart_blue"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -24,7 +24,7 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:id="@+id/tvContactName"
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -39,6 +39,6 @@
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/white"/>
+        android:background="@android:color/darker_gray"/>
 
 </RelativeLayout>

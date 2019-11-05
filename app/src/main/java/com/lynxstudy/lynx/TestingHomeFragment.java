@@ -95,12 +95,12 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
     public TestingHomeFragment() {
         // Required empty public constructor
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
+
     Typeface tf_bold_italic,tf,tf_bold;
     RelativeLayout summaryLayout, newTestLayout;
     LinearLayout mainContentLayout;
@@ -108,8 +108,10 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
     TextView teststatus,gonorrheaTitle,syphilisTitle,chlamydiaTitle;
     private boolean isSummaryShown = false;
     String title="";
+    /*
     ImageView newhivAttachment,newgonorrheaAttachment,newsyphilisAttachment,newchlamydiaAttachment;
     FrameLayout newhivTestImage,newgonorrheaImage,newsyphilisImage,newchlamydiaImage;
+    */
     int currentAttachmentId=0;
     String hivImageName="",gonorrheaImageName="",syphilisImageName="",chlamydiaImageName="";
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -315,7 +317,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     testname.setTypeface(tf);
                     TextView teststatus = (TextView) v.findViewById(R.id.teststatus);
                     teststatus.setTypeface(tf);
-                    ImageView testimage = (ImageView)v.findViewById(R.id.imageView);
+                    // ImageView testimage = (ImageView)v.findViewById(R.id.imageView);
                     date.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
                     testname.setText(name.getTestName());
                     List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(history.getTesting_history_id());
@@ -328,6 +330,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             }else {
                                 teststatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
                             }
+                            /*
                             String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
                             if(!historyInfoAttachment.equals("")){
                                 String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
@@ -348,7 +351,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                                 }
 
                             }
-
+                            */
                         }
                     }
                     v.setId(history.getTesting_history_id());
@@ -380,7 +383,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             testname.setTypeface(tf);
                             TextView teststatus = (TextView) v.findViewById(R.id.teststatus);
                             teststatus.setTypeface(tf);
-                            ImageView testimage = (ImageView) v.findViewById(R.id.imageView);
+                            // ImageView testimage = (ImageView) v.findViewById(R.id.imageView);
                             date.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
                             STIMaster stiName = db.getSTIbyID(historyInfo.getSti_id());
                             testname.setText(stiName.getstiName());
@@ -392,8 +395,10 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             } else {
                                 teststatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
                             }
-                            String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
+                            // String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
                             //Log.v("historyInfoAttachment", historyInfoAttachment);
+
+                            /*
                             if (!historyInfoAttachment.equals("") && !historyInfoAttachment.equals("false")) {
                                 String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
                                 File mediaFile = new File(imgDir + historyInfoAttachment);
@@ -412,6 +417,8 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                                 }
 
                             }
+                            */
+
                             v.setId(history.getTesting_history_id());
                             v.setClickable(true);
                             v.setFocusable(true);
@@ -720,6 +727,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
             }
         });
 
+        /*
         // Attachment //
         newhivTestImage = (FrameLayout) view.findViewById(R.id.newhivTestImage);
         newhivTestImage.setOnClickListener(this);
@@ -738,6 +746,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         newsyphilisAttachment.setTag(0);
         newchlamydiaAttachment = (ImageView) view.findViewById(R.id.newchlamydiaAttachment);
         newchlamydiaAttachment.setTag(0);
+        * */
     }
     /*
         * This is the method responsible for image upload
@@ -831,6 +840,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         syphilisStatus.setTypeface(tf);
         TextView chlamydiaStatus = (TextView) view.findViewById(R.id.chlamydiaStatus);
         chlamydiaStatus.setTypeface(tf);
+        /*
         ImageView hivAttachment = (ImageView)view.findViewById(R.id.hivAttachment);
         hivAttachment.setScaleType(ImageView.ScaleType.CENTER_CROP);
         ImageView gonorrheaAttachment = (ImageView)view.findViewById(R.id.gonorrheaAttachment);
@@ -839,6 +849,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         syphilisAttachment.setScaleType(ImageView.ScaleType.CENTER_CROP);
         ImageView chlamydiaAttachment = (ImageView)view.findViewById(R.id.chlamydiaAttachment);
         chlamydiaAttachment.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        */
         LinearLayout hivLayout = (LinearLayout)view.findViewById(R.id.hivLayout);
         LinearLayout std_list_parentLayout = (LinearLayout)view.findViewById(R.id.std_list_parentLayout);
         hivIcon = (ImageView)view.findViewById(R.id.hivIcon);
@@ -867,6 +878,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     hivTestStatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
                     hivIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
                 }
+                /*
                 String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
                 if(!historyInfoAttachment.equals("")){
                     final String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
@@ -893,6 +905,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     //hivAttachment.setVisibility(View.GONE);
                     hivAttachment.setImageResource(R.drawable.photocamera);
                 }
+                * */
             }
 
         }else {
@@ -913,7 +926,10 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             gonorrheaStatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
                             gonorrheaIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
                         }
+
+                        /*
                         String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
+
                         if (!historyInfoAttachment.equals("")) {
                             final String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
                             final File mediaFile = new File(imgDir + historyInfoAttachment);
@@ -938,6 +954,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             //gonorrheaAttachment.setVisibility(View.GONE);
                             gonorrheaAttachment.setImageResource(R.drawable.photocamera);
                         }
+                        * */
 
                     } else if (stiName.getstiName().equals("Syphilis")) {
                         if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
@@ -950,6 +967,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             syphilisStatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
                             syphilisIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
                         }
+                        /*
                         String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
                         if (!historyInfoAttachment.equals("")) {
                             final String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
@@ -974,6 +992,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             // syphilisAttachment.setVisibility(View.GONE);
                             syphilisAttachment.setImageResource(R.drawable.photocamera);
                         }
+                        * */
                     } else if (stiName.getstiName().equals("Chlamydia")) {
                         if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
                             chlamydiaStatus.setText("Positive");
@@ -985,6 +1004,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             chlamydiaStatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
                             chlamydiaIcon.setImageDrawable(getResources().getDrawable(R.drawable.didnt_test));
                         }
+                        /*
                         String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
                         if (!historyInfoAttachment.equals("")) {
                             final String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
@@ -1009,6 +1029,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             //chlamydiaAttachment.setVisibility(View.GONE);
                             chlamydiaAttachment.setImageResource(R.drawable.photocamera);
                         }
+                        * */
                     }
                 }
             }
@@ -1057,6 +1078,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            /*
             case R.id.newhivTestImage:
                 currentAttachmentId = R.id.newhivAttachment;
                 startImageInent(newhivAttachment);
@@ -1073,8 +1095,10 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                 currentAttachmentId = R.id.newchlamydiaAttachment;
                 startImageInent(newchlamydiaAttachment);
                 break;
+            * */
         }
     }
+    /*
     public void startImageInent(final ImageView attachment){
         int tag = (int) attachment.getTag();
         if (tag == 0) {
@@ -1172,10 +1196,11 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
             builder.show();
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         super.onActivityResult(requestCode, resultCode, data);
+
         ImageView attachment = (ImageView)view.findViewById(R.id.newhivAttachment);
         String imagepath="";
         switch (currentAttachmentId){
@@ -1345,12 +1370,12 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         }
         //Log.v("ImageName",imagepath);
     }
+
     private Uri getTempUri() {
         return Uri.fromFile(getTempFile());
     }
+
     private File getTempFile() {
-
-
         String fileName = LynxManager.getActiveUser().getUser_id()+"_" + LynxManager.getTimeStamp() +".jpg";
         // Check that the SDCard is mounted
 
@@ -1369,6 +1394,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         LynxManager.getInstance().setLastImageName(outputFile + fileName);
         return mediaFile;
     }
+
     public String getRealPathFromURI(Uri contentUri) {
 
         String[] proj = {MediaStore.MediaColumns.DATA};
@@ -1385,8 +1411,9 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         return cursor.getString(column_index);
 
     }
-    public class DownloadImagesTask extends AsyncTask<ImageView, Void, Bitmap> {
+    * */
 
+    public class DownloadImagesTask extends AsyncTask<ImageView, Void, Bitmap> {
         ImageView imageView = null;
         String url="";
         DownloadImagesTask(String url) {

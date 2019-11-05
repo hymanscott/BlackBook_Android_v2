@@ -162,10 +162,12 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.getTabAt(0).setCustomView(tab1);
+        /* Uncomment to able tab options
         tabLayout.getTabAt(1).setCustomView(tab2);
         tabLayout.getTabAt(2).setCustomView(tab3);
         tabLayout.getTabAt(3).setCustomView(tab4);
         tabLayout.getTabAt(4).setCustomView(tab5);
+        */
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -333,6 +335,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
                 case 0:
                     LynxManager.isTestingTabActive = true;
                     return new TestingHomeFragment();
+                /* Uncomment to able tab options
                 case 1:
                     LynxManager.isTestingTabActive = true;
                     return new TestingTestKitFragment();
@@ -345,6 +348,8 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
                 case 4:
                     LynxManager.isTestingTabActive = false;
                     return new TestingCareFragment();
+
+                 */
                 default:
                     return null;
             }
@@ -353,7 +358,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         @Override
         public int getCount() {
             // Show 5 total pages.
-            return 5;
+            return 1;
         }
 
         @Override
@@ -361,6 +366,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
             switch (position) {
                 case 0:
                     return "HISTORY";
+                /* Uncomment to able tab options
                 case 1:
                     return "TEST KIT";
                 case 2:
@@ -369,6 +375,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
                     return "INSTRUCTIONS";
                 case 4:
                     return "CARE";
+                */
             }
             return null;
         }

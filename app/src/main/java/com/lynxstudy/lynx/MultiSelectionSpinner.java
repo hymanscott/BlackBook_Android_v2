@@ -3,6 +3,7 @@ package com.lynxstudy.lynx;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v7.widget.AppCompatSpinner;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -18,7 +19,7 @@ import java.util.List;
  * Created by Hari on 2017-04-13.
  */
 
-public class MultiSelectionSpinner extends Spinner implements
+public class MultiSelectionSpinner extends AppCompatSpinner implements
         DialogInterface.OnMultiChoiceClickListener {
     String[] _items = null;
     boolean[] mSelection = null;

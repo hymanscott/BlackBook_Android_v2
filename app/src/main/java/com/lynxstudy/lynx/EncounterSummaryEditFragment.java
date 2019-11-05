@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -667,7 +668,7 @@ public class EncounterSummaryEditFragment extends Fragment {
 
         // Drunk Layout //
         final List<String> i_was= Arrays.asList(getResources().getStringArray(R.array.drunk_list));
-        LinearLayout drunkParent= (LinearLayout)rootview.findViewById(R.id.drunkParent);
+        RelativeLayout drunkParent= (RelativeLayout)rootview.findViewById(R.id.drunkParent);
         final ArrayAdapter<String> adapterDrunk = new ArrayAdapter<String>(getActivity(),
                 R.layout.spinner_row_white, R.id.txtView, i_was);
         drunk.setOnClickListener(new View.OnClickListener() {

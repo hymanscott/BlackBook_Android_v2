@@ -189,6 +189,7 @@
                         android:layout_gravity="center"
                         android:id="@+id/hivTestStatus"
                         android:text="Test result not reported" />
+                    <!--
                     <FrameLayout
                         android:layout_width="120dp"
                         android:layout_height="120dp"
@@ -205,6 +206,7 @@
                             android:layout_gravity="center"
                             android:scaleType="centerCrop" />
                     </FrameLayout>
+                    -->
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -227,6 +229,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/gonorrheaLayout"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="@dimen/activity_horizontal_margin"
                         android:orientation="horizontal">
                         <ImageView
                             android:layout_width="wrap_content"
@@ -247,6 +250,7 @@
                             android:layout_gravity="center"
                             android:id="@+id/gonorrheaStatus"
                             android:text="Test result not reported" />
+                        <!--
                         <FrameLayout
                             android:layout_width="120dp"
                             android:layout_height="120dp"
@@ -263,6 +267,7 @@
                                 android:layout_gravity="center"
                                 android:scaleType="centerCrop" />
                         </FrameLayout>
+                        -->
                     </LinearLayout>
 
                     <View
@@ -289,6 +294,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/syphilisLayout"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="@dimen/activity_horizontal_margin"
                         android:orientation="horizontal">
                         <ImageView
                             android:layout_width="wrap_content"
@@ -309,6 +315,7 @@
                             android:layout_gravity="center"
                             android:id="@+id/syphilisStatus"
                             android:text="Test result not reported" />
+                        <!--
                         <FrameLayout
                             android:layout_width="120dp"
                             android:layout_height="120dp"
@@ -325,6 +332,7 @@
                                 android:layout_gravity="center"
                                 android:scaleType="centerCrop" />
                         </FrameLayout>
+                        -->
                     </LinearLayout>
 
                     <View
@@ -352,6 +360,7 @@
                         android:id="@+id/chlamydiaLayout"
                         android:layout_marginBottom="40dp"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="@dimen/activity_horizontal_margin"
                         android:orientation="horizontal">
                         <ImageView
                             android:layout_width="wrap_content"
@@ -372,6 +381,7 @@
                             android:layout_gravity="center"
                             android:id="@+id/chlamydiaStatus"
                             android:text="Test result not reported" />
+                        <!--
                         <FrameLayout
                             android:layout_width="120dp"
                             android:layout_height="120dp"
@@ -388,6 +398,7 @@
                                 android:layout_gravity="center"
                                 android:scaleType="centerCrop" />
                         </FrameLayout>
+                        -->
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -406,6 +417,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/activity_horizontal_margin"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
@@ -525,6 +537,7 @@
                             android:layout_marginTop="12dp"
                             android:id="@+id/hivTestDidntTest" />
                     </RadioGroup>
+                    <!--
                     <FrameLayout
                         android:layout_width="120dp"
                         android:layout_height="120dp"
@@ -541,6 +554,7 @@
                             android:layout_gravity="center"
                             android:scaleType="centerCrop" />
                     </FrameLayout>
+                    -->
                 </RelativeLayout>
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -615,6 +629,7 @@
                                 android:textColor="@color/white"
                                 android:id="@+id/gonorrheaDidntTest" />
                         </RadioGroup>
+                        <!--
                         <FrameLayout
                             android:layout_width="120dp"
                             android:layout_height="120dp"
@@ -629,6 +644,7 @@
                                 android:layout_gravity="center"
                                 android:scaleType="fitXY" />
                         </FrameLayout>
+                        -->
                     </RelativeLayout>
 
                     <LinearLayout
@@ -689,6 +705,7 @@
                                 android:textColor="@color/white"
                                 android:id="@+id/syphilisDidntTest" />
                         </RadioGroup>
+                        <!--
                         <FrameLayout
                             android:layout_width="120dp"
                             android:layout_height="120dp"
@@ -703,6 +720,7 @@
                                 android:layout_gravity="center"
                                 android:scaleType="fitXY" />
                         </FrameLayout>
+                        -->
                     </RelativeLayout>
 
                     <LinearLayout
@@ -764,6 +782,7 @@
                                 android:textColor="@color/white"
                                 android:id="@+id/chlamydiaDidntTest" />
                         </RadioGroup>
+                        <!--
                         <FrameLayout
                             android:layout_width="120dp"
                             android:layout_height="120dp"
@@ -778,6 +797,7 @@
                                 android:layout_gravity="center"
                                 android:scaleType="fitXY" />
                         </FrameLayout>
+                        -->
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>

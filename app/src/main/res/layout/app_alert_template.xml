@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_alert_background">
+    android:background="@color/backgroundPrimary">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,7 +17,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:lineSpacingMultiplier="1.33"
-                android:textColor="@color/alert_box_text"
+                android:textColor="@color/white"
                 android:paddingTop="18dp"
                 android:paddingRight="26dp"
                 android:paddingLeft="26dp"
@@ -25,8 +25,8 @@
                 android:id="@+id/message"/>
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/alert_box_border"/>
+                android:layout_height="1px"
+                android:background="@android:color/darker_gray"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,21 +39,21 @@
                     android:id="@+id/prepInfo"
                     android:text="PrEP Info"
                     android:textSize="16sp"
-                    android:textColor="@color/alert_box_btn"
+                    android:textColor="@color/white"
                     android:padding="12dp"
                     android:gravity="center_horizontal"
                     android:layout_weight="0.5"/>
                 <View
-                    android:layout_width="1dp"
+                    android:layout_width="1px"
                     android:layout_height="match_parent"
                     android:id="@+id/verticalBorder"
-                    android:background="@color/alert_box_border"/>
+                    android:background="@android:color/darker_gray"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Maybe later"
                     android:textSize="16sp"
-                    android:textColor="@color/alert_box_btn"
+                    android:textColor="@color/white"
                     android:padding="12dp"
                     android:id="@+id/maybeLater"
                     android:gravity="center_horizontal"
