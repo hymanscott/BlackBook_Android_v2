@@ -28,7 +28,7 @@ public class lynxApplication extends MultiDexApplication {
             }else{
                 tracker = Piwik.getInstance(this).newTracker(new TrackerConfig("https://analytics.chipware.in/piwik.php", 2,"LYNX"));
             }*/
-            tracker = Piwik.getInstance(this).newTracker(new TrackerConfig("https://analytics.chipware.in/piwik.php", 2,"LYNX"));
+            tracker = Piwik.getInstance(this).newTracker(new TrackerConfig("https://analytics.chipware.inmmm/piwik.php", 2,"LYNX"));
         }
         return tracker;
     }

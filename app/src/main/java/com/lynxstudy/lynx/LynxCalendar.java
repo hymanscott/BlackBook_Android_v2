@@ -104,7 +104,7 @@ public class LynxCalendar extends AppCompatActivity implements View.OnClickListe
         ((TextView)findViewById(R.id.bot_nav_testing_tv)).setTypeface(tf);
         ((TextView)findViewById(R.id.bot_nav_prep_tv)).setTypeface(tf);
         ((TextView)findViewById(R.id.bot_nav_chat_tv)).setTypeface(tf);
-        btn_testing = (LinearLayout)findViewById(R.id.bot_nav_testing);
+        btn_testing = (LinearLayout) findViewById(R.id.bot_nav_testing);
         btn_diary = (LinearLayout) findViewById(R.id.bot_nav_diary);
         btn_prep = (LinearLayout) findViewById(R.id.bot_nav_prep);
         btn_chat = (LinearLayout) findViewById(R.id.bot_nav_chat);

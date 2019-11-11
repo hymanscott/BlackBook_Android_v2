@@ -119,13 +119,14 @@ public class HomeEncounterFragment extends Fragment {
         String hashcode = LynxManager.stringToHashcode(json);
 
         List<Encounter> allEncounters = db.getAllEncounters();
+
         if(allEncounters.isEmpty()){
             ((TextView) view.findViewById(R.id.contextualTipsTitle)).setTypeface(tf_bold);
             ((TextView) view.findViewById(R.id.contextualTipsDesc)).setTypeface(tf);
             ((LinearLayout) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.VISIBLE);
         } else {
             ((LinearLayout) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.GONE);
-            Collections.sort(allEncounters, new Encounter.CompDate(true));
+            // Collections.sort(allEncounters, new Encounter.CompDate(true));
             for (Encounter encounter : allEncounters) {
                 int enc_partner_id = encounter.getEncounter_partner_id();
                 Partners partner = db.getPartnerbyID(enc_partner_id);

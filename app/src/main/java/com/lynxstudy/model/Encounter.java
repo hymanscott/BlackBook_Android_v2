@@ -168,10 +168,10 @@ public class Encounter {
         }
         @Override
         public int compare(Encounter arg0, Encounter arg1) {
-            DateFormat formatter ;
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date0 = null;
             Date date1 = null;
-            formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
             try {
                 date0 = (Date)formatter.parse(LynxManager.decryptString(arg0.datetime));
                 date1 = (Date)formatter.parse(LynxManager.decryptString(arg1.datetime));
