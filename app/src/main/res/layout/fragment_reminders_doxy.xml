@@ -86,7 +86,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginTop="@dimen/button_top_margin"
                     android:background="@color/btn_primary"
-                    android:onClick="showTestingReminders"
+                    android:onClick="doxyQuestionSave"
                     android:text="SAVE"
                     android:textColor="@color/white"
                     android:textSize="@dimen/button_textsize"

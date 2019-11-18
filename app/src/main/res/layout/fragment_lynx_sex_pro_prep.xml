@@ -219,7 +219,7 @@
                     android:layout_marginRight="50dp"
                     android:layout_marginBottom="48dp"
                     android:id="@+id/notesParaTwo"
-                    android:text="If you were not on PrEP, your Sex Pro score would be lower and you would be less protected."/>
+                    android:text="If you were not on PrEP, your BlackBook score would be lower and you would be less protected."/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

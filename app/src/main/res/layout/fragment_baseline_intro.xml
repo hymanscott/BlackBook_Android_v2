@@ -66,7 +66,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="32dp"
                         android:gravity="center"
-                        android:text="Here’s the deal: You answer a few questions about your behavior over the last 3 months.  Then, the app gives you a score based on those answers. Sex Pro scores range from 1 to 20.  The higher the score, the more you are doing to protect yourself."
+                        android:text="Here’s the deal: You answer a few questions about your behavior over the last 3 months.  Then, the app gives you a score based on those answers. BlackBook scores range from 1 to 20.  The higher the score, the more you are doing to protect yourself."
                         android:textColor="@color/white"
                         android:lineSpacingMultiplier="1.43"
                         android:textSize="16sp" />

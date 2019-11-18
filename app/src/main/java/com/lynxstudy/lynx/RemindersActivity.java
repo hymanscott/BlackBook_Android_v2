@@ -15,11 +15,15 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lynxstudy.helper.DatabaseHelper;
+import com.lynxstudy.model.BadgesMaster;
 import com.lynxstudy.model.TestingReminder;
+import com.lynxstudy.model.UserBadges;
+import com.lynxstudy.model.Users;
 
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
@@ -45,6 +49,7 @@ public class RemindersActivity extends AppCompatActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
 		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
@@ -100,9 +105,10 @@ public class RemindersActivity extends AppCompatActivity {
 
     }
 
-    public boolean showTestingReminders(View view){
-        RemindersTesting remindersTesting = new RemindersTesting();
-        pushFragments("Home", remindersTesting, true);
+    public boolean showDiaryReminders(View view){
+        RemindersDiary remindersDiary = new RemindersDiary();
+        pushFragments("Home", remindersDiary, true);
+
         return true;
     }
 
@@ -162,14 +168,80 @@ public class RemindersActivity extends AppCompatActivity {
             else {
                 db.createTestingReminder(testingReminder1);
             }
-            RemindersLogged remindersLogged = new RemindersLogged();
-            pushFragments("Home", remindersLogged, true);
+
+            RemindersDoxy remindersDoxy = new RemindersDoxy();
+            pushFragments("Home", remindersDoxy, true);
         }
+
+        return true;
+    }
+
+    public boolean doxyQuestionSave(View v) {
+        RadioButton rbt_confirm = (RadioButton) findViewById(R.id.rbt_confirm);
+        // RadioButton rbt_decline = (RadioButton) findViewById(R.id.rbt_confirm);
+
+        String isPrep = "No";
+
+        if(rbt_confirm.isChecked() == true) {
+            isPrep = "Yes";
+        }
+
+        // BEGIN update User
+        Users activeUser = LynxManager.getActiveUser();
+
+        activeUser.setIs_prep(isPrep);
+
+        // User to Update
+        // dob_value = LynxManager.getFormatedDate("MM/dd/yyyy", dob_value,"dd-MMM-yyyy");
+
+        Users updatedUser = new Users(
+            activeUser.getUser_id(),
+            LynxManager.encryptString(activeUser.getFirstname()),
+            LynxManager.encryptString(activeUser.getLastname()),
+            LynxManager.encryptString(activeUser.getEmail()),
+            LynxManager.encryptString(activeUser.getPassword()),
+            LynxManager.encryptString(activeUser.getMobile()),
+            LynxManager.encryptString(activeUser.getPasscode()),
+            LynxManager.encryptString(activeUser.getAddress()),
+            LynxManager.encryptString(activeUser.getCity()),
+            LynxManager.encryptString(activeUser.getState()),
+            LynxManager.encryptString(activeUser.getZip()),
+            LynxManager.encryptString(activeUser.getSecurityquestion()),
+            LynxManager.encryptString(activeUser.getSecurityanswer()),
+            LynxManager.encryptString(activeUser.getDob()),
+            LynxManager.encryptString(activeUser.getRace()),
+            LynxManager.encryptString(activeUser.getGender()),
+            LynxManager.encryptString(isPrep),
+            String.valueOf(R.string.statusUpdateNo),
+            true
+        );
+
+        db.updateUsers(updatedUser);
+
+        activeUser.setCreated_at(db.getUserCreatedAt(activeUser.getUser_id()));
+
+        LynxManager.setActiveUser(activeUser);
+
+        if(isPrep.equals("Yes")){
+            if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("PrEP").getBadge_id())==0){
+                BadgesMaster prep_badge = db.getBadgesMasterByName("PrEP");
+                int shown = 0;
+
+                UserBadges prepBadge = new UserBadges(prep_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,prep_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+                db.createUserBadge(prepBadge);
+            }
+        }
+        // END update User
+
+        RemindersLogged remindersLogged = new RemindersLogged();
+        pushFragments("Home", remindersLogged, true);
+
         return true;
     }
 
     public boolean loggedNext(View view){
         int userBaselineInfoCount = db.getUserBaselineInfoCount();
+
         if (userBaselineInfoCount == 0) {
             Intent baselineActivity = new Intent(RemindersActivity.this,BaselineActivity.class);
             startActivity(baselineActivity);

@@ -840,12 +840,27 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
             Toast.makeText(this,"Please Select Race/Ethnicity",Toast.LENGTH_SHORT).show();
         }else {
             dob_value = LynxManager.getFormatedDate("MM/dd/yyyy",dob_value,"dd-MMM-yyyy");
-            Users uptUser = new Users(LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(first_name), LynxManager.encryptString(last_name),
-                    LynxManager.encryptString(e_mail), LynxManager.encryptString(password), LynxManager.encryptString(phone_number),
-                    LynxManager.encryptString(pass_code), "", "",
-                    "", "", LynxManager.encryptString(sec_qn_value),
-                    LynxManager.encryptString(sec_ans_value), LynxManager.encryptString(dob_value), LynxManager.encryptString(races_list),
-                    LynxManager.encryptString(gender_list), LynxManager.encryptString(isPrep),String.valueOf(R.string.statusUpdateNo),true);
+            Users uptUser = new Users(
+                LynxManager.getActiveUser().getUser_id(),
+                LynxManager.encryptString(first_name),
+                LynxManager.encryptString(last_name),
+                LynxManager.encryptString(e_mail),
+                LynxManager.encryptString(password),
+                LynxManager.encryptString(phone_number),
+                LynxManager.encryptString(pass_code),
+                "",
+                "",
+                "",
+                "",
+                LynxManager.encryptString(sec_qn_value),
+                LynxManager.encryptString(sec_ans_value),
+                LynxManager.encryptString(dob_value),
+                LynxManager.encryptString(races_list),
+                LynxManager.encryptString(gender_list),
+                LynxManager.encryptString(isPrep),
+                String.valueOf(R.string.statusUpdateNo),
+                true
+            );
 
             LynxManager.setActiveUser(uptUser);
 

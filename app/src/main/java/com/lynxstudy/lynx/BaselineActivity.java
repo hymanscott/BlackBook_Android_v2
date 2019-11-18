@@ -615,8 +615,11 @@ public class BaselineActivity extends AppCompatActivity {
         String json_AlcoholUse = gson_alcoholUse.toJson(activeAlcoholUse);
         String get_query_string = LynxManager.getQueryString(json_AlcoholUse);
         new userAlcoholUseOnline(get_query_string).execute();
-        Intent home = new Intent(this, BaselineSexproScoreActivity.class);
+
+        // Intent home = new Intent(this, BaselineSexproScoreActivity.class);
+        Intent home = new Intent(this, LynxHome.class);
         startActivity(home);
+
         finish();
     }
     /**

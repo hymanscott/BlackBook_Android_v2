@@ -68,9 +68,14 @@ public class LynxBadgesRecyclerViewAdapter extends RecyclerView.Adapter<LynxBadg
 
         int noOfCount = db.getUserBadgesCountByBadgeID(badgesMaster.getBadge_id());
         int imageDrawableId = context.getResources().getIdentifier(badgesMaster.getBadge_icon(), "drawable", context.getPackageName());
+        String badgeName = badgesMaster.getBadge_name();
+
+        if(badgeName.equals("LYNX")) {
+            badgeName = "BlackBook";
+        }
 
         badgeViewHolder.badgeImage.setImageDrawable(context.getResources().getDrawable(imageDrawableId));
-        badgeViewHolder.rowBadgeName.setText(badgesMaster.getBadge_name());
+        badgeViewHolder.rowBadgeName.setText(badgeName);
         badgeViewHolder.rowBadgeDescription.setText(badgesMaster.getBadge_description());
         badgeViewHolder.rowBadgeEarnedTimes.setText("Earned " + noOfCount +" time(s)");
 

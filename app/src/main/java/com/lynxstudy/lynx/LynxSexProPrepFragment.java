@@ -103,10 +103,10 @@ public class LynxSexProPrepFragment extends Fragment {
 
         if(current_prep.equals("Yes")){
             pageTitle.setText("Score without PrEP");
-            ((TextView)view.findViewById(R.id.notesParaTwo)).setText("If you were not on PrEP, your Sex Pro score would be lower and you would be less protected.");
+            ((TextView)view.findViewById(R.id.notesParaTwo)).setText("If you were not on PrEP, your BlackBook score would be lower and you would be less protected.");
         }else{
             pageTitle.setText("Score with PrEP");
-            ((TextView)view.findViewById(R.id.notesParaTwo)).setText("If you were on PrEP, your Sex Pro score would be high and you would be protected.");
+            ((TextView)view.findViewById(R.id.notesParaTwo)).setText("If you were on PrEP, your BlackBook score would be high and you would be protected.");
         }
 
         /* score Dial */
