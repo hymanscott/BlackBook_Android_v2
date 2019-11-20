@@ -833,7 +833,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         c.set(Calendar.MINUTE,drug_use_min);
 
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            builder.setContentTitle("LYNX");
+            builder.setContentTitle("BlackBook");
             builder.setContentText(content);
             builder.setAutoCancel(false);
             builder.setSmallIcon(R.mipmap.ic_launcher_round);
@@ -843,7 +843,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
 
         } else {
             // Lollipop specific setColor method goes here.
-            builder.setContentTitle("LYNX");
+            builder.setContentTitle("BlackBook");
             builder.setContentText(content);
             builder.setAutoCancel(false);
             builder.setContentIntent(sure);
@@ -869,7 +869,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         c.set(Calendar.HOUR_OF_DAY,drug_use_hour);
         c.set(Calendar.MINUTE,drug_use_min);
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            builder_Encounter.setContentTitle("LYNX");
+            builder_Encounter.setContentTitle("BlackBook");
             builder_Encounter.setContentText(content);
             builder_Encounter.setAutoCancel(true);
             builder_Encounter.setSmallIcon(R.mipmap.ic_launcher_round);
@@ -877,7 +877,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
             builder_Encounter.setWhen(c.getTimeInMillis());
             builder_Encounter.setContentIntent(yes);
         }else{
-            builder_Encounter.setContentTitle("LYNX");
+            builder_Encounter.setContentTitle("BlackBook");
             builder_Encounter.setContentText(content);
             builder_Encounter.setAutoCancel(true);
             builder_Encounter.setSmallIcon(R.drawable.ic_silhouette);

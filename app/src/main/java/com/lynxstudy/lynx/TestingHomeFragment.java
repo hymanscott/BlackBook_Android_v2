@@ -323,13 +323,14 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(history.getTesting_history_id());
                     for (TestingHistoryInfo historyInfo : testinghistoryInfoList) {
                         if(historyInfo.getSti_id()==0){
-                            if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
+                            if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Positive")) {
                                 teststatus.setText("Positive");
-                            }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
+                            }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Negative")) {
                                 teststatus.setText("Negative");
                             }else {
                                 teststatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
                             }
+
                             /*
                             String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
                             if(!historyInfoAttachment.equals("")){
@@ -388,9 +389,9 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                             STIMaster stiName = db.getSTIbyID(historyInfo.getSti_id());
                             testname.setText(stiName.getstiName());
 
-                            if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
+                            if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Positive")) {
                                 teststatus.setText("Positive");
-                            } else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
+                            } else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Negative")) {
                                 teststatus.setText("Negative");
                             } else {
                                 teststatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
@@ -868,10 +869,10 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
             hivLayout.setVisibility(View.VISIBLE);
             List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(testingHistoryID);
             for (final TestingHistoryInfo historyInfo : testinghistoryInfoList) {
-                if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
+                if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Positive")) {
                     hivTestStatus.setText("Positive");
                     hivIcon.setImageDrawable(getResources().getDrawable(R.drawable.pos_test));
-                }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
+                }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Negative")) {
                     hivTestStatus.setText("Negative");
                     hivIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
                 }else{
@@ -916,10 +917,10 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                 if (historyInfo.getSti_id() != 0) {
                     STIMaster stiName = db.getSTIbyID(historyInfo.getSti_id());
                     if (stiName.getstiName().equals("Gonorrhea")) {
-                        if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
+                        if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Positive")) {
                             gonorrheaStatus.setText("Positive");
                             gonorrheaIcon.setImageDrawable(getResources().getDrawable(R.drawable.pos_test));
-                        } else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
+                        } else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Negative")) {
                             gonorrheaStatus.setText("Negative");
                             gonorrheaIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
                         } else {
@@ -957,10 +958,10 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                         * */
 
                     } else if (stiName.getstiName().equals("Syphilis")) {
-                        if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
+                        if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Positive")) {
                             syphilisStatus.setText("Positive");
                             syphilisIcon.setImageDrawable(getResources().getDrawable(R.drawable.pos_test));
-                        } else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
+                        } else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Negative")) {
                             syphilisStatus.setText("Negative");
                             syphilisIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
                         } else {
@@ -994,10 +995,10 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                         }
                         * */
                     } else if (stiName.getstiName().equals("Chlamydia")) {
-                        if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Yes")) {
+                        if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Positive")) {
                             chlamydiaStatus.setText("Positive");
                             chlamydiaIcon.setImageDrawable(getResources().getDrawable(R.drawable.pos_test));
-                        } else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("No")) {
+                        } else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Negative")) {
                             chlamydiaStatus.setText("Negative");
                             chlamydiaIcon.setImageDrawable(getResources().getDrawable(R.drawable.neg_test));
                         } else {

@@ -456,6 +456,9 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="24dp"
                     android:background="@color/input_primary" />
+
+                <!-- BEGIN Testing reminders configuration -->
+                <!--
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -546,6 +549,9 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="24dp"
                     android:background="@color/input_primary" />
+                -->
+                <!-- END Testing reminders configuration -->
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -1236,6 +1242,9 @@
                             android:textSize="@dimen/edittext_textsize" />
                     </LinearLayout>
                 </LinearLayout>
+
+                <!-- BEGIN Testing reminders configuration -->
+                <!--
                 <LinearLayout
                     android:background="@drawable/input_primary_rounded"
                     android:layout_width="match_parent"
@@ -1369,6 +1378,8 @@
                             android:textSize="@dimen/edittext_textsize" />
                     </LinearLayout>
                 </LinearLayout>
+                -->
+                <!-- END Testing reminders configuration -->
             </LinearLayout>
         </ScrollView>
         <Button

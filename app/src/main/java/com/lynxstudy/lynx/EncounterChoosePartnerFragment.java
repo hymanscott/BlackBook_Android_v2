@@ -66,7 +66,7 @@ public class EncounterChoosePartnerFragment extends Fragment {
             partnerRow.setPadding(0, 0, 10, 0);
             partnerRow.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);
             TextView Info = new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);
-            Info.setTextColor(getResources().getColor(R.color.text_color));
+            Info.setTextColor(getResources().getColor(R.color.white));
             Info.setText("No Partners on list");
             Info.setTypeface(tf);
             partnerRow.addView(Info);

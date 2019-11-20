@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LYNX</string>
+    <string name="app_name">BlackBook</string>
     <string name="regloginIntroLable">Register here if you are a new LYNX user</string>
     <string name="sec_question_prompt">Pick a security question</string>
     <string name="gender">Gender</string>

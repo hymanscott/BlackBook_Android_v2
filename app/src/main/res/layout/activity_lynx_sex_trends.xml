@@ -714,7 +714,7 @@
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:layout_width="match_parent"
                     android:layout_height="2px"
-                    android:background="@color/white" />
+                    android:background="@android:color/darker_gray" />
             </LinearLayout>
 
             <LinearLayout
@@ -886,17 +886,11 @@
 
             </LinearLayout>
 
-            <!-- Line -->
+            <!-- OLD Section
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <View
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_width="match_parent"
-                    android:layout_height="2px"
-                    android:background="@color/white" />
 
                 <com.lynxstudy.helper.ExpandableHeightGridView
                     android:layout_width="match_parent"
@@ -908,6 +902,7 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="64dp" />
             </LinearLayout>
+            -->
         </LinearLayout>
 
     </ScrollView>

@@ -353,6 +353,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         drunk_or_high_progress.setText(drunk_or_high_value + "%");
 
         /*Second Section*/
+        /* OLD CODE
         ArrayList<String> progress_values = new ArrayList<String>();
         ArrayList<String> description_values = new ArrayList<String>();
         int hiv_elapsed_days=0,std_elapsed_days =0;
@@ -375,27 +376,6 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         progress_values.add(String.valueOf(std_elapsed_days));
         description_values.add("# days since last STD test");
 
-        /*int topPeopleCount = 0;
-        int bottomPeopleCount = 0;
-        for (Partners partner:db.getAllPartners()){
-            int topCount = 0;
-            int bottomCount = 0;
-            for (Encounter encounter:db.getAllEncounters()){
-                if (encounter.getEncounter_partner_id()==partner.getPartner_id()){
-                    if(db.getEncSexTypeCountByEncIDandName(encounter.getEncounter_id(),"I topped")>0)
-                        topCount++;
-                    if(db.getEncSexTypeCountByEncIDandName(encounter.getEncounter_id(),"I bottomed")>0)
-                        bottomCount++;
-                }
-            }
-            if(topCount>0){
-                topPeopleCount++;
-            }
-            if(bottomCount>0){
-                bottomPeopleCount++;
-            }
-        }*/
-
         int topTimesCount = db.getAllEncounterSexTypeCountByName("I topped");
         int bottomTimesCount = db.getAllEncounterSexTypeCountByName("I bottomed");
         progress_values.add(String.valueOf(topTimesCount));
@@ -408,6 +388,19 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         ExpandableHeightGridView heightGridView = (ExpandableHeightGridView)findViewById(R.id.heightGridView);
         heightGridView.setExpanded(true);
         heightGridView.setAdapter(adapter);
+        */
+
+        TextView partner_you_topped_with_number = (TextView) findViewById(R.id.partner_you_topped_with_number);
+        TextView partner_you_bottomed_with_number = (TextView) findViewById(R.id.partner_you_bottomed_with_number);
+        TextView of_5_star_number = (TextView) findViewById(R.id.of_5_star_number);
+
+        int topTimesCount = db.getAllEncounterSexTypeCountByName("I topped");
+        int bottomTimesCount = db.getAllEncounterSexTypeCountByName("I bottomed");
+        int fiveStarEncountersCount = db.getFiveStarEncountersCount();
+
+        partner_you_topped_with_number.setText(String.valueOf(topTimesCount));
+        partner_you_bottomed_with_number.setText(String.valueOf(bottomTimesCount));
+        of_5_star_number.setText(String.valueOf(fiveStarEncountersCount));
 
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
