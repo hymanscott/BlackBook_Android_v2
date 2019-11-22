@@ -76,7 +76,7 @@
                     android:textSize="17dp" />
 
                 <RadioGroup
-                    android:id="@+id/alcoholCalculation"
+                    android:id="@+id/rbt_options"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="32dp"
@@ -130,7 +130,7 @@
         android:textColor="@color/white"
         android:id="@+id/checkin_alc_next"
         android:textSize="@dimen/button_textsize"
-        android:onClick="weeklyCheckInAlcoholNext"
+        android:onClick="weeklyCheckInLastDaysNext"
         android:layout_alignParentBottom="true"
         android:textStyle="bold" />
 </RelativeLayout>

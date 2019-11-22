@@ -41,6 +41,7 @@ public class RegistrationUserDetails extends Fragment {
         ((Button) view.findViewById(R.id.regAuthNext)).setTypeface(tf_bold);
         //email validation
         final EditText email = (EditText) view.findViewById(R.id.regEmail);
+
         email.setTypeface(tf);
         email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

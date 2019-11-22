@@ -28,11 +28,19 @@ import com.lynxstudy.model.UserBadges;
 import com.lynxstudy.model.UserDrugUse;
 import com.lynxstudy.model.User_baseline_info;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 public class EncounterFromNotification extends AppCompatActivity {
 
     //Button yes,no;
     private String prep_val="",prep_days_val="",score="",score_alt="",report_val="";
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encounter_from_notification);
@@ -43,6 +51,7 @@ public class EncounterFromNotification extends AppCompatActivity {
         ((Button)findViewById(R.id.yes)).setTypeface(tf);
         ((Button)findViewById(R.id.no)).setTypeface(tf);
         LynxManager.notificationActions = null;
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(android.R.id.content, new EncounterWeeklyCheckinIntro())
@@ -67,8 +76,11 @@ public class EncounterFromNotification extends AppCompatActivity {
     }
 
     public boolean weeklyCheckInIntroNext(View view){
-        EncounterWeeklyCheckinPrep prepScreeen = new EncounterWeeklyCheckinPrep();
-        pushFragments("EncounterFromNotification", prepScreeen, true);
+        // EncounterWeeklyCheckinPrep prepScreeen = new EncounterWeeklyCheckinPrep();
+        // pushFragments("EncounterFromNotification", prepScreeen, true);
+        EncounterWeeklyCheckinDrug drugScreeen = new EncounterWeeklyCheckinDrug();
+        pushFragments("EncounterFromNotification", drugScreeen, true);
+
         return true;
     }
 
@@ -121,8 +133,6 @@ public class EncounterFromNotification extends AppCompatActivity {
     }
 
     public boolean weeklyCheckInDrugNext(View view){
-        EncounterWeeklyCheckinAlcohol alcoholScreeen = new EncounterWeeklyCheckinAlcohol();
-        EncounterWeeklyCheckinReport reportScreeen = new EncounterWeeklyCheckinReport();
         String searchString = "Alcohol";
         boolean isAlcoholSelected = false;
         LynxManager.curDurgUseID = 0;
@@ -137,16 +147,19 @@ public class EncounterFromNotification extends AppCompatActivity {
 
             LynxManager.setActiveUserDrugUse(userDrugUse);
         }
-        if (isAlcoholSelected)
+
+        if (isAlcoholSelected) {
+            EncounterWeeklyCheckinAlcohol alcoholScreeen = new EncounterWeeklyCheckinAlcohol();
             pushFragments("EncounterFromNotification", alcoholScreeen, true);
-        else
-            pushFragments("EncounterFromNotification", reportScreeen, true);
+        } else {
+            EncounterWeeklyCheckinSexDayAndDoxy sexAndDoxyScreen = new EncounterWeeklyCheckinSexDayAndDoxy();
+            pushFragments("EncounterFromNotification", sexAndDoxyScreen, true);
+        }
 
         return true;
     }
 
     public boolean weeklyCheckInAlcoholNext(View view){
-        EncounterWeeklyCheckinReport reportScreeen = new EncounterWeeklyCheckinReport();
         EditText alcCountPerDay = (EditText) findViewById(R.id.no_of_drinks);
         RadioGroup RG_Alcohol = (RadioGroup) findViewById(R.id.alcoholCalculation);
         if(RG_Alcohol.getCheckedRadioButtonId()==-1){
@@ -164,8 +177,92 @@ public class EncounterFromNotification extends AppCompatActivity {
                     LynxManager.encryptString(alcDaysCountPerWeek.getText().toString()), LynxManager.encryptString(count), LynxManager.encryptString("No"),String.valueOf(R.string.statusUpdateNo),true);
             LynxManager.setActiveUserAlcoholUse(userAlcoholUse);
 
+          EncounterWeeklyCheckinSexDayAndDoxy sexAndDoxyScreen = new EncounterWeeklyCheckinSexDayAndDoxy();
+          pushFragments("EncounterFromNotification", sexAndDoxyScreen, true);
+        }
+        return true;
+    }
+
+    public boolean weeklyCheckInSexAndDoxyDaysNext(View view) {
+        Calendar cal = Calendar.getInstance();
+        DateFormat dateShortFormat = new SimpleDateFormat("yyyy-MM-dd");
+        List<String> days = new ArrayList<>();
+        List<String> reportedSexDays = LynxManager.selectedSexDays; // Dates in format "yyyy-MM-dd"
+        List<String> reportedDoxyDays = LynxManager.selectedDoxyDays; // Dates in format "yyyy-MM-dd"
+        Boolean userTookDoxyEachDay = true;
+
+        // Get last 4 days
+        for(int i = 0; i < 4; i++) {
+            days.add(dateShortFormat.format(cal.getTime())); // Get date string
+
+            cal.add(Calendar.DATE, -1); // Minus a day for the next loop
+        }
+
+        // Validating if user took doxy in all days that he has reported sex
+        for (int i = 0; i < days.size(); i++) {
+            String dayStr = days.get(i);
+
+            if(reportedSexDays.contains(dayStr)) {
+                int counter = -1;
+
+                for (int j = 0; j <= i; j++) {
+                    String doxyDayStr = days.get(j);
+
+                    if(reportedDoxyDays.contains(doxyDayStr)) {
+                        counter++;
+                    }
+                }
+
+                userTookDoxyEachDay = counter == i;
+
+                if(userTookDoxyEachDay == false) {
+                    break;
+                }
+            }
+        }
+
+        if(userTookDoxyEachDay == false) {
+            EncounterWeeklyCheckinLastDays lastDaysScreen = new EncounterWeeklyCheckinLastDays();
+            pushFragments("EncounterFromNotification", lastDaysScreen, true);
+        } else {
+            EncounterWeeklyCheckinReport reportScreeen = new EncounterWeeklyCheckinReport();
             pushFragments("EncounterFromNotification", reportScreeen, true);
         }
+
+        return true;
+    }
+
+    public boolean weeklyCheckInLastDaysNext(View view) {
+        RadioGroup rbt_options = (RadioGroup) findViewById(R.id.rbt_options);
+
+        if (rbt_options.getCheckedRadioButtonId()==-1) {
+            Toast.makeText(EncounterFromNotification.this, getResources().getString(R.string.select_any_one),Toast.LENGTH_SHORT).show();
+        } else {
+            RadioButton selectedRbt = (RadioButton) findViewById(rbt_options.getCheckedRadioButtonId());
+
+            if(selectedRbt.getText().toString().equals("No")) {
+                EncounterWeeklyCheckinReport reportScreeen = new EncounterWeeklyCheckinReport();
+                pushFragments("EncounterFromNotification", reportScreeen, true);
+            } else {
+                EncounterWeeklyCheckInDontForgetReportDoxy dontForgetReportDoxyScreen = new EncounterWeeklyCheckInDontForgetReportDoxy();
+                pushFragments("EncounterFromNotification", dontForgetReportDoxyScreen, true);
+            }
+        }
+
+        return true;
+    }
+
+    public boolean weeklyCheckInDontForgetReportDoxyNext(View view) {
+        EncounterWeeklyCheckInDontForgetReportEncounter dontForgetReportEncounterScreen = new EncounterWeeklyCheckInDontForgetReportEncounter();
+        pushFragments("EncounterFromNotification", dontForgetReportEncounterScreen, true);
+
+        return true;
+    }
+
+    public boolean weeklyCheckInDontForgetReportEncounterNext(View view) {
+        EncounterWeeklyCheckinReport reportScreeen = new EncounterWeeklyCheckinReport();
+        pushFragments("EncounterFromNotification", reportScreeen, true);
+
         return true;
     }
 

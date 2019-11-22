@@ -47,6 +47,9 @@ import javax.crypto.spec.DESKeySpec;
  */
 
 public class LynxManager {
+    // Weekly Check-in
+    public static List<String> selectedSexDays = new ArrayList<String>();
+    public static List<String> selectedDoxyDays = new ArrayList<String>();
     public static List<String> selectedDrugs = new ArrayList<String>();
     public static List<String> lastSelectedDrugs = new ArrayList<String>();
     public static List<String> selectedSTIs = new ArrayList<String>();

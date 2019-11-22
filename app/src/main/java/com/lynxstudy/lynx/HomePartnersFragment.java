@@ -101,8 +101,18 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
 
         List<Partners> partners = db.getListablePartners();
         Collections.sort(partners,new Partners.comparePartner());
+
+        List<Partners> filteredPartners = new ArrayList<>();
+
         for (Partners partner : partners) {
-            if(partner.getIs_active()!=0) {
+            // Add partner if is active
+            if(partner.getIs_active() != 0) {
+                filteredPartners.add(partner);
+            }
+        }
+
+        if(filteredPartners.size() > 0) {
+            for (Partners partner : filteredPartners) {
                 View v = LayoutInflater.from(getActivity()).inflate(R.layout.table_partner_row, partnerTable, false);
                 TextView partnerName = (TextView) v.findViewById(R.id.partner_name);
                 RatingBar partnerRating = (RatingBar) v.findViewById(R.id.partner_rating);
@@ -136,7 +146,18 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
 
                 partnerTable.addView(v);
             }
+        } else {
+            // Set a message for empty list of partners
+            TextView emptyMessage = new TextView(getActivity());
+
+            emptyMessage.setText("There aren't available parents");
+            emptyMessage.setTextColor(getResources().getColor(R.color.white));
+            emptyMessage.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            emptyMessage.setPadding(0, 16, 0, 0);
+
+            partnerTable.addView(emptyMessage);
         }
+
         back_press_count=0;
         rootview.setFocusableInTouchMode(true);
         rootview.requestFocus();
@@ -381,6 +402,7 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         });
     }
 
+    // aaron
     public void setPartnerEditLayout(final int partner_id){
         editLayout.setVisibility(View.VISIBLE);
         isEditShown = true;

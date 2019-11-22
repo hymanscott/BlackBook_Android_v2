@@ -65,11 +65,16 @@ public class EncounterChoosePartnerFragment extends Fragment {
             TableRow partnerRow = new TableRow(getActivity());
             partnerRow.setPadding(0, 0, 10, 0);
             partnerRow.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);
-            TextView Info = new TextView(getActivity(), null, android.R.attr.textAppearanceMedium);
-            Info.setTextColor(getResources().getColor(R.color.white));
-            Info.setText("No Partners on list");
-            Info.setTypeface(tf);
-            partnerRow.addView(Info);
+
+            // Set a message for empty list of partners
+            TextView emptyMessage = new TextView(getActivity());
+
+            emptyMessage.setText("There aren't available parents");
+            emptyMessage.setTextColor(getResources().getColor(R.color.white));
+            emptyMessage.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            emptyMessage.setPadding(0, 16, 0, 0);
+
+            partnerRow.addView(emptyMessage);
 
             partnerTable.addView(partnerRow);
         }

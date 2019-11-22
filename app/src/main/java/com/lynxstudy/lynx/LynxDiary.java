@@ -93,6 +93,7 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
 
         // BottomNavigationView
         BottomNavigationView bottomNav = (BottomNavigationView) findViewById(R.id.bot_nav);
+        bottomNav.setSelectedItemId(R.id.bot_nav_diary);
 
         bottomNav.setOnNavigationItemSelectedListener(
             new BottomNavigationView.OnNavigationItemSelectedListener() {

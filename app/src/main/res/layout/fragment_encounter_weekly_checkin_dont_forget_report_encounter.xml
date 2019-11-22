@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/backgroundPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/checkin_alc_next"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="18dp"
+                android:layout_marginTop="46dp"
+                android:src="@drawable/encounterlarge" />
+            <TextView
+                android:id="@+id/frag_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:gravity="center"
+                android:text="Weekly Check-in"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:background="@color/input_primary" />
+            <TextView
+                android:id="@+id/intro_paragraph"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:text="It looks like you’ve haven’t entered all your encounters into your diary. Don’t forget to add them!"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="17dp" />
+        </LinearLayout>
+    </ScrollView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:background="@color/input_primary"
+        android:textColor="@color/white"
+        android:id="@+id/checkin_intro_next"
+        android:textSize="@dimen/button_textsize"
+        android:onClick="weeklyCheckInDontForgetReportEncounterNext"
+        android:layout_alignParentBottom="true"
+        android:textStyle="bold" />
+</RelativeLayout>

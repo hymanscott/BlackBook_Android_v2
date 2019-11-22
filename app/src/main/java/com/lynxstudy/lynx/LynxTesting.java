@@ -61,6 +61,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
         AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
         params.setScrollFlags(0);
         toolbar.setLayoutParams(params);
+
         tracker = ((lynxApplication) getApplication()).getTracker();
 		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         TrackHelper.track().screen("/Lynxtesting").title("Lynxtesting").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
@@ -76,6 +77,7 @@ public class LynxTesting extends AppCompatActivity implements View.OnClickListen
 
         // BottomNavigationView
         BottomNavigationView bottomNav = (BottomNavigationView) findViewById(R.id.bot_nav);
+        bottomNav.setSelectedItemId(R.id.bot_nav_testing);
 
         bottomNav.setOnNavigationItemSelectedListener(
             new BottomNavigationView.OnNavigationItemSelectedListener() {

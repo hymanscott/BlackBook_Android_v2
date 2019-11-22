@@ -87,6 +87,43 @@
                     android:padding="@dimen/edittext_padding">
 
                     <ImageView
+                        android:id="@+id/confirm_email_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/emailicon" />
+
+                    <EditText
+                        android:id="@+id/regEmailConfirm"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:background="@drawable/rectangle_edittext"
+                        android:backgroundTint="@color/edittext_bg"
+                        android:ems="10"
+                        android:hint="Confirm email address"
+                        android:inputType="textEmailAddress"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:imeOptions="actionNext"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textCursorDrawable="@drawable/white_cursor"
+                        android:textSize="@dimen/edittext_textsize" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:background="@color/edittext_bg"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/edittext_padding">
+
+                    <ImageView
                         android:id="@+id/passicon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
