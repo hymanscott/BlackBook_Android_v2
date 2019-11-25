@@ -828,9 +828,19 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
       lynxRemainderTime = LynxManager.convertLocalTimetoUTC(lynxRemainderTime); // UTC time for selected local time
       Log.v("lynxRemainderTime",lynxRemainderTime);
       String reminderTest_notes = notificationText.getText().toString();
-      TestingReminder testingReminder = new TestingReminder(LynxManager.getActiveUser().getUser_id(),0, LynxManager.encryptString(day_of_week),
-              LynxManager.encryptString(lynxRemainderTime), LynxManager.encryptString(reminderTest_notes), String.valueOf(R.string.statusUpdateNo), true);
+
+      TestingReminder testingReminder = new TestingReminder(
+        LynxManager.getActiveUser().getUser_id(),
+        0,
+        LynxManager.encryptString(day_of_week),
+        LynxManager.encryptString(lynxRemainderTime),
+        LynxManager.encryptString(reminderTest_notes),
+        String.valueOf(R.string.statusUpdateNo),
+        true
+      );
+
       TestingReminder testing_Reminder = db.getTestingReminderByFlag(0);
+
       if(testing_Reminder != null){
         db.updateTestingReminderByFlagandID(testingReminder);
       }
@@ -856,7 +866,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     return true;
   }
   private Notification getWeeklyNotification(String content ,int drug_use_hour,int drug_use_min) {
-
     Intent intent2 = new Intent(this, RegLogin.class);
     intent2.putExtra("action", "TestingSure");
     intent2.setAction("testingreminder");
@@ -869,7 +878,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     c.setTimeZone(TimeZone.getDefault());
     c.set(Calendar.HOUR_OF_DAY,drug_use_hour);
     c.set(Calendar.MINUTE,drug_use_min);
-
 
     if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
       builder.setContentTitle("BlackBook");
@@ -887,7 +895,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
       builder.setAutoCancel(true);
       builder.setContentIntent(sure);
       builder.setSmallIcon(R.drawable.ic_silhouette);
-      builder.setColor(getResources().getColor(R.color.profile_title_text_color));
+      builder.setColor(getResources().getColor(R.color.colorAccent));
       builder.setWhen(c.getTimeInMillis());
       builder.setSound(soundUri);
     }
@@ -995,7 +1003,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
       builder_Encounter.setContentText(content);
       builder_Encounter.setAutoCancel(false);
       builder_Encounter.setSmallIcon(R.drawable.ic_silhouette);
-      builder_Encounter.setColor(getResources().getColor(R.color.profile_title_text_color));
+      builder_Encounter.setColor(getResources().getColor(R.color.colorAccent));
       builder_Encounter.setSound(soundUri);
       builder_Encounter.setWhen(c.getTimeInMillis());
       builder_Encounter.setContentIntent(yes);

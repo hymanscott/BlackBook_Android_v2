@@ -436,7 +436,7 @@ public class LynxManager {
      * Parameter : Time as String in " hh:mm a " format
      */
     public static String convertUTCTimetoLocal(String utctime){
-        String tempArrayToSplitAMPM[] = utctime.split(" ");
+        String tempArrayToSplitAMPM[] = utctime.trim().split(" ");
         String timearray[] = tempArrayToSplitAMPM[0].split(":");
         Calendar c = Calendar.getInstance();
         TimeZone tz = c.getTimeZone();

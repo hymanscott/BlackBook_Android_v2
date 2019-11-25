@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -123,9 +124,9 @@ public class HomeEncounterFragment extends Fragment {
         if(allEncounters.isEmpty()){
             ((TextView) view.findViewById(R.id.contextualTipsTitle)).setTypeface(tf_bold);
             ((TextView) view.findViewById(R.id.contextualTipsDesc)).setTypeface(tf);
-            ((LinearLayout) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.VISIBLE);
+            ((ScrollView) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.VISIBLE);
         } else {
-            ((LinearLayout) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.GONE);
+            ((ScrollView) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.GONE);
             // Collections.sort(allEncounters, new Encounter.CompDate(true));
             for (Encounter encounter : allEncounters) {
                 int enc_partner_id = encounter.getEncounter_partner_id();
@@ -153,9 +154,9 @@ public class HomeEncounterFragment extends Fragment {
                     ratingBar.setScaleX(rating_bar_scale);
                     ratingBar.setScaleY(rating_bar_scale);
                     LayerDrawable stars4 = (LayerDrawable) ratingBar.getProgressDrawable();
-                    stars4.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);// On State color
+                    stars4.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);// On State color
                     stars4.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_IN);// Off State color
-                    stars4.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);// Stroke (On State Stars Only)
+                    stars4.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);// Stroke (On State Stars Only)
                     int encounterId = encounter.getEncounter_id();
                     v.setClickable(true);
                     v.setFocusable(true);
@@ -297,8 +298,8 @@ public class HomeEncounterFragment extends Fragment {
 
 
         LayerDrawable stars1 = (LayerDrawable) sexRating.getProgressDrawable();
-        stars1.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
-        stars1.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP); // for half filled stars
+        stars1.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+        stars1.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
         stars1.getDrawable(0).setColorFilter(getResources().getColor(R.color.starBG), PorterDuff.Mode.SRC_ATOP); // for empty stars
 
 

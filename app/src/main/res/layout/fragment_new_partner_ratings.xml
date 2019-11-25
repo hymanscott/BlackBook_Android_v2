@@ -10,6 +10,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:orientation="vertical"
+            android:paddingBottom="32dp"
             android:layout_height="wrap_content">
 
             <ImageView
@@ -79,9 +80,8 @@
                         android:id="@+id/ratingBar1"
                         android:stepSize="0.5"
                         android:rating="1.0"
-                        android:scaleX="0.9"
-                        android:scaleY="0.9"
-                        style="?android:attr/ratingBarStyleIndicator"
+                        android:scaleX="0.7"
+                        android:scaleY="0.7"
                         android:layout_gravity="center_horizontal|center_vertical|left"/>
                 </LinearLayout>
 
@@ -113,9 +113,8 @@
                         android:id="@+id/ratingBar2"
                         android:stepSize="0.5"
                         android:rating="1.0"
-                        android:scaleX="0.9"
-                        android:scaleY="0.9"
-                        style="?android:attr/ratingBarStyleIndicator"
+                        android:scaleX="0.7"
+                        android:scaleY="0.7"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
             </LinearLayout>
@@ -146,9 +145,8 @@
                         android:id="@+id/ratingBar3"
                         android:stepSize="0.5"
                         android:rating="1.0"
-                        android:scaleX="0.9"
-                        android:scaleY="0.9"
-                        style="?android:attr/ratingBarStyleIndicator"
+                        android:scaleX="0.7"
+                        android:scaleY="0.7"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
             </LinearLayout>
@@ -177,10 +175,9 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/ratingBar4"
                         android:stepSize="0.5"
-                        android:scaleX="0.9"
-                        android:scaleY="0.9"
+                        android:scaleX="0.7"
+                        android:scaleY="0.7"
                         android:rating="1.0"
-                        style="?android:attr/ratingBarStyleIndicator"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
             </LinearLayout>
@@ -222,9 +219,8 @@
                         android:id="@+id/ratingBar5"
                         android:stepSize="0.5"
                         android:rating="1.0"
-                        android:scaleX="0.9"
-                        android:scaleY="0.9"
-                        style="?android:attr/ratingBarStyleIndicator"
+                        android:scaleX="0.7"
+                        android:scaleY="0.7"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
             </LinearLayout>
@@ -266,9 +262,8 @@
                         android:id="@+id/ratingBar6"
                         android:stepSize="0.5"
                         android:rating="1.0"
-                        android:scaleX="0.9"
-                        android:scaleY="0.9"
-                        style="?android:attr/ratingBarStyleIndicator"
+                        android:scaleX="0.7"
+                        android:scaleY="0.7"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
             </LinearLayout>
@@ -310,9 +305,8 @@
                         android:id="@+id/ratingBar7"
                         android:stepSize="0.5"
                         android:rating="1.0"
-                        android:scaleX="0.9"
-                        android:scaleY="0.9"
-                        style="?android:attr/ratingBarStyleIndicator"
+                        android:scaleX="0.7"
+                        android:scaleY="0.7"
                         android:layout_gravity="center_horizontal|center_vertical"/>
                 </LinearLayout>
             </LinearLayout>
