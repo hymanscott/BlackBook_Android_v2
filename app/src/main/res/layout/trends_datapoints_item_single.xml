@@ -29,6 +29,6 @@
         android:text="# of 5 star
         encounters"
         android:textColor="@color/text_color"
-        android:textSize="16sp"
+        android:textSize="@dimen/edittext_textsize"
         android:textStyle="italic" />
 </LinearLayout>

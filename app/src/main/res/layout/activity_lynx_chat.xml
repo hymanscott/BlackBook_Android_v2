@@ -30,7 +30,7 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:textStyle="bold"
                 android:padding="14dp"
-                android:textSize="16sp"
+                android:textSize="@dimen/edittext_textsize"
                 android:id="@+id/needUsNow"
                 android:background="@drawable/lynx_button_red"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -111,7 +111,7 @@
                         android:id="@+id/section_one_title"
                         android:text="If your HIV test was positive or you’ve had an HIV exposure and would like to talk to a doctor call us 24 hours a day:"
                         android:gravity="center_horizontal"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textStyle="bold"
                         android:textColor="@color/chat_layout_red_text"
                         android:lineSpacingMultiplier="1.56"/>
@@ -135,7 +135,7 @@
                             android:background="@android:color/transparent"
                             android:text="CALL US NOW"
                             android:textStyle="bold"
-                            android:textSize="16dp"
+                            android:textSize="@dimen/edittext_textsize"
                             android:id="@+id/callUsNow"
                             android:textColor="@color/white"/>
                     </LinearLayout>
@@ -150,7 +150,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:layout_marginTop="32dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
@@ -180,7 +180,7 @@
                             android:layout_height="wrap_content"
                             android:text="CHAT WITH US NOW"
                             android:textColor="@color/white"
-                            android:textSize="16sp"
+                            android:textSize="@dimen/edittext_textsize"
                             android:id="@+id/chatNow"
                             android:textStyle="bold"
                             android:layout_marginLeft="16dp"/>

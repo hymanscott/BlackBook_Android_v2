@@ -60,8 +60,10 @@ public class ServiceHandler {
             wr.flush();
             wr.close();
 
-
 //Read
+            if (httpcon.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                Log.d("Error Response Status", "http response code is " + httpcon.getResponseCode());
+            }
 
             BufferedReader br = new BufferedReader(new InputStreamReader(httpcon.getInputStream(), "UTF-8"));
 
@@ -81,7 +83,6 @@ public class ServiceHandler {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-
             if (httpcon != null) {
                 httpcon.disconnect();
             }

@@ -115,7 +115,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17dp"
+                    android:textSize="@dimen/edittext_textsize"
                     android:textColor="@color/white"
                     android:id="@+id/hivStatus"
                     android:text="HIV Postive and Undetectable" />
@@ -162,7 +162,7 @@
                     android:textColor="@color/white"
                     android:textColorHint="@color/edittext_hint_color"
                     android:textCursorDrawable="@drawable/white_cursor"
-                    android:textSize="17dp"
+                    android:textSize="@dimen/edittext_textsize"
                     android:maxLength="255"/>
             </LinearLayout>
 
@@ -239,7 +239,7 @@
                             android:visibility="gone"
                             android:background="@drawable/rectangle_bg"
                             android:textColor="@color/white"
-                            android:textSize="17dp" />
+                            android:textSize="@dimen/edittext_textsize" />
                         <TextView
                             android:id="@+id/condomUsedWhenITop"
                             android:layout_width="match_parent"
@@ -249,7 +249,7 @@
                             android:layout_marginTop="2dp"
                             android:background="@drawable/rectangle_bg"
                             android:textColor="@color/white"
-                            android:textSize="17dp" />
+                            android:textSize="@dimen/edittext_textsize" />
                         <TextView
                             android:id="@+id/condomUsedWhenIBot"
                             android:layout_width="match_parent"
@@ -259,7 +259,7 @@
                             android:layout_marginTop="2dp"
                             android:background="@drawable/rectangle_bg"
                             android:textColor="@color/white"
-                            android:textSize="17dp" />
+                            android:textSize="@dimen/edittext_textsize" />
                         <TextView
                             android:id="@+id/condomUsedWhenWeFuc"
                             android:layout_width="match_parent"
@@ -269,7 +269,7 @@
                             android:visibility="gone"
                             android:background="@drawable/rectangle_bg"
                             android:textColor="@color/white"
-                            android:textSize="17dp" />
+                            android:textSize="@dimen/edittext_textsize" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -317,7 +317,7 @@
                         android:background="@drawable/rectangle_edittext"
                         android:text="x"
                         android:textColor="@color/white"
-                        android:textSize="17dp" />
+                        android:textSize="@dimen/edittext_textsize" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -365,7 +365,7 @@
                         android:background="@drawable/rectangle_edittext"
                         android:text="x"
                         android:textColor="@color/white"
-                        android:textSize="17dp" />
+                        android:textSize="@dimen/edittext_textsize" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -413,7 +413,7 @@
                         android:background="@drawable/rectangle_edittext"
                         android:text="x"
                         android:textColor="@color/white"
-                        android:textSize="17dp" />
+                        android:textSize="@dimen/edittext_textsize" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -458,7 +458,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/came_inside_partner"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
                         android:layout_toLeftOf="@+id/drunkTitle"
@@ -518,7 +518,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/partner_came_in_me"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
                         android:layout_toLeftOf="@+id/drunkTitle"
@@ -578,7 +578,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/drunk"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
                         android:layout_toLeftOf="@+id/drunkTitle"
@@ -638,7 +638,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/took_doxy"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:paddingTop="5dp"
                         android:paddingBottom="5dp"
                         android:layout_toLeftOf="@+id/drunkTitle"

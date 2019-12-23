@@ -332,7 +332,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/selectedPartner_hivStatus"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textColor="@color/white"
                         android:text="HIV Positive and Undetectable"/>
                 </LinearLayout>
@@ -370,7 +370,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/selectedPartner_undetct"
-                            android:textSize="17dp"
+                            android:textSize="@dimen/edittext_textsize"
                             android:textColor="@color/white"
                             android:text="x"/>
                     </LinearLayout>
@@ -408,7 +408,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/selectedPartner_partnerType"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textColor="@color/white"
                         android:text="Friends with benefits"/>
                 </LinearLayout>
@@ -438,7 +438,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textColor="@color/white"
                         android:id="@+id/selectedPartner_partnerNotes"
                         android:text="Cool guy, shy moving to LA will visit SF and call me"/>
@@ -967,7 +967,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/newPartnerSumm_hivStatus"
-                            android:textSize="17dp"
+                            android:textSize="@dimen/edittext_textsize"
                             android:paddingTop="5dp"
                             android:paddingBottom="5dp"
                             android:layout_toLeftOf="@+id/dropDownIcon"
@@ -1020,7 +1020,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/undetectableAns"
-                            android:textSize="17dp"
+                            android:textSize="@dimen/edittext_textsize"
                             android:paddingTop="10dp"
                             android:paddingBottom="10dp"
                             android:clickable="true"
@@ -1067,7 +1067,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/newPartnerSumm_partnerType"
-                            android:textSize="17dp"
+                            android:textSize="@dimen/edittext_textsize"
                             android:paddingTop="5dp"
                             android:paddingBottom="5dp"
                             android:layout_toLeftOf="@+id/dropDownIcon2"
@@ -1117,7 +1117,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/otherPartner"
-                            android:textSize="17dp"
+                            android:textSize="@dimen/edittext_textsize"
                             android:paddingTop="5dp"
                             android:paddingBottom="5dp"
                             android:layout_toLeftOf="@+id/dropDownIcon3"
@@ -1167,7 +1167,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/monogamous"
-                            android:textSize="17dp"
+                            android:textSize="@dimen/edittext_textsize"
                             android:paddingTop="5dp"
                             android:paddingBottom="5dp"
                             android:layout_toLeftOf="@+id/dropDownIcon4"
@@ -1221,7 +1221,7 @@
                         android:textColorHint="@color/edittext_hint_color"
                         android:textCursorDrawable="@drawable/profile_edittext_cursor"
                         android:maxLength="255"
-                        android:textSize="17dp" />
+                        android:textSize="@dimen/edittext_textsize" />
                 </LinearLayout>
 
                 <LinearLayout

@@ -92,7 +92,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/titleText"
-                android:textSize="16sp"
+                android:textSize="@dimen/edittext_textsize"
                 android:text="When was your most recent HIV test?"
                 android:textColor="@color/profile_text_color"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -150,7 +150,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Is your HIV test positive? (optional)"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/edittext_textsize"
                     android:id="@+id/hivPosQn"
                     android:textColor="@color/profile_text_color"/>
             </LinearLayout>
@@ -231,7 +231,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Were any of your STD tests positive?"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/edittext_textsize"
                     android:id="@+id/stdTesPosQn"
                     android:textColor="@color/profile_text_color" />
                 <LinearLayout
@@ -244,7 +244,7 @@
                         android:layout_height="wrap_content"
                         android:text="Gonorrhea"
                         android:id="@+id/gonorrheaTitle"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textStyle="bold|italic"
                         android:textColor="@color/profile_text_color"/>
                 </LinearLayout>
@@ -319,7 +319,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Syphilis"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textStyle="bold|italic"
                         android:id="@+id/syphilisTitle"
                         android:textColor="@color/profile_text_color"/>
@@ -395,7 +395,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Chlamydia"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textStyle="bold|italic"
                         android:id="@+id/chlamydiaTitle"
                         android:textColor="@color/profile_text_color"/>

@@ -39,7 +39,7 @@
             android:text="Welcome back [enter name of user]!\nWe have a few short questions for you\nand then we’ll get you on your way!"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="17dp" />
+            android:textSize="@dimen/edittext_textsize" />
     </LinearLayout>
     <Button
         android:layout_width="match_parent"

@@ -77,7 +77,7 @@
                         android:layout_marginRight="48dp"
                         android:layout_marginTop="32dp"
                         android:lineSpacingMultiplier="1.50"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textColor="@color/white"
                         android:textStyle="bold"
                         android:text="Take care of your business."
@@ -91,7 +91,7 @@
                         android:layout_marginTop="8dp"
                         android:lineSpacingMultiplier="1.30"
                         android:id="@+id/contextualTipsDesc"
-                        android:textSize="16dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textColor="@color/white"
                         android:text="Add a new test to get started."/>
                 </LinearLayout>
@@ -149,7 +149,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/testingHistorydate"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textColor="@color/white"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -217,7 +217,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textColor="@color/white"
                         android:textStyle="bold|italic"
                         android:layout_marginTop="24dp"
@@ -283,7 +283,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textColor="@color/white"
                         android:textStyle="bold|italic"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -348,7 +348,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textColor="@color/white"
                         android:textStyle="bold|italic"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -435,7 +435,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/titleText"
-                    android:textSize="17dp"
+                    android:textSize="@dimen/edittext_textsize"
                     android:text="When was your most recent HIV test?"
                     android:textColor="@color/white"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -485,7 +485,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="What was your test result?"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:id="@+id/hivPosQn"
                         android:textColor="@color/white"/>
                 </LinearLayout>
@@ -568,7 +568,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Were any of your STD tests positive?"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:id="@+id/stdTesPosQn"
                         android:textColor="@color/white" />
                     <LinearLayout
@@ -581,7 +581,7 @@
                             android:layout_height="wrap_content"
                             android:text="Did you test for Gonorrhea?"
                             android:id="@+id/newgonorrheaTitle"
-                            android:textSize="17dp"
+                            android:textSize="@dimen/edittext_textsize"
                             android:textColor="@color/white"/>
                     </LinearLayout>
                     <RelativeLayout
@@ -656,7 +656,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:text="Did you test for Syphilis?"
-                            android:textSize="17dp"
+                            android:textSize="@dimen/edittext_textsize"
                             android:id="@+id/newsyphilisTitle"
                             android:textColor="@color/white"/>
                     </LinearLayout>
@@ -732,7 +732,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:text="Did you test for Chlamydia?"
-                            android:textSize="17dp"
+                            android:textSize="@dimen/edittext_textsize"
                             android:textStyle="bold|italic"
                             android:id="@+id/newchlamydiaTitle"
                             android:textColor="@color/white"/>

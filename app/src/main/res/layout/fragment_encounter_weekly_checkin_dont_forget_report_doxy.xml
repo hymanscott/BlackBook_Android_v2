@@ -50,7 +50,7 @@
                 android:text="Great. When you take your doxy, don’t\nforget to report it on your next check-in."
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="17dp" />
+                android:textSize="@dimen/edittext_textsize" />
         </LinearLayout>
     </ScrollView>
     <Button

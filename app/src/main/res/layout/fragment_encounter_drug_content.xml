@@ -42,7 +42,7 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="32dp"
-                    android:textSize="16dp"
+                    android:textSize="@dimen/edittext_textsize"
                     android:id="@+id/drugContentTitle"
                     android:gravity="center_vertical" />
             </LinearLayout>

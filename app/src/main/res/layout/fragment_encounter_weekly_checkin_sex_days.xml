@@ -53,7 +53,7 @@
                 android:layout_marginRight="32dp"
                 android:text="Mark the days below when you had sex:"
                 android:textColor="@color/white"
-                android:textSize="17dp" />
+                android:textSize="@dimen/edittext_textsize" />
 
             <!-- Container for Dynamic checkbox-->
             <LinearLayout
@@ -84,7 +84,7 @@
                 android:layout_marginRight="32dp"
                 android:text="Mark the days below when you took doxy:"
                 android:textColor="@color/white"
-                android:textSize="17dp" />
+                android:textSize="@dimen/edittext_textsize" />
 
             <!-- Container for Dynamic checkbox-->
             <LinearLayout

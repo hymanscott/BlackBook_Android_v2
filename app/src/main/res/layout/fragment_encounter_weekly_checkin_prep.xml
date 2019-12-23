@@ -47,7 +47,7 @@
                 android:layout_marginRight="32dp"
                 android:text="Are you currently taking PrEP?"
                 android:textColor="@color/white"
-                android:textSize="17dp" />
+                android:textSize="@dimen/edittext_textsize" />
             <RadioGroup
                 android:id="@+id/taking_prep_rg"
                 android:layout_width="wrap_content"
@@ -100,7 +100,7 @@
                     android:layout_marginRight="24dp"
                     android:text="In the last 7 days, on how many days did you take PrEP?"
                     android:textColor="@color/white"
-                    android:textSize="17dp" />
+                    android:textSize="@dimen/edittext_textsize" />
                 <RelativeLayout
                     android:id="@+id/prep_parent"
                     android:layout_width="wrap_content"

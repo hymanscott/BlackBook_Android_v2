@@ -52,7 +52,7 @@
                 android:layout_marginRight="32dp"
                 android:text="@string/druguse_title"
                 android:textColor="@color/white"
-                android:textSize="17dp" />
+                android:textSize="@dimen/edittext_textsize" />
 
             <!-- Container for Dynamic checkbox-->
             <LinearLayout

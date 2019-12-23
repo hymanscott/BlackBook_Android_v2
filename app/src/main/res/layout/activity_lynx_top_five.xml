@@ -53,7 +53,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:textColor="@color/text_color"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/edittext_textsize"
                                 android:textStyle="bold|italic"
                                 android:id="@+id/top_five_title_partner"
                                 android:text="Top 5 Partners"/>
@@ -80,7 +80,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:textColor="@color/text_color"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/edittext_textsize"
                                 android:textStyle="bold|italic"
                                 android:id="@+id/top_five_title_enc"
                                 android:text="Top 5 Encounters"/>

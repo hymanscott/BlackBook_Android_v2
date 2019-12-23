@@ -327,10 +327,14 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
             partnerNotes.setText(LynxManager.decryptString(partnerContact.getPartner_notes()));
 
             List<PartnerRating> partnerRatingsList = db.getPartnerRatingbyPartnerID(partner_id);
-            for (PartnerRating rating : partnerRatingsList) {
-                rating_values.add(rating.getRating());
-                rating_fields.add(rating.getRating_field());
+
+            if(partnerRatingsList != null) {
+                for (PartnerRating rating : partnerRatingsList) {
+                    rating_values.add(rating.getRating());
+                    rating_fields.add(rating.getRating_field());
+                }
             }
+
             overAll.setText(rating_fields.get(0));
             newPartnerSumm_rate2.setText(rating_fields.get(1));
             newPartnerSumm_rate3.setText(rating_fields.get(2));

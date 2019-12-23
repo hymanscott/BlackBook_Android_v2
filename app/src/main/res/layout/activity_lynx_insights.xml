@@ -93,7 +93,7 @@
                         android:lineSpacingMultiplier="1.50"
                         android:text="Your Partners"
                         android:textColor="@color/white"
-                        android:textSize="16dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -115,7 +115,7 @@
                                 android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
-                                android:textSize="16dp"
+                                android:textSize="@dimen/edittext_textsize"
                                 android:textStyle="bold" />
                             <TextView
                                 android:id="@+id/legendMen"
@@ -124,7 +124,7 @@
                                 android:layout_weight="0.93"
                                 android:text="MEN"
                                 android:textColor="@color/white"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/edittext_textsize" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -160,7 +160,7 @@
                                 android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
-                                android:textSize="16dp"
+                                android:textSize="@dimen/edittext_textsize"
                                 android:textStyle="bold" />
                             <TextView
                                 android:id="@+id/legendTransMen"
@@ -169,7 +169,7 @@
                                 android:layout_weight="0.93"
                                 android:text="TRANS MEN"
                                 android:textColor="@color/white"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/edittext_textsize" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -205,7 +205,7 @@
                                 android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
-                                android:textSize="16dp"
+                                android:textSize="@dimen/edittext_textsize"
                                 android:textStyle="bold" />
                             <TextView
                                 android:id="@+id/legendWomen"
@@ -214,7 +214,7 @@
                                 android:layout_weight="0.93"
                                 android:text="WOMEN"
                                 android:textColor="@color/white"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/edittext_textsize" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -250,7 +250,7 @@
                                 android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
-                                android:textSize="16dp"
+                                android:textSize="@dimen/edittext_textsize"
                                 android:textStyle="bold" />
                             <TextView
                                 android:id="@+id/legendTransWomen"
@@ -259,7 +259,7 @@
                                 android:layout_weight="0.93"
                                 android:text="TRANS WOMEN"
                                 android:textColor="@color/white"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/edittext_textsize" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -305,7 +305,7 @@
                         android:lineSpacingMultiplier="1.50"
                         android:text="Partners Types"
                         android:textColor="@color/white"
-                        android:textSize="16dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -327,7 +327,7 @@
                                 android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
-                                android:textSize="16dp"
+                                android:textSize="@dimen/edittext_textsize"
                                 android:textStyle="bold" />
                             <TextView
                                 android:id="@+id/legendPrimary"
@@ -336,7 +336,7 @@
                                 android:layout_weight="0.93"
                                 android:text="PRIMARY"
                                 android:textColor="@color/white"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/edittext_textsize" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -372,7 +372,7 @@
                                 android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
-                                android:textSize="16dp"
+                                android:textSize="@dimen/edittext_textsize"
                                 android:textStyle="bold" />
                             <TextView
                                 android:id="@+id/legendFriends"
@@ -381,7 +381,7 @@
                                 android:layout_weight="0.93"
                                 android:text="FRIENDS WITH BENEFITS"
                                 android:textColor="@color/white"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/edittext_textsize" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -417,7 +417,7 @@
                                 android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
-                                android:textSize="16dp"
+                                android:textSize="@dimen/edittext_textsize"
                                 android:textStyle="bold" />
                             <TextView
                                 android:id="@+id/legendRegular"
@@ -426,7 +426,7 @@
                                 android:layout_weight="0.93"
                                 android:text="REGULAR"
                                 android:textColor="@color/white"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/edittext_textsize" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -462,7 +462,7 @@
                                 android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
-                                android:textSize="16dp"
+                                android:textSize="@dimen/edittext_textsize"
                                 android:textStyle="bold" />
                             <TextView
                                 android:id="@+id/legendHookUp"
@@ -471,7 +471,7 @@
                                 android:layout_weight="0.93"
                                 android:text="HOOK-UP"
                                 android:textColor="@color/white"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/edittext_textsize" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -507,7 +507,7 @@
                                 android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
-                                android:textSize="16dp"
+                                android:textSize="@dimen/edittext_textsize"
                                 android:textStyle="bold" />
                             <TextView
                                 android:id="@+id/legendOneNightStand"
@@ -516,7 +516,7 @@
                                 android:layout_weight="0.93"
                                 android:text="ONE-NIGHT STAND"
                                 android:textColor="@color/white"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/edittext_textsize" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -562,7 +562,7 @@
                         android:lineSpacingMultiplier="1.50"
                         android:text="Partner HIV Status"
                         android:textColor="@color/white"
-                        android:textSize="16dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -584,7 +584,7 @@
                                 android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
-                                android:textSize="16dp"
+                                android:textSize="@dimen/edittext_textsize"
                                 android:textStyle="bold" />
                             <TextView
                                 android:id="@+id/legendNegative"
@@ -593,7 +593,7 @@
                                 android:layout_weight="0.93"
                                 android:text="HIV NEGATIVE"
                                 android:textColor="@color/white"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/edittext_textsize" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -629,7 +629,7 @@
                                 android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
-                                android:textSize="16dp"
+                                android:textSize="@dimen/edittext_textsize"
                                 android:textStyle="bold" />
                             <TextView
                                 android:id="@+id/legendNegPrep"
@@ -638,7 +638,7 @@
                                 android:layout_weight="0.93"
                                 android:text="HIV NEGATIVE AND ON PrEP"
                                 android:textColor="@color/white"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/edittext_textsize" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -674,7 +674,7 @@
                                 android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
-                                android:textSize="16dp"
+                                android:textSize="@dimen/edittext_textsize"
                                 android:textStyle="bold" />
                             <TextView
                                 android:id="@+id/legendUnsure"
@@ -683,7 +683,7 @@
                                 android:layout_weight="0.93"
                                 android:text="I DON’T KNOW/UNSURE"
                                 android:textColor="@color/white"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/edittext_textsize" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -719,7 +719,7 @@
                                 android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
-                                android:textSize="16dp"
+                                android:textSize="@dimen/edittext_textsize"
                                 android:textStyle="bold" />
                             <TextView
                                 android:id="@+id/legendPositive"
@@ -728,7 +728,7 @@
                                 android:layout_weight="0.93"
                                 android:text="HIV POSITIVE"
                                 android:textColor="@color/white"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/edittext_textsize" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -764,7 +764,7 @@
                                 android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
-                                android:textSize="16dp"
+                                android:textSize="@dimen/edittext_textsize"
                                 android:textStyle="bold" />
                             <TextView
                                 android:id="@+id/legendUndectable"
@@ -773,7 +773,7 @@
                                 android:layout_weight="0.93"
                                 android:text="HIV POSITIVE AND UNDETECTABLE"
                                 android:textColor="@color/white"
-                                android:textSize="16dp" />
+                                android:textSize="@dimen/edittext_textsize" />
                         </LinearLayout>
 
                         <LinearLayout

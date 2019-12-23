@@ -11,7 +11,7 @@
         android:paddingLeft="16dp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:textSize="16sp"
+        android:textSize="@dimen/edittext_textsize"
         android:textColor="@color/faq_blue"
         android:background="@drawable/bottom_border_faq"
         android:id="@+id/textview"/>

@@ -114,7 +114,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17dp"
+                    android:textSize="@dimen/edittext_textsize"
                     android:textColor="@color/white"
                     android:id="@+id/encSumm_hivStatus"
                     android:text="HIV Postive and Undetectable" />
@@ -147,7 +147,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17dp"
+                    android:textSize="@dimen/edittext_textsize"
                     android:textColor="@color/white"
                     android:id="@+id/encSumm_partnerNotes"
                     android:text="Cool guy. shy. moving to LA. Will visit SF and call me." />
@@ -212,7 +212,7 @@
                             android:text="When I sucked"
                             android:visibility="gone"
                             android:textColor="@color/white"
-                            android:textSize="17dp" />
+                            android:textSize="@dimen/edittext_textsize" />
                         <TextView
                             android:id="@+id/condomUsedWhenITop"
                             android:layout_width="match_parent"
@@ -221,7 +221,7 @@
                             android:visibility="gone"
                             android:layout_marginTop="2dp"
                             android:textColor="@color/white"
-                            android:textSize="17dp" />
+                            android:textSize="@dimen/edittext_textsize" />
                         <TextView
                             android:id="@+id/condomUsedWhenIBot"
                             android:layout_width="match_parent"
@@ -230,7 +230,7 @@
                             android:visibility="gone"
                             android:layout_marginTop="2dp"
                             android:textColor="@color/white"
-                            android:textSize="17dp" />
+                            android:textSize="@dimen/edittext_textsize" />
                         <TextView
                             android:id="@+id/condomUsedWhenWeFuc"
                             android:layout_width="match_parent"
@@ -239,7 +239,7 @@
                             android:layout_marginTop="2dp"
                             android:visibility="gone"
                             android:textColor="@color/white"
-                            android:textSize="17dp" />
+                            android:textSize="@dimen/edittext_textsize" />
                     </LinearLayout>
                 </LinearLayout>
                 <View
@@ -274,7 +274,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textColor="@color/white"
                         android:id="@+id/came_inside_partner"
                         android:text="Yes" />
@@ -312,7 +312,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textColor="@color/white"
                         android:id="@+id/partner_came_in_me"
                         android:text="No" />
@@ -351,7 +351,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textColor="@color/white"
                         android:id="@+id/whenIsucked"
                         android:text="x" />
@@ -390,7 +390,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textColor="@color/white"
                         android:id="@+id/whenIbottom"
                         android:text="x" />
@@ -429,7 +429,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textColor="@color/white"
                         android:id="@+id/whenItop"
                         android:text="x" />
@@ -467,7 +467,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textColor="@color/white"
                         android:id="@+id/drunk"
                         android:text="Neither drunk nor high" />
@@ -504,7 +504,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="17dp"
+                        android:textSize="@dimen/edittext_textsize"
                         android:textColor="@color/white"
                         android:id="@+id/took_doxy"
                         android:text="Yes" />

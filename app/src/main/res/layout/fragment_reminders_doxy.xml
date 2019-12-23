@@ -45,7 +45,7 @@
                 android:lineSpacingMultiplier="1.43"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
-                android:textSize="16dp" />
+                android:textSize="@dimen/edittext_textsize" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                         android:paddingLeft="8dp"
                         android:text="Yes"
                         android:textColor="@color/white"
-                        android:textSize="16dp" />
+                        android:textSize="@dimen/edittext_textsize" />
                     <RadioButton
                         android:buttonTint="@color/white"
                         android:id="@+id/rbt_decline"
@@ -76,7 +76,7 @@
                         android:paddingLeft="8dp"
                         android:text="No"
                         android:textColor="@color/white"
-                        android:textSize="16dp" />
+                        android:textSize="@dimen/edittext_textsize" />
                 </RadioGroup>
 
                 <Button

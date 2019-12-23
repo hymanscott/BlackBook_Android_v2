@@ -211,8 +211,12 @@ public class EncounterStartActivity extends AppCompatActivity {
             LynxManager.activePartnerRating.clear();
             LynxManager.activeEncounter.setEncounter_partner_id(LynxManager.selectedPartnerID);
 
-            for (PartnerRating partnerRating : db.getPartnerRatingbyPartnerID(LynxManager.selectedPartnerID)) {
-                LynxManager.setActivePartnerRating(partnerRating);
+            List<PartnerRating> partnerRatings = db.getPartnerRatingbyPartnerID(LynxManager.selectedPartnerID);
+
+            if(partnerRatings != null) {
+                for (PartnerRating partnerRating : partnerRatings) {
+                    LynxManager.setActivePartnerRating(partnerRating);
+                }
             }
 
             EncounterSexTypeFragment fragSexType = new EncounterSexTypeFragment();

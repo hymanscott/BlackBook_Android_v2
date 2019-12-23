@@ -184,7 +184,7 @@
                     android:id="@+id/info_para_one"
                     android:gravity="center_horizontal"
                     android:textColor="@color/text_color"
-                    android:textSize="16sp"/>
+                    android:textSize="@dimen/edittext_textsize"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -194,7 +194,7 @@
                     android:layout_marginRight="24dp"
                     android:gravity="center_horizontal"
                     android:textColor="@color/text_color"
-                    android:textSize="16sp"/>
+                    android:textSize="@dimen/edittext_textsize"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -203,7 +203,7 @@
                     android:id="@+id/info_para_three"
                     android:gravity="center_horizontal"
                     android:textColor="@color/text_color"
-                    android:textSize="16sp"/>
+                    android:textSize="@dimen/edittext_textsize"/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

@@ -61,7 +61,7 @@
                                 android:layout_height="wrap_content"
                                 android:text=" 07/28/2018"
                                 android:textColor="@color/white"
-                                android:textSize="16sp"
+                                android:textSize="@dimen/edittext_textsize"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </LinearLayout>
@@ -263,7 +263,7 @@
                         android:lineSpacingMultiplier="1.31"
                         android:text="Your BlackBook score is based on the last three months of your diary entries."
                         android:textColor="@color/text_color"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/edittext_textsize" />
 
                     <TextView
                         android:id="@+id/info_para_two"
@@ -275,7 +275,7 @@
                         android:lineSpacingMultiplier="1.31"
                         android:text="This is a red light/green light deal.  The closer your needle gets to the green or further into the green it gets, the higher your levels of HIV protection. Green is good and a red score can always become a green score."
                         android:textColor="@color/text_color"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/edittext_textsize" />
 
                     <TextView
                         android:id="@+id/info_para_three"
@@ -286,7 +286,7 @@
                         android:lineSpacingMultiplier="1.31"
                         android:text="But even a perfect score of 20 (strongest protection rating) doesn’t mean you can’t get HIV.  It does mean that you are lowering your risk by protecting yourself!"
                         android:textColor="@color/text_color"
-                        android:textSize="16sp" />
+                        android:textSize="@dimen/edittext_textsize" />
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>

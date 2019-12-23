@@ -49,7 +49,7 @@
                 android:layout_marginRight="32dp"
                 android:text="Do you have encounters to report?"
                 android:textColor="@color/white"
-                android:textSize="17dp" />
+                android:textSize="@dimen/edittext_textsize" />
             <RadioGroup
                 android:id="@+id/encounter_report_rg"
                 android:layout_width="wrap_content"
