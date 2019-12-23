@@ -124,7 +124,7 @@
                             android:layout_marginRight="@dimen/activity_horizontal_margin"
                             android:layout_marginTop="@dimen/activity_vertical_margin"
                             android:gravity="center_horizontal"
-                            android:lineSpacingMultiplier="1.5"
+                            android:lineSpacingMultiplier="1.2"
                             android:text="What does my score mean?"
                             android:textColor="@color/chart_blue"
                             android:textSize="14sp"
@@ -142,7 +142,7 @@
                             android:layout_marginLeft="40dp"
                             android:layout_marginRight="40dp"
                             android:gravity="center_horizontal"
-                            android:lineSpacingMultiplier="1.31"
+                            android:lineSpacingMultiplier="1.2"
                             android:text="Score Description"
                             android:textColor="@color/text_color"
                             android:textSize="14sp" />
@@ -154,7 +154,7 @@
                             android:layout_marginLeft="40dp"
                             android:layout_marginRight="40dp"
                             android:layout_marginTop="@dimen/activity_vertical_margin"
-                            android:lineSpacingMultiplier="1.31"
+                            android:lineSpacingMultiplier="1.2"
                             android:text="In addition to PrEP, you can raise your BlackBook score by:"
                             android:textColor="@color/text_color"
                             android:textSize="14sp" />
@@ -212,7 +212,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="24dp"
                             android:gravity="center_horizontal"
-                            android:lineSpacingMultiplier="1.31"
+                            android:lineSpacingMultiplier="1.2"
                             android:text="Your BlackBook score is based on the last three months of your diary entries."
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/edittext_textsize" />
@@ -224,7 +224,7 @@
                             android:layout_marginLeft="24dp"
                             android:layout_marginRight="24dp"
                             android:gravity="center_horizontal"
-                            android:lineSpacingMultiplier="1.31"
+                            android:lineSpacingMultiplier="1.2"
                             android:text="This is a red light/green light deal.  The closer your needle gets to the green or further into the green it gets, the higher your levels of HIV protection. Green is good and a red score can always become a green score."
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/edittext_textsize" />
@@ -235,7 +235,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="24dp"
                             android:gravity="center_horizontal"
-                            android:lineSpacingMultiplier="1.31"
+                            android:lineSpacingMultiplier="1.2"
                             android:text="But even a perfect score of 20 (strongest protection rating) doesn’t mean you can’t get HIV.  It does mean that you are lowering your risk by protecting yourself!"
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/edittext_textsize" />

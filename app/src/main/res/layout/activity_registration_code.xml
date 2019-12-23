@@ -30,7 +30,7 @@
                 android:layout_marginRight="32dp"
                 android:layout_marginBottom="32dp"
                 android:gravity="center"
-                android:lineSpacingMultiplier="1.36"
+                android:lineSpacingMultiplier="1.2"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
                 android:text="Enter your registration code below to access the Lynx app."

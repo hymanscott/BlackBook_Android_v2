@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
-        android:lineSpacingMultiplier="1.25"
+        android:lineSpacingMultiplier="1.2"
         android:layout_marginTop="16dp"
         android:text="# of 5 star
         encounters"

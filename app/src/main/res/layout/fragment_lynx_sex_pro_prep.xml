@@ -167,7 +167,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="24dp"
-                    android:lineSpacingMultiplier="1.31"
+                    android:lineSpacingMultiplier="1.2"
                     android:gravity="center_horizontal"
                     android:text="What’s the difference?"
                     android:textColor="@color/profile_title_text_color"
@@ -190,7 +190,7 @@
                         android:text="PrEP is the difference."
                         android:textColor="@color/text_color"
                         android:layout_marginLeft="6dp"
-                        android:lineSpacingMultiplier="1.25"
+                        android:lineSpacingMultiplier="1.2"
                         android:id="@+id/PrepIsDiff"
                         android:textStyle="italic|bold"
                         android:textSize="@dimen/edittext_textsize"/>

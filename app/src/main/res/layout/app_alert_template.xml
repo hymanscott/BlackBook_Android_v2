@@ -16,7 +16,7 @@
                 android:text="You’ve been getting out there. Nice. Use condoms and PrEP so your morning after memories are anxiety free."
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:lineSpacingMultiplier="1.33"
+                android:lineSpacingMultiplier="1.2"
                 android:textColor="@color/white"
                 android:paddingTop="18dp"
                 android:paddingRight="26dp"

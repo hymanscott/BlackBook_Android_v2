@@ -17,7 +17,7 @@
         android:text="You had anal sex with [#] people"
         android:textColor="@color/text_color"
         android:layout_marginLeft="30dp"
-        android:lineSpacingMultiplier="1.25"
+        android:lineSpacingMultiplier="1.2"
         android:id="@+id/text"
         android:textStyle="italic"
         android:textSize="@dimen/edittext_textsize"/>

@@ -58,7 +58,7 @@
                         android:layout_marginLeft="32dp"
                         android:layout_marginRight="32dp"
                         android:gravity="center_vertical"
-                        android:lineSpacingMultiplier="1.31"
+                        android:lineSpacingMultiplier="1.2"
                         android:text="Do you have a primary sex partner?
 This is someone you consider a boy/girlfriend, partner, husband, wife, spouse, lover, significant other, or boo."
                         android:textAppearance="?android:attr/textAppearanceMedium"

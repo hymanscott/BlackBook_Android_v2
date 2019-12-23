@@ -53,7 +53,7 @@
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
                 android:gravity="center_vertical"
-                android:lineSpacingMultiplier="1.31"
+                android:lineSpacingMultiplier="1.2"
                 android:text="How many TIMES have you had anal sex as a TOP with your HIV positive or unknown status partners?"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />
@@ -77,7 +77,7 @@
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
                 android:layout_marginTop="32dp"
-                android:lineSpacingMultiplier="1.31"
+                android:lineSpacingMultiplier="1.2"
                 android:gravity="center_vertical"
                 android:text="Number of TIMES (NOT Partners) as a TOP with men or transwomen?"
                 android:textColor="@color/white"
@@ -117,7 +117,7 @@
                 android:layout_marginRight="32dp"
                 android:layout_marginTop="40dp"
                 android:gravity="center_vertical"
-                android:lineSpacingMultiplier="1.31"
+                android:lineSpacingMultiplier="1.2"
                 android:text="And how often did you use a condom?"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />

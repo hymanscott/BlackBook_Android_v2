@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="32dp"
-                    android:lineSpacingMultiplier="1.31"
+                    android:lineSpacingMultiplier="1.2"
                     android:text="On average, how often did you drink alcohol in the past 3 months? "
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/white"
@@ -132,7 +132,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="32dp"
-                    android:lineSpacingMultiplier="1.31"
+                    android:lineSpacingMultiplier="1.2"
                     android:text="About how many drinks did you have on a typical day? "
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@color/white" />
@@ -173,7 +173,7 @@
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
                 android:layout_marginTop="24dp"
-                android:lineSpacingMultiplier="1.58"
+                android:lineSpacingMultiplier="1.2"
                 android:text="One drink is defined as a 12-oz can of beer, a 4-oz glass of wine, a 1.5-oz shot of liquor,or a mixed drink made of 1.5-oz of liquor."
                 android:textColor="@color/white"
                 android:textSize="12sp" />

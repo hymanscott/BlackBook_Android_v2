@@ -82,7 +82,7 @@
             android:textColor="@color/white"
             android:layout_marginTop="@dimen/button_top_margin"
             android:visibility="visible"
-            android:lineSpacingMultiplier="1.33"
+            android:lineSpacingMultiplier="1.2"
             android:textSize="13dp" />
         <TableLayout
             android:id="@+id/tableLayout1"
