@@ -70,8 +70,6 @@ public class RemindersDiary extends Fragment {
 
         db = new DatabaseHelper(getActivity());
         final List<String> daysOfWeek = Arrays.asList(getResources().getStringArray(R.array.days_of_week));
-
-
         final ArrayAdapter<String> adapterSecQues = new ArrayAdapter<String>(getActivity(),
                 R.layout.spinner_row_white, R.id.txtView, daysOfWeek);
         day.setOnClickListener(new View.OnClickListener() {

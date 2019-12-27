@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundPrimary">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btnNext">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomNav"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentTop="true">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="18dp"
+                        android:layout_marginTop="32dp"
+                        android:src="@drawable/encounterlarge" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        android:textSize="20dp"
+                        android:text="@string/new_encounter"
+                        android:textColor="@color/white"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:id="@+id/newEncounter" />
+
+                    <TextView
+                        android:id="@+id/txt_nick_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="32dp"
+                        android:background="#E1E1E1"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:text="JOHN DOE"
+                        android:padding="12dp"
+                        android:textColor="@color/dark_boxes"
+                        android:textStyle="bold"
+                        android:textSize="18dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/main_question_parent"
+                        android:layout_marginBottom="32dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="After sex did you take doxycycline?"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/encounter_tv_textsize"
+                            android:layout_marginRight="24dp"
+                            android:layout_marginLeft="24dp"
+                            android:id="@+id/main_question_title"
+                            android:gravity="center_vertical"/>
+                        <RadioGroup
+                            android:id="@+id/rbg_taken"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="24dp"
+                            android:layout_marginLeft="24dp"
+                            android:paddingLeft="8dp"
+                            android:layout_marginTop="@dimen/activity_vertical_margin">
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Yes"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/encounter_radio_btn_textsize"
+                                android:buttonTint="@color/white"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
+                                android:id="@+id/rbt_taken_yes" />
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="No"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/encounter_radio_btn_textsize"
+                                android:buttonTint="@color/white"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
+                                android:layout_marginTop="12dp"
+                                android:id="@+id/rbt_taken_no" />
+                        </RadioGroup>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/date_picker_parent"
+                        android:layout_marginBottom="32dp"
+                        android:paddingLeft="32dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="▶  When did you take doxycycline?"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/encounter_tv_textsize"
+                            android:layout_marginRight="24dp"
+                            android:layout_marginLeft="24dp"
+                            android:id="@+id/date_picker_title"
+                            android:gravity="center_vertical"/>
+                        <RelativeLayout
+                            android:id="@+id/date_picker_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                            android:layout_marginRight="@dimen/activity_horizontal_margin"
+                            android:layout_marginTop="16dp"
+                            android:background="@drawable/input_primary_rounded"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/edittext_padding">
+                            <ImageView
+                                android:id="@+id/date_picker_icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center"
+                                android:src="@drawable/calendericon" />
+                            <TextView
+                                android:id="@+id/date_picker_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="@dimen/activity_horizontal_margin_half"
+                                android:layout_toEndOf="@+id/date_picker_icon"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:hint="(MM/DD/YYYY)"
+                                android:textColorHint="@color/edittext_hint_color"
+                                android:textColor="@color/edittext_hint_color"
+                                android:textSize="@dimen/edittext_textsize" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/now_parent"
+                        android:layout_marginBottom="32dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="▶  You can still take doxy!\n      Would you like to take it now?"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/encounter_tv_textsize"
+                            android:layout_marginRight="24dp"
+                            android:layout_marginLeft="24dp"
+                            android:id="@+id/now_title"
+                            android:gravity="center_vertical"/>
+                        <RadioGroup
+                            android:id="@+id/rbg_now"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="24dp"
+                            android:layout_marginLeft="24dp"
+                            android:paddingLeft="8dp"
+                            android:layout_marginTop="@dimen/activity_vertical_margin">
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Yes. I will take it right now."
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/encounter_radio_btn_textsize"
+                                android:buttonTint="@color/white"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
+                                android:id="@+id/rbt_now_yes" />
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Yes. But, I can’t take it right now."
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/encounter_radio_btn_textsize"
+                                android:buttonTint="@color/white"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
+                                android:layout_marginTop="12dp"
+                                android:id="@+id/rbt_now_yes_but_after" />
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="No."
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/encounter_radio_btn_textsize"
+                                android:buttonTint="@color/white"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
+                                android:layout_marginTop="12dp"
+                                android:id="@+id/rbt_now_no" />
+                        </RadioGroup>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/dont_forget_parent"
+                        android:layout_marginBottom="32dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="▶  Great. When you take your doxy,\n      don’t forget to report it on your\n      next check-in."
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/encounter_tv_textsize"
+                            android:layout_marginRight="24dp"
+                            android:layout_marginLeft="24dp"
+                            android:id="@+id/dont_forget_title"
+                            android:gravity="center_vertical"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/reason_parent"
+                        android:layout_marginBottom="32dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="▶  What is the main reason you did\n      not/will not take doxy?"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/encounter_tv_textsize"
+                            android:layout_marginRight="24dp"
+                            android:layout_marginLeft="24dp"
+                            android:id="@+id/reason_title"
+                            android:gravity="center_vertical"/>
+                        <RadioGroup
+                            android:id="@+id/rbg_reason"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="24dp"
+                            android:layout_marginLeft="24dp"
+                            android:paddingLeft="8dp"
+                            android:layout_marginTop="@dimen/activity_vertical_margin">
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="I forgot"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/encounter_radio_btn_textsize"
+                                android:buttonTint="@color/white"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
+                                android:id="@+id/rbt_reason_forgot" />
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="I didn’t have the pills"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/encounter_radio_btn_textsize"
+                                android:buttonTint="@color/white"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
+                                android:layout_marginTop="12dp"
+                                android:id="@+id/rbt_reason_not_pills" />
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/encounter_radio_btn_textsize"
+                                android:buttonTint="@color/white"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
+                                android:layout_marginTop="12dp"
+                                android:text="I plan to take it after a future encounter"
+                                android:id="@+id/rbt_reason_next_encounter" />
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/encounter_radio_btn_textsize"
+                                android:buttonTint="@color/white"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
+                                android:layout_marginTop="12dp"
+                                android:text="I didn’t think I was at risk for an STI"
+                                android:id="@+id/rbt_reason_sti" />
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/encounter_radio_btn_textsize"
+                                android:buttonTint="@color/white"
+                                android:button="@drawable/radiobutton_white"
+                                android:paddingLeft="12dp"
+                                android:layout_marginTop="12dp"
+                                android:text="I wanted to avoid side effects"
+                                android:id="@+id/rbt_reason_side_effects" />
+                        </RadioGroup>
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </ScrollView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:onClick="onDoxyNext"
+        android:textStyle="bold"
+        android:id="@+id/btnNext"
+        android:layout_alignParentBottom="true"
+        android:textSize="@dimen/button_textsize"
+        android:background="@color/input_primary"
+        android:textColor="@color/white" />
+</RelativeLayout>

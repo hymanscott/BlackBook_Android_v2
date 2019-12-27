@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
@@ -36,6 +37,7 @@ import com.lynxstudy.model.Partners;
 import com.lynxstudy.model.UserAlcoholUse;
 import com.lynxstudy.model.UserBadges;
 import com.lynxstudy.model.UserDrugUse;
+import com.lynxstudy.model.Users;
 
 import org.piwik.sdk.Tracker;
 import org.piwik.sdk.extra.TrackHelper;
@@ -226,8 +228,6 @@ public class EncounterStartActivity extends AppCompatActivity {
     }
 
     public boolean onSexTypeNext(View view) {
-        EncounterCondomuseFragment fragSextypeCondomuse = new EncounterCondomuseFragment();
-        EncounterDrunkStatusFragment fragEncNotes = new EncounterDrunkStatusFragment();
         RatingBar rate_of_sex = (RatingBar) findViewById(R.id.sexType_RateTheSex);
         LynxManager.encRateofSex = String.valueOf(rate_of_sex.getRating());
         LynxManager.activeEncounter.setRate_the_sex(LynxManager.encryptString(String.valueOf(rate_of_sex.getRating())));
@@ -235,6 +235,49 @@ public class EncounterStartActivity extends AppCompatActivity {
 
         if (LynxManager.getActivePartnerSexType().size() == 0) {
             Toast.makeText(EncounterStartActivity.this, "Please select Type of sex", Toast.LENGTH_SHORT).show();
+
+            return true;
+        } else {
+            Users activeUser = LynxManager.getActiveUser();
+
+            if(activeUser.getIs_prep().equals("Yes")) {
+                EncounterDoxyFragment fragDoxy = new EncounterDoxyFragment();
+
+                pushFragments("encounter", fragDoxy, true);
+
+                return true;
+            } else {
+                // Avoid doxy fragment and simulate the process
+                return onDoxyNext(view);
+            }
+        }
+    }
+
+    public boolean onDoxyNext(View view) {
+        EncounterCondomuseFragment fragSextypeCondomuse = new EncounterCondomuseFragment();
+        EncounterDrunkStatusFragment fragEncNotes = new EncounterDrunkStatusFragment();
+
+        // Validating the screen
+        LinearLayout mainQuestionParent = (LinearLayout) findViewById(R.id.main_question_parent);
+        LinearLayout datePickerParent = (LinearLayout) findViewById(R.id.date_picker_parent);
+        LinearLayout reasonParent = (LinearLayout) findViewById(R.id.reason_parent);
+        LinearLayout nowParent = (LinearLayout) findViewById(R.id.now_parent);
+        TextView txtDatePicker = (TextView) findViewById(R.id.date_picker_text);
+        RadioGroup rbgTaken = (RadioGroup) findViewById(R.id.rbg_taken);
+        RadioGroup rbgReason = (RadioGroup) findViewById(R.id.rbg_reason);
+        RadioGroup rgbNow = (RadioGroup) findViewById(R.id.rbg_now);
+        // Verify if action comes from encounter doxy fragment layout
+        boolean comesfromDoxyFragment = mainQuestionParent != null;
+
+
+        if (comesfromDoxyFragment == true && rbgTaken.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(EncounterStartActivity.this, "Please respond if did you take doxy.", Toast.LENGTH_SHORT).show();
+        } else if (comesfromDoxyFragment == true && datePickerParent.getVisibility() == View.VISIBLE && txtDatePicker.getText().toString().trim().equals("")) {
+            Toast.makeText(EncounterStartActivity.this, "Please set a date.", Toast.LENGTH_SHORT).show();
+        } else if (comesfromDoxyFragment == true && reasonParent.getVisibility() == View.VISIBLE && rbgReason.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(EncounterStartActivity.this, "Please select a reason.", Toast.LENGTH_SHORT).show();
+        } else if (comesfromDoxyFragment == true && nowParent.getVisibility() == View.VISIBLE && rgbNow.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(EncounterStartActivity.this, "Please respond if you will take a doxy now.", Toast.LENGTH_SHORT).show();
         } else {
             for (EncounterSexType partnerSexType : LynxManager.getActivePartnerSexType()) {
                 //   Log.v( "afterconfirm",LynxManager.decryptString(partnerSexType.getSex_type()));
@@ -244,8 +287,10 @@ public class EncounterStartActivity extends AppCompatActivity {
                     return true;
                 }
             }
+
             pushFragments("Encounter", fragEncNotes, true);
         }
+
         return true;
     }
 
