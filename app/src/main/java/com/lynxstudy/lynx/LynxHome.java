@@ -94,7 +94,7 @@ import java.util.concurrent.TimeUnit;
 
 public class LynxHome extends AppCompatActivity implements View.OnClickListener {
   TextView bot_nav_sexpro_tv,bot_nav_diary_tv,bot_nav_testing_tv,bot_nav_prep_tv,bot_nav_chat_tv,sexproTitle,activityTitle,badgesTitle,topFiveTitle,trendsTitle,insightsTitle;
-  Typeface tf,tf_bold;
+  Typeface tf,tf_medium;
   LinearLayout btn_testing,btn_diary,btn_prep,btn_chat,sexpro,activity,badges,topFive,trends,insights;
   DatabaseHelper db;
   private static final int READ_PHONE_STATE = 101;
@@ -118,8 +118,8 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
     //Type face
     tf = Typeface.createFromAsset(getResources().getAssets(),
             "fonts/Barlow-Regular.ttf");
-    tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-            "fonts/Barlow-Bold.ttf");
+    tf_medium = Typeface.createFromAsset(getResources().getAssets(),
+            "fonts/Barlow-Medium.ttf");
 
     // Custom Action Bar //
     getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -159,13 +159,13 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
     );
 
     activityTitle = (TextView)findViewById(R.id.activityTitle);
-    activityTitle.setTypeface(tf_bold);
+    activityTitle.setTypeface(tf_medium);
     badgesTitle = (TextView)findViewById(R.id.badgesTitle);
-    badgesTitle.setTypeface(tf_bold);
+    badgesTitle.setTypeface(tf_medium);
     trendsTitle = (TextView)findViewById(R.id.trendsTitle);
-    trendsTitle.setTypeface(tf_bold);
+    trendsTitle.setTypeface(tf_medium);
     insightsTitle = (TextView)findViewById(R.id.insightsTitle);
-    insightsTitle.setTypeface(tf_bold);
+    insightsTitle.setTypeface(tf_medium);
 
         /*
         sexpro = (LinearLayout) findViewById(R.id.sexpro);

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -53,8 +54,8 @@ import java.util.Date;
 import java.util.List;
 
 public class BaselineActivity extends AppCompatActivity {
-
     DatabaseHelper db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +67,16 @@ public class BaselineActivity extends AppCompatActivity {
                     .commit();
         }
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();
-		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
+		    tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         TrackHelper.track().screen("/Baseline").title("Baseline").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         /*checkForUpdates();*/ // Hockey APP
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                finishBaseline();
+            }
+        }, 1000);
     }
 
     /**

@@ -2,6 +2,7 @@ package com.lynxstudy.lynx;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
@@ -27,10 +28,19 @@ public class LynxBadgesRecyclerViewAdapter extends RecyclerView.Adapter<LynxBadg
         BadgeViewHolder(View itemView) {
             super(itemView);
 
+            // Type face
+            Typeface tf = Typeface.createFromAsset(itemView.getResources().getAssets(), "fonts/Barlow-Regular.ttf");
+            Typeface tf_medium = Typeface.createFromAsset(itemView.getResources().getAssets(), "fonts/Barlow-Medium.ttf");
+
             badgeImage = (ImageView)itemView.findViewById(R.id.badgeImage);
             rowBadgeName = (TextView)itemView.findViewById(R.id.rowBadgeName);
             rowBadgeDescription = (TextView)itemView.findViewById(R.id.rowBadgeDescription);
             rowBadgeEarnedTimes = (TextView)itemView.findViewById(R.id.rowBadgeEarnedTimes);
+
+            // Set type face
+            rowBadgeName.setTypeface(tf_medium);
+            rowBadgeDescription.setTypeface(tf);
+            rowBadgeEarnedTimes.setTypeface(tf);
         }
     }
 
@@ -77,7 +87,7 @@ public class LynxBadgesRecyclerViewAdapter extends RecyclerView.Adapter<LynxBadg
         badgeViewHolder.badgeImage.setImageDrawable(context.getResources().getDrawable(imageDrawableId));
         badgeViewHolder.rowBadgeName.setText(badgeName);
         badgeViewHolder.rowBadgeDescription.setText(badgesMaster.getBadge_description());
-        badgeViewHolder.rowBadgeEarnedTimes.setText("Earned " + noOfCount +" time(s)");
+        badgeViewHolder.rowBadgeEarnedTimes.setText("Earned " + noOfCount + " time" + (noOfCount == 1 ? "" : "(s)"));
 
         if(badgesMaster.getBadge_name().equals("PrEP")){
             badgeViewHolder.rowBadgeName.setText("PrEP'd");

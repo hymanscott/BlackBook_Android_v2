@@ -252,6 +252,12 @@ public class RemindersActivity extends AppCompatActivity {
             finish();
         }
 
+        /*
+        Intent homeActivity = new Intent(RemindersActivity.this, LynxHome.class);
+        startActivity(homeActivity);
+        finish();
+        */
+
         return true;
     }
 }

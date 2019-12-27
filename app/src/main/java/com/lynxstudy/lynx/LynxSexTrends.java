@@ -34,7 +34,7 @@ import me.tankery.lib.circularseekbar.CircularSeekBar;
 
 public class LynxSexTrends extends AppCompatActivity implements View.OnClickListener {
 
-    Typeface tf,tf_bold,tf_italic,tf_bold_italic;
+    Typeface tf,tf_bold, tf_medium;
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
     TextView titleStats;
     DatabaseHelper db;
@@ -49,10 +49,9 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
                 "fonts/Barlow-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
-        tf_italic = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Barlow-Italic.ttf");
-        tf_bold_italic = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Barlow-BoldItalic.ttf");
+        tf_medium = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Barlow-Medium.ttf");
+
         // Custom Action Bar //
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
@@ -81,9 +80,9 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
 
         viewProfile.setOnClickListener(this);
 
-        ((TextView)findViewById(R.id.pageTitle)).setTypeface(tf_bold);
+        ((TextView)findViewById(R.id.pageTitle)).setTypeface(tf_medium);
         titleStats = (TextView)findViewById(R.id.titleStats);
-        titleStats.setTypeface(tf_bold_italic);
+        titleStats.setTypeface(tf);
         int encounters = db.getEncountersCount();
         int partners = db.getPartnersCount();
         titleStats.setText("For "+encounters+" encounters with "+partners+" partners ");
@@ -92,7 +91,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         TextView versatile_progress = (TextView)findViewById(R.id.versatile_progress);
         versatile_progress.setTypeface(tf_bold);
         TextView versatile_description = (TextView)findViewById(R.id.versatile_description);
-        versatile_description.setTypeface(tf_italic);
+        versatile_description.setTypeface(tf);
         CircularSeekBar versatile = (CircularSeekBar)findViewById(R.id.versatile);
         int versatileCount = 0;
         for(Encounter encounter: db.getAllEncounters()){
@@ -120,7 +119,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         TextView bottom_progress = (TextView)findViewById(R.id.bottom_progress);
         bottom_progress.setTypeface(tf_bold);
         TextView bottom_description = (TextView)findViewById(R.id.bottom_description);
-        bottom_description.setTypeface(tf_italic);
+        bottom_description.setTypeface(tf);
         CircularSeekBar exclusive_bottom = (CircularSeekBar)findViewById(R.id.exclusive_bottom);
         float bottom_percent = 0;
         if(db.getEncountersCount()>0){
@@ -142,7 +141,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         TextView top_progress = (TextView)findViewById(R.id.top_progress);
         top_progress.setTypeface(tf_bold);
         TextView top_description = (TextView)findViewById(R.id.top_description);
-        top_description.setTypeface(tf_italic);
+        top_description.setTypeface(tf);
         CircularSeekBar exclusive_top = (CircularSeekBar)findViewById(R.id.exclusive_top);
         float top_percent = 0;
         if(db.getEncountersCount()>0){
@@ -163,7 +162,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         /*TextView condom_use_progress = (TextView)findViewById(R.id.condom_use_progress);
         condom_use_progress.setTypeface(tf_bold);
         TextView condom_use_description = (TextView)findViewById(R.id.condom_use_description);
-        condom_use_description.setTypeface(tf_italic);
+        condom_use_description.setTypeface(tf);
         CircularSeekBar condom_use = (CircularSeekBar)findViewById(R.id.condom_use);
 
         int condomusagecount = 0;
@@ -190,7 +189,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         TextView condom_bottom_progress = (TextView)findViewById(R.id.condom_bottom_progress);
         condom_bottom_progress.setTypeface(tf_bold);
         TextView condom_bottom_description = (TextView)findViewById(R.id.condom_bottom_description);
-        condom_bottom_description.setTypeface(tf_italic);
+        condom_bottom_description.setTypeface(tf);
         CircularSeekBar condom_bottom = (CircularSeekBar)findViewById(R.id.condom_bottom);
 
         int condombottomusagecount = 0;
@@ -216,7 +215,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         TextView condom_top_progress = (TextView)findViewById(R.id.condom_top_progress);
         condom_top_progress.setTypeface(tf_bold);
         TextView condom_top_description = (TextView)findViewById(R.id.condom_top_description);
-        condom_top_description.setTypeface(tf_italic);
+        condom_top_description.setTypeface(tf);
         CircularSeekBar condom_top = (CircularSeekBar)findViewById(R.id.condom_top);
 
         int condomtopusagecount = 0;
@@ -242,7 +241,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         TextView partner_came_inyou_progress = (TextView)findViewById(R.id.partner_came_inyou_progress);
         partner_came_inyou_progress.setTypeface(tf_bold);
         TextView partner_came_inyou_description = (TextView)findViewById(R.id.partner_came_inyou_description);
-        partner_came_inyou_description.setTypeface(tf_italic);
+        partner_came_inyou_description.setTypeface(tf);
         CircularSeekBar partnerCameInYou = (CircularSeekBar)findViewById(R.id.partnerCameInYou);
 
         int partnerCameInYoucount = 0;
@@ -268,7 +267,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         TextView you_came_in_progress = (TextView)findViewById(R.id.you_came_in_progress);
         you_came_in_progress.setTypeface(tf_bold);
         TextView you_came_in_description = (TextView)findViewById(R.id.you_came_in_description);
-        you_came_in_description.setTypeface(tf_italic);
+        you_came_in_description.setTypeface(tf);
         CircularSeekBar you_came_in = (CircularSeekBar)findViewById(R.id.you_came_in);
 
         int you_came_incount = 0;
@@ -294,7 +293,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         TextView you_swallowed_progress = (TextView)findViewById(R.id.you_swallowed_progress);
         you_swallowed_progress.setTypeface(tf_bold);
         TextView you_swallowed_description = (TextView)findViewById(R.id.you_swallowed_description);
-        you_swallowed_description.setTypeface(tf_italic);
+        you_swallowed_description.setTypeface(tf);
         CircularSeekBar you_swallowed = (CircularSeekBar)findViewById(R.id.you_swallowed);
 
         int you_swallowedcount = 0;
@@ -327,7 +326,7 @@ public class LynxSexTrends extends AppCompatActivity implements View.OnClickList
         TextView drunk_or_high_progress = (TextView)findViewById(R.id.drunk_or_high_progress);
         drunk_or_high_progress.setTypeface(tf_bold);
         TextView drunk_or_high_description = (TextView)findViewById(R.id.drunk_or_high_description);
-        drunk_or_high_description.setTypeface(tf_italic);
+        drunk_or_high_description.setTypeface(tf);
         CircularSeekBar drunk_or_high = (CircularSeekBar)findViewById(R.id.drunk_or_high);
 
         int drunk_or_highcount = 0;

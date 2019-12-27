@@ -29,7 +29,7 @@ import java.util.List;
 public class LynxBadges extends AppCompatActivity implements View.OnClickListener {
 
     Typeface tf;
-    Typeface tf_bold;
+    Typeface tf_medium;
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
     TextView pageSubTitle;
     RecyclerView badgesTable;
@@ -42,8 +42,8 @@ public class LynxBadges extends AppCompatActivity implements View.OnClickListene
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
-        tf_bold = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Barlow-Bold.ttf");
+        tf_medium = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Barlow-Medium.ttf");
         // Custom Action Bar //
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View cView = getLayoutInflater().inflate(R.layout.actionbar, null);
@@ -71,7 +71,7 @@ public class LynxBadges extends AppCompatActivity implements View.OnClickListene
         btn_chat.setOnClickListener(this);
         * */
 
-        ((TextView)findViewById(R.id.pageTitle)).setTypeface(tf_bold);
+        ((TextView)findViewById(R.id.pageTitle)).setTypeface(tf_medium);
         pageSubTitle = (TextView)findViewById(R.id.pageSubTitle);
         pageSubTitle.setTypeface(tf);
         badgesTable = (RecyclerView) findViewById(R.id.badgesTable);

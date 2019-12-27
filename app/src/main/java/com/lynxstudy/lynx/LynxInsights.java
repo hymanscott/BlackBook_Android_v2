@@ -18,7 +18,7 @@ import org.piwik.sdk.extra.TrackHelper;
 
 public class LynxInsights extends AppCompatActivity implements View.OnClickListener {
 
-    Typeface tf,tf_bold,tf_italic,tf_bold_italic;
+    Typeface tf, tf_bold, tf_medium;
     LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
     TextView titleStats;
     TextView menPercentage, menPercentageText,
@@ -48,10 +48,8 @@ public class LynxInsights extends AppCompatActivity implements View.OnClickListe
                 "fonts/Barlow-Regular.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
-        tf_italic = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Barlow-Italic.ttf");
-        tf_bold_italic = Typeface.createFromAsset(getResources().getAssets(),
-                "fonts/Barlow-BoldItalic.ttf");
+        tf_medium = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Barlow-Medium.ttf");
 
         // Custom Action Bar //
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -79,12 +77,12 @@ public class LynxInsights extends AppCompatActivity implements View.OnClickListe
         btn_chat.setOnClickListener(this);
         * */
 
-        ((TextView)findViewById(R.id.pageTitle)).setTypeface(tf_bold);
-        ((TextView)findViewById(R.id.partnerTypeChartTitle)).setTypeface(tf_bold_italic);
-        ((TextView)findViewById(R.id.partnerHivChartTitle)).setTypeface(tf_bold_italic);
-        ((TextView)findViewById(R.id.partnersChartTitle)).setTypeface(tf_bold_italic);
+        ((TextView)findViewById(R.id.pageTitle)).setTypeface(tf_medium);
+        ((TextView)findViewById(R.id.partnerTypeChartTitle)).setTypeface(tf_bold);
+        ((TextView)findViewById(R.id.partnerHivChartTitle)).setTypeface(tf_bold);
+        ((TextView)findViewById(R.id.partnersChartTitle)).setTypeface(tf_bold);
         titleStats = (TextView)findViewById(R.id.titleStats);
-        titleStats.setTypeface(tf_bold_italic);
+        titleStats.setTypeface(tf);
         int encounters = db.getEncountersCount();
         int partners = db.getPartnersCount();
         titleStats.setText("For "+encounters+" encounters with "+partners+" partners");
@@ -355,19 +353,19 @@ public class LynxInsights extends AppCompatActivity implements View.OnClickListe
         undectablePartnersCount.setText(String.valueOf(undetectableDBCount));
 
         TextView fiveStarPartners = (TextView)findViewById(R.id.fiveStarPartners);
-        fiveStarPartners.setTypeface(tf_italic);
+        fiveStarPartners.setTypeface(tf);
         TextView postivePartners = (TextView)findViewById(R.id.postivePartners);
-        postivePartners.setTypeface(tf_italic);
+        postivePartners.setTypeface(tf);
         TextView negativePartners = (TextView)findViewById(R.id.negativePartners);
-        negativePartners.setTypeface(tf_italic);
+        negativePartners.setTypeface(tf);
         TextView unknownPartners = (TextView)findViewById(R.id.unknownPartners);
-        unknownPartners.setTypeface(tf_italic);
+        unknownPartners.setTypeface(tf);
         TextView repeatedPartners = (TextView)findViewById(R.id.repeatedPartners);
-        repeatedPartners.setTypeface(tf_italic);
+        repeatedPartners.setTypeface(tf);
         TextView prepPartners = (TextView)findViewById(R.id.prepPartners);
-        prepPartners.setTypeface(tf_italic);
+        prepPartners.setTypeface(tf);
         TextView undectablePartners = (TextView)findViewById(R.id.undectablePartners);
-        undectablePartners.setTypeface(tf_italic);
+        undectablePartners.setTypeface(tf);
 
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getApplication()).getTracker();

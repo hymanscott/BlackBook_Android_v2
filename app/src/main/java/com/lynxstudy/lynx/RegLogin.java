@@ -1521,6 +1521,7 @@ public class RegLogin extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedPref.edit();
                         editor.putString("lynxregcode", LynxManager.regCode);
                         editor.apply();
+
                         if(testingRemindersInfo.length()==0){
                             Intent home = new Intent(RegLogin.this, RemindersActivity.class);
                             startActivity(home);
