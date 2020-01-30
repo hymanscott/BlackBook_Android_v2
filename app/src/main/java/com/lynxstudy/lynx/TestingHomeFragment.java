@@ -120,7 +120,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
     private static final int PICK_IMAGE_REQUEST_AFTER_KITKAT = 5;
     private static final int KITKAT_API_VERSION = 19;
     private static final int READ_WRITE_PERMISSION = 101;
-    TextView titleText,hivPosQn,stdTesPosQn,newgonorrheaTitle,newsyphilisTitle,newchlamydiaTitle;
+    TextView titleText,hivPosQn,newgonorrheaTitle,newsyphilisTitle,newchlamydiaTitle;
     EditText addNewTestDate;
     RadioButton hivTestYes,hivTestNo,hivTestDidntTest,gonorrheaYes,gonorrheaNo,gonorrheaDidntTest,syphilisYes,syphilisNo,syphilisDidntTest;
     RadioButton chlamydiaYes,chlamydiaNo,chlamydiaDidntTest;
@@ -307,133 +307,27 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
             ((LinearLayout) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.GONE);
             for (TestingHistory history : histories) {
                 TestNameMaster name = db.getTestingNamebyID(history.getTesting_id());
-                if(name.getTestName().equals("HIV Test")) {
-                    //TableRow tr = new TableRow(getActivity().getBaseContext());
-                    final View v = LayoutInflater.from(getActivity()).inflate(R.layout.testing_history_row, null, false);
-                    //want to get childs of row for example TextView, get it like this:
-                    TextView date = (TextView) v.findViewById(R.id.date);
-                    date.setTypeface(tf);
-                    TextView testname = (TextView) v.findViewById(R.id.testname);
-                    testname.setTypeface(tf);
-                    TextView teststatus = (TextView) v.findViewById(R.id.teststatus);
-                    teststatus.setTypeface(tf);
-                    // ImageView testimage = (ImageView)v.findViewById(R.id.imageView);
-                    date.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
-                    testname.setText(name.getTestName());
-                    List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(history.getTesting_history_id());
-                    for (TestingHistoryInfo historyInfo : testinghistoryInfoList) {
-                        if(historyInfo.getSti_id()==0){
-                            if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Positive")) {
-                                teststatus.setText("Positive");
-                            }else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Negative")) {
-                                teststatus.setText("Negative");
-                            }else {
-                                teststatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
-                            }
+                //TableRow tr = new TableRow(getActivity().getBaseContext());
+                final View v = LayoutInflater.from(getActivity()).inflate(R.layout.testing_history_row, null, false);
+                //want to get childs of row for example TextView, get it like this:
+                TextView date = (TextView) v.findViewById(R.id.date);
+                date.setTypeface(tf);
+                TextView testname = (TextView) v.findViewById(R.id.testname);
+                testname.setTypeface(tf);
+                // ImageView testimage = (ImageView)v.findViewById(R.id.imageView);
+                date.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
+                testname.setText(name.getTestName());
 
-                            /*
-                            String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
-                            if(!historyInfoAttachment.equals("")){
-                                String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
-                                File mediaFile = new File(imgDir+historyInfoAttachment);
-                                if(mediaFile.exists()){
-                                    Bitmap bmp = BitmapFactory.decodeFile(imgDir+historyInfoAttachment);
-                                    int h = 50; // height in pixels
-                                    int w = 50; // width in pixels
-                                    Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
-                                    testimage.setImageBitmap(scaled);
-                                }else{
-                                    //  ***********set url from server*********** //
-                                    testimage.setImageResource(R.drawable.photocamera);
-                                    LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                                    testimage.setLayoutParams(p);
-                                    new DownloadImagesTask(LynxManager.getTestImageBaseUrl()+historyInfoAttachment).execute(testimage);
-                                    new DownloadFileFromURL(testimage).execute(LynxManager.getTestImageBaseUrl()+historyInfoAttachment);
-                                }
-
-                            }
-                            */
-                        }
+                v.setId(history.getTesting_history_id());
+                v.setClickable(true);
+                v.setFocusable(true);
+                v.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view1) {
+                        testRowClick(v);
                     }
-                    v.setId(history.getTesting_history_id());
-                    v.setClickable(true);
-                    v.setFocusable(true);
-                    v.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view1) {
-                            testRowClick(v);
-                        }
-                    });
-                    testing_history_table.addView(v);
-                    j++;
-                }else{
-                    List<TestingHistoryInfo> testinghistoryInfoList = db.getAllTestingHistoryInfoByHistoryId(history.getTesting_history_id());
-                    for (TestingHistoryInfo historyInfo : testinghistoryInfoList) {
-                        if (historyInfo.getSti_id() != 0) {
-                            /*TableRow tr = null;
-                            if(getActivity()!=null){
-                                tr = new TableRow(getActivity());
-                            }else if(mContext != null){
-                                tr = new TableRow(mContext);
-                            }*/
-                            final View v = LayoutInflater.from(getActivity()).inflate(R.layout.testing_history_row, null, false);
-                            //want to get childs of row for example TextView, get it like this:
-                            TextView date = (TextView) v.findViewById(R.id.date);
-                            date.setTypeface(tf);
-                            TextView testname = (TextView) v.findViewById(R.id.testname);
-                            testname.setTypeface(tf);
-                            TextView teststatus = (TextView) v.findViewById(R.id.teststatus);
-                            teststatus.setTypeface(tf);
-                            // ImageView testimage = (ImageView) v.findViewById(R.id.imageView);
-                            date.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
-                            STIMaster stiName = db.getSTIbyID(historyInfo.getSti_id());
-                            testname.setText(stiName.getstiName());
-
-                            if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Positive")) {
-                                teststatus.setText("Positive");
-                            } else if (LynxManager.decryptString(historyInfo.getTest_status()).equals("Negative")) {
-                                teststatus.setText("Negative");
-                            } else {
-                                teststatus.setText(LynxManager.decryptString(historyInfo.getTest_status()));
-                            }
-                            // String historyInfoAttachment = LynxManager.decryptString(historyInfo.getAttachment());
-                            //Log.v("historyInfoAttachment", historyInfoAttachment);
-
-                            /*
-                            if (!historyInfoAttachment.equals("") && !historyInfoAttachment.equals("false")) {
-                                String imgDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/LYNX/Media/Images/";
-                                File mediaFile = new File(imgDir + historyInfoAttachment);
-                                if (mediaFile.exists()) {
-                                    Bitmap bmp = BitmapFactory.decodeFile(imgDir + historyInfoAttachment);
-                                    int h = 50; // height in pixels
-                                    int w = 50; // width in pixels
-                                    Bitmap scaled = Bitmap.createScaledBitmap(bmp, w, h, true);
-                                    testimage.setImageBitmap(scaled);
-                                    //Log.v("ImagepathExists",imgDir+historyInfoAttachment);
-                                } else {
-                                    //  ***********set url from server*********** //
-                                    testimage.setImageResource(R.drawable.photocamera);
-                                    new DownloadImagesTask(LynxManager.getTestImageBaseUrl() + historyInfoAttachment).execute(testimage);
-                                    //new DownloadFileFromURL(testimage).execute(LynxManager.getTestImageBaseUrl() + historyInfoAttachment);
-                                }
-
-                            }
-                            */
-
-                            v.setId(history.getTesting_history_id());
-                            v.setClickable(true);
-                            v.setFocusable(true);
-                            v.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view1) {
-                                    testRowClick(v);
-                                }
-                            });
-                            testing_history_table.addView(v);
-                            j++;
-                        }
-                    }
-                }
+                });
+                testing_history_table.addView(v);
                 j++;
             }
         }
@@ -448,14 +342,12 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         titleText.setTypeface(tf);
         hivPosQn = (TextView)view.findViewById(R.id.hivPosQn);
         hivPosQn.setTypeface(tf);
-        stdTesPosQn = (TextView)view.findViewById(R.id.stdTesPosQn);
-        stdTesPosQn.setTypeface(tf);
         gonorrheaTitle = (TextView)view.findViewById(R.id.newgonorrheaTitle);
-        gonorrheaTitle.setTypeface(tf_bold_italic);
+        gonorrheaTitle.setTypeface(tf);
         syphilisTitle = (TextView)view.findViewById(R.id.newsyphilisTitle);
-        syphilisTitle.setTypeface(tf_bold_italic);
+        syphilisTitle.setTypeface(tf);
         chlamydiaTitle = (TextView)view.findViewById(R.id.newchlamydiaTitle);
-        chlamydiaTitle.setTypeface(tf_bold_italic);
+        chlamydiaTitle.setTypeface(tf);
 
         addNewTestDate = (EditText)view.findViewById(R.id.addNewTestDate);
         addNewTestDate.setTypeface(tf);

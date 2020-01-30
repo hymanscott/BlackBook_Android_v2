@@ -774,7 +774,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:gravity="center_horizontal"
-                            android:text="# of partners you\ntopped with"
+                            android:text="# of partners\ntopped with"
                             android:textColor="@color/white"
                             android:textSize="15dp" />
                     </LinearLayout>
@@ -820,7 +820,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:gravity="center_horizontal"
-                            android:text="# of partners you\nbottomed with"
+                            android:text="# of partners\nbottomed with"
                             android:textColor="@color/white"
                             android:textSize="15dp" />
                     </LinearLayout>

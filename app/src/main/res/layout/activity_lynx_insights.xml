@@ -106,13 +106,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
-                            android:orientation="horizontal"
-                            android:weightSum="1">
+                            android:orientation="horizontal">
                             <TextView
                                 android:id="@+id/menPercentageText"
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize"
@@ -121,7 +119,6 @@
                                 android:id="@+id/legendMen"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.93"
                                 android:text="MEN"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize" />
@@ -151,13 +148,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
-                            android:orientation="horizontal"
-                            android:weightSum="1">
+                            android:orientation="horizontal">
                             <TextView
                                 android:id="@+id/transMenPercentageText"
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize"
@@ -166,7 +161,6 @@
                                 android:id="@+id/legendTransMen"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.93"
                                 android:text="TRANS MEN"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize" />
@@ -196,13 +190,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
-                            android:orientation="horizontal"
-                            android:weightSum="1">
+                            android:orientation="horizontal">
                             <TextView
                                 android:id="@+id/womenPercentageText"
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize"
@@ -211,7 +203,6 @@
                                 android:id="@+id/legendWomen"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.93"
                                 android:text="WOMEN"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize" />
@@ -241,13 +232,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
-                            android:orientation="horizontal"
-                            android:weightSum="1">
+                            android:orientation="horizontal">
                             <TextView
                                 android:id="@+id/transWomenPercentageText"
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize"
@@ -256,7 +245,6 @@
                                 android:id="@+id/legendTransWomen"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.93"
                                 android:text="TRANS WOMEN"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize" />
@@ -318,13 +306,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
-                            android:orientation="horizontal"
-                            android:weightSum="1">
+                            android:orientation="horizontal">
                             <TextView
                                 android:id="@+id/primaryPercentageText"
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize"
@@ -333,7 +319,6 @@
                                 android:id="@+id/legendPrimary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.93"
                                 android:text="PRIMARY"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize" />
@@ -363,13 +348,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
-                            android:orientation="horizontal"
-                            android:weightSum="1">
+                            android:orientation="horizontal">
                             <TextView
                                 android:id="@+id/friendsPercentageText"
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize"
@@ -378,7 +361,6 @@
                                 android:id="@+id/legendFriends"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.93"
                                 android:text="FRIENDS WITH BENEFITS"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize" />
@@ -408,13 +390,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
-                            android:orientation="horizontal"
-                            android:weightSum="1">
+                            android:orientation="horizontal">
                             <TextView
                                 android:id="@+id/regularPercentageText"
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize"
@@ -423,7 +403,6 @@
                                 android:id="@+id/legendRegular"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.93"
                                 android:text="REGULAR"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize" />
@@ -453,13 +432,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
-                            android:orientation="horizontal"
-                            android:weightSum="1">
+                            android:orientation="horizontal">
                             <TextView
                                 android:id="@+id/hookupPercentageText"
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize"
@@ -468,7 +445,6 @@
                                 android:id="@+id/legendHookUp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.93"
                                 android:text="HOOK-UP"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize" />
@@ -498,13 +474,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
-                            android:orientation="horizontal"
-                            android:weightSum="1">
+                            android:orientation="horizontal">
                             <TextView
                                 android:id="@+id/NSAPercentageText"
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize"
@@ -513,7 +487,6 @@
                                 android:id="@+id/legendOneNightStand"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.93"
                                 android:text="ONE-NIGHT STAND"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize" />
@@ -575,13 +548,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
-                            android:orientation="horizontal"
-                            android:weightSum="1">
+                            android:orientation="horizontal">
                             <TextView
                                 android:id="@+id/negativePercentageText"
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize"
@@ -590,7 +561,6 @@
                                 android:id="@+id/legendNegative"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.93"
                                 android:text="HIV NEGATIVE"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize" />
@@ -620,13 +590,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
-                            android:orientation="horizontal"
-                            android:weightSum="1">
+                            android:orientation="horizontal">
                             <TextView
                                 android:id="@+id/negPrepPercentageText"
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize"
@@ -635,7 +603,6 @@
                                 android:id="@+id/legendNegPrep"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.93"
                                 android:text="HIV NEGATIVE AND ON PrEP"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize" />
@@ -665,13 +632,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
-                            android:orientation="horizontal"
-                            android:weightSum="1">
+                            android:orientation="horizontal">
                             <TextView
                                 android:id="@+id/unsurePercentageText"
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize"
@@ -680,7 +645,6 @@
                                 android:id="@+id/legendUnsure"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.93"
                                 android:text="I DON’T KNOW/UNSURE"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize" />
@@ -710,13 +674,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
-                            android:orientation="horizontal"
-                            android:weightSum="1">
+                            android:orientation="horizontal">
                             <TextView
                                 android:id="@+id/positivePercentageText"
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize"
@@ -725,7 +687,6 @@
                                 android:id="@+id/legendPositive"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.93"
                                 android:text="HIV POSITIVE"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize" />
@@ -755,13 +716,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
-                            android:orientation="horizontal"
-                            android:weightSum="1">
+                            android:orientation="horizontal">
                             <TextView
                                 android:id="@+id/undectablePercentageText"
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.07"
                                 android:text="60%"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize"
@@ -770,7 +729,6 @@
                                 android:id="@+id/legendUndectable"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.93"
                                 android:text="HIV POSITIVE AND UNDETECTABLE"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/edittext_textsize" />
