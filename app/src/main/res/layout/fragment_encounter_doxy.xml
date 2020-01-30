@@ -321,4 +321,16 @@
         android:textSize="@dimen/button_textsize"
         android:background="@color/input_primary"
         android:textColor="@color/white" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:onClick="onDoxyEditNext"
+        android:textStyle="bold"
+        android:id="@+id/btnEditNext"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:textSize="@dimen/button_textsize"
+        android:background="@color/input_primary"
+        android:textColor="@color/white" />
 </RelativeLayout>

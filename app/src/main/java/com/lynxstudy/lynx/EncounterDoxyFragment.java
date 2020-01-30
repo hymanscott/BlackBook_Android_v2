@@ -43,6 +43,8 @@ public class EncounterDoxyFragment extends Fragment {
     RadioButton rbtTakenYes, rbtTakenNo, rbtReasonForgot, rbtReasonNotPills, rbtReasonNextEncounter,
             rbtReasonSti, rbtReasonSideEffects, rbtNowYes, rbtNowYesButAfter, rbtNowNo;
     LinearLayout whenISuckedParent,whenIbottomParent,whenItopParent;
+    Button btnNext, btnEditNext;
+    Bundle arguments;
 
     public EncounterDoxyFragment() {}
 
@@ -50,6 +52,7 @@ public class EncounterDoxyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootview = inflater.inflate(R.layout.fragment_encounter_doxy, container, false);
+        arguments = getArguments();
 
         mainQuestionParent = (LinearLayout)rootview.findViewById(R.id.main_question_parent);
         datePickerParent = (LinearLayout)rootview.findViewById(R.id.date_picker_parent);
@@ -79,6 +82,9 @@ public class EncounterDoxyFragment extends Fragment {
         rbtNowYes = (RadioButton) rootview.findViewById(R.id.rbt_now_yes);
         rbtNowYesButAfter = (RadioButton) rootview.findViewById(R.id.rbt_now_yes_but_after);
         rbtNowNo = (RadioButton) rootview.findViewById(R.id.rbt_now_no);
+
+        btnNext = (Button) rootview.findViewById(R.id.btnNext);
+        btnEditNext = (Button) rootview.findViewById(R.id.btnEditNext);
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Regular.ttf");
@@ -192,6 +198,17 @@ public class EncounterDoxyFragment extends Fragment {
                 }
             }
         });
+
+        // Buttons
+        Boolean is_edit = arguments != null ? arguments.getBoolean("is_edit") : false;
+
+        if(is_edit) {
+            btnNext.setVisibility(View.GONE);
+            btnEditNext.setVisibility(View.VISIBLE);
+        } else {
+            btnNext.setVisibility(View.VISIBLE);
+            btnEditNext.setVisibility(View.GONE);
+        }
 
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();

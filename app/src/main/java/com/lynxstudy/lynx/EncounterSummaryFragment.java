@@ -34,8 +34,8 @@ public class EncounterSummaryFragment extends Fragment {
 
     public EncounterSummaryFragment() {
     }
-    TextView whenIsucked,whenIbottom,whenItop,encSumm_partnerNotes,drunk,condomUsedWhenISuc,condomUsedWhenITop,condomUsedWhenIBot,condomUsedWhenWeFuc;
-    LinearLayout condomUsedContent,whenIsuckedParent,whenIbottomParent,whenItoppedParent;
+    TextView whenIsucked,whenIbottom,whenItop,encSumm_partnerNotes,drunk,condomUsedWhenISuc,condomUsedWhenITop,condomUsedWhenIBot,condomUsedWhenWeFuc, took_doxy;
+    LinearLayout condomUsedContent,whenIsuckedParent,whenIbottomParent,whenItoppedParent, took_doxy_parent, condomUsedLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,24 +47,28 @@ public class EncounterSummaryFragment extends Fragment {
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
         ((TextView)rootview.findViewById(R.id.newEncounter)).setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.hivStatus)).setTypeface(tf);
-        ((TextView)rootview.findViewById(R.id.sexRating)).setTypeface(tf);
-        ((TextView)rootview.findViewById(R.id.typeSex)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.hivStatus)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.sexRating)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.typeSex)).setTypeface(tf_bold);
         ((Button)rootview.findViewById(R.id.next)).setTypeface(tf_bold);
-        ((TextView) rootview.findViewById(R.id.partnerNotes)).setTypeface(tf);
+        ((TextView) rootview.findViewById(R.id.partnerNotes)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.came_inside_partner_title)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.partner_came_in_me_title)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.condomUsed)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.whenIsuckedtitle)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.whenIbottomedtitle)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.whenItoppedtitle)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.drunktitle)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.took_doxy_title)).setTypeface(tf_bold);
+
         encSumm_partnerNotes =(TextView) rootview.findViewById(R.id.encSumm_partnerNotes);
         encSumm_partnerNotes .setTypeface(tf);
-        ((TextView) rootview.findViewById(R.id.condomUsed)).setTypeface(tf);
-        ((TextView) rootview.findViewById(R.id.whenIsuckedtitle)).setTypeface(tf);
-        ((TextView) rootview.findViewById(R.id.whenIbottomedtitle)).setTypeface(tf);
-        ((TextView) rootview.findViewById(R.id.whenItoppedtitle)).setTypeface(tf);
         whenIsucked= (TextView) rootview.findViewById(R.id.whenIsucked);
         whenIsucked.setTypeface(tf);
         whenIbottom = (TextView) rootview.findViewById(R.id.whenIbottom);
         whenIbottom.setTypeface(tf);
         whenItop= (TextView) rootview.findViewById(R.id.whenItop);
         whenItop.setTypeface(tf);
-        ((TextView) rootview.findViewById(R.id.drunktitle)).setTypeface(tf);
         drunk= (TextView) rootview.findViewById(R.id.drunk);
         drunk.setTypeface(tf);
         ((TextView) rootview.findViewById(R.id.edit_details)).setTypeface(tf);
@@ -72,6 +76,9 @@ public class EncounterSummaryFragment extends Fragment {
         whenIsuckedParent = (LinearLayout)rootview.findViewById(R.id.whenIsuckedParent);
         whenIbottomParent = (LinearLayout)rootview.findViewById(R.id.whenIbottomParent);
         whenItoppedParent = (LinearLayout)rootview.findViewById(R.id.whenItoppedParent);
+        condomUsedLayout = (LinearLayout)rootview.findViewById(R.id.condomUsedLayout);
+        took_doxy_parent = (LinearLayout) rootview.findViewById(R.id.took_doxy_parent);
+        took_doxy = (TextView) rootview.findViewById(R.id.took_doxy);
         condomUsedWhenISuc = (TextView) rootview.findViewById(R.id.condomUsedWhenISuc);
         condomUsedWhenISuc.setTypeface(tf);
         condomUsedWhenITop = (TextView) rootview.findViewById(R.id.condomUsedWhenITop);
@@ -86,7 +93,10 @@ public class EncounterSummaryFragment extends Fragment {
         nickname.setAllCaps(false);
         nickname.setTypeface(tf);
         drunk.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getIs_drug_used()));
-        encSumm_partnerNotes.setText(LynxManager.decryptString(LynxManager.getActiveEncounter().getEncounter_notes()));
+
+        final String encounterNotes = LynxManager.decryptString(LynxManager.getActiveEncounter().getEncounter_notes());
+        encSumm_partnerNotes.setText(encounterNotes.trim().isEmpty() ? "-" : encounterNotes);
+
         final RatingBar sexRating = (RatingBar) rootview.findViewById(R.id.encSumm_sexRating);
         sexRating.setRating(Float.parseFloat(LynxManager.encRateofSex));
 
@@ -281,9 +291,35 @@ public class EncounterSummaryFragment extends Fragment {
             }
         }
 
+        // Show condom used section
+        if(
+            condomUsedWhenISuc.getVisibility() == View.VISIBLE ||
+            condomUsedWhenWeFuc.getVisibility() == View.VISIBLE ||
+            condomUsedWhenIBot.getVisibility() == View.VISIBLE ||
+            condomUsedWhenITop.getVisibility() == View.VISIBLE
+        ) {
+            condomUsedLayout.setVisibility(View.VISIBLE);
+        } else {
+            condomUsedLayout.setVisibility(View.GONE);
+        }
+
+        // Did user take doxy?
+        // Log.v("User is taking PrEP", LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()));
+        if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")) {
+            took_doxy_parent.setVisibility(View.VISIBLE);
+
+            if(LynxManager.getActiveEncounter().getTook_doxy_at() != null) {
+                took_doxy.setText("Yes");
+            } else {
+                took_doxy.setText("No");
+            }
+        } else {
+            took_doxy_parent.setVisibility(View.GONE);
+        }
+
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
-		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
+		    tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));
         TrackHelper.track().screen("/Encounter/Summary").title("Encounter/Summary").variable(1,"email",LynxManager.decryptString(LynxManager.getActiveUser().getEmail())).variable(2,"lynxid", String.valueOf(LynxManager.getActiveUser().getUser_id())).dimension(1,tracker.getUserId()).with(tracker);
         return rootview;
     }

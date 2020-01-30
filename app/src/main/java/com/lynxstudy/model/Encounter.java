@@ -26,6 +26,7 @@ public class Encounter {
     String status_update;
     boolean status_encrypt;
     String created_at;
+    String took_doxy_at;
 
     public Encounter() {
     }
@@ -53,6 +54,14 @@ public class Encounter {
         this.status_update = status_update;
         this.status_encrypt = status_encrypt;
         this.created_at = created_at;
+    }
+
+    public String getTook_doxy_at() {
+        return took_doxy_at;
+    }
+
+    public void setTook_doxy_at(String took_doxy_at) {
+        this.took_doxy_at = took_doxy_at;
     }
 
     public int getEncounter_id() {

@@ -33,6 +33,7 @@ public class EncounterCondomuseFragmentEdit extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootview = inflater.inflate(R.layout.fragment_encounter_condomuse_edit, container, false);
+
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");

@@ -279,6 +279,12 @@ public class EncounterStartActivity extends AppCompatActivity {
         } else if (comesfromDoxyFragment == true && nowParent.getVisibility() == View.VISIBLE && rgbNow.getCheckedRadioButtonId() == -1) {
             Toast.makeText(EncounterStartActivity.this, "Please respond if you will take a doxy now.", Toast.LENGTH_SHORT).show();
         } else {
+            if(datePickerParent.getVisibility() == View.VISIBLE) {
+                LynxManager.activeEncounter.setTook_doxy_at(txtDatePicker.getText().toString());
+            } else {
+                LynxManager.activeEncounter.setTook_doxy_at(null);
+            }
+
             for (EncounterSexType partnerSexType : LynxManager.getActivePartnerSexType()) {
                 //   Log.v( "afterconfirm",LynxManager.decryptString(partnerSexType.getSex_type()));
                 String sexTypeText = LynxManager.decryptString(partnerSexType.getSex_type());
@@ -289,6 +295,41 @@ public class EncounterStartActivity extends AppCompatActivity {
             }
 
             pushFragments("Encounter", fragEncNotes, true);
+        }
+
+        return true;
+    }
+
+    public boolean onDoxyEditNext(View view) {
+        EncounterSummaryEditFragment fragEncounterEdit = new EncounterSummaryEditFragment();
+
+        // Validating the screen
+        LinearLayout mainQuestionParent = (LinearLayout) findViewById(R.id.main_question_parent);
+        LinearLayout datePickerParent = (LinearLayout) findViewById(R.id.date_picker_parent);
+        LinearLayout reasonParent = (LinearLayout) findViewById(R.id.reason_parent);
+        LinearLayout nowParent = (LinearLayout) findViewById(R.id.now_parent);
+        TextView txtDatePicker = (TextView) findViewById(R.id.date_picker_text);
+        RadioGroup rbgTaken = (RadioGroup) findViewById(R.id.rbg_taken);
+        RadioGroup rbgReason = (RadioGroup) findViewById(R.id.rbg_reason);
+        RadioGroup rgbNow = (RadioGroup) findViewById(R.id.rbg_now);
+
+
+        if (rbgTaken.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(EncounterStartActivity.this, "Please respond if did you take doxy.", Toast.LENGTH_SHORT).show();
+        } else if (datePickerParent.getVisibility() == View.VISIBLE && txtDatePicker.getText().toString().trim().equals("")) {
+            Toast.makeText(EncounterStartActivity.this, "Please set a date.", Toast.LENGTH_SHORT).show();
+        } else if (reasonParent.getVisibility() == View.VISIBLE && rbgReason.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(EncounterStartActivity.this, "Please select a reason.", Toast.LENGTH_SHORT).show();
+        } else if (nowParent.getVisibility() == View.VISIBLE && rgbNow.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(EncounterStartActivity.this, "Please respond if you will take a doxy now.", Toast.LENGTH_SHORT).show();
+        } else {
+            if(datePickerParent.getVisibility() == View.VISIBLE) {
+                LynxManager.activeEncounter.setTook_doxy_at(txtDatePicker.getText().toString());
+            } else {
+                LynxManager.activeEncounter.setTook_doxy_at(null);
+            }
+
+            pushFragments("encounter", fragEncounterEdit, false);
         }
 
         return true;
