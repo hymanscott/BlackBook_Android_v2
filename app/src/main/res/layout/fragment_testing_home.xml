@@ -507,7 +507,6 @@
                         android:layout_width="wrap_content"
                         android:layout_marginTop="24dp"
                         android:layout_alignParentLeft="true"
-                        android:paddingLeft="8dp"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:layout_height="wrap_content">
@@ -571,7 +570,6 @@
                     android:layout_marginBottom="32dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="visible"
                     android:id="@+id/std_layout">
 
                     <LinearLayout
@@ -586,52 +584,90 @@
                             android:textSize="@dimen/edittext_textsize"
                             android:textColor="@color/white"/>
                     </LinearLayout>
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:layout_marginBottom="32dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
                         <RadioGroup
                             android:id="@+id/gonorrhea"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="8dp"
-                            android:layout_alignParentLeft="true">
+                            android:layout_height="wrap_content">
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="15dp"
-                                android:textColor="@color/white"
-                                android:buttonTint="@color/white"
-                                android:button="@drawable/radiobutton_black"
-                                android:paddingLeft="12dp"
-                                android:text="Negative"
-                                android:layout_marginTop="4dp"
-                                android:id="@+id/gonorrheaNo"/>
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="15dp"
-                                android:textColor="@color/white"
-                                android:text="Positive"
-                                android:buttonTint="@color/white"
-                                android:button="@drawable/radiobutton_black"
-                                android:paddingLeft="12dp"
-                                android:layout_marginTop="12dp"
-                                android:id="@+id/gonorrheaYes" />
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="I Didn't test"
+                                android:text="No"
                                 android:textSize="15dp"
                                 android:buttonTint="@color/white"
                                 android:button="@drawable/radiobutton_black"
                                 android:paddingLeft="12dp"
-                                android:layout_marginTop="12dp"
                                 android:textColor="@color/white"
                                 android:id="@+id/gonorrheaDidntTest" />
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:textSize="15dp"
+                                android:textColor="@color/white"
+                                android:text="Yes"
+                                android:buttonTint="@color/white"
+                                android:button="@drawable/radiobutton_black"
+                                android:paddingLeft="12dp"
+                                android:id="@+id/gonorrheaYes" />
                         </RadioGroup>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:id="@+id/gonorrheaSubContainer"
+                            android:paddingLeft="32dp"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                android:text="▶  What was the result?"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/encounter_tv_textsize"
+                                android:id="@+id/gonorrheaSubTitle"
+                                android:gravity="center_vertical"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="24dp">
+                                <RadioGroup
+                                    android:id="@+id/gonorrheaSub"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="15dp"
+                                        android:textColor="@color/white"
+                                        android:buttonTint="@color/white"
+                                        android:button="@drawable/radiobutton_black"
+                                        android:paddingLeft="12dp"
+                                        android:text="Negative"
+                                        android:layout_marginTop="4dp"
+                                        android:id="@+id/gonorrheaNegative"/>
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="15dp"
+                                        android:textColor="@color/white"
+                                        android:text="Positive"
+                                        android:buttonTint="@color/white"
+                                        android:button="@drawable/radiobutton_black"
+                                        android:paddingLeft="12dp"
+                                        android:layout_marginTop="12dp"
+                                        android:id="@+id/gonorrheaPositive" />
+                                </RadioGroup>
+                            </LinearLayout>
+                        </LinearLayout>
+
                         <!--
                         <FrameLayout
                             android:layout_width="120dp"
@@ -648,7 +684,7 @@
                                 android:scaleType="fitXY" />
                         </FrameLayout>
                         -->
-                    </RelativeLayout>
+                    </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
@@ -668,44 +704,21 @@
                             android:id="@+id/newsyphilisTitle"
                             android:textColor="@color/white"/>
                     </LinearLayout>
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:layout_marginBottom="32dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
                         <RadioGroup
                             android:id="@+id/syphilis"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="8dp"
                             android:layout_alignParentLeft="true">
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="15dp"
-                                android:textColor="@color/white"
-                                android:buttonTint="@color/white"
-                                android:button="@drawable/radiobutton_black"
-                                android:paddingLeft="12dp"
-                                android:text="Negative"
-                                android:layout_marginTop="4dp"
-                                android:id="@+id/syphilisNo" />
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Positive"
-                                android:textSize="15dp"
-                                android:buttonTint="@color/white"
-                                android:button="@drawable/radiobutton_black"
-                                android:paddingLeft="12dp"
-                                android:layout_marginTop="12dp"
-                                android:textColor="@color/white"
-                                android:id="@+id/syphilisYes" />
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="I Didn't test"
+                                android:text="No"
                                 android:textSize="15dp"
                                 android:buttonTint="@color/white"
                                 android:button="@drawable/radiobutton_black"
@@ -713,7 +726,70 @@
                                 android:layout_marginTop="12dp"
                                 android:textColor="@color/white"
                                 android:id="@+id/syphilisDidntTest" />
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Yes"
+                                android:textSize="15dp"
+                                android:buttonTint="@color/white"
+                                android:button="@drawable/radiobutton_black"
+                                android:paddingLeft="12dp"
+                                android:layout_marginTop="12dp"
+                                android:textColor="@color/white"
+                                android:id="@+id/syphilisYes" />
                         </RadioGroup>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:id="@+id/syphilisSubContainer"
+                            android:paddingLeft="32dp"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                android:text="▶  What was the result?"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/encounter_tv_textsize"
+                                android:id="@+id/syphilisSubTitle"
+                                android:gravity="center_vertical"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="24dp">
+                                <RadioGroup
+                                    android:id="@+id/syphilisSub"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="15dp"
+                                        android:textColor="@color/white"
+                                        android:buttonTint="@color/white"
+                                        android:button="@drawable/radiobutton_black"
+                                        android:paddingLeft="12dp"
+                                        android:text="Negative"
+                                        android:layout_marginTop="4dp"
+                                        android:id="@+id/syphilisNegative"/>
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="15dp"
+                                        android:textColor="@color/white"
+                                        android:text="Positive"
+                                        android:buttonTint="@color/white"
+                                        android:button="@drawable/radiobutton_black"
+                                        android:paddingLeft="12dp"
+                                        android:layout_marginTop="12dp"
+                                        android:id="@+id/syphilisPositive" />
+                                </RadioGroup>
+                            </LinearLayout>
+                        </LinearLayout>
+
                         <!--
                         <FrameLayout
                             android:layout_width="120dp"
@@ -730,7 +806,7 @@
                                 android:scaleType="fitXY" />
                         </FrameLayout>
                         -->
-                    </RelativeLayout>
+                    </LinearLayout>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -749,43 +825,20 @@
                             android:id="@+id/newchlamydiaTitle"
                             android:textColor="@color/white"/>
                     </LinearLayout>
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
                         <RadioGroup
                             android:id="@+id/chlamydia"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="8dp"
                             android:layout_alignParentLeft="true">
                             <RadioButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Negative"
-                                android:textSize="15dp"
-                                android:layout_marginTop="4dp"
-                                android:buttonTint="@color/white"
-                                android:button="@drawable/radiobutton_black"
-                                android:paddingLeft="12dp"
-                                android:textColor="@color/white"
-                                android:id="@+id/chlamydiaNo"/>
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Positive"
-                                android:textSize="15dp"
-                                android:buttonTint="@color/white"
-                                android:button="@drawable/radiobutton_black"
-                                android:paddingLeft="12dp"
-                                android:layout_marginTop="12dp"
-                                android:textColor="@color/white"
-                                android:id="@+id/chlamydiaYes"/>
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="I Didn't test"
+                                android:text="No"
                                 android:textSize="15dp"
                                 android:buttonTint="@color/white"
                                 android:button="@drawable/radiobutton_black"
@@ -793,7 +846,69 @@
                                 android:layout_marginTop="12dp"
                                 android:textColor="@color/white"
                                 android:id="@+id/chlamydiaDidntTest" />
+                            <RadioButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Yes"
+                                android:textSize="15dp"
+                                android:buttonTint="@color/white"
+                                android:button="@drawable/radiobutton_black"
+                                android:paddingLeft="12dp"
+                                android:layout_marginTop="12dp"
+                                android:textColor="@color/white"
+                                android:id="@+id/chlamydiaYes"/>
                         </RadioGroup>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:id="@+id/chlamydiaSubContainer"
+                            android:paddingLeft="32dp"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                                android:text="▶  What was the result?"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/encounter_tv_textsize"
+                                android:id="@+id/chlamydiaSubTitle"
+                                android:gravity="center_vertical"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="24dp">
+                                <RadioGroup
+                                    android:id="@+id/chlamydiaSub"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="15dp"
+                                        android:textColor="@color/white"
+                                        android:buttonTint="@color/white"
+                                        android:button="@drawable/radiobutton_black"
+                                        android:paddingLeft="12dp"
+                                        android:text="Negative"
+                                        android:layout_marginTop="4dp"
+                                        android:id="@+id/chlamydiaNegative"/>
+                                    <RadioButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="15dp"
+                                        android:textColor="@color/white"
+                                        android:text="Positive"
+                                        android:buttonTint="@color/white"
+                                        android:button="@drawable/radiobutton_black"
+                                        android:paddingLeft="12dp"
+                                        android:layout_marginTop="12dp"
+                                        android:id="@+id/chlamydiaPositive" />
+                                </RadioGroup>
+                            </LinearLayout>
+                        </LinearLayout>
                         <!--
                         <FrameLayout
                             android:layout_width="120dp"
@@ -810,7 +925,7 @@
                                 android:scaleType="fitXY" />
                         </FrameLayout>
                         -->
-                    </RelativeLayout>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

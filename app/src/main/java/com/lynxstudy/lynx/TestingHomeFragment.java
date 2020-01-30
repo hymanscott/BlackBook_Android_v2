@@ -103,7 +103,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
 
     Typeface tf_bold_italic,tf,tf_bold;
     RelativeLayout summaryLayout, newTestLayout;
-    LinearLayout mainContentLayout;
+    LinearLayout mainContentLayout, chlamydiaSubContainer, syphilisSubContainer, gonorrheaSubContainer;
     ImageView hivIcon,gonorrheaIcon,syphilisIcon,chlamydiaIcon;
     TextView teststatus,gonorrheaTitle,syphilisTitle,chlamydiaTitle;
     private boolean isSummaryShown = false;
@@ -122,8 +122,10 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
     private static final int READ_WRITE_PERMISSION = 101;
     TextView titleText,hivPosQn,newgonorrheaTitle,newsyphilisTitle,newchlamydiaTitle;
     EditText addNewTestDate;
-    RadioButton hivTestYes,hivTestNo,hivTestDidntTest,gonorrheaYes,gonorrheaNo,gonorrheaDidntTest,syphilisYes,syphilisNo,syphilisDidntTest;
-    RadioButton chlamydiaYes,chlamydiaNo,chlamydiaDidntTest;
+    RadioButton hivTestYes, hivTestNo, hivTestDidntTest,
+        gonorrheaPositive, gonorrheaNegative, gonorrheaYes, gonorrheaDidntTest,
+        syphilisPositive, syphilisNegative, syphilisYes, syphilisDidntTest,
+        chlamydiaPositive, chlamydiaNegative, chlamydiaYes, chlamydiaDidntTest;
     Button add_new_test_ok;
     private boolean isNewTestShown = false;
     int back_press_count = 0;
@@ -197,7 +199,10 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
             LynxManager.notificationActions = null;
         }
 
-        mainContentLayout = (LinearLayout)view.findViewById(R.id.mainContentLayout);
+        mainContentLayout = (LinearLayout) view.findViewById(R.id.mainContentLayout);
+        chlamydiaSubContainer = (LinearLayout) view.findViewById(R.id.chlamydiaSubContainer);
+        syphilisSubContainer = (LinearLayout) view.findViewById(R.id.syphilisSubContainer);
+        gonorrheaSubContainer = (LinearLayout) view.findViewById(R.id.gonorrheaSubContainer);
         summaryLayout = (RelativeLayout)view.findViewById(R.id.summaryLayout);
         newTestLayout = (RelativeLayout) view.findViewById(R.id.newTestLayout);
 
@@ -358,22 +363,31 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         hivTestNo.setTypeface(tf);
         hivTestDidntTest = (RadioButton)view.findViewById(R.id.hivTestDidntTest);
         hivTestDidntTest.setTypeface(tf);
+
         gonorrheaYes = (RadioButton)view.findViewById(R.id.gonorrheaYes);
         gonorrheaYes.setTypeface(tf);
-        gonorrheaNo = (RadioButton)view.findViewById(R.id.gonorrheaNo);
-        gonorrheaNo.setTypeface(tf);
+        gonorrheaPositive = (RadioButton)view.findViewById(R.id.gonorrheaPositive);
+        gonorrheaPositive.setTypeface(tf);
+        gonorrheaNegative = (RadioButton)view.findViewById(R.id.gonorrheaNegative);
+        gonorrheaNegative.setTypeface(tf);
         gonorrheaDidntTest = (RadioButton)view.findViewById(R.id.gonorrheaDidntTest);
         gonorrheaDidntTest.setTypeface(tf);
+
         syphilisYes = (RadioButton)view.findViewById(R.id.syphilisYes);
         syphilisYes.setTypeface(tf);
-        syphilisNo = (RadioButton)view.findViewById(R.id.syphilisNo);
-        syphilisNo.setTypeface(tf);
+        syphilisPositive = (RadioButton)view.findViewById(R.id.syphilisPositive);
+        syphilisPositive.setTypeface(tf);
+        syphilisNegative = (RadioButton)view.findViewById(R.id.syphilisNegative);
+        syphilisNegative.setTypeface(tf);
         syphilisDidntTest = (RadioButton)view.findViewById(R.id.syphilisDidntTest);
         syphilisDidntTest.setTypeface(tf);
+
         chlamydiaYes = (RadioButton)view.findViewById(R.id.chlamydiaYes);
         chlamydiaYes.setTypeface(tf);
-        chlamydiaNo = (RadioButton)view.findViewById(R.id.chlamydiaNo);
-        chlamydiaNo.setTypeface(tf);
+        chlamydiaPositive = (RadioButton)view.findViewById(R.id.chlamydiaPositive);
+        chlamydiaPositive.setTypeface(tf);
+        chlamydiaNegative = (RadioButton)view.findViewById(R.id.chlamydiaNegative);
+        chlamydiaNegative.setTypeface(tf);
         chlamydiaDidntTest = (RadioButton)view.findViewById(R.id.chlamydiaDidntTest);
         chlamydiaDidntTest.setTypeface(tf);
 
@@ -508,39 +522,118 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
 
         add_new_test_ok = (Button) view.findViewById(R.id.addNewTestOk);
         add_new_test_ok.setTypeface(tf_bold);
+
         final RadioGroup RG_Chlamydia = (RadioGroup) view.findViewById(R.id.chlamydia);
+        final RadioGroup RG_ChlamydiaSub = (RadioGroup) view.findViewById(R.id.chlamydiaSub);
         final RadioGroup RG_Gonorrhea = (RadioGroup)view.findViewById(R.id.gonorrhea);
+        final RadioGroup RG_GonorrheaSub = (RadioGroup) view.findViewById(R.id.gonorrheaSub);
         final RadioGroup RG_Syphilis = (RadioGroup)view.findViewById(R.id.syphilis);
+        final RadioGroup RG_SyphilisSub = (RadioGroup) view.findViewById(R.id.syphilisSub);
         final RadioGroup RG_HIVtest = (RadioGroup)view.findViewById(R.id.newhivTestStatus);
+
+
+        chlamydiaSubContainer.setVisibility(View.GONE);
+        gonorrheaSubContainer.setVisibility(View.GONE);
+        syphilisSubContainer.setVisibility(View.GONE);
+
+        RG_Chlamydia.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.chlamydiaYes) {
+                    chlamydiaSubContainer.setVisibility(View.VISIBLE);
+                } else {
+                    chlamydiaSubContainer.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        RG_Gonorrhea.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.gonorrheaYes) {
+                    gonorrheaSubContainer.setVisibility(View.VISIBLE);
+                } else {
+                    gonorrheaSubContainer.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        RG_Syphilis.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.syphilisYes) {
+                    syphilisSubContainer.setVisibility(View.VISIBLE);
+                } else {
+                    syphilisSubContainer.setVisibility(View.GONE);
+                }
+            }
+        });
+
         add_new_test_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean invalid_date = LynxManager.regDateValidation(newTestDate.getText().toString());
+
                 if (newTestDate.getText().toString().isEmpty()) {
                     Toast.makeText(getActivity(), "Please Select Date", Toast.LENGTH_SHORT).show();
                 } else if(invalid_date){
                     Toast.makeText(getActivity(),"Invalid Date",Toast.LENGTH_SHORT).show();
-                } else if(title.equals("STD Test") && (RG_Chlamydia.getCheckedRadioButtonId()==-1 && RG_Gonorrhea.getCheckedRadioButtonId()==-1 && RG_Syphilis.getCheckedRadioButtonId()==-1)){
-                    Toast.makeText(getActivity(),getResources().getString(R.string.select_std_test_result),Toast.LENGTH_SHORT).show();
+                } else if(title.equals("STD Test") && (RG_Chlamydia.getCheckedRadioButtonId()==-1 && RG_Gonorrhea.getCheckedRadioButtonId()==-1 && RG_Syphilis.getCheckedRadioButtonId()==-1)) {
+                    Toast.makeText(getActivity(), getResources().getString(R.string.select_std_test_result), Toast.LENGTH_SHORT).show();
+                } else if(
+                    title.equals("STD Test") &&
+                    RG_Gonorrhea.getCheckedRadioButtonId() == R.id.gonorrheaYes && RG_GonorrheaSub.getCheckedRadioButtonId() == -1 &&
+                    RG_Syphilis.getCheckedRadioButtonId() == R.id.syphilisYes && RG_SyphilisSub.getCheckedRadioButtonId() == -1 &&
+                    RG_Chlamydia.getCheckedRadioButtonId() == R.id.chlamydiaYes && RG_ChlamydiaSub.getCheckedRadioButtonId() == -1
+                ) {
+                    Toast.makeText(getActivity(), getResources().getString(R.string.select_std_test_result), Toast.LENGTH_SHORT).show();
                 } else if(title.equals("HIV Test") && RG_HIVtest.getCheckedRadioButtonId()==-1){
                     Toast.makeText(getActivity(),getResources().getString(R.string.select_hiv_test_result),Toast.LENGTH_SHORT).show();
                 } else {
                     String date = LynxManager.getFormatedDate("MM/dd/yyyy",newTestDate.getText().toString(),"yyyy-MM-dd");
                     TestingHistory history = new TestingHistory(testing_id, LynxManager.getActiveUser().getUser_id(), LynxManager.encryptString(date), String.valueOf(R.string.statusUpdateNo), true);
                     int testingHistoryid = db.createTestingHistory(history);
+
                     String chlamydia_test_status = getResources().getString(R.string.testNotReported);
                     String gonorrhea_test_status = getResources().getString(R.string.testNotReported);
                     String syphilis_test_status = getResources().getString(R.string.testNotReported);
+
                     if(RG_Chlamydia.getCheckedRadioButtonId()!=-1){
-                        chlamydia_test_status = ((RadioButton)view.findViewById(RG_Chlamydia.getCheckedRadioButtonId())).getText().toString();
+                        if(RG_Chlamydia.getCheckedRadioButtonId() == R.id.chlamydiaYes) {
+                            if(RG_ChlamydiaSub.getCheckedRadioButtonId() == R.id.chlamydiaPositive) {
+                                chlamydia_test_status = "Positive";
+                            } else if(RG_ChlamydiaSub.getCheckedRadioButtonId() == R.id.chlamydiaNegative) {
+                                chlamydia_test_status = "Negative";
+                            }
+                        } else {
+                            chlamydia_test_status = "I Didn't test";
+                        }
                     }
                     if(RG_Gonorrhea.getCheckedRadioButtonId()!=-1){
-                        gonorrhea_test_status = ((RadioButton)view.findViewById(RG_Gonorrhea.getCheckedRadioButtonId())).getText().toString();
+                        if(RG_Gonorrhea.getCheckedRadioButtonId() == R.id.gonorrheaYes) {
+                            if(RG_GonorrheaSub.getCheckedRadioButtonId() == R.id.gonorrheaPositive) {
+                                gonorrhea_test_status = "Positive";
+                            } else if(RG_GonorrheaSub.getCheckedRadioButtonId() == R.id.gonorrheaNegative) {
+                                gonorrhea_test_status = "Negative";
+                            }
+                        } else {
+                            gonorrhea_test_status = "I Didn't test";
+                        }
                     }
                     if(RG_Syphilis.getCheckedRadioButtonId()!=-1){
-                        syphilis_test_status = ((RadioButton)view.findViewById(RG_Syphilis.getCheckedRadioButtonId())).getText().toString();
+                        if(RG_Syphilis.getCheckedRadioButtonId() == R.id.syphilisYes) {
+                            if(RG_SyphilisSub.getCheckedRadioButtonId() == R.id.syphilisPositive) {
+                                syphilis_test_status = "Positive";
+                            } else if(RG_SyphilisSub.getCheckedRadioButtonId() == R.id.syphilisNegative) {
+                                syphilis_test_status = "Negative";
+                            }
+                        } else {
+                            syphilis_test_status = "I Didn't test";
+                        }
                     }
+
                     RadioButton hivTestStatus = (RadioButton)view.findViewById(RG_HIVtest.getCheckedRadioButtonId());
+
                     // Adding testing history info
                     if (title.equals("STD Test")){
                         for(int sti_count =1 ; sti_count<=3;sti_count++){
