@@ -31,11 +31,13 @@ public class EncounterSexReportFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
         ((Button)rootview.findViewById(R.id.yes)).setTypeface(tf_bold);
         ((Button)rootview.findViewById(R.id.no)).setTypeface(tf_bold);
         ((TextView)rootview.findViewById(R.id.encounter_report_title)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.add_partner_title)).setTypeface(tf_medium);
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();
 		tracker.setUserId(String.valueOf(LynxManager.getActiveUser().getUser_id()));

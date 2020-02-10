@@ -36,7 +36,7 @@ import java.util.Locale;
  */
 
 public class EncounterDoxyFragment extends Fragment {
-    TextView txtNickname, txtMainQuestionTitle, txtDatePickerTitle, txtDatePicker, txtReasonTitle, txtNowTitle, txtDontForgetTitle;
+    TextView txtNewEncounter, txtNickname, txtMainQuestionTitle, txtDatePickerTitle, txtDatePicker, txtReasonTitle, txtNowTitle, txtDontForgetTitle;
     LinearLayout mainQuestionParent, datePickerParent, reasonParent, nowParent, dontForgetParent;
     RelativeLayout datePickerContainer;
     RadioGroup rbgTaken, rbgReason, rgbNow;
@@ -60,6 +60,7 @@ public class EncounterDoxyFragment extends Fragment {
         nowParent = (LinearLayout)rootview.findViewById(R.id.now_parent);
         dontForgetParent = (LinearLayout)rootview.findViewById(R.id.dont_forget_parent);
 
+        txtNewEncounter = (TextView) rootview.findViewById(R.id.newEncounter);
         txtNickname = (TextView) rootview.findViewById(R.id.txt_nick_name);
         txtMainQuestionTitle = (TextView) rootview.findViewById(R.id.main_question_title);
         txtDatePickerTitle = (TextView) rootview.findViewById(R.id.date_picker_title);
@@ -88,7 +89,9 @@ public class EncounterDoxyFragment extends Fragment {
 
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
 
+        txtNewEncounter.setTypeface(tf_medium);
         txtNickname.setTypeface(tf);
         txtMainQuestionTitle.setTypeface(tf);
         txtDatePickerTitle.setTypeface(tf);

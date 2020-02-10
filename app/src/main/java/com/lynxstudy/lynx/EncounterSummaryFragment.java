@@ -44,21 +44,22 @@ public class EncounterSummaryFragment extends Fragment {
         //Type face
         final Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
-        ((TextView)rootview.findViewById(R.id.newEncounter)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.newEncounter)).setTypeface(tf_medium);
         ((TextView)rootview.findViewById(R.id.hivStatus)).setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.sexRating)).setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.typeSex)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.sexRating)).setTypeface(tf_medium);
+        ((TextView)rootview.findViewById(R.id.typeSex)).setTypeface(tf_medium);
         ((Button)rootview.findViewById(R.id.next)).setTypeface(tf_bold);
-        ((TextView) rootview.findViewById(R.id.partnerNotes)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.partnerNotes)).setTypeface(tf_medium);
         ((TextView) rootview.findViewById(R.id.came_inside_partner_title)).setTypeface(tf_bold);
         ((TextView) rootview.findViewById(R.id.partner_came_in_me_title)).setTypeface(tf_bold);
         ((TextView) rootview.findViewById(R.id.condomUsed)).setTypeface(tf_bold);
         ((TextView) rootview.findViewById(R.id.whenIsuckedtitle)).setTypeface(tf_bold);
         ((TextView) rootview.findViewById(R.id.whenIbottomedtitle)).setTypeface(tf_bold);
         ((TextView) rootview.findViewById(R.id.whenItoppedtitle)).setTypeface(tf_bold);
-        ((TextView) rootview.findViewById(R.id.drunktitle)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.drunktitle)).setTypeface(tf_medium);
         ((TextView) rootview.findViewById(R.id.took_doxy_title)).setTypeface(tf_bold);
 
         encSumm_partnerNotes =(TextView) rootview.findViewById(R.id.encSumm_partnerNotes);
@@ -108,7 +109,7 @@ public class EncounterSummaryFragment extends Fragment {
 
         TextView hivStatus = (TextView) rootview.findViewById(R.id.encSumm_hivStatus);
         hivStatus.setText(LynxManager.decryptString(LynxManager.getActivePartner().getHiv_status()));
-        hivStatus.setTypeface(tf);
+        hivStatus.setTypeface(tf_medium);
 
         LinearLayout sexTypeLayout = (LinearLayout)rootview.findViewById(R.id.sexTypeLayout);
         String gender = LynxManager.decryptString(LynxManager.getActivePartner().getGender());

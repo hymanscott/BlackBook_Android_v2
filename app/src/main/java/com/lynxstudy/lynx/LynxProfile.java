@@ -78,7 +78,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
   DatabaseHelper db;
   TextView profile_name,profile_lastname,updatePhone,updateDOB,updateRace,profile_email,updatePass,updateSecQn,updateSecAnswer,updatePasscode,prepAnswer;
   TextView dairyReminderDay,dairyReminderTime,dairyReminderText, edit_details,logout,app_version;
-  Typeface tf,tf_bold;
+  Typeface tf, tf_medium, tf_bold;
   LinearLayout btn_testing,btn_diary,btn_prep,btn_chat;
   RelativeLayout editLayout, mainContentLayout;
   boolean isEditShown = false;
@@ -110,10 +110,12 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     //Type face
     tf = Typeface.createFromAsset(getResources().getAssets(),
             "fonts/Barlow-Regular.ttf");
+    tf_medium = Typeface.createFromAsset(getResources().getAssets(),
+            "fonts/Barlow-Regular.ttf");
     tf_bold = Typeface.createFromAsset(getResources().getAssets(),
             "fonts/Barlow-Bold.ttf");
 
-    ((TextView)findViewById(R.id.fragTitle)).setTypeface(tf_bold);
+    ((TextView)findViewById(R.id.fragTitle)).setTypeface(tf_medium);
 
     /*
     ((TextView)findViewById(R.id.bot_nav_sexpro_tv)).setTypeface(tf);
@@ -143,10 +145,10 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     updateSecAnswer.setTypeface(tf);
     updatePasscode = (TextView)findViewById(R.id.updatePasscode);
     updatePasscode.setTypeface(tf);
-    ((TextView)findViewById(R.id.prepTitle)).setTypeface(tf_bold);
+    ((TextView)findViewById(R.id.prepTitle)).setTypeface(tf_medium);
     prepAnswer = (TextView)findViewById(R.id.prepAnswer);
     prepAnswer.setTypeface(tf);
-    ((TextView)findViewById(R.id.diaryTitle)).setTypeface(tf_bold);
+    ((TextView)findViewById(R.id.diaryTitle)).setTypeface(tf_medium);
     dairyReminderDay = (TextView)findViewById(R.id.dairyReminderDay);
     dairyReminderDay.setTypeface(tf);
     dairyReminderTime = (TextView)findViewById(R.id.dairyReminderTime);
@@ -231,9 +233,9 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     mainContentLayout.setVisibility(View.GONE);
     isEditShown = true;
 
-    ((TextView)findViewById(R.id.fragTitle1)).setTypeface(tf_bold);
-    ((TextView)findViewById(R.id.prepTitle1)).setTypeface(tf_bold);
-    ((TextView)findViewById(R.id.diaryTitle1)).setTypeface(tf_bold);
+    ((TextView)findViewById(R.id.fragTitle1)).setTypeface(tf_medium);
+    ((TextView)findViewById(R.id.prepTitle1)).setTypeface(tf_medium);
+    ((TextView)findViewById(R.id.diaryTitle1)).setTypeface(tf_medium);
     tv = (TextView) findViewById(R.id.SelectBox);
     tv.setTypeface(tf);
     firstname = (EditText) findViewById(R.id.regFirstName);

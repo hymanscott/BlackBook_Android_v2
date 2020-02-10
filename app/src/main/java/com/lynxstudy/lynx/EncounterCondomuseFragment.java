@@ -35,10 +35,12 @@ public class EncounterCondomuseFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
         ((Button)rootview.findViewById(R.id.next)).setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.newEncounter)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.newEncounter)).setTypeface(tf_medium);
         whenIsucked = (TextView)rootview.findViewById(R.id.whenIsucked);
         whenIsucked.setTypeface(tf);
         ((TextView)rootview.findViewById(R.id.whenItopped)).setTypeface(tf);;

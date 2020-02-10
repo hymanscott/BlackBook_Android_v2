@@ -72,9 +72,10 @@ public class RemindersActivity extends AppCompatActivity {
             //Type face
             Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                     "fonts/Barlow-Regular.ttf");
+            Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
             Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                     "fonts/Barlow-Bold.ttf");
-            ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+            ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_medium);
             ((TextView)view.findViewById(R.id.intro_first_paragraph)).setTypeface(tf);
             ((TextView)view.findViewById(R.id.intro_second_paragraph)).setTypeface(tf);
             ((TextView)view.findViewById(R.id.intro_third_paragraph)).setTypeface(tf);

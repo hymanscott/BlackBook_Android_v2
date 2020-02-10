@@ -41,9 +41,10 @@ public class RegistrationAlcoholCalculation extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
-        ((TextView)view.findViewById(R.id.reg_alc_baseline_title)).setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.reg_alc_baseline_title)).setTypeface(tf_medium);
         ((TextView)view.findViewById(R.id.no_of_days_text)).setTypeface(tf);
         ((TextView)view.findViewById(R.id.drinksTitle)).setTypeface(tf);
         ((TextView)view.findViewById(R.id.drinksdefine)).setTypeface(tf);

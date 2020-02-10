@@ -32,8 +32,11 @@ public class EncounterFromNotificationFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
+
         ((Button)rootview.findViewById(R.id.yes)).setTypeface(tf);
         ((Button)rootview.findViewById(R.id.no)).setTypeface(tf);
+        ((TextView)rootview.findViewById(R.id.add_partner_title)).setTypeface(tf_medium);
 
         TestingReminder testingReminder = db.getTestingReminderByFlag(0);
         String notes;

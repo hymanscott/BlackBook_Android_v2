@@ -34,12 +34,13 @@ public class NewPartnerNotesFragment extends Fragment {
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
         TextView new_partner_nickname = (TextView) rootview.findViewById(R.id.new_partner_nickname);
         new_partner_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         new_partner_nickname.setTypeface(tf_bold);
-        ((TextView) rootview.findViewById(R.id.add_partner_title)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.add_partner_title)).setTypeface(tf_medium);
         ((TextView) rootview.findViewById(R.id.partnerNotesTitle)).setTypeface(tf);
         EditText partnerNotes = (EditText) rootview.findViewById(R.id.partnerNotes);
         partnerNotes.setImeOptions(EditorInfo.IME_ACTION_DONE);

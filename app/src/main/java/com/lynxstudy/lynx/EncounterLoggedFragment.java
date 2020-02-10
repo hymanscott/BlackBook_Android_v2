@@ -32,10 +32,11 @@ public class EncounterLoggedFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
         ((Button)view.findViewById(R.id.newPartnerLoggedNext)).setTypeface(tf_bold);
-        ((TextView)view.findViewById(R.id.thankyou)).setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.thankyou)).setTypeface(tf_medium);
         ((TextView)view.findViewById(R.id.encloggedText)).setTypeface(tf);
         // Piwik Analytics //
         Tracker tracker = ((lynxApplication) getActivity().getApplication()).getTracker();

@@ -34,21 +34,22 @@ public class NewPartnerRatingsFragment extends Fragment {
 
     //Type face
     Typeface tf = Typeface.createFromAsset(getResources().getAssets(),"fonts/Barlow-Regular.ttf");
+    Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
     Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),"fonts/Barlow-Bold.ttf");
     ((Button)rootview.findViewById(R.id.next)).setTypeface(tf_bold);
     ((TextView)rootview.findViewById(R.id.rateTitle)).setTypeface(tf);
-    ((TextView)rootview.findViewById(R.id.add_partner_title)).setTypeface(tf_bold);
-    ((TextView)rootview.findViewById(R.id.newPartner_rate1)).setTypeface(tf);
+    ((TextView)rootview.findViewById(R.id.add_partner_title)).setTypeface(tf_medium);
+    ((TextView)rootview.findViewById(R.id.newPartner_rate1)).setTypeface(tf_medium);
     TextView newPartner_rating_nickname = (TextView) rootview.findViewById(R.id.newPartner_rating_nickname);
     newPartner_rating_nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
     newPartner_rating_nickname.setTypeface(tf_bold);
 
-    ((TextView)rootview.findViewById(R.id.newPartner_rate2)).setTypeface(tf);
-    ((TextView)rootview.findViewById(R.id.newPartner_rate3)).setTypeface(tf);
-    ((TextView)rootview.findViewById(R.id.newPartner_rate4)).setTypeface(tf);
-    ((EditText)rootview.findViewById(R.id.newPartner_rate5)).setTypeface(tf);
-    ((EditText)rootview.findViewById(R.id.newPartner_rate6)).setTypeface(tf);
-    ((EditText)rootview.findViewById(R.id.newPartner_rate7)).setTypeface(tf);
+    ((TextView)rootview.findViewById(R.id.newPartner_rate2)).setTypeface(tf_medium);
+    ((TextView)rootview.findViewById(R.id.newPartner_rate3)).setTypeface(tf_medium);
+    ((TextView)rootview.findViewById(R.id.newPartner_rate4)).setTypeface(tf_medium);
+    ((EditText)rootview.findViewById(R.id.newPartner_rate5)).setTypeface(tf_medium);
+    ((EditText)rootview.findViewById(R.id.newPartner_rate6)).setTypeface(tf_medium);
+    ((EditText)rootview.findViewById(R.id.newPartner_rate7)).setTypeface(tf_medium);
 
     RatingBar ratingbar_1 = (RatingBar) rootview.findViewById(R.id.ratingBar1);
     RatingBar ratingbar_2 = (RatingBar) rootview.findViewById(R.id.ratingBar2);

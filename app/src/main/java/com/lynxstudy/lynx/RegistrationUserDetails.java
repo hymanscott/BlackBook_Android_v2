@@ -35,9 +35,11 @@ public class RegistrationUserDetails extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
-        ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_medium);
         ((Button) view.findViewById(R.id.regAuthNext)).setTypeface(tf_bold);
         //email validation
         final EditText email = (EditText) view.findViewById(R.id.regEmail);

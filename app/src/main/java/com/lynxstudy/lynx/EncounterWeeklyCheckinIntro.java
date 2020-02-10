@@ -32,9 +32,10 @@ public class EncounterWeeklyCheckinIntro extends Fragment {
 
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
-        ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_medium);
         intro_paragraph = (TextView) view.findViewById(R.id.intro_paragraph);
         intro_paragraph.setTypeface(tf);
         intro_paragraph.setText("Welcome back " + LynxManager.decryptString(LynxManager.getActiveUser().getFirstname()) + "!\nWe have a few short questions for you\nand then we’ll get you on your way!");

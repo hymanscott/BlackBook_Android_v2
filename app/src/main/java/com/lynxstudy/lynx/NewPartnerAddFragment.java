@@ -37,9 +37,11 @@ public class NewPartnerAddFragment extends Fragment {
         // Typeface //
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
-        ((TextView)rootview.findViewById(R.id.add_partner_title)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.add_partner_title)).setTypeface(tf_medium);
         ((TextView)rootview.findViewById(R.id.whoIsYourPartner)).setTypeface(tf);
         ((TextView)rootview.findViewById(R.id.partnerGenderTitle)).setTypeface(tf);
         ((TextView)rootview.findViewById(R.id.hivStatusTitle)).setTypeface(tf);

@@ -41,6 +41,7 @@ public class EncounterSexTypeFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
         // set Nick Name
@@ -49,7 +50,7 @@ public class EncounterSexTypeFragment extends Fragment {
         nickname.setText(LynxManager.decryptString(LynxManager.getActivePartner().getNickname()));
         //nickname.setAllCaps(true);
         nickname.setTypeface(tf_bold);
-        ((TextView) rootview.findViewById(R.id.newEncounter)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.newEncounter)).setTypeface(tf_medium);
         ((TextView) rootview.findViewById(R.id.rateSex)).setTypeface(tf);
         ((TextView) rootview.findViewById(R.id.typeSex)).setTypeface(tf);
         ((Button)rootview.findViewById(R.id.next)).setTypeface(tf_bold);

@@ -50,6 +50,7 @@ public class RegistrationPartnerInfo extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
         radio_hiv_neg = (RadioButton)view.findViewById(R.id.radio_hiv_neg);
@@ -78,7 +79,7 @@ public class RegistrationPartnerInfo extends Fragment {
         radio_blackbook_yes.setTypeface(tf);
         radio_blackbook_no = (RadioButton)view.findViewById(R.id.radio_blackbook_no);
         radio_blackbook_no.setTypeface(tf);
-        ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_medium);
         ((TextView)view.findViewById(R.id.hivStatus)).setTypeface(tf);
         ((TextView)view.findViewById(R.id.undetectableTitle)).setTypeface(tf);
         ((TextView)view.findViewById(R.id.otherPartnersTitle)).setTypeface(tf);

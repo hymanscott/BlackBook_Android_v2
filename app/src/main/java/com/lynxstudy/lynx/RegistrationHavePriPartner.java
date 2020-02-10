@@ -29,11 +29,12 @@ public class RegistrationHavePriPartner extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
         PSP_Yes = (RadioButton)view.findViewById(R.id.PSP_Yes);
         PSP_No = (RadioButton)view.findViewById(R.id.PSP_No);
-        ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_medium);
         ((TextView)view.findViewById(R.id.textview10)).setTypeface(tf);
         PSP_Yes.setTypeface(tf);
         PSP_No.setTypeface(tf);

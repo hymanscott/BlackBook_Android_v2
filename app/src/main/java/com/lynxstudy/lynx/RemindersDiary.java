@@ -52,9 +52,10 @@ public class RemindersDiary extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
-        ((TextView)rootview.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.frag_title)).setTypeface(tf_medium);
         time = (TextView)rootview.findViewById(R.id.time);
         time.setTypeface(tf);
         day = (TextView)rootview.findViewById(R.id.day);

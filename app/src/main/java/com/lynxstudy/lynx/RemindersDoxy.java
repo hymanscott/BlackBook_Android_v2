@@ -51,10 +51,11 @@ public class RemindersDoxy extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
 
-        ((TextView)rootview.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.frag_title)).setTypeface(tf_medium);
         ((TextView)rootview.findViewById(R.id.intro_first_paragraph)).setTypeface(tf_bold);
         rbt_confirm.setTypeface(tf);
         rbt_decline.setTypeface(tf);

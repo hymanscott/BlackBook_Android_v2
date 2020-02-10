@@ -57,34 +57,35 @@ public class EncounterSummaryEditFragment extends Fragment {
         //Type face
         final Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
-        ((TextView)rootview.findViewById(R.id.newEncounter)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.newEncounter)).setTypeface(tf_medium);
         hivStatus = (TextView)rootview.findViewById(R.id.hivStatus);
         hivStatus.setTypeface(tf);
-        ((TextView)rootview.findViewById(R.id.rateSex)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.rateSex)).setTypeface(tf_medium);
         encounter_summary_nickName = (TextView)rootview.findViewById(R.id.encounter_summary_nickName);
         encounter_summary_nickName.setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.hivStatusTitle)).setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.encounterNotesTitle)).setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.typeSex)).setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.condomUsed)).setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.whenIsuckedTitle)).setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.came_inside_partner_title)).setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.partner_came_in_me_title)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.hivStatusTitle)).setTypeface(tf_medium);
+        ((TextView)rootview.findViewById(R.id.encounterNotesTitle)).setTypeface(tf_medium);
+        ((TextView)rootview.findViewById(R.id.typeSex)).setTypeface(tf_medium);
+        ((TextView)rootview.findViewById(R.id.condomUsed)).setTypeface(tf_medium);
+        ((TextView)rootview.findViewById(R.id.whenIsuckedTitle)).setTypeface(tf_medium);
+        ((TextView)rootview.findViewById(R.id.came_inside_partner_title)).setTypeface(tf_medium);
+        ((TextView)rootview.findViewById(R.id.partner_came_in_me_title)).setTypeface(tf_medium);
 
         whenIsucked = (TextView)rootview.findViewById(R.id.whenIsucked);
         whenIsucked.setTypeface(tf);
-        ((TextView)rootview.findViewById(R.id.whenIbottomTitle)).setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.whenItopTitle)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.whenIbottomTitle)).setTypeface(tf_medium);
+        ((TextView)rootview.findViewById(R.id.whenItopTitle)).setTypeface(tf_medium);
         whenIbottom = (TextView)rootview.findViewById(R.id.whenIbottom);
         whenIbottom.setTypeface(tf);
         whenItop = (TextView)rootview.findViewById(R.id.whenItop);
         whenItop.setTypeface(tf);
-        ((TextView) rootview.findViewById(R.id.drunktitle)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.drunktitle)).setTypeface(tf_medium);
         ((TextView) rootview.findViewById(R.id.partner_came_in_me_title)).setTypeface(tf_bold);
         ((TextView) rootview.findViewById(R.id.came_inside_partner_title)).setTypeface(tf_bold);
-        ((TextView) rootview.findViewById(R.id.took_doxy_title)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.took_doxy_title)).setTypeface(tf_medium);
         drunk= (TextView) rootview.findViewById(R.id.drunk);
         drunk.setTypeface(tf);
         encNotes = (EditText) rootview.findViewById(R.id.encNotes);

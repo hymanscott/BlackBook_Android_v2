@@ -26,10 +26,11 @@ public class RemindersLogged  extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
         ((Button)rootview.findViewById(R.id.loggedNext)).setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.frag_title)).setTypeface(tf_medium);
         // ((TextView)rootview.findViewById(R.id.log_para_two)).setTypeface(tf);
         ((TextView)rootview.findViewById(R.id.log_para_one)).setTypeface(tf);
         // Piwik Analytics //

@@ -33,7 +33,7 @@
                 android:lineSpacingMultiplier="1.2"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
-                android:text="Enter your registration code below to access the Lynx app."
+                android:text="Enter your registration code below to access the BlackBook app."
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/white"
                 android:textSize="@dimen/reg_tv_textsize" />

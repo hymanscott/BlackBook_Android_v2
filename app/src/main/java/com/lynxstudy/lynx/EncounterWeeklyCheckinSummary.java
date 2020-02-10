@@ -34,9 +34,10 @@ public class EncounterWeeklyCheckinSummary extends Fragment {
 
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
-        ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_medium);
         ((TextView) view.findViewById(R.id.intro_paragraph)).setTypeface(tf);
         ((Button) view.findViewById(R.id.checkin_summary_next)).setTypeface(tf_bold);
 

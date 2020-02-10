@@ -36,11 +36,12 @@ public class EncounterDrunkStatusFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
 
         ((Button) rootview.findViewById(R.id.next)).setTypeface(tf_bold);
-        ((TextView) rootview.findViewById(R.id.newEncounter)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.newEncounter)).setTypeface(tf_medium);
         ((TextView) rootview.findViewById(R.id.drunkTitle)).setTypeface(tf);
         encounter_nickName = (TextView) rootview.findViewById(R.id.encounter_nickName);
         encounter_nickName.setTypeface(tf_bold);

@@ -33,9 +33,10 @@ public class RegistrationConfirmFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
-        ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView)view.findViewById(R.id.frag_title)).setTypeface(tf_medium);
         confirm_firstname = (TextView)view.findViewById(R.id.confirm_firstname);
         confirm_firstname.setTypeface(tf);
         confirm_lastname = (TextView)view.findViewById(R.id.confirm_lastname);

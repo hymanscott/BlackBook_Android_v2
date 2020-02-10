@@ -49,9 +49,10 @@ public class EncounterEnctimeFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
-        ((TextView) rootview.findViewById(R.id.textView14)).setTypeface(tf_bold);
+        ((TextView) rootview.findViewById(R.id.textView14)).setTypeface(tf_medium);
         textView13 = (TextView) rootview.findViewById(R.id.textView13);
         textView13.setTypeface(tf);
         textView13.setText("Enter date of new encounter");

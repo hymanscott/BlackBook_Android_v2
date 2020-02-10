@@ -59,7 +59,7 @@ public class HomeEncounterFragment extends Fragment {
     LinearLayout encounterListContent,whenIsuckedParent,whenIbottomParent,whenItoppedParent;
     RelativeLayout encounterSummaryContent;
     View view;
-    Typeface tf,tf_bold;
+    Typeface tf, tf_medium, tf_bold;
     int back_press_count;
     private Tracker tracker;
     @Override
@@ -81,6 +81,7 @@ public class HomeEncounterFragment extends Fragment {
         //Type face
        tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+       tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
             "fonts/Barlow-Bold.ttf");
         encounterListContent = (LinearLayout) view.findViewById(R.id.encounterListContent);
@@ -256,22 +257,27 @@ public class HomeEncounterFragment extends Fragment {
         encounterSummaryContent.setVisibility(View.VISIBLE);
         encounterListContent.setVisibility(View.GONE);
         isSummaryShown = true;
+
+        ((TextView) view.findViewById(R.id.came_inside_partner_title)).setTypeface(tf_medium);
+        ((TextView) view.findViewById(R.id.partner_came_in_me_title)).setTypeface(tf_medium);
+        ((TextView) view.findViewById(R.id.took_doxy_title)).setTypeface(tf_medium);
+
         partner = (TextView)view.findViewById(R.id.partner);
-        partner.setTypeface(tf);
+        partner.setTypeface(tf_medium);
         sexRating = (TextView)view.findViewById(R.id.sexRating);
-        sexRating.setTypeface(tf);
+        sexRating.setTypeface(tf_medium);
         hivStatus = (TextView)view.findViewById(R.id.hivStatus);
         hivStatus.setTypeface(tf);
         typeSex = (TextView)view.findViewById(R.id.typeSex);
-        typeSex.setTypeface(tf);
+        typeSex.setTypeface(tf_medium);
         condomUsed = (TextView)view.findViewById(R.id.condomUsed);
-        condomUsed.setTypeface(tf);
+        condomUsed.setTypeface(tf_medium);
         whenIsuckedtitle = (TextView)view.findViewById(R.id.whenIsuckedtitle);
-        whenIsuckedtitle.setTypeface(tf);
+        whenIsuckedtitle.setTypeface(tf_medium);
         whenIbottomedtitle = (TextView)view.findViewById(R.id.whenIbottomedtitle);
-        whenIbottomedtitle.setTypeface(tf);
+        whenIbottomedtitle.setTypeface(tf_medium);
         whenItoppedtitle = (TextView)view.findViewById(R.id.whenItoppedtitle);
-        whenItoppedtitle.setTypeface(tf);
+        whenItoppedtitle.setTypeface(tf_medium);
         whenIsucked = (TextView)view.findViewById(R.id.whenIsucked);
         whenIsucked.setTypeface(tf);
         whenIbottom = (TextView)view.findViewById(R.id.whenIbottom);
@@ -279,7 +285,7 @@ public class HomeEncounterFragment extends Fragment {
         whenItop = (TextView)view.findViewById(R.id.whenItop);
         whenItop.setTypeface(tf);
         drunktitle = (TextView)view.findViewById(R.id.drunktitle);
-        drunktitle.setTypeface(tf);
+        drunktitle.setTypeface(tf_medium);
         drunk = (TextView)view.findViewById(R.id.drunk);
         drunk.setTypeface(tf);
         db = new DatabaseHelper(getActivity());

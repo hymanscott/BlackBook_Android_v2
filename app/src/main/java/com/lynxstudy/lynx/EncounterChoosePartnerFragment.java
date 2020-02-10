@@ -46,9 +46,11 @@ public class EncounterChoosePartnerFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(),
+                "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
-        ((TextView)rootview.findViewById(R.id.newEncounter)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.newEncounter)).setTypeface(tf_medium);
         ((TextView)rootview.findViewById(R.id.textView12)).setTypeface(tf);
         ((Button)rootview.findViewById(R.id.addNewPartner)).setTypeface(tf_bold);
         final TableLayout partnerTable = (TableLayout) rootview.findViewById(R.id.partnerTable);

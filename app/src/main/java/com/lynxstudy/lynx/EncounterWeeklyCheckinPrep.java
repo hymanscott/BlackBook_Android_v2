@@ -43,9 +43,10 @@ public class EncounterWeeklyCheckinPrep extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_encounter_weekly_checkin_prep, container, false);
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
-        ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_medium);
         ((TextView) view.findViewById(R.id.taking_prep)).setTypeface(tf);
         ((TextView) view.findViewById(R.id.textView8)).setTypeface(tf);
         prepDays = (TextView) view.findViewById(R.id.prepDays);

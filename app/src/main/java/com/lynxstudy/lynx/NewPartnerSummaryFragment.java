@@ -42,15 +42,16 @@ public class NewPartnerSummaryFragment extends Fragment {
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
         ((Button)rootview.findViewById(R.id.next)).setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.partnerGender)).setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.hivStatus)).setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.partnerTypeTitle)).setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.partnerNotes)).setTypeface(tf_bold);
-        ((TextView)rootview.findViewById(R.id.overAll)).setTypeface(tf);
-        ((TextView)rootview.findViewById(R.id.add_partner_title)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.partnerGender)).setTypeface(tf_medium);
+        ((TextView)rootview.findViewById(R.id.hivStatus)).setTypeface(tf_medium);
+        ((TextView)rootview.findViewById(R.id.partnerTypeTitle)).setTypeface(tf_medium);
+        ((TextView)rootview.findViewById(R.id.partnerNotes)).setTypeface(tf_medium);
+        ((TextView)rootview.findViewById(R.id.overAll)).setTypeface(tf_medium);
+        ((TextView)rootview.findViewById(R.id.add_partner_title)).setTypeface(tf_medium);
         undetectable_layout = (LinearLayout) rootview.findViewById(R.id.undetectable_layout);
 
         // Display Summary
@@ -80,7 +81,7 @@ public class NewPartnerSummaryFragment extends Fragment {
             undetectable_layout.setVisibility(View.VISIBLE);
             newPartnerSumm_undect.setText(LynxManager.decryptString(LynxManager.getActivePartner().getUndetectable_for_sixmonth()));
             newPartnerSumm_undect.setTypeface(tf);
-            partnerUndectTitle.setTypeface(tf_bold);
+            partnerUndectTitle.setTypeface(tf_medium);
         }else{
             undetectable_layout.setVisibility(View.GONE);
         }
@@ -114,17 +115,17 @@ public class NewPartnerSummaryFragment extends Fragment {
         overAll.setText(rating_fields.get(0));
         overAll.setTypeface(tf_bold);
         newPartnerSumm_rate2.setText(rating_fields.get(1));
-        newPartnerSumm_rate2.setTypeface(tf_bold);
+        newPartnerSumm_rate2.setTypeface(tf_medium);
         newPartnerSumm_rate3.setText(rating_fields.get(2));
-        newPartnerSumm_rate3.setTypeface(tf_bold);
+        newPartnerSumm_rate3.setTypeface(tf_medium);
         newPartnerSumm_rate4.setText(rating_fields.get(3));
-        newPartnerSumm_rate4.setTypeface(tf_bold);
+        newPartnerSumm_rate4.setTypeface(tf_medium);
         newPartnerSumm_rate5.setText(rating_fields.get(4));
-        newPartnerSumm_rate5.setTypeface(tf_bold);
+        newPartnerSumm_rate5.setTypeface(tf_medium);
         newPartnerSumm_rate6.setText(rating_fields.get(5));
-        newPartnerSumm_rate6.setTypeface(tf_bold);
+        newPartnerSumm_rate6.setTypeface(tf_medium);
         newPartnerSumm_rate7.setText(rating_fields.get(6));
-        newPartnerSumm_rate7.setTypeface(tf_bold);
+        newPartnerSumm_rate7.setTypeface(tf_medium);
 
         final RatingBar rating1 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar1);
         final RatingBar rating2 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar2);

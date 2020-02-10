@@ -35,6 +35,7 @@ public class RegistrationTimesBottom extends Fragment implements SeekBar.OnSeekB
         //Type face
         Typeface tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        Typeface tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         Typeface tf_bold = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Bold.ttf");
         seek_textviewone = (TextView)view.findViewById(R.id.textProgress_id2);
@@ -44,7 +45,7 @@ public class RegistrationTimesBottom extends Fragment implements SeekBar.OnSeekB
         regAuthNext = (Button) view.findViewById(R.id.regAuthNext);
 
         seek_textviewone.setTypeface(tf);
-        ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_bold);
+        ((TextView) view.findViewById(R.id.frag_title)).setTypeface(tf_medium);
         ((TextView) view.findViewById(R.id.textview9)).setTypeface(tf);
         ((TextView) view.findViewById(R.id.textview10)).setTypeface(tf);
         ((TextView) view.findViewById(R.id.textview11)).setTypeface(tf);

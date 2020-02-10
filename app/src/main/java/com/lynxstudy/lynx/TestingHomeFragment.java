@@ -101,7 +101,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         super.onCreate(savedInstanceState);
     }
 
-    Typeface tf_bold_italic,tf,tf_bold;
+    Typeface tf_bold_italic,tf, tf_medium, tf_bold;
     RelativeLayout summaryLayout, newTestLayout;
     LinearLayout mainContentLayout, chlamydiaSubContainer, syphilisSubContainer, gonorrheaSubContainer;
     ImageView hivIcon,gonorrheaIcon,syphilisIcon,chlamydiaIcon;
@@ -209,6 +209,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         //Type face
         tf = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-Regular.ttf");
+        tf_medium = Typeface.createFromAsset(getResources().getAssets(), "fonts/Barlow-Medium.ttf");
         tf_bold_italic = Typeface.createFromAsset(getResources().getAssets(),
                 "fonts/Barlow-BoldItalic.ttf");
         tf_bold = Typeface.createFromAsset(getResources().getAssets(),
@@ -400,7 +401,7 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         db= new DatabaseHelper(getActivity());
         title = testname;
         TextView newTest_title = (TextView) view.findViewById(R.id.addNewTestTitle);
-        newTest_title.setTypeface(tf_bold);
+        newTest_title.setTypeface(tf_medium);
         newTest_title.setText("Add New " + title);
         final TextView titleText = (TextView) view.findViewById(R.id.titleText);
         titleText.setText("When was your most recent HIV test?");
@@ -808,14 +809,14 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
     private void setSummaryContent(int id) {
         int testingHistoryID = id;
         gonorrheaTitle = (TextView) view.findViewById(R.id.gonorrheaTitle);
-        gonorrheaTitle.setTypeface(tf_bold_italic);
+        gonorrheaTitle.setTypeface(tf_medium);
         syphilisTitle = (TextView) view.findViewById(R.id.syphilisTitle);
-        syphilisTitle.setTypeface(tf_bold_italic);
+        syphilisTitle.setTypeface(tf_medium);
         chlamydiaTitle = (TextView) view.findViewById(R.id.chlamydiaTitle);
-        chlamydiaTitle.setTypeface(tf_bold_italic);
+        chlamydiaTitle.setTypeface(tf_medium);
 
         TextView testingHistoryTitle = (TextView) view.findViewById(R.id.testingHistoryTitle);
-        testingHistoryTitle.setTypeface(tf_bold);
+        testingHistoryTitle.setTypeface(tf_medium);
         TextView testingHistorydate = (TextView) view.findViewById(R.id.testingHistorydate);
         testingHistorydate.setTypeface(tf);
         TextView hivTestStatus = (TextView) view.findViewById(R.id.hivTestStatus);
