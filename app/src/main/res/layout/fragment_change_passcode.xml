@@ -89,7 +89,7 @@
                     android:background="@drawable/rectangle_edittext"
                     android:backgroundTint="@color/edittext_bg"
                     android:ems="10"
-                    android:hint="Repeat passcode"
+                    android:hint="Confirm 4 digit passcode"
                     android:maxLength="4"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/confirmNewPasscode"

@@ -143,7 +143,7 @@
                     android:background="@drawable/rectangle_edittext"
                     android:backgroundTint="@color/edittext_bg"
                     android:ems="10"
-                    android:hint="Set your own reminder text"
+                    android:hint="Set your own reminder text*"
                     android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
                     android:paddingBottom="5dp"

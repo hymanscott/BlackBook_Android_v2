@@ -77,7 +77,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Forgot Password?"
+            android:text="Forgot Passcode?"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:layout_marginTop="@dimen/button_top_margin"

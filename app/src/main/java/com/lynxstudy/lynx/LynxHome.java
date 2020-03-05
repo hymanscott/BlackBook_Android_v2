@@ -836,15 +836,15 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
   }
   private Notification getSexandEncounterNotification(String notificationMessage, int notificationHour, int notificationMin) {
     Intent intentYes = new Intent(this, RegLogin.class);
-    
     intentYes.putExtra("action", "NewSexReportYes");
     intentYes.setAction("drugusereminder");
     
     PendingIntent yes = PendingIntent.getActivity(this, 102, intentYes, 0);
 
     Notification.Builder notificationBuilder = new Notification.Builder(this);
-    Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+    notificationBuilder.setChannelId("blackbook-channel");
 
+    Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
     Calendar c = Calendar.getInstance();
     c.setTimeZone(TimeZone.getDefault());
     c.set(Calendar.HOUR_OF_DAY, notificationHour);

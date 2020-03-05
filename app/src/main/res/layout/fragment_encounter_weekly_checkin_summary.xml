@@ -57,7 +57,7 @@
         android:layout_marginTop="@dimen/button_top_margin"
         android:id="@+id/checkin_summary_next"
         android:textSize="@dimen/button_textsize"
-        android:onClick="weeklyCheckInIntroNext"
+        android:onClick="weeklyCheckInSummaryNext"
         android:layout_alignParentBottom="true"
         android:textStyle="bold" />
 </RelativeLayout>

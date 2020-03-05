@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Created by Hari on 2017-04-13.
@@ -303,7 +304,7 @@ public class calculateSexProScore {
                     DPD     =   0;
                 }
                 else {
-                    DPD = Integer.parseInt(LynxManager.decryptString(userAlcoholUse.getNo_alcohol_in_day()));
+                    DPD = this.parseInt(LynxManager.decryptString(userAlcoholUse.getNo_alcohol_in_day()));
                 }
 
             }
@@ -312,9 +313,9 @@ public class calculateSexProScore {
         }
         // PRE 90 Days
         else{
-            NASP_NEG        = Integer.parseInt(LynxManager.decryptString(baselineInfo.getHiv_negative_count()));
-            NASP_POS        = Integer.parseInt(LynxManager.decryptString(baselineInfo.getHiv_positive_count()));
-            NASP_UNKNOWN    = Integer.parseInt(LynxManager.decryptString(baselineInfo.getHiv_unknown_count()));
+            NASP_NEG        = this.parseInt(LynxManager.decryptString(baselineInfo.getHiv_negative_count()));
+            NASP_POS        = this.parseInt(LynxManager.decryptString(baselineInfo.getHiv_positive_count()));
+            NASP_UNKNOWN    = this.parseInt(LynxManager.decryptString(baselineInfo.getHiv_unknown_count()));
             for(UserDrugUse drugUse: baselineDrugUse){
                 int id = drugUse.getDrug_id();
                 if(LynxManager.decryptString(drugUse.getIs_baseline()).equals("Yes")){
@@ -366,7 +367,7 @@ public class calculateSexProScore {
                     DPD     =   0;
                 }
                 else {
-                    DPD = Integer.parseInt(LynxManager.decryptString(userAlcoholUse.getNo_alcohol_in_day()));
+                    DPD = this.parseInt(LynxManager.decryptString(userAlcoholUse.getNo_alcohol_in_day()));
                 }
             }
             else{
@@ -378,8 +379,8 @@ public class calculateSexProScore {
         //Condom Usage calculation//
         String botCondomUse =  botCondomUsePer = LynxManager.decryptString(baselineInfo.getBottom_condom_use_percent());
         String topCondomUse =  topCondomUsePer = LynxManager.decryptString(baselineInfo.getTop_condom_use_percent());
-        NIAS_POS_UNK    =   Integer.parseInt(LynxManager.decryptString(baselineInfo.getNo_of_times_top_hivposs()));
-        NRAS_POS_UNK    =   Integer.parseInt(LynxManager.decryptString(baselineInfo.getNo_of_times_bot_hivposs()));
+        NIAS_POS_UNK    =   this.parseInt(LynxManager.decryptString(baselineInfo.getNo_of_times_top_hivposs()));
+        NRAS_POS_UNK    =   this.parseInt(LynxManager.decryptString(baselineInfo.getNo_of_times_bot_hivposs()));
         if(elapsed_days>90){
             int condombottomusagecount = 0;
             int bottomsextypecount = 0;
@@ -424,12 +425,12 @@ public class calculateSexProScore {
         topCondomUse        =   topCondomUse.replaceAll("\\s+","");
         /*topCondomUse        =   topCondomUse.length()==3?topCondomUse.substring(0,2):(topCondomUse.substring(0,1));*/
         topCondomUse        =   topCondomUse.substring(0, topCondomUse.length() - 1);
-        PPIAS_POS_UNK   =   Integer.parseInt(topCondomUse) * 0.01;
+        PPIAS_POS_UNK   =   this.parseInt(topCondomUse) * 0.01;
 
         botCondomUse        =   botCondomUse.replaceAll("\\s+","");
         /*botCondomUse        =   botCondomUse.length()==3?botCondomUse.substring(0,2):(botCondomUse.substring(0,1));*/
         botCondomUse        =   botCondomUse.substring(0, botCondomUse.length() - 1);
-        PPRAS_POS_UNK   =   Integer.parseInt(botCondomUse) * 0.01;
+        PPRAS_POS_UNK   =   this.parseInt(botCondomUse) * 0.01;
 
         if(BMO<=CMO){
             AGE     = CY - BY;
@@ -522,6 +523,12 @@ public class calculateSexProScore {
             }
         }
 
+    }
+
+    private int parseInt(String strNumber) {
+        boolean isNumber = Pattern.matches("[0-9]+", strNumber);
+
+        return Integer.parseInt(isNumber ? strNumber : "0");
     }
 
     public int getElapsedDays(){

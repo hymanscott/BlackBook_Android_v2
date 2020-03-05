@@ -822,12 +822,10 @@ public class RegLogin extends AppCompatActivity {
     }
     public boolean showRegistrationSecurityDetails(View view){
         EditText email = (EditText) findViewById(R.id.regEmail);
-        EditText confirmEmail = (EditText) findViewById(R.id.regEmailConfirm);
         EditText pass = (EditText) findViewById(R.id.regPass);
         EditText reppass = (EditText) findViewById(R.id.regRepPass);
         EditText regVerficationCode = (EditText) findViewById(R.id.regVerficationCode);
         String e_mail = email.getText().toString();
-        String emailConfirmStr = confirmEmail.getText().toString();
         String password = pass.getText().toString();
         String rep_password = reppass.getText().toString();
         String reg_code = regVerficationCode.getText().toString();
@@ -841,9 +839,6 @@ public class RegLogin extends AppCompatActivity {
         if (e_mail.isEmpty() || !matcher.matches()) {
             Toast.makeText(RegLogin.this,"In-valid email",Toast.LENGTH_SHORT).show();
             email.requestFocus();
-        } else if (emailConfirmStr.isEmpty() || !e_mail.equals(emailConfirmStr)) {
-            Toast.makeText(RegLogin.this,"Email Mismatching", Toast.LENGTH_SHORT).show();
-            confirmEmail.requestFocus();
         } else if (password.isEmpty() || !rep_password.equals(password)) {
             Toast.makeText(RegLogin.this,"Password Mismatching",Toast.LENGTH_SHORT).show();
             pass.requestFocus();

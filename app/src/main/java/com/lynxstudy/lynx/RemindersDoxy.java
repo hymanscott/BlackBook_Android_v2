@@ -56,7 +56,7 @@ public class RemindersDoxy extends Fragment {
                 "fonts/Barlow-Bold.ttf");
 
         ((TextView)rootview.findViewById(R.id.frag_title)).setTypeface(tf_medium);
-        ((TextView)rootview.findViewById(R.id.intro_first_paragraph)).setTypeface(tf_bold);
+        ((TextView)rootview.findViewById(R.id.intro_first_paragraph)).setTypeface(tf);
         rbt_confirm.setTypeface(tf);
         rbt_decline.setTypeface(tf);
 

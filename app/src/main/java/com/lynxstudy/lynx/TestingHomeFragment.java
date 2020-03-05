@@ -304,37 +304,88 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         * false = ascending order
          */
         Collections.sort(histories, new TestingHistory.CompDate(true));
-        int j = 0;
         if(histories.isEmpty()){
             ((TextView) view.findViewById(R.id.contextualTipsTitle)).setTypeface(tf_bold);
             ((TextView) view.findViewById(R.id.contextualTipsDesc)).setTypeface(tf);
             ((LinearLayout) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.VISIBLE);
         }else{
             ((LinearLayout) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.GONE);
-            for (TestingHistory history : histories) {
-                TestNameMaster name = db.getTestingNamebyID(history.getTesting_id());
-                //TableRow tr = new TableRow(getActivity().getBaseContext());
-                final View v = LayoutInflater.from(getActivity()).inflate(R.layout.testing_history_row, null, false);
-                //want to get childs of row for example TextView, get it like this:
-                TextView date = (TextView) v.findViewById(R.id.date);
-                date.setTypeface(tf);
-                TextView testname = (TextView) v.findViewById(R.id.testname);
-                testname.setTypeface(tf);
-                // ImageView testimage = (ImageView)v.findViewById(R.id.imageView);
-                date.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
-                testname.setText(name.getTestName());
 
-                v.setId(history.getTesting_history_id());
-                v.setClickable(true);
-                v.setFocusable(true);
-                v.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view1) {
-                        testRowClick(v);
+            for (TestingHistory history : histories) {
+                List<TestingHistoryInfo> historyInfos = db.getAllTestingHistoryInfoByHistoryId(history.getTesting_history_id());
+                TestNameMaster testName = db.getTestingNamebyID(history.getTesting_id());
+
+                if(testName.getTestName().equals("HIV Test")) {
+                    final View row = LayoutInflater.from(getActivity()).inflate(R.layout.testing_history_row, null, false);
+
+                    TextView date = row.findViewById(R.id.date);
+                    TextView name = row.findViewById(R.id.name);
+                    TextView status = row.findViewById(R.id.status);
+
+                    date.setTypeface(tf);
+                    name.setTypeface(tf);
+                    status.setTypeface(tf);
+
+                    date.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
+                    name.setText(testName.getTestName());
+
+                    for (TestingHistoryInfo historyInfo : historyInfos) {
+                        if(historyInfo.getSti_id() == 0){
+                            String historyInfoStatus = LynxManager.decryptString(historyInfo.getTest_status());
+
+                            status.setText(historyInfoStatus);
+                        }
                     }
-                });
-                testing_history_table.addView(v);
-                j++;
+
+                    row.setId(history.getTesting_history_id());
+                    row.setClickable(true);
+                    row.setFocusable(true);
+                    row.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view1) {
+                            testRowClick(row);
+                        }
+                    });
+
+                    testing_history_table.addView(row);
+                } else {
+                    // STD Test
+                    for (TestingHistoryInfo historyInfo : historyInfos) {
+                        String historyInfoStatus = LynxManager.decryptString(historyInfo.getTest_status());
+                        STIMaster sti = db.getSTIbyID(historyInfo.getSti_id());
+
+                        if(
+                            historyInfo.getSti_id() != 0 &&
+                            (historyInfoStatus.equals("Positive") || historyInfoStatus.equals("Negative"))
+                        ){
+                            final View row = LayoutInflater.from(getActivity()).inflate(R.layout.testing_history_row, null, false);
+
+                            TextView date = row.findViewById(R.id.date);
+                            TextView name = row.findViewById(R.id.name);
+                            TextView status = row.findViewById(R.id.status);
+
+                            date.setTypeface(tf);
+                            name.setTypeface(tf);
+                            status.setTypeface(tf);
+
+                            date.setText(LynxManager.getFormatedDate("yyyy-MM-dd", LynxManager.decryptString(history.getTesting_date()), "MM/dd/yy"));
+                            name.setText(sti.getstiName());
+                            status.setText(historyInfoStatus);
+
+                            row.setId(history.getTesting_history_id());
+                            row.setClickable(true);
+                            row.setFocusable(true);
+                            row.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view1) {
+                                    testRowClick(row);
+                                }
+                            });
+
+                            testing_history_table.addView(row);
+                        }
+                    }
+                }
             }
         }
     }

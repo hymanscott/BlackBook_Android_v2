@@ -18,6 +18,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -740,6 +741,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     String isPrep = is_prep.getText().toString();
 
     boolean invalid_dob = LynxManager.regDateValidation(dob_value);
+
     if (password.isEmpty()) {
       Toast.makeText(LynxProfile.this,"Enter Password",Toast.LENGTH_SHORT).show();
       pass.requestFocus();
@@ -761,26 +763,27 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
       Toast.makeText(this,"Please Select Race/Ethnicity",Toast.LENGTH_SHORT).show();
     }else {
       dob_value = LynxManager.getFormatedDate("MM/dd/yyyy",dob_value,"dd-MMM-yyyy");
+
       Users uptUser = new Users(
-              LynxManager.getActiveUser().getUser_id(),
-              LynxManager.encryptString(first_name),
-              LynxManager.encryptString(last_name),
-              LynxManager.encryptString(e_mail),
-              LynxManager.encryptString(password),
-              LynxManager.encryptString(phone_number),
-              LynxManager.encryptString(pass_code),
-              "",
-              "",
-              "",
-              "",
-              LynxManager.encryptString(sec_qn_value),
-              LynxManager.encryptString(sec_ans_value),
-              LynxManager.encryptString(dob_value),
-              LynxManager.encryptString(races_list),
-              LynxManager.encryptString(gender_list),
-              LynxManager.encryptString(isPrep),
-              String.valueOf(R.string.statusUpdateNo),
-              true
+        LynxManager.getActiveUser().getUser_id(),
+        LynxManager.encryptString(first_name),
+        LynxManager.encryptString(last_name),
+        LynxManager.encryptString(e_mail),
+        LynxManager.encryptString(password),
+        LynxManager.encryptString(phone_number),
+        LynxManager.encryptString(pass_code),
+        "",
+        "",
+        "",
+        "",
+        LynxManager.encryptString(sec_qn_value),
+        LynxManager.encryptString(sec_ans_value),
+        LynxManager.encryptString(dob_value),
+        LynxManager.encryptString(races_list),
+        LynxManager.encryptString(gender_list),
+        LynxManager.encryptString(isPrep),
+        String.valueOf(R.string.statusUpdateNo),
+        true
       );
 
       LynxManager.setActiveUser(uptUser);
@@ -796,10 +799,21 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
           db.createUserBadge(prepBadge);
         }
       }
+
+      /*
+      try {
+        calculateSexProScore getscore = new calculateSexProScore(LynxProfile.this);
+      } catch (Exception e) {
+        Log.e("YOUR_APP_LOG_TAG", "I got an error", e);
+      }
+      * */
+
       // Update Score //
       calculateSexProScore getscore = new calculateSexProScore(LynxProfile.this);
+
       int final_score = 1;
       int final_score_alt = 1;
+
       if(isPrep.equals("Yes")){
         final_score = Math.round((float) getscore.getAdjustedScore());
         final_score_alt = Math.round((float) getscore.getUnAdjustedScore());
@@ -807,6 +821,7 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
         final_score = Math.round((float) getscore.getUnAdjustedScore());
         final_score_alt = Math.round((float) getscore.getAdjustedScore());
       }
+
       User_baseline_info user_baseline_info = db.getUserBaselineInfobyUserID(LynxManager.getActiveUser().getUser_id());
       String cal_date = user_baseline_info.getSexpro_calculated_date();
       //db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), final_score,isPrep, cal_date, String.valueOf(R.string.statusUpdateNo));
@@ -851,7 +866,6 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
       }
 
       // Testing reminders were deleted
-      // Verify callNotification function
       callNotification();
 
       // Finishing the update //
@@ -906,86 +920,71 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
   }
 
   private void callNotification(){
+    // 1. Clear all registered notifications
     NotificationManager notifManager = (NotificationManager) getApplication().getSystemService(Context.NOTIFICATION_SERVICE);
+
     notifManager.cancelAll();
-    String notes = "You have a new message!";
-    TestingReminder testingReminder = db.getTestingReminderByFlag(1);
-    String day = "";
-    int hour = 10;
-    int min = 0;
-    if(testingReminder != null) {
-      String time = LynxManager.convertUTCTimetoLocal(LynxManager.decryptString(testingReminder.getNotification_time()));
-      notes = LynxManager.decryptString(testingReminder.getReminder_notes());
-      if(time.length()!=8) {
-        String[] a = time.split(":");
-        hour = Integer.parseInt(a[0]);
+
+    // 2. Create weekly notification
+    // Get the diary reminder configuration
+    TestingReminder diaryReminder = db.getTestingReminderByFlag(0);
+
+
+    // Notification info
+    String notificationMessage = "You have a new message";
+    String notificationDay = "Sunday";
+    int notificationHour = 10;
+    int notificationMin = 10;
+
+    if(diaryReminder != null) {
+      notificationDay = LynxManager.decryptString(diaryReminder.getNotification_day());
+      String diaryReminderTimeStr = LynxManager.convertUTCTimetoLocal(LynxManager.decryptString(diaryReminder.getNotification_time()));
+      String diaryReminderTime = diaryReminderTimeStr.trim(); // to avoid errors when time is saved in iOS
+      notificationMessage = LynxManager.decryptString(diaryReminder.getReminder_notes());
+
+      if(diaryReminderTime.length()!=8) {
+        String[] a = diaryReminderTime.split(":");
+        notificationHour = Integer.parseInt(a[0]);
+
         if(a[1].equals("AM") || a[1].equals("a.m.")){
-          hour = Integer.parseInt(a[0])==12?0:Integer.parseInt(a[0]);
+          notificationHour = Integer.parseInt(a[0])==12?0:Integer.parseInt(a[0]);
         }else{
-          hour = Integer.parseInt(a[0])==12?12:Integer.parseInt(a[0])+12;
+          notificationHour = Integer.parseInt(a[0])==12?12:Integer.parseInt(a[0])+12;
         }
         a[1] = a[1].replace("PM","");
         a[1] = a[1].replace("AM","");
         a[1] = a[1].replace(" ","");
         a[1] = a[1].replace("a.m.","");
         a[1] = a[1].replace("p.m.","");
-        min = Integer.parseInt(a[1]);
+        notificationMin = Integer.parseInt(a[1]);
       }else{
-        String[] a = time.split(" ");
+        String[] a = diaryReminderTime.split(" ");
         String[] b = a[0].split(":");
         if(a[1].equals("AM")){
-          hour = Integer.parseInt(b[0])==12?0:Integer.parseInt(b[0]);
+          notificationHour = Integer.parseInt(b[0])==12?0:Integer.parseInt(b[0]);
         }else{
-          hour = Integer.parseInt(b[0])==12?12:Integer.parseInt(b[0])+12;
+          notificationHour = Integer.parseInt(b[0])==12?12:Integer.parseInt(b[0])+12;
         }
-        min = Integer.parseInt(b[1]);
+        notificationMin = Integer.parseInt(b[1]);
       }
-      //Log.v("NotifTime", String.valueOf(hour)+"----------"+ min);
-      day = LynxManager.decryptString(testingReminder.getNotification_day());
-
     }
-    // Removed Testing Reminder as DPH Requested
-    //scheduleNotification(getWeeklyNotification(notes),day,hour,min,1); // 1-> Testing Reminder Notification ID
 
-    TestingReminder druguseReminder = db.getTestingReminderByFlag(0);
-    String drug_use_day = "";
-    int drug_use_hour = 10;
-    int drug_use_min = 0;
-    String notes1 = "You have a new message!";
-    if(druguseReminder != null) {
-      String drug_use_time = LynxManager.convertUTCTimetoLocal(LynxManager.decryptString(druguseReminder.getNotification_time()));
-      notes1 = LynxManager.decryptString(druguseReminder.getReminder_notes());
-      if(drug_use_time.length()!=8) {
-        String[] a = drug_use_time.split(":");
-        drug_use_hour = Integer.parseInt(a[0]);
-        a[1] = a[1].replace("PM","");
-        a[1] = a[1].replace("AM","");
-        a[1] = a[1].replace(" ","");
-        a[1] = a[1].replace("a.m.","");
-        a[1] = a[1].replace("p.m.","");
-        drug_use_min = Integer.parseInt(a[1]);
-      }else{
-        String[] a = drug_use_time.split(" ");
-        String[] b = a[0].split(":");
-        if(a[1].equals("AM")){
-          drug_use_hour = Integer.parseInt(b[0])==12?0:Integer.parseInt(b[0]);
-        }else{
-          drug_use_hour = Integer.parseInt(b[0])==12?12:Integer.parseInt(b[0])+12;
-        }
-        drug_use_min = Integer.parseInt(b[1]);
-      }
-      Log.v("NotifDrugTime", String.valueOf(drug_use_hour)+"----------"+ drug_use_min);
-      drug_use_day = LynxManager.decryptString(druguseReminder.getNotification_day());
-    }
-    scheduleNotification(getSexandEncounterNotification(notes1, drug_use_hour, drug_use_min), drug_use_day, drug_use_hour, drug_use_min, 0);// 0 -> DrugUse Reminder Notification ID
+    System.out.println(notificationDay + " " + notificationHour + " " + notificationMin + " " + notificationMessage);
+
+    // 3. Schedule the Notification Locally
+    scheduleNotification(getNotification(notificationMessage, notificationHour, notificationMin), notificationDay, notificationHour, notificationMin, 0);
   }
-  private Notification getSexandEncounterNotification(String content, int drug_use_hour,int drug_use_min) {
-    Intent intentyes = new Intent(this, RegLogin.class);
-    intentyes.putExtra("action", "NewSexReportYes");
-    intentyes.setAction("drugusereminder");
-    PendingIntent yes = PendingIntent.getActivity(this, 102, intentyes, 0);
 
-    Notification.Builder builder_Encounter = new Notification.Builder(this);
+  private Notification getNotification(String content, int drug_use_hour,int drug_use_min) {
+    Intent intent = new Intent(this, RegLogin.class);
+    intent.putExtra("action", "NewSexReportYes");
+    intent.setAction("drugusereminder");
+
+    PendingIntent yes = PendingIntent.getActivity(this, 102, intent, 0);
+
+    Notification.Builder builder = new Notification.Builder(this);
+    builder.setChannelId("blackbook-channel");
+
     Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
     Calendar c = Calendar.getInstance();
     c.setTimeZone(TimeZone.getDefault());
@@ -993,38 +992,37 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     c.set(Calendar.MINUTE,drug_use_min);
 
     if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-      builder_Encounter.setContentTitle("BlackBook");
-      builder_Encounter.setContentText(content);
-      builder_Encounter.setAutoCancel(false);
-      builder_Encounter.setSmallIcon(R.mipmap.ic_launcher_round);
-      builder_Encounter.setSound(soundUri);
-      builder_Encounter.setWhen(c.getTimeInMillis());
-      builder_Encounter.setContentIntent(yes);
+      builder.setContentTitle("BlackBook");
+      builder.setContentText(content);
+      builder.setAutoCancel(false);
+      builder.setSmallIcon(R.mipmap.ic_launcher_round);
+      builder.setSound(soundUri);
+      builder.setWhen(c.getTimeInMillis());
+      builder.setContentIntent(yes);
     }else{
-      builder_Encounter.setContentTitle("BlackBook");
-      builder_Encounter.setContentText(content);
-      builder_Encounter.setAutoCancel(false);
-      builder_Encounter.setSmallIcon(R.drawable.ic_silhouette);
-      builder_Encounter.setColor(getResources().getColor(R.color.colorAccent));
-      builder_Encounter.setSound(soundUri);
-      builder_Encounter.setWhen(c.getTimeInMillis());
-      builder_Encounter.setContentIntent(yes);
+      builder.setContentTitle("BlackBook");
+      builder.setContentText(content);
+      builder.setAutoCancel(false);
+      builder.setSmallIcon(R.drawable.ic_silhouette);
+      builder.setColor(getResources().getColor(R.color.colorAccent));
+      builder.setSound(soundUri);
+      builder.setWhen(c.getTimeInMillis());
+      builder.setContentIntent(yes);
     }
-    return builder_Encounter.build();
+
+    return builder.build();
   }
   private void scheduleNotification(Notification notification, String day, int hour, int min, int id_notif) {
-
     Intent notificationIntent = new Intent(this, AlarmReceiver.class);
     notificationIntent.putExtra(AlarmReceiver.NOTIFICATION_ID, id_notif);
     notificationIntent.putExtra(AlarmReceiver.NOTIFICATION, notification);
     PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id_notif, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
     Calendar calendar = Calendar.getInstance();
+
     if(day.isEmpty()) {
       calendar.add(Calendar.DAY_OF_WEEK, 7);
-
-    }
-    else {
+    } else {
       switch (day) {
         case "Sunday":
           calendar = LynxManager.setNotificatonDay(Calendar.SUNDAY);
@@ -1058,8 +1056,10 @@ public class LynxProfile extends AppCompatActivity implements View.OnClickListen
     }
 
     long futureInMillis = calendar.getTimeInMillis();
-    //Log.v("futureInMillis", String.valueOf(futureInMillis));
-    AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+
+    AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, futureInMillis, AlarmManager.INTERVAL_DAY * 7, pendingIntent);
+
+    Log.v("futureInMillis", String.valueOf(futureInMillis));
   }
 }

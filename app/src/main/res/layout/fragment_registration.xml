@@ -34,7 +34,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Register your new account"
+                    android:text="Register new account"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="20dp"
@@ -225,6 +225,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin_half"
                         android:layout_gravity="center"
                         android:src="@drawable/dropdownicon" />
                 </RelativeLayout>
