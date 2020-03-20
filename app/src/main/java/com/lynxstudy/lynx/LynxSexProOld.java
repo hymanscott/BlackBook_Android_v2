@@ -173,7 +173,9 @@ public class LynxSexProOld extends AppCompatActivity implements View.OnClickList
                 final_score = Math.round((float) getscore.getUnAdjustedScore());
             }
             db.updateBaselineSexProScore(LynxManager.getActiveUser().getUser_id(), final_score,prep_status, cal_date, String.valueOf(R.string.statusUpdateNo));
+
             // Adding User Badge : Tool Box and Green Light Badge //
+            /*
             int shown = 0;
             if(final_score >=17){
                 BadgesMaster green_badge = db.getBadgesMasterByName("Green Light");
@@ -184,6 +186,7 @@ public class LynxSexProOld extends AppCompatActivity implements View.OnClickList
                 UserBadges toolBoxBadge = new UserBadges(toolbox_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,toolbox_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
                 db.createUserBadge(toolBoxBadge);
             }
+            */
         }
         //Log.v("ScoreStat",final_score+"-"+prep_status+"--"+cal_date);
         if(prep_status.equals("Yes")){

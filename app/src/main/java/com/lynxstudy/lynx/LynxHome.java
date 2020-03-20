@@ -462,7 +462,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
     }
 
     // APP Behaviour Alerts //
-
+    /*
     int elapsed_reg_days = getElapsedDays(LynxManager.getActiveUserBaselineInfo().getCreated_at());
     String message = "";
     if(elapsed_reg_days>=90 || firstHIVElapsedDays()>=90){
@@ -512,6 +512,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         db.updateAppAlertModifiedDate(appAlerts.getId());
       }
     }
+    */
   }
   public String getVersion() {
     String versionName = "Version not found";

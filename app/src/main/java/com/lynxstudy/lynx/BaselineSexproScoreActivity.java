@@ -283,10 +283,12 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
             }
         }
         // Adding User Badge : LYNX Badge, Tool Box and Green Light Badge //
-        BadgesMaster lynx_badge = db.getBadgesMasterByName("LYNX");
+        BadgesMaster lynx_badge = db.getBadgesMasterByName("BlackBook");
         int shown = 0;
         UserBadges lynxBadge = new UserBadges(lynx_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,lynx_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
         db.createUserBadge(lynxBadge);
+
+        /*
         if(final_score >=17){
             BadgesMaster green_badge = db.getBadgesMasterByName("Green Light");
             UserBadges greenBadge = new UserBadges(green_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,green_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
@@ -296,6 +298,8 @@ public class BaselineSexproScoreActivity extends AppCompatActivity {
             UserBadges toolBoxBadge = new UserBadges(toolbox_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,toolbox_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
             db.createUserBadge(toolBoxBadge);
         }
+        */
+
         /*final ImageView btn = (ImageView)findViewById(R.id.information);*/
         infoLink.setOnClickListener(new View.OnClickListener() {
             @Override

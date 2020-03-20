@@ -244,11 +244,12 @@
                             android:gravity="center_vertical"/>
                         <RadioGroup
                             android:id="@+id/rbg_reason"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="24dp"
                             android:layout_marginLeft="24dp"
                             android:paddingLeft="8dp"
+                            android:paddingRight="16dp"
                             android:layout_marginTop="@dimen/activity_vertical_margin">
                             <RadioButton
                                 android:layout_width="wrap_content"
@@ -304,6 +305,33 @@
                                 android:layout_marginTop="12dp"
                                 android:text="I wanted to avoid side effects"
                                 android:id="@+id/rbt_reason_side_effects" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal" >
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"
+                                    android:buttonTint="@color/white"
+                                    android:button="@drawable/radiobutton_white"
+                                    android:paddingLeft="12dp"
+                                    android:layout_marginTop="12dp"
+                                    android:id="@+id/rbt_reason_other" />
+                                <EditText
+                                    android:layout_toEndOf="@+id/rbt_reason_other"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="12dp"
+                                    android:background="@drawable/dashboard_container"
+                                    android:gravity="top|start"
+                                    android:textColorHint="@color/edittext_hint_color"
+                                    android:hint="Other"
+                                    android:minLines="3"
+                                    android:padding="@dimen/activity_horizontal_margin_half"
+                                    android:textSize="@dimen/encounter_radio_btn_textsize"/>
+                            </RelativeLayout>
                         </RadioGroup>
                     </LinearLayout>
                 </LinearLayout>

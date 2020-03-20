@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -138,11 +139,31 @@ public class EncounterDoxyFragment extends Fragment {
             @Override
             public void onClick(View v) {
             // TODO Auto-generated method stub
-            new DatePickerDialog(getActivity(), R.style.DatePicker, date,
+            DatePickerDialog dp = new DatePickerDialog(getActivity(), R.style.DatePicker, date,
                 myCalendar.get(Calendar.YEAR),
                 myCalendar.get(Calendar.MONTH),
                 myCalendar.get(Calendar.DAY_OF_MONTH)
-            ).show();
+            );
+
+            String encounter_datetime = LynxManager.activeEncounter.getDatetime(); // yyyy-MM-dd HH:mm:ss
+            DateFormat inputFormat  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            long milliseconds = System.currentTimeMillis();
+
+            try {
+                Date dayOfEncounter = inputFormat.parse(LynxManager.decryptString(encounter_datetime));
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(dayOfEncounter);
+
+                milliseconds = calendar.getTimeInMillis();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+            dp.getDatePicker().setMinDate(milliseconds);
+
+            dp.show();
             }
         });
 

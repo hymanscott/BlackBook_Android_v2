@@ -224,8 +224,8 @@ public class RemindersActivity extends AppCompatActivity {
         LynxManager.setActiveUser(activeUser);
 
         if(isPrep.equals("Yes")){
-            if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("PrEP").getBadge_id())==0){
-                BadgesMaster prep_badge = db.getBadgesMasterByName("PrEP");
+            if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("DoxyPEP").getBadge_id())==0){
+                BadgesMaster prep_badge = db.getBadgesMasterByName("DoxyPEP");
                 int shown = 0;
 
                 UserBadges prepBadge = new UserBadges(prep_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,prep_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));

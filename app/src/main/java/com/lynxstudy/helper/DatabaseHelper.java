@@ -1726,22 +1726,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         android.database.Cursor c = db.rawQuery(selectQuery, null);
 
-        if (c != null)
+        Partners partner = null;
+
+        if (c != null && c.getCount() > 0) {
             c.moveToFirst();
 
-        Partners partner = new Partners();
-        partner.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNER_ID)));
-        partner.setUser_id(c.getInt(c.getColumnIndex(KEY_PARTNER_USERID)));
-        partner.setNickname(c.getString(c.getColumnIndex(KEY_PARTNER_NICKNAME)));
-        partner.setGender(c.getString(c.getColumnIndex(KEY_PARTNER_GENDER)));
-        partner.setHiv_status(c.getString(c.getColumnIndex(KEY_PARTNER_HIVSTATUS)));
-        partner.setUndetectable_for_sixmonth(c.getString(c.getColumnIndex(KEY_PARTNER_UNDETECTABLE)));
-        partner.setIs_added_to_partners(c.getString(c.getColumnIndex(KEY_PARTNER_ADDEDTOLIST)));
-        partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-        partner.setPartner_idle(c.getInt(c.getColumnIndex(KEY_PARTNER_IDLE)));
-        partner.setIs_active(c.getInt(c.getColumnIndex(KEY_PARTNER_IS_ACTIVE)));
+            partner = new Partners();
+            partner.setPartner_id(c.getInt(c.getColumnIndex(KEY_PARTNER_ID)));
+            partner.setUser_id(c.getInt(c.getColumnIndex(KEY_PARTNER_USERID)));
+            partner.setNickname(c.getString(c.getColumnIndex(KEY_PARTNER_NICKNAME)));
+            partner.setGender(c.getString(c.getColumnIndex(KEY_PARTNER_GENDER)));
+            partner.setHiv_status(c.getString(c.getColumnIndex(KEY_PARTNER_HIVSTATUS)));
+            partner.setUndetectable_for_sixmonth(c.getString(c.getColumnIndex(KEY_PARTNER_UNDETECTABLE)));
+            partner.setIs_added_to_partners(c.getString(c.getColumnIndex(KEY_PARTNER_ADDEDTOLIST)));
+            partner.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+            partner.setPartner_idle(c.getInt(c.getColumnIndex(KEY_PARTNER_IDLE)));
+            partner.setIs_active(c.getInt(c.getColumnIndex(KEY_PARTNER_IS_ACTIVE)));
 
-        c.close();
+            c.close();
+        }
+
         return partner;
     }
 

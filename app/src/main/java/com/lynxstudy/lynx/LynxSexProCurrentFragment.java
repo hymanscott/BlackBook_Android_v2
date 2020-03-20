@@ -415,6 +415,7 @@ public class LynxSexProCurrentFragment extends Fragment {
         * Showing Green Light and Tool Box badges
         * Only one time after 90 days
         * */
+        /*
         int shown = 0;
         if(final_score >=17){
             BadgesMaster green_badge = db.getBadgesMasterByName("Green Light");
@@ -430,6 +431,8 @@ public class LynxSexProCurrentFragment extends Fragment {
                 db.createUserBadge(toolBoxBadge);
             }
         }
+         */
+
         return view;
     }
 

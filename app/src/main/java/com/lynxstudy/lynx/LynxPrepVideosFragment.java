@@ -245,6 +245,8 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
         if(videoid !=0){
             db.setVideoWatched(videoid,1);
             mWebView.setOnTouchListener(null);
+
+            /*
             BadgesMaster badge = db.getBadgesMasterByName("Silver Screen");
             if(db.getWatchedVideosCount()==4 && db.getUserBadgesCountByBadgeID(badge.getBadge_id())==0){
                 // Adding User Badge : Silver Screen Badge //
@@ -257,7 +259,10 @@ public class LynxPrepVideosFragment extends Fragment implements View.OnTouchList
                 badgeScreen.putExtra("badge_id",badge.getBadge_id());
                 badgeScreen.putExtra("isAlert","Yes");
                 startActivity(badgeScreen);
-            }else if(db.getWatchedVideosCount()<=3){
+            }else
+            */
+
+            if(db.getWatchedVideosCount()<=3){
                 String appAlertName = "Video " + videoid + " watched" ;
                 if(db.getAppAlertsCountByName(appAlertName)==0){
                     showAppAlert(appAlertName);

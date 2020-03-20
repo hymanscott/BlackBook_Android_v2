@@ -128,11 +128,13 @@ public class HomeEncounterFragment extends Fragment {
             ((ScrollView) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.VISIBLE);
         } else {
             ((ScrollView) view.findViewById(R.id.contextualTipsLayout)).setVisibility(View.GONE);
+
             // Collections.sort(allEncounters, new Encounter.CompDate(true));
             for (Encounter encounter : allEncounters) {
                 int enc_partner_id = encounter.getEncounter_partner_id();
                 Partners partner = db.getPartnerbyID(enc_partner_id);
-                if (partner.getIs_active() == 1) {
+
+                if (partner != null && partner.getIs_active() == 1) {
                     /*TableRow encounterRow = new TableRow(getActivity());*/
                     View v = LayoutInflater.from(getActivity()).inflate(R.layout.table_encounter_row, null, false);
                     if (width == 480 && height == 800)
@@ -195,6 +197,7 @@ public class HomeEncounterFragment extends Fragment {
                 }
             }
         }
+
         back_press_count=0;
         view.setFocusableInTouchMode(true);
         view.requestFocus();

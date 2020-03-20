@@ -87,9 +87,13 @@ public class EncounterEnctimeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                new DatePickerDialog(getActivity(), R.style.DatePicker, date, myCalendar
+                DatePickerDialog dp = new DatePickerDialog(getActivity(), R.style.DatePicker, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+
+                dp.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+                dp.show();
             }
         });
         enctime.setOnClickListener(new View.OnClickListener() {

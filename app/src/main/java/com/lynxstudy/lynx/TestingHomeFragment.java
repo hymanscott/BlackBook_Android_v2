@@ -736,19 +736,25 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                     isNewTestShown = false;
                     reloadFragment();
                     LynxManager.isRefreshRequired = true;
-                    BadgesMaster test_badge = db.getBadgesMasterByName("Testing 1-2-3");
+
+
                     int shown = 1; // Triggering Badge Immediately so shown==1 //
+
+                    /*
+                    BadgesMaster test_badge = db.getBadgesMasterByName("Testing 1-2-3");
                     if(db.getTestingHistoriesCount()>=5 && db.getUserBadgesCountByBadgeID(test_badge.getBadge_id())==0){
                         // Adding User Badge : Testing 1-2-3 Badge //
                         UserBadges lynxBadge = new UserBadges(test_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,test_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
                         // Trigger Badge //
-                            Intent badgeScreen =  new Intent(getActivity(),BadgeScreenActivity.class);
-                            badgeScreen.putExtra("badge_id",test_badge.getBadge_id());
-                            badgeScreen.putExtra("isAlert","Yes");
-                            startActivity(badgeScreen);
-                            db.createUserBadge(lynxBadge);
+                        Intent badgeScreen =  new Intent(getActivity(),BadgeScreenActivity.class);
+                        badgeScreen.putExtra("badge_id",test_badge.getBadge_id());
+                        badgeScreen.putExtra("isAlert","Yes");
+                        startActivity(badgeScreen);
+                        db.createUserBadge(lynxBadge);
 
                     }
+                     */
+
                     // Adding Fencer Badge //
                     if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("Fencer").getBadge_id())==0) {
                         if (isFullHIVTestLogged() && isFullStdTestLogged()) {

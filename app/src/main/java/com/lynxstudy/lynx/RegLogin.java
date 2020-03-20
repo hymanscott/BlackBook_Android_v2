@@ -550,34 +550,36 @@ public class RegLogin extends AppCompatActivity {
         testingInstructionsList.add(instruction4);
         testingInstructionsList.add(instruction5);
 
-        BadgesMaster badgesMaster1 = new BadgesMaster(1,"LYNX","You completed onboarding","Welcome to Lynx.","lynx_small","Home");
-        BadgesMaster badgesMaster2 = new BadgesMaster(2,"High Five","Entered first encounter","Yay!  Shout out to the first timers.  Congrats on completing Entry #1.","high_five_small","Encounter");
+        BadgesMaster badgesMaster1 = new BadgesMaster(1,"BlackBook","You completed onboarding","Welcome to BlackBook!","lynx_small","Home");
+        BadgesMaster badgesMaster2 = new BadgesMaster(2,"High Five","Entered first encounter","Yay!  Shout out to the first timers. Congrats on completing Entry #1.","high_five_small","Encounter");
         BadgesMaster badgesMaster3 = new BadgesMaster(3,"Healthy Heart","Entered 3 encounters","Humping keeps your hearth thumping. Hopefully the third time was a charm!","healthy_heart_small","Encounter");
-        BadgesMaster badgesMaster4 = new BadgesMaster(4,"Silver Screen","Watched all 4 videos","Someone likes being an expert.  Congrats on watching the entire video series.","silver_screen_small","PrEP");
-        BadgesMaster badgesMaster5 = new BadgesMaster(5,"Testing 1-2-3","Entered an HIV or STD test","You don't have to pat yourself on the back for taking your test.  We'll do it for you!","testing_small","Testing");
-        BadgesMaster badgesMaster6 = new BadgesMaster(6,"Green Light","Scored higher than 17 on BlackBook","We see you don't play games when it comes to keeping your HIV risk low. Congrats on scoring high by handling your business.","green_light_small","Sexpro");
-        BadgesMaster badgesMaster7 = new BadgesMaster(7,"PrEP","Started PrEP","A daily commitment to take PrEP is a commitment to yourself. Good lookin' out.","prep_small","Home");
+        // BadgesMaster badgesMaster4 = new BadgesMaster(4,"Silver Screen","Watched all 4 videos","Someone likes being an expert.  Congrats on watching the entire video series.","silver_screen_small","PrEP");
+        // BadgesMaster badgesMaster5 = new BadgesMaster(5,"Testing 1-2-3","Entered an HIV or STD test","You don't have to pat yourself on the back for taking your test.  We'll do it for you!","testing_small","Testing");
+        // BadgesMaster badgesMaster6 = new BadgesMaster(6,"Green Light","Scored higher than 17 on BlackBook","We see you don't play games when it comes to keeping your HIV risk low. Congrats on scoring high by handling your business.","green_light_small","Sexpro");
+        BadgesMaster badgesMaster7 = new BadgesMaster(7,"DoxyPEP","Your first  dose of DoxyPEP","A commitment to take doxy is a commitment to yourself. Good lookin’ out","prep_small","Home");
         BadgesMaster badgesMaster8 = new BadgesMaster(8,"I Love Anal","Anal sex with a condom","Everybody talks about safe sex, but not everybody is about safe sex. Fist bump on the condom use.","love_anal_small","Encounter");
         BadgesMaster badgesMaster9 = new BadgesMaster(9,"Magnum","Used a condom 5 times","Look at you. Hot. Getting it in. And being protected. Keep it up!","magnum_small","Encounter");
         BadgesMaster badgesMaster10 = new BadgesMaster(10,"Golden Penis","100% condom use as a top in a month","You won the big one for keeping it wrapped!","golden_penis_small","Encounter");
-        BadgesMaster badgesMaster11 = new BadgesMaster(11,"Fencer","Completed all HIV & STD testing.","‘Penis Fencing’ is a scientific term for the mating ritual between flatworms. It's when two flatworms attempt to stab each other with their penis. Nice job on taking care of your saber.","fencer_small","Testing");
+        BadgesMaster badgesMaster11 = new BadgesMaster(11,"Fencer","Entered an STD or HIV test","‘Penis Fencing’ is a scientific term for the mating ritual between flatworms. Nice job on taking care of your saber.","fencer_small","Testing");
         BadgesMaster badgesMaster12 = new BadgesMaster(12,"Desert","No encounters reported in 3 weeks","There are several places in the Sahara Desert that get snow on the regular. Keep your chin up.","desert_small","Home");
-        BadgesMaster badgesMaster13 = new BadgesMaster(13,"Galaxy","4 star rating  on an encounter or person","Sex position #92: The Star Gazer. You have lots of stars in your galaxy!","galaxy_small","Encounter");
+        BadgesMaster badgesMaster13 = new BadgesMaster(13,"Galaxy","4 star rating on an encounter or person","Sex position #92: The Star Gazer. You have lots of stars in your galaxy!","galaxy_small","Encounter");
         BadgesMaster badgesMaster14 = new BadgesMaster(14,"Gold Star","1 or 2 star rating on an encounter or person","A star is a star, right?! One or two stars can still shine brightly.","gold_star_small","Encounter");
-        BadgesMaster badgesMaster15 = new BadgesMaster(15,"All Star","Entered a 5 star rating on an encounter or person","Pigs can have orgasms that last over 30 minutes. #oink for your 5 stars.","all_star_small","Encounter");
-        BadgesMaster badgesMaster16 = new BadgesMaster(16,"Toolbox","BlackBook Score between 10-16","You're using some prevention tools. PrEP can help you complete your toolbox.","toolbox_small","Sexpro");
+        BadgesMaster badgesMaster15 = new BadgesMaster(15,"All Star","5 star rating on an encounter or person","Pigs can have orgasms that last over 30 minutes. #oink for your 5 stars.","all_star_small","Encounter");
+        // BadgesMaster badgesMaster16 = new BadgesMaster(16,"Toolbox","BlackBook Score between 10-16","You're using some prevention tools. PrEP can help you complete your toolbox.","toolbox_small","Sexpro");
         BadgesMaster badgesMaster17 = new BadgesMaster(17,"Vital Vitamins","Entered 5 encounters","Semen contains zinc and calcium, both of which prevent tooth decay. (We'd still recommend brushing your teeth.)","vital_vitamins_small","Encounter");
-        BadgesMaster badgesMaster18 = new BadgesMaster(18,"King","Entered 10 encounters","Some lions mate over 50 times a day. King of the jungle. Are you PrEP-ready for next encounter? If not, contact us.","king_small","Encounter");
-        BadgesMaster badgesMaster19 = new BadgesMaster(19,"Energizer Bunny","Entered 15 encounters","You burn about 200 calories during 30 minutes of sex. PrEP-ready for next encounter? If not, contact us.","energizer_bunny_small","Encounter");
-        BadgesMaster badgesMaster20 = new BadgesMaster(20,"Golden Butt","100% condom use as a bottom in a month","Somebody is keeping it 100 in the best way. Congrats on protecting and enjoying yourself.","golden_butt_small","Encounter");
+        BadgesMaster badgesMaster18 = new BadgesMaster(18,"King","Entered 10 encounters","Some lions mate over 50 times a day. King of the jungle, wear your crown.","king_small","Encounter");
+        BadgesMaster badgesMaster19 = new BadgesMaster(19,"Energizer Bunny","Entered 15 encounters","You burn about 200 calories during 30 minutes of sex. Let’s Get active!","energizer_bunny_small","Encounter");
+        BadgesMaster badgesMaster20 = new BadgesMaster(20,"Golden Butt","Doxy use after all condomless sex in a week","Somebody is keeping it 100 in the best way. Congrats on enjoying yourself!","golden_butt_small","Encounter");
+        BadgesMaster badgesMaster21 = new BadgesMaster(21,"10's","Your 10th dose of DoxyPEP","10s across the board!","thens_small","Home");
+        BadgesMaster badgesMaster22 = new BadgesMaster(22,"Right On Time","Doxy use within 3 days of all sex in a week","We see you don’t play games when it comes to keeping yourself on track. Congrats on handling your business.","right_on_time_small","Home");
 
         List<BadgesMaster> badgesMasterList = new ArrayList<BadgesMaster>();
         badgesMasterList.add(badgesMaster1);
         badgesMasterList.add(badgesMaster2);
         badgesMasterList.add(badgesMaster3);
-        badgesMasterList.add(badgesMaster4);
-        badgesMasterList.add(badgesMaster5);
-        badgesMasterList.add(badgesMaster6);
+        // badgesMasterList.add(badgesMaster4);
+        // badgesMasterList.add(badgesMaster5);
+        // badgesMasterList.add(badgesMaster6);
         badgesMasterList.add(badgesMaster7);
         badgesMasterList.add(badgesMaster8);
         badgesMasterList.add(badgesMaster9);
@@ -587,11 +589,14 @@ public class RegLogin extends AppCompatActivity {
         badgesMasterList.add(badgesMaster13);
         badgesMasterList.add(badgesMaster14);
         badgesMasterList.add(badgesMaster15);
-        badgesMasterList.add(badgesMaster16);
+        // badgesMasterList.add(badgesMaster16);
         badgesMasterList.add(badgesMaster17);
         badgesMasterList.add(badgesMaster18);
         badgesMasterList.add(badgesMaster19);
         badgesMasterList.add(badgesMaster20);
+        badgesMasterList.add(badgesMaster21);
+        badgesMasterList.add(badgesMaster22);
+
         try {
             int drugMastercount = db.getDrugsCount();
             if (drugMastercount < 1) {

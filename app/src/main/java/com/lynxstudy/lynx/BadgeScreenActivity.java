@@ -78,30 +78,35 @@ public class BadgeScreenActivity extends AppCompatActivity {
         int noOfCount = db.getUserBadgesCountByBadgeID(badge_id);
 
         badgeName.setText(badgesMaster.getBadge_name());
-        if(badgesMaster.getBadge_name().equals("PrEP")){
-            badgeName.setText("PrEP'd");
-        }else if(badgesMaster.getBadge_name().equals("I Love Anal")){
+        if(badgesMaster.getBadge_name().equals("I Love Anal")){
             badgeName.setText("I ♥ Anal");
         }
         badgeDescription.setText(badgesMaster.getBadge_description());
         badgeNotes.setText(badgesMaster.getBadge_notes());
-        badgeEarnedTimes.setText("Badge earned " + noOfCount +" time(s)");
+        badgeEarnedTimes.setText("Badge earned " + noOfCount + " time(s)");
+
         switch (badgesMaster.getBadge_icon()){
             case "high_five_small":
                 badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.high_five_large));
                 break;
-            case "testing_small":
-                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.testing_large));
-                break;
+            //case "testing_small":
+            //    badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.testing_large));
+            //    break;
             case "healthy_heart_small":
                 badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.healthy_heart_large));
                 break;
-            case "silver_screen_small":
-                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.silver_screen_large));
+            case "thens_small":
+                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.thens_large));
                 break;
-            case "green_light_small":
-                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.green_light_large));
+            case "right_on_time_small":
+                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.right_on_time_large));
                 break;
+            //case "silver_screen_small":
+            //    badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.silver_screen_large));
+            //    break;
+            //case "green_light_small":
+            //    badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.green_light_large));
+            //    break;
             case "prep_small":
                 badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.prep_large));
                 break;
@@ -129,9 +134,9 @@ public class BadgeScreenActivity extends AppCompatActivity {
             case "all_star_small":
                 badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.all_star_large));
                 break;
-            case "toolbox_small":
-                badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.toolbox_large));
-                break;
+            //case "toolbox_small":
+            //    badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.toolbox_large));
+            //    break;
             case "vital_vitamins_small":
                 badgeImage.setImageDrawable(getResources().getDrawable(R.drawable.vital_vitamins_large));
                 break;
