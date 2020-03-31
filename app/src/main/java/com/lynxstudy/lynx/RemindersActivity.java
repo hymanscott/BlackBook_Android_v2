@@ -222,6 +222,16 @@ public class RemindersActivity extends AppCompatActivity {
         activeUser.setCreated_at(db.getUserCreatedAt(activeUser.getUser_id()));
 
         LynxManager.setActiveUser(activeUser);
+        // END update User
+
+        // Add OnBoarding Badge for already registered users //
+        if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("BlackBook").getBadge_id())==0){
+            BadgesMaster lynx_badge = db.getBadgesMasterByName("BlackBook");
+            int shown = 0;
+
+            UserBadges lynxBadge = new UserBadges(lynx_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,lynx_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+            db.createUserBadge(lynxBadge);
+        }
 
         if(isPrep.equals("Yes")){
             if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("DoxyPEP").getBadge_id())==0){
@@ -232,7 +242,6 @@ public class RemindersActivity extends AppCompatActivity {
                 db.createUserBadge(prepBadge);
             }
         }
-        // END update User
 
         RemindersLogged remindersLogged = new RemindersLogged();
         pushFragments("Home", remindersLogged, true);

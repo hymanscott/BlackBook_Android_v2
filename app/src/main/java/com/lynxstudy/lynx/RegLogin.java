@@ -570,7 +570,7 @@ public class RegLogin extends AppCompatActivity {
         BadgesMaster badgesMaster18 = new BadgesMaster(18,"King","Entered 10 encounters","Some lions mate over 50 times a day. King of the jungle, wear your crown.","king_small","Encounter");
         BadgesMaster badgesMaster19 = new BadgesMaster(19,"Energizer Bunny","Entered 15 encounters","You burn about 200 calories during 30 minutes of sex. Let’s Get active!","energizer_bunny_small","Encounter");
         BadgesMaster badgesMaster20 = new BadgesMaster(20,"Golden Butt","Doxy use after all condomless sex in a week","Somebody is keeping it 100 in the best way. Congrats on enjoying yourself!","golden_butt_small","Encounter");
-        BadgesMaster badgesMaster21 = new BadgesMaster(21,"10's","Your 10th dose of DoxyPEP","10s across the board!","thens_small","Home");
+        BadgesMaster badgesMaster21 = new BadgesMaster(21,"10s","Your 10th dose of DoxyPEP","10s across the board!","thens_small","Home");
         BadgesMaster badgesMaster22 = new BadgesMaster(22,"Right On Time","Doxy use within 3 days of all sex in a week","We see you don’t play games when it comes to keeping yourself on track. Congrats on handling your business.","right_on_time_small","Home");
 
         List<BadgesMaster> badgesMasterList = new ArrayList<BadgesMaster>();
@@ -599,8 +599,9 @@ public class RegLogin extends AppCompatActivity {
 
         try {
             int drugMastercount = db.getDrugsCount();
+
             if (drugMastercount < 1) {
-                final String drugList[] = {"Poppers", "Alcohol", "Cocaine", "Meth / Speed"};
+                final String drugList[] = {"Poppers", "Alcohol", "Cocaine", "Meth / Speed", "DoxyPEP"};
                 final String stiList[] = {"Gonorrhea", "Syphilis", "Chlamydia"};
                 final String testNameMasterList[] = {"HIV Test", "STD Test"};
 

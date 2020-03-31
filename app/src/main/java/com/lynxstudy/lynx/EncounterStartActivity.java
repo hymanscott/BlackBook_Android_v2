@@ -280,7 +280,8 @@ public class EncounterStartActivity extends AppCompatActivity {
             Toast.makeText(EncounterStartActivity.this, "Please respond if you will take a doxy now.", Toast.LENGTH_SHORT).show();
         } else {
             if(datePickerParent.getVisibility() == View.VISIBLE) {
-                LynxManager.activeEncounter.setTook_doxy_at(txtDatePicker.getText().toString());
+                String tookDoxyAt = LynxManager.getFormatedDate("MM/dd/yyyy", txtDatePicker.getText().toString(),"yyyy-MM-dd");
+                LynxManager.activeEncounter.setTook_doxy_at(tookDoxyAt);
             } else {
                 LynxManager.activeEncounter.setTook_doxy_at(null);
             }
@@ -324,7 +325,8 @@ public class EncounterStartActivity extends AppCompatActivity {
             Toast.makeText(EncounterStartActivity.this, "Please respond if you will take a doxy now.", Toast.LENGTH_SHORT).show();
         } else {
             if(datePickerParent.getVisibility() == View.VISIBLE) {
-                LynxManager.activeEncounter.setTook_doxy_at(txtDatePicker.getText().toString());
+                String tookDoxyAt = LynxManager.getFormatedDate("MM/dd/yyyy", txtDatePicker.getText().toString(),"yyyy-MM-dd");
+                LynxManager.activeEncounter.setTook_doxy_at(tookDoxyAt);
             } else {
                 LynxManager.activeEncounter.setTook_doxy_at(null);
             }
@@ -662,6 +664,14 @@ public class EncounterStartActivity extends AppCompatActivity {
             UserBadges lynxBadge = new UserBadges(energizer_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,energizer_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
             db.createUserBadge(lynxBadge);
         }
+
+        // Trigger on 10th reported doxy use. Trigger only 1 time
+        if(db.getEncountersWhenUserConsumingDoxyCount() == 10) {
+            BadgesMaster tens = db.getBadgesMasterByName("10s");
+            UserBadges tensBadge = new UserBadges(tens.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,tens.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+            db.createUserBadge(tensBadge);
+        }
+
         // Adding User Badge : I Love Anal Badge //
         if(anal_badge_cause_count>0 && db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("I Love Anal").getBadge_id())==0){
             BadgesMaster anal_badge = db.getBadgesMasterByName("I Love Anal");
@@ -720,6 +730,7 @@ public class EncounterStartActivity extends AppCompatActivity {
                 }
             }
         }
+        /*
         if(moreThanTwoEncountersCount>=2){
             if(LynxManager.getActiveUser()!=null) {
                 if (LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")) {
@@ -741,6 +752,7 @@ public class EncounterStartActivity extends AppCompatActivity {
                 }
             }
         }
+         */
         /*
          * 1-4 partners in last month
          * 5+ partners in a month
@@ -760,6 +772,7 @@ public class EncounterStartActivity extends AppCompatActivity {
             }
 
         }
+        /*
         if(partnersCount>=1 && partnersCount<=4 && LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("No")){
             List<String> showAppAlert = new ArrayList<String>();
             showAppAlert.add(0,"You've been getting out there. Nice. Use condoms and PrEP so your morning after memories are anxiety-free.");
@@ -780,6 +793,7 @@ public class EncounterStartActivity extends AppCompatActivity {
                     LynxManager.showAppAlertList.add(showAppAlert);
             }
         }
+         */
         LynxManager.isNewPartnerEncounter= false;
         EncounterLoggedFragment fragEncounterLogged = new EncounterLoggedFragment();
         pushFragments("encounter", fragEncounterLogged, true);

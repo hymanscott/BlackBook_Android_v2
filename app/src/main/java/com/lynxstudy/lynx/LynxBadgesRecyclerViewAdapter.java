@@ -93,6 +93,8 @@ public class LynxBadgesRecyclerViewAdapter extends RecyclerView.Adapter<LynxBadg
             badgeViewHolder.rowBadgeName.setText("PrEP'd");
         }else if(badgesMaster.getBadge_name().equals("I Love Anal")){
             badgeViewHolder.rowBadgeName.setText(Html.fromHtml("I &#9829; Anal"));
+        }else if(badgesMaster.getBadge_name().equals("10s")){
+            badgeViewHolder.rowBadgeName.setText("10's");
         }
 
         if(noOfCount > 0){

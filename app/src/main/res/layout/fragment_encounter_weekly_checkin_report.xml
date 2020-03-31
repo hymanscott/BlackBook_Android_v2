@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
-                android:text="Do you have encounters to report?"
+                android:text="Do you have any new encounters to report?"
                 android:textColor="@color/white"
                 android:textSize="@dimen/edittext_textsize" />
             <RadioGroup

@@ -131,6 +131,7 @@ public class HomeEncounterFragment extends Fragment {
 
             // Collections.sort(allEncounters, new Encounter.CompDate(true));
             for (Encounter encounter : allEncounters) {
+                // Log.v("tookdoxyAt", encounter.getTook_doxy_at());
                 int enc_partner_id = encounter.getEncounter_partner_id();
                 Partners partner = db.getPartnerbyID(enc_partner_id);
 

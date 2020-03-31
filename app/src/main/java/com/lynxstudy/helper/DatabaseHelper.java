@@ -239,6 +239,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_ENCOUNTER_ISDRUGUSED = "is_drug_used";
     private static final String KEY_ENCOUNTER_NOTES = "encounter_notes";
     private static final String KEY_ENCOUNTER_ISSEX_TOMORROW = "is_possible_sex_tomorrow";
+    private static final String KET_ENCOUNTER_TOOK_DOXY_AT = "took_doxy_at";
 
     // Encounter Sex Type Table - column Names
     private static final String KEY_ENCSEXTYPE_ID = "encounter_sex_type_id";
@@ -450,7 +451,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_ENCOUNTER = "CREATE TABLE "
             + TABLE_ENCOUNTER + "(" + KEY_ENCOUNTER_ID + " INTEGER PRIMARY KEY," + KEY_ENCOUNTER_USERID + " INTEGER," + KEY_ENCOUNTER_DATE
             + " TEXT," + KEY_ENCOUNTER_PARTNERID + " INTEGER," + KEY_ENCOUNTER_SEXRATING + " TEXT," + KEY_ENCOUNTER_ISDRUGUSED
-            + " TEXT," + KEY_ENCOUNTER_NOTES + " TEXT," + KEY_ENCOUNTER_ISSEX_TOMORROW + " TEXT," + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
+            + " TEXT," + KEY_ENCOUNTER_NOTES + " TEXT," + KEY_ENCOUNTER_ISSEX_TOMORROW + " TEXT," + KET_ENCOUNTER_TOOK_DOXY_AT + " DATETIME,"
+            + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " DATETIME" + ")";
 
 
     private static final String CREATE_TABLE_ENCOUNTER_SEXTYPE = "CREATE TABLE "
@@ -3080,6 +3082,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_ENCOUNTER_ISDRUGUSED, encounter.getIs_drug_used());
         values.put(KEY_ENCOUNTER_NOTES, encounter.getEncounter_notes());
         values.put(KEY_ENCOUNTER_ISSEX_TOMORROW, encounter.getIs_possible_sex_tomorrow());
+        values.put(KET_ENCOUNTER_TOOK_DOXY_AT, encounter.getTook_doxy_at());
         values.put(KEY_STATUS_UPDATE, encounter.getStatus_update());
         values.put(KEY_CREATED_AT, getDateTime());
 
@@ -3102,6 +3105,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_ENCOUNTER_ISDRUGUSED, encounter.getIs_drug_used());
         values.put(KEY_ENCOUNTER_NOTES, encounter.getEncounter_notes());
         values.put(KEY_ENCOUNTER_ISSEX_TOMORROW, encounter.getIs_possible_sex_tomorrow());
+        values.put(KET_ENCOUNTER_TOOK_DOXY_AT, encounter.getTook_doxy_at());
         values.put(KEY_STATUS_UPDATE, encounter.getStatus_update());
         values.put(KEY_CREATED_AT, encounter.getCreated_at());
 
@@ -3135,6 +3139,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         encounter.setIs_drug_used((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISDRUGUSED))));
         encounter.setEncounter_notes((c.getString(c.getColumnIndex(KEY_ENCOUNTER_NOTES))));
         encounter.setIs_possible_sex_tomorrow((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISSEX_TOMORROW))));
+        encounter.setTook_doxy_at((c.getString(c.getColumnIndex(KET_ENCOUNTER_TOOK_DOXY_AT))));
 
         encounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
         c.close();
@@ -3166,7 +3171,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounter.setIs_drug_used((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISDRUGUSED))));
                 encounter.setEncounter_notes((c.getString(c.getColumnIndex(KEY_ENCOUNTER_NOTES))));
                 encounter.setIs_possible_sex_tomorrow((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISSEX_TOMORROW))));
-
+                encounter.setTook_doxy_at((c.getString(c.getColumnIndex(KET_ENCOUNTER_TOOK_DOXY_AT))));
                 encounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
                 // adding to Users list
@@ -3199,6 +3204,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounter.setIs_drug_used((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISDRUGUSED))));
                 encounter.setEncounter_notes((c.getString(c.getColumnIndex(KEY_ENCOUNTER_NOTES))));
                 encounter.setIs_possible_sex_tomorrow((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISSEX_TOMORROW))));
+                encounter.setTook_doxy_at((c.getString(c.getColumnIndex(KET_ENCOUNTER_TOOK_DOXY_AT))));
 
                 encounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
@@ -3234,6 +3240,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounter.setIs_drug_used((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISDRUGUSED))));
                 encounter.setEncounter_notes((c.getString(c.getColumnIndex(KEY_ENCOUNTER_NOTES))));
                 encounter.setIs_possible_sex_tomorrow((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISSEX_TOMORROW))));
+                encounter.setTook_doxy_at((c.getString(c.getColumnIndex(KET_ENCOUNTER_TOOK_DOXY_AT))));
 
                 encounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
@@ -3247,9 +3254,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * getting all Encounters by Date
      */
-    public List<Encounter> getAllEncountersByDate(String date) {
+    public List<Encounter> getAllEncountersByDateRange(String date, String date2) {
         List<Encounter> encounters = new ArrayList<Encounter>();
-        String selectQuery = "SELECT  * FROM " + TABLE_ENCOUNTER + " WHERE " + KEY_ENCOUNTER_DATE + " LIKE '"+ LynxManager.encryptString(date) + "'";
+        String selectQuery = "SELECT * FROM " + TABLE_ENCOUNTER + " WHERE " + KEY_ENCOUNTER_DATE + " LIKE '"+ LynxManager.encryptString(date) + "'";
 
         //Log.e(LOG, selectQuery);
 
@@ -3268,7 +3275,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 encounter.setIs_drug_used((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISDRUGUSED))));
                 encounter.setEncounter_notes((c.getString(c.getColumnIndex(KEY_ENCOUNTER_NOTES))));
                 encounter.setIs_possible_sex_tomorrow((c.getString(c.getColumnIndex(KEY_ENCOUNTER_ISSEX_TOMORROW))));
-
+                encounter.setTook_doxy_at((c.getString(c.getColumnIndex(KET_ENCOUNTER_TOOK_DOXY_AT))));
                 encounter.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
                 // adding to Users list
@@ -3304,6 +3311,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return count;
     }
+
+
+    /**
+     * getting Encounter count when user has reported consuming doxy
+     */
+    public int getEncountersWhenUserConsumingDoxyCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER + " WHERE " + KET_ENCOUNTER_TOOK_DOXY_AT + " IS NOT NULL";
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor cursor = db.rawQuery(countQuery, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+
+
     /**
      * getting more than one Encounter count for partner
      */
@@ -3565,6 +3587,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<EncounterSexType> getAllEncounterSexTypesByNameAndDate(String type, String date) {
         String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE + " WHERE " + KEY_ENCSEXTYPE_SEXTYPE + " = '"+LynxManager.encryptString(type)+"' AND " + KEY_CREATED_AT + " LIKE '"+ date + "%'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        android.database.Cursor c = db.rawQuery(countQuery, null);
+        // looping through all rows and adding to list
+        List<EncounterSexType> encounterSexTypes = new ArrayList<EncounterSexType>();
+        if (c.moveToFirst()) {
+            do {
+                EncounterSexType encounterSexType = new EncounterSexType();
+                encounterSexType.setEncounter_sex_type_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_ID)));
+                encounterSexType.setEncounter_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_ENCOUNTERID)));
+                encounterSexType.setUser_id(c.getInt(c.getColumnIndex(KEY_ENCSEXTYPE_USERID)));
+                encounterSexType.setSex_type(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_SEXTYPE)));
+                encounterSexType.setCondom_use(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_CONDOMUSE)));
+                encounterSexType.setEjaculation(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_EJACULATION)));
+                encounterSexType.setNote(c.getString(c.getColumnIndex(KEY_ENCSEXTYPE_NOTE)));
+                encounterSexType.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // adding to Users list
+                encounterSexTypes.add(encounterSexType);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return encounterSexTypes;
+    }
+
+    public List<EncounterSexType> getAllEncounterSexTypesByNameAndDateRange(String type, String date, String date2) {
+        String countQuery = "SELECT  * FROM " + TABLE_ENCOUNTER_SEXTYPE + " WHERE " + KEY_ENCSEXTYPE_SEXTYPE + " = '"+LynxManager.encryptString(type)+"' AND " + KEY_CREATED_AT + " >= '"+ date + "' AND " + KEY_CREATED_AT + " <= '" + date2 + "'";
+        // Log.v(LOG, countQuery);
         SQLiteDatabase db = this.getReadableDatabase();
         android.database.Cursor c = db.rawQuery(countQuery, null);
         // looping through all rows and adding to list
@@ -5026,7 +5075,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_USERS_ID, userBadge.getUser_id());
         values.put(KEY_USER_BADGE_ISSHOWN, userBadge.getIs_shown());
         values.put(KEY_STATUS_UPDATE, userBadge.getStatus_update());
-        values.put(KEY_CREATED_AT, getDateTime());
+
+        if(userBadge.getCreated_at() == null) {
+            values.put(KEY_CREATED_AT, getDateTime());
+        } else {
+            values.put(KEY_CREATED_AT, userBadge.getCreated_at());
+        }
 
         // insert row
         return (int) db.insert(TABLE_USER_BADGES, null, values);
@@ -5051,6 +5105,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE "
                 + KEY_USERS_ID + " = " + user_id +" AND "+ KEY_USER_BADGE_BADGEID + " = " + badge_id +" AND "+KEY_CREATED_AT+" LIKE '"+ date+"%'";
         //Log.e(LOG, selectQuery);
+        android.database.Cursor c = db.rawQuery(selectQuery, null);
+        int count = c.getCount();
+        c.close();
+        return count;
+    }
+
+    public int getUserBadgeCountByIdAndDateRange(int user_id, int badge_id, String date, String date2){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_USER_BADGES + " WHERE "
+                + KEY_USERS_ID + " = " + user_id +" AND "+ KEY_USER_BADGE_BADGEID + " = " + badge_id +" AND "+KEY_CREATED_AT+" >= '" + date + "' AND " + KEY_CREATED_AT + " <= '" + date2 + "'";
+        // Log.e(LOG, selectQuery);
         android.database.Cursor c = db.rawQuery(selectQuery, null);
         int count = c.getCount();
         c.close();

@@ -224,12 +224,14 @@ public class LynxDiary extends AppCompatActivity implements View.OnClickListener
             i++;
         }
 
+        /*
         if(LynxManager.showAppAlertList.size()>0) {
             for (List<String> stringList : LynxManager.showAppAlertList) {
                 showAppAlert(stringList.get(0), stringList.get(1), stringList.get(2));
             }
         }
         LynxManager.showAppAlertList.clear();
+         */
     }
 
     private void showAppAlert(String message,String no_of_buttons,String name){

@@ -82,6 +82,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -382,14 +383,8 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
 
     /*checkForUpdates();*/ //Hockey APP
 
-    // Add OnBoarding Badge for already registered users //
-    if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("LYNX").getBadge_id())==0){
-      // Adding User Badge : LYNX Badge //
-      BadgesMaster lynx_badge = db.getBadgesMasterByName("LYNX");
-      int shown = 1;
-      UserBadges lynxBadge = new UserBadges(lynx_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,lynx_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
-      db.createUserBadge(lynxBadge);
-    }
+    List<Encounter> allEncounters = db.getAllEncounters();
+    Collections.sort(allEncounters, new Encounter.CompDate(true));
 
     // Checking Golden Butt and Golden Penis badge //
     Calendar currentCal = Calendar.getInstance();
@@ -422,15 +417,117 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
     int month = cal.get(Calendar.MONTH) + 1;
     int year  = cal.get(Calendar.YEAR);
     String date1 = year+"-"+String.format("%02d", month)+"-";
-    if(bottomSexTypes.size() > 0 && condombottomusagecount == bottomSexTypes.size()){
-      // Adding User Badge : Golden Butt Badge //
-      BadgesMaster gold_butt_badge = db.getBadgesMasterByName("Golden Butt");
-      int userbadge = db.getUserBadgeByIdAndDate(LynxManager.getActiveUser().getUser_id(),gold_butt_badge.getBadge_id(),date1);
-      if(userbadge==0){
-        UserBadges lynxBadge = new UserBadges(gold_butt_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,gold_butt_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
-        db.createUserBadge(lynxBadge);
+
+    // BEGIN Get last week
+    Calendar c = Calendar.getInstance();
+    c.setTime(new Date());
+    cal.add(Calendar.DATE, -7);
+
+    int i = c.get(Calendar.DAY_OF_WEEK) - c.getFirstDayOfWeek();
+    c.add(Calendar.DATE, -i - 6);
+    Date start = c.getTime();
+    c.add(Calendar.DATE, 6);
+    Date end = c.getTime();
+
+    // System.out.println(start + " - " + end);
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+    String startStr = sdf.format(start.getTime()) + " 23:59:59";
+    String endStr = sdf.format(end) + " 23:59:59";
+
+    // System.out.println(startStr + " - " + endStr);
+    // END Get last week
+
+    BadgesMaster gold_butt_badge = db.getBadgesMasterByName("Golden Butt");
+    int goldeButtBadgeCountFromLastWeek = db.getUserBadgeCountByIdAndDateRange(LynxManager.getActiveUser().getUser_id(), gold_butt_badge.getBadge_id(), startStr, endStr);
+
+    if(goldeButtBadgeCountFromLastWeek == 0) {
+      ArrayList<Integer> encounterIdsWhenUserDidNotUseCondom = new ArrayList<>();
+
+      List<EncounterSexType> goldenBottomSexTypes = db.getAllEncounterSexTypesByNameAndDateRange("I bottomed", startStr, endStr);
+
+      for(EncounterSexType encounterSexType:goldenBottomSexTypes){
+        if(!encounterSexType.getCondom_use().equals("Condom used") && !encounterIdsWhenUserDidNotUseCondom.contains(encounterSexType.getEncounter_id())) {
+          encounterIdsWhenUserDidNotUseCondom.add(encounterSexType.getEncounter_id());
+        }
+      }
+
+      List<EncounterSexType> goldenTopSexTypes = db.getAllEncounterSexTypesByNameAndDateRange("I topped", startStr, endStr);
+
+      for(EncounterSexType encounterSexType:goldenTopSexTypes){
+        if(!encounterSexType.getCondom_use().equals("Condom used") && !encounterIdsWhenUserDidNotUseCondom.contains(encounterSexType.getEncounter_id())) {
+          encounterIdsWhenUserDidNotUseCondom.add(encounterSexType.getEncounter_id());
+        }
+      }
+
+      // Count all encounters when the user consumed doxy
+      int timesWhenUserConsumedDoxy = 0;
+
+      for(Encounter encounter:allEncounters){
+        if(encounterIdsWhenUserDidNotUseCondom.contains(encounter.getEncounter_id()) && encounter.getTook_doxy_at() != null){
+          timesWhenUserConsumedDoxy++;
+        }
+      }
+
+      if(encounterIdsWhenUserDidNotUseCondom.size() > 0 && timesWhenUserConsumedDoxy == encounterIdsWhenUserDidNotUseCondom.size()) {
+        UserBadges goldenButtBadge = new UserBadges(gold_butt_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,gold_butt_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+        goldenButtBadge.setCreated_at(endStr);
+
+        db.createUserBadge(goldenButtBadge);
       }
     }
+
+    // Right on Time
+    BadgesMaster right_on_time_badge = db.getBadgesMasterByName("Right On Time");
+    int rightOnTimeBadgeCountFromLastWeek = db.getUserBadgeCountByIdAndDateRange(LynxManager.getActiveUser().getUser_id(), right_on_time_badge.getBadge_id(), startStr, endStr);
+
+    if(rightOnTimeBadgeCountFromLastWeek == 0) {
+      // Get last encounters from last week
+      ArrayList<Encounter> lastWeekEncounters = new ArrayList<>();
+
+      int index = 0;
+      Integer lastIndex = null;
+
+      for(Encounter encounter:allEncounters){
+        String encounterDatetimeStr = LynxManager.decryptString(encounter.getDatetime());
+
+        if(encounterDatetimeStr.compareTo(startStr) >= 1 && encounterDatetimeStr.compareTo(endStr) <= -1) {
+          lastWeekEncounters.add(encounter);
+          lastIndex = index;
+        }
+
+        index++;
+      }
+
+      if(lastIndex != null & lastIndex < (allEncounters.size() - 1)) {
+        lastWeekEncounters.add(allEncounters.get(lastIndex + 1));
+      }
+
+      if(lastWeekEncounters.size() >= 2) {
+        boolean showRightOnTime = true;
+
+        for(int j = 0; j < lastWeekEncounters.size() - 1; j++) {
+          Encounter encounter = lastWeekEncounters.get(j);
+          Encounter nextEncounter = lastWeekEncounters.get(j+1);
+          String encounterDatetimeStr = LynxManager.decryptString(encounter.getDatetime());
+          String nextEncounterDatetimeStr = LynxManager.decryptString(nextEncounter.getDatetime());
+
+          if(Math.abs(encounterDatetimeStr.compareTo(nextEncounterDatetimeStr)) > 3) {
+            showRightOnTime = false;
+            break;
+          }
+        }
+
+        // Log.v("showRightOnTime", String.valueOf(showRightOnTime));
+        if(showRightOnTime) {
+          UserBadges rightOnTimeBadge = new UserBadges(right_on_time_badge.getBadge_id(),LynxManager.getActiveUser().getUser_id(),shown,right_on_time_badge.getBadge_notes(),String.valueOf(R.string.statusUpdateNo));
+          rightOnTimeBadge.setCreated_at(endStr);
+
+          db.createUserBadge(rightOnTimeBadge);
+        }
+      }
+    }
+
     if(topSexTypes.size() > 0 && condomtopusagecount == topSexTypes.size()){
       // Adding User Badge : Golden Penis Badge //
       BadgesMaster gold_penis_badge = db.getBadgesMasterByName("Golden Penis");
@@ -441,9 +538,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
       }
     }
     // Adding User Badge : Dessert Badge //
-    List<Encounter> allEncounters = db.getAllEncounters();
     if(!allEncounters.isEmpty() && db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("Desert").getBadge_id())==0){
-      Collections.sort(allEncounters, new Encounter.CompDate(true));
       Encounter lastEncounter = allEncounters.get(0);
       int enc_elapsed_days = getElapsedDays(LynxManager.decryptString(lastEncounter.getDatetime()));
       if(enc_elapsed_days>=21){
