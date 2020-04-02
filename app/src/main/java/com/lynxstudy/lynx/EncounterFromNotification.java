@@ -239,14 +239,12 @@ public class EncounterFromNotification extends AppCompatActivity {
         if (rbt_options.getCheckedRadioButtonId()==-1) {
             Toast.makeText(EncounterFromNotification.this, getResources().getString(R.string.select_any_one),Toast.LENGTH_SHORT).show();
         } else {
-            RadioButton selectedRbt = (RadioButton) findViewById(rbt_options.getCheckedRadioButtonId());
-
-            if(selectedRbt.getText().toString().equals("No")) {
-                EncounterWeeklyCheckinReport reportScreeen = new EncounterWeeklyCheckinReport();
-                pushFragments("EncounterFromNotification", reportScreeen, true);
-            } else {
+            if(rbt_options.getCheckedRadioButtonId() == R.id.yes_but_not_now) {
                 EncounterWeeklyCheckInDontForgetReportDoxy dontForgetReportDoxyScreen = new EncounterWeeklyCheckInDontForgetReportDoxy();
                 pushFragments("EncounterFromNotification", dontForgetReportDoxyScreen, true);
+            } else {
+                EncounterWeeklyCheckInDontForgetReportEncounter reportScreeen = new EncounterWeeklyCheckInDontForgetReportEncounter();
+                pushFragments("EncounterFromNotification", reportScreeen, true);
             }
         }
 

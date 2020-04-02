@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,7 +96,6 @@ public class EncounterWeeklyCheckinSexDayAndDoxy extends Fragment {
       Date day = dayOptions.get(i);
       String formattedDay = dateFormat.format(day);
       String shortFormattedDay = dateShortFormat.format(day);
-      Boolean existEncountersInThisDay = false;
 
       if(i == 0) { // today
         formattedDay = "Today";
@@ -103,13 +103,10 @@ public class EncounterWeeklyCheckinSexDayAndDoxy extends Fragment {
         formattedDay = "Yesterday";
       }
 
-      // Find encounters in the day
-      for(String encounterDayStr: encounterDayStrs) {
-        if(encounterDayStr.equals(shortFormattedDay)) {
-          existEncountersInThisDay = true;
-          break;
-        }
-      }
+      // Find 1 encounter in the day
+      int encounterIndex = encounterDayStrs.indexOf(shortFormattedDay);
+      Encounter encounter = encounterIndex != -1 ? encounters.get(encounterIndex) : null;
+
 
       // Setting the controls
       LayoutInflater chInflater = (getActivity()).getLayoutInflater();
@@ -122,9 +119,9 @@ public class EncounterWeeklyCheckinSexDayAndDoxy extends Fragment {
       ch.setText(formattedDay);
       ch.setSelected(false);
 
-      if(existEncountersInThisDay) {
-        ch.setTextColor(getResources().getColor(R.color.gray));
-        ch.setEnabled(false);
+      if(encounter != null) {
+        // ch.setTextColor(getResources().getColor(R.color.gray));
+        // ch.setEnabled(false);
 
         LynxManager.selectedSexDays.add(shortFormattedDay);
       }
@@ -138,6 +135,13 @@ public class EncounterWeeklyCheckinSexDayAndDoxy extends Fragment {
       chk.setTypeface(tf);
       chk.setText(formattedDay);
       chk.setSelected(false);
+
+      if(encounter != null && encounter.getTook_doxy_at() != null) {
+        // ch.setTextColor(getResources().getColor(R.color.gray));
+        // ch.setEnabled(false);
+
+        LynxManager.selectedDoxyDays.add(shortFormattedDay);
+      }
 
       doxyDayListContainer.addView(chk);
     }
