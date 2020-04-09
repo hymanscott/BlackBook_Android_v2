@@ -601,7 +601,7 @@ public class RegLogin extends AppCompatActivity {
             int drugMastercount = db.getDrugsCount();
 
             if (drugMastercount < 1) {
-                final String drugList[] = {"Poppers", "Alcohol", "Cocaine", "Meth / Speed", "DoxyPEP"};
+                final String drugList[] = {"Poppers", "Alcohol", "Cocaine", "Meth / Speed"};
                 final String stiList[] = {"Gonorrhea", "Syphilis", "Chlamydia"};
                 final String testNameMasterList[] = {"HIV Test", "STD Test"};
 

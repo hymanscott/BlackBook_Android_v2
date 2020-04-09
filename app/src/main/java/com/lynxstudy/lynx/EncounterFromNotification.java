@@ -204,7 +204,7 @@ public class EncounterFromNotification extends AppCompatActivity {
             String dayStr = days.get(i);
 
             if(reportedSexDays.contains(dayStr)) {
-                int counter = -1;
+                int counter = 0;
 
                 for (int j = 0; j <= i; j++) {
                     String doxyDayStr = days.get(j);
@@ -214,7 +214,7 @@ public class EncounterFromNotification extends AppCompatActivity {
                     }
                 }
 
-                userTookDoxyEachDay = counter == i;
+                userTookDoxyEachDay = counter >= 1;
 
                 if(userTookDoxyEachDay == false) {
                     break;

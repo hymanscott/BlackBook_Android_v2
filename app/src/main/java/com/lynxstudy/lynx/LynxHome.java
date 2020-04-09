@@ -499,7 +499,7 @@ public class LynxHome extends AppCompatActivity implements View.OnClickListener 
         index++;
       }
 
-      if(lastIndex != null & lastIndex < (allEncounters.size() - 1)) {
+      if(lastIndex != null && lastIndex < (allEncounters.size() - 1)) {
         lastWeekEncounters.add(allEncounters.get(lastIndex + 1));
       }
 

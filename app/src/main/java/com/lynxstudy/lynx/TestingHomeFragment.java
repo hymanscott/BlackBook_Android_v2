@@ -756,16 +756,15 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
                      */
 
                     // Adding Fencer Badge //
-                    if(db.getUserBadgesCountByBadgeID(db.getBadgesMasterByName("Fencer").getBadge_id())==0) {
-                        if (isFullHIVTestLogged() && isFullStdTestLogged()) {
-                            BadgesMaster fencer_badge = db.getBadgesMasterByName("Fencer");
-                            UserBadges fencerBadge = new UserBadges(fencer_badge.getBadge_id(), LynxManager.getActiveUser().getUser_id(), shown, fencer_badge.getBadge_notes(), String.valueOf(R.string.statusUpdateNo));
-                            db.createUserBadge(fencerBadge);
-                            Intent badgeScreen =  new Intent(getActivity(),BadgeScreenActivity.class);
-                            badgeScreen.putExtra("badge_id",fencer_badge.getBadge_id());
-                            badgeScreen.putExtra("isAlert","Yes");
-                            startActivity(badgeScreen);
-                        }
+                    BadgesMaster fencer_badge = db.getBadgesMasterByName("Fencer");
+
+                    if(db.getUserBadgesCountByBadgeID(fencer_badge.getBadge_id())==0 && HIVAndSTDTestCounter() > 0) {
+                        UserBadges fencerBadge = new UserBadges(fencer_badge.getBadge_id(), LynxManager.getActiveUser().getUser_id(), shown, fencer_badge.getBadge_notes(), String.valueOf(R.string.statusUpdateNo));
+                        db.createUserBadge(fencerBadge);
+                        Intent badgeScreen =  new Intent(getActivity(),BadgeScreenActivity.class);
+                        badgeScreen.putExtra("badge_id",fencer_badge.getBadge_id());
+                        badgeScreen.putExtra("isAlert","Yes");
+                        startActivity(badgeScreen);
                     }
                 }
             }
@@ -824,44 +823,45 @@ public class TestingHomeFragment extends Fragment implements View.OnClickListene
         isSummaryShown = true;
         isNewTestShown = false;
     }
-    private boolean isFullHIVTestLogged(){
-        List<TestingHistoryInfo> hivInfos = db.getAllTestingHistoryInfoByStiID(0);
-        int countHIV = 0;
-        for(TestingHistoryInfo testingHistoryInfo:hivInfos){
 
-            Log.v("hivInfos", LynxManager.decryptString(testingHistoryInfo.getTest_status()));
-            if(LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals("Yes") || LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals("No")){
-                countHIV++;
-            }
-        }
-        return countHIV > 0;
-    }
-    private boolean isFullStdTestLogged(){
+    private int HIVAndSTDTestCounter(){
         Log.v("TestingHistoryCount", String.valueOf(db.getTestingHistoriesCount()));
         Log.v("TestingHistoryInfoCount", String.valueOf(db.getTestingHistoryInfosCount()));
+        int countHIV = 0;
         int countGonorrhea = 0;
         int countSyphilis = 0;
         int countChlamydia = 0;
+
+        List<TestingHistoryInfo> hivInfos = db.getAllTestingHistoryInfoByStiID(0);
         List<TestingHistoryInfo> gonorrheaInfos = db.getAllTestingHistoryInfoByStiID(1);
         List<TestingHistoryInfo> syphilisInfos = db.getAllTestingHistoryInfoByStiID(2);
         List<TestingHistoryInfo> chlamydiaInfos = db.getAllTestingHistoryInfoByStiID(3);
+
+        for(TestingHistoryInfo testingHistoryInfo:hivInfos){
+            Log.v("hivInfos", LynxManager.decryptString(testingHistoryInfo.getTest_status()));
+            if(LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals("Positive") || LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals("Negative")){
+                countHIV++;
+            }
+        }
         for(TestingHistoryInfo testingHistoryInfo:gonorrheaInfos){
             Log.v("gonorrheaInfos", LynxManager.decryptString(testingHistoryInfo.getTest_status()));
-            if(LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals("Yes") || LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals("No"))
+            if(LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals("Positive") || LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals("Negative"))
                 countGonorrhea++;
         }
         for(TestingHistoryInfo testingHistoryInfo:syphilisInfos){
             Log.v("syphilisInfos", LynxManager.decryptString(testingHistoryInfo.getTest_status()));
-            if(LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals("Yes") || LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals("No"))
+            if(LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals("Positive") || LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals("Negative"))
                 countSyphilis++;
         }
         for(TestingHistoryInfo testingHistoryInfo:chlamydiaInfos){
             Log.v("chlamydiaInfos", LynxManager.decryptString(testingHistoryInfo.getTest_status()));
-            if(LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals("Yes") || LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals("No"))
+            if(LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals("Positive") || LynxManager.decryptString(testingHistoryInfo.getTest_status()).equals("Negative"))
                 countChlamydia++;
         }
+
         Log.v("Count", countGonorrhea+"--"+countSyphilis+"--"+countChlamydia);
-        return countGonorrhea > 0 && countSyphilis > 0 && countChlamydia > 0;
+
+        return countHIV + countGonorrhea + countSyphilis + countChlamydia;
     }
     private void setSummaryContent(int id) {
         int testingHistoryID = id;
