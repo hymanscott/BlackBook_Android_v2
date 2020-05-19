@@ -53,7 +53,6 @@ import java.util.regex.Pattern;
  * A simple {@link Fragment} subclass.
  */
 public class HomePartnersFragment extends Fragment implements View.OnKeyListener {
-
     DatabaseHelper db;
     TableLayout partnerTable;
     TextView hivStatus,typePartner,notesPartner,overAll;
@@ -138,8 +137,6 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                             View row = partnerTable.getChildAt(i);
                             if (row == view) {
                                 setPartnerSummary(row.getId());
-                            } else {
-                                row.setBackground(getResources().getDrawable(R.drawable.border_bottom));
                             }
                         }
                     }
@@ -334,31 +331,45 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                     rating_values.add(rating.getRating());
                     rating_fields.add(rating.getRating_field());
                 }
-            }
 
-            overAll.setText(rating_fields.get(0));
-            newPartnerSumm_rate2.setText(rating_fields.get(1));
-            newPartnerSumm_rate3.setText(rating_fields.get(2));
-            newPartnerSumm_rate4.setText(rating_fields.get(3));
-            newPartnerSumm_rate5.setText(rating_fields.get(4));
-            newPartnerSumm_rate6.setText(rating_fields.get(5));
-            newPartnerSumm_rate7.setText(rating_fields.get(6));
-            rating1.setRating(Float.parseFloat(rating_values.get(0)));
-            rating2.setRating(Float.parseFloat(rating_values.get(1)));
-            rating3.setRating(Float.parseFloat(rating_values.get(2)));
-            rating4.setRating(Float.parseFloat(rating_values.get(3)));
-            rating5.setRating(Float.parseFloat(rating_values.get(4)));
-            rating6.setRating(Float.parseFloat(rating_values.get(5)));
-            rating7.setRating(Float.parseFloat(rating_values.get(6)));
-            if(rating_fields.get(4).equals("") || rating_fields.get(4)==null){
+                overAll.setText(rating_fields.get(0));
+                newPartnerSumm_rate2.setText(rating_fields.get(1));
+                newPartnerSumm_rate3.setText(rating_fields.get(2));
+                newPartnerSumm_rate4.setText(rating_fields.get(3));
+                newPartnerSumm_rate5.setText(rating_fields.get(4));
+                newPartnerSumm_rate6.setText(rating_fields.get(5));
+                newPartnerSumm_rate7.setText(rating_fields.get(6));
+                rating1.setRating(Float.parseFloat(rating_values.get(0)));
+                rating2.setRating(Float.parseFloat(rating_values.get(1)));
+                rating3.setRating(Float.parseFloat(rating_values.get(2)));
+                rating4.setRating(Float.parseFloat(rating_values.get(3)));
+                rating5.setRating(Float.parseFloat(rating_values.get(4)));
+                rating6.setRating(Float.parseFloat(rating_values.get(5)));
+                rating7.setRating(Float.parseFloat(rating_values.get(6)));
+                if(rating_fields.get(4).equals("") || rating_fields.get(4)==null){
+                    newPartnerSumm_rate5.setVisibility(View.GONE);
+                    rating5.setVisibility(View.GONE);
+                }
+                if(rating_fields.get(5).equals("") || rating_fields.get(5)==null){
+                    newPartnerSumm_rate6.setVisibility(View.GONE);
+                    rating6.setVisibility(View.GONE);
+                }
+                if(rating_fields.get(6).equals("") || rating_fields.get(6)==null){
+                    newPartnerSumm_rate7.setVisibility(View.GONE);
+                    rating7.setVisibility(View.GONE);
+                }
+            } else {
+                rating1.setRating(0);
+                rating2.setRating(0);
+                rating3.setRating(0);
+                rating4.setRating(0);
+                rating5.setRating(0);
+                rating6.setRating(0);
+                rating7.setRating(0);
                 newPartnerSumm_rate5.setVisibility(View.GONE);
                 rating5.setVisibility(View.GONE);
-            }
-            if(rating_fields.get(5).equals("") || rating_fields.get(5)==null){
                 newPartnerSumm_rate6.setVisibility(View.GONE);
                 rating6.setVisibility(View.GONE);
-            }
-            if(rating_fields.get(6).equals("") || rating_fields.get(6)==null){
                 newPartnerSumm_rate7.setVisibility(View.GONE);
                 rating7.setVisibility(View.GONE);
             }
@@ -701,36 +712,43 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         List<String> rating_fields = new ArrayList<String>();
         List<String> rating_values = new ArrayList<String>();
         List<PartnerRating> partnerRatingsList = db.getPartnerRatingbyPartnerID(partner_id);
-        for (PartnerRating rating : partnerRatingsList) {
-            rating_values.add(rating.getRating());
-            rating_fields.add(rating.getRating_field());
+
+        if(partnerRatingsList != null) {
+            for (PartnerRating rating : partnerRatingsList) {
+                rating_values.add(rating.getRating());
+                rating_fields.add(rating.getRating_field());
+            }
         }
+
         db= new DatabaseHelper(getActivity());
         db = new DatabaseHelper(getActivity().getBaseContext());
+
+        editoverAll.setTypeface(tf_bold);
         final TextView newPartnerSumm_rate2 = (TextView) rootview.findViewById(R.id.newPartnerSumm_rate2);
         final TextView newPartnerSumm_rate3 = (TextView) rootview.findViewById(R.id.newPartnerSumm_rate3);
         final TextView newPartnerSumm_rate4 = (TextView) rootview.findViewById(R.id.newPartnerSumm_rate4);
         final EditText newPartnerSumm_rate5 = (EditText) rootview.findViewById(R.id.newPartnerSumm_rate5);
         final EditText newPartnerSumm_rate6 = (EditText) rootview.findViewById(R.id.newPartnerSumm_rate6);
         final EditText newPartnerSumm_rate7 = (EditText) rootview.findViewById(R.id.newPartnerSumm_rate7);
+        newPartnerSumm_rate3.setTypeface(tf_bold);
+        newPartnerSumm_rate2.setTypeface(tf_bold);
+        newPartnerSumm_rate4.setTypeface(tf_bold);
+        newPartnerSumm_rate5.setTypeface(tf_bold);
+        newPartnerSumm_rate6.setTypeface(tf_bold);
+        newPartnerSumm_rate7.setTypeface(tf_bold);
 
         newPartnerSumm_rate5.setOnKeyListener(this);
         newPartnerSumm_rate6.setOnKeyListener(this);
         newPartnerSumm_rate7.setOnKeyListener(this);
 
-        editoverAll.setTypeface(tf_bold);
-        newPartnerSumm_rate2.setText(rating_fields.get(1));
-        newPartnerSumm_rate2.setTypeface(tf_bold);
-        newPartnerSumm_rate3.setText(rating_fields.get(2));
-        newPartnerSumm_rate3.setTypeface(tf_bold);
-        newPartnerSumm_rate4.setText(rating_fields.get(3));
-        newPartnerSumm_rate4.setTypeface(tf_bold);
-        newPartnerSumm_rate5.setText(rating_fields.get(4));
-        newPartnerSumm_rate5.setTypeface(tf_bold);
-        newPartnerSumm_rate6.setText(rating_fields.get(5));
-        newPartnerSumm_rate6.setTypeface(tf_bold);
-        newPartnerSumm_rate7.setText(rating_fields.get(6));
-        newPartnerSumm_rate7.setTypeface(tf_bold);
+        if(rating_fields.size() > 0) {
+            newPartnerSumm_rate2.setText(rating_fields.get(1));
+            newPartnerSumm_rate3.setText(rating_fields.get(2));
+            newPartnerSumm_rate4.setText(rating_fields.get(3));
+            newPartnerSumm_rate5.setText(rating_fields.get(4));
+            newPartnerSumm_rate6.setText(rating_fields.get(5));
+            newPartnerSumm_rate7.setText(rating_fields.get(6));
+        }
 
         final RatingBar rating1 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar1);
         final RatingBar rating2 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar2);
@@ -740,22 +758,28 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
         final RatingBar rating6 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar6);
         final RatingBar rating7 = (RatingBar) rootview.findViewById(R.id.newPartnerSumm_ratingBar7);
 
-        rating1.setRating(Float.parseFloat(rating_values.get(0)));
-        rating2.setRating(Float.parseFloat(rating_values.get(1)));
-        rating3.setRating(Float.parseFloat(rating_values.get(2)));
-        rating4.setRating(Float.parseFloat(rating_values.get(3)));
-        rating5.setRating(Float.parseFloat(rating_values.get(4)));
-        rating6.setRating(Float.parseFloat(rating_values.get(5)));
-        rating7.setRating(Float.parseFloat(rating_values.get(6)));
-        if(rating_fields.get(4).equals("") || rating_fields.get(4)==null){
-            rating5.setRating(1);
+        if(rating_values.size() > 0) {
+            rating1.setRating(Float.parseFloat(rating_values.get(0)));
+            rating2.setRating(Float.parseFloat(rating_values.get(1)));
+            rating3.setRating(Float.parseFloat(rating_values.get(2)));
+            rating4.setRating(Float.parseFloat(rating_values.get(3)));
+            rating5.setRating(Float.parseFloat(rating_values.get(4)));
+            rating6.setRating(Float.parseFloat(rating_values.get(5)));
+            rating7.setRating(Float.parseFloat(rating_values.get(6)));
         }
-        if(rating_fields.get(5).equals("") || rating_fields.get(5)==null){
-            rating6.setRating(1);
+
+        if(rating_fields.size() > 0) {
+            if(rating_fields.get(4).equals("") || rating_fields.get(4)==null){
+                rating5.setRating(1);
+            }
+            if(rating_fields.get(5).equals("") || rating_fields.get(5)==null){
+                rating6.setRating(1);
+            }
+            if(rating_fields.get(6).equals("") || rating_fields.get(6)==null){
+                rating7.setRating(1);
+            }
         }
-        if(rating_fields.get(6).equals("") || rating_fields.get(6)==null){
-            rating7.setRating(1);
-        }
+
         LayerDrawable stars1 = (LayerDrawable) rating1.getProgressDrawable();
         stars1.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
         stars1.getDrawable(1).setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP); // for half filled stars
@@ -870,13 +894,22 @@ public class HomePartnersFragment extends Fragment implements View.OnKeyListener
                     rating_field_id.add(5);
                     rating_field_id.add(6);
                     rating_field_id.add(7);
+
+                    List<PartnerRating> partnerRatingsList = db.getPartnerRatingbyPartnerID(partner_id);
+
                     for (Integer field_id : rating_field_id) {
                         System.out.println("FIELD ID"+field_id);
                         System.out.println(rating_values.get(field_id - 1));
                         PartnerRating partner_rating = new PartnerRating(LynxManager.getActiveUser().getUser_id(), partner_id,
                                 field_id, String.valueOf(rating_values.get(field_id - 1)),rating_fields.get(field_id - 1), String.valueOf(R.string.statusUpdateNo));
-                        db.updatePartnerRatingbyPartnerIDnRatingField(partner_rating);
+
+                        if(partnerRatingsList != null) {
+                            db.updatePartnerRatingbyPartnerIDnRatingField(partner_rating);
+                        } else {
+                            db.createPartnerRating(partner_rating);
+                        }
                     }
+
                     updatedPartner.setStatus_update(String.valueOf(R.string.statusUpdateNo));
                     db.updatePartnerFromSummary(updatedPartner);
                     updatedPartnerContact.setStatus_update(String.valueOf(R.string.statusUpdateNo));

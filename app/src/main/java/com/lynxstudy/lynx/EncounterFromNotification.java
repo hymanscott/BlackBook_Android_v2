@@ -173,14 +173,21 @@ public class EncounterFromNotification extends AppCompatActivity {
             if(!alcCountPerDay.getText().toString().isEmpty()){
                 count = alcCountPerDay.getText().toString();
             }
+
             RadioButton alcDaysCountPerWeek = (RadioButton) findViewById(RG_Alcohol.getCheckedRadioButtonId());
             UserAlcoholUse userAlcoholUse = new UserAlcoholUse(2, LynxManager.getActiveUser().getUser_id(),
                     LynxManager.encryptString(alcDaysCountPerWeek.getText().toString()), LynxManager.encryptString(count), LynxManager.encryptString("No"),String.valueOf(R.string.statusUpdateNo),true);
             LynxManager.setActiveUserAlcoholUse(userAlcoholUse);
 
-          EncounterWeeklyCheckinSexDayAndDoxy sexAndDoxyScreen = new EncounterWeeklyCheckinSexDayAndDoxy();
-          pushFragments("EncounterFromNotification", sexAndDoxyScreen, true);
+            if(LynxManager.decryptString(LynxManager.getActiveUser().getIs_prep()).equals("Yes")) {
+                EncounterWeeklyCheckinSexDayAndDoxy sexAndDoxyScreen = new EncounterWeeklyCheckinSexDayAndDoxy();
+                pushFragments("EncounterFromNotification", sexAndDoxyScreen, true);
+            } else {
+                EncounterWeeklyCheckinReport reportScreeen = new EncounterWeeklyCheckinReport();
+                pushFragments("EncounterFromNotification", reportScreeen, true);
+            }
         }
+
         return true;
     }
 

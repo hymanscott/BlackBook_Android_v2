@@ -279,7 +279,7 @@ public class EncounterStartActivity extends AppCompatActivity {
         } else if (comesfromDoxyFragment == true && nowParent.getVisibility() == View.VISIBLE && rgbNow.getCheckedRadioButtonId() == -1) {
             Toast.makeText(EncounterStartActivity.this, "Please respond if you will take a doxy now.", Toast.LENGTH_SHORT).show();
         } else {
-            if(datePickerParent.getVisibility() == View.VISIBLE) {
+            if(datePickerParent != null && datePickerParent.getVisibility() == View.VISIBLE) {
                 String tookDoxyAt = LynxManager.getFormatedDate("MM/dd/yyyy", txtDatePicker.getText().toString(),"yyyy-MM-dd");
                 LynxManager.activeEncounter.setTook_doxy_at(tookDoxyAt);
             } else {

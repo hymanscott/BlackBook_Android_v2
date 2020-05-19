@@ -177,6 +177,21 @@ public class RemindersActivity extends AppCompatActivity {
         return true;
     }
 
+    public boolean doxyQuestioPreConfirm(View v) {
+        RadioButton rbt_confirm = (RadioButton) findViewById(R.id.rbt_confirm);
+
+        RemindersDoxyConfirmation remindersDoxyConfirmation = new RemindersDoxyConfirmation();
+
+        Bundle arguments = new Bundle();
+        arguments.putBoolean("is_doxy_assigned", rbt_confirm.isChecked());
+
+        remindersDoxyConfirmation.setArguments(arguments);
+
+        pushFragments("Home", remindersDoxyConfirmation, true);
+
+        return true;
+    }
+
     public boolean doxyQuestionSave(View v) {
         RadioButton rbt_confirm = (RadioButton) findViewById(R.id.rbt_confirm);
         // RadioButton rbt_decline = (RadioButton) findViewById(R.id.rbt_confirm);
