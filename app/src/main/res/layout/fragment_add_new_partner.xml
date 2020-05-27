@@ -277,80 +277,10 @@
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="24dp" />
 
-                <!-- Have they... -->
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:layout_marginRight="24dp"
-                    android:layout_marginLeft="24dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Have they been undetectable for\nat least 6 months?"
-                        android:layout_marginTop="10dp"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/encounter_tv_textsize"
-                        android:id="@+id/undetectable_title"
-                        android:gravity="center_vertical"/>
-
-                    <RadioGroup
-                        android:id="@+id/undetectable_rbt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="8dp"
-                        android:layout_marginTop="@dimen/activity_vertical_margin">
-
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Yes"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/encounter_radio_btn_textsize"
-                            android:buttonTint="@color/white"
-                            android:button="@drawable/radiobutton_white"
-                            android:paddingLeft="12dp"
-                            android:id="@+id/undetectable_rbt_yes" />
-
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="No"
-                            android:textColor="@color/white"
-                            android:buttonTint="@color/white"
-                            android:button="@drawable/radiobutton_white"
-                            android:paddingLeft="12dp"
-                            android:layout_marginTop="12dp"
-                            android:textSize="@dimen/encounter_radio_btn_textsize"
-                            android:id="@+id/undetectable_rbt_no" />
-                        <RadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="I don't know/unsure"
-                            android:textColor="@color/white"
-                            android:buttonTint="@color/white"
-                            android:button="@drawable/radiobutton_white"
-                            android:paddingLeft="12dp"
-                            android:layout_marginTop="12dp"
-                            android:textSize="@dimen/encounter_radio_btn_textsize"
-                            android:id="@+id/undetectable_rbt_unsure" />
-                    </RadioGroup>
-
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/input_primary"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="24dp" />
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
                     android:id="@+id/linearLayout_undetectable"
                     android:visibility="gone"
                     android:orientation="vertical">
@@ -406,19 +336,20 @@
                             android:text="I don't know/unsure"
                             android:id="@+id/radio_undetectable_iDontKnow" />
                     </RadioGroup>
+
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/edittext_bg"
+                        android:layout_height="1dp"
+                        android:background="@color/input_primary"
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginBottom="24dp" />
+                        android:layout_marginTop="24dp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:layout_marginRight="24dp"
                     android:layout_marginLeft="24dp"
                     android:orientation="vertical">
