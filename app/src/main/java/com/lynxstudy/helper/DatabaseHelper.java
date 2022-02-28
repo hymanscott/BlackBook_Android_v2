@@ -56,7 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 13;
+    private static final int DATABASE_VERSION = 14;
 
     // Database Name
     private static final String DATABASE_NAME = "phasttDB";
@@ -360,6 +360,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_PREP_FUP_WEEKLY_CHECKIN = "is_weekly_checkin";
     private static final String KEY_PREP_FUP_PREP_DAYS = "no_of_prep_days";
     private static final String KEY_PREP_FUP_ENCOUNTERS_REPORT = "have_encounters_to_report";
+    private static final String KEY_PREP_FUP_DOXY_DAYS = "doxy_days";
+    private static final String KEY_PREP_FUP_SEX_DAYS = "sex_days";
 
     private static final String KEY_TL_SYNC_ID = "id";
     private static final String KEY_TL_SYNC_PAGE = "page";
@@ -525,6 +527,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_PREP_FUP_PREP_DAYS + " TEXT," + KEY_PREP_FUP_WEEKLY_CHECKIN + " INTEGER," + KEY_PREP_FUP_ENCOUNTERS_REPORT + " TEXT,"
             + KEY_STATUS_UPDATE + " TEXT," + KEY_CREATED_AT + " TEXT)";
 
+    private static final String ALTER_TABLE_PREP_FUP_13_DOXY_DAYS = "ALTER TABLE " + TABLE_PREP_FUP + " ADD COLUMN " + KEY_PREP_FUP_DOXY_DAYS + " TEXT;";
+    private static final String ALTER_TABLE_PREP_FUP_13_SEX_DAYS = "ALTER TABLE " + TABLE_PREP_FUP + " ADD COLUMN " + KEY_PREP_FUP_SEX_DAYS + " TEXT;";
+
     private static final String CREATE_TABLE_TL_SYNC = "CREATE TABLE "
             + TABLE_TL_SYNC + "(" + KEY_TL_SYNC_ID + " INTEGER PRIMARY KEY," + KEY_TL_SYNC_PAGE + " INTEGER,"
             + KEY_USERS_ID + " INTEGER," + KEY_CREATED_AT + " TEXT)";
@@ -614,6 +619,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         * */
         db.execSQL("DELETE FROM " + TABLE_TESTING_HISTORY);
         db.execSQL("DELETE FROM " + TABLE_TESTING_HISTORY_INFO);
+
+        if (oldVersion < 14) {
+            db.execSQL(ALTER_TABLE_PREP_FUP_13_DOXY_DAYS);
+            db.execSQL(ALTER_TABLE_PREP_FUP_13_SEX_DAYS);
+        }
     }
 
     public void alterTable() {
@@ -5456,6 +5466,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_PREP_FUP_WEEKLY_CHECKIN, prepFollowup.getIs_weekly_checkin());
         values.put(KEY_PREP_FUP_PREP_DAYS, prepFollowup.getNo_of_prep_days());
         values.put(KEY_PREP_FUP_ENCOUNTERS_REPORT, prepFollowup.getHave_encounters_to_report());
+        values.put(KEY_PREP_FUP_DOXY_DAYS, prepFollowup.getDoxy_days());
+        values.put(KEY_PREP_FUP_SEX_DAYS, prepFollowup.getSex_days());
         values.put(KEY_STATUS_UPDATE, prepFollowup.getStatus_update());
         values.put(KEY_CREATED_AT, getDateTime());
 
@@ -5476,6 +5488,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_PREP_FUP_WEEKLY_CHECKIN, prepFollowup.getIs_weekly_checkin());
         values.put(KEY_PREP_FUP_PREP_DAYS, prepFollowup.getNo_of_prep_days());
         values.put(KEY_PREP_FUP_ENCOUNTERS_REPORT, prepFollowup.getHave_encounters_to_report());
+        values.put(KEY_PREP_FUP_DOXY_DAYS, prepFollowup.getDoxy_days());
+        values.put(KEY_PREP_FUP_SEX_DAYS, prepFollowup.getSex_days());
         values.put(KEY_STATUS_UPDATE, prepFollowup.getStatus_update());
         values.put(KEY_CREATED_AT, prepFollowup.getCreated_at());
 
@@ -5508,6 +5522,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             prepFollowup.setIs_weekly_checkin(c.getInt(c.getColumnIndex(KEY_PREP_FUP_WEEKLY_CHECKIN)));
             prepFollowup.setNo_of_prep_days(c.getString(c.getColumnIndex(KEY_PREP_FUP_PREP_DAYS)));
             prepFollowup.setHave_encounters_to_report(c.getString(c.getColumnIndex(KEY_PREP_FUP_ENCOUNTERS_REPORT)));
+            prepFollowup.setDoxy_days(c.getString(c.getColumnIndex(KEY_PREP_FUP_DOXY_DAYS)));
+            prepFollowup.setSex_days(c.getString(c.getColumnIndex(KEY_PREP_FUP_SEX_DAYS)));
             prepFollowup.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
             prepFollowup.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
             c.close();
@@ -5538,6 +5554,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 prepFollowup.setIs_weekly_checkin(c.getInt(c.getColumnIndex(KEY_PREP_FUP_WEEKLY_CHECKIN)));
                 prepFollowup.setNo_of_prep_days(c.getString(c.getColumnIndex(KEY_PREP_FUP_PREP_DAYS)));
                 prepFollowup.setHave_encounters_to_report(c.getString(c.getColumnIndex(KEY_PREP_FUP_ENCOUNTERS_REPORT)));
+                prepFollowup.setDoxy_days(c.getString(c.getColumnIndex(KEY_PREP_FUP_DOXY_DAYS)));
+                prepFollowup.setSex_days(c.getString(c.getColumnIndex(KEY_PREP_FUP_SEX_DAYS)));
                 prepFollowup.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
                 prepFollowup.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 
@@ -5570,6 +5588,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 prepFollowup.setIs_weekly_checkin(c.getInt(c.getColumnIndex(KEY_PREP_FUP_WEEKLY_CHECKIN)));
                 prepFollowup.setNo_of_prep_days(c.getString(c.getColumnIndex(KEY_PREP_FUP_PREP_DAYS)));
                 prepFollowup.setHave_encounters_to_report(c.getString(c.getColumnIndex(KEY_PREP_FUP_ENCOUNTERS_REPORT)));
+                prepFollowup.setDoxy_days(c.getString(c.getColumnIndex(KEY_PREP_FUP_DOXY_DAYS)));
+                prepFollowup.setSex_days(c.getString(c.getColumnIndex(KEY_PREP_FUP_SEX_DAYS)));
                 prepFollowup.setStatus_update(c.getString(c.getColumnIndex(KEY_STATUS_UPDATE)));
                 prepFollowup.setCreated_at(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
 

@@ -1507,6 +1507,9 @@ public class RegLogin extends AppCompatActivity {
                                     LynxManager.encryptString(prepFupObject.getString("have_encounters_to_report")),
                                     LynxManager.encryptString(getResources().getString(R.string.statusUpdateYes)),"true",
                                     prepFupObject.getString("created_at"));
+                            prepFollowup.setDoxy_days(prepFupObject.getString("doxy_days"));
+                            prepFollowup.setSex_days(prepFupObject.getString("sex_days"));
+
                             db.createPrepFollowupWithID(prepFollowup);
                         }
 

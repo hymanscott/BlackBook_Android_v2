@@ -17,6 +17,8 @@ public class PrepFollowup {
     String score_alt;
     String no_of_prep_days;
     String have_encounters_to_report;
+    String doxy_days;
+    String sex_days;
     String status_update;
     String status_encrypt;
     String created_at;
@@ -109,6 +111,22 @@ public class PrepFollowup {
 
     public void setHave_encounters_to_report(String have_encounters_to_report) {
         this.have_encounters_to_report = have_encounters_to_report;
+    }
+
+    public String getDoxy_days() {
+        return doxy_days;
+    }
+
+    public void setDoxy_days(String doxy_days) {
+        this.doxy_days = doxy_days;
+    }
+
+    public String getSex_days() {
+        return sex_days;
+    }
+
+    public void setSex_days(String sex_days) {
+        this.sex_days = sex_days;
     }
 
     public String getStatus_update() {

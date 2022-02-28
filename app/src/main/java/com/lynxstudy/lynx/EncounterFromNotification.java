@@ -35,6 +35,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONArray;
+
 public class EncounterFromNotification extends AppCompatActivity {
 
     //Button yes,no;
@@ -303,6 +305,23 @@ public class EncounterFromNotification extends AppCompatActivity {
         prepFollowup.setIs_weekly_checkin(1);
         prepFollowup.setHave_encounters_to_report(LynxManager.encryptString(report_val));
         prepFollowup.setNo_of_prep_days(LynxManager.encryptString(prep_days_val));
+
+        // Convert selected doxy days to JSON array string
+        JSONArray doxyDays = new JSONArray();
+
+        for(String doxyDay:LynxManager.selectedDoxyDays) {
+            doxyDays.put(doxyDay);
+        }
+
+        // Convert selected sex days to JSON array string
+        JSONArray sexDays = new JSONArray();
+
+        for(String sexDay:LynxManager.selectedSexDays) {
+            sexDays.put(sexDay);
+        }
+
+        prepFollowup.setDoxy_days(doxyDays.toString());
+        prepFollowup.setSex_days(sexDays.toString());
         prepFollowup.setStatus_update(LynxManager.encryptString(getResources().getString(R.string.statusUpdateNo)));
         prepFollowup.setUser_id(LynxManager.getActiveUser().getUser_id());
         db.createPrepFollowup(prepFollowup);
